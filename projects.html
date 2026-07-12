@@ -1,6 +1,14 @@
 <!DOCTYPE html><html class="light" lang="en"><head>
 <script>
     (function() {
+        // Redirect to landing page on refresh/reload
+        const navEntries = window.performance && window.performance.getEntriesByType ? window.performance.getEntriesByType("navigation") : [];
+        const isReload = navEntries.length > 0 ? navEntries[0].type === "reload" : (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+        if (isReload) {
+            window.location.replace("index.html");
+            return;
+        }
+
         const theme = localStorage.getItem('theme');
         if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -126,6 +134,15 @@ try {
       text-rendering: geometricPrecision;
   }
   .glass-header { backdrop-filter: blur(12px); }
+  
+  /* Hide scrollbar for tabs navigation on mobile */
+  .custom-scrollbar::-webkit-scrollbar {
+      display: none;
+  }
+  .custom-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
   .card-floating { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
   .card-floating:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.08), 0 10px 10px -5px rgba(37, 99, 235, 0.03); }
   
@@ -522,10 +539,10 @@ try {
     </div>
 </div>
 
-<!-- Card 6: Behance -->
+<!-- Card 6: Behance (Photo Gallery Slider) -->
 <div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
-    <a href="https://behance.net" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
-        <img alt="Behance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Yb6jl8EYeSS9hUeZPVasZLQBTJbT5f3k_h3r2RNIYjqNCsYu-MF_MGpYRAOA32EXso7TI1HdKBup9Pkw_gH9fFCoxb07zb-OB9n3iCaBJ7iEdwbXWXT-EnclEpB_vIo_O28TLcMB76Hb7JswAbr_GFn0pnq6FIX4WVOQpzJ0ykyfSXnN0HLWjM6bhTbyIgpLkcDZpifoigm96TO4tt2LHCpLos9zS13OpVVkKkfaceb5gOzbQ0O3bA">
+    <a href="gallery.html" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+        <img alt="Photo Gallery Slider" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Yb6jl8EYeSS9hUeZPVasZLQBTJbT5f3k_h3r2RNIYjqNCsYu-MF_MGpYRAOA32EXso7TI1HdKBup9Pkw_gH9fFCoxb07zb-OB9n3iCaBJ7iEdwbXWXT-EnclEpB_vIo_O28TLcMB76Hb7JswAbr_GFn0pnq6FIX4WVOQpzJ0ykyfSXnN0HLWjM6bhTbyIgpLkcDZpifoigm96TO4tt2LHCpLos9zS13OpVVkKkfaceb5gOzbQ0O3bA">
     </a>
     <div class="p-6">
         <div class="flex items-start justify-between mb-2">
@@ -538,7 +555,7 @@ try {
         <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-1.5 truncate">
                 <span class="material-symbols-outlined text-primary text-[16px] flex-shrink-0">language</span>
-                <a href="https://behance.net" target="_blank" class="text-body-sm text-primary font-bold truncate hover:underline">behance.net</a>
+                <a href="gallery.html" class="text-body-sm text-primary font-bold truncate hover:underline">gallery.html</a>
             </div>
             <button class="fav-toggle-btn text-slate-300 dark:text-slate-600 hover:text-amber-500 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="behance" aria-label="Toggle Favorite">
                 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
@@ -547,10 +564,10 @@ try {
         <div class="flex items-center justify-between mt-4">
             <!-- Small Tag-like Buttons -->
             <div class="flex gap-2">
-                <a href="https://behance.net" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                <a href="gallery.html" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
                 </a>
-                <a href="project.html?id=behance" class="px-3.5 py-1.5 rounded-xl bg-surface-container-highest dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-highest/80 dark:hover:bg-slate-700 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                <a href="gallery.html" class="px-3.5 py-1.5 rounded-xl bg-surface-container-highest dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-highest/80 dark:hover:bg-slate-700 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-[15px] font-black">info</span> About
                 </a>
             </div>
@@ -1228,9 +1245,16 @@ try {
             });
         });
 
-        // Initialize indicator position
+        // Initialize indicator position & check URL params/hash for deep-linked tab redirects
         setTimeout(() => {
-            const activeTab = tabsContainer.querySelector('.tab-btn.text-primary') || tabButtons[0];
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab') || window.location.hash.substring(1);
+            let activeTab = tabsContainer.querySelector('.tab-btn.text-primary') || tabButtons[0];
+            
+            if (tabParam) {
+                const targetBtn = Array.from(tabButtons).find(btn => btn.getAttribute('data-tab') === tabParam);
+                if (targetBtn) activeTab = targetBtn;
+            }
             updateTabIndicator(activeTab);
         }, 150);
 

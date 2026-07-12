@@ -1,0 +1,66 @@
+[
+  {
+    "id": "cyberpunk",
+    "title": "Urban Cyberpunk Grading",
+    "description": "Enhanced desaturated raw night shot into an electric, high-contrast cyberpunk atmosphere with neon-pink saturation.",
+    "before": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80&sat=-80&contrast=70&bri=-10",
+    "after": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+    "preset": "assets/presets/cyberpunk.xmp"
+  },
+  {
+    "id": "portrait",
+    "title": "Studio Portrait Retouching",
+    "description": "Frequency separation, fine skin texture preservation, global lighting balance adjustment, and warm sunset grading.",
+    "before": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80&sat=-100&contrast=90",
+    "after": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    "preset": "assets/presets/cyberpunk.xmp"
+  },
+  {
+    "id": "landscape",
+    "title": "Alpine Golden Hour",
+    "description": "Brought out hidden shadow details from raw exposure, enhanced mist contrast, and saturated alpine sunlight colors.",
+    "before": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80&sat=-60&bri=-20&contrast=80",
+    "after": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
+    "preset": "assets/presets/cyberpunk.xmp"
+  },
+  {
+    "id": "street_night",
+    "title": "Tokyo Neon Streets",
+    "description": "Restored overexposed light reflections in street signs and balanced shadows with rich blue/teal tones.",
+    "before": "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80&sat=-90&contrast=60&bri=-15",
+    "after": "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80",
+    "preset": "assets/presets/cyberpunk.xmp"
+  },
+  {
+    "id": "product",
+    "title": "Minimalist Product Shot",
+    "description": "Enhanced contrast highlights on metallic edges and retouched micro dust particles from studio background.",
+    "before": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80&sat=-70&contrast=50&bri=-10",
+    "after": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+    "preset": "assets/presets/cyberpunk.xmp"
+  },
+  {
+    "id": "wedding",
+    "title": "Warm Wedding Bliss",
+    "description": "Shifted skin tones into a clean cinematic look and added soft vintage warm filters for emotional resonance.",
+    "before": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80&sat=-80&contrast=65&bri=-5",
+    "after": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
+    "preset": "assets/presets/cyberpunk.xmp"
+  },
+  {
+    "id": "wildlife",
+    "title": "Muted Forest Wildlife",
+    "description": "Recovered details in dense fur shadows and enhanced contrast separation from dry background foliage.",
+    "before": "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&q=80&sat=-75&contrast=60&bri=-10",
+    "after": "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&q=80",
+    "preset": "assets/presets/cyberpunk.xmp"
+  },
+  {
+    "id": "architecture",
+    "title": "Modern Brutalist Architecture",
+    "description": "Cleaned up structural perspective lines, corrected geometric lens distortion, and cooled down shadows.",
+    "before": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80&sat=-85&contrast=70&bri=-5",
+    "after": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "preset": "assets/presets/cyberpunk.xmp"
+  }
+]
