@@ -125,7 +125,7 @@ try {
       -moz-osx-font-smoothing: grayscale;
       text-rendering: geometricPrecision;
   }
-  .glass-header { backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+  .glass-header { backdrop-filter: blur(12px); }
   .card-floating { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
   .card-floating:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.08), 0 10px 10px -5px rgba(37, 99, 235, 0.03); }
   
@@ -255,7 +255,7 @@ try {
 </aside>
 <!-- Main Content Area -->
 <main class="ml-0 lg:ml-64 min-h-screen transition-all duration-300">
-<header class="fixed top-0 right-0 w-full lg:w-[calc(100%-16rem)] z-40 glass-header bg-white/90 dark:bg-slate-900/90 h-20 flex justify-between items-center px-6 sm:px-10 gap-4 border-b dark:border-slate-800">
+<header class="fixed top-0 right-0 w-full lg:w-[calc(100%-16rem)] z-40 glass-header bg-white/90 dark:bg-slate-900/90 h-20 flex justify-between items-center px-6 sm:px-10 gap-4 border-b-0 md:border-b border-outline-variant/30 dark:border-slate-800/80">
     <!-- Left: Hamburger button for mobile -->
     <button class="lg:hidden text-primary p-2 hover:bg-surface-container dark:hover:bg-slate-800 rounded-xl cursor-pointer active-feedback" id="sidebar-toggle">
         <span class="material-symbols-outlined font-bold">menu</span>
