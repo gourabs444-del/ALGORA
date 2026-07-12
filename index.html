@@ -29,7 +29,7 @@
           2. animations.css (keyframes)
           3. utilities.css  (helper classes)
     -->
-    <link rel="stylesheet" href="css/style.css?v=8.9">
+    <link rel="stylesheet" href="css/style.css?v=9.0">
 
 </head>
 
@@ -160,12 +160,19 @@
                 <circle cx="80" cy="20" r="1.5" fill="#00ff88"/>
             </g>
 
-            <!-- Triangle -->
+            <!-- Triangle - Desktop -->
             <polygon points="260,620 320,720 200,720"
                      fill="none"
                      stroke="#00e5ff"
                      stroke-width="2"
-                     class="svg-float-2 svg-shape-boot"/>
+                     class="svg-float-2 svg-shape-boot hidden sm:block"/>
+
+            <!-- Triangle - Mobile -->
+            <polygon points="560,620 620,720 500,720"
+                     fill="none"
+                     stroke="#00e5ff"
+                     stroke-width="2"
+                     class="svg-float-2 svg-shape-boot block sm:hidden"/>
 
             <!-- Code Editor Window Mockup (Full-Stack Developer Theme) -->
             <g transform="translate(220, 410)" opacity="0.2">
@@ -224,13 +231,21 @@
                 <circle cx="0" cy="0" r="18" fill="none" stroke="#00e5ff" stroke-width="0.5" stroke-dasharray="2 3"/>
             </g>
 
-            <!-- Ring (Circle) -->
+            <!-- Ring (Circle) - Desktop -->
             <circle cx="1120" cy="670" r="60"
                     fill="none"
                     stroke="#00ff88"
                     stroke-width="2"
                     opacity="0.6"
-                    class="svg-glow-pulse svg-shape-boot"/>
+                    class="svg-float-3 svg-shape-boot hidden sm:block"/>
+
+            <!-- Ring (Circle) - Mobile -->
+            <circle cx="1020" cy="670" r="50"
+                    fill="none"
+                    stroke="#00ff88"
+                    stroke-width="2"
+                    opacity="0.6"
+                    class="svg-float-3 svg-shape-boot block sm:hidden"/>
 
 
 
