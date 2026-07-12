@@ -116,6 +116,9 @@ try {
 } catch (_e) {}
 </script>
 <style>
+  * {
+      -webkit-tap-highlight-color: transparent;
+  }
   html, body {
       scrollbar-gutter: stable;
       -webkit-font-smoothing: antialiased;
@@ -261,7 +264,7 @@ try {
     <!-- Right Group: Search + Tabs + Notifications -->
     <div class="flex items-center gap-4 sm:gap-6 ml-auto overflow-x-auto flex-nowrap py-1 custom-scrollbar">
         <!-- Search Bar -->
-        <div class="relative w-40 sm:w-64 flex-shrink-0">
+        <div class="relative w-40 sm:w-64 flex-shrink-0 hidden md:block">
             <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold">search</span>
             <input id="search-input" class="w-full bg-surface-container dark:bg-slate-800 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-2xl py-2 sm:py-3 pl-11 pr-10 text-body-sm dark:text-slate-200 transition-all outline-none focus:outline-none focus:ring-4 focus:ring-primary/10" placeholder="Search your library..." type="text">
             <button id="search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden active-feedback">
@@ -269,7 +272,7 @@ try {
             </button>
         </div>
         
-        <div class="h-8 w-px bg-outline-variant dark:bg-slate-800 flex-shrink-0"></div>
+        <div class="h-8 w-px bg-outline-variant dark:bg-slate-800 flex-shrink-0 hidden md:block"></div>
         
         <!-- Navigation Tabs -->
         <div class="relative flex items-center gap-2 sm:gap-4 flex-shrink-0" id="tabs-container">
@@ -288,10 +291,18 @@ try {
 </header>
 <!-- Content Canvas -->
 <div class="pt-32 pb-24 px-6 sm:px-10 max-w-7xl mx-auto">
-<div class="flex justify-between items-center mb-12">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
 <div>
 <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-white tracking-tight leading-tight mb-1.5">My Portfolio</h2>
 <p class="text-secondary dark:text-slate-400 font-medium text-body-md sm:text-body-lg">A showcase of premium websites I have built</p>
+</div>
+<!-- Mobile Search Bar (Only visible on mobile/tablet) -->
+<div class="relative w-full max-w-md md:hidden" id="mobile-search-container">
+    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold">search</span>
+    <input id="mobile-search-input" class="w-full bg-white dark:bg-slate-900 border border-outline-variant/30 dark:border-slate-800 focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-2xl py-3 pl-11 pr-10 text-body-sm dark:text-slate-200 transition-all outline-none" placeholder="Search your library..." type="text">
+    <button id="mobile-search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden active-feedback">
+        <span class="material-symbols-outlined text-[18px]">close</span>
+    </button>
 </div>
 </div>
 <!-- Website Grid -->
@@ -730,60 +741,119 @@ try {
     // Search optimization: Live filter & Clear button
     const searchInput = document.getElementById('search-input');
     const searchClearBtn = document.getElementById('search-clear');
+    const mobileSearchInput = document.getElementById('mobile-search-input');
+    const mobileSearchClearBtn = document.getElementById('mobile-search-clear');
     const portfolioGrid = document.getElementById('portfolio-grid');
     const noResultsDiv = document.getElementById('no-results');
     const clearSearchBtn = document.getElementById('clear-search-btn');
 
-    if (searchInput && portfolioGrid) {
+    if (portfolioGrid) {
         const cards = Array.from(portfolioGrid.children);
 
         // Filter function
-        function performSearch() {
-            const query = searchInput.value.toLowerCase().trim();
+        function performSearch(queryVal) {
+            const query = queryVal.toLowerCase().trim();
             let visibleCount = 0;
 
-            // Show/hide clear button
+            // Sync values to both inputs
+            if (searchInput) searchInput.value = queryVal;
+            if (mobileSearchInput) mobileSearchInput.value = queryVal;
+
+            // Show/hide clear buttons
             if (query.length > 0) {
-                searchClearBtn.classList.remove('hidden');
+                if (searchClearBtn) searchClearBtn.classList.remove('hidden');
+                if (mobileSearchClearBtn) mobileSearchClearBtn.classList.remove('hidden');
             } else {
-                searchClearBtn.classList.add('hidden');
+                if (searchClearBtn) searchClearBtn.classList.add('hidden');
+                if (mobileSearchClearBtn) mobileSearchClearBtn.classList.add('hidden');
             }
 
             // Loop cards and filter
             cards.forEach(card => {
                 const cardText = card.innerText.toLowerCase();
                 if (cardText.includes(query)) {
-                    card.style.display = '';
-                    visibleCount++;
+                    // Check if active sidebar category matches
+                    const activeTab = document.querySelector('.tab-btn.text-primary');
+                    const tabType = activeTab ? activeTab.getAttribute('data-tab') : 'all';
+                    if (tabType === 'all') {
+                        let activeSidebarItem = document.querySelector('.sidebar-item[data-active-filter="true"]');
+                        const sidebarTarget = activeSidebarItem ? activeSidebarItem.getAttribute('data-target-tab') : 'all';
+                        
+                        let matchCategory = false;
+                        if (sidebarTarget === 'all') {
+                            matchCategory = true;
+                        } else if (sidebarTarget === 'collections') {
+                            const text = card.innerText.toLowerCase();
+                            matchCategory = (text.includes('design') || text.includes('inspiration') || text.includes('art') || text.includes('figma'));
+                        } else if (sidebarTarget === 'shared') {
+                            const text = card.innerText.toLowerCase();
+                            matchCategory = (text.includes('code') || text.includes('read') || text.includes('notion') || text.includes('git'));
+                        } else if (sidebarTarget === 'favourites') {
+                            const favBtn = card.querySelector('.fav-toggle-btn');
+                            const projectId = favBtn ? favBtn.getAttribute('data-project-id') : null;
+                            const favorites = getSafeFavorites();
+                            matchCategory = (projectId && favorites[projectId]);
+                        } else if (sidebarTarget === 'collaboration') {
+                            const favBtn = card.querySelector('.fav-toggle-btn');
+                            const projectId = favBtn ? favBtn.getAttribute('data-project-id') : null;
+                            matchCategory = (projectId && projectId !== 'cognilens');
+                        }
+
+                        if (matchCategory) {
+                            card.style.display = '';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    } else {
+                        card.style.display = '';
+                        visibleCount++;
+                    }
                 } else {
                     card.style.display = 'none';
                 }
             });
 
             // Handle empty search results state
-            if (visibleCount === 0) {
-                noResultsDiv.classList.remove('hidden');
-                noResultsDiv.classList.add('flex');
-            } else {
-                noResultsDiv.classList.add('hidden');
-                noResultsDiv.classList.remove('flex');
+            if (noResultsDiv) {
+                const activeTab = document.querySelector('.tab-btn.text-primary');
+                const tabType = activeTab ? activeTab.getAttribute('data-tab') : 'all';
+                if (tabType !== 'all') {
+                    noResultsDiv.classList.add('hidden');
+                    noResultsDiv.classList.remove('flex');
+                } else if (visibleCount === 0) {
+                    noResultsDiv.classList.remove('hidden');
+                    noResultsDiv.classList.add('flex');
+                } else {
+                    noResultsDiv.classList.add('hidden');
+                    noResultsDiv.classList.remove('flex');
+                }
             }
         }
 
-        searchInput.addEventListener('input', performSearch);
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => performSearch(e.target.value));
+            if (searchClearBtn) {
+                searchClearBtn.addEventListener('click', () => {
+                    performSearch('');
+                    searchInput.focus();
+                });
+            }
+        }
 
-        // Clear button triggers
-        searchClearBtn.addEventListener('click', () => {
-            searchInput.value = '';
-            performSearch();
-            searchInput.focus();
-        });
+        if (mobileSearchInput) {
+            mobileSearchInput.addEventListener('input', (e) => performSearch(e.target.value));
+            if (mobileSearchClearBtn) {
+                mobileSearchClearBtn.addEventListener('click', () => {
+                    performSearch('');
+                    mobileSearchInput.focus();
+                });
+            }
+        }
 
         if (clearSearchBtn) {
             clearSearchBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                performSearch();
-                searchInput.focus();
+                performSearch('');
             });
         }
     }
