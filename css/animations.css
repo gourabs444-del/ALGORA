@@ -1,0 +1,210 @@
+/* ============================================================
+   ANIMATIONS — Keyframes & Motion (Perfectly Synchronized)
+   Portfolio / css/animations.css
+   ============================================================ */
+
+/* ── Global Timing Easing Definition ────────────────────── */
+/*
+   All boot animations use the same premium cubic-bezier easing
+   cubic-bezier(0.16, 1, 0.3, 1) and synchronized intervals:
+   - Phase 1: Background boot (Grid, Glows, Curve, Shapes) -> Duration 2.0s
+   - Phase 2: Content focus reveal (Badge, Title, Subtitle, Buttons) -> Duration 1.2s
+*/
+
+/* ── Luxury Lens-Focus Reveal (Cinematic Text Entrance) ─── */
+@keyframes blurReveal {
+    from {
+        opacity:   0;
+        filter:    blur(12px);
+        transform: scale(0.97) translateY(16px);
+    }
+    to {
+        opacity:   1;
+        filter:    blur(0);
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ── Hero Element Entrance Timeline (Synchronized Stagger) ── */
+
+.hero-badge {
+    animation: blurReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.2s;
+}
+
+/* Staggered focus reveal for each line of text - synchronized 0.1s intervals */
+.hero-title .hero-line:nth-of-type(1) {
+    animation: blurReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.3s;
+}
+.hero-title .hero-line:nth-of-type(2) {
+    animation: blurReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.4s;
+}
+.hero-title .hero-line:nth-of-type(3) {
+    animation: blurReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.5s;
+}
+
+.hero p {
+    animation: blurReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.6s;
+}
+
+.hero-buttons {
+    animation: blurReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.7s;
+}
+
+/* ── Phone Boot Style SVG Elements (Spin & Draw Intro) ──── */
+
+@keyframes shapeBoot {
+    0% {
+        opacity:   0;
+        transform: scale(0) rotate(-220deg);
+        filter: blur(8px);
+    }
+    60% {
+        opacity:   1;
+        filter: blur(2px);
+        transform: scale(1.06) rotate(6deg);
+    }
+    85% {
+        transform: scale(0.98) rotate(-2deg);
+    }
+    100% {
+        opacity:   1;
+        transform: scale(1) rotate(0deg);
+        filter: blur(0);
+    }
+}
+
+@keyframes stretchPath {
+    0% {
+        stroke-dashoffset: 1900;
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.7;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0.7;
+    }
+}
+
+@keyframes drawGrid {
+    from {
+        stroke-dashoffset: 1600;
+        opacity: 0;
+    }
+    to {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes glowEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+}
+
+/* ── SVG Background Reveal Animations (Synchronized to 2s duration) ── */
+
+/* Grid lines draw themselves like system bootup grid */
+#background svg line {
+    stroke-dasharray: 1600;
+    stroke-dashoffset: 1600;
+    opacity: 0;
+    animation: drawGrid 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.svg-curve-line {
+    stroke-dasharray:  1900;
+    stroke-dashoffset: 1900;
+    opacity:           0;
+    animation:         stretchPath 3.6s cubic-bezier(0.1, 0.9, 0.15, 1) both;
+    animation-delay:   0.1s;
+}
+
+.svg-shape-boot {
+    transform-origin: center;
+    transform-box:    fill-box;
+    opacity:          0;
+}
+
+/* ── SVG Floating & Drifting loops (Chained exactly at 2.1s) ── */
+
+.svg-float-1 {
+    animation: shapeBoot 2s cubic-bezier(0.16, 1, 0.3, 1) both,
+               float 5s ease-in-out infinite 2.1s;
+}
+
+.svg-float-2 {
+    animation: shapeBoot 2s cubic-bezier(0.16, 1, 0.3, 1) both,
+               float 7s ease-in-out infinite 2.1s;
+}
+
+.svg-float-3 {
+    animation: shapeBoot 2s cubic-bezier(0.16, 1, 0.3, 1) both,
+               float 6s ease-in-out infinite 2.1s;
+}
+
+.svg-glow-pulse {
+    transform-origin: center;
+    transform-box:    fill-box;
+    animation: glowEntrance 2s cubic-bezier(0.16, 1, 0.3, 1) both,
+               pulseGlow 5s ease-in-out infinite 2.1s;
+}
+
+.svg-drift {
+    animation: shapeBoot 2s cubic-bezier(0.16, 1, 0.3, 1) both,
+               drift 8s ease-in-out infinite 2.1s;
+}
+
+/* ── Infinite Loop Keyframes (Unchanged) ────────────────── */
+
+@keyframes float {
+    0%, 100% { transform: translateY(0);    }
+    50%       { transform: translateY(-12px); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.85; }
+    50%       { opacity: 0.55;  }
+}
+
+@keyframes drift {
+    0%, 100% { transform: translate(0, 0);       }
+    33%       { transform: translate(8px, -10px); }
+    66%       { transform: translate(-5px, 6px);  }
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0   rgba(0, 255, 136, 0.6);
+        opacity:    1;
+    }
+    50% {
+        box-shadow: 0 0 0 5px rgba(0, 255, 136, 0);
+        opacity:    0.8;
+    }
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity:   0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity:   1;
+        transform: translateY(0);
+    }
+}

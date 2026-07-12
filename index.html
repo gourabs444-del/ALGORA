@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+            } else {
+                document.documentElement.classList.add('light');
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Gourav's digital portfolio — Full Stack Developer, Designer, and Filmmaker. Explore projects, articles, and creative work.">
+
+    <title>Gourav | Portfolio</title>
+
+    <!--
+        Single CSS entry point.
+        style.css internally @imports:
+          1. variables.css  (Google Fonts + design tokens)
+          2. animations.css (keyframes)
+          3. utilities.css  (helper classes)
+    -->
+    <link rel="stylesheet" href="css/style.css?v=7.6">
+
+</head>
+
+<body>
+
+    <!-- ================================================
+         SVG Background Layer
+         position:fixed  z-index:-1  pointer-events:none
+         Defined in CSS → #background
+         This MUST stay as the very first child of <body>
+         so painting order is correct even without z-index.
+    ================================================= -->
+
+    <div id="background" aria-hidden="true">
+
+        <svg viewBox="0 0 1600 900"
+             preserveAspectRatio="xMidYMid slice"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+
+                <!-- Dark gradient fill for the base rect -->
+                <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%"   stop-color="#050505"/>
+                    <stop offset="100%" stop-color="#0f1115"/>
+                </linearGradient>
+
+                <!-- Violet ambient glow -->
+                <radialGradient id="violetGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%"   stop-color="#8B5CF6" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+                </radialGradient>
+
+                <!-- Green ambient glow -->
+                <radialGradient id="greenGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%"   stop-color="#00ff88" stop-opacity="0.8"/>
+                    <stop offset="100%" stop-color="#00ff88" stop-opacity="0"/>
+                </radialGradient>
+
+                <!-- Royal Blue ambient glow -->
+                <radialGradient id="blueGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%"   stop-color="#0044ff" stop-opacity="0.95"/>
+                    <stop offset="100%" stop-color="#0044ff" stop-opacity="0"/>
+                </radialGradient>
+
+                <!-- Cyan ambient glow -->
+                <radialGradient id="cyanGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%"   stop-color="#00e5ff" stop-opacity="0.7"/>
+                    <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+                </radialGradient>
+
+                <!-- Heavy blur for soft glow circles -->
+                <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="70"/>
+                </filter>
+
+            </defs>
+
+            <!-- Base background rect -->
+            <rect width="1600" height="900" fill="url(#bg)"/>
+
+            <!-- Ambient glow blobs -->
+            <circle cx="400"  cy="250" r="220" fill="url(#cyanGlow)" filter="url(#blur)" class="svg-glow-pulse"/>
+            <circle cx="1300" cy="700" r="180" fill="url(#greenGlow)" filter="url(#blur)" class="svg-glow-pulse"/>
+
+            <!-- Subtle grid — vertical lines -->
+            <g stroke="#13231c" stroke-width="1">
+                <line x1="100"  y1="0" x2="100"  y2="900"/>
+                <line x1="200"  y1="0" x2="200"  y2="900"/>
+                <line x1="300"  y1="0" x2="300"  y2="900"/>
+                <line x1="400"  y1="0" x2="400"  y2="900"/>
+                <line x1="500"  y1="0" x2="500"  y2="900"/>
+                <line x1="600"  y1="0" x2="600"  y2="900"/>
+                <line x1="700"  y1="0" x2="700"  y2="900"/>
+                <line x1="800"  y1="0" x2="800"  y2="900"/>
+                <line x1="900"  y1="0" x2="900"  y2="900"/>
+                <line x1="1000" y1="0" x2="1000" y2="900"/>
+                <line x1="1100" y1="0" x2="1100" y2="900"/>
+                <line x1="1200" y1="0" x2="1200" y2="900"/>
+                <line x1="1300" y1="0" x2="1300" y2="900"/>
+                <line x1="1400" y1="0" x2="1400" y2="900"/>
+                <line x1="1500" y1="0" x2="1500" y2="900"/>
+            </g>
+
+            <!-- Subtle grid — horizontal lines -->
+            <g stroke="#13231c" stroke-width="1">
+                <line x1="0" y1="100" x2="1600" y2="100"/>
+                <line x1="0" y1="200" x2="1600" y2="200"/>
+                <line x1="0" y1="300" x2="1600" y2="300"/>
+                <line x1="0" y1="400" x2="1600" y2="400"/>
+                <line x1="0" y1="500" x2="1600" y2="500"/>
+                <line x1="0" y1="600" x2="1600" y2="600"/>
+                <line x1="0" y1="700" x2="1600" y2="700"/>
+                <line x1="0" y1="800" x2="1600" y2="800"/>
+            </g>
+
+            <!-- Curved accent line -->
+            <path class="svg-curve-line"
+                  d="M-100 650 C250 500 500 760 900 500 1250 280 1700 420"
+                  fill="none"
+                  stroke="#00ff88"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  opacity="0.7"/>
+
+            <!-- Designer Bounding/Resize Canvas Box (Designer Theme) -->
+            <g transform="translate(1160, 110)" opacity="0.25">
+                <!-- Main selection border -->
+                <rect x="0" y="0" width="80" height="50" fill="none" stroke="#00e5ff" stroke-width="0.75"/>
+                <!-- Corner resize handles -->
+                <rect x="-2.5" y="-2.5" width="5" height="5" fill="#050505" stroke="#00ff88" stroke-width="0.75"/>
+                <rect x="77.5" y="-2.5" width="5" height="5" fill="#050505" stroke="#00ff88" stroke-width="0.75"/>
+                <rect x="-2.5" y="47.5" width="5" height="5" fill="#050505" stroke="#00ff88" stroke-width="0.75"/>
+                <rect x="77.5" y="47.5" width="5" height="5" fill="#050505" stroke="#00ff88" stroke-width="0.75"/>
+                <!-- Width / Height details -->
+                <text x="88" y="22" fill="#00e5ff" font-family="monospace" font-size="5" letter-spacing="0.5">W: 80px</text>
+                <text x="88" y="30" fill="#00ff88" font-family="monospace" font-size="5" letter-spacing="0.5">H: 50px</text>
+            </g>
+
+            <!-- Timecode & Audio Slate Status Stamp (Filmmaker Theme) -->
+            <g transform="translate(1440, 110)" opacity="0.22">
+                <!-- Border outline -->
+                <rect x="0" y="0" width="90" height="32" rx="3" fill="none" stroke="#00e5ff" stroke-width="0.75" stroke-dasharray="2 3"/>
+                <!-- Metadata details -->
+                <text x="8" y="13" fill="#00ff88" font-family="monospace" font-size="6" letter-spacing="1">TC 00:12:44:09</text>
+                <text x="8" y="23" fill="#00e5ff" font-family="monospace" font-size="5" letter-spacing="0.5">AUDIO // SYNCED</text>
+                <!-- Active dot -->
+                <circle cx="80" cy="20" r="1.5" fill="#00ff88"/>
+            </g>
+
+            <!-- Triangle -->
+            <polygon points="260,620 320,720 200,720"
+                     fill="none"
+                     stroke="#00e5ff"
+                     stroke-width="2"
+                     class="svg-float-2 svg-shape-boot"/>
+
+            <!-- Code Editor Window Mockup (Full-Stack Developer Theme) -->
+            <g transform="translate(220, 410)" opacity="0.2">
+                <!-- Window Outer Outline -->
+                <rect x="0" y="0" width="160" height="96" rx="6" fill="none" stroke="#00e5ff" stroke-width="0.75" stroke-dasharray="3 3"/>
+                <!-- Window Header bar -->
+                <line x1="0" y1="18" x2="160" y2="18" stroke="#00e5ff" stroke-width="0.5"/>
+                <!-- Window macOS-like controls -->
+                <circle cx="10" cy="9" r="2" fill="#00ff88"/>
+                <circle cx="18" cy="9" r="2" fill="#00e5ff" opacity="0.7"/>
+                <circle cx="26" cy="9" r="2" fill="#00e5ff" opacity="0.4"/>
+                <!-- Mock Code lines representing coding -->
+                <path d="M12 30 L60 30 M70 30 L110 30" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M12 42 L40 42 M48 42 L130 42" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M24 54 L85 54" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M24 66 L95 66 M102 66 L135 66" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M12 78 L55 78" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+
+            <!-- Top Horizontal Tech Ruler Scale -->
+            <g transform="translate(100, 40)" opacity="0.12">
+                <path d="M0 0 L1400 0" stroke="#00e5ff" stroke-width="0.75"/>
+                <!-- Ruler tick marks -->
+                <path d="M0 0 L0 6 M100 0 L100 6 M200 0 L200 6 M300 0 L300 6 M400 0 L400 6 M500 0 L500 6 M600 0 L600 6 M700 0 L700 6 M800 0 L800 6 M900 0 L900 6 M1000 0 L1000 6 M1100 0 L1100 6 M1200 0 L1200 6 M1300 0 L1300 6 M1400 0 L1400 6" stroke="#00e5ff" stroke-width="0.75"/>
+                <text x="0" y="16" fill="#00e5ff" font-family="monospace" font-size="6">00.00</text>
+                <text x="700" y="16" fill="#00ff88" font-family="monospace" font-size="6">50.00_INDEX</text>
+                <text x="1350" y="16" fill="#00e5ff" font-family="monospace" font-size="6">100.00</text>
+            </g>
+
+            <!-- Top-Left Corner Developer & Filmmaker Metadata Box -->
+            <g transform="translate(80, 80)" opacity="0.15">
+                <rect x="0" y="0" width="130" height="38" fill="none" stroke="#00ff88" stroke-width="0.5" stroke-dasharray="2 4"/>
+                <text x="8" y="12" fill="#00ff88" font-family="monospace" font-size="6" letter-spacing="1">REPO // GOURAV-PORTFOLIO</text>
+                <text x="8" y="22" fill="#00e5ff" font-family="monospace" font-size="6" letter-spacing="1">CAM_CFG // 24FPS_ISO400</text>
+                <text x="8" y="31" fill="#00e5ff" font-family="monospace" font-size="5" letter-spacing="1">STATUS: COMPILING_OK</text>
+            </g>
+
+            <!-- Right Vertical Tech Scale/Ruler -->
+            <g transform="translate(1540, 100)" opacity="0.12">
+                <path d="M0 0 L0 700" stroke="#00e5ff" stroke-width="0.75"/>
+                <!-- Vertical ticks at every 100px -->
+                <path d="M0 0 L-6 0 M0 100 L-6 100 M0 200 L-6 200 M0 300 L-6 300 M0 400 L-6 400 M0 500 L-6 500 M0 600 L-6 600 M0 700 L-6 700" stroke="#00e5ff" stroke-width="0.75"/>
+                <text x="-35" y="5" fill="#00e5ff" font-family="monospace" font-size="6">Y_00</text>
+                <text x="-35" y="355" fill="#00ff88" font-family="monospace" font-size="6">Y_50_INDEX</text>
+                <text x="-35" y="705" fill="#00e5ff" font-family="monospace" font-size="6">Y_100</text>
+            </g>
+
+            <!-- Camera Aperture Shutter Diaphragm (Filmmaker/Photography Theme) -->
+            <g transform="translate(1360, 710)" opacity="0.25">
+                <!-- Outer framing Ring -->
+                <circle cx="0" cy="0" r="50" fill="none" stroke="#00ff88" stroke-width="0.75"/>
+                <!-- Angled shutter blades radiating outwards -->
+                <path d="M-13 -13 L-33 -33 M13 -13 L33 -33 M13 13 L33 33 M-13 13 L-33 33" stroke="#00ff88" stroke-width="0.75"/>
+                <path d="M-18 0 L-42 0 M18 0 L42 0 M0 -18 L0 -42 M0 18 L0 42" stroke="#00e5ff" stroke-width="0.5"/>
+                <!-- Center aperture opening outline -->
+                <circle cx="0" cy="0" r="18" fill="none" stroke="#00e5ff" stroke-width="0.5" stroke-dasharray="2 3"/>
+            </g>
+
+            <!-- Ring (Circle) -->
+            <circle cx="1120" cy="670" r="60"
+                    fill="none"
+                    stroke="#00ff88"
+                    stroke-width="2"
+                    opacity="0.6"
+                    class="svg-glow-pulse svg-shape-boot"/>
+
+
+
+            <!-- Bottom Horizontal Film Strip Timeline (Filmmaker Theme) -->
+            <g transform="translate(100, 840)" opacity="0.08">
+                <!-- Film borders -->
+                <path d="M0 0 L1400 0 M0 20 L1400 20" stroke="#00ff88" stroke-width="0.75"/>
+                <!-- Top sprocket holes via smart dash-array -->
+                <path d="M10 4 L1390 4" stroke="#00e5ff" stroke-width="4" stroke-dasharray="8 22"/>
+                <!-- Bottom sprocket holes via smart dash-array -->
+                <path d="M10 16 L1390 16" stroke="#00e5ff" stroke-width="4" stroke-dasharray="8 22"/>
+            </g>
+
+            <!-- Geometric Infinity Loop Logo (Creative Infinity Theme) -->
+            <g transform="translate(90, 770)" opacity="0.35">
+                <!-- Tech background grid circle -->
+                <circle cx="0" cy="0" r="20" fill="none" stroke="#00e5ff" stroke-width="0.5" stroke-dasharray="2 3"/>
+                <!-- Infinity loops -->
+                <path d="M-16 0 C-16 -12, 0 -12, 0 0 C0 12, 16 12, 16 0 C16 -12, 0 -12, 0 0 C0 12, -16 12, -16 0 Z" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+                <path d="M-16 0 C-16 -12, 0 -12, 0 0 C0 12, 16 12, 16 0" fill="none" stroke="#00e5ff" stroke-width="1.25" stroke-dasharray="2 2"/>
+                <!-- Ticks & Monospace Text -->
+                <text x="28" y="1" fill="#00e5ff" font-family="monospace" font-size="6" letter-spacing="1.5">LOOP_INFINITE</text>
+                <text x="28" y="9" fill="#00ff88" font-family="monospace" font-size="5" letter-spacing="1.5">CREATIVE_CORE</text>
+            </g>
+
+        </svg>
+
+    </div>
+
+    <!-- ================================================
+         Main Content
+         position:relative  z-index:0
+         Sits above the fixed SVG background layer.
+    ================================================= -->
+
+    <main>
+
+        <!-- ── Hero ─────────────────────────────────── -->
+
+        <section class="hero" aria-label="Hero section">
+
+            <!-- Primary heading — three stacked display words -->
+            <h1 class="hero-title">
+                <span class="hero-line">Build</span><br>
+                <span class="hero-line hero-line-white">Create</span><br>
+                <span class="hero-line">Inspire</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p>Small details &bull; Powerful impact</p>
+
+            <!-- CTAs -->
+            <div class="hero-buttons">
+
+                <a href="projects.html?v=8.7"
+                   class="btn btn-primary"
+                   id="btn-explore-projects"
+                   aria-label="Explore my projects">
+                    Explore Projects
+                </a>
+
+                <a href="blogs.html"
+                   class="btn btn-secondary"
+                   id="btn-read-articles"
+                   aria-label="Read my articles">
+                    Read Articles
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- ── Featured Projects ─────────────────────── -->
+
+        <section id="featured" aria-label="Featured projects">
+        </section>
+
+        <!-- ── Collections ───────────────────────────── -->
+
+        <section id="collections" aria-label="Collections">
+        </section>
+
+        <!-- ── Gallery ───────────────────────────────── -->
+
+        <section id="gallery" aria-label="Gallery">
+        </section>
+
+        <!-- ── Blogs ─────────────────────────────────── -->
+
+        <section id="blogs" aria-label="Blog posts">
+        </section>
+
+        <!-- ── Contact ───────────────────────────────── -->
+
+        <section id="contact" aria-label="Contact">
+        </section>
+
+    </main>
+
+    <!-- JS modules — deferred so they never block render -->
+    <script src="js/utils.js"       defer></script>
+    <script src="js/data-loader.js" defer></script>
+    <script src="js/components.js"  defer></script>
+    <script src="js/animation.js"   defer></script>
+    <script src="js/app.js"         defer></script>
+
+</body>
+
+</html>

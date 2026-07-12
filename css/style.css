@@ -1,0 +1,307 @@
+/* ============================================================
+   STYLE — Base & Layout
+   Portfolio / css/style.css
+
+   Import order (must stay in this order):
+     1. variables  — design tokens & Google Fonts
+     2. style      — base reset + structural layout   ← YOU ARE HERE
+     3. animations — keyframes & motion
+     4. utilities  — helper classes
+   ============================================================ */
+
+@import url("variables.css");
+@import url("animations.css");
+@import url("utilities.css");
+
+/* ── Reset ──────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+    margin:     0;
+    padding:    0;
+    box-sizing: border-box;
+}
+
+/* ── Root ───────────────────────────────────────────────── */
+
+html {
+    scroll-behavior: smooth;
+    font-size:       16px;         /* rem anchor */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+}
+
+body {
+    background:   #050505;         /* hardcoded fallback for safety */
+    background:   var(--bg);
+    color:        #ffffff;         /* hardcoded fallback for safety */
+    color:        var(--text);
+    font-family:  var(--font);
+    overflow-x:   hidden;
+    min-height:   100dvh;          /* dynamic viewport for mobile */
+    line-height:  1.6;
+}
+
+/* ── SVG Background Layer ───────────────────────────────── */
+/*
+   #background is fixed so it covers the viewport at all times.
+   z-index: var(--z-bg) = -1 ensures it sits BEHIND all HTML.
+   pointer-events: none prevents it from blocking clicks.
+*/
+
+#background {
+    position:       fixed;
+    inset:          0;             /* top:0 right:0 bottom:0 left:0 */
+    z-index:        var(--z-bg);
+    pointer-events: none;
+    overflow:       hidden;
+}
+
+#background svg {
+    width:  100%;
+    height: 100%;
+    display: block;
+}
+
+/* ── Main Content Wrapper ───────────────────────────────── */
+/*
+   position:relative + z-index:var(--z-base) lifts <main>
+   above the fixed SVG background layer.
+*/
+
+main {
+    position:   relative;
+    z-index:    var(--z-base);
+}
+
+/* ── Hero Section ───────────────────────────────────────── */
+/*
+   Layout intent:
+   • justify-content: flex-start — anchor from top, not center
+   • padding-top: 10vh — positions content in upper portion,
+     clearing the top of the SVG curve (which peaks at ~30vh right)
+   • padding-left: clamp(40%,46vw,54%) — slides content rightward
+     so it sits above the ascending curve, not fighting the left glow
+   • max-width removed — positioning is now handled by large left padding
+*/
+
+.hero {
+    position:        relative;
+    z-index:         var(--z-hero);
+    min-height:      100dvh;
+    display:         flex;
+    flex-direction:  column;
+    justify-content: flex-start;
+    align-items:     flex-start;
+    padding:         clamp(11rem, 20vh, 18rem)
+                     clamp(2rem, 5vw, 4rem)
+                     0
+                     clamp(16rem, 26vw, 26rem);
+    gap:             0;
+}
+
+/* ── Hero Badge (eyebrow / status pill) ─────────────────── */
+/*
+   Inspired by Linear's status indicators and Apple's
+   subdued label pills. Small, restrained, informative.
+*/
+
+.hero-badge {
+    display:         inline-flex;
+    align-items:     center;
+    gap:             0.45rem;
+    font-size:       0.65rem;           /* smaller, cleaner hardware-status look */
+    font-weight:     600;
+    letter-spacing:  0.18em;            /* wider tracking for micro-elements     */
+    text-transform:  uppercase;
+    color:           var(--badge-text);
+    border:          1px solid var(--border-primary);
+    border-radius:   var(--radius-pill);
+    padding:         0.45em 1em;
+    background:      var(--primary-dim);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Pulsing availability dot */
+
+.hero-badge-dot {
+    display:       block;
+    width:         6px;
+    height:        6px;
+    border-radius: 50%;
+    background:    var(--primary);
+    box-shadow:    0 0 0 0 var(--primary-glow);
+    flex-shrink:   0;
+    animation:     badgePulse 2.4s ease-in-out infinite;
+}
+
+/* ── Hero Heading ───────────────────────────────────────── */
+/*
+   Gradient story: pure white (maximum luminance) → bright mint
+   → vivid electric green → rich forest green terminus.
+   The white-first approach creates dramatic light-source illusion —
+   as if the SVG glow is illuminating the top of each letter.
+*/
+
+.hero h1 {
+    margin-top:     clamp(1.75rem, 3.5vh, 2.5rem);
+    font-size:      var(--hero-title);
+    font-weight:    800;
+    line-height:    0.85;              /* tighter, compressed display stack */
+    letter-spacing: -0.05em;           /* Apple/Linear style tight tracking */
+    max-width:      10ch;              /* tighter on right-side layout    */
+}
+
+.hero-line {
+    display: inline-block;
+    padding-right: 0.08em;             /* prevents right-edge character clipping */
+    background: linear-gradient(
+        148deg,
+        #FFFFFF    0%,          /* pure white — max brightness at top    */
+        #00E5FF  100%           /* matched to exact cyan/sky-blue glow   */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip:         text;
+
+    /* Soft ambient cyan/sky-blue neon glow matching the background lighting */
+    filter: drop-shadow(0 0 25px rgba(0, 229, 255, 0.22))
+            drop-shadow(0 0 55px rgba(0, 229, 255, 0.12));
+}
+
+.hero-line-white {
+    background:              #FFFFFF !important;
+    -webkit-background-clip: text !important;
+    background-clip:         text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* ── Hero Subtitle ──────────────────────────────────────── */
+/*
+   Font-weight 300 (light) provides a premium, highly readable
+   contrast against the heavy 800-weight display titles.
+*/
+
+.hero p {
+    margin-top:     clamp(1.5rem, 3vh, 2rem);    /* title → subtitle gap  */
+    font-size:      var(--hero-subtitle);
+    font-weight:    300;
+    color:          var(--text-secondary);
+    letter-spacing: 0.01em;
+    line-height:    1.6;
+    max-width:      460px;
+}
+
+/* ── Hero Buttons ───────────────────────────────────────── */
+
+.hero-buttons {
+    display:    flex;
+    flex-wrap:  wrap;
+    align-items: center;
+    gap:        0.65rem;
+    margin-top: clamp(2rem, 4vh, 2.75rem);       /* subtitle → CTA gap    */
+}
+
+/* ── Button Base ────────────────────────────────────────── */
+/*
+   Premium sizing: generous horizontal padding, slightly
+   larger font than before, tighter tracking for authority.
+   Smooth cubic-bezier lift on hover (not a jarring jump).
+*/
+
+.btn {
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    gap:             0.45rem;
+    padding:         0.8em 2.2em;
+    border-radius:   var(--radius-pill);
+    font-family:     var(--font);
+    font-size:       0.875rem;
+    font-weight:     600;
+    letter-spacing:  0.06em;
+    text-decoration: none;
+    cursor:          pointer;
+    border:          none;
+    outline:         none;
+    transition:      background  var(--transition),
+                     color       var(--transition),
+                     box-shadow  var(--transition),
+                     transform   0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space:     nowrap;
+    -webkit-user-select: none;
+    user-select:         none;
+}
+
+.btn:hover  { transform: translateY(-3px); }
+.btn:active { transform: translateY(-1px); }
+
+/* Primary */
+
+.btn-primary {
+    background: var(--primary);
+    color:      #050505;
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.btn-primary:hover {
+    background: #00D1B2;
+    box-shadow: 0 0 32px var(--primary-glow), 0 4px 16px rgba(0, 181, 156, 0.22);
+}
+
+/* Secondary / Outline */
+
+.btn-secondary {
+    background:  transparent;
+    color:       var(--btn-secondary-text);
+    border:      1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+    border-color: var(--border-primary);
+    color:        var(--primary);
+    background:   var(--primary-dim);
+    box-shadow:   0 0 16px var(--primary-glow);
+}
+
+/* ── Sections below hero ──────────────────────────────────────── */
+
+section {
+    position: relative;
+    z-index:  var(--z-base);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+
+    .hero {
+        padding:         10vh 1.75rem 0 1.75rem;  /* reset to full-width on mobile */
+        justify-content: flex-start;
+    }
+
+    .hero h1 {
+        max-width:  none;          /* full width on mobile is fine */
+        line-height: 0.92;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items:    flex-start;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+
+
+
+

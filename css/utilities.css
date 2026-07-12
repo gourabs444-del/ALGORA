@@ -1,0 +1,102 @@
+/* ============================================================
+   UTILITIES — Helper Classes
+   Portfolio / css/utilities.css
+   ============================================================ */
+
+/* ── Display ─────────────────────────────────────────────── */
+
+.flex          { display: flex; }
+.flex-col      { display: flex; flex-direction: column; }
+.flex-center   { display: flex; align-items: center; justify-content: center; }
+.flex-between  { display: flex; align-items: center; justify-content: space-between; }
+.flex-wrap     { flex-wrap: wrap; }
+.grid          { display: grid; }
+.hidden        { display: none; }
+
+/* ── Spacing ─────────────────────────────────────────────── */
+
+.gap-sm   { gap: var(--gap-sm); }
+.gap-md   { gap: var(--gap-md); }
+.gap-lg   { gap: var(--gap-lg); }
+.gap-xl   { gap: var(--gap-xl); }
+
+.mt-sm    { margin-top:    var(--gap-sm); }
+.mt-md    { margin-top:    var(--gap-md); }
+.mt-lg    { margin-top:    var(--gap-lg); }
+.mb-sm    { margin-bottom: var(--gap-sm); }
+.mb-md    { margin-bottom: var(--gap-md); }
+
+.p-sm     { padding: var(--gap-sm); }
+.p-md     { padding: var(--gap-md); }
+.p-lg     { padding: var(--gap-lg); }
+
+/* ── Text ────────────────────────────────────────────────── */
+
+.text-primary    { color: var(--primary); }
+.text-secondary  { color: var(--text-secondary); }
+.text-muted      { color: var(--text-muted); }
+.text-center     { text-align: center; }
+.text-right      { text-align: right; }
+.text-upper      { text-transform: uppercase; }
+.text-sm         { font-size: 0.875rem; }
+.text-xs         { font-size: 0.75rem;  }
+.fw-500          { font-weight: 500; }
+.fw-600          { font-weight: 600; }
+.fw-700          { font-weight: 700; }
+.tracking-wide   { letter-spacing: 0.08em; }
+
+/* ── Containers ──────────────────────────────────────────── */
+
+.container {
+    width:     100%;
+    max-width: 1280px;
+    margin:    0 auto;
+    padding:   0 clamp(1rem, 5vw, 4rem);
+}
+
+.section-pad {
+    padding: var(--gap-xl) 0;
+}
+
+/* ── Visibility ──────────────────────────────────────────── */
+
+.sr-only {
+    position:   absolute;
+    width:      1px;
+    height:     1px;
+    padding:    0;
+    margin:     -1px;
+    overflow:   hidden;
+    clip:       rect(0,0,0,0);
+    white-space: nowrap;
+    border:     0;
+}
+
+/* ── Borders & Radius ────────────────────────────────────── */
+
+.rounded-sm   { border-radius: var(--radius-sm); }
+.rounded-md   { border-radius: var(--radius-md); }
+.rounded-pill { border-radius: var(--radius-pill); }
+
+.border       { border: 1px solid var(--border); }
+.border-primary { border: 1px solid var(--border-primary); }
+
+/* ── Backgrounds ─────────────────────────────────────────── */
+
+.bg-card {
+    background:      var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border:          1px solid var(--border);
+    border-radius:   var(--radius-md);
+}
+
+/* ── Overflow ────────────────────────────────────────────── */
+
+.overflow-hidden  { overflow:   hidden; }
+.overflow-x-hidden { overflow-x: hidden; }
+
+/* ── Pointer ─────────────────────────────────────────────── */
+
+.pointer-none { pointer-events: none; }
+.pointer-auto { pointer-events: auto; }

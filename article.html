@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article | Gourav Portfolio</title>
+    <link rel="stylesheet" href="css/style.css?v=3.2">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 32px;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--text);
+            letter-spacing: -0.03em;
+        }
+        .meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 48px;
+            display: flex;
+            gap: 16px;
+        }
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        .content p {
+            margin-bottom: 24px;
+        }
+        .content h2 {
+            color: var(--text);
+            margin-top: 48px;
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* ── Project Showcase Styling ───────────────────────────── */
+        .showcase-section {
+            margin-top: 48px;
+            margin-bottom: 48px;
+        }
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        @media (min-width: 600px) {
+            .showcase-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .showcase-card {
+            background: rgba(15, 17, 21, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .showcase-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-primary);
+        }
+        .showcase-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .showcase-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .showcase-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--primary);
+            background: var(--primary-dim);
+            border: 1px solid var(--border-primary);
+            border-radius: 999px;
+            padding: 2px 10px;
+        }
+        .showcase-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .showcase-tech {
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to home</a>
+        <h1>Building a Premium Modular Portfolio with Custom SVG Graphics</h1>
+        <div class="meta">
+            <span>July 9, 2026</span>
+            <span>•</span>
+            <span>5 min read</span>
+        </div>
+        <div class="content">
+            <p>Creating a unique identity on the web requires more than just templates. Modern premium websites, like those designed by Vercel, Apple, and Linear, utilize a blend of luxury typography, tight vertical rhythm, and interactive lighting elements to create a high-value aesthetic.</p>
+            
+            <h2>The Role of SVG Lighting</h2>
+            <p>Background radial gradients and blurred elements form a key pillar of contemporary digital design. Rather than loading massive background images, using inline SVGs with standard Gaussian blur filters lets us render smooth, scalable gradients that adapt to any screen size seamlessly.</p>
+            
+            <!-- ── Dynamic Fake Project Showcases ── -->
+            <div class="showcase-section">
+                <h2>Featured Lab Prototypes</h2>
+                <p>To demonstrate high-performance web engineering in action, here are three experimental modules built in our laboratory:</p>
+                
+                <div class="showcase-grid">
+                    <div class="showcase-card">
+                        <div>
+                            <div class="showcase-meta">
+                                <span class="showcase-title">ChronoOS</span>
+                                <span class="showcase-badge">Lab-09</span>
+                            </div>
+                            <p class="showcase-desc">An experimental web-based mini operating system written in pure Rust/Wasm, featuring real-time CPU task scheduling visualizers.</p>
+                        </div>
+                        <div class="showcase-tech">Rust • WebAssembly • Web Workers</div>
+                    </div>
+
+                    <div class="showcase-card">
+                        <div>
+                            <div class="showcase-meta">
+                                <span class="showcase-title">AuraDB</span>
+                                <span class="showcase-badge">Lab-04</span>
+                            </div>
+                            <p class="showcase-desc">A low-latency hybrid vector-graph database built specifically for semantic search agents with an interactive 3D nodes canvas.</p>
+                        </div>
+                        <div class="showcase-tech">TypeScript • WebGL • Vector Search</div>
+                    </div>
+
+                    <div class="showcase-card" style="grid-column: span 1;">
+                        <div>
+                            <div class="showcase-meta">
+                                <span class="showcase-title">Vortex Engine</span>
+                                <span class="showcase-badge">Lab-01</span>
+                            </div>
+                            <p class="showcase-desc">A high-fidelity WebGL2 2D fluid dynamics simulator and particle generator designed to run at 120 FPS in modern browsers.</p>
+                        </div>
+                        <div class="showcase-tech">GLSL • WebGL2 • Canvas API</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Clean Modular Architecture</h2>
+            <p>By keeping stylesheets and scripts modularized, we ensure the codebase remains maintainable. Separating CSS variables, layouts, and animations allows designers to make system-wide modifications without risking style collisions.</p>
+        </div>
+    </div>
+</body>
+</html>
