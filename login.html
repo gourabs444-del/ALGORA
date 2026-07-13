@@ -19,6 +19,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Firebase App and Auth SDK (Compat) -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script>
   try {
     tailwind.config = {
@@ -280,19 +283,76 @@
         window.location.replace(redirectUrl);
     }
 
-    function handleSocialAuth(provider) {
-        localStorage.setItem('isLoggedIn', 'true');
-        
-        let name = 'Alex Rivera';
-        if (provider === 'Google') name = 'Alex (Google)';
-        else if (provider === 'Apple') name = 'Alex (Apple)';
-        else if (provider === 'Facebook') name = 'Alex (Facebook)';
-        
-        localStorage.setItem('userName', name);
-        localStorage.setItem('userEmail', name.toLowerCase().replace(/[^a-z0-9]/g, '') + '@example.com');
+    // ── FIREBASE AUTHENTICATION CONFIGURATION ──────────────────
+    // Replace these placeholder details with your actual Firebase project config credentials.
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.appspot.com",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
 
-        alert(`Signed in successfully with ${provider}!`);
-        window.location.replace(redirectUrl);
+    // Initialize Firebase only if the API key is configured
+    let isFirebaseConfigured = false;
+    let auth;
+    if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        try {
+            firebase.initializeApp(firebaseConfig);
+            auth = firebase.auth();
+            isFirebaseConfigured = true;
+        } catch (error) {
+            console.error("Firebase Initialization Failed:", error);
+        }
+    }
+
+    function handleSocialAuth(provider) {
+        if (provider === 'Google') {
+            if (!isFirebaseConfigured) {
+                // Friendly Alert when credentials are still placeholder values
+                alert("Bhai, Real Google Login ke liye pehle apna Firebase Config credentials code (login.html ke bottom script me) paste kijiye! Tab tak Dev Preview ke liye local mock sign-in bypass execute kiya ja raha hai.");
+                
+                // Fallback to local mock sign-in
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userName', 'Alex (Mock Google)');
+                localStorage.setItem('userEmail', 'alex.mockgoogle@example.com');
+                localStorage.setItem('userPicture', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBxTP3_ZPmr7Vwd2NA75mIR9am0JD8URecn8G_dAUZQRoF0roFM1j6qvfHvktU42aq7I_wlpRViLmBUxUSRPkUqRbfbnB0Jvx-sdBSv9bWCKeDzz301xf_CcGgaNBpnRgzMT-4HhpXF6o5ZsxeIH9VjY83fPKBe2Cq8VBw31yNq5TCeUpWt8xZxxBsl8_fScoSxTI6CmPXZkFuCW0bp8y-5tp1gtthlcwhgbJWZMhFjk5Iw5UP0fzNz5A');
+                window.location.replace(redirectUrl);
+                return;
+            }
+
+            // Real Google Sign-in flow via Firebase Auth
+            const googleProvider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(googleProvider)
+                .then((result) => {
+                    const user = result.user;
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userName', user.displayName || 'Google User');
+                    localStorage.setItem('userEmail', user.email || '');
+                    if (user.photoURL) {
+                        localStorage.setItem('userPicture', user.photoURL);
+                    }
+                    alert(`Welcome, ${user.displayName || 'User'}! Signed in successfully via Google.`);
+                    window.location.replace(redirectUrl);
+                })
+                .catch((error) => {
+                    console.error("Firebase Google Sign-In Error:", error);
+                    alert("Google Login Failed: " + error.message);
+                });
+        } else {
+            // Other social logins (Mock placeholder)
+            localStorage.setItem('isLoggedIn', 'true');
+            let name = 'Alex Rivera';
+            if (provider === 'Apple') name = 'Alex (Apple)';
+            else if (provider === 'Facebook') name = 'Alex (Facebook)';
+            
+            localStorage.setItem('userName', name);
+            localStorage.setItem('userEmail', name.toLowerCase().replace(/[^a-z0-9]/g, '') + '@example.com');
+
+            alert(`Signed in successfully with ${provider}!`);
+            window.location.replace(redirectUrl);
+        }
     }
 
     function handleForgotPassword(e) {
