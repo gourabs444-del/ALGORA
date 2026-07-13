@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<script>
+    (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+        } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+        }
+    })();
+</script>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Account Access | WebLibrary Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+  try {
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"]
+          },
+          colors: {
+            primary: "#2563eb",
+            secondary: "#64748b",
+            "outline-variant": "#e2e8f0"
+          }
+        }
+      }
+    }
+  } catch (e) {}
+</script>
+<style>
+  * {
+      -webkit-tap-highlight-color: transparent;
+  }
+  html, body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+  }
+  .glass-card {
+      backdrop-filter: blur(24px);
+      background-color: rgba(255, 255, 255, 0.75);
+  }
+  .dark .glass-card {
+      background-color: rgba(15, 23, 42, 0.75);
+  }
+  .glow-dot {
+      filter: blur(100px);
+      opacity: 0.25;
+  }
+  .dark .glow-dot {
+      opacity: 0.45;
+  }
+  @keyframes float-slow {
+      0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-30px) scale(1.08) rotate(15deg); }
+  }
+  @keyframes float-reverse {
+      0%, 100% { transform: translateY(0) scale(1.08) rotate(0deg); }
+      50% { transform: translateY(30px) scale(0.92) rotate(-15deg); }
+  }
+  .float-bubble-1 {
+      animation: float-slow 14s ease-in-out infinite;
+  }
+  .float-bubble-2 {
+      animation: float-reverse 18s ease-in-out infinite;
+  }
+  .float-bubble-3 {
+      animation: float-slow 22s ease-in-out infinite 3s;
+  }
+  .focus-glow:focus-within {
+      box-shadow: 0 0 25px rgba(37, 99, 235, 0.15);
+      border-color: #2563eb;
+  }
+  .dark .focus-glow:focus-within {
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
+  }
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-center items-center relative overflow-hidden p-4">
+
+<!-- Floating Animated Gradient Bubbles -->
+<div class="absolute w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-blue-500/30 to-indigo-500/20 glow-dot -top-20 -left-20 pointer-events-none float-bubble-1"></div>
+<div class="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-bl from-pink-500/20 to-purple-500/30 glow-dot -bottom-32 -right-32 pointer-events-none float-bubble-2"></div>
+<div class="absolute w-96 h-96 rounded-full bg-gradient-to-r from-emerald-500/20 to-blue-500/10 glow-dot top-1/3 left-1/3 pointer-events-none float-bubble-3"></div>
+
+<!-- Brand Redirection Link -->
+<div class="absolute top-6 left-6 z-50">
+    <a href="index.html" class="flex items-center gap-2 text-secondary hover:text-primary dark:text-slate-400 dark:hover:text-blue-400 font-bold text-body-sm transition-colors active-feedback">
+        <span class="material-symbols-outlined text-[20px] font-bold">arrow_back</span> Back to Home
+    </a>
+</div>
+
+<!-- Main Login Card Container -->
+<div class="w-full max-w-md glass-card border border-outline-variant/40 dark:border-slate-800 rounded-[32px] p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10 transition-all">
+    
+    <!-- Header Logo & Pulse effect -->
+    <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-[22px] flex items-center justify-center mx-auto mb-4 text-primary dark:text-blue-400 animate-pulse">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
+        </div>
+        <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight" id="card-title">Secure Access</h2>
+        <p class="text-secondary dark:text-slate-400 font-medium text-body-sm mt-2" id="card-subtitle">Enter your credentials to continue to your workspace.</p>
+    </div>
+
+    <!-- Mode Toggles (Sliding Indicator Tab Layout) -->
+    <div class="relative flex bg-slate-100 dark:bg-slate-900/60 p-1.5 rounded-2xl mb-8 border border-outline-variant/10 dark:border-slate-800/80">
+        <!-- Sliding Pill Background -->
+        <div id="tab-pill" class="absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] bg-white dark:bg-slate-800 rounded-xl shadow-md transition-all duration-300 ease-out z-0"></div>
+        
+        <button id="tab-signin" type="button" class="w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback" onclick="toggleMode('signin')">
+            Sign In
+        </button>
+        <button id="tab-signup" type="button" class="w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback" onclick="toggleMode('signup')">
+            Sign Up
+        </button>
+    </div>
+
+    <!-- Direct Social Login Options -->
+    <div class="grid grid-cols-3 gap-3 mb-6">
+        <!-- Google -->
+        <button type="button" onclick="handleSocialAuth('Google')" class="flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Google">
+            <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.58 15.02 1 12 1 7.35 1 3.4 3.65 1.5 7.5l3.86 3C6.27 7.74 8.89 5.04 12 5.04z"/><path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.42 3.58l3.76 2.92c2.2-2.03 3.69-5.02 3.69-8.65z"/><path fill="#FBBC05" d="M5.36 14.5c-.24-.72-.38-1.49-.38-2.3s.14-1.58.38-2.3L1.5 6.9C.54 8.82 0 10.97 0 13.2s.54 4.38 1.5 6.3l3.86-3z"/><path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.92l-3.76-2.92c-1.1.74-2.52 1.18-4.2 1.18-3.11 0-5.73-2.7-6.64-5.46L1.5 15.88C3.4 19.73 7.35 23 12 23z"/></svg>
+        </button>
+        <!-- Apple -->
+        <button type="button" onclick="handleSocialAuth('Apple')" class="flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Apple">
+            <svg class="w-5 h-5 fill-current text-slate-900 dark:text-white" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.22.67-2.94 1.52-.63.73-1.18 1.87-1.03 2.98.11.08.33.1.52.1.84 0 1.8-.46 2.46-1.54z"/></svg>
+        </button>
+        <!-- Facebook -->
+        <button type="button" onclick="handleSocialAuth('Facebook')" class="flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Facebook">
+            <svg class="w-5 h-5 fill-current text-[#1877F2]" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </button>
+    </div>
+
+    <!-- Divider -->
+    <div class="relative flex items-center justify-center my-6">
+        <div class="flex-grow border-t border-outline-variant/10 dark:border-slate-800/80"></div>
+        <span class="flex-shrink mx-4 text-secondary dark:text-slate-500 text-[10px] font-bold uppercase tracking-widest">or email access</span>
+        <div class="flex-grow border-t border-outline-variant/10 dark:border-slate-800/80"></div>
+    </div>
+
+    <!-- Forms -->
+    <form class="space-y-5" id="auth-form" onsubmit="handleAuthSubmit(event)">
+        <!-- Sign Up Only Fields -->
+        <div id="signup-fields" class="space-y-5 hidden">
+            <div>
+                <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-name">Full Name</label>
+                <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">person</span>
+                    <input id="auth-name" type="text" class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your full name">
+                </div>
+            </div>
+        </div>
+
+        <!-- General Fields -->
+        <div>
+            <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-email">Email Address</label>
+            <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">mail</span>
+                <input id="auth-email" type="email" required class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your email">
+            </div>
+        </div>
+
+        <div>
+            <div class="flex justify-between items-center mb-1.5">
+                <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300" for="auth-password">Password</label>
+                <a href="#" id="forgot-password-link" onclick="handleForgotPassword(event)" class="text-xs font-semibold text-primary dark:text-blue-400 hover:underline">Forgot Password?</a>
+            </div>
+            <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">lock</span>
+                <input id="auth-password" type="password" required class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-12 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your password">
+                <button type="button" id="password-toggle" class="absolute right-4 top-1/2 -translate-y-1/2 text-secondary/60 hover:text-primary dark:hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-center" aria-label="Toggle Password Visibility">
+                    <span class="material-symbols-outlined text-[20px]" id="eye-icon">visibility</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-primary text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer mt-6" id="submit-btn">
+            Sign In <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>
+        </button>
+    </form>
+</div>
+
+<script>
+    let mode = 'signin';
+
+    // Parse redirects
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect') || 'projects.html';
+
+    // Password toggle wire-up
+    const passwordToggle = document.getElementById('password-toggle');
+    const passwordInput = document.getElementById('auth-password');
+    const eyeIcon = document.getElementById('eye-icon');
+    if (passwordToggle && passwordInput && eyeIcon) {
+        passwordToggle.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.innerText = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.innerText = 'visibility';
+            }
+        });
+    }
+
+    function toggleMode(targetMode) {
+        if (mode === targetMode) return;
+        mode = targetMode;
+
+        const title = document.getElementById('card-title');
+        const subtitle = document.getElementById('card-subtitle');
+        const submitBtn = document.getElementById('submit-btn');
+        const signupFields = document.getElementById('signup-fields');
+        const nameInput = document.getElementById('auth-name');
+        
+        const tabSignin = document.getElementById('tab-signin');
+        const tabSignup = document.getElementById('tab-signup');
+        const tabPill = document.getElementById('tab-pill');
+
+        if (mode === 'signin') {
+            title.innerText = "Secure Access";
+            subtitle.innerText = "Enter your credentials to continue to your workspace.";
+            submitBtn.innerHTML = `Sign In <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>`;
+            signupFields.classList.add('hidden');
+            nameInput.removeAttribute('required');
+            
+            // Switch tabs with sliding animation
+            tabPill.style.transform = 'translateX(0)';
+            tabSignin.className = "w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
+            tabSignup.className = "w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
+            
+            const forgotLink = document.getElementById('forgot-password-link');
+            if (forgotLink) forgotLink.classList.remove('hidden');
+        } else {
+            title.innerText = "Create Account";
+            subtitle.innerText = "Join the WebLibrary gallery matching and rating portal.";
+            submitBtn.innerHTML = `Create Account <span class="material-symbols-outlined text-[18px] font-bold">person_add</span>`;
+            signupFields.classList.remove('hidden');
+            nameInput.setAttribute('required', 'required');
+            
+            // Switch tabs with sliding animation
+            tabPill.style.transform = 'translateX(100%)';
+            tabSignup.className = "w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
+            tabSignin.className = "w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
+            
+            const forgotLink = document.getElementById('forgot-password-link');
+            if (forgotLink) forgotLink.classList.add('hidden');
+        }
+    }
+
+    function handleAuthSubmit(e) {
+        e.preventDefault();
+        
+        // Save user logged in status in localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        
+        // Add fake user details
+        const email = document.getElementById('auth-email').value;
+        const name = mode === 'signup' ? document.getElementById('auth-name').value : 'Alex Rivera';
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', email);
+
+        // Notify user
+        alert(mode === 'signin' ? 'Signed in successfully!' : 'Account created successfully!');
+        
+        // Redirect back
+        window.location.replace(redirectUrl);
+    }
+
+    function handleSocialAuth(provider) {
+        localStorage.setItem('isLoggedIn', 'true');
+        
+        let name = 'Alex Rivera';
+        if (provider === 'Google') name = 'Alex (Google)';
+        else if (provider === 'Apple') name = 'Alex (Apple)';
+        else if (provider === 'Facebook') name = 'Alex (Facebook)';
+        
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', name.toLowerCase().replace(/[^a-z0-9]/g, '') + '@example.com');
+
+        alert(`Signed in successfully with ${provider}!`);
+        window.location.replace(redirectUrl);
+    }
+
+    function handleForgotPassword(e) {
+        e.preventDefault();
+        const emailInput = document.getElementById('auth-email').value;
+        if (!emailInput) {
+            alert("Please enter your email address first so we can send you a password reset link!");
+        } else {
+            alert(`A password reset link has been successfully sent to: ${emailInput}`);
+        }
+    }
+</script>
+</body>
+</html>
