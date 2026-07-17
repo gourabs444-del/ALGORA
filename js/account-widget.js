@@ -155,10 +155,23 @@
       .pa-menu { width: min(282px, calc(100vw - 28px)); }
     }
   `;
-  document.head.appendChild(style);
+  const hideWidget = document.body.classList.contains('landing-page') || 
+                     window.location.pathname.toLowerCase().endsWith('index.html') || 
+                     window.location.pathname === '/' || 
+                     window.location.pathname.toLowerCase().endsWith('/portfolio') || 
+                     window.location.pathname.toLowerCase().endsWith('/portfolio/') ||
+                     window.location.pathname.toLowerCase().includes('projects.html') ||
+                     window.location.pathname.toLowerCase().includes('gallery.html');
+
+  if (!hideWidget) {
+    document.head.appendChild(style);
+  }
 
   const root = document.createElement('div');
   root.className = 'pa-account pa-guest';
+  if (hideWidget) {
+    root.style.display = 'none';
+  }
   root.innerHTML = `
     <button class="pa-avatar-btn" type="button" aria-label="Open account menu" aria-expanded="false">
       <img class="pa-avatar" alt="" src="${window.PortfolioAuth ? window.PortfolioAuth.DEFAULT_AVATAR : ''}">
