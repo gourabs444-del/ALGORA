@@ -364,7 +364,7 @@
         }
         if (providerName === 'Facebook') {
             const provider = new firebase.auth.FacebookAuthProvider();
-            provider.addScope('email');
+           // provider.addScope('email');
             return provider;
         }
         throw new Error('Unsupported sign-in provider.');
