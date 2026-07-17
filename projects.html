@@ -265,7 +265,7 @@ try {
         </div>
         <div class="flex flex-col min-w-0">
             <span class="text-body-sm font-bold text-on-surface leading-tight" id="user-name-sidebar">Alex Rivera</span>
-            <span class="text-[10px] uppercase font-black tracking-widest text-primary">Pro Plan</span>
+            <span id="user-plan-sidebar" class="text-[10px] uppercase font-black tracking-widest text-primary">Pro Plan</span>
         </div>
         <span class="material-symbols-outlined ml-auto text-primary text-[18px]">chevron_right</span>
     </a>
@@ -1871,9 +1871,9 @@ try {
         });
     }
 
-    const userNameSpan = document.querySelector('.mt-auto .text-on-surface');
-    const userPlanSpan = document.querySelector('.mt-auto .text-primary');
-    const userAvatarImg = document.querySelector('.mt-auto img');
+    const userNameSpan = document.getElementById('user-name-sidebar');
+    const userPlanSpan = document.getElementById('user-plan-sidebar');
+    const userAvatarImg = document.getElementById('user-avatar-sidebar');
 
     if (localStorage.getItem('isLoggedIn') === 'true') {
         const savedName = localStorage.getItem('userName') || 'Alex Rivera';
