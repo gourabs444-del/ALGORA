@@ -1792,20 +1792,20 @@ try {
     // Sign Out controller & dynamic profile updater
     const signoutBtn = document.getElementById('signout-btn');
     if (signoutBtn) {
-        if (localStorage.getItem('isLoggedIn') !== 'true') {
-            signoutBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">login</span>Sign In`;
-            signoutBtn.classList.remove('text-red-500', 'hover:bg-red-50', 'dark:hover:bg-red-950/20');
-            signoutBtn.classList.add('text-primary', 'hover:bg-primary/10');
-        }
-        signoutBtn.addEventListener('click', () => {
-            if (localStorage.getItem('isLoggedIn') === 'true') {
+        signoutBtn.addEventListener('click', async () => {
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+                return;
+            }
+            if (!confirm('Sign out of your account?')) return;
+            if (window.PortfolioAuth) await window.PortfolioAuth.signOut();
+            else {
                 localStorage.removeItem('isLoggedIn');
                 localStorage.removeItem('userName');
                 localStorage.removeItem('userEmail');
                 localStorage.removeItem('userPicture');
-                alert('Signed out successfully!');
             }
-            window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+            window.location.href = 'index.html';
         });
     }
 
@@ -2159,4 +2159,11 @@ try {
     </div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="js/auth-service.js"></script>
+<script src="js/account-widget.js"></script>
 </body></html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<script>
+  (function() {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="js/auth-service.js"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
+        colors: { primary: '#2563eb' }
+      }
+    }
+  };
+</script>
+<style>
+  html, body { width: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  .glass { background: rgba(255,255,255,.78); backdrop-filter: blur(24px); box-shadow: 0 28px 90px rgba(15,23,42,.12); }
+  .dark .glass { background: rgba(15,23,42,.82); }
+  .field { transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease; }
+  .field:focus-within { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
+  #crop-stage { touch-action: none; cursor: grab; }
+  #crop-stage:active { cursor: grabbing; }
+</style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white font-sans">
+<div class="fixed inset-0 pointer-events-none">
+  <div class="absolute -top-28 -left-24 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl"></div>
+  <div class="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-emerald-400/10 blur-3xl"></div>
+</div>
+
+<main class="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+  <header class="mb-8 flex items-center justify-between gap-4">
+    <a href="index.html" class="inline-flex items-center gap-2 rounded-2xl border border-slate-200/70 bg-white/70 px-4 py-2 text-sm font-bold text-slate-600 shadow-sm backdrop-blur hover:text-primary dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
+      <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      Home
+    </a>
+    <button id="profile-signout" class="hidden items-center gap-2 rounded-2xl bg-red-500/10 px-4 py-2 text-sm font-extrabold text-red-600 transition hover:bg-red-500/15">
+      <span class="material-symbols-outlined text-[20px]">logout</span>
+      Sign Out
+    </button>
+  </header>
+
+  <section class="glass rounded-[34px] border border-white/70 p-5 dark:border-slate-800 sm:p-8">
+    <div class="grid gap-8 lg:grid-cols-[340px_1fr]">
+      <aside class="rounded-[28px] border border-slate-200/70 bg-white/72 p-5 dark:border-slate-800 dark:bg-slate-900/60">
+        <div class="flex flex-col items-center text-center">
+          <div class="relative">
+            <img id="profile-photo" alt="" class="h-36 w-36 rounded-[36px] border border-slate-200 object-cover shadow-2xl dark:border-slate-700">
+            <button id="upload-trigger" class="absolute -bottom-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 rounded-2xl bg-primary px-4 py-2 text-xs font-extrabold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-x-1/2 hover:-translate-y-0.5">
+              <span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+              Upload
+            </button>
+          </div>
+          <input id="photo-input" type="file" accept="image/*" class="hidden">
+          <h1 id="profile-name-preview" class="mt-8 text-2xl font-black tracking-tight">Profile</h1>
+          <p id="profile-email-preview" class="mt-1 text-sm font-semibold text-slate-500 dark:text-slate-400"></p>
+          <span id="profile-provider" class="mt-4 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-slate-500 dark:bg-slate-800 dark:text-slate-300"></span>
+        </div>
+      </aside>
+
+      <form id="profile-form" class="space-y-6">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Display Name</span>
+            <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
+              <input id="displayName" required class="w-full rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold outline-none focus:ring-0" placeholder="Your name">
+            </span>
+          </label>
+          <label class="block">
+            <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Email</span>
+            <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
+              <input id="email" type="email" disabled class="w-full rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold text-slate-500 outline-none focus:ring-0" placeholder="Email">
+            </span>
+          </label>
+          <label class="block sm:col-span-2">
+            <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Phone Number</span>
+            <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
+              <input id="phone" type="tel" class="w-full rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold outline-none focus:ring-0" placeholder="+91 ...">
+            </span>
+          </label>
+          <label class="block sm:col-span-2">
+            <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Bio</span>
+            <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
+              <textarea id="bio" rows="4" maxlength="280" class="w-full resize-none rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold outline-none focus:ring-0" placeholder="Short bio"></textarea>
+            </span>
+          </label>
+        </div>
+
+        <div class="rounded-[26px] border border-slate-200/70 bg-white/62 p-4 dark:border-slate-800 dark:bg-slate-900/50">
+          <h2 class="mb-4 text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">Social Links</h2>
+          <div id="links-grid" class="grid gap-4 sm:grid-cols-2"></div>
+        </div>
+
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p id="profile-status" class="min-h-5 text-sm font-bold text-slate-500 dark:text-slate-400"></p>
+          <button id="save-profile" type="submit" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60">
+            <span class="material-symbols-outlined text-[19px]">save</span>
+            Save Profile
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div id="crop-modal" class="fixed inset-0 z-[10000] hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm">
+  <div class="w-full max-w-lg rounded-[30px] border border-white/10 bg-white p-5 shadow-2xl dark:bg-slate-900">
+    <div class="mb-4 flex items-center justify-between">
+      <h3 class="text-lg font-black">Edit Photo</h3>
+      <button id="crop-close" class="rounded-full p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Close">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div id="crop-stage" class="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-[28px] bg-slate-100 dark:bg-slate-950">
+      <canvas id="crop-canvas" width="420" height="420" class="h-full w-full"></canvas>
+    </div>
+    <label class="mt-5 block">
+      <span class="mb-2 block text-xs font-black uppercase tracking-widest text-slate-500">Zoom</span>
+      <input id="zoom-range" type="range" min="1" max="3" step="0.01" value="1" class="w-full accent-primary">
+    </label>
+    <div class="mt-5 grid grid-cols-2 gap-3">
+      <button id="crop-cancel" class="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-extrabold text-slate-700 dark:bg-slate-800 dark:text-slate-200" type="button">Cancel</button>
+      <button id="crop-save" class="rounded-2xl bg-primary px-4 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-500/20" type="button">Save Photo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const linkKeys = ['github', 'linkedin', 'twitter', 'instagram', 'website', 'portfolio', 'youtube', 'custom'];
+  const linkLabels = {
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
+    twitter: 'Twitter / X',
+    instagram: 'Instagram',
+    website: 'Website',
+    portfolio: 'Portfolio',
+    youtube: 'YouTube',
+    custom: 'Other Custom Link'
+  };
+
+  let activeUser = null;
+  let activeProfile = null;
+  let cropImage = null;
+  let cropScale = 1;
+  let cropOffset = { x: 0, y: 0 };
+  let isDragging = false;
+  let lastPoint = null;
+
+  const photo = document.getElementById('profile-photo');
+  const form = document.getElementById('profile-form');
+  const statusEl = document.getElementById('profile-status');
+  const saveBtn = document.getElementById('save-profile');
+  const linksGrid = document.getElementById('links-grid');
+  const cropModal = document.getElementById('crop-modal');
+  const cropCanvas = document.getElementById('crop-canvas');
+  const cropStage = document.getElementById('crop-stage');
+  const cropCtx = cropCanvas.getContext('2d');
+
+  linksGrid.innerHTML = linkKeys.map((key) => `
+    <label class="block">
+      <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">${linkLabels[key]}</span>
+      <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-950/60">
+        <input id="link-${key}" type="url" class="w-full rounded-2xl border-0 bg-transparent px-4 py-3 text-sm font-semibold outline-none focus:ring-0" placeholder="https://">
+      </span>
+    </label>
+  `).join('');
+
+  function setStatus(text, tone) {
+    statusEl.textContent = text || '';
+    statusEl.className = 'min-h-5 text-sm font-bold ' + (tone === 'success' ? 'text-emerald-600' : tone === 'error' ? 'text-red-600' : 'text-slate-500 dark:text-slate-400');
+  }
+
+  function fillProfile(profile, user) {
+    document.getElementById('displayName').value = profile.displayName || '';
+    document.getElementById('email').value = profile.email || user.email || '';
+    document.getElementById('phone').value = profile.phone || '';
+    document.getElementById('bio').value = profile.bio || '';
+    document.getElementById('profile-name-preview').textContent = profile.displayName || user.displayName || 'User';
+    document.getElementById('profile-email-preview').textContent = user.email || '';
+    document.getElementById('profile-provider').textContent = profile.provider || 'password';
+    photo.src = window.PortfolioAuth.getAvatar(profile, user);
+    linkKeys.forEach((key) => {
+      document.getElementById(`link-${key}`).value = (profile.links && profile.links[key]) || '';
+    });
+
+    const uploadTrigger = document.getElementById('upload-trigger');
+    uploadTrigger.classList.toggle('hidden', profile.provider !== 'password');
+  }
+
+  window.PortfolioAuth.onAuthState(({ user, profile, loading }) => {
+    if (loading) return;
+    if (!user) {
+      window.location.href = 'login.html?redirect=' + encodeURIComponent('profile.html');
+      return;
+    }
+    activeUser = user;
+    activeProfile = profile;
+    document.getElementById('profile-signout').classList.remove('hidden');
+    document.getElementById('profile-signout').classList.add('inline-flex');
+    fillProfile(profile, user);
+  });
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!activeUser) return;
+
+    const displayName = document.getElementById('displayName').value.trim();
+    if (displayName.length < 2) {
+      setStatus('Display name must be at least 2 characters.', 'error');
+      return;
+    }
+
+    const links = {};
+    for (const key of linkKeys) {
+      const value = document.getElementById(`link-${key}`).value.trim();
+      if (value && !/^https?:\/\//i.test(value)) {
+        setStatus(`${linkLabels[key]} must start with http:// or https://`, 'error');
+        return;
+      }
+      links[key] = value;
+    }
+
+    saveBtn.disabled = true;
+    setStatus('Saving profile...');
+    try {
+      const profile = await window.PortfolioAuth.updateProfile({
+        displayName,
+        phone: document.getElementById('phone').value.trim(),
+        bio: document.getElementById('bio').value.trim(),
+        links
+      });
+      activeProfile = profile;
+      fillProfile(profile, activeUser);
+      setStatus('Profile saved.', 'success');
+    } catch (error) {
+      console.error(error);
+      setStatus(error.message, 'error');
+    } finally {
+      saveBtn.disabled = false;
+    }
+  });
+
+  document.getElementById('profile-signout').addEventListener('click', async () => {
+    if (!confirm('Sign out of your account?')) return;
+    await window.PortfolioAuth.signOut();
+    window.location.href = 'index.html';
+  });
+
+  document.getElementById('upload-trigger').addEventListener('click', () => document.getElementById('photo-input').click());
+  document.getElementById('photo-input').addEventListener('change', (event) => {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      cropImage = new Image();
+      cropImage.onload = () => {
+        cropScale = 1;
+        cropOffset = { x: 0, y: 0 };
+        document.getElementById('zoom-range').value = '1';
+        cropModal.classList.remove('hidden');
+        cropModal.classList.add('flex');
+        drawCrop();
+      };
+      cropImage.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function drawCrop() {
+    if (!cropImage) return;
+    const size = cropCanvas.width;
+    cropCtx.clearRect(0, 0, size, size);
+    cropCtx.fillStyle = '#0f172a';
+    cropCtx.fillRect(0, 0, size, size);
+
+    const base = Math.max(size / cropImage.width, size / cropImage.height);
+    const scale = base * cropScale;
+    const width = cropImage.width * scale;
+    const height = cropImage.height * scale;
+    const x = (size - width) / 2 + cropOffset.x;
+    const y = (size - height) / 2 + cropOffset.y;
+    cropCtx.drawImage(cropImage, x, y, width, height);
+  }
+
+  function closeCrop() {
+    cropModal.classList.add('hidden');
+    cropModal.classList.remove('flex');
+    document.getElementById('photo-input').value = '';
+  }
+
+  document.getElementById('crop-close').addEventListener('click', closeCrop);
+  document.getElementById('crop-cancel').addEventListener('click', closeCrop);
+  document.getElementById('zoom-range').addEventListener('input', (event) => {
+    cropScale = Number(event.target.value);
+    drawCrop();
+  });
+
+  cropStage.addEventListener('pointerdown', (event) => {
+    isDragging = true;
+    lastPoint = { x: event.clientX, y: event.clientY };
+    cropStage.setPointerCapture(event.pointerId);
+  });
+  cropStage.addEventListener('pointermove', (event) => {
+    if (!isDragging || !lastPoint) return;
+    cropOffset.x += event.clientX - lastPoint.x;
+    cropOffset.y += event.clientY - lastPoint.y;
+    lastPoint = { x: event.clientX, y: event.clientY };
+    drawCrop();
+  });
+  cropStage.addEventListener('pointerup', () => {
+    isDragging = false;
+    lastPoint = null;
+  });
+
+  document.getElementById('crop-save').addEventListener('click', async () => {
+    if (!cropImage) return;
+    setStatus('Uploading photo...');
+    cropCanvas.toBlob(async (blob) => {
+      try {
+        const url = await window.PortfolioAuth.uploadProfilePhoto(blob);
+        photo.src = url;
+        closeCrop();
+        setStatus('Profile photo updated.', 'success');
+      } catch (error) {
+        console.error(error);
+        setStatus(error.message, 'error');
+      }
+    }, 'image/jpeg', 0.9);
+  });
+</script>
+</body>
+</html>

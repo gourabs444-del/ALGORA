@@ -22,7 +22,10 @@
 <!-- Firebase App and Auth SDK (Compat) -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 <script src="firebase-config.js"></script>
+<script src="js/auth-service.js"></script>
 <script>
   try {
     tailwind.config = {
@@ -47,6 +50,8 @@
       -webkit-tap-highlight-color: transparent;
   }
   html, body {
+      width: 100%;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: geometricPrecision;
@@ -91,11 +96,24 @@
       box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
       border-color: #3b82f6;
   }
-  .social-button:hover {
-      transform: translateY(-1px);
-  }
   .auth-card {
-      height: 828px;
+      min-height: 0;
+  }
+  .email-panel,
+  .oauth-panel {
+      transition: border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+  }
+  .email-mode-fields {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: max-height 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease, transform 260ms ease;
+  }
+  .email-mode-fields.is-open {
+      max-height: 120px;
+      opacity: 1;
+      transform: translateY(0);
   }
   .auth-tabs {
       --tab-padding: 6px;
@@ -113,7 +131,7 @@
   }
 </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-center items-center relative overflow-x-hidden p-4">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-center items-center relative overflow-x-hidden p-4 py-10 sm:py-12">
 
 <!-- Floating Animated Gradient Bubbles -->
 <div class="absolute w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-blue-500/30 to-indigo-500/20 glow-dot -top-20 -left-20 pointer-events-none float-bubble-1"></div>
@@ -128,90 +146,101 @@
 </div>
 
 <!-- Main Login Card Container -->
-<div class="auth-card w-full max-w-md glass-card border border-white/70 dark:border-slate-800 rounded-[32px] p-8 sm:p-10 relative z-10">
+<div class="auth-card w-full max-w-md glass-card border border-white/70 dark:border-slate-800 rounded-[32px] p-5 sm:p-6 relative z-10">
     
     <!-- Header Logo & Pulse effect -->
-    <div class="text-center mb-8 min-h-[120px]">
-        <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-[22px] flex items-center justify-center mx-auto mb-4 text-primary dark:text-blue-400 shadow-sm">
-            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
+    <div class="text-center px-3 pt-3 pb-6">
+        <div class="w-14 h-14 bg-primary/10 dark:bg-primary/20 rounded-[20px] flex items-center justify-center mx-auto mb-4 text-primary dark:text-blue-400 shadow-sm">
+            <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
         </div>
-        <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight" id="card-title">Welcome back</h2>
-        <p class="text-secondary dark:text-slate-400 font-medium text-body-sm mt-2" id="card-subtitle">Sign in to continue to your portfolio.</p>
+        <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">Account Access</h2>
     </div>
 
-    <!-- Mode Toggles (Sliding Indicator Tab Layout) -->
-    <div id="auth-tabs" data-mode="signin" class="auth-tabs relative grid grid-cols-2 gap-1.5 bg-slate-100 dark:bg-slate-900/60 p-1.5 rounded-2xl mb-8 border border-outline-variant/10 dark:border-slate-800/80">
-        <!-- Sliding Pill Background -->
-        <div id="tab-pill" class="tab-pill absolute top-1.5 bottom-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-[0_2px_8px_rgba(15,23,42,0.12)] z-0"></div>
-        
-        <button id="tab-signin" type="button" class="w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback" onclick="toggleMode('signin')">
-            Sign In
-        </button>
-        <button id="tab-signup" type="button" class="w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback" onclick="toggleMode('signup')">
-            Sign Up
-        </button>
-    </div>
-
-    <!-- Direct Social Login Options -->
-    <div class="grid grid-cols-2 gap-3 mb-6">
-        <!-- Google -->
-        <button type="button" onclick="handleSocialAuth('Google')" class="social-button flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Google">
-            <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.58 15.02 1 12 1 7.35 1 3.4 3.65 1.5 7.5l3.86 3C6.27 7.74 8.89 5.04 12 5.04z"/><path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.42 3.58l3.76 2.92c2.2-2.03 3.69-5.02 3.69-8.65z"/><path fill="#FBBC05" d="M5.36 14.5c-.24-.72-.38-1.49-.38-2.3s.14-1.58.38-2.3L1.5 6.9C.54 8.82 0 10.97 0 13.2s.54 4.38 1.5 6.3l3.86-3z"/><path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.92l-3.76-2.92c-1.1.74-2.52 1.18-4.2 1.18-3.11 0-5.73-2.7-6.64-5.46L1.5 15.88C3.4 19.73 7.35 23 12 23z"/></svg>
-        </button>
-        <!-- Facebook -->
-        <button type="button" onclick="handleSocialAuth('Facebook')" class="social-button flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Facebook">
-            <svg class="w-5 h-5 fill-current text-[#1877F2]" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </button>
-    </div>
-
-    <!-- Divider -->
-    <div class="relative flex items-center justify-center my-6">
-        <div class="flex-grow border-t border-outline-variant/10 dark:border-slate-800/80"></div>
-        <span class="flex-shrink mx-4 text-secondary dark:text-slate-500 text-[10px] font-bold uppercase tracking-widest">or email access</span>
-        <div class="flex-grow border-t border-outline-variant/10 dark:border-slate-800/80"></div>
-    </div>
-
-    <!-- Forms -->
-    <form class="space-y-5" id="auth-form" onsubmit="handleAuthSubmit(event)">
-        <!-- Sign Up Only Fields -->
-        <div id="signup-fields" class="space-y-5 hidden">
-            <div>
-                <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-name">Full Name</label>
-                <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">person</span>
-                    <input id="auth-name" type="text" class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your full name">
-                </div>
+    <div class="space-y-5">
+        <!-- Email Authentication -->
+        <section class="email-panel rounded-[26px] border border-white/80 dark:border-slate-800 bg-white/72 dark:bg-slate-950/44 p-5 sm:p-6 shadow-[0_14px_34px_rgba(15,23,42,0.08)]">
+            <div class="flex items-center justify-between gap-4 mb-5">
+                <h3 class="text-lg font-extrabold tracking-tight text-slate-950 dark:text-white">Email Authentication</h3>
+                <span class="material-symbols-outlined text-primary/70 dark:text-blue-400/80 text-[22px]">alternate_email</span>
             </div>
-        </div>
 
-        <!-- General Fields -->
-        <div>
-            <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-email">Email Address</label>
-            <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
-                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">mail</span>
-                <input id="auth-email" type="email" required class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your email">
-            </div>
-        </div>
+            <!-- Mode Toggles (Sliding Indicator Tab Layout) -->
+            <div id="auth-tabs" data-mode="signin" class="auth-tabs relative grid grid-cols-2 gap-1.5 bg-slate-100 dark:bg-slate-900/60 p-1.5 rounded-2xl mb-6 border border-outline-variant/10 dark:border-slate-800/80">
+                <div id="tab-pill" class="tab-pill absolute top-1.5 bottom-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-[0_2px_8px_rgba(15,23,42,0.12)] z-0"></div>
 
-        <div>
-            <div class="flex justify-between items-center mb-1.5">
-                <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300" for="auth-password">Password</label>
-                <a href="#" id="forgot-password-link" onclick="handleForgotPassword(event)" class="text-xs font-semibold text-primary dark:text-blue-400 hover:underline">Forgot Password?</a>
-            </div>
-            <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
-                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">lock</span>
-                <input id="auth-password" type="password" required class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-12 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your password">
-                <button type="button" id="password-toggle" class="absolute right-4 top-1/2 -translate-y-1/2 text-secondary/60 hover:text-primary dark:hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-center" aria-label="Toggle Password Visibility">
-                    <span class="material-symbols-outlined text-[20px]" id="eye-icon">visibility</span>
+                <button id="tab-signin" type="button" class="w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback" onclick="toggleMode('signin')">
+                    Sign In
+                </button>
+                <button id="tab-signup" type="button" class="w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback" onclick="toggleMode('signup')">
+                    Sign Up
                 </button>
             </div>
-        </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="w-full bg-primary text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer mt-6" id="submit-btn">
-            Sign In <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>
-        </button>
-    </form>
+            <form class="space-y-4" id="auth-form" onsubmit="handleAuthSubmit(event)">
+                <div id="signup-fields" class="email-mode-fields">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-name">Full Name</label>
+                            <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
+                                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">person</span>
+                                <input id="auth-name" type="text" class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your full name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-email">Email Address</label>
+                    <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">mail</span>
+                        <input id="auth-email" type="email" required class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your email">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center mb-1.5">
+                        <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300" for="auth-password">Password</label>
+                        <a href="#" id="forgot-password-link" onclick="handleForgotPassword(event)" class="text-xs font-semibold text-primary dark:text-blue-400 hover:underline">Forgot Password?</a>
+                    </div>
+                    <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">lock</span>
+                        <input id="auth-password" type="password" required class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-12 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your password">
+                        <button type="button" id="password-toggle" class="absolute right-4 top-1/2 -translate-y-1/2 text-secondary/60 hover:text-primary dark:hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-center" aria-label="Toggle Password Visibility">
+                            <span class="material-symbols-outlined text-[20px]" id="eye-icon">visibility</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="confirm-password-wrap" class="email-mode-fields">
+                    <div>
+                        <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-confirm-password">Confirm Password</label>
+                        <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">verified_user</span>
+                            <input id="auth-confirm-password" type="password" class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Confirm your password">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-primary text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer mt-6" id="submit-btn">
+                    Sign In <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>
+                </button>
+            </form>
+        </section>
+
+        <!-- OAuth Authentication -->
+        <section class="oauth-panel rounded-[26px] border border-slate-200/70 dark:border-slate-800 bg-slate-950/[0.03] dark:bg-white/[0.035] p-4 sm:p-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button type="button" onclick="handleSocialAuth('Google')" class="social-button flex items-center justify-center gap-3 py-3.5 px-4 border border-outline-variant/50 dark:border-slate-800 rounded-2xl bg-white/90 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback text-sm font-bold text-slate-700 dark:text-slate-100" aria-label="Continue with Google">
+                    <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.58 15.02 1 12 1 7.35 1 3.4 3.65 1.5 7.5l3.86 3C6.27 7.74 8.89 5.04 12 5.04z"/><path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.42 3.58l3.76 2.92c2.2-2.03 3.69-5.02 3.69-8.65z"/><path fill="#FBBC05" d="M5.36 14.5c-.24-.72-.38-1.49-.38-2.3s.14-1.58.38-2.3L1.5 6.9C.54 8.82 0 10.97 0 13.2s.54 4.38 1.5 6.3l3.86-3z"/><path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.92l-3.76-2.92c-1.1.74-2.52 1.18-4.2 1.18-3.11 0-5.73-2.7-6.64-5.46L1.5 15.88C3.4 19.73 7.35 23 12 23z"/></svg>
+                    Continue with Google
+                </button>
+                <button type="button" onclick="handleSocialAuth('Facebook')" class="social-button flex items-center justify-center gap-3 py-3.5 px-4 border border-outline-variant/50 dark:border-slate-800 rounded-2xl bg-white/90 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback text-sm font-bold text-slate-700 dark:text-slate-100" aria-label="Continue with Facebook">
+                    <svg class="w-5 h-5 shrink-0 fill-current text-[#1877F2]" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Continue with Facebook
+                </button>
+            </div>
+        </section>
+    </div>
 </div>
 
 <script>
@@ -241,24 +270,23 @@
         if (mode === targetMode) return;
         mode = targetMode;
 
-        const title = document.getElementById('card-title');
-        const subtitle = document.getElementById('card-subtitle');
         const submitBtn = document.getElementById('submit-btn');
         const signupFields = document.getElementById('signup-fields');
+        const confirmPasswordWrap = document.getElementById('confirm-password-wrap');
         const nameInput = document.getElementById('auth-name');
+        const confirmPasswordInput = document.getElementById('auth-confirm-password');
         
         const tabSignin = document.getElementById('tab-signin');
         const tabSignup = document.getElementById('tab-signup');
         const authTabs = document.getElementById('auth-tabs');
 
         if (mode === 'signin') {
-            title.innerText = "Welcome back";
-            subtitle.innerText = "Sign in to continue to your portfolio.";
             submitBtn.innerHTML = `Sign In <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>`;
-            signupFields.classList.add('hidden');
+            signupFields.classList.remove('is-open');
+            confirmPasswordWrap.classList.remove('is-open');
             nameInput.removeAttribute('required');
+            confirmPasswordInput.removeAttribute('required');
             
-            // Switch tabs with sliding animation
             authTabs.dataset.mode = 'signin';
             tabSignin.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
             tabSignup.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
@@ -266,13 +294,12 @@
             const forgotLink = document.getElementById('forgot-password-link');
             if (forgotLink) forgotLink.classList.remove('hidden');
         } else {
-            title.innerText = "Create your account";
-            subtitle.innerText = "Start building your portfolio presence today.";
             submitBtn.innerHTML = `Create Account <span class="material-symbols-outlined text-[18px] font-bold">person_add</span>`;
-            signupFields.classList.remove('hidden');
+            signupFields.classList.add('is-open');
+            confirmPasswordWrap.classList.add('is-open');
             nameInput.setAttribute('required', 'required');
+            confirmPasswordInput.setAttribute('required', 'required');
             
-            // Switch tabs with sliding animation
             authTabs.dataset.mode = 'signup';
             tabSignup.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
             tabSignin.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
@@ -291,9 +318,15 @@
 
         const email = document.getElementById('auth-email').value.trim();
         const password = document.getElementById('auth-password').value;
+        const confirmPassword = document.getElementById('auth-confirm-password').value;
         const name = document.getElementById('auth-name').value.trim();
         const submitBtn = document.getElementById('submit-btn');
         const originalButton = submitBtn.innerHTML;
+
+        if (mode === 'signup' && password !== confirmPassword) {
+            alert('Passwords do not match.');
+            return;
+        }
 
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-70', 'cursor-wait');
@@ -308,7 +341,7 @@
                 credential = await auth.signInWithEmailAndPassword(email, password);
             }
 
-            saveAuthenticatedUser(credential.user, 'Portfolio User');
+            await saveAuthenticatedUser(credential.user, 'Portfolio User');
             window.location.replace(redirectUrl);
         } catch (error) {
             console.error('Firebase email authentication error:', error);
@@ -348,13 +381,18 @@
     initializeFirebaseAuth(window.firebaseConfig);
     window.addEventListener('firebase-config-ready', () => {
         initializeFirebaseAuth(window.firebaseConfig);
+        handlePendingRedirectResult();
     }, { once: true });
 
-    function saveAuthenticatedUser(user, providerName) {
+    async function saveAuthenticatedUser(user, providerName) {
+        const profile = window.PortfolioAuth
+            ? await window.PortfolioAuth.ensureUserProfile(user)
+            : null;
         localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userName', user.displayName || `${providerName} User`);
+        localStorage.setItem('userName', (profile && profile.displayName) || user.displayName || `${providerName} User`);
         localStorage.setItem('userEmail', user.email || '');
-        if (user.photoURL) localStorage.setItem('userPicture', user.photoURL);
+        const avatar = window.PortfolioAuth ? window.PortfolioAuth.getAvatar(profile, user) : user.photoURL;
+        if (avatar) localStorage.setItem('userPicture', avatar);
         else localStorage.removeItem('userPicture');
     }
 
@@ -374,6 +412,13 @@
         alert(`${providerName} login failed: ${error.message}`);
     }
 
+    async function finishSocialAuth(result, providerName) {
+        if (!result || !result.user) return;
+
+        await saveAuthenticatedUser(result.user, providerName);
+        window.location.replace(redirectUrl);
+    }
+
     function handleSocialAuth(providerName) {
         if (!isFirebaseConfigured) {
             alert('Real social login ke liye Firebase configuration add karein aur Firebase Console mein provider enable karein.');
@@ -383,29 +428,31 @@
         const provider = getSocialProvider(providerName);
         // OAuth redirects are substantially more reliable in mobile browsers.
         const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        const signIn = isMobile ? auth.signInWithRedirect(provider) : auth.signInWithPopup(provider);
 
-        signIn.then((result) => {
-            // Redirect mode returns its result after the page reloads below.
-            if (!result || !result.user) return;
-            saveAuthenticatedUser(result.user, providerName);
-            window.location.replace(redirectUrl);
-        }).catch((error) => showSocialAuthError(providerName, error));
+        if (isMobile) {
+            auth.signInWithRedirect(provider).catch((error) => showSocialAuthError(providerName, error));
+            return;
+        }
+
+        auth.signInWithPopup(provider)
+            .then((result) => finishSocialAuth(result, providerName))
+            .catch((error) => showSocialAuthError(providerName, error));
     }
 
     // Finish a mobile redirect sign-in after the identity provider returns here.
-    if (isFirebaseConfigured) {
+    function handlePendingRedirectResult() {
+        if (!isFirebaseConfigured || !auth) return;
         auth.getRedirectResult()
             .then((result) => {
                 if (!result || !result.user) return;
                 const providerName = result.credential && result.credential.providerId === 'facebook.com'
                         ? 'Facebook'
                         : 'Google';
-                saveAuthenticatedUser(result.user, providerName);
-                window.location.replace(redirectUrl);
+                return finishSocialAuth(result, providerName);
             })
             .catch((error) => showSocialAuthError('Social', error));
     }
+    handlePendingRedirectResult();
 
     function handleForgotPassword(e) {
         e.preventDefault();
