@@ -259,15 +259,16 @@ try {
 
 <div class="mt-auto border-outline-variant pt-6">
     <!-- Profile details container -->
-    <div class="flex items-center gap-3 px-4 py-2 bg-surface-container rounded-xl">
+    <a href="profile.html" id="sidebar-account-link" class="flex items-center gap-3 px-4 py-2 bg-surface-container rounded-xl hover:bg-surface-container-high transition-colors active-feedback">
         <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 p-0.5">
             <img id="user-avatar-sidebar" alt="Alex Rivera Profile" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxTP3_ZPmr7Vwd2NA75mIR9am0JD8URecn8G_dAUZQRoF0roFM1j6qvfHvktU42aq7I_wlpRViLmBUxUSRPkUqRbfbnB0Jvx-sdBSv9bWCKeDzz301xf_CcGgaNBpnRgzMT-4HhpXF6o5ZsxeIH9VjY83fPKBe2Cq8VBw31yNq5TCeUpWt8xZxxBsl8_fScoSxTI6CmPXZkFuCW0bp8y-5tp1gtthlcwhgbJWZMhFjk5Iw5UP0fzNz5A">
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col min-w-0">
             <span class="text-body-sm font-bold text-on-surface leading-tight" id="user-name-sidebar">Alex Rivera</span>
             <span class="text-[10px] uppercase font-black tracking-widest text-primary">Pro Plan</span>
         </div>
-    </div>
+        <span class="material-symbols-outlined ml-auto text-primary text-[18px]">chevron_right</span>
+    </a>
 </div>
 </aside>
 <!-- Main Content Area -->
@@ -641,8 +642,8 @@ try {
 </div>
 <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white mb-2">AI Suggestions</h3>
 <p class="text-body-sm text-secondary dark:text-slate-400 font-medium px-4 mb-8">Discover sites based on your recent activity.</p>
-<button class="bg-primary text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-primary/20 flex items-center gap-3 hover:scale-105 active:scale-95 transition-all mx-auto">
-<span class="">View Explore</span>
+<button onclick="handleGetStarted()" class="bg-primary text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-primary/20 flex items-center gap-3 hover:scale-105 active:scale-95 transition-all mx-auto">
+<span class="">Get Started</span>
 <span class="material-symbols-outlined text-[18px] font-black">arrow_forward</span>
 </button>
 </div>
@@ -713,10 +714,13 @@ try {
         <!-- Professional Notice Banner -->
         <div id="contact-auth-notice" class="mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-semibold flex items-start gap-3">
             <span class="material-symbols-outlined text-[20px] flex-shrink-0 mt-0.5">info</span>
-            <div>
+            <div class="flex-1">
                 <p class="font-bold mb-0.5">Authentication Required</p>
                 <p class="leading-relaxed">You must be logged in to dispatch messages. Unregistered messages will be automatically saved as drafts locally so your progress is never lost.</p>
             </div>
+            <a href="login.html?redirect=projects.html%23contact" class="shrink-0 inline-flex items-center justify-center rounded-xl bg-primary px-3 py-2 text-[11px] font-black text-white shadow-lg shadow-primary/20 hover:bg-primary/95 transition-colors">
+                Sign In / Sign Up
+            </a>
         </div>
 
         <!-- Contact Section Inner Tabs -->
