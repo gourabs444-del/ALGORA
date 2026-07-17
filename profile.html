@@ -44,6 +44,31 @@
   .field:focus-within { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
   #crop-stage { touch-action: none; cursor: grab; }
   #crop-stage:active { cursor: grabbing; }
+  
+  /* OnePlus OxygenOS style fluid elastic dropdown animation */
+  .country-menu {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.94) translateY(-10px);
+    transition: opacity 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.22s;
+    transform-origin: top left;
+  }
+  .country-menu.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+  }
+  
+  /* Dropdown Arrow rotation with smooth springy bounce */
+  #country-arrow {
+    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: inline-block;
+  }
+  #country-arrow.is-active {
+    transform: rotate(180deg);
+  }
 </style>
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white font-sans">
@@ -54,13 +79,9 @@
 
 <main class="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
   <header class="mb-8 flex items-center justify-between gap-4">
-    <a href="index.html" class="inline-flex items-center gap-2 rounded-2xl border border-slate-200/70 bg-white/70 px-4 py-2 text-sm font-bold text-slate-600 shadow-sm backdrop-blur hover:text-primary dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300">
+    <button onclick="history.back()" class="inline-flex items-center gap-2 rounded-2xl border border-slate-200/70 bg-white/70 px-4 py-2 text-sm font-bold text-slate-600 shadow-sm backdrop-blur hover:text-primary dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300 cursor-pointer">
       <span class="material-symbols-outlined text-[20px]">arrow_back</span>
-      Home
-    </a>
-    <button id="profile-signout" class="hidden items-center gap-2 rounded-2xl bg-red-500/10 px-4 py-2 text-sm font-extrabold text-red-600 transition hover:bg-red-500/15">
-      <span class="material-symbols-outlined text-[20px]">logout</span>
-      Sign Out
+      Back
     </button>
   </header>
 
@@ -68,17 +89,46 @@
     <div class="grid gap-8 lg:grid-cols-[340px_1fr]">
       <aside class="rounded-[28px] border border-slate-200/70 bg-white/72 p-5 dark:border-slate-800 dark:bg-slate-900/60">
         <div class="flex flex-col items-center text-center">
-          <div class="relative">
-            <img id="profile-photo" alt="" class="h-36 w-36 rounded-[36px] border border-slate-200 object-cover shadow-2xl dark:border-slate-700">
-            <button id="upload-trigger" class="absolute -bottom-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 rounded-2xl bg-primary px-4 py-2 text-xs font-extrabold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-x-1/2 hover:-translate-y-0.5">
-              <span class="material-symbols-outlined text-[18px]">add_a_photo</span>
-              Upload
+          <div class="relative cursor-pointer" onclick="document.getElementById('photo-input').click()">
+            <img id="profile-photo" alt="" class="h-36 w-36 rounded-full border-4 border-white dark:border-slate-800 object-cover shadow-2xl dark:shadow-slate-950/50 transition-transform duration-300 hover:scale-[1.02]">
+            <!-- Permanent Edit Button at Bottom Right -->
+            <button id="upload-trigger" type="button" class="absolute bottom-0 right-0 h-9 w-9 rounded-full bg-primary text-white shadow-lg flex items-center justify-center border-2 border-white dark:border-slate-800 hover:scale-110 active:scale-95 transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-[18px] font-bold">edit</span>
             </button>
           </div>
           <input id="photo-input" type="file" accept="image/*" class="hidden">
           <h1 id="profile-name-preview" class="mt-8 text-2xl font-black tracking-tight">Profile</h1>
           <p id="profile-email-preview" class="mt-1 text-sm font-semibold text-slate-500 dark:text-slate-400"></p>
           <span id="profile-provider" class="mt-4 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-slate-500 dark:bg-slate-800 dark:text-slate-300"></span>
+          
+          <!-- Divider -->
+          <div class="my-6 w-full border-t border-slate-200/50 dark:border-slate-800/80"></div>
+          
+          <!-- Live Preview Data Container -->
+          <div class="w-full text-left space-y-5">
+            <!-- Bio Preview Block -->
+            <div>
+              <span class="block text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1.5">Bio</span>
+              <p id="preview-bio" class="text-xs font-semibold text-slate-400 dark:text-slate-500 italic leading-relaxed whitespace-pre-wrap break-words">No bio added yet.</p>
+            </div>
+            
+            <!-- Contact Phone Preview Block -->
+            <div id="preview-phone-container" class="hidden">
+              <span class="block text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1.5">Phone</span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-200">
+                <span class="material-symbols-outlined text-[16px] text-slate-400">call</span>
+                <span id="preview-phone">-</span>
+              </div>
+            </div>
+            
+            <!-- Custom Links Preview Block -->
+            <div id="preview-links-container" class="hidden">
+              <span class="block text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">Connected Links</span>
+              <div id="preview-links-list" class="flex flex-col gap-2">
+                <!-- Dynamically rendered custom links -->
+              </div>
+            </div>
+          </div>
         </div>
       </aside>
 
@@ -96,28 +146,64 @@
               <input id="email" type="email" disabled class="w-full rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold text-slate-500 outline-none focus:ring-0" placeholder="Email">
             </span>
           </label>
-          <label class="block sm:col-span-2">
+          <div class="block sm:col-span-2">
             <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Phone Number</span>
-            <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
-              <input id="phone" type="tel" class="w-full rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold outline-none focus:ring-0" placeholder="+91 ...">
-            </span>
-          </label>
+            <div class="relative field flex items-center rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
+              <!-- Country Code Selector Button -->
+              <div class="relative flex-shrink-0">
+                <button id="country-dropdown-btn" type="button" class="flex items-center gap-2 px-4 py-3.5 text-sm font-semibold hover:bg-slate-100/50 dark:hover:bg-slate-800/40 rounded-l-2xl transition-colors cursor-pointer border-r border-slate-200 dark:border-slate-800 h-full">
+                  <img id="selected-flag" src="https://flagcdn.com/w20/in.png" alt="India" class="w-5 h-3.5 object-cover rounded-sm">
+                  <span id="selected-code" class="text-slate-800 dark:text-slate-200">+91</span>
+                  <span id="country-arrow" class="material-symbols-outlined text-[16px] text-slate-400 font-bold select-none">keyboard_arrow_down</span>
+                </button>
+                <!-- Country Dropdown Menu -->
+                <div id="country-dropdown-menu" class="country-menu absolute top-full left-0 mt-2 w-64 max-h-60 overflow-y-auto rounded-2xl border border-slate-250/70 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900 z-50 py-1">
+                  <!-- Country Search -->
+                  <div class="sticky top-0 bg-white dark:bg-slate-900 px-3 py-2 border-b border-slate-100 dark:border-slate-800/60">
+                    <input type="text" id="country-search" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs font-semibold outline-none focus:border-primary dark:text-white" placeholder="Search country...">
+                  </div>
+                  <!-- Option List -->
+                  <div id="country-options-list" class="divide-y divide-slate-50 dark:divide-slate-800/30">
+                    <!-- Loaded dynamically -->
+                  </div>
+                </div>
+              </div>
+              <!-- Phone number input field -->
+              <input id="phone" type="tel" inputmode="numeric" class="w-full border-0 bg-transparent px-4 py-3.5 text-sm font-semibold outline-none focus:ring-0 rounded-r-2xl" placeholder="Enter phone number">
+            </div>
+          </div>
           <label class="block sm:col-span-2">
             <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Bio</span>
             <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
               <textarea id="bio" rows="4" maxlength="280" class="w-full resize-none rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold outline-none focus:ring-0" placeholder="Short bio"></textarea>
             </span>
+            <!-- Word and Character Counter -->
+            <div class="flex justify-between items-center mt-1.5 px-1 text-xs text-slate-400 dark:text-slate-500 font-semibold select-none">
+              <span id="bio-word-count">0 words</span>
+              <span id="bio-char-count">0 / 280 characters</span>
+            </div>
           </label>
         </div>
 
-        <div class="rounded-[26px] border border-slate-200/70 bg-white/62 p-4 dark:border-slate-800 dark:bg-slate-900/50">
-          <h2 class="mb-4 text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">Social Links</h2>
-          <div id="links-grid" class="grid gap-4 sm:grid-cols-2"></div>
+        <div class="rounded-[26px] border border-slate-200/70 bg-white/62 p-5 dark:border-slate-800 dark:bg-slate-900/50">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">Custom Links</h2>
+              <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Add up to 3 personal links (e.g. Portfolio, GitHub)</p>
+            </div>
+            <button id="add-link-btn" type="button" class="inline-flex items-center gap-1.5 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary px-3.5 py-2 text-xs font-bold transition-all disabled:opacity-50 disabled:pointer-events-none active-feedback cursor-pointer">
+              <span class="material-symbols-outlined text-[16px] font-bold">add</span>
+              Add Link
+            </button>
+          </div>
+          <div id="custom-links-container" class="space-y-4">
+            <!-- Dynamic Custom Links -->
+          </div>
         </div>
 
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p id="profile-status" class="min-h-5 text-sm font-bold text-slate-500 dark:text-slate-400"></p>
-          <button id="save-profile" type="submit" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60">
+          <button id="save-profile" type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60 cursor-pointer">
             <span class="material-symbols-outlined text-[19px]">save</span>
             Save Profile
           </button>
@@ -137,6 +223,10 @@
     </div>
     <div id="crop-stage" class="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-[28px] bg-slate-100 dark:bg-slate-950">
       <canvas id="crop-canvas" width="420" height="420" class="h-full w-full"></canvas>
+      <!-- Circular crop guide overlay -->
+      <div class="pointer-events-none absolute inset-0 border-[40px] border-slate-950/60 flex items-center justify-center">
+        <div class="h-full w-full border-2 border-dashed border-white rounded-full"></div>
+      </div>
     </div>
     <label class="mt-5 block">
       <span class="mb-2 block text-xs font-black uppercase tracking-widest text-slate-500">Zoom</span>
@@ -150,18 +240,6 @@
 </div>
 
 <script>
-  const linkKeys = ['github', 'linkedin', 'twitter', 'instagram', 'website', 'portfolio', 'youtube', 'custom'];
-  const linkLabels = {
-    github: 'GitHub',
-    linkedin: 'LinkedIn',
-    twitter: 'Twitter / X',
-    instagram: 'Instagram',
-    website: 'Website',
-    portfolio: 'Portfolio',
-    youtube: 'YouTube',
-    custom: 'Other Custom Link'
-  };
-
   let activeUser = null;
   let activeProfile = null;
   let cropImage = null;
@@ -170,45 +248,365 @@
   let isDragging = false;
   let lastPoint = null;
 
+  let customLinks = []; // Holds array of { name: '', url: '' }
+  let pendingPhotoBlob = null; // Temporary PFP blob before saving
+
+  const countries = [
+    { name: 'India', code: '+91', flag: 'in', length: 10 },
+    { name: 'United States', code: '+1', flag: 'us', length: 10 },
+    { name: 'United Kingdom', code: '+44', flag: 'gb', length: 10 },
+    { name: 'Canada', code: '+1', flag: 'ca', length: 10 },
+    { name: 'Australia', code: '+61', flag: 'au', length: 9 },
+    { name: 'Germany', code: '+49', flag: 'de', length: 11 },
+    { name: 'France', code: '+33', flag: 'fr', length: 9 },
+    { name: 'Japan', code: '+81', flag: 'jp', length: 10 },
+    { name: 'China', code: '+86', flag: 'cn', length: 11 },
+    { name: 'Brazil', code: '+55', flag: 'br', length: 11 },
+    { name: 'Russia', code: '+7', flag: 'ru', length: 10 },
+    { name: 'South Africa', code: '+27', flag: 'za', length: 9 },
+    { name: 'Saudi Arabia', code: '+966', flag: 'sa', length: 9 },
+    { name: 'UAE', code: '+971', flag: 'ae', length: 9 },
+    { name: 'Singapore', code: '+65', flag: 'sg', length: 8 },
+    { name: 'Bangladesh', code: '+880', flag: 'bd', length: 10 },
+    { name: 'Pakistan', code: '+92', flag: 'pk', length: 10 },
+    { name: 'Nepal', code: '+977', flag: 'np', length: 10 },
+    { name: 'Sri Lanka', code: '+94', flag: 'lk', length: 9 },
+    { name: 'Indonesia', code: '+62', flag: 'id', length: 11 },
+    { name: 'Spain', code: '+34', flag: 'es', length: 9 },
+    { name: 'Italy', code: '+39', flag: 'it', length: 10 },
+    { name: 'Turkey', code: '+90', flag: 'tr', length: 10 },
+    { name: 'Netherlands', code: '+31', flag: 'nl', length: 9 },
+    { name: 'Sweden', code: '+46', flag: 'se', length: 9 },
+    { name: 'Switzerland', code: '+41', flag: 'ch', length: 9 },
+    { name: 'New Zealand', code: '+64', flag: 'nz', length: 9 },
+    { name: 'Mexico', code: '+52', flag: 'mx', length: 10 },
+    { name: 'Argentina', code: '+54', flag: 'ar', length: 10 },
+    { name: 'Malaysia', code: '+60', flag: 'my', length: 9 },
+    { name: 'Philippines', code: '+63', flag: 'ph', length: 10 },
+    { name: 'Vietnam', code: '+84', flag: 'vn', length: 9 },
+    { name: 'Thailand', code: '+66', flag: 'th', length: 9 },
+    { name: 'Egypt', code: '+20', flag: 'eg', length: 10 },
+    { name: 'Nigeria', code: '+234', flag: 'ng', length: 10 },
+    { name: 'Kenya', code: '+254', flag: 'ke', length: 9 },
+    { name: 'Iran', code: '+98', flag: 'ir', length: 10 },
+    { name: 'Iraq', code: '+964', flag: 'iq', length: 10 },
+    { name: 'Israel', code: '+972', flag: 'il', length: 9 }
+  ];
+
+  let selectedCountry = countries[0]; // Default India
+
+  function populateCountryDropdown() {
+    const list = document.getElementById('country-options-list');
+    const searchVal = document.getElementById('country-search').value.toLowerCase().trim();
+    
+    const filtered = countries.filter(c => 
+      c.name.toLowerCase().includes(searchVal) || c.code.includes(searchVal)
+    );
+
+    if (filtered.length === 0) {
+      list.innerHTML = `<div class="p-3 text-xs text-slate-400 dark:text-slate-555 font-semibold text-center">No matches found</div>`;
+      return;
+    }
+
+    list.innerHTML = filtered.map(c => `
+      <button type="button" onclick="selectCountryByFlag('${c.flag}')" class="w-full flex items-center justify-between px-4 py-2.5 text-left text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-slate-800 dark:text-slate-200 cursor-pointer">
+        <div class="flex items-center gap-2.5">
+          <img src="https://flagcdn.com/w20/${c.flag}.png" alt="${c.name}" class="w-5 h-3.5 object-cover rounded-sm">
+          <span>${escapeHtml(c.name)}</span>
+        </div>
+        <span class="text-slate-400 dark:text-slate-500 font-bold">${c.code}</span>
+      </button>
+    `).join('');
+  }
+
+  window.selectCountryByFlag = function(flagCode) {
+    const matched = countries.find(c => c.flag === flagCode);
+    if (matched) {
+      selectedCountry = matched;
+      document.getElementById('selected-flag').src = `https://flagcdn.com/w20/${matched.flag}.png`;
+      document.getElementById('selected-flag').alt = matched.name;
+      document.getElementById('selected-code').textContent = matched.code;
+      
+      const phoneInput = document.getElementById('phone');
+      if (phoneInput) {
+        phoneInput.maxLength = matched.length || 15;
+        if (phoneInput.value.length > phoneInput.maxLength) {
+          phoneInput.value = phoneInput.value.substring(0, phoneInput.maxLength);
+          updateLivePreview();
+        }
+      }
+      
+      toggleCountryDropdown(false);
+    }
+  };
+
+  function toggleCountryDropdown(forceState) {
+    const menu = document.getElementById('country-dropdown-menu');
+    if (!menu) return;
+    const isActive = menu.classList.contains('is-active');
+    const show = typeof forceState === 'boolean' ? forceState : !isActive;
+    
+    const arrow = document.getElementById('country-arrow');
+    
+    if (show) {
+      menu.classList.add('is-active');
+      if (arrow) arrow.classList.add('is-active');
+      const search = document.getElementById('country-search');
+      if (search) {
+        search.value = '';
+        setTimeout(() => search.focus(), 50);
+      }
+      populateCountryDropdown();
+    } else {
+      menu.classList.remove('is-active');
+      if (arrow) arrow.classList.remove('is-active');
+    }
+  }
+
+  // Setup dropdown listeners
+  setTimeout(() => {
+    const btn = document.getElementById('country-dropdown-btn');
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleCountryDropdown();
+      });
+    }
+
+    const searchInput = document.getElementById('country-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', populateCountryDropdown);
+      searchInput.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    document.addEventListener('click', () => toggleCountryDropdown(false));
+  }, 100);
+
   const photo = document.getElementById('profile-photo');
   const form = document.getElementById('profile-form');
   const statusEl = document.getElementById('profile-status');
   const saveBtn = document.getElementById('save-profile');
-  const linksGrid = document.getElementById('links-grid');
   const cropModal = document.getElementById('crop-modal');
   const cropCanvas = document.getElementById('crop-canvas');
   const cropStage = document.getElementById('crop-stage');
   const cropCtx = cropCanvas.getContext('2d');
-
-  linksGrid.innerHTML = linkKeys.map((key) => `
-    <label class="block">
-      <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">${linkLabels[key]}</span>
-      <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-950/60">
-        <input id="link-${key}" type="url" class="w-full rounded-2xl border-0 bg-transparent px-4 py-3 text-sm font-semibold outline-none focus:ring-0" placeholder="https://">
-      </span>
-    </label>
-  `).join('');
 
   function setStatus(text, tone) {
     statusEl.textContent = text || '';
     statusEl.className = 'min-h-5 text-sm font-bold ' + (tone === 'success' ? 'text-emerald-600' : tone === 'error' ? 'text-red-600' : 'text-slate-500 dark:text-slate-400');
   }
 
+  // Simple HTML Escaping helper to prevent UI breaking
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  }
+
+  function renderCustomLinks() {
+    const container = document.getElementById('custom-links-container');
+    const addBtn = document.getElementById('add-link-btn');
+    
+    // Toggle Add button state
+    if (customLinks.length >= 3) {
+      addBtn.disabled = true;
+    } else {
+      addBtn.disabled = false;
+    }
+    
+    if (customLinks.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-8 text-slate-400 dark:text-slate-500 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-2xl">
+          <span class="material-symbols-outlined text-3xl mb-1 select-none text-slate-300 dark:text-slate-700">link_off</span>
+          <p class="text-xs font-semibold">No custom links added yet.</p>
+        </div>
+      `;
+      return;
+    }
+    
+    container.innerHTML = customLinks.map((link, index) => `
+      <div class="relative p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/40 dark:bg-slate-950/20 flex flex-col gap-3.5">
+        <!-- Header / Delete button -->
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-black uppercase tracking-widest text-primary">Link #${index + 1}</span>
+          <button type="button" onclick="deleteLink(${index})" class="text-red-500 hover:text-red-650 hover:bg-red-50 dark:hover:bg-red-950/10 p-1.5 rounded-xl transition-all cursor-pointer flex items-center justify-center">
+            <span class="material-symbols-outlined text-[18px]">delete</span>
+          </button>
+        </div>
+        
+        <div class="grid gap-3.5 sm:grid-cols-2">
+          <!-- Name Input -->
+          <div>
+            <span class="mb-1.5 block text-xs font-bold text-slate-650 dark:text-slate-400">Link Title</span>
+            <span class="field flex rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+              <input type="text" maxlength="20" value="${escapeHtml(link.name)}" oninput="updateLinkField(${index}, 'name', this.value)" class="w-full rounded-xl border-0 bg-transparent px-3 py-2.5 text-xs font-semibold outline-none focus:ring-0" placeholder="e.g. GitHub">
+            </span>
+          </div>
+          
+          <!-- URL Input -->
+          <div>
+            <span class="mb-1.5 block text-xs font-bold text-slate-650 dark:text-slate-400">URL</span>
+            <span class="field flex rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+              <input type="url" value="${escapeHtml(link.url)}" oninput="updateLinkField(${index}, 'url', this.value)" class="w-full rounded-xl border-0 bg-transparent px-3 py-2.5 text-xs font-semibold outline-none focus:ring-0" placeholder="https://github.com/...">
+            </span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    updateLivePreview();
+  }
+
+  window.updateLinkField = function(index, field, value) {
+    if (customLinks[index]) {
+      customLinks[index][field] = value;
+      updateLivePreview();
+    }
+  };
+
+  window.deleteLink = function(index) {
+    customLinks.splice(index, 1);
+    renderCustomLinks();
+  };
+
+  document.getElementById('add-link-btn').addEventListener('click', () => {
+    if (customLinks.length < 3) {
+      customLinks.push({ name: '', url: '' });
+      renderCustomLinks();
+    }
+  });
+
   function fillProfile(profile, user) {
     document.getElementById('displayName').value = profile.displayName || '';
     document.getElementById('email').value = profile.email || user.email || '';
-    document.getElementById('phone').value = profile.phone || '';
     document.getElementById('bio').value = profile.bio || '';
     document.getElementById('profile-name-preview').textContent = profile.displayName || user.displayName || 'User';
     document.getElementById('profile-email-preview').textContent = user.email || '';
     document.getElementById('profile-provider').textContent = profile.provider || 'password';
     photo.src = window.PortfolioAuth.getAvatar(profile, user);
-    linkKeys.forEach((key) => {
-      document.getElementById(`link-${key}`).value = (profile.links && profile.links[key]) || '';
-    });
 
-    const uploadTrigger = document.getElementById('upload-trigger');
-    uploadTrigger.classList.toggle('hidden', profile.provider !== 'password');
+    // Parse phone number to split dialing code and input value
+    const phoneVal = (profile.phone || '').trim();
+    let foundCountry = countries[0]; // Default India
+    let cleanedNumber = phoneVal;
+
+    if (phoneVal.startsWith('+')) {
+      // Find the matching dialing code (order by length desc to prevent '+1' matching '+1721')
+      const sortedCountries = [...countries].sort((a, b) => b.code.length - a.code.length);
+      for (const c of sortedCountries) {
+        if (phoneVal.startsWith(c.code)) {
+          foundCountry = c;
+          cleanedNumber = phoneVal.substring(c.code.length).trim();
+          break;
+        }
+      }
+    }
+
+    selectCountryByFlag(foundCountry.flag);
+    document.getElementById('phone').value = cleanedNumber;
+    
+    // Load custom links from profile with backward compatibility check
+    if (Array.isArray(profile.links)) {
+      customLinks = JSON.parse(JSON.stringify(profile.links)).slice(0, 3);
+    } else if (profile.links && typeof profile.links === 'object') {
+      customLinks = [];
+      const oldKeys = ['github', 'linkedin', 'twitter', 'instagram', 'website', 'portfolio', 'youtube', 'custom'];
+      oldKeys.forEach(k => {
+        if (profile.links[k]) {
+          customLinks.push({ name: k.charAt(0).toUpperCase() + k.slice(1), url: profile.links[k] });
+        }
+      });
+      customLinks = customLinks.slice(0, 3);
+    } else {
+      customLinks = [];
+    }
+    renderCustomLinks();
+    updateBioCounters();
+    updateLivePreview();
+  }
+
+  const bioTextarea = document.getElementById('bio');
+  const bioWordCount = document.getElementById('bio-word-count');
+  const bioCharCount = document.getElementById('bio-char-count');
+
+  function updateBioCounters() {
+    if (!bioTextarea) return;
+    const text = bioTextarea.value || '';
+    const charCount = text.length;
+    
+    const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+    const wordCount = words.length;
+    
+    if (bioWordCount) bioWordCount.textContent = `${wordCount} word${wordCount === 1 ? '' : 's'}`;
+    if (bioCharCount) bioCharCount.textContent = `${charCount} / 280 characters`;
+    
+    // Sync with Live Preview
+    updateLivePreview();
+  }
+
+  function updateLivePreview() {
+    // 1. Display Name Preview
+    const nameInput = document.getElementById('displayName').value.trim();
+    document.getElementById('profile-name-preview').textContent = nameInput || (activeUser && (activeUser.displayName || activeUser.email.split('@')[0])) || 'User';
+
+    // 2. Bio Preview
+    const bioInput = document.getElementById('bio').value.trim();
+    const bioEl = document.getElementById('preview-bio');
+    if (bioEl) {
+      if (bioInput) {
+        bioEl.textContent = bioInput;
+        bioEl.className = 'text-xs font-semibold text-slate-700 dark:text-slate-200 italic leading-relaxed whitespace-pre-wrap break-words';
+      } else {
+        bioEl.textContent = 'No bio added yet.';
+        bioEl.className = 'text-xs font-semibold text-slate-400 dark:text-slate-500 italic leading-relaxed break-words';
+      }
+    }
+
+    // 3. Phone Preview
+    const phoneInput = document.getElementById('phone').value.trim();
+    const phoneContainer = document.getElementById('preview-phone-container');
+    const phoneEl = document.getElementById('preview-phone');
+    if (phoneInput && phoneContainer && phoneEl) {
+      phoneContainer.classList.remove('hidden');
+      phoneEl.textContent = (selectedCountry ? selectedCountry.code : '+91') + ' ' + phoneInput;
+    } else if (phoneContainer) {
+      phoneContainer.classList.add('hidden');
+    }
+
+    // 4. Custom Links Preview
+    const linksContainer = document.getElementById('preview-links-container');
+    const linksList = document.getElementById('preview-links-list');
+    if (linksContainer && linksList) {
+      const activeLinks = customLinks.filter(l => l.name.trim() && l.url.trim());
+      if (activeLinks.length > 0) {
+        linksContainer.classList.remove('hidden');
+        linksList.innerHTML = activeLinks.map(l => `
+          <a href="${escapeHtml(l.url)}" target="_blank" class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200/50 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 text-[11px] font-bold text-slate-700 dark:text-slate-350 hover:text-primary dark:hover:text-blue-400 hover:border-primary/20 dark:hover:border-blue-500/25 transition-all">
+            <span class="material-symbols-outlined text-[14px] font-bold text-slate-400">link</span>
+            <span class="truncate">${escapeHtml(l.name)}</span>
+          </a>
+        `).join('');
+      } else {
+        linksContainer.classList.add('hidden');
+      }
+    }
+  }
+
+  // Bind input events for live preview updates
+  document.getElementById('displayName').addEventListener('input', updateLivePreview);
+  document.getElementById('phone').addEventListener('input', (e) => {
+    // Strip out all non-digits (no abcd/alphabets allowed)
+    e.target.value = e.target.value.replace(/\D/g, '');
+    
+    // Lock length based on country limit
+    const limit = selectedCountry ? (selectedCountry.length || 15) : 15;
+    if (e.target.value.length > limit) {
+      e.target.value = e.target.value.substring(0, limit);
+    }
+    
+    updateLivePreview();
+  });
+
+  if (bioTextarea) {
+    bioTextarea.addEventListener('input', updateBioCounters);
   }
 
   window.PortfolioAuth.onAuthState(({ user, profile, loading }) => {
@@ -219,8 +617,11 @@
     }
     activeUser = user;
     activeProfile = profile;
-    document.getElementById('profile-signout').classList.remove('hidden');
-    document.getElementById('profile-signout').classList.add('inline-flex');
+    const signoutBtn = document.getElementById('profile-signout');
+    if (signoutBtn) {
+      signoutBtn.classList.remove('hidden');
+      signoutBtn.classList.add('inline-flex');
+    }
     fillProfile(profile, user);
   });
 
@@ -234,24 +635,51 @@
       return;
     }
 
-    const links = {};
-    for (const key of linkKeys) {
-      const value = document.getElementById(`link-${key}`).value.trim();
-      if (value && !/^https?:\/\//i.test(value)) {
-        setStatus(`${linkLabels[key]} must start with http:// or https://`, 'error');
+    // Validate the custom links
+    for (let i = 0; i < customLinks.length; i++) {
+      const link = customLinks[i];
+      const name = (link.name || '').trim();
+      const url = (link.url || '').trim();
+      
+      if (!name) {
+        setStatus(`Link #${i + 1} Name cannot be empty.`, 'error');
         return;
       }
-      links[key] = value;
+      if (!url) {
+        setStatus(`Link #${i + 1} URL cannot be empty.`, 'error');
+        return;
+      }
+      if (!/^https?:\/\//i.test(url)) {
+        setStatus(`Link #${i + 1} URL must start with http:// or https://`, 'error');
+        return;
+      }
+      customLinks[i].name = name;
+      customLinks[i].url = url;
+    }
+
+    const phoneInput = document.getElementById('phone').value.trim();
+    let finalPhone = '';
+    if (phoneInput) {
+      finalPhone = selectedCountry.code + phoneInput;
     }
 
     saveBtn.disabled = true;
     setStatus('Saving profile...');
     try {
+      let finalPhotoUrl = (activeProfile && activeProfile.profilePhoto) || '';
+      
+      if (pendingPhotoBlob) {
+        setStatus('Uploading new profile photo...');
+        finalPhotoUrl = await window.PortfolioAuth.uploadProfilePhoto(pendingPhotoBlob);
+        pendingPhotoBlob = null; // Reset pending state
+      }
+
       const profile = await window.PortfolioAuth.updateProfile({
         displayName,
-        phone: document.getElementById('phone').value.trim(),
+        phone: finalPhone,
         bio: document.getElementById('bio').value.trim(),
-        links
+        links: customLinks,
+        profilePhoto: finalPhotoUrl
       });
       activeProfile = profile;
       fillProfile(profile, activeUser);
@@ -264,13 +692,19 @@
     }
   });
 
-  document.getElementById('profile-signout').addEventListener('click', async () => {
-    if (!confirm('Sign out of your account?')) return;
-    await window.PortfolioAuth.signOut();
-    window.location.href = 'index.html';
-  });
+  const signoutBtnListener = document.getElementById('profile-signout');
+  if (signoutBtnListener) {
+    signoutBtnListener.addEventListener('click', async () => {
+      if (!confirm('Sign out of your account?')) return;
+      await window.PortfolioAuth.signOut();
+      window.location.href = 'index.html';
+    });
+  }
 
-  document.getElementById('upload-trigger').addEventListener('click', () => document.getElementById('photo-input').click());
+  document.getElementById('upload-trigger').addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('photo-input').click();
+  });
   document.getElementById('photo-input').addEventListener('change', (event) => {
     const file = event.target.files && event.target.files[0];
     if (!file) return;
@@ -336,19 +770,14 @@
     lastPoint = null;
   });
 
-  document.getElementById('crop-save').addEventListener('click', async () => {
+  document.getElementById('crop-save').addEventListener('click', () => {
     if (!cropImage) return;
-    setStatus('Uploading photo...');
-    cropCanvas.toBlob(async (blob) => {
-      try {
-        const url = await window.PortfolioAuth.uploadProfilePhoto(blob);
-        photo.src = url;
-        closeCrop();
-        setStatus('Profile photo updated.', 'success');
-      } catch (error) {
-        console.error(error);
-        setStatus(error.message, 'error');
-      }
+    cropCanvas.toBlob((blob) => {
+      pendingPhotoBlob = blob;
+      // Show preview locally in UI
+      photo.src = URL.createObjectURL(blob);
+      closeCrop();
+      setStatus('New photo selected. Click "Save Profile" to upload and apply.', 'success');
     }, 'image/jpeg', 0.9);
   });
 </script>

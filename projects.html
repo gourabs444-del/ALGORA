@@ -248,8 +248,8 @@ try {
                 <span class="text-[10px] font-medium text-emerald-500 dark:text-emerald-400">Auto</span>
             </button>
         </div>
-        <div class="border-t border-outline-variant/30 dark:border-slate-800 my-2"></div>
-        <button id="signout-btn" class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-950/20 text-red-500 transition-colors text-body-sm font-semibold active-feedback">
+        <div id="signout-divider" class="hidden border-t border-outline-variant/30 dark:border-slate-800 my-2"></div>
+        <button id="signout-btn" class="hidden w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-950/20 text-red-500 transition-colors text-body-sm font-semibold active-feedback">
             <span class="material-symbols-outlined text-[20px]">logout</span>
             Sign Out
         </button>
@@ -307,14 +307,14 @@ try {
     </div>
 </header>
 <!-- Content Canvas -->
-<div class="pt-32 pb-24 px-6 sm:px-10 max-w-7xl mx-auto flex-grow flex flex-col w-full">
+<div class="pt-32 pb-6 px-6 sm:px-10 max-w-7xl mx-auto flex-grow flex flex-col w-full">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
 <div>
 <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-white tracking-tight leading-tight mb-1.5">My Portfolio</h2>
 <p class="text-secondary dark:text-slate-400 font-medium text-body-md sm:text-body-lg">A showcase of premium websites I have built</p>
 </div>
 <!-- Get Started Button -->
-<button onclick="handleGetStarted()" class="bg-primary text-white font-bold py-3 px-6 rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer active-feedback flex-shrink-0">
+<button id="get-started-btn" onclick="handleGetStarted()" class="hidden bg-primary text-white font-bold py-3 px-6 rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer active-feedback flex-shrink-0">
     <span>Get Started</span>
     <span class="material-symbols-outlined text-[18px] font-black">arrow_forward</span>
 </button>
@@ -775,6 +775,9 @@ try {
     </div>
 </div>
 
+<!-- Spacer to create gap between content and footer -->
+<div class="h-16 w-full flex-shrink-0"></div>
+
 <!-- Footer / Copyright Section -->
 <footer class="mt-auto border-t border-outline-variant/30 dark:border-slate-800/80 pt-12 pb-10 flex flex-col lg:flex-row items-center justify-between gap-6 text-body-sm text-secondary dark:text-slate-400">
     <div class="flex items-center gap-1.5 font-medium">
@@ -857,11 +860,67 @@ try {
 
 <script>
     function handleGetStarted() {
-        const grid = document.getElementById('portfolio-grid');
-        if (grid) {
-            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        if (!isLoggedIn) {
+            window.location.href = 'login.html';
+        } else {
+            const grid = document.getElementById('portfolio-grid');
+            if (grid) {
+                grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     }
+
+    // Toggle Get Started button based on auth state
+    function updateGetStartedVisibility(isLoggedIn) {
+        const getStartedBtn = document.getElementById('get-started-btn');
+        if (getStartedBtn) {
+            if (isLoggedIn) {
+                getStartedBtn.classList.add('hidden');
+            } else {
+                getStartedBtn.classList.remove('hidden');
+            }
+        }
+    }
+
+    // Toggle Sign Out option visibility based on auth state
+    function updateSignoutVisibility(isLoggedIn) {
+        const btn = document.getElementById('signout-btn');
+        const divider = document.getElementById('signout-divider');
+        if (btn) {
+            if (isLoggedIn) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        }
+        if (divider) {
+            if (isLoggedIn) {
+                divider.classList.remove('hidden');
+            } else {
+                divider.classList.add('hidden');
+            }
+        }
+    }
+
+    // Initial check on load
+    document.addEventListener('DOMContentLoaded', () => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        updateGetStartedVisibility(isLoggedIn);
+        updateSignoutVisibility(isLoggedIn);
+    });
+
+    // Listen to Firebase Auth state for real-time updates
+    setTimeout(() => {
+        if (window.PortfolioAuth) {
+            window.PortfolioAuth.onAuthState(({ user, loading }) => {
+                if (loading) return; // Prevent initial flash when auth state is still loading
+                const isLoggedIn = !!user;
+                updateGetStartedVisibility(isLoggedIn);
+                updateSignoutVisibility(isLoggedIn);
+            });
+        }
+    }, 100);
 
     // Safe LocalStorage helpers to prevent sandbox exceptions
     function getSafeFavorites() {

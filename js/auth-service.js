@@ -113,8 +113,24 @@
     initFirebase();
     const provider = getProvider(user);
     const ref = profileRef(user.uid);
-    const snap = await ref.get();
-    const existing = snap.exists ? snap.data() : {};
+    
+    let existing = {};
+    let dbSuccess = false;
+    try {
+      const getPromise = ref.get();
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Firestore timeout')), 3000));
+      const snap = await Promise.race([getPromise, timeoutPromise]);
+      existing = snap.exists ? snap.data() : {};
+      dbSuccess = true;
+    } catch (e) {
+      console.warn("Firestore get failed or timed out, reading from local fallback:", e);
+      try {
+        existing = JSON.parse(localStorage.getItem(`local_profile_${user.uid}`) || '{}');
+      } catch (err) {
+        console.warn("Failed to read local fallback profile:", err);
+      }
+    }
+
     const providerPhoto = provider === 'password' ? '' : (user.photoURL || existing.profilePhoto || '');
     const displayName = existing.displayName || user.displayName || (user.email ? user.email.split('@')[0] : 'User');
 
@@ -126,25 +142,28 @@
       bio: existing.bio || '',
       profilePhoto: existing.profilePhoto || providerPhoto || '',
       provider,
-      links: existing.links || {
-        github: '',
-        linkedin: '',
-        twitter: '',
-        instagram: '',
-        website: '',
-        portfolio: '',
-        youtube: '',
-        custom: ''
-      },
-      createdAt: existing.createdAt || serverTimestamp(),
-      updatedAt: serverTimestamp()
+      links: existing.links || [],
+      createdAt: existing.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
     };
 
-    await ref.set(profile, { merge: true });
-    return Object.assign({}, profile, {
-      createdAt: existing.createdAt || null,
-      updatedAt: new Date().toISOString()
-    });
+    if (dbSuccess) {
+      try {
+        const setPromise = ref.set(profile, { merge: true });
+        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Firestore timeout')), 3000));
+        await Promise.race([setPromise, timeoutPromise]);
+      } catch (e) {
+        console.warn("Failed to sync profile back to Firestore:", e);
+      }
+    } else {
+      try {
+        localStorage.setItem(`local_profile_${user.uid}`, JSON.stringify(profile));
+      } catch (err) {
+        console.warn("Failed to write local profile:", err);
+      }
+    }
+
+    return profile;
   }
 
   async function updateProfile(updates) {
@@ -153,13 +172,46 @@
     if (!user) throw new Error('You must be signed in to update your profile.');
 
     const payload = Object.assign({}, updates, { updatedAt: serverTimestamp() });
-    await profileRef(user.uid).set(payload, { merge: true });
-
-    if (updates.displayName && updates.displayName !== user.displayName) {
-      await user.updateProfile({ displayName: updates.displayName });
+    
+    let dbSuccess = false;
+    try {
+      // 3-second timeout to prevent hangs when Firestore is not created or connection fails
+      const writePromise = profileRef(user.uid).set(payload, { merge: true });
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Firestore timeout')), 3000));
+      await Promise.race([writePromise, timeoutPromise]);
+      dbSuccess = true;
+    } catch (e) {
+      console.warn("Firestore write failed, falling back to localStorage profile:", e);
     }
 
-    const profile = await ensureUserProfile(auth.currentUser);
+    if (updates.displayName && updates.displayName !== user.displayName) {
+      try {
+        await user.updateProfile({ displayName: updates.displayName });
+      } catch (authErr) {
+        console.warn("Auth displayName update failed:", authErr);
+      }
+    }
+
+    // Load/merge profile
+    let profile;
+    if (dbSuccess) {
+      profile = await ensureUserProfile(auth.currentUser).catch(() => buildFallbackProfile(user));
+    } else {
+      // Build local fallback profile and merge updates
+      let existingLocal = {};
+      try {
+        existingLocal = JSON.parse(localStorage.getItem(`local_profile_${user.uid}`) || '{}');
+      } catch (err) {
+        console.warn("Failed to read local profile:", err);
+      }
+      profile = Object.assign(buildFallbackProfile(user), existingLocal, updates, { updatedAt: new Date().toISOString() });
+      try {
+        localStorage.setItem(`local_profile_${user.uid}`, JSON.stringify(profile));
+      } catch (err) {
+        console.warn("Failed to write local profile:", err);
+      }
+    }
+
     currentState = { user: auth.currentUser, profile, loading: false };
     saveLocalSession(auth.currentUser, profile);
     emit();
