@@ -179,8 +179,8 @@ try {
 </head>
 <body class="bg-surface-container-low dark:bg-slate-950 text-on-background dark:text-slate-100 antialiased">
 <!-- Sidebar Navigation Shell -->
-<aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 bg-white dark:bg-slate-900 border-r border-outline-variant dark:border-slate-800 flex flex-col py-8 px-6 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
-<div class="mb-12 px-2 flex justify-between items-center">
+<aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 bg-white dark:bg-slate-900 border-r border-outline-variant dark:border-slate-800 flex flex-col py-4 lg:py-8 px-6 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-y-auto lg:overflow-y-visible">
+<div class="mb-5 lg:mb-12 px-2 flex justify-between items-center">
     <a href="index.html" class="flex flex-col">
         <h1 class="font-headline-md text-headline-md font-extrabold text-primary tracking-tighter">WebLibrary</h1>
         <p class="font-body-md text-body-sm text-secondary dark:text-slate-400 font-medium">Manage your focus</p>
@@ -190,37 +190,37 @@ try {
         <span class="material-symbols-outlined">close</span>
     </button>
 </div>
-<nav class="flex-1 space-y-2 overflow-y-auto relative" id="sidebar-nav">
+<nav class="flex-1 space-y-1 lg:space-y-2 overflow-y-auto relative" id="sidebar-nav">
 <!-- Sliding Active Background Indicator -->
 <div id="sidebar-indicator" class="absolute left-0 w-full bg-primary/10 dark:bg-primary/20 rounded-xl border-l-[3px] border-primary transition-all duration-300 ease-out pointer-events-none z-0" style="height: 0px; top: 0px; opacity: 0;"></div>
 
 <!-- Sidebar Nav Item: All Bookmarks -->
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="all">
+<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="all">
 <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="bookmark">grid_view</span>
 <span class="font-body-md text-body-md">All Projects</span>
 </a>
 <!-- Sidebar Nav Item: Favourites -->
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="favourites">
+<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="favourites">
 <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="star">star</span>
 <span class="font-body-md text-body-md">Favorites</span>
 </a>
 <!-- Sidebar Nav Item: Collections (Work) -->
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="collections">
+<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="collections">
 <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="work">work</span>
 <span class="font-body-md text-body-md">Work</span>
 </a>
 <!-- Sidebar Nav Item: Shared (Personal) -->
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="shared">
+<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="shared">
 <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="person">person</span>
 <span class="font-body-md text-body-md">Personal</span>
 </a>
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="collaboration">
+<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="collaboration">
 <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="handshake">handshake</span>
 <span class="font-body-md text-body-md">Collaboration</span>
 </a>
 <!-- Settings Wrapper (Restored to its original position inside nav) -->
-<div class="relative pt-2">
-    <button class="w-full flex items-center justify-start gap-3 px-4 py-3 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-colors rounded-xl group font-semibold active-feedback cursor-pointer" id="settings-trigger">
+<div class="relative pt-1 lg:pt-2">
+    <button class="w-full flex items-center justify-start gap-3 px-4 py-2.5 lg:py-3 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-colors rounded-xl group font-semibold active-feedback cursor-pointer" id="settings-trigger">
         <div class="flex items-center gap-3">
             <svg class="w-5 h-5 text-slate-800 dark:text-slate-200" fill="none" id="settings-gear" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="3"></circle>
@@ -257,7 +257,7 @@ try {
 </div>
 </nav>
 
-<div class="mt-auto border-outline-variant pt-6">
+<div class="mt-4 lg:mt-auto border-outline-variant pt-3 lg:pt-6">
     <!-- Profile details container -->
     <a href="profile.html" id="sidebar-account-link" class="flex items-center gap-3 px-4 py-2 bg-surface-container rounded-xl hover:bg-surface-container-high transition-colors active-feedback">
         <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 p-0.5">
@@ -273,14 +273,14 @@ try {
 </aside>
 <!-- Main Content Area -->
 <main class="ml-0 lg:ml-64 min-h-screen transition-all duration-300 flex flex-col">
-<header class="fixed top-0 right-0 w-full lg:w-[calc(100%-16rem)] z-40 glass-header bg-white/90 dark:bg-slate-900/90 h-20 flex justify-between items-center px-6 sm:px-10 gap-4">
+<header class="fixed top-0 right-0 w-full lg:w-[calc(100%-16rem)] z-40 glass-header bg-white/90 dark:bg-slate-900/90 h-20 flex justify-between items-center pl-3 pr-4 sm:px-10 gap-4">
     <!-- Left: Hamburger button for mobile -->
     <button class="lg:hidden text-primary p-2 hover:bg-surface-container dark:hover:bg-slate-800 rounded-xl cursor-pointer active-feedback" id="sidebar-toggle">
         <span class="material-symbols-outlined font-bold">menu</span>
     </button>
     
     <!-- Right Group: Search + Tabs + Notifications -->
-    <div class="flex items-center gap-4 sm:gap-6 ml-auto overflow-x-auto flex-nowrap py-1 custom-scrollbar">
+    <div class="flex items-center gap-4 sm:gap-6 ml-auto overflow-x-auto flex-nowrap py-1 pr-2 lg:pr-0 custom-scrollbar">
         <!-- Search Bar -->
         <div class="relative w-40 sm:w-64 flex-shrink-0 hidden md:block">
             <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold">search</span>
@@ -783,13 +783,13 @@ try {
     <div class="flex items-center gap-1.5 font-medium">
         <span>© 2026 CogniLens. All rights reserved.</span>
     </div>
-    <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-medium">
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:gap-x-4 md:gap-y-2 font-medium">
         <a href="#" class="hover:text-primary dark:hover:text-white transition-colors">Privacy Policy</a>
-        <span class="text-outline-variant/60 dark:text-slate-800/60">•</span>
+        <span class="text-outline-variant/60 dark:text-slate-800/60 hidden md:inline">•</span>
         <a href="#" class="hover:text-primary dark:hover:text-white transition-colors">Terms of Service</a>
-        <span class="text-outline-variant/60 dark:text-slate-800/60">•</span>
+        <span class="text-outline-variant/60 dark:text-slate-800/60 hidden md:inline">•</span>
         <a href="#" onclick="const contactBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('data-tab') === 'contact'); if(contactBtn) contactBtn.click(); return false;" class="hover:text-primary dark:hover:text-white transition-colors">Contact</a>
-        <span class="text-outline-variant/60 dark:text-slate-800/60">•</span>
+        <span class="text-outline-variant/60 dark:text-slate-800/60 hidden md:inline">•</span>
         <a href="#" class="hover:text-primary dark:hover:text-white transition-colors">Cookies</a>
     </div>
     <div class="flex items-center gap-4 flex-wrap lg:flex-nowrap">
