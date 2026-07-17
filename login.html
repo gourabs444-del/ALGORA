@@ -22,6 +22,7 @@
 <!-- Firebase App and Auth SDK (Compat) -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script type="module" src="firebase-config.js"></script>
 <script>
   try {
     tailwind.config = {
@@ -52,10 +53,11 @@
   }
   .glass-card {
       backdrop-filter: blur(24px);
-      background-color: rgba(255, 255, 255, 0.75);
+      background-color: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 24px 64px rgba(15, 23, 42, 0.14);
   }
   .dark .glass-card {
-      background-color: rgba(15, 23, 42, 0.75);
+      background-color: rgba(15, 23, 42, 0.84);
   }
   .glow-dot {
       filter: blur(100px);
@@ -89,9 +91,29 @@
       box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
       border-color: #3b82f6;
   }
+  .social-button:hover {
+      transform: translateY(-1px);
+  }
+  .auth-card {
+      height: 828px;
+  }
+  .auth-tabs {
+      --tab-padding: 6px;
+      --tab-gap: 6px;
+  }
+  .auth-tabs .tab-pill {
+      left: var(--tab-padding);
+      width: calc(50% - 9px);
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+      transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease;
+  }
+  .auth-tabs[data-mode="signup"] .tab-pill {
+      transform: translate3d(calc(100% + var(--tab-gap)), 0, 0);
+  }
 </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-center items-center relative overflow-hidden p-4">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-center items-center relative overflow-x-hidden p-4">
 
 <!-- Floating Animated Gradient Bubbles -->
 <div class="absolute w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-blue-500/30 to-indigo-500/20 glow-dot -top-20 -left-20 pointer-events-none float-bubble-1"></div>
@@ -106,42 +128,38 @@
 </div>
 
 <!-- Main Login Card Container -->
-<div class="w-full max-w-md glass-card border border-outline-variant/40 dark:border-slate-800 rounded-[32px] p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10 transition-all">
+<div class="auth-card w-full max-w-md glass-card border border-white/70 dark:border-slate-800 rounded-[32px] p-8 sm:p-10 relative z-10">
     
     <!-- Header Logo & Pulse effect -->
-    <div class="text-center mb-8">
-        <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-[22px] flex items-center justify-center mx-auto mb-4 text-primary dark:text-blue-400 animate-pulse">
+    <div class="text-center mb-8 min-h-[120px]">
+        <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-[22px] flex items-center justify-center mx-auto mb-4 text-primary dark:text-blue-400 shadow-sm">
             <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
         </div>
-        <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight" id="card-title">Secure Access</h2>
-        <p class="text-secondary dark:text-slate-400 font-medium text-body-sm mt-2" id="card-subtitle">Enter your credentials to continue to your workspace.</p>
+        <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight" id="card-title">Welcome back</h2>
+        <p class="text-secondary dark:text-slate-400 font-medium text-body-sm mt-2" id="card-subtitle">Sign in to continue to your portfolio.</p>
     </div>
 
     <!-- Mode Toggles (Sliding Indicator Tab Layout) -->
-    <div class="relative flex bg-slate-100 dark:bg-slate-900/60 p-1.5 rounded-2xl mb-8 border border-outline-variant/10 dark:border-slate-800/80">
+    <div id="auth-tabs" data-mode="signin" class="auth-tabs relative grid grid-cols-2 gap-1.5 bg-slate-100 dark:bg-slate-900/60 p-1.5 rounded-2xl mb-8 border border-outline-variant/10 dark:border-slate-800/80">
         <!-- Sliding Pill Background -->
-        <div id="tab-pill" class="absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] bg-white dark:bg-slate-800 rounded-xl shadow-md transition-all duration-300 ease-out z-0"></div>
+        <div id="tab-pill" class="tab-pill absolute top-1.5 bottom-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-[0_2px_8px_rgba(15,23,42,0.12)] z-0"></div>
         
-        <button id="tab-signin" type="button" class="w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback" onclick="toggleMode('signin')">
+        <button id="tab-signin" type="button" class="w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback" onclick="toggleMode('signin')">
             Sign In
         </button>
-        <button id="tab-signup" type="button" class="w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback" onclick="toggleMode('signup')">
+        <button id="tab-signup" type="button" class="w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback" onclick="toggleMode('signup')">
             Sign Up
         </button>
     </div>
 
     <!-- Direct Social Login Options -->
-    <div class="grid grid-cols-3 gap-3 mb-6">
+    <div class="grid grid-cols-2 gap-3 mb-6">
         <!-- Google -->
-        <button type="button" onclick="handleSocialAuth('Google')" class="flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Google">
+        <button type="button" onclick="handleSocialAuth('Google')" class="social-button flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Google">
             <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.58 15.02 1 12 1 7.35 1 3.4 3.65 1.5 7.5l3.86 3C6.27 7.74 8.89 5.04 12 5.04z"/><path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.42 3.58l3.76 2.92c2.2-2.03 3.69-5.02 3.69-8.65z"/><path fill="#FBBC05" d="M5.36 14.5c-.24-.72-.38-1.49-.38-2.3s.14-1.58.38-2.3L1.5 6.9C.54 8.82 0 10.97 0 13.2s.54 4.38 1.5 6.3l3.86-3z"/><path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.92l-3.76-2.92c-1.1.74-2.52 1.18-4.2 1.18-3.11 0-5.73-2.7-6.64-5.46L1.5 15.88C3.4 19.73 7.35 23 12 23z"/></svg>
         </button>
-        <!-- Apple -->
-        <button type="button" onclick="handleSocialAuth('Apple')" class="flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Apple">
-            <svg class="w-5 h-5 fill-current text-slate-900 dark:text-white" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.22.67-2.94 1.52-.63.73-1.18 1.87-1.03 2.98.11.08.33.1.52.1.84 0 1.8-.46 2.46-1.54z"/></svg>
-        </button>
         <!-- Facebook -->
-        <button type="button" onclick="handleSocialAuth('Facebook')" class="flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Facebook">
+        <button type="button" onclick="handleSocialAuth('Facebook')" class="social-button flex items-center justify-center py-3.5 border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback" aria-label="Sign in with Facebook">
             <svg class="w-5 h-5 fill-current text-[#1877F2]" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </button>
     </div>
@@ -231,75 +249,94 @@
         
         const tabSignin = document.getElementById('tab-signin');
         const tabSignup = document.getElementById('tab-signup');
-        const tabPill = document.getElementById('tab-pill');
+        const authTabs = document.getElementById('auth-tabs');
 
         if (mode === 'signin') {
-            title.innerText = "Secure Access";
-            subtitle.innerText = "Enter your credentials to continue to your workspace.";
+            title.innerText = "Welcome back";
+            subtitle.innerText = "Sign in to continue to your portfolio.";
             submitBtn.innerHTML = `Sign In <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>`;
             signupFields.classList.add('hidden');
             nameInput.removeAttribute('required');
             
             // Switch tabs with sliding animation
-            tabPill.style.transform = 'translateX(0)';
-            tabSignin.className = "w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
-            tabSignup.className = "w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
+            authTabs.dataset.mode = 'signin';
+            tabSignin.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
+            tabSignup.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
             
             const forgotLink = document.getElementById('forgot-password-link');
             if (forgotLink) forgotLink.classList.remove('hidden');
         } else {
-            title.innerText = "Create Account";
-            subtitle.innerText = "Join the WebLibrary gallery matching and rating portal.";
+            title.innerText = "Create your account";
+            subtitle.innerText = "Start building your portfolio presence today.";
             submitBtn.innerHTML = `Create Account <span class="material-symbols-outlined text-[18px] font-bold">person_add</span>`;
             signupFields.classList.remove('hidden');
             nameInput.setAttribute('required', 'required');
             
             // Switch tabs with sliding animation
-            tabPill.style.transform = 'translateX(100%)';
-            tabSignup.className = "w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
-            tabSignin.className = "w-1/2 text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
+            authTabs.dataset.mode = 'signup';
+            tabSignup.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
+            tabSignin.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
             
             const forgotLink = document.getElementById('forgot-password-link');
             if (forgotLink) forgotLink.classList.add('hidden');
         }
     }
 
-    function handleAuthSubmit(e) {
+    async function handleAuthSubmit(e) {
         e.preventDefault();
-        
-        // Save user logged in status in localStorage
-        localStorage.setItem('isLoggedIn', 'true');
-        
-        // Add fake user details
-        const email = document.getElementById('auth-email').value;
-        const name = mode === 'signup' ? document.getElementById('auth-name').value : 'Alex Rivera';
-        localStorage.setItem('userName', name);
-        localStorage.setItem('userEmail', email);
+        if (!isFirebaseConfigured) {
+            alert('Firebase configuration is still loading. Please try again in a moment.');
+            return;
+        }
 
-        // Notify user
-        alert(mode === 'signin' ? 'Signed in successfully!' : 'Account created successfully!');
-        
-        // Redirect back
-        window.location.replace(redirectUrl);
+        const email = document.getElementById('auth-email').value.trim();
+        const password = document.getElementById('auth-password').value;
+        const name = document.getElementById('auth-name').value.trim();
+        const submitBtn = document.getElementById('submit-btn');
+        const originalButton = submitBtn.innerHTML;
+
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-70', 'cursor-wait');
+        submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> Please wait`;
+
+        try {
+            let credential;
+            if (mode === 'signup') {
+                credential = await auth.createUserWithEmailAndPassword(email, password);
+                await credential.user.updateProfile({ displayName: name });
+            } else {
+                credential = await auth.signInWithEmailAndPassword(email, password);
+            }
+
+            saveAuthenticatedUser(credential.user, 'Portfolio User');
+            window.location.replace(redirectUrl);
+        } catch (error) {
+            console.error('Firebase email authentication error:', error);
+            const messages = {
+                'auth/email-already-in-use': 'An account already exists with this email. Please sign in instead.',
+                'auth/invalid-email': 'Please enter a valid email address.',
+                'auth/weak-password': 'Use a password with at least 6 characters.',
+                'auth/user-not-found': 'No account was found with this email.',
+                'auth/wrong-password': 'The password is incorrect. Please try again.',
+                'auth/invalid-credential': 'The email or password is incorrect.',
+                'auth/operation-not-allowed': 'Enable Email/Password in Firebase Authentication first.'
+            };
+            alert(messages[error.code] || error.message);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-70', 'cursor-wait');
+            submitBtn.innerHTML = originalButton;
+        }
     }
 
     // ── FIREBASE AUTHENTICATION CONFIGURATION ──────────────────
     // Replace these placeholder details with your actual Firebase project config credentials.
-    const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_PROJECT_ID.appspot.com",
-        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-        appId: "YOUR_APP_ID"
-    };
-
-    // Initialize Firebase only if the API key is configured
     let isFirebaseConfigured = false;
     let auth;
-    if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+    function initializeFirebaseAuth(config) {
+        if (!config || !config.apiKey || isFirebaseConfigured) return;
         try {
-            firebase.initializeApp(firebaseConfig);
+            if (!firebase.apps.length) firebase.initializeApp(config);
             auth = firebase.auth();
             isFirebaseConfigured = true;
         } catch (error) {
@@ -307,52 +344,69 @@
         }
     }
 
-    function handleSocialAuth(provider) {
-        if (provider === 'Google') {
-            if (!isFirebaseConfigured) {
-                // Friendly Alert when credentials are still placeholder values
-                alert("Bhai, Real Google Login ke liye pehle apna Firebase Config credentials code (login.html ke bottom script me) paste kijiye! Tab tak Dev Preview ke liye local mock sign-in bypass execute kiya ja raha hai.");
-                
-                // Fallback to local mock sign-in
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userName', 'Alex (Mock Google)');
-                localStorage.setItem('userEmail', 'alex.mockgoogle@example.com');
-                localStorage.setItem('userPicture', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBxTP3_ZPmr7Vwd2NA75mIR9am0JD8URecn8G_dAUZQRoF0roFM1j6qvfHvktU42aq7I_wlpRViLmBUxUSRPkUqRbfbnB0Jvx-sdBSv9bWCKeDzz301xf_CcGgaNBpnRgzMT-4HhpXF6o5ZsxeIH9VjY83fPKBe2Cq8VBw31yNq5TCeUpWt8xZxxBsl8_fScoSxTI6CmPXZkFuCW0bp8y-5tp1gtthlcwhgbJWZMhFjk5Iw5UP0fzNz5A');
-                window.location.replace(redirectUrl);
-                return;
-            }
+    // firebase-config.js dispatches this event once the project configuration is ready.
+    initializeFirebaseAuth(window.firebaseConfig);
+    window.addEventListener('firebase-config-ready', () => {
+        initializeFirebaseAuth(window.firebaseConfig);
+    }, { once: true });
 
-            // Real Google Sign-in flow via Firebase Auth
-            const googleProvider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(googleProvider)
-                .then((result) => {
-                    const user = result.user;
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userName', user.displayName || 'Google User');
-                    localStorage.setItem('userEmail', user.email || '');
-                    if (user.photoURL) {
-                        localStorage.setItem('userPicture', user.photoURL);
-                    }
-                    alert(`Welcome, ${user.displayName || 'User'}! Signed in successfully via Google.`);
-                    window.location.replace(redirectUrl);
-                })
-                .catch((error) => {
-                    console.error("Firebase Google Sign-In Error:", error);
-                    alert("Google Login Failed: " + error.message);
-                });
-        } else {
-            // Other social logins (Mock placeholder)
-            localStorage.setItem('isLoggedIn', 'true');
-            let name = 'Alex Rivera';
-            if (provider === 'Apple') name = 'Alex (Apple)';
-            else if (provider === 'Facebook') name = 'Alex (Facebook)';
-            
-            localStorage.setItem('userName', name);
-            localStorage.setItem('userEmail', name.toLowerCase().replace(/[^a-z0-9]/g, '') + '@example.com');
+    function saveAuthenticatedUser(user, providerName) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userName', user.displayName || `${providerName} User`);
+        localStorage.setItem('userEmail', user.email || '');
+        if (user.photoURL) localStorage.setItem('userPicture', user.photoURL);
+        else localStorage.removeItem('userPicture');
+    }
 
-            alert(`Signed in successfully with ${provider}!`);
-            window.location.replace(redirectUrl);
+    function getSocialProvider(providerName) {
+        if (providerName === 'Google') {
+            return new firebase.auth.GoogleAuthProvider();
         }
+        if (providerName === 'Facebook') {
+            const provider = new firebase.auth.FacebookAuthProvider();
+            provider.addScope('email');
+            return provider;
+        }
+        throw new Error('Unsupported sign-in provider.');
+    }
+
+    function showSocialAuthError(providerName, error) {
+        console.error(`Firebase ${providerName} Sign-In Error:`, error);
+        if (error.code === 'auth/popup-closed-by-user') return;
+        alert(`${providerName} login failed: ${error.message}`);
+    }
+
+    function handleSocialAuth(providerName) {
+        if (!isFirebaseConfigured) {
+            alert('Real social login ke liye Firebase configuration add karein aur Firebase Console mein provider enable karein.');
+            return;
+        }
+
+        const provider = getSocialProvider(providerName);
+        // OAuth redirects are substantially more reliable in mobile browsers.
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const signIn = isMobile ? auth.signInWithRedirect(provider) : auth.signInWithPopup(provider);
+
+        signIn.then((result) => {
+            // Redirect mode returns its result after the page reloads below.
+            if (!result || !result.user) return;
+            saveAuthenticatedUser(result.user, providerName);
+            window.location.replace(redirectUrl);
+        }).catch((error) => showSocialAuthError(providerName, error));
+    }
+
+    // Finish a mobile redirect sign-in after the identity provider returns here.
+    if (isFirebaseConfigured) {
+        auth.getRedirectResult()
+            .then((result) => {
+                if (!result || !result.user) return;
+                const providerName = result.credential && result.credential.providerId === 'facebook.com'
+                        ? 'Facebook'
+                        : 'Google';
+                saveAuthenticatedUser(result.user, providerName);
+                window.location.replace(redirectUrl);
+            })
+            .catch((error) => showSocialAuthError('Social', error));
     }
 
     function handleForgotPassword(e) {
@@ -360,9 +414,20 @@
         const emailInput = document.getElementById('auth-email').value;
         if (!emailInput) {
             alert("Please enter your email address first so we can send you a password reset link!");
-        } else {
-            alert(`A password reset link has been successfully sent to: ${emailInput}`);
+            return;
         }
+
+        if (!isFirebaseConfigured) {
+            alert('Firebase configuration is still loading. Please try again in a moment.');
+            return;
+        }
+
+        auth.sendPasswordResetEmail(emailInput)
+            .then(() => alert(`A password reset link has been sent to: ${emailInput}`))
+            .catch((error) => {
+                console.error('Firebase password reset error:', error);
+                alert(error.code === 'auth/user-not-found' ? 'No account was found with this email.' : error.message);
+            });
     }
 </script>
 </body>
