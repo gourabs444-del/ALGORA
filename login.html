@@ -385,9 +385,14 @@
     }, { once: true });
 
     async function saveAuthenticatedUser(user, providerName) {
-        const profile = window.PortfolioAuth
-            ? await window.PortfolioAuth.ensureUserProfile(user)
-            : null;
+        let profile = null;
+        if (window.PortfolioAuth) {
+            try {
+                profile = await window.PortfolioAuth.ensureUserProfile(user);
+            } catch (profileError) {
+                console.warn('Profile sync skipped after authentication:', profileError);
+            }
+        }
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('userName', (profile && profile.displayName) || user.displayName || `${providerName} User`);
         localStorage.setItem('userEmail', user.email || '');

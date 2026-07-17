@@ -40,7 +40,10 @@
           return;
         }
 
-        const profile = await ensureUserProfile(user);
+        const profile = await ensureUserProfile(user).catch((profileError) => {
+          console.warn('Using Firebase Auth session without Firestore profile sync:', profileError);
+          return buildFallbackProfile(user);
+        });
         saveLocalSession(user, profile);
         currentState = { user, profile, loading: false };
         emit();
@@ -75,6 +78,31 @@
 
   function profileRef(uid) {
     return db.collection(PROFILE_COLLECTION).doc(uid);
+  }
+
+  function buildFallbackProfile(user) {
+    const provider = getProvider(user);
+    return {
+      uid: user.uid,
+      displayName: user.displayName || (user.email ? user.email.split('@')[0] : 'User'),
+      email: user.email || '',
+      phone: '',
+      bio: '',
+      profilePhoto: provider === 'password' ? '' : (user.photoURL || ''),
+      provider,
+      links: {
+        github: '',
+        linkedin: '',
+        twitter: '',
+        instagram: '',
+        website: '',
+        portfolio: '',
+        youtube: '',
+        custom: ''
+      },
+      createdAt: null,
+      updatedAt: new Date().toISOString()
+    };
   }
 
   function serverTimestamp() {
