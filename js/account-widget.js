@@ -222,7 +222,7 @@
   function syncExistingProjectSidebar(user, profile) {
     const sidebarAvatar = document.getElementById('user-avatar-sidebar');
     const sidebarName = document.getElementById('user-name-sidebar') || document.querySelector('.mt-auto .text-on-surface');
-    const sidebarPlan = document.querySelector('.mt-auto .text-primary, .mt-auto .text-secondary');
+    const sidebarPlan = document.getElementById('user-plan-sidebar') || document.querySelector('.mt-auto .text-primary, .mt-auto .text-secondary');
     if (!sidebarAvatar && !sidebarName && !sidebarPlan) return;
 
     if (user) {

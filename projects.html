@@ -9,7 +9,10 @@
             return;
         }
 
-        const theme = localStorage.getItem('theme');
+        let theme;
+        try {
+            theme = localStorage.getItem('theme');
+        } catch (e) {}
         if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
             document.documentElement.classList.remove('light');
@@ -174,6 +177,26 @@ try {
       transform: scale(0.96) !important;
   }
   .dropdown-shadow { box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15); }
+
+  /* Dual-chain scrolling marquee */
+  @keyframes marqueeLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+  }
+  @keyframes marqueeRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+  }
+  .animate-marquee-left {
+      display: inline-flex;
+      gap: 1.5rem;
+      animation: marqueeLeft 45s linear infinite;
+  }
+  .animate-marquee-right {
+      display: inline-flex;
+      gap: 1.5rem;
+      animation: marqueeRight 45s linear infinite;
+  }
 </style>
 <meta charset="utf-8">
 </head>
@@ -194,10 +217,16 @@ try {
 <!-- Sliding Active Background Indicator -->
 <div id="sidebar-indicator" class="absolute left-0 w-full bg-primary/10 dark:bg-primary/20 rounded-xl border-l-[3px] border-primary transition-all duration-300 ease-out pointer-events-none z-0" style="height: 0px; top: 0px; opacity: 0;"></div>
 
-<!-- Sidebar Nav Item: All Bookmarks -->
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="all">
-<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="bookmark">grid_view</span>
-<span class="font-body-md text-body-md">All Projects</span>
+<!-- Sidebar Nav Item: All Projects -->
+<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-primary dark:text-blue-400 font-bold hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="all" data-active-filter="true">
+    <span class="material-symbols-outlined text-primary dark:text-blue-400 transition-colors" data-icon="apps">apps</span>
+    <span class="font-body-md text-body-md font-bold">All Projects</span>
+</a>
+
+<!-- Sidebar Nav Item: Category -->
+<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="collections">
+    <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="bookmark">grid_view</span>
+    <span class="font-body-md text-body-md">Category</span>
 </a>
 <!-- Sidebar Nav Item: Favourites -->
 <a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="favourites">
@@ -205,7 +234,7 @@ try {
 <span class="font-body-md text-body-md">Favorites</span>
 </a>
 <!-- Sidebar Nav Item: Collections (Work) -->
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="collections">
+<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="work">
 <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="work">work</span>
 <span class="font-body-md text-body-md">Work</span>
 </a>
@@ -306,34 +335,82 @@ try {
         </button>
     </div>
 </header>
-<!-- Content Canvas -->
-<div class="pt-32 pb-6 px-6 sm:px-10 max-w-7xl mx-auto flex-grow flex flex-col w-full">
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
-<div>
-<h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-white tracking-tight leading-tight mb-1.5">My Portfolio</h2>
-<p class="text-secondary dark:text-slate-400 font-medium text-body-md sm:text-body-lg">A showcase of premium websites I have built</p>
+<!-- Welcome Landing Screen (Designed to match the premium emergent.sh layout) -->
+<div id="welcome-landing-screen" class="w-full min-h-screen relative flex flex-col justify-between items-center text-center overflow-hidden bg-[#7fc3ff]">
+    <!-- Widescreen Sky Backdrop -->
+    <img src="landing_sky_bg_1784471071994.png" class="absolute inset-0 w-full h-full object-cover select-none z-0 brightness-[1.05]" alt="Sky Background">
+    
+    <!-- Top Nav Area -->
+    <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 py-8 flex justify-between items-center relative z-10 select-none">
+        <span class="text-xl font-black text-white tracking-tight">cognilens</span>
+        <div class="hidden md:flex gap-8 text-white/80 font-bold text-xs sm:text-sm">
+            <a href="#" class="hover:text-white transition-colors">Features</a>
+            <a href="#" class="hover:text-white transition-colors">Pricing</a>
+            <a href="#" class="hover:text-white transition-colors">FAQs</a>
+            <a href="#" class="hover:text-white transition-colors">Enterprise</a>
+        </div>
+        <div class="w-20 hidden md:block"></div> <!-- spacing placeholder -->
+    </div>
+
+    <!-- Center Hero Area -->
+    <div class="relative z-10 px-6 max-w-3xl flex flex-col justify-center items-center my-auto">
+        <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight mb-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
+            Start building on<br>CogniLens today.
+        </h1>
+        
+        <button id="welcome-continue-btn" onclick="dismissWelcomeScreen()" class="px-8 py-3 bg-white text-slate-900 font-extrabold rounded-full shadow-lg shadow-black/5 hover:bg-slate-100 hover:scale-[1.02] active:scale-98 transition-all inline-flex items-center gap-2 cursor-pointer active-feedback">
+            <span>Get Started</span>
+            <span class="material-symbols-outlined text-[18px] font-black">arrow_forward</span>
+        </button>
+    </div>
+
+    <!-- Floating mossy 3D Logo on Grassy Hill -->
+    <div class="w-full max-w-md mx-auto relative z-10 flex justify-center items-end mt-auto pointer-events-none select-none">
+        <img src="mossy_3d_logo_1784471086120.png" class="w-72 h-auto object-contain animate-float" alt="3D Mossy Logo">
+    </div>
+
+    <style>
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .animate-float {
+            animation: floatLogo 4s ease-in-out infinite;
+        }
+    </style>
 </div>
-<!-- Get Started Button -->
-<button id="get-started-btn" onclick="handleGetStarted()" class="hidden bg-primary text-white font-bold py-3 px-6 rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer active-feedback flex-shrink-0">
-    <span>Get Started</span>
-    <span class="material-symbols-outlined text-[18px] font-black">arrow_forward</span>
-</button>
-<!-- Mobile Search Bar (Only visible on mobile/tablet) -->
-<div class="relative w-full max-w-md md:hidden" id="mobile-search-container">
-    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold">search</span>
-    <input id="mobile-search-input" class="w-full bg-white dark:bg-slate-900 border border-outline-variant/30 dark:border-slate-800 focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-2xl py-3 pl-11 pr-10 text-body-sm dark:text-slate-200 transition-all outline-none" placeholder="Search your library..." type="text">
-    <button id="mobile-search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden active-feedback">
-        <span class="material-symbols-outlined text-[18px]">close</span>
-    </button>
-</div>
-</div>
-<!-- Website Grid -->
-<div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+
+<div id="portfolio-dashboard-content" class="hidden flex-grow flex flex-col w-full">
+    <!-- Content Canvas -->
+    <div class="pt-32 pb-6 flex-grow flex flex-col w-full">
+        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-white tracking-tight leading-tight mb-1.5">My Portfolio</h2>
+                    <p class="text-secondary dark:text-slate-400 font-medium text-body-md sm:text-body-lg">A showcase of premium websites I have built</p>
+                </div>
+            <!-- Get Started Button -->
+            <button id="get-started-btn" onclick="handleGetStarted()" class="hidden bg-primary text-white font-bold py-3 px-6 rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer active-feedback flex-shrink-0">
+                <span>Get Started</span>
+                <span class="material-symbols-outlined text-[18px] font-black">arrow_forward</span>
+            </button>
+            <!-- Mobile Search Bar (Only visible on mobile/tablet) -->
+            <div class="relative w-full max-w-md md:hidden" id="mobile-search-container">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold">search</span>
+                <input id="mobile-search-input" class="w-full bg-white dark:bg-slate-900 border border-outline-variant/30 dark:border-slate-800 focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-2xl py-3 pl-11 pr-10 text-body-sm dark:text-slate-200 transition-all outline-none" placeholder="Search your library..." type="text">
+                <button id="mobile-search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden active-feedback">
+                    <span class="material-symbols-outlined text-[18px]">close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+<!-- Hidden original grid template used to dynamically populate categorized sections -->
+<div id="portfolio-grid-template" class="hidden">
 <!-- Card 1: CogniLens -->
 <div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
     <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
         <!-- Image Slideshow Container -->
-        <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out" id="cognilens-slider" style="width: 300%; transform: translateX(0%);">
+        <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out cognilens-slider" style="width: 300%; transform: translateX(0%);">
             <img alt="CogniLens - Home" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/cognilens_home.png?v=1.5">
             <img alt="CogniLens - Insights" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/cognilens_insights.png?v=1.5">
             <img alt="CogniLens - Dashboard" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/cognilens_dashboard_real.png?v=1.5">
@@ -341,9 +418,9 @@ try {
         
         <!-- Dots Navigation Indicator -->
         <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
-            <span class="w-3 h-1.5 rounded-full bg-white transition-all duration-300 shadow" id="dot-0"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300 shadow" id="dot-1"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300 shadow" id="dot-2"></span>
+            <span class="w-3 h-1.5 rounded-full bg-white transition-all duration-300 shadow"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300 shadow"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300 shadow"></span>
         </div>
 
     </a>
@@ -590,7 +667,7 @@ try {
 <div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
     <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
         <!-- Image Slideshow Container -->
-        <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out" id="guildrank-slider" style="width: 300%; transform: translateX(0%);">
+        <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out guildrank-slider" style="width: 300%; transform: translateX(0%);">
             <img alt="GuildRank - Home" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/guildrank_home.png?v=1.0">
             <img alt="GuildRank - Leaderboard" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/guildrank_leaderboard.png?v=1.0">
             <img alt="GuildRank - Profile" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/guildrank_profile.png?v=1.0">
@@ -598,9 +675,9 @@ try {
         
         <!-- Dots Navigation Indicator -->
         <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
-            <span class="w-3 h-1.5 rounded-full bg-white transition-all duration-300 shadow" id="guildrank-dot-0"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300 shadow" id="guildrank-dot-1"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300 shadow" id="guildrank-dot-2"></span>
+            <span class="w-3 h-1.5 rounded-full bg-white transition-all duration-300 shadow"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300 shadow"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-all duration-300 shadow"></span>
         </div>
     </a>
     <div class="p-6">
@@ -640,6 +717,332 @@ try {
 </div>
 
 
+</div>
+
+<!-- Categorized Sections Container (Smooth Scroll Targets) -->
+<div id="categorized-sections-container" class="space-y-24 w-full">
+    <!-- Section: All Projects -->
+    <div id="section-all-projects" class="scroll-mt-28 w-full">
+        <!-- Obscura Style Hero Header (Scroll-Driven Shrink & Fade) -->
+        <div id="obscura-hero-section" class="w-full bg-slate-950 text-white relative overflow-hidden py-20 sm:py-28 border border-slate-900 rounded-[2rem] mb-8 transition-all duration-300 select-none z-10 flex flex-col justify-center shadow-2xl">
+            <!-- Decorative Subtle Grain overlay or gradient -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-950/90 to-slate-900/30 z-0"></div>
+            
+            <div id="obscura-hero-content" class="max-w-[1680px] mx-auto px-8 sm:px-16 w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-10 transition-all duration-300 relative z-10">
+                <div class="flex flex-col items-start transition-all duration-300 origin-left" id="obscura-hero-left">
+                    <span class="text-[9px] font-black uppercase tracking-[0.4em] text-slate-400 mb-6 flex items-center gap-2">
+                        <span class="w-8 h-px bg-slate-700"></span> THE CURATED WEB &middot; EST. 2026
+                    </span>
+                    <h1 class="text-5xl sm:text-7xl font-light tracking-tight font-serif mb-6 leading-[1.05] text-white" id="obscura-hero-title" style="font-family: 'Playfair Display', serif;">
+                        Curating the<br>Web's Finest
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-400 font-normal max-w-sm leading-relaxed" id="obscura-hero-desc">
+                        An editorial gallery of the most exceptional digital design on the internet &mdash; hand-selected for craft, restraint, and audacity.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start md:items-end w-full md:w-auto transition-all duration-300" id="obscura-hero-right">
+                    <a href="#obscura-ticker" class="text-[10px] uppercase tracking-[0.2em] font-extrabold text-white border-b border-white pb-1.5 hover:text-slate-350 hover:border-slate-350 transition-colors flex items-center gap-2 cursor-pointer select-none">
+                        Explore The Collection <span class="material-symbols-outlined text-[13px] font-black">arrow_downward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Horizontal Scrolling Ticker (Sticky below page header) -->
+        <div id="obscura-ticker" class="w-full bg-slate-950 dark:bg-slate-900/80 border border-slate-900 dark:border-slate-800 rounded-2xl py-3.5 overflow-hidden z-30 sticky top-20 select-none transition-all duration-300 mb-12 shadow-sm">
+            <div class="animate-marquee-left whitespace-nowrap flex items-center gap-8 text-[9px] font-black uppercase tracking-[0.25em] text-slate-400">
+                <!-- Loop Group 1 -->
+                <div class="inline-flex items-center gap-8">
+                    <span>Award Winning</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Typographic Craft</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Motion Design</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Editorial Detail</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Design Mastery</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Pixel Perfect</span> <span class="text-slate-700 font-bold">✦</span>
+                </div>
+                <!-- Loop Group 2 -->
+                <div class="inline-flex items-center gap-8">
+                    <span>Award Winning</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Typographic Craft</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Motion Design</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Editorial Detail</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Design Mastery</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Pixel Perfect</span> <span class="text-slate-700 font-bold">✦</span>
+                </div>
+                <!-- Loop Group 3 -->
+                <div class="inline-flex items-center gap-8">
+                    <span>Award Winning</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Typographic Craft</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Motion Design</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Editorial Detail</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Design Mastery</span> <span class="text-slate-700 font-bold">✦</span>
+                    <span>Pixel Perfect</span> <span class="text-slate-700 font-bold">✦</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full animate-fade-in-up">
+            <div class="mb-8 border-b border-outline-variant/10 dark:border-slate-800 pb-4">
+                <span class="text-[9px] font-black uppercase tracking-[0.25em] text-slate-400 block mb-1">The Collection</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-on-surface dark:text-white flex items-center gap-2.5">
+                    <span class="material-symbols-outlined text-primary text-[28px]">grid_view</span> Selected Works
+                </h2>
+            </div>
+            <div id="grid-all-projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Favorites -->
+    <div id="section-favorites" class="scroll-mt-28 hidden w-full">
+        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-amber-500 text-[28px]">star</span> Favorites
+            </h2>
+            <div id="grid-favorites" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Work -->
+    <div id="section-work" class="scroll-mt-28 w-full">
+        <!-- Creative Work Premium Banner (Cinematic Full Screen Width & Height) -->
+        <div class="category-banner w-full h-[80vh] min-h-[580px] sm:h-[650px] lg:h-[720px] overflow-hidden relative mb-16 shadow-2xl group border-y border-outline-variant/10 dark:border-slate-800 bg-slate-950">
+            <img alt="Creative Work Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] group-hover:scale-[1.03] transition-transform duration-[10s] select-none z-0" src="creative_work_banner_1784469349995.png">
+            <canvas id="canvas-work-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-transparent z-10"></div>
+            <div class="absolute inset-0 max-w-[1680px] mx-auto px-6 sm:px-10 w-full h-full flex flex-col justify-center items-start z-20 pointer-events-none select-none">
+                <div class="border-l-4 border-blue-500 pl-8 sm:pl-16">
+                    <span class="text-xs sm:text-sm uppercase tracking-[0.4em] font-extrabold text-blue-400 mb-4 block">Portfolio Showcase</span>
+                    <h3 class="text-4xl sm:text-7xl font-black tracking-tight mb-6 font-headline-lg leading-none bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
+                        Creative Work &<br>UI/UX Designs
+                    </h3>
+                    <p class="text-sm sm:text-xl text-slate-300 font-medium max-w-2xl leading-relaxed">Explore visual web tools, high-fidelity prototypes, and crafted interfaces designed to perfection.</p>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-primary text-[28px]">work</span> Work
+            </h2>
+            <div id="grid-work" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Dynamically populated -->
+            </div>
+                      <!-- Beautiful Section transition separator (Dual-Chain Scrolling Integration Marquee) -->
+            <div class="w-full py-24 sm:py-32 my-20 sm:my-28 relative overflow-hidden select-none">
+                <!-- Edge Fades (Theme Responsive) -->
+                <div class="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-surface-container-low dark:from-slate-950 to-transparent z-20 pointer-events-none"></div>
+                <div class="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-surface-container-low dark:from-slate-950 to-transparent z-20 pointer-events-none"></div>
+                
+                <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-16 text-center">
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-primary dark:text-indigo-400 block mb-2">Powering The Stack</span>
+                    <h4 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white">Core Software & Automations</h4>
+                </div>
+
+                <!-- Row 1: Scrolling Left -->
+                <div class="flex overflow-hidden mb-8 relative w-full items-center">
+                    <div id="scroll-wrapper-1" class="w-full flex transition-transform duration-300 ease-out">
+                        <div id="marquee-row-1" class="animate-marquee-left whitespace-nowrap flex items-center gap-6 py-2"></div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Scrolling Right -->
+                <div class="flex overflow-hidden relative w-full items-center">
+                    <div id="scroll-wrapper-2" class="w-full flex transition-transform duration-300 ease-out" style="transform: translateX(-600px);">
+                        <div id="marquee-row-2" class="animate-marquee-right whitespace-nowrap flex items-center gap-6 py-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Marquee Populator with Official SVGs -->
+            <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Row 1 unique logos (12 unique items)
+                const row1Logos = [
+                    { name: 'n8n', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#FF6C37]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5zm-5-3c0-.83.67-1.5 1.5-1.5S11 12.67 11 13.5 10.33 15 9.5 15 8 14.33 8 13.5zm7.33-4.3c-.39-.39-.39-1.03 0-1.42l2-2a.996.996 0 1 1 1.41 1.41l-2 2a.996.996 0 0 1-1.41 0z"/></svg>` },
+                    { name: 'Figma', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 38 57" fill="none"><path d="M19 0C13.75 0 9.5 4.25 9.5 9.5C9.5 14.75 13.75 19 19 19C24.25 19 28.5 14.75 28.5 9.5C28.5 4.25 24.25 0 19 0Z" fill="#F24E1E"/><path d="M9.5 28.5C9.5 23.25 13.75 19 19 19H28.5V38H19C13.75 38 9.5 33.75 9.5 28.5Z" fill="#A259FF"/><path d="M9.5 47.5C9.5 42.25 13.75 38 19 38H28.5V47.5C28.5 52.75 24.25 57 19 57C13.75 57 9.5 52.75 9.5 47.5Z" fill="#0ACF83"/><path d="M28.5 19C28.5 24.25 32.75 28.5 38 28.5C43.25 28.5 47.5 24.25 47.5 19C47.5 13.75 43.25 9.5 38 9.5C32.75 9.5 28.5 13.75 28.5 19Z" transform="translate(-9.5)" fill="#1ABC9C"/><path d="M28.5 38C28.5 32.75 32.75 28.5 38 28.5V47.5C38 52.75 33.75 57 28.5 57C23.25 57 19 52.75 19 47.5C19 42.25 23.25 38 28.5 38Z" transform="translate(9.5 -9.5)" fill="#FF7262"/></svg>` },
+                    { name: 'GitHub', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 fill-current text-slate-800 dark:text-white" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.82 1.102.82 2.222v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>` },
+                    { name: 'Vercel', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-800 dark:text-white fill-current" viewBox="0 0 116 100"><path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 0L115 100H0L57.5 0Z"/></svg>` },
+                    { name: 'NodeJS', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#339933] fill-current" viewBox="0 0 24 24"><path d="M12 2L3.5 6.9v9.8L12 21.6l8.5-4.9V6.9L12 2zM12.8 17.4c-0.2 0.3-0.5 0.4-0.8 0.4c-0.3 0-0.6-0.1-0.8-0.3c-0.5-0.4-0.6-1.1-0.2-1.6l2.1-2.6c0.4-0.5 1.1-0.6 1.6-0.2c0.5 0.4 0.6 1.1 0.2 1.6L12.8 17.4z M15 11.2l-3-2.3c-0.4-0.3-0.6-0.9-0.3-1.3c0.3-0.4 0.9-0.6 1.3-0.3l3 2.3c0.4 0.3 0.6 0.9 0.3 1.3C16 11.3 15.4 11.5 15 11.2z"/></svg>` },
+                    { name: 'NextJS', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-850 dark:text-white fill-current" viewBox="0 0 180 180"><path d="M165.7 90c0 41.8-33.9 75.7-75.7 75.7S14.3 131.8 14.3 90 48.2 14.3 90 14.3 165.7 48.2 165.7 90zm-75.7-53.7V90l32.5 45.7 5.7-4L98 87.2V36.3h-8z"/></svg>` },
+                    { name: 'React', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#61DAFB]" viewBox="-11.5 -10.23174 23 20.46348" fill="none"><ellipse rx="11" ry="4.2" stroke="currentColor" stroke-width="1.2"/><ellipse rx="11" ry="4.2" transform="rotate(60)" stroke="currentColor" stroke-width="1.2"/><ellipse rx="11" ry="4.2" transform="rotate(120)" stroke="currentColor" stroke-width="1.2"/><circle r="2" fill="currentColor"/></svg>` },
+                    { name: 'TypeScript', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#3178C6] fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm21.6 18.9c-.8.8-2 1.3-3.6 1.3-2.2 0-3.6-1.2-4-2.8h2.3c.3.8 1 1.2 1.8 1.2.9 0 1.5-.4 1.5-1.1 0-.8-.6-1.1-1.7-1.6l-.8-.3c-1.8-.8-2.8-1.7-2.8-3.4 0-2 1.6-3.4 3.7-3.4 1.8 0 3 1 3.5 2.4h-2.3c-.3-.7-.8-1.1-1.4-1.1-.8 0-1.2.4-1.2.9 0 .6.4.9 1.4 1.3l1 .4c2 .8 2.9 1.9 2.9 3.6 0 2.1-1.5 3.4-3.8 3.4zm-8.8-10h-2.9v10.5H7.7V8.9H4.8V6.7h8v2.2z"/></svg>` },
+                    { name: 'Docker', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#2496ED] fill-current" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119c.102 0 .186-.083.186-.185V8.99c0-.102-.084-.186-.186-.186h-2.119c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM11.561 11.078h2.119c.102 0 .185-.083.185-.185V8.99c0-.102-.083-.186-.185-.186h-2.119c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM9.138 11.078h2.119c.102 0 .186-.083.186-.185V8.99c0-.102-.084-.186-.186-.186H9.138c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM6.716 11.078h2.119c.102 0 .185-.083.185-.185V8.99c0-.102-.083-.186-.185-.186H6.716c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM9.138 8.657h2.119c.102 0 .186-.083.186-.186V6.57c0-.102-.084-.186-.186-.186H9.138c-.103 0-.186.084-.186.186v1.902c0 .103.083.186.186.186zM11.561 8.657h2.119c.102 0 .185-.083.185-.186V6.57c0-.102-.083-.186-.185-.186h-2.119c-.103 0-.186.084-.186.186v1.902c0 .103.083.186.186.186zM13.983 8.657h2.119c.102 0 .186-.083.186-.186V6.57c0-.102-.084-.186-.186-.186h-2.119c-.103 0-.186.084-.186.186v1.902c0 .103.083.186.186.186zM11.561 6.236h2.119c.102 0 .185-.083.185-.186V4.147c0-.102-.083-.186-.185-.186h-2.119c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM23.614 10.155c-.07-.387-.316-.855-.706-1.158-.389-.302-.855-.418-1.322-.418h-1.503V6.236c0-.102-.084-.186-.186-.186h-2.119c-.102 0-.186.084-.186.186v4.657c0 .102.084.185.186.185h5.105c.153 0 .306.05.408.153.102.102.153.255.153.407 0 3.906-3.136 7.078-7.002 7.078-3.864 0-7.001-3.172-7.001-7.078 0-.152.05-.305.153-.407.102-.102.255-.153.408-.153h.905c.102 0 .186-.083.186-.185V8.99c0-.102-.084-.186-.186-.186h-.905c-.467 0-.933.116-1.323.418-.39.303-.635.77-.705 1.158-.085.45-.05 1.103-.05 1.625 0 4.887 3.972 8.871 8.885 8.871 4.9 0 8.87-3.984 8.87-8.871 0-.522.035-1.175-.05-1.625z"/></svg>` },
+                    { name: 'TailwindCSS', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#06B6D4]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 6.036c-2.287 0-3.81 1.143-4.57 3.429 1.142-1.524 2.476-2.095 4.000-1.714.872.217 1.495.85 2.185 1.553C14.73 10.435 15.938 11.66 18.5 11.66c2.286 0 3.81-1.142 4.572-3.428-1.143 1.524-2.476 2.095-4 1.714-.872-.217-1.495-.85-2.185-1.553C15.807 7.26 14.598 6.036 12 6.036zm-7.428 5.624c-2.286 0-3.81 1.143-4.572 3.43 1.143-1.524 2.476-2.095 4.000-1.715.872.217 1.495.85 2.186 1.553C7.303 16.06 8.51 17.286 11.07 17.286c2.286 0 3.81-1.143 4.572-3.43-1.143 1.524-2.476 2.095-4.000 1.715-.872-.217-1.495-.85-2.186-1.553C8.375 12.887 7.168 11.66 4.572 11.66z"/></svg>` },
+                    { name: 'PostgreSQL', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#336791] fill-current" viewBox="0 0 24 24"><path d="M12 2c4.42 0 8 1.79 8 4s-3.58 4-8 4-8-1.79-8-4 3.58-4 8-4zm0 6c2.97 0 6-1.1 6-2s-3.03-2-6-2-6 1.1-6 2 3.03 2 6 2zm0 3c-4.42 0-8-1.79-8-4v3c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0 2.21-3.58 4-8 4zm0 5c-4.42 0-8-1.79-8-4v3c0 2.21 3.58 4 8 4s8-1.79 8-4v-3c0 2.21-3.58 4-8 4z"/></svg>` },
+                    { name: 'Redis', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#DC382D] fill-current" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 18l-10-5 10-5 10 5-10 5zm0-6l-10-5 10-5 10 5-10 5z"/></svg>` }
+                ];
+
+                // Row 2 unique logos (10 unique items)
+                const row2Logos = [
+                    { name: 'VSCode', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#007ACC] fill-current" viewBox="0 0 24 24"><path d="M23.985 17.56l-3.08-14.887a1.042 1.042 0 0 0-.82-.821L5.198.773c-.563-.117-1.12.28-1.207.82l-3.2 15.688a1.042 1.042 0 0 0 .82 1.208l14.887 3.08c.564.117 1.12-.28 1.207-.82l3.2-15.688a1.042 1.042 0 0 0-.82-1.208z"/></svg>` },
+                    { name: 'OpenAI', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-emerald-600 dark:text-emerald-400 fill-current" viewBox="0 0 24 24"><path d="M22.5 12.5a3.5 3.5 0 0 0-3.5-3.5 3.5 3.5 0 0 0-.5.03A5.5 5.5 0 0 0 13 4a5.5 5.5 0 0 0-5.5 5.5v.03a3.5 3.5 0 0 0-3.5 3.5 3.5 0 0 0 3.5 3.5h9a3.5 3.5 0 0 0 3.5-3.5z"/></svg>` },
+                    { name: 'Slack', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 24 24" fill="none"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523 2.528 2.528 0 0 1-2.522-2.523 2.528 2.528 0 0 1 2.522-2.52h2.52v2.52zm1.261 0a2.528 2.528 0 0 1 2.52-2.52h5.043a2.528 2.528 0 0 1 2.522 2.52v5.043a2.528 2.528 0 0 1-2.522 2.52H8.803a2.528 2.528 0 0 1-2.52-2.52v-5.043z" fill="#36C5F0"/></svg>` },
+                    { name: 'Firebase', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#FFCA28] fill-current" viewBox="0 0 24 24"><path d="M3.89 15.57L8.36 2.27c.13-.38.65-.38.78 0l1.79 5.37.9-2.7c.13-.38.65-.38.78 0l4.17 12.51-8.15 4.58c-.4.22-.89.22-1.29 0L3.89 15.57z"/></svg>` },
+                    { name: 'Discord', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#5865F2] fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0c-.172-.393-.412-.875-.63-1.25a.078.078 0 0 0-.07-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C3.533 9.048 1.78 13.58 2.499 18.057a.082.082 0 0 0 .031.057c2.26 1.665 4.464 2.685 6.634 3.36a.078.078 0 0 0 .084-.028c.514-.702.97-1.463 1.366-2.26a.078.078 0 0 0-.043-.11c-.702-.266-1.371-.586-2.016-.93a.078.078 0 0 1-.008-.129c.135-.101.268-.205.395-.312a.078.078 0 0 1 .081-.01c4.186 1.917 8.705 1.917 12.83 0a.078.078 0 0 1 .08.01c.127.107.26.21.396.312a.078.078 0 0 1-.007.13c-.645.344-1.314.664-2.016.93a.078.078 0 0 0-.044.11c.395.797.852 1.558 1.366 2.26a.078.078 0 0 0 .084.028c2.18-.675 4.385-1.695 6.634-3.36a.082.082 0 0 0 .031-.057c.7-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>` },
+                    { name: 'Asana', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#F06A6A] fill-current" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><circle cx="7" cy="14" r="3"/><circle cx="17" cy="14" r="3"/></svg>` },
+                    { name: 'Jira', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#0052CC] fill-current" viewBox="0 0 24 24"><path d="M11.53 2c0 2.4-1.97 4.35-4.39 4.35H2v15.65h19.53c2.42 0 4.39-1.95 4.39-4.35V2H11.53z"/></svg>` },
+                    { name: 'Notion', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-800 dark:text-white fill-current" viewBox="0 0 24 24"><path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm2 4v12h2v-8.5l6 8.5h2V6h-2v8.5L8 6H6z"/></svg>` },
+                    { name: 'GitLab', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#FCA121] fill-current" viewBox="0 0 24 24"><path d="M23.95 13.58l-1.34-4.13a.996.996 0 0 0-.31-.47L12 1.6 1.7 8.98a.996.996 0 0 0-.31.47l-1.34 4.13a1 1 0 0 0 .36 1.09l11.09 8.05a1 1 0 0 0 1.18 0l11.09-8.05a1 1 0 0 0 .38-1.09z"/></svg>` },
+                    { name: 'Python', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 fill-current" viewBox="0 0 24 24"><path d="M11.93 2.005c-2.3 0-4.13.2-5.5 1.5-1.56 1.48-1.47 3.03-1.47 4.54H9.6c.1 0 .2.08.2.2v4.06c0 .1-.09.18-.2.18H1.83c-.93 0-1.83.91-1.83 1.83v2.86c0 .92.9 1.83 1.83 1.83h2.86c.92 0 1.83-.91 1.83-1.83V16.6c0-.1.08-.2.2-.2h4.54c1.51 0 3.06.09 4.54-1.47 1.3-1.37 1.5-3.2 1.5-5.5V6.6c0-2.3-.2-4.13-1.5-5.5-1.48-1.56-3.03-1.47-4.54-1.47zM22.17 6.63h-2.86c-.92 0-1.83.91-1.83 1.83v2.86c0 .92.91 1.83 1.83 1.83h4.54c.1 0 .2.08.2.2v4.54c0 1.51-.09 3.06-1.47 4.54-1.37 1.3-3.2 1.5-5.5 1.5h-2.87c-2.3 0-4.13-.2-5.5-1.5-1.56-1.48-1.47-3.03-1.47-4.54H9.6c.1 0 .2.08.2.2v4.06c0 .1-.09.18-.2.18H1.83c-.93 0-1.83.91-1.83 1.83v2.86c0 .92.9 1.83 1.83 1.83h2.86c.92 0 1.83-.91 1.83-1.83z" fill="#3776AB"/></svg>` }
+                ];
+
+                const generateCardsHTML = (logos) => {
+                    return logos.map(logo => `
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white dark:bg-slate-900/60 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 flex items-center justify-center p-3.5 sm:p-5 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 select-none" title="${logo.name}">
+                            ${logo.svg}
+                        </div>
+                    `).join('');
+                };
+
+                const row1Container = document.getElementById('marquee-row-1');
+                const row2Container = document.getElementById('marquee-row-2');
+                
+                if (row1Container && row2Container) {
+                    const row1GroupHTML = `<div class="inline-flex items-center gap-6">${generateCardsHTML(row1Logos)}</div>`;
+                    const row2GroupHTML = `<div class="inline-flex items-center gap-6">${generateCardsHTML(row2Logos)}</div>`;
+                    
+                    // Duplicate exactly 4 times for perfect infinite translation and zero gaps
+                    row1Container.innerHTML = row1GroupHTML.repeat(4);
+                    row2Container.innerHTML = row2GroupHTML.repeat(4);
+                }
+
+                // Scroll parallax animation (interactive scroll-driven translation)
+                const scrollWrapper1 = document.getElementById('scroll-wrapper-1');
+                const scrollWrapper2 = document.getElementById('scroll-wrapper-2');
+                const marqueeSection = scrollWrapper1 ? scrollWrapper1.closest('.w-full') : null;
+
+                const handleParallax = () => {
+                    if (!marqueeSection) return;
+                    const rect = marqueeSection.getBoundingClientRect();
+                    const viewportHeight = window.innerHeight;
+                    
+                    // Trigger only when marquee is in screen view bounds
+                    if (rect.top < viewportHeight && rect.bottom > 0) {
+                        const relativeScroll = viewportHeight - rect.top;
+                        
+                        if (scrollWrapper1) {
+                            scrollWrapper1.style.transform = `translateX(-${relativeScroll * 0.18}px)`;
+                        }
+                        if (scrollWrapper2) {
+                            // Row 2 starts with left offset of -600px and translates rightwards
+                            scrollWrapper2.style.transform = `translateX(${-600 + relativeScroll * 0.18}px)`;
+                        }
+                    }
+                };
+
+                window.addEventListener('scroll', handleParallax);
+                handleParallax(); // Initial positioning
+            });
+            </script>
+        </div>
+    </div>
+
+    <!-- Section: Personal -->
+    <div id="section-personal" class="scroll-mt-28 w-full">
+        <!-- Personal Lab Premium Banner (Cinematic Full Screen Width & Height) -->
+        <div class="category-banner w-full h-[80vh] min-h-[580px] sm:h-[650px] lg:h-[720px] overflow-hidden relative mb-16 shadow-2xl group border-y border-outline-variant/10 dark:border-slate-800 bg-slate-950">
+            <img alt="Personal Lab Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] group-hover:scale-[1.03] transition-transform duration-[10s] select-none z-0" src="personal_lab_banner_1784469366510.png">
+            <canvas id="canvas-personal-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-transparent z-10"></div>
+            <div class="absolute inset-0 max-w-[1680px] mx-auto px-6 sm:px-10 w-full h-full flex flex-col justify-center items-start z-20 pointer-events-none select-none">
+                <div class="border-l-4 border-fuchsia-500 pl-8 sm:pl-16">
+                    <span class="text-xs sm:text-sm uppercase tracking-[0.4em] font-extrabold text-fuchsia-400 mb-4 block">Dev Laboratory</span>
+                    <h3 class="text-4xl sm:text-7xl font-black tracking-tight mb-6 font-headline-lg leading-none bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
+                        Personal Projects &<br>Sandbox
+                    </h3>
+                    <p class="text-sm sm:text-xl text-slate-300 font-medium max-w-2xl leading-relaxed">A playground of custom algorithms, interactive terminal environments, and API integrations.</p>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-primary text-[28px]">person</span> Personal
+            </h2>
+            <div id="grid-personal" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Dynamically populated -->
+            </div>
+            
+            <!-- Beautiful Section transition separator (Skills Progress Widget) -->
+            <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full py-16">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 sm:p-12 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900/40 dark:to-slate-900/80 rounded-3xl border border-outline-variant/20 dark:border-slate-800 shadow-bold-static relative overflow-hidden">
+                    <!-- Floating abstract light glow in the corner -->
+                    <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-fuchsia-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    
+                    <!-- Col 1: Coding Metrics Title & Description -->
+                    <div class="lg:col-span-2 space-y-4 text-left">
+                        <span class="text-[10px] font-black uppercase tracking-[0.3em] text-fuchsia-400">Sandbox Laboratory</span>
+                        <h4 class="text-xl sm:text-2xl font-bold text-on-surface dark:text-white">
+                            Coding Metrics & Custom Algorithms
+                        </h4>
+                        <p class="text-sm text-secondary dark:text-slate-300 max-w-xl leading-relaxed">
+                            We write clean, test-driven algorithms optimized for scale. Tap into our sandbox integrations or run local experiments in our isolated environments.
+                        </p>
+                    </div>
+                    
+                    <!-- Col 2: Skills Bar / Progress Indicators -->
+                    <div class="space-y-4 flex flex-col justify-center text-left">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                                <span>Algorithmic Optimization</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-850 rounded-full overflow-hidden">
+                                <div class="w-[95%] h-full bg-fuchsia-500 rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                                <span>Performance Speed</span>
+                                <span>98%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-850 rounded-full overflow-hidden">
+                                <div class="w-[98%] h-full bg-emerald-500 rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                                <span>Secure Integrations</span>
+                                <span>100%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-850 rounded-full overflow-hidden">
+                                <div class="w-[100%] h-full bg-blue-500 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Collaboration -->
+    <div id="section-collaboration" class="scroll-mt-28 w-full">
+        <!-- Collaboration Premium Banner (Cinematic Full Screen Width & Height) -->
+        <div class="category-banner w-full h-[80vh] min-h-[580px] sm:h-[650px] lg:h-[720px] overflow-hidden relative mb-16 shadow-2xl group border-y border-outline-variant/10 dark:border-slate-800 bg-slate-950">
+            <img alt="Collaboration Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] group-hover:scale-[1.03] transition-transform duration-[10s] select-none z-0" src="collaboration_banner_1784469380792.png">
+            <canvas id="canvas-collaboration-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-transparent z-10"></div>
+            <div class="absolute inset-0 max-w-[1680px] mx-auto px-6 sm:px-10 w-full h-full flex flex-col justify-center items-start z-20 pointer-events-none select-none">
+                <div class="border-l-4 border-amber-500 pl-8 sm:pl-16">
+                    <span class="text-xs sm:text-sm uppercase tracking-[0.4em] font-extrabold text-amber-400 mb-4 block">Global Partnerships</span>
+                    <h3 class="text-4xl sm:text-7xl font-black tracking-tight mb-6 font-headline-lg leading-none bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
+                        Collaborative Spaces &<br>Repos
+                    </h3>
+                    <p class="text-sm sm:text-xl text-slate-300 font-medium max-w-2xl leading-relaxed">Joint developments, corporate integrations, and open-source contributions with developers worldwide.</p>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-primary text-[28px]">handshake</span> Collaboration
+            </h2>
+            <div id="grid-collaboration" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- No Results State -->
@@ -774,12 +1177,13 @@ try {
 
     </div>
 </div>
+</div>
 
 <!-- Spacer to create gap between content and footer -->
 <div class="h-16 w-full flex-shrink-0"></div>
 
 <!-- Footer / Copyright Section -->
-<footer class="mt-auto border-t border-outline-variant/30 dark:border-slate-800/80 pt-12 pb-10 flex flex-col lg:flex-row items-center justify-between gap-6 text-body-sm text-secondary dark:text-slate-400">
+<footer class="mt-auto border-t border-outline-variant/30 dark:border-slate-800/80 pt-12 pb-10 flex flex-col lg:flex-row items-center justify-between gap-6 text-body-sm text-secondary dark:text-slate-400 max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
     <div class="flex items-center gap-1.5 font-medium">
         <span>© 2026 CogniLens. All rights reserved.</span>
     </div>
@@ -859,8 +1263,77 @@ try {
 </div>
 
 <script>
+    // Safe storage access fallback wrapper to prevent SecurityErrors in sandboxed browser environments
+    const SafeStorage = {
+        _localData: {},
+        _sessionData: {},
+        getLocal(key) {
+            try { return localStorage.getItem(key); } catch(e) { return this._localData[key] || null; }
+        },
+        setLocal(key, val) {
+            try { localStorage.setItem(key, val); } catch(e) { this._localData[key] = String(val); }
+        },
+        removeLocal(key) {
+            try { localStorage.removeItem(key); } catch(e) { delete this._localData[key]; }
+        },
+        getSession(key) {
+            try { return sessionStorage.getItem(key); } catch(e) { return this._sessionData[key] || null; }
+        },
+        setSession(key, val) {
+            try { sessionStorage.setItem(key, val); } catch(e) { this._sessionData[key] = String(val); }
+        }
+    };
+
+    // Toggle layout shell styles between welcome mode (full page) and dashboard mode
+    function setWelcomeLayoutMode(isWelcome) {
+        const sidebar = document.getElementById('sidebar');
+        const header = document.querySelector('header');
+        const main = document.querySelector('main');
+        
+        if (isWelcome) {
+            if (sidebar) sidebar.classList.add('hidden', 'lg:hidden', '-translate-x-full');
+            if (header) header.classList.add('hidden');
+            if (main) main.classList.remove('lg:ml-64');
+        } else {
+            if (sidebar) sidebar.classList.remove('hidden', 'lg:hidden', '-translate-x-full');
+            if (header) header.classList.remove('hidden');
+            if (main) main.classList.add('lg:ml-64');
+        }
+    }
+
+    // Welcome Screen Landing Page Logic
+    window.dismissWelcomeScreen = function() {
+        const welcome = document.getElementById('welcome-landing-screen');
+        const content = document.getElementById('portfolio-dashboard-content');
+        setWelcomeLayoutMode(false);
+        if (welcome) welcome.classList.add('hidden');
+        if (content) {
+            content.classList.remove('hidden');
+            // Trigger window resize to align tab indicators
+            setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+            }, 50);
+        }
+        SafeStorage.setSession('welcomeDismissed', 'true');
+    };
+
+    // Initialize display state of welcome screen vs main content dashboard
+    (function initWelcomeState() {
+        const welcome = document.getElementById('welcome-landing-screen');
+        const content = document.getElementById('portfolio-dashboard-content');
+        if (SafeStorage.getSession('welcomeDismissed') === 'true') {
+            setWelcomeLayoutMode(false);
+            if (welcome) welcome.classList.add('hidden');
+            if (content) content.classList.remove('hidden');
+        } else {
+            setWelcomeLayoutMode(true);
+            if (welcome) welcome.classList.remove('hidden');
+            if (content) content.classList.add('hidden');
+        }
+    })();
+
     function handleGetStarted() {
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        const isLoggedIn = SafeStorage.getLocal('isLoggedIn') === 'true';
         if (!isLoggedIn) {
             window.location.href = 'login.html';
         } else {
@@ -904,11 +1377,127 @@ try {
     }
 
     // Initial check on load
-    document.addEventListener('DOMContentLoaded', () => {
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    function initSetup() {
+        const isLoggedIn = SafeStorage.getLocal('isLoggedIn') === 'true';
         updateGetStartedVisibility(isLoggedIn);
         updateSignoutVisibility(isLoggedIn);
-    });
+        populateCategorizedGrids();
+        initBannerParticles();
+        
+        // Apply default layout filter and align indicator position
+        setTimeout(() => {
+            if (typeof window.applyGridFilter === 'function') {
+                window.applyGridFilter('all');
+            }
+        }, 100);
+    }
+
+    // Dynamic dot particle canvas orbits inside category banners
+    function initBannerParticles() {
+        const banners = [
+            { canvasId: 'canvas-work-banner', color: '59, 130, 246', align: 'right' },       // blue
+            { canvasId: 'canvas-personal-banner', color: '217, 70, 239', align: 'left' },    // fuchsia
+            { canvasId: 'canvas-collaboration-banner', color: '245, 158, 11', align: 'center' } // amber
+        ];
+
+        banners.forEach(b => {
+            const canvas = document.getElementById(b.canvasId);
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            let animationFrameId;
+            let particles = [];
+
+            function resize() {
+                const rect = canvas.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+
+            // Set orbit center based on alignment
+            let centerX, centerY;
+            function updateCenter() {
+                centerY = canvas.height * 0.5;
+                if (b.align === 'left') {
+                    centerX = canvas.width * 0.15;
+                } else if (b.align === 'right') {
+                    centerX = canvas.width * 0.85;
+                } else {
+                    centerX = canvas.width * 0.5;
+                }
+            }
+            updateCenter();
+
+            const numRings = 12;
+            const particlesPerRing = 18;
+
+            for (let r = 0; r < numRings; r++) {
+                const radius = 80 + r * 25;
+                // Outer rings rotate slower
+                const speed = (0.0006 + (numRings - r) * 0.0002) * (r % 2 === 0 ? 1 : -1);
+
+                for (let p = 0; p < particlesPerRing; p++) {
+                    const angle = (p / particlesPerRing) * Math.PI * 2 + Math.random() * 0.15;
+                    particles.push({
+                        radius,
+                        angle,
+                        speed,
+                        size: Math.random() * 1.8 + 0.6,
+                        alpha: Math.random() * 0.55 + 0.15,
+                        noiseOffset: Math.random() * 100,
+                        noiseSpeed: 0.008 + Math.random() * 0.005
+                    });
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                updateCenter();
+
+                particles.forEach(p => {
+                    // Update orbital angle
+                    p.angle += p.speed;
+
+                    // Orbital position
+                    let x = centerX + Math.cos(p.angle) * p.radius;
+                    let y = centerY + Math.sin(p.angle) * p.radius;
+
+                    // Add organic wave drift
+                    p.noiseOffset += p.noiseSpeed;
+                    const wave = Math.sin(p.noiseOffset) * 6;
+                    x += Math.cos(p.angle) * wave;
+                    y += Math.sin(p.angle) * wave;
+
+                    // Draw dot with subtle glowing backdrop
+                    ctx.beginPath();
+                    ctx.arc(x, y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${b.color}, ${p.alpha})`;
+                    ctx.fill();
+                    
+                    // Add secondary light glow on top
+                    if (p.size > 1.2) {
+                        ctx.beginPath();
+                        ctx.arc(x, y, p.size * 2.2, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(${b.color}, ${p.alpha * 0.15})`;
+                        ctx.fill();
+                    }
+                });
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSetup);
+    } else {
+        initSetup();
+    }
 
     // Listen to Firebase Auth state for real-time updates
     setTimeout(() => {
@@ -925,7 +1514,7 @@ try {
     // Safe LocalStorage helpers to prevent sandbox exceptions
     function getSafeFavorites() {
         try {
-            return JSON.parse(localStorage.getItem('project_favorites') || '{}');
+            return JSON.parse(SafeStorage.getLocal('project_favorites') || '{}');
         } catch (e) {
             console.warn("Storage access blocked, using memory fallback:", e);
             if (!window.__favoritesFallback) window.__favoritesFallback = {};
@@ -935,7 +1524,7 @@ try {
 
     function saveSafeFavorites(favs) {
         try {
-            localStorage.setItem('project_favorites', JSON.stringify(favs));
+            SafeStorage.setLocal('project_favorites', JSON.stringify(favs));
         } catch (e) {
             console.warn("Storage write blocked, using memory fallback:", e);
             window.__favoritesFallback = favs;
@@ -946,119 +1535,397 @@ try {
     const searchClearBtn = document.getElementById('search-clear');
     const mobileSearchInput = document.getElementById('mobile-search-input');
     const mobileSearchClearBtn = document.getElementById('mobile-search-clear');
-    const portfolioGrid = document.getElementById('portfolio-grid');
     const noResultsDiv = document.getElementById('no-results');
     const clearSearchBtn = document.getElementById('clear-search-btn');
 
-    if (portfolioGrid) {
-        const cards = Array.from(portfolioGrid.children);
-
-        // Filter function
-        function performSearch(queryVal) {
-            const query = queryVal.toLowerCase().trim();
-            let visibleCount = 0;
-
-            // Sync values to both inputs
-            if (searchInput) searchInput.value = queryVal;
-            if (mobileSearchInput) mobileSearchInput.value = queryVal;
-
-            // Show/hide clear buttons
-            if (query.length > 0) {
-                if (searchClearBtn) searchClearBtn.classList.remove('hidden');
-                if (mobileSearchClearBtn) mobileSearchClearBtn.classList.remove('hidden');
-            } else {
-                if (searchClearBtn) searchClearBtn.classList.add('hidden');
-                if (mobileSearchClearBtn) mobileSearchClearBtn.classList.add('hidden');
+    // Live search function across all grids
+    function runLiveSearch(query) {
+        query = query.toLowerCase().trim();
+        
+        const sections = [
+            { id: 'section-all-projects', gridId: 'grid-all-projects' },
+            { id: 'section-favorites', gridId: 'grid-favorites' },
+            { id: 'section-work', gridId: 'grid-work' },
+            { id: 'section-personal', gridId: 'grid-personal' },
+            { id: 'section-collaboration', gridId: 'grid-collaboration' }
+        ];
+        
+        let totalVisibleCount = 0;
+        
+        sections.forEach(sec => {
+            const sectionEl = document.getElementById(sec.id);
+            const gridEl = document.getElementById(sec.gridId);
+            if (!sectionEl || !gridEl) return;
+            
+            // If favorites grid is empty and hidden, skip it
+            if (sec.id === 'section-favorites' && sectionEl.classList.contains('hidden') && query.length === 0) {
+                return;
             }
-
-            // Loop cards and filter
+            
+            let sectionVisibleCount = 0;
+            const cards = Array.from(gridEl.children);
+            
             cards.forEach(card => {
-                const cardText = card.innerText.toLowerCase();
-                if (cardText.includes(query)) {
-                    // Check if active sidebar category matches
-                    const activeTab = document.querySelector('.tab-btn.text-primary');
-                    const tabType = activeTab ? activeTab.getAttribute('data-tab') : 'all';
-                    if (tabType === 'all') {
-                        let activeSidebarItem = document.querySelector('.sidebar-item[data-active-filter="true"]');
-                        const sidebarTarget = activeSidebarItem ? activeSidebarItem.getAttribute('data-target-tab') : 'all';
-                        
-                        let matchCategory = false;
-                        if (sidebarTarget === 'all') {
-                            matchCategory = true;
-                        } else if (sidebarTarget === 'collections') {
-                            const text = card.innerText.toLowerCase();
-                            matchCategory = (text.includes('design') || text.includes('inspiration') || text.includes('art') || text.includes('figma'));
-                        } else if (sidebarTarget === 'shared') {
-                            const text = card.innerText.toLowerCase();
-                            matchCategory = (text.includes('code') || text.includes('read') || text.includes('notion') || text.includes('git'));
-                        } else if (sidebarTarget === 'favourites') {
-                            const favBtn = card.querySelector('.fav-toggle-btn');
-                            const projectId = favBtn ? favBtn.getAttribute('data-project-id') : null;
-                            const favorites = getSafeFavorites();
-                            matchCategory = (projectId && favorites[projectId]);
-                        } else if (sidebarTarget === 'collaboration') {
-                            const favBtn = card.querySelector('.fav-toggle-btn');
-                            const projectId = favBtn ? favBtn.getAttribute('data-project-id') : null;
-                            matchCategory = (projectId && projectId !== 'cognilens');
-                        }
-
-                        if (matchCategory) {
-                            card.style.display = '';
-                            visibleCount++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    } else {
-                        card.style.display = '';
-                        visibleCount++;
-                    }
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = '';
+                    sectionVisibleCount++;
+                    totalVisibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
             });
-
-            // Handle empty search results state
-            if (noResultsDiv) {
-                const activeTab = document.querySelector('.tab-btn.text-primary');
-                const tabType = activeTab ? activeTab.getAttribute('data-tab') : 'all';
-                if (tabType !== 'all') {
-                    noResultsDiv.classList.add('hidden');
-                    noResultsDiv.classList.remove('flex');
-                } else if (visibleCount === 0) {
-                    noResultsDiv.classList.remove('hidden');
-                    noResultsDiv.classList.add('flex');
-                } else {
-                    noResultsDiv.classList.add('hidden');
-                    noResultsDiv.classList.remove('flex');
-                }
+            
+            // Hide section heading if no cards are visible in this section
+            if (sectionVisibleCount === 0) {
+                sectionEl.style.display = 'none';
+            } else {
+                sectionEl.style.display = '';
+            }
+        });
+        
+        // Show/hide empty state
+        if (noResultsDiv) {
+            if (totalVisibleCount === 0) {
+                noResultsDiv.classList.remove('hidden');
+                noResultsDiv.classList.add('flex');
+            } else {
+                noResultsDiv.classList.add('hidden');
+                noResultsDiv.classList.remove('flex');
             }
         }
+    }
 
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => performSearch(e.target.value));
-            if (searchClearBtn) {
-                searchClearBtn.addEventListener('click', () => {
-                    performSearch('');
-                    searchInput.focus();
-                });
-            }
+    function performSearch(queryVal) {
+        const query = queryVal.toLowerCase().trim();
+        
+        // Sync values to both inputs
+        if (searchInput) searchInput.value = queryVal;
+        if (mobileSearchInput) mobileSearchInput.value = queryVal;
+
+        // Show/hide clear buttons
+        if (query.length > 0) {
+            if (searchClearBtn) searchClearBtn.classList.remove('hidden');
+            if (mobileSearchClearBtn) mobileSearchClearBtn.classList.remove('hidden');
+        } else {
+            if (searchClearBtn) searchClearBtn.classList.add('hidden');
+            if (mobileSearchClearBtn) mobileSearchClearBtn.classList.add('hidden');
         }
 
-        if (mobileSearchInput) {
-            mobileSearchInput.addEventListener('input', (e) => performSearch(e.target.value));
-            if (mobileSearchClearBtn) {
-                mobileSearchClearBtn.addEventListener('click', () => {
-                    performSearch('');
-                    mobileSearchInput.focus();
-                });
-            }
-        }
+        runLiveSearch(query);
+    }
 
-        if (clearSearchBtn) {
-            clearSearchBtn.addEventListener('click', () => {
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => performSearch(e.target.value));
+        if (searchClearBtn) {
+            searchClearBtn.addEventListener('click', () => {
                 performSearch('');
+                searchInput.focus();
             });
         }
+    }
+
+    if (mobileSearchInput) {
+        mobileSearchInput.addEventListener('input', (e) => performSearch(e.target.value));
+        if (mobileSearchClearBtn) {
+            mobileSearchClearBtn.addEventListener('click', () => {
+                performSearch('');
+                mobileSearchInput.focus();
+            });
+        }
+    }
+
+    if (clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', () => {
+            performSearch('');
+        });
+    }
+
+    // Dynamic Categorized Grid Population & Sync
+    function attachFavEventListener(card) {
+        const btn = card.querySelector('.fav-toggle-btn');
+        if (!btn) return;
+        
+        const projectId = btn.getAttribute('data-project-id');
+        const starIcon = btn.querySelector('.material-symbols-outlined');
+        const savedFavorites = getSafeFavorites();
+        
+        // Set initial active state of star
+        if (projectId && savedFavorites[projectId]) {
+            btn.classList.remove('text-slate-300', 'dark:text-slate-600');
+            btn.classList.add('text-amber-500');
+            if (starIcon) starIcon.style.fontVariationSettings = "'FILL' 1";
+        }
+        
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent clicking card
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+                return;
+            }
+            
+            const isFav = savedFavorites[projectId] || false;
+            const newFavState = !isFav;
+            
+            // Sync all favorite buttons for this project in the DOM
+            const allBtn = document.querySelectorAll(`.fav-toggle-btn[data-project-id="${projectId}"]`);
+            
+            if (newFavState) {
+                savedFavorites[projectId] = true;
+                allBtn.forEach(b => {
+                    b.classList.remove('text-slate-300', 'dark:text-slate-600');
+                    b.classList.add('text-amber-500');
+                    const icon = b.querySelector('.material-symbols-outlined');
+                    if (icon) icon.style.fontVariationSettings = "'FILL' 1";
+                });
+            } else {
+                delete savedFavorites[projectId];
+                allBtn.forEach(b => {
+                    b.classList.add('text-slate-300', 'dark:text-slate-600');
+                    b.classList.remove('text-amber-500');
+                    const icon = b.querySelector('.material-symbols-outlined');
+                    if (icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+            }
+            
+            // Save safely
+            saveSafeFavorites(savedFavorites);
+            
+            // Update favorites section grid layout dynamically
+            updateFavoritesGrid();
+        });
+    }
+
+    function updateFavoritesGrid() {
+        try {
+            const gridFavs = document.getElementById('grid-favorites');
+            const secFavs = document.getElementById('section-favorites');
+            if (!gridFavs || !secFavs) return;
+            
+            gridFavs.innerHTML = '';
+            const favorites = getSafeFavorites();
+            let favCount = 0;
+            
+            // 1. Template favorites
+            const templateGrid = document.getElementById('portfolio-grid-template');
+            if (templateGrid) {
+                Array.from(templateGrid.children).forEach(card => {
+                    const favBtn = card.querySelector('.fav-toggle-btn');
+                    const projectId = favBtn ? favBtn.getAttribute('data-project-id') : null;
+                    if (projectId && favorites[projectId]) {
+                        const clone = card.cloneNode(true);
+                        attachFavEventListener(clone);
+                        gridFavs.appendChild(clone);
+                        favCount++;
+                    }
+                });
+            }
+            
+            // 2. Dynamic gallery favorites
+            fetch('data/gallery.json?v=' + Date.now())
+                .then(res => {
+                    if (!res.ok) throw new Error("Fetch failed");
+                    return res.json();
+                })
+                .then(photos => {
+                    photos.forEach(photo => {
+                        if (favorites[photo.id]) {
+                            let displayRating = "4.8";
+                            let displayCount = "32";
+                            try {
+                                const galleryRatings = JSON.parse(localStorage.getItem('gallery_ratings') || '{}');
+                                if (galleryRatings[photo.id]) {
+                                    displayRating = galleryRatings[photo.id].rating;
+                                    displayCount = galleryRatings[photo.id].count;
+                                }
+                            } catch(e) {}
+
+                            const card = document.createElement('div');
+                            card.className = "dynamic-gallery-card group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800";
+                            card.innerHTML = `
+                                <a href="gallery.html" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+                                    <img alt="${photo.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="${photo.src}">
+                                </a>
+                                <div class="p-6">
+                                    <div class="flex items-start justify-between gap-3 mb-2 min-w-0">
+                                        <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white leading-snug truncate min-w-0">${photo.title}</h3>
+                                        <span class="text-secondary hover:text-primary transition-colors mt-1 flex-shrink-0 cursor-pointer select-none">
+                                            <span class="material-symbols-outlined font-bold">more_horiz</span>
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center gap-1.5 truncate">
+                                            <span class="material-symbols-outlined text-primary text-[16px] flex-shrink-0">photo_library</span>
+                                            <a href="gallery.html" class="text-body-sm text-primary font-bold truncate hover:underline">gallery.html</a>
+                                        </div>
+                                        <button class="fav-toggle-btn text-amber-500 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="${photo.id}" aria-label="Toggle Favorite">
+                                            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        </button>
+                                    </div>
+                                    <div class="flex items-center justify-between mt-4 gap-2 flex-wrap sm:flex-nowrap">
+                                        <div class="flex gap-2">
+                                            <a href="gallery.html" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
+                                            </a>
+                                        </div>
+                                        <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-lg cursor-pointer hover:bg-amber-500/20 active:scale-95 transition-all select-none" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
+                                            <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                            <span class="rating-val">${displayRating}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            attachFavEventListener(card);
+                            gridFavs.appendChild(card);
+                            favCount++;
+                        }
+                    });
+                    
+                    if (favCount > 0) {
+                        secFavs.classList.remove('hidden');
+                    } else {
+                        secFavs.classList.add('hidden');
+                    }
+                })
+                .catch(err => {
+                    console.warn("Failed to fetch gallery favorites:", err);
+                    if (favCount > 0) {
+                        secFavs.classList.remove('hidden');
+                    } else {
+                        secFavs.classList.add('hidden');
+                    }
+                });
+        } catch (e) {
+            console.error("Error in updateFavoritesGrid:", e);
+        }
+    }
+
+    function populateCategorizedGrids() {
+        const templateGrid = document.getElementById('portfolio-grid-template');
+        if (!templateGrid) return;
+        
+        const gridAll = document.getElementById('grid-all-projects');
+        const gridWork = document.getElementById('grid-work');
+        const gridPersonal = document.getElementById('grid-personal');
+        const gridCollab = document.getElementById('grid-collaboration');
+        
+        if (!gridAll || !gridWork || !gridPersonal || !gridCollab) return;
+        
+        gridAll.innerHTML = '';
+        gridWork.innerHTML = '';
+        gridPersonal.innerHTML = '';
+        gridCollab.innerHTML = '';
+        
+        const cards = Array.from(templateGrid.children);
+        
+        // 1. First append static projects from templateGrid to their corresponding categories
+        cards.forEach(card => {
+            // Append static templates to All
+            const cloneAll = card.cloneNode(true);
+            attachFavEventListener(cloneAll);
+            gridAll.appendChild(cloneAll);
+            
+            const text = card.innerText.toLowerCase();
+            
+            // 2. Work Category
+            if (text.includes('design') || text.includes('inspiration') || text.includes('art') || text.includes('figma') || text.includes('cognilens')) {
+                const cloneWork = card.cloneNode(true);
+                attachFavEventListener(cloneWork);
+                gridWork.appendChild(cloneWork);
+            }
+            
+            // 3. Personal Category
+            if (text.includes('code') || text.includes('read') || text.includes('notion') || text.includes('git') || text.includes('behance')) {
+                if (!text.includes('design') && !text.includes('figma')) {
+                    const clonePersonal = card.cloneNode(true);
+                    attachFavEventListener(clonePersonal);
+                    gridPersonal.appendChild(clonePersonal);
+                }
+            }
+            
+            // 4. Collaboration Category
+            const favBtn = card.querySelector('.fav-toggle-btn');
+            const projectId = favBtn ? favBtn.getAttribute('data-project-id') : null;
+            if (projectId && projectId !== 'cognilens' && !text.includes('git') && !text.includes('notion')) {
+                const cloneCollab = card.cloneNode(true);
+                attachFavEventListener(cloneCollab);
+                gridCollab.appendChild(cloneCollab);
+            }
+        });
+
+        // 2. Dynamically fetch and append image edits from gallery.json into "All Projects" as separate cards
+        fetch('data/gallery.json?v=' + Date.now())
+            .then(res => {
+                if (!res.ok) throw new Error("Failed to load gallery edits");
+                return res.json();
+            })
+            .then(photos => {
+                photos.forEach(photo => {
+                    let displayRating = "4.8";
+                    let displayCount = "32";
+                    try {
+                        const galleryRatings = JSON.parse(localStorage.getItem('gallery_ratings') || '{}');
+                        if (galleryRatings[photo.id]) {
+                            displayRating = galleryRatings[photo.id].rating;
+                            displayCount = galleryRatings[photo.id].count;
+                        }
+                    } catch(e) {}
+
+                    const card = document.createElement('div');
+                    card.className = "dynamic-gallery-card group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800";
+                    card.innerHTML = `
+                        <a href="gallery.html" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+                            <img alt="${photo.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="${photo.src || photo.after}">
+                        </a>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-3 mb-2 min-w-0">
+                                <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white leading-snug truncate min-w-0">${photo.title}</h3>
+                                <span class="text-secondary hover:text-primary transition-colors mt-1 flex-shrink-0 cursor-pointer select-none">
+                                    <span class="material-symbols-outlined font-bold">more_horiz</span>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-1.5 truncate">
+                                    <span class="material-symbols-outlined text-primary text-[16px] flex-shrink-0">photo_library</span>
+                                    <a href="gallery.html" class="text-body-sm text-primary font-bold truncate hover:underline">gallery.html</a>
+                                </div>
+                                <button class="fav-toggle-btn text-slate-300 dark:text-slate-600 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="${photo.id}" aria-label="Toggle Favorite">
+                                    <span class="material-symbols-outlined text-[20px]">star</span>
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between mt-4 gap-2 flex-wrap sm:flex-nowrap">
+                                <div class="flex gap-2">
+                                    <a href="gallery.html" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
+                                    </a>
+                                </div>
+                                <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-lg cursor-pointer hover:bg-amber-500/20 active:scale-95 transition-all select-none" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
+                                    <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    <span class="rating-val">${displayRating}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Bind rating badge click event
+                    card.querySelector('.project-rating-badge').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (SafeStorage.getLocal('isLoggedIn') !== 'true') {
+                            window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search);
+                            return;
+                        }
+                        openRatingModal(e.currentTarget);
+                    });
+                    
+                    attachFavEventListener(card);
+                    gridAll.appendChild(card);
+                });
+            })
+            .catch(err => {
+                console.warn("Could not load gallery edits into All Projects grid:", err);
+            });
+        
+        updateFavoritesGrid();
     }
 
     // Theme Switch Logic
@@ -1067,13 +1934,13 @@ try {
         if (mode === 'dark') {
             root.classList.add('dark');
             root.classList.remove('light');
-            localStorage.setItem('theme', 'dark');
+            SafeStorage.setLocal('theme', 'dark');
         } else if (mode === 'light') {
             root.classList.add('light');
             root.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
+            SafeStorage.setLocal('theme', 'light');
         } else {
-            localStorage.removeItem('theme');
+            SafeStorage.removeLocal('theme');
             applySystemTheme();
         }
         updateThemeButtonsUI();
@@ -1082,7 +1949,7 @@ try {
     }
 
     function updateThemeButtonsUI() {
-        const currentMode = localStorage.getItem('theme') || 'system';
+        const currentMode = SafeStorage.getLocal('theme') || 'system';
         const lightBtn = document.getElementById('theme-btn-light');
         const darkBtn = document.getElementById('theme-btn-dark');
         const systemBtn = document.getElementById('theme-btn-system');
@@ -1101,7 +1968,7 @@ try {
     }
 
     function applySystemTheme() {
-        if (!localStorage.getItem('theme')) {
+        if (!SafeStorage.getLocal('theme')) {
             if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 document.documentElement.classList.add('dark');
                 document.documentElement.classList.remove('light');
@@ -1204,21 +2071,17 @@ try {
             activeButton.classList.remove('text-secondary', 'hover:text-primary');
 
             const tabType = activeButton.getAttribute('data-tab');
-            const portfolioGrid = document.getElementById('portfolio-grid');
+            const categorizedContainer = document.getElementById('categorized-sections-container');
             const aboutUsSection = document.getElementById('about-us-section');
             const contactSection = document.getElementById('contact-section');
             const canvasTitle = document.querySelector('.pt-28 h2');
             const canvasSubtitle = document.querySelector('.pt-28 p');
             const searchContainer = document.querySelector('.relative.w-40');
             const sidebarIndicator = document.getElementById('sidebar-indicator');
-            const sidebarNav = document.getElementById('sidebar-nav');
             const sidebarItems = document.querySelectorAll('.sidebar-item');
 
-            let visibleCount = 0;
-            let sidebarTarget = 'all';
-
             if (tabType === 'all') {
-                if (portfolioGrid) portfolioGrid.style.display = '';
+                if (categorizedContainer) categorizedContainer.style.display = '';
                 if (aboutUsSection) {
                     aboutUsSection.style.display = 'none';
                     aboutUsSection.classList.add('opacity-0');
@@ -1233,92 +2096,12 @@ try {
                 if (canvasTitle) canvasTitle.innerText = "My Portfolio";
                 if (canvasSubtitle) canvasSubtitle.innerText = "A showcase of websites I have built";
 
-                let activeSidebarItem = document.querySelector('.sidebar-item[data-active-filter="true"]');
-                if (!activeSidebarItem) {
-                    activeSidebarItem = document.querySelector('.sidebar-item[data-target-tab="all"]');
-                    if (activeSidebarItem) activeSidebarItem.setAttribute('data-active-filter', 'true');
-                }
-                sidebarTarget = activeSidebarItem ? activeSidebarItem.getAttribute('data-target-tab') : 'all';
-
-                sidebarItems.forEach(item => {
-                    const target = item.getAttribute('data-target-tab');
-                    const icon = item.querySelector('.material-symbols-outlined');
-                    const titleSpan = item.querySelector('span:not(.material-symbols-outlined)');
-                    
-                    if (target === sidebarTarget) {
-                        item.classList.add('text-primary', 'dark:text-blue-400');
-                        item.classList.remove('text-white', 'text-on-surface-variant', 'dark:text-slate-400', 'hover:bg-surface-container-high', 'dark:hover:bg-slate-800');
-                        if (icon) {
-                            icon.classList.remove('group-hover:text-primary', 'text-white');
-                            icon.classList.add('text-primary', 'dark:text-blue-400');
-                        }
-                        if (titleSpan) titleSpan.classList.add('font-bold');
-                    } else {
-                        item.classList.remove('text-primary', 'dark:text-blue-400', 'text-white');
-                        item.classList.add('text-on-surface-variant', 'dark:text-slate-400', 'hover:bg-surface-container-high', 'dark:hover:bg-slate-800');
-                        if (icon) {
-                            icon.classList.add('group-hover:text-primary');
-                            icon.classList.remove('text-primary', 'dark:text-blue-400', 'text-white');
-                        }
-                        if (titleSpan) titleSpan.classList.remove('font-bold');
-                    }
-                });
-
-                if (sidebarIndicator && sidebarNav && activeSidebarItem) {
-                    const navRect = sidebarNav.getBoundingClientRect();
-                    const itemRect = activeSidebarItem.getBoundingClientRect();
-                    const topOffset = itemRect.top - navRect.top + sidebarNav.scrollTop;
-                    const height = itemRect.height;
-                    sidebarIndicator.style.top = `${topOffset}px`;
-                    sidebarIndicator.style.height = `${height}px`;
-                    sidebarIndicator.style.opacity = '1';
-                }
-
-                const cards = Array.from(portfolioGrid.children);
-                cards.forEach(card => {
-                    if (sidebarTarget === 'all') {
-                        card.style.display = '';
-                        visibleCount++;
-                    } else if (sidebarTarget === 'collections') {
-                        const text = card.innerText.toLowerCase();
-                        if (text.includes('design') || text.includes('inspiration') || text.includes('art') || text.includes('figma')) {
-                            card.style.display = '';
-                            visibleCount++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    } else if (sidebarTarget === 'shared') {
-                        const text = card.innerText.toLowerCase();
-                        if (text.includes('code') || text.includes('read') || text.includes('notion') || text.includes('git')) {
-                            card.style.display = '';
-                            visibleCount++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    } else if (sidebarTarget === 'favourites') {
-                        const favBtn = card.querySelector('.fav-toggle-btn');
-                        const projectId = favBtn ? favBtn.getAttribute('data-project-id') : null;
-                        const favorites = getSafeFavorites();
-                        if (projectId && favorites[projectId]) {
-                            card.style.display = '';
-                            visibleCount++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    } else if (sidebarTarget === 'collaboration') {
-                        const favBtn = card.querySelector('.fav-toggle-btn');
-                        const projectId = favBtn ? favBtn.getAttribute('data-project-id') : null;
-                        if (projectId && projectId !== 'cognilens') {
-                            card.style.display = '';
-                            visibleCount++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    }
-                });
-                loadGalleryFavoritesInGrid();
+                // Restore active sidebar highlight
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('scroll'));
+                }, 50);
             } else {
-                if (portfolioGrid) portfolioGrid.style.display = 'none';
+                if (categorizedContainer) categorizedContainer.style.display = 'none';
                 if (searchContainer) searchContainer.style.display = 'none';
                 if (sidebarIndicator) sidebarIndicator.style.opacity = '0';
                 sidebarItems.forEach(item => {
@@ -1363,156 +2146,276 @@ try {
                             contactSection.classList.add('opacity-100');
                         }, 50);
                     }
-                }
-            }
-
-            // Show/hide empty state
-            const noResults = document.getElementById('no-results');
-            if (noResults) {
-                if (tabType !== 'all') {
-                    noResults.classList.add('hidden');
-                    noResults.classList.remove('flex');
-                } else if (visibleCount === 0) {
-                    noResults.classList.remove('hidden');
-                    noResults.classList.add('flex');
-                    const iconEl = noResults.querySelector('.material-symbols-outlined');
-                    const titleEl = noResults.querySelector('h3');
-                    const descEl = noResults.querySelector('p');
-                    const resetBtnEl = noResults.querySelector('button');
-                    
-                    if (sidebarTarget === 'favourites') {
-                        if (iconEl) {
-                            iconEl.innerText = "grade";
-                            iconEl.classList.remove('text-secondary/30');
-                            iconEl.classList.add('text-amber-500/20');
-                        }
-                        if (titleEl) titleEl.innerText = "No Favorites Yet";
-                        if (descEl) descEl.innerText = "Tap the star icon on any project card to build your personalized shortcut collection.";
-                        if (resetBtnEl) resetBtnEl.style.display = 'none';
-                    } else {
-                        if (iconEl) {
-                            iconEl.innerText = "search_off";
-                            iconEl.classList.add('text-secondary/30');
-                            iconEl.classList.remove('text-amber-500/20');
-                        }
-                        if (titleEl) titleEl.innerText = "No matching projects";
-                        if (descEl) descEl.innerText = "We couldn't find any portfolio cards matching your query. Try adjusting your keywords.";
-                        if (resetBtnEl) resetBtnEl.style.display = '';
-                    }
-                } else {
-                    noResults.classList.add('hidden');
-                    noResults.classList.remove('flex');
-                }
             }
         }
+    }
+    // Sidebar active indicator utilities
+    function updateSidebarIndicator(item) {
+        const sidebarIndicator = document.getElementById('sidebar-indicator');
+        const sidebarNav = document.getElementById('sidebar-nav');
+        if (!item || !sidebarIndicator || !sidebarNav) return;
+        
+        const navRect = sidebarNav.getBoundingClientRect();
+        const itemRect = item.getBoundingClientRect();
+        const topOffset = itemRect.top - navRect.top + sidebarNav.scrollTop;
+        const height = itemRect.height;
+        
+        sidebarIndicator.style.top = `${topOffset}px`;
+        sidebarIndicator.style.height = `${height}px`;
+        sidebarIndicator.style.opacity = '1';
+    }
 
-        tabButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                updateTabIndicator(btn);
-            });
-        });
-
-        // Sidebar Items Click Listeners
+    function highlightSidebarItem(activeItem) {
         const sidebarItems = document.querySelectorAll('.sidebar-item');
         sidebarItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                sidebarItems.forEach(sib => sib.removeAttribute('data-active-filter'));
-                item.setAttribute('data-active-filter', 'true');
-                
-                const targetTabBtn = Array.from(tabButtons).find(btn => btn.getAttribute('data-tab') === 'all');
-                if (targetTabBtn) {
-                    updateTabIndicator(targetTabBtn);
-                }
-                
-                const sidebar = document.getElementById('sidebar');
-                if (sidebar && window.innerWidth < 1024) {
-                    sidebar.classList.add('-translate-x-full');
-                }
-            });
-        });
-
-        // Initialize indicator position & check URL params/hash for deep-linked tab redirects
-        setTimeout(() => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const tabParam = urlParams.get('tab') || window.location.hash.substring(1);
-            let activeTab = tabsContainer.querySelector('.tab-btn.text-primary') || tabButtons[0];
+            const icon = item.querySelector('.material-symbols-outlined');
+            const titleSpan = item.querySelector('span:not(.material-symbols-outlined)');
             
-            if (tabParam) {
-                const targetBtn = Array.from(tabButtons).find(btn => btn.getAttribute('data-tab') === tabParam);
-                if (targetBtn) activeTab = targetBtn;
+            if (item === activeItem) {
+                item.setAttribute('data-active-filter', 'true');
+                item.classList.add('text-primary', 'dark:text-blue-400', 'font-bold');
+                item.classList.remove('text-on-surface-variant', 'dark:text-slate-400', 'hover:bg-surface-container-high', 'dark:hover:bg-slate-800');
+                if (icon) {
+                    icon.classList.remove('group-hover:text-primary', 'text-white');
+                    icon.classList.add('text-primary', 'dark:text-blue-400');
+                }
+                if (titleSpan) titleSpan.classList.add('font-bold');
+                updateSidebarIndicator(item);
+            } else {
+                item.removeAttribute('data-active-filter');
+                item.classList.remove('text-primary', 'dark:text-blue-400', 'font-bold');
+                item.classList.add('text-on-surface-variant', 'dark:text-slate-400', 'hover:bg-surface-container-high', 'dark:hover:bg-slate-800');
+                if (icon) {
+                    icon.classList.add('group-hover:text-primary');
+                    icon.classList.remove('text-primary', 'dark:text-blue-400', 'text-white');
+                }
+                if (titleSpan) titleSpan.classList.remove('font-bold');
             }
-            updateTabIndicator(activeTab);
-        }, 150);
-
-        // Re-align tab slider indicator on resize
-        window.addEventListener('resize', () => {
-            const activeTab = tabsContainer.querySelector('.tab-btn.text-primary');
-            if (activeTab) updateTabIndicator(activeTab);
         });
+    }
+
+    // Layout filter function to display only the selected category grid (acting like separate pages)
+    window.applyGridFilter = function(target) {
+        const secAll = document.getElementById('section-all-projects');
+        const secFav = document.getElementById('section-favorites');
+        const secWork = document.getElementById('section-work');
+        const secPersonal = document.getElementById('section-personal');
+        const secCollab = document.getElementById('section-collaboration');
+        
+        if (target === 'all') {
+            // Show all sections stacked (All Projects scroll view)
+            if (secAll) secAll.style.display = 'block';
+            if (secFav) {
+                const favorites = getSafeFavorites();
+                const favCount = Object.keys(favorites).length;
+                secFav.style.display = favCount > 0 ? 'block' : 'none';
+            }
+            if (secWork) secWork.style.display = 'block';
+            if (secPersonal) secPersonal.style.display = 'block';
+            if (secCollab) secCollab.style.display = 'block';
+        } else if (target === 'collections') {
+            // "Category" is clicked: show all categorized projects (Work, Personal, Collaboration), but hide All Projects and Favorites
+            if (secAll) secAll.style.display = 'none';
+            if (secFav) secFav.style.display = 'none';
+            if (secWork) secWork.style.display = 'block';
+            if (secPersonal) secPersonal.style.display = 'block';
+            if (secCollab) secCollab.style.display = 'block';
+        } else {
+            // Hide everything first (Specific single page category mode)
+            if (secAll) secAll.style.display = 'none';
+            if (secFav) secFav.style.display = 'none';
+            if (secWork) secWork.style.display = 'none';
+            if (secPersonal) secPersonal.style.display = 'none';
+            if (secCollab) secCollab.style.display = 'none';
+            
+            // Show only the selected category section
+            if (target === 'favourites' && secFav) secFav.style.display = 'block';
+            else if (target === 'work' && secWork) secWork.style.display = 'block';
+            else if (target === 'shared' && secPersonal) secPersonal.style.display = 'block';
+            else if (target === 'collaboration' && secCollab) secCollab.style.display = 'block';
+        }
+        
+        // Trigger resize event to realign active sidebar indicator positioning
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+        }, 50);
+    };
+
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (typeof window.dismissWelcomeScreen === 'function') {
+                window.dismissWelcomeScreen();
+            }
+            updateTabIndicator(btn);
+        });
+    });
+
+    // Sidebar Items Click Listeners
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    sidebarItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            if (typeof window.dismissWelcomeScreen === 'function') {
+                window.dismissWelcomeScreen();
+            }
+            
+            highlightSidebarItem(item);
+            
+            // Force switch back to Collection Tab
+            const targetTabBtn = Array.from(tabButtons).find(btn => btn.getAttribute('data-tab') === 'all');
+            if (targetTabBtn) {
+                updateTabIndicator(targetTabBtn);
+            }
+            
+            const target = item.getAttribute('data-target-tab');
+            applyGridFilter(target);
+            
+            // Scroll smoothly to the target section container
+            let scrollTargetId = 'section-all-projects';
+            if (target === 'collections' || target === 'work') scrollTargetId = 'section-work';
+            else if (target === 'favourites') scrollTargetId = 'section-favorites';
+            else if (target === 'shared') scrollTargetId = 'section-personal';
+            else if (target === 'collaboration') scrollTargetId = 'section-collaboration';
+            
+            const targetEl = document.getElementById(scrollTargetId);
+            if (targetEl) {
+                if (target !== 'all' && target !== 'collections') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+            
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar && window.innerWidth < 1024) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+    });
+
+    // Scroll Spy: Update active state in sidebar based on current scroll position
+    window.addEventListener('scroll', () => {
+        const activeTabBtn = document.querySelector('.tab-btn.text-primary');
+        if (!activeTabBtn || activeTabBtn.getAttribute('data-tab') !== 'all') return;
+        
+        const activeFilterItem = document.querySelector('.sidebar-item[data-active-filter="true"]');
+        if (activeFilterItem && activeFilterItem.getAttribute('data-target-tab') !== 'all') return;
+        
+        const sections = [
+            { id: 'section-all-projects', tab: 'all' },
+            { id: 'section-favorites', tab: 'favourites' },
+            { id: 'section-work', tab: 'work' },
+            { id: 'section-personal', tab: 'shared' },
+            { id: 'section-collaboration', tab: 'collaboration' }
+        ];
+        
+        let activeTab = 'all';
+        const scrollPosition = window.scrollY + 180;
+        
+        sections.forEach(sec => {
+            const el = document.getElementById(sec.id);
+            if (el && el.style.display !== 'none' && !el.classList.contains('hidden')) {
+                const top = el.offsetTop;
+                if (scrollPosition >= top) {
+                    activeTab = sec.tab;
+                }
+            }
+        });
+        
+        sidebarItems.forEach(item => {
+            const target = item.getAttribute('data-target-tab');
+            if (target === activeTab) {
+                highlightSidebarItem(item);
+            }
+        });
+    });
+
+    // Initialize indicator position & check URL params/hash for deep-linked tab redirects
+    setTimeout(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tabParam = urlParams.get('tab') || window.location.hash.substring(1);
+        let activeTab = tabsContainer.querySelector('.tab-btn.text-primary') || tabButtons[0];
+        
+        if (tabParam) {
+            const targetBtn = Array.from(tabButtons).find(btn => btn.getAttribute('data-tab') === tabParam);
+            if (targetBtn) activeTab = targetBtn;
+        }
+        updateTabIndicator(activeTab);
+    }, 150);
+
+    // Re-align tab slider indicator and sidebar indicator on resize
+    window.addEventListener('resize', () => {
+        const activeTab = tabsContainer.querySelector('.tab-btn.text-primary');
+        if (activeTab) updateTabIndicator(activeTab);
+        
+        const activeSidebarItem = document.querySelector('.sidebar-item[data-active-filter="true"]');
+        if (activeSidebarItem) updateSidebarIndicator(activeSidebarItem);
+    });
     }
 
     // Automated slideshow for CogniLens thumbnail
-    const slider = document.getElementById('cognilens-slider');
-    const dots = [
-        document.getElementById('dot-0'),
-        document.getElementById('dot-1'),
-        document.getElementById('dot-2')
-    ];
+    const sliders = document.querySelectorAll('.cognilens-slider');
     let currentSlide = 0;
 
-    if (slider && dots[0]) {
+    if (sliders.length > 0) {
         setInterval(() => {
             currentSlide = (currentSlide + 1) % 3;
             
-            // Slide translation
-            slider.style.transform = `translateX(-${(currentSlide * 100) / 3}%)`;
-            
-            // Update dots
-            dots.forEach((dot, idx) => {
-                if (dot) {
-                    if (idx === currentSlide) {
-                        dot.classList.remove('bg-white/50', 'w-1.5');
-                        dot.classList.add('bg-white', 'w-3'); // expand active dot slightly
-                    } else {
-                        dot.classList.add('bg-white/50', 'w-1.5');
-                        dot.classList.remove('bg-white', 'w-3');
-                    }
+            sliders.forEach(slider => {
+                // Slide translation
+                slider.style.transform = `translateX(-${(currentSlide * 100) / 3}%)`;
+                
+                // Update dots in its respective card parent
+                const dotsContainer = slider.closest('a').querySelector('.flex.gap-1.5');
+                if (dotsContainer) {
+                    const dots = Array.from(dotsContainer.children);
+                    dots.forEach((dot, idx) => {
+                        if (dot) {
+                            if (idx === currentSlide) {
+                                dot.classList.remove('bg-white/50', 'w-1.5');
+                                dot.classList.add('bg-white', 'w-3');
+                            } else {
+                                dot.classList.add('bg-white/50', 'w-1.5');
+                                dot.classList.remove('bg-white', 'w-3');
+                            }
+                        }
+                    });
                 }
             });
-        }, 3000); // Transitions every 3 seconds
+        }, 3000);
     }
 
     // Automated slideshow for GuildRank thumbnail
-    const grSlider = document.getElementById('guildrank-slider');
-    const grDots = [
-        document.getElementById('guildrank-dot-0'),
-        document.getElementById('guildrank-dot-1'),
-        document.getElementById('guildrank-dot-2')
-    ];
+    const grSliders = document.querySelectorAll('.guildrank-slider');
     let grCurrentSlide = 0;
 
-    if (grSlider && grDots[0]) {
+    if (grSliders.length > 0) {
         setInterval(() => {
             grCurrentSlide = (grCurrentSlide + 1) % 3;
             
-            // Slide translation
-            grSlider.style.transform = `translateX(-${(grCurrentSlide * 100) / 3}%)`;
-            
-            // Update dots
-            grDots.forEach((dot, idx) => {
-                if (dot) {
-                    if (idx === grCurrentSlide) {
-                        dot.classList.remove('bg-white/50', 'w-1.5');
-                        dot.classList.add('bg-white', 'w-3');
-                    } else {
-                        dot.classList.add('bg-white/50', 'w-1.5');
-                        dot.classList.remove('bg-white', 'w-3');
-                    }
+            grSliders.forEach(slider => {
+                // Slide translation
+                slider.style.transform = `translateX(-${(grCurrentSlide * 100) / 3}%)`;
+                
+                // Update dots in its respective card parent
+                const dotsContainer = slider.closest('a').querySelector('.flex.gap-1.5');
+                if (dotsContainer) {
+                    const grDots = Array.from(dotsContainer.children);
+                    grDots.forEach((dot, idx) => {
+                        if (dot) {
+                            if (idx === grCurrentSlide) {
+                                dot.classList.remove('bg-white/50', 'w-1.5');
+                                dot.classList.add('bg-white', 'w-3');
+                            } else {
+                                dot.classList.add('bg-white/50', 'w-1.5');
+                                dot.classList.remove('bg-white', 'w-3');
+                            }
+                        }
+                    });
                 }
             });
-        }, 3000); // Transitions every 3 seconds
+        }, 3000);
     }
 
     // Reusable Rating Modal Controller
@@ -1862,10 +2765,10 @@ try {
             if (!confirm('Sign out of your account?')) return;
             if (window.PortfolioAuth) await window.PortfolioAuth.signOut();
             else {
-                localStorage.removeItem('isLoggedIn');
-                localStorage.removeItem('userName');
-                localStorage.removeItem('userEmail');
-                localStorage.removeItem('userPicture');
+                SafeStorage.removeLocal('isLoggedIn');
+                SafeStorage.removeLocal('userName');
+                SafeStorage.removeLocal('userEmail');
+                SafeStorage.removeLocal('userPicture');
             }
             window.location.href = 'index.html';
         });
@@ -1875,13 +2778,13 @@ try {
     const userPlanSpan = document.getElementById('user-plan-sidebar');
     const userAvatarImg = document.getElementById('user-avatar-sidebar');
 
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-        const savedName = localStorage.getItem('userName') || 'Alex Rivera';
+    if (SafeStorage.getLocal('isLoggedIn') === 'true') {
+        const savedName = SafeStorage.getLocal('userName') || 'Alex Rivera';
         if (userNameSpan) userNameSpan.innerText = savedName;
         if (userPlanSpan) userPlanSpan.innerText = 'Pro Plan';
         
         // Load custom profile picture from Google Login if available
-        const savedPic = localStorage.getItem('userPicture');
+        const savedPic = SafeStorage.getLocal('userPicture');
         if (savedPic && userAvatarImg) {
             userAvatarImg.src = savedPic;
         }
