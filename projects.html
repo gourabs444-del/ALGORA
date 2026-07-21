@@ -1,7 +1,6 @@
 <!DOCTYPE html><html class="light" lang="en"><head>
 <script>
     (function() {
-        // Redirect to landing page on refresh/reload
         const navEntries = window.performance && window.performance.getEntriesByType ? window.performance.getEntriesByType("navigation") : [];
         const isReload = navEntries.length > 0 ? navEntries[0].type === "reload" : (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
         if (isReload) {
@@ -25,164 +24,24 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-try {
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        "colors": {
-                "background": "#ffffff",
-                "on-tertiary-fixed": "#0b1c30",
-                "tertiary-fixed-dim": "#b7c8e1",
-                "on-secondary-fixed-variant": "#40484e",
-                "surface-dim": "#f1f3f5",
-                "primary-fixed": "#dbe1ff",
-                "surface-container": "#f8fafc",
-                "surface": "#ffffff",
-                "surface-container-low": "#f8fafc",
-                "tertiary-fixed": "#d3e4fe",
-                "primary": "#2563eb",
-                "surface-container-lowest": "#ffffff",
-                "on-tertiary-fixed-variant": "#38485d",
-                "on-primary-container": "#ffffff",
-                "tertiary-container": "#5e6e85",
-                "secondary-fixed-dim": "#c0c7cf",
-                "on-tertiary-container": "#e9f0ff",
-                "tertiary": "#46566c",
-                "on-secondary": "#ffffff",
-                "on-primary-fixed": "#00174b",
-                "on-background": "#0f172a",
-                "on-primary-fixed-variant": "#003ea8",
-                "on-secondary-container": "#1e293b",
-                "on-error-container": "#93000a",
-                "secondary-fixed": "#e2e8f0",
-                "surface-container-highest": "#e2e8f0",
-                "secondary-container": "#eff6ff",
-                "primary-container": "#2563eb",
-                "error-container": "#ffdad6",
-                "secondary": "#475569",
-                "on-primary": "#ffffff",
-                "on-surface-variant": "#334155",
-                "surface-tint": "#2563eb",
-                "outline": "#94a3b8",
-                "on-surface": "#0f172a",
-                "inverse-primary": "#b4c5ff",
-                "primary-fixed-dim": "#b4c5ff",
-                "surface-variant": "#f1f5f9",
-                "on-error": "#ffffff",
-                "surface-container-high": "#f1f5f9",
-                "error": "#ef4444",
-                "inverse-surface": "#1e293b",
-                "on-secondary-fixed": "#0f172a",
-                "surface-bright": "#ffffff",
-                "on-tertiary": "#ffffff",
-                "inverse-on-surface": "#f8fafc",
-                "outline-variant": "#cbd5e1"
-        },
-        "borderRadius": {
-                "DEFAULT": "0.375rem",
-                "lg": "0.75rem",
-                "xl": "1rem",
-                "full": "9999px"
-        },
-        "spacing": {
-                "container-max": "1440px",
-                "unit": "8px",
-                "margin-x": "40px",
-                "gutter": "20px",
-                "card-gap": "20px"
-        },
-        "fontFamily": {
-                "body-lg": ["Inter"],
-                "label-md": ["Inter"],
-                "body-md": ["Inter"],
-                "headline-lg-mobile": ["Inter"],
-                "headline-lg": ["Inter"],
-                "headline-md": ["Inter"],
-                "headline-sm": ["Inter"],
-                "body-sm": ["Inter"],
-                "display": ["Inter"]
-        },
-        "fontSize": {
-                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700"}],
-                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
-                "headline-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
-                "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
-                "headline-sm": ["22px", {"lineHeight": "30px", "fontWeight": "700"}],
-                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                "display": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "800"}]
-        },
-        "boxShadow": {
-          "bold-hover": "0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 10px 10px -5px rgba(37, 99, 235, 0.04)",
-          "bold-static": "0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.05)"
-        }
-      },
-    },
-  }
-} catch (_e) {}
-</script>
 <style>
-  * {
-      -webkit-tap-highlight-color: transparent;
-  }
-  html, body {
-      scrollbar-gutter: stable;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: geometricPrecision;
-  }
+  html, body { scrollbar-gutter: stable; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision; }
   .glass-header { backdrop-filter: blur(12px); }
-  
-  /* Hide scrollbar for tabs navigation on mobile */
-  .custom-scrollbar::-webkit-scrollbar {
-      display: none;
-  }
-  .custom-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-  }
+  .custom-scrollbar::-webkit-scrollbar { display: none; }
+  .custom-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   .card-floating { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
   .card-floating:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.08), 0 10px 10px -5px rgba(37, 99, 235, 0.03); }
-  
-  /* Buttery smooth gear rotation */
-  #settings-gear {
-      display: inline-block;
-      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  
-  /* Smooth Bouncing Dropdown Transition (Underneath Gear) */
-  #settings-dropdown {
-      opacity: 0;
-      transform: scale(0.95) translateY(-10px);
-      pointer-events: none;
-      transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: block !important; /* override default hidden */
-  }
-  #settings-dropdown.active {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-      pointer-events: auto;
-  }
-  
-  /* Smooth Touch Feedback */
-  .active-feedback {
-      transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, background-color 0.15s ease;
-  }
-  .active-feedback:active {
-      transform: scale(0.96) !important;
-  }
+  #settings-gear { display: inline-block; transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  #settings-dropdown { opacity: 0; transform: scale(0.95) translateY(-10px); pointer-events: none; transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); display: block !important; }
+  #settings-dropdown.active { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
+  .active-feedback { transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, background-color 0.15s ease; }
+  .active-feedback:active { transform: scale(0.96) !important; }
   .dropdown-shadow { box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15); }
-
-  /* Dual-chain scrolling marquee */
-  @keyframes marqueeLeft {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-  }
+  @keyframes marqueeLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   @keyframes marqueeRight {
       0% { transform: translateX(-50%); }
       100% { transform: translateX(0); }
@@ -196,6 +55,228 @@ try {
       display: inline-flex;
       gap: 1.5rem;
       animation: marqueeRight 45s linear infinite;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     All Projects — full-bleed editorial hero, inspired by vector-landing
+     ═══════════════════════════════════════════════════════════════════════ */
+
+  /* 1. Scrollable container — height set to 200svh so hero stays fixed for 100vh of drawer slide */
+  #all-projects-intro {
+      position: relative;
+      height: 200svh;
+  }
+
+  /* 2. The sticky hero card (stays fixed fullscreen filling the viewport) */
+  #obscura-hero-section {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      min-height: 44rem;
+      z-index: 10;
+      overflow: hidden;
+      background-color: #000000 !important;
+      background-image: 
+          radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.045) 0%, transparent 55%),
+          radial-gradient(circle at 15% 75%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
+          radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px) !important;
+      background-size: 100% 100%, 100% 100%, 32px 32px !important;
+      border: 0 !important;
+      margin: 0 !important;
+  }
+
+  /* Dark overlay: grows to near-black — this is what "fades" the hero */
+  #obscura-hero-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,var(--obs-dim,0));
+      pointer-events: none;
+      z-index: 2;
+      transition: none;
+  }
+
+  #obscura-hero-section > .bg-gradient-to-tr { background: transparent !important; }
+
+  /* 3. Hero text wrapper — fades out independently, earlier than the card */
+  #obscura-hero-content {
+      --obs-content-opacity: 1;
+      --obs-content-ty: 0px;
+      opacity: var(--obs-content-opacity);
+      transform: translateY(var(--obs-content-ty));
+      will-change: opacity, transform;
+  }
+
+  /* 4. Thin nav bar */
+  .obscura-showcase-nav {
+      height: 72px;
+      border-bottom: none !important;
+  }
+  .obscura-showcase-nav a,
+  .obscura-showcase-nav span {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .25em;
+  }
+
+  /* 5. Overlapping main content sheet that slides up like a drawer over the sticky hero */
+  #obscura-main-sheet {
+      position: relative;
+      z-index: 30;
+      margin-top: -100svh;
+      background-color: #ffffff !important; /* Pure White Background */
+      border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 -20px 80px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  /* Override inner elements for light drawer theme */
+  #obscura-main-sheet #obscura-ticker {
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+  #obscura-main-sheet #obscura-ticker span {
+      color: rgba(0, 0, 0, 0.45) !important;
+  }
+  #obscura-main-sheet h2.showcase-heading {
+      color: #000000 !important;
+  }
+  #obscura-main-sheet span.text-white\/40 {
+      color: rgba(0, 0, 0, 0.45) !important;
+  }
+  #obscura-main-sheet span.text-white\/20 {
+      color: rgba(0, 0, 0, 0.15) !important;
+  }
+  #obscura-main-sheet span.text-white\/50 {
+      color: rgba(0, 0, 0, 0.6) !important;
+      border-color: rgba(0, 0, 0, 0.15) !important;
+  }
+  #obscura-main-sheet div.border-white\/10 {
+      border-color: rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Card Light Mode Overrides inside White Drawer & Showcase Sections */
+  body.all-projects-showcase #categorized-sections-container .group {
+      background-color: #ffffff !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04) !important;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08) !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group h3 {
+      color: #000000 !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group a.text-primary {
+      color: #000000 !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group .material-symbols-outlined {
+      color: #374151 !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group .fav-toggle-btn {
+      color: #9ca3af !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group .fav-toggle-btn:hover {
+      color: #f59e0b !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group .bg-primary\/10 {
+      background-color: rgba(0, 0, 0, 0.05) !important;
+      color: #000000 !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group .bg-primary\/10:hover {
+      background-color: rgba(0, 0, 0, 0.08) !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group a.px-3.5 {
+      background-color: #f3f4f6 !important;
+      color: #1f2937 !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group a.px-3.5:hover {
+      background-color: #e5e7eb !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group a.bg-primary\/10 {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group a.bg-primary\/10:hover {
+      background-color: #1f2937 !important;
+  }
+
+  #obscura-ticker {
+      position: relative;
+      z-index: 5;
+      border-radius: 0 !important;
+      border-left:   0 !important;
+      border-right:  0 !important;
+      border-color: rgba(255,255,255,.1) !important;
+      background: transparent !important;
+      margin-top: 0 !important;
+  }
+
+  /* 6. Force a uniform, pure white background for the entire page body and scroll containers (except the sticky hero) */
+  body,
+  main,
+  #dashboard-content-canvas,
+  #categorized-sections-container,
+  #section-all-projects,
+  #section-favorites,
+  #section-work,
+  #section-personal,
+  #section-collaboration,
+  #obscura-main-sheet {
+      background-color: #ffffff !important;
+      background: #ffffff !important;
+  }
+  #section-all-projects #grid-all-projects { padding-bottom: 8rem; }
+
+  /* 7. Showcase mode: true full-bleed */
+  body.all-projects-showcase #sidebar,
+  body.all-projects-showcase main > header { display: none !important; }
+  body.all-projects-showcase main           { margin-left: 0 !important; }
+  body.all-projects-showcase #categorized-sections-container h2 { color: #000000 !important; }
+  body.all-projects-showcase #categorized-sections-container h2 span { color: #374151 !important; }
+  body.all-projects-showcase #categorized-sections-container #section-favorites h2 span { color: #d97706 !important; }
+  body.all-projects-showcase #categorized-sections-container #section-work h2 span { color: #2563eb !important; }
+  body.all-projects-showcase #categorized-sections-container #section-personal h2 span { color: #16a34a !important; }
+  body.all-projects-showcase #categorized-sections-container #section-collaboration h2 span { color: #7c3aed !important; }
+  body.all-projects-showcase .project-rating-badge { background-color: rgba(0,0,0,.05) !important; color: #d97706 !important; }
+  /* Remove top padding so hero sits flush against the top of the viewport */
+  body.all-projects-showcase #dashboard-content-canvas { padding-top: 0 !important; }
+  body.all-projects-showcase #dashboard-page-heading   { display: none !important; }
+  /* Remove the gap between sections (Tailwind's space-y uses margin-top on children) */
+  body.all-projects-showcase #categorized-sections-container > * + * { margin-top: 0 !important; }
+
+  /* 8. Remove division borders and shadows between white sections and headers for seamless white background */
+  header,
+  .glass-header,
+  #section-all-projects,
+  #section-favorites,
+  #section-work,
+  #section-personal,
+  #section-collaboration {
+      border-top: none !important;
+      border-bottom: none !important;
+      border-top-width: 0px !important;
+      border-bottom-width: 0px !important;
+      box-shadow: none !important;
+  }
+
+  /* 8. Serif heading class */
+  .showcase-heading {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+      letter-spacing: -.04em;
+  }
+
+  /* 9. Responsive */
+  @media (max-width: 640px) {
+      #all-projects-intro  { height: 110svh; }
+      #obscura-hero-section { min-height: 36rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+      #obscura-hero-section { transform: none !important; }
+      #obscura-hero-content { opacity: 1 !important; }
   }
 </style>
 <meta charset="utf-8">
@@ -219,22 +300,6 @@ try {
 
 <!-- Sidebar Nav Item: All Projects -->
 <a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-primary dark:text-blue-400 font-bold hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="all" data-active-filter="true">
-    <span class="material-symbols-outlined text-primary dark:text-blue-400 transition-colors" data-icon="apps">apps</span>
-    <span class="font-body-md text-body-md font-bold">All Projects</span>
-</a>
-
-<!-- Sidebar Nav Item: Category -->
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="collections">
-    <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="bookmark">grid_view</span>
-    <span class="font-body-md text-body-md">Category</span>
-</a>
-<!-- Sidebar Nav Item: Favourites -->
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="favourites">
-<span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="star">star</span>
-<span class="font-body-md text-body-md">Favorites</span>
-</a>
-<!-- Sidebar Nav Item: Collections (Work) -->
-<a class="sidebar-item relative z-10 flex items-center gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer" href="#" data-target-tab="work">
 <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="work">work</span>
 <span class="font-body-md text-body-md">Work</span>
 </a>
@@ -380,10 +445,10 @@ try {
     </style>
 </div>
 
-<div id="portfolio-dashboard-content" class="hidden flex-grow flex flex-col w-full">
+<div id="portfolio-dashboard-content" class="hidden flex-grow flex flex-col w-full all-projects-active">
     <!-- Content Canvas -->
-    <div class="pt-32 pb-6 flex-grow flex flex-col w-full">
-        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-12">
+    <div id="dashboard-content-canvas" class="pt-32 pb-6 flex-grow flex flex-col w-full">
+        <div id="dashboard-page-heading" class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-12">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-white tracking-tight leading-tight mb-1.5">My Portfolio</h2>
@@ -720,91 +785,98 @@ try {
 </div>
 
 <!-- Categorized Sections Container (Smooth Scroll Targets) -->
-<div id="categorized-sections-container" class="space-y-24 w-full">
-    <!-- Section: All Projects -->
-    <div id="section-all-projects" class="scroll-mt-28 w-full">
-        <!-- Obscura Style Hero Header (Scroll-Driven Shrink & Fade) -->
-        <div id="obscura-hero-section" class="w-full bg-slate-950 text-white relative overflow-hidden py-20 sm:py-28 border border-slate-900 rounded-[2rem] mb-8 transition-all duration-300 select-none z-10 flex flex-col justify-center shadow-2xl">
-            <!-- Decorative Subtle Grain overlay or gradient -->
-            <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-950/90 to-slate-900/30 z-0"></div>
-            
-            <div id="obscura-hero-content" class="max-w-[1680px] mx-auto px-8 sm:px-16 w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-10 transition-all duration-300 relative z-10">
-                <div class="flex flex-col items-start transition-all duration-300 origin-left" id="obscura-hero-left">
-                    <span class="text-[9px] font-black uppercase tracking-[0.4em] text-slate-400 mb-6 flex items-center gap-2">
-                        <span class="w-8 h-px bg-slate-700"></span> THE CURATED WEB &middot; EST. 2026
-                    </span>
-                    <h1 class="text-5xl sm:text-7xl font-light tracking-tight font-serif mb-6 leading-[1.05] text-white" id="obscura-hero-title" style="font-family: 'Playfair Display', serif;">
-                        Curating the<br>Web's Finest
-                    </h1>
-                    <p class="text-xs sm:text-sm text-slate-400 font-normal max-w-sm leading-relaxed" id="obscura-hero-desc">
-                        An editorial gallery of the most exceptional digital design on the internet &mdash; hand-selected for craft, restraint, and audacity.
-                    </p>
-                </div>
-                <div class="flex flex-col items-start md:items-end w-full md:w-auto transition-all duration-300" id="obscura-hero-right">
-                    <a href="#obscura-ticker" class="text-[10px] uppercase tracking-[0.2em] font-extrabold text-white border-b border-white pb-1.5 hover:text-slate-350 hover:border-slate-350 transition-colors flex items-center gap-2 cursor-pointer select-none">
-                        Explore The Collection <span class="material-symbols-outlined text-[13px] font-black">arrow_downward</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+<div id="categorized-sections-container" class="space-y-24 w-full">    <!-- Section: All Projects -->
+    <div id="section-all-projects" class="scroll-mt-0 w-full">
+        <!-- Intro scroll container — gives the sticky hero room to animate -->
+        <div id="all-projects-intro">
+            <!-- Sticky hero card -->
+            <div id="obscura-hero-section" class="w-full text-white flex flex-col">
 
-        <!-- Horizontal Scrolling Ticker (Sticky below page header) -->
-        <div id="obscura-ticker" class="w-full bg-slate-950 dark:bg-slate-900/80 border border-slate-900 dark:border-slate-800 rounded-2xl py-3.5 overflow-hidden z-30 sticky top-20 select-none transition-all duration-300 mb-12 shadow-sm">
-            <div class="animate-marquee-left whitespace-nowrap flex items-center gap-8 text-[9px] font-black uppercase tracking-[0.25em] text-slate-400">
-                <!-- Loop Group 1 -->
-                <div class="inline-flex items-center gap-8">
-                    <span>Award Winning</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Typographic Craft</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Motion Design</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Editorial Detail</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Design Mastery</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Pixel Perfect</span> <span class="text-slate-700 font-bold">✦</span>
-                </div>
-                <!-- Loop Group 2 -->
-                <div class="inline-flex items-center gap-8">
-                    <span>Award Winning</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Typographic Craft</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Motion Design</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Editorial Detail</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Design Mastery</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Pixel Perfect</span> <span class="text-slate-700 font-bold">✦</span>
-                </div>
-                <!-- Loop Group 3 -->
-                <div class="inline-flex items-center gap-8">
-                    <span>Award Winning</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Typographic Craft</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Motion Design</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Editorial Detail</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Design Mastery</span> <span class="text-slate-700 font-bold">✦</span>
-                    <span>Pixel Perfect</span> <span class="text-slate-700 font-bold">✦</span>
-                </div>
-            </div>
-        </div>
+                <!-- Top nav bar -->
+                <nav class="obscura-showcase-nav absolute top-0 left-0 w-full flex items-center justify-between pl-8 pr-8 sm:pl-[16rem] sm:pr-16 md:pl-[21rem] lg:pl-[28rem] xl:pl-[34rem] pt-6 select-none z-20">
+                    <a href="index.html" class="font-extrabold text-sm sm:text-base text-white tracking-[0.25em] uppercase font-sans">OBSCURA.</a>
+                    
+                    <div class="flex items-center gap-8 sm:gap-12 ml-auto">
+                        <div class="hidden sm:flex items-center gap-8 sm:gap-10 text-white/50 tracking-[0.25em] uppercase text-[8.5px] font-sans font-medium">
+                            <span class="cursor-pointer hover:text-white transition-colors">GALLERY</span>
+                            <span class="cursor-pointer hover:text-white transition-colors">FEATURED</span>
+                            <span class="cursor-pointer hover:text-white transition-colors">MANIFESTO</span>
+                        </div>
+                        <a href="#obscura-ticker" class="rounded-full bg-white text-black font-semibold px-5 py-2.5 text-[8.5px] tracking-[0.2em] uppercase hover:bg-white/90 transition-all font-mono">SUBMIT A SITE</a>
+                    </div>
+                </nav>
 
-        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full animate-fade-in-up">
-            <div class="mb-8 border-b border-outline-variant/10 dark:border-slate-800 pb-4">
-                <span class="text-[9px] font-black uppercase tracking-[0.25em] text-slate-400 block mb-1">The Collection</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-on-surface dark:text-white flex items-center gap-2.5">
-                    <span class="material-symbols-outlined text-primary text-[28px]">grid_view</span> Selected Works
-                </h2>
-            </div>
-            <div id="grid-all-projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-                <!-- Dynamically populated -->
-            </div>
-        </div>
-    </div>
+                <!-- Hero text -->
+                <div id="obscura-hero-content" class="h-full flex items-center pl-8 pr-8 sm:pl-[16rem] sm:pr-16 md:pl-[21rem] lg:pl-[28rem] xl:pl-[34rem] relative z-10 pt-[7rem]">
+                    <div class="w-full flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+                        <!-- Left: big serif heading -->
+                        <div id="obscura-hero-left">
+                            <p class="text-[11.5px] font-mono font-semibold uppercase tracking-[0.35em] text-white/65 mb-8 flex items-center gap-3.5">
+                                <span class="inline-block w-10 h-[1.5px] bg-white/40"></span>
+                                THE CURATED WEB &nbsp;&middot;&nbsp; EST. 2025
+                            </p>
+                            <h1 id="obscura-hero-title" class="showcase-heading leading-[0.88] text-white font-normal"
+                                style="font-size: clamp(4.0rem, 9.8vw, 8.8rem);">
+                                Curating the<br>Web's Finest
+                            </h1>
+                            <p class="mt-12 text-[13.5px] sm:text-[14.5px] text-white/75 max-w-[420px] leading-[1.6] font-normal tracking-wide" style="font-family: 'Outfit', sans-serif;" id="obscura-hero-desc">
+                                An editorial gallery of the most exceptional digital design on the internet — hand-selected for craft, restraint, and audacity.
+                            </p>
+                        </div>
+                        <!-- Right: CTA link -->
+                        <div id="obscura-hero-right" class="flex-shrink-0 lg:mb-2">
+                            <a href="#obscura-ticker" class="inline-flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.25em] text-white/80 border-b border-white/40 pb-1.5 hover:border-white hover:text-white transition-colors">
+                                EXPLORE THE COLLECTION
+                                <span class="material-symbols-outlined text-[13px] translate-y-[1px]">south_east</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /#obscura-hero-section -->
+        </div><!-- /#all-projects-intro -->
 
-    <!-- Section: Favorites -->
-    <div id="section-favorites" class="scroll-mt-28 hidden w-full">
-        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
-                <span class="material-symbols-outlined text-amber-500 text-[28px]">star</span> Favorites
-            </h2>
-            <div id="grid-favorites" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-                <!-- Dynamically populated -->
+        <!-- ── Main Overlapping Content Card (Drawer sliding UP over fixed hero) ────── -->
+        <div id="obscura-main-sheet" class="relative z-30 bg-[#000000] rounded-t-[2.5rem] sm:rounded-t-[3.5rem] border-t border-white/20 shadow-[0_-30px_100px_rgba(0,0,0,0.98)] overflow-hidden pt-4">
+            <!-- ── Ticker bar ────────────────────────────────────────────────────── -->
+            <div id="obscura-ticker" class="w-full py-4 overflow-hidden select-none border-y border-white/10">
+                <div class="animate-marquee-left whitespace-nowrap inline-flex items-center gap-10 text-[9px] font-bold uppercase tracking-[.26em] text-white/40">
+                    <span>Award Winning</span> <span class="text-white/20">✦</span>
+                    <span>Typographic Craft</span> <span class="text-white/20">✦</span>
+                    <span>Motion Design</span> <span class="text-white/20">✦</span>
+                    <span>Editorial Detail</span> <span class="text-white/20">✦</span>
+                    <span>Design Mastery</span> <span class="text-white/20">✦</span>
+                    <span>Pixel Perfect</span> <span class="text-white/20">✦</span>
+                    <span>Award Winning</span> <span class="text-white/20">✦</span>
+                    <span>Typographic Craft</span> <span class="text-white/20">✦</span>
+                    <span>Motion Design</span> <span class="text-white/20">✦</span>
+                    <span>Editorial Detail</span> <span class="text-white/20">✦</span>
+                    <span>Design Mastery</span> <span class="text-white/20">✦</span>
+                    <span>Pixel Perfect</span> <span class="text-white/20">✦</span>
+                    <span>Award Winning</span> <span class="text-white/20">✦</span>
+                    <span>Typographic Craft</span> <span class="text-white/20">✦</span>
+                    <span>Motion Design</span> <span class="text-white/20">✦</span>
+                    <span>Editorial Detail</span> <span class="text-white/20">✦</span>
+                    <span>Design Mastery</span> <span class="text-white/20">✦</span>
+                    <span>Pixel Perfect</span> <span class="text-white/20">✦</span>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <!-- ── Project grid ──────────────────────────────────────────────────── -->
+            <div class="max-w-[1400px] mx-auto px-6 sm:px-14 w-full pt-16 pb-32">
+                <div class="mb-10 border-b border-white/10 pb-6 flex items-end justify-between gap-5">
+                    <div>
+                        <span class="text-[9px] font-bold uppercase tracking-[.28em] text-white/40 block mb-2">The Collection</span>
+                        <h2 class="showcase-heading text-4xl sm:text-5xl text-white">Selected Works</h2>
+                    </div>
+                    <span class="rounded-full border border-white/15 px-4 py-2 text-[9px] font-bold uppercase tracking-[.2em] text-white/50">All &darr;</span>
+                </div>
+                <div id="grid-all-projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-7">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div><!-- /#obscura-main-sheet -->
+    </div><!-- /#section-all-projects -->
+
 
     <!-- Section: Work -->
     <div id="section-work" class="scroll-mt-28 w-full">
@@ -1321,15 +1393,11 @@ try {
     (function initWelcomeState() {
         const welcome = document.getElementById('welcome-landing-screen');
         const content = document.getElementById('portfolio-dashboard-content');
-        if (SafeStorage.getSession('welcomeDismissed') === 'true') {
-            setWelcomeLayoutMode(false);
-            if (welcome) welcome.classList.add('hidden');
-            if (content) content.classList.remove('hidden');
-        } else {
-            setWelcomeLayoutMode(true);
-            if (welcome) welcome.classList.remove('hidden');
-            if (content) content.classList.add('hidden');
-        }
+        // The All Projects intro is now the welcome experience. Keep the dashboard
+        // immediately available so clicking All Projects opens its full-screen card.
+        setWelcomeLayoutMode(false);
+        if (welcome) welcome.classList.add('hidden');
+        if (content) content.classList.remove('hidden');
     })();
 
     function handleGetStarted() {
@@ -2201,6 +2269,12 @@ try {
         const secWork = document.getElementById('section-work');
         const secPersonal = document.getElementById('section-personal');
         const secCollab = document.getElementById('section-collaboration');
+        const dashboardContent = document.getElementById('portfolio-dashboard-content');
+
+        if (dashboardContent) {
+            dashboardContent.classList.toggle('all-projects-active', target === 'all');
+        }
+        document.body.classList.toggle('all-projects-showcase', target === 'all');
         
         if (target === 'all') {
             // Show all sections stacked (All Projects scroll view)
@@ -2330,6 +2404,102 @@ try {
             }
         });
     });
+
+    // ── Obscura-style scroll-driven hero animation ─────────────────────────
+    // How it works:
+    //   1. Hero is sticky (fills viewport) for the entire intro zone (280svh)
+    //   2. As user scrolls, the card very gently SCALES down (1 → 0.92)
+    //      and the content text fades out early (starts at 40% scroll)
+    //   3. A dark overlay grows to cover the card completely (like a curtain)
+    //   4. The hero card stays behind the overlay, effectively invisible
+    //   5. After the intro zone ends, the ticker + grid flow in naturally
+    (function initObscuraHero() {
+        const intro   = document.getElementById('all-projects-intro');
+        const hero    = document.getElementById('obscura-hero-section');
+        const content = document.getElementById('obscura-hero-content');
+        if (!intro || !hero) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let raf = null;
+        let targetP = 0;
+        let currentP = 0;
+
+        function tick() {
+            raf = null;
+            if (reduceMotion) return;
+
+            const introRect  = intro.getBoundingClientRect();
+            const introTop   = introRect.top + window.scrollY;
+            const vh         = window.innerHeight;
+            const travel     = intro.offsetHeight - vh;
+            const scrolled   = Math.max(0, window.scrollY - introTop);
+            targetP          = travel > 0 ? Math.min(1, scrolled / travel) : 0;
+
+            // Liquid lerp interpolation for ultra-smooth opacity fading
+            currentP += (targetP - currentP) * 0.18;
+            if (Math.abs(targetP - currentP) < 0.0005) currentP = targetP;
+
+            if (content) {
+                // Opacity remains clear while drawer slides up and vanishes at gap threshold (currentP = 0.8)
+                const fadeProgress = Math.min(1, currentP / 0.8);
+                const opacity = Math.max(0, 1 - Math.pow(fadeProgress, 2));
+
+                const translateY = -(currentP * vh * 0.5);
+
+                content.style.opacity = opacity.toFixed(4);
+                content.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0)`;
+            }
+
+            if (Math.abs(targetP - currentP) >= 0.0005) {
+                schedule();
+            }
+        }
+
+        function schedule() {
+            if (raf === null) raf = requestAnimationFrame(tick);
+        }
+
+        window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('resize', schedule);
+        tick(); // paint immediately on load
+    })();
+
+    document.body.classList.add('all-projects-showcase');
+
+    // ── Ultra-Smooth Liquid Inertial Momentum Scroll (Lenis Engine) ───────────
+    (function initSmoothScrollInertia() {
+        function setupLenis() {
+            if (typeof Lenis !== 'undefined') {
+                window.lenisInstance = new Lenis({
+                    duration: 1.4,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    orientation: 'vertical',
+                    gestureOrientation: 'vertical',
+                    smoothWheel: true,
+                    wheelMultiplier: 1.0,
+                    touchMultiplier: 1.6,
+                    lerp: 0.09
+                });
+
+                function raf(time) {
+                    window.lenisInstance.raf(time);
+                    requestAnimationFrame(raf);
+                }
+                requestAnimationFrame(raf);
+
+                window.lenisInstance.on('scroll', () => {
+                    window.dispatchEvent(new Event('scroll'));
+                });
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupLenis);
+        } else {
+            setupLenis();
+        }
+    })();
+
 
     // Initialize indicator position & check URL params/hash for deep-linked tab redirects
     setTimeout(() => {
