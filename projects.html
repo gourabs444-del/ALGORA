@@ -271,8 +271,9 @@
 
   /* 9. Responsive */
   @media (max-width: 640px) {
-      #all-projects-intro  { height: 110svh; }
-      #obscura-hero-section { min-height: 36rem; }
+      #all-projects-intro  { height: 200vh; height: 200dvh; }
+      #obscura-hero-section { height: 100vh; height: 100dvh; min-height: 100vh; }
+      #obscura-main-sheet { margin-top: -100vh; margin-top: -100dvh; }
   }
   @media (prefers-reduced-motion: reduce) {
       #obscura-hero-section { transform: none !important; }
@@ -816,7 +817,7 @@
                                 THE CURATED WEB &nbsp;&middot;&nbsp; EST. 2025
                             </p>
                             <h1 id="obscura-hero-title" class="showcase-heading leading-[0.88] text-white font-normal"
-                                style="font-size: clamp(4.0rem, 9.8vw, 8.8rem);">
+                                style="font-size: clamp(2.6rem, 9.8vw, 8.8rem);">
                                 Curating the<br>Web's Finest
                             </h1>
                             <p class="mt-12 text-[13.5px] sm:text-[14.5px] text-white/75 max-w-[420px] leading-[1.6] font-normal tracking-wide" style="font-family: 'Outfit', sans-serif;" id="obscura-hero-desc">
@@ -904,9 +905,9 @@
             </div>
                       <!-- Beautiful Section transition separator (Dual-Chain Scrolling Integration Marquee) -->
             <div class="w-full py-24 sm:py-32 my-20 sm:my-28 relative overflow-hidden select-none">
-                <!-- Edge Fades (Theme Responsive) -->
-                <div class="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-surface-container-low dark:from-slate-950 to-transparent z-20 pointer-events-none"></div>
-                <div class="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-surface-container-low dark:from-slate-950 to-transparent z-20 pointer-events-none"></div>
+                <!-- Edge Fades (Pure White Fade matching light page surface) -->
+                <div class="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
+                <div class="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
                 
                 <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-16 text-center">
                     <span class="text-[10px] font-black uppercase tracking-[0.3em] text-primary dark:text-indigo-400 block mb-2">Powering The Stack</span>
@@ -963,7 +964,7 @@
 
                 const generateCardsHTML = (logos) => {
                     return logos.map(logo => `
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white dark:bg-slate-900/60 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 flex items-center justify-center p-3.5 sm:p-5 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 select-none" title="${logo.name}">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-2xl border border-slate-200/70 flex items-center justify-center p-3.5 sm:p-5 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 select-none" title="${logo.name}">
                             ${logo.svg}
                         </div>
                     `).join('');
