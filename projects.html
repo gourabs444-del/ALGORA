@@ -338,6 +338,81 @@
       #obscura-hero-content { opacity: 1 !important; }
       .reveal-on-scroll { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Mobile 2-3 Column Compact Multi-Card Grid Styling
+     ═══════════════════════════════════════════════════════════════════════ */
+  @media (max-width: 640px) {
+      #grid-all-projects,
+      #grid-work,
+      #grid-personal,
+      #grid-collaboration,
+      #grid-favorites {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 0.65rem !important;
+      }
+      
+      .group.card-floating,
+      .dynamic-gallery-card {
+          border-radius: 0.875rem !important;
+      }
+      
+      .group.card-floating .p-6,
+      .dynamic-gallery-card .p-6 {
+          padding: 0.625rem 0.75rem !important;
+      }
+      
+      .group.card-floating h3,
+      .dynamic-gallery-card h3 {
+          font-size: 0.75rem !important;
+          line-height: 1.2 !important;
+          margin-bottom: 0.2rem !important;
+      }
+      
+      .group.card-floating .text-body-sm,
+      .dynamic-gallery-card .text-body-sm {
+          font-size: 0.65rem !important;
+      }
+      
+      .group.card-floating .material-symbols-outlined,
+      .dynamic-gallery-card .material-symbols-outlined {
+          font-size: 13px !important;
+      }
+      
+      .group.card-floating .mt-4,
+      .dynamic-gallery-card .mt-4 {
+          margin-top: 0.4rem !important;
+          gap: 0.25rem !important;
+      }
+      
+      .group.card-floating .mb-4,
+      .dynamic-gallery-card .mb-4 {
+          margin-bottom: 0.25rem !important;
+      }
+      
+      .group.card-floating a.px-3\.5,
+      .dynamic-gallery-card a.px-3\.5 {
+          padding: 0.2rem 0.45rem !important;
+          font-size: 0.62rem !important;
+          border-radius: 0.5rem !important;
+      }
+      
+      .group.card-floating .project-rating-badge,
+      .dynamic-gallery-card .project-rating-badge {
+          padding: 0.15rem 0.35rem !important;
+          font-size: 0.62rem !important;
+          border-radius: 0.375rem !important;
+      }
+
+      /* Compact padding for mobile screen container */
+      #obscura-main-sheet .px-6,
+      .max-w-\[1400px\].px-6,
+      .max-w-\[1680px\].px-6 {
+          padding-left: 0.75rem !important;
+          padding-right: 0.75rem !important;
+      }
+  }
 </style>
 <meta charset="utf-8">
 </head>
@@ -2723,14 +2798,15 @@
             raf = null;
             if (reduceMotion) return;
 
+            const sy = Math.max(0, window.scrollY || window.pageYOffset || 0);
             const introRect  = intro.getBoundingClientRect();
-            const introTop   = introRect.top + window.scrollY;
+            const introTop   = introRect.top + sy;
             const vh         = window.innerHeight;
             const travel     = intro.offsetHeight - vh;
-            const scrolled   = Math.max(0, window.scrollY - introTop);
-            targetP          = travel > 0 ? Math.min(1, scrolled / travel) : 0;
+            const scrolled   = Math.max(0, sy - introTop);
+            targetP          = travel > 0 ? Math.min(1, Math.max(0, scrolled / travel)) : 0;
 
-            if (isTouchDevice) {
+            if (isTouchDevice || sy === 0) {
                 currentP = targetP;
             } else {
                 currentP += (targetP - currentP) * 0.18;
@@ -2738,14 +2814,17 @@
             }
 
             if (content) {
-                // Opacity remains clear while drawer slides up and vanishes at gap threshold (currentP = 0.8)
-                const fadeProgress = Math.min(1, currentP / 0.8);
-                const opacity = Math.max(0, 1 - Math.pow(fadeProgress, 2));
+                if (currentP === 0 || sy === 0) {
+                    content.style.opacity = '1';
+                    content.style.transform = 'translate3d(0, 0px, 0)';
+                } else {
+                    const fadeProgress = Math.min(1, currentP / 0.8);
+                    const opacity = Math.max(0, 1 - Math.pow(fadeProgress, 2));
+                    const translateY = -(currentP * vh * 0.5);
 
-                const translateY = -(currentP * vh * 0.5);
-
-                content.style.opacity = opacity.toFixed(4);
-                content.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0)`;
+                    content.style.opacity = opacity.toFixed(4);
+                    content.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0)`;
+                }
             }
 
             if (Math.abs(targetP - currentP) >= 0.0005) {
