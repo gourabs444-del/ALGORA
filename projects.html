@@ -128,11 +128,11 @@
                   box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
   .obscura-showcase-nav.is-scrolled {
-      background: rgba(10, 10, 14, 0.82) !important;
-      backdrop-filter: blur(24px) saturate(180%) !important;
-      -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5) !important;
+      background: rgba(10, 12, 18, 0.35) !important;
+      backdrop-filter: blur(20px) saturate(220%) brightness(115%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(220%) brightness(115%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+      box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.1) !important;
   }
   .obscura-showcase-nav a,
   .obscura-showcase-nav span {
@@ -336,7 +336,7 @@
 </style>
 <meta charset="utf-8">
 </head>
-<body class="bg-surface-container-low dark:bg-slate-950 text-on-background dark:text-slate-100 antialiased">
+<body class="all-projects-showcase bg-black text-white antialiased">
 <!-- Sidebar Navigation Shell -->
 <aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 bg-white dark:bg-slate-900 border-r border-outline-variant dark:border-slate-800 flex flex-col py-4 lg:py-8 px-6 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-y-auto lg:overflow-y-visible">
 <div class="mb-5 lg:mb-12 px-2 flex justify-between items-center">
@@ -502,8 +502,8 @@
 
 <div id="portfolio-dashboard-content" class="flex-grow flex flex-col w-full all-projects-active">
     <!-- Content Canvas -->
-    <div id="dashboard-content-canvas" class="pt-32 pb-6 flex-grow flex flex-col w-full">
-        <div id="dashboard-page-heading" class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-12">
+    <div id="dashboard-content-canvas" class="pt-0 pb-6 flex-grow flex flex-col w-full">
+        <div id="dashboard-page-heading" class="hidden max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-12">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-white tracking-tight leading-tight mb-1.5">My Portfolio</h2>
@@ -1185,7 +1185,7 @@
                     { name: 'Antigravity', svg: `<img src="assets/antigravity.png" class="w-6 h-6 sm:w-7 sm:h-7 object-contain" alt="Antigravity">` },
                     { name: 'Cursor', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M12.19 1L2 6.89v10.22L12.19 23l10.19-5.89V6.89L12.19 1zm7.84 15.02l-7.84 4.53-7.84-4.53V7.98l7.84-4.53 7.84 4.53v8.04z" fill="#000000"/><path d="M12.19 8.21L7.54 10.9v4.2l4.65 2.69 4.65-2.69v-4.2l-4.65-2.69z" fill="#000000"/></svg>` },
                     { name: 'n8n', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 100 58" fill="none"><circle cx="12" cy="29" r="8" stroke="#EA4B71" stroke-width="6.5" fill="none"/><circle cx="35" cy="29" r="8" stroke="#EA4B71" stroke-width="6.5" fill="none"/><circle cx="88" cy="14" r="8" stroke="#EA4B71" stroke-width="6.5" fill="none"/><circle cx="79" cy="44" r="8" stroke="#EA4B71" stroke-width="6.5" fill="none"/><path d="M 19 29 H 28 M 42 29 C 55 29 55 14 81 14 M 55 29 C 55 44 72 44 72 44" stroke="#EA4B71" stroke-width="6.5" stroke-linecap="round" fill="none"/></svg>` },
-                    { name: 'AWS', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M6.73 12.87c0 .49.07.88.22 1.17.15.29.38.44.69.44.33 0 .58-.11.75-.33.17-.22.25-.57.25-1.05v-3.7h1.61v3.7c0 .94-.24 1.63-.73 2.07-.48.44-1.15.66-2.01.66-.81 0-1.46-.22-1.95-.66-.49-.44-.73-1.13-.73-2.07v-3.7h1.62v3.701zm5.22.95c.19.46.47.81.84 1.05.37.24.81.36 1.32.36.56 0 1.02-.14 1.38-.43.36-.29.54-.7.54-1.24 0-.39-.11-.7-.34-.94-.23-.24-.6-.44-1.11-.6l-.99-.31c-.69-.22-1.19-.51-1.49-.87-.3-.36-.45-.81-.45-1.35 0-.75.3-1.34.89-1.78.59-.44 1.36-.66 2.31-.66.86 0 1.58.2 2.16.6.58.4 .93.97 1.05 1.71h-1.63c-.09-.36-.28-.63-.57-.81-.29-.18-.67-.27-1.14-.27-.47 0-.85.11-1.14.33-.29.22-.44.52-.44.9 0 .32.11.58.33.78.22.2.58.37 1.08.53l.97.31c.73.23 1.25.53 1.56.9.31.37.47.85.47 1.45 0 .82-.31 1.47-.93 1.95-.62.48-1.45.72-2.49.72-.98 0-1.78-.23-2.4-.69-.62-.46-.97-1.13-1.05-2.01h1.66zm9.4 1.98h-1.73l-1.39-5.18h.04l-1.4 5.18h-1.73l-2.07-7.2h1.68l1.29 5.25h.04l1.37-5.25h1.56l1.37 5.25h.04l1.28-5.25h1.64l-2.09 7.2z" fill="#232F3E"/><path d="M12 21c4.5 0 8.3-2.2 10.3-5.5-.3-.2-.7-.4-1.2-.5-1.7 2.8-5 4.6-8.8 4.6-3.8 0-7.2-1.9-8.9-4.8l-1.2.6C4 18.7 7.7 21 12 21z" fill="#FF9900"/></svg>` },
+                    { name: 'AWS', svg: `<img src="assets/aws.png" class="w-6 h-6 sm:w-7 sm:h-7 object-contain" alt="AWS">` },
                     { name: 'Vercel', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M12 1L24 22H0L12 1z" fill="#000000"/></svg>` }
                 ];
 
