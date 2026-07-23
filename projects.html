@@ -271,9 +271,9 @@
 
   /* 9. Responsive */
   @media (max-width: 640px) {
-      #all-projects-intro  { height: 200vh; height: 200dvh; }
-      #obscura-hero-section { height: 100vh; height: 100dvh; min-height: 100vh; }
-      #obscura-main-sheet { margin-top: -100vh; margin-top: -100dvh; }
+      #all-projects-intro  { height: 200svh; height: 200vh; }
+      #obscura-hero-section { height: 100svh; height: 100vh; min-height: 100vh; }
+      #obscura-main-sheet { margin-top: -100svh; margin-top: -100vh; }
   }
   @media (prefers-reduced-motion: reduce) {
       #obscura-hero-section { transform: none !important; }
@@ -2425,6 +2425,8 @@
         let targetP = 0;
         let currentP = 0;
 
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+
         function tick() {
             raf = null;
             if (reduceMotion) return;
@@ -2436,9 +2438,12 @@
             const scrolled   = Math.max(0, window.scrollY - introTop);
             targetP          = travel > 0 ? Math.min(1, scrolled / travel) : 0;
 
-            // Liquid lerp interpolation for ultra-smooth opacity fading
-            currentP += (targetP - currentP) * 0.18;
-            if (Math.abs(targetP - currentP) < 0.0005) currentP = targetP;
+            if (isTouchDevice) {
+                currentP = targetP;
+            } else {
+                currentP += (targetP - currentP) * 0.18;
+                if (Math.abs(targetP - currentP) < 0.0005) currentP = targetP;
+            }
 
             if (content) {
                 // Opacity remains clear while drawer slides up and vanishes at gap threshold (currentP = 0.8)
@@ -2470,6 +2475,9 @@
     // ── Ultra-Smooth Liquid Inertial Momentum Scroll (Lenis Engine) ───────────
     (function initSmoothScrollInertia() {
         function setupLenis() {
+            const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+            if (isTouchDevice) return; // Leave mobile touch scroll to 100% native 60fps browser momentum
+
             if (typeof Lenis !== 'undefined') {
                 window.lenisInstance = new Lenis({
                     duration: 1.4,
@@ -2478,7 +2486,6 @@
                     gestureOrientation: 'vertical',
                     smoothWheel: true,
                     wheelMultiplier: 1.0,
-                    touchMultiplier: 1.6,
                     lerp: 0.09
                 });
 
