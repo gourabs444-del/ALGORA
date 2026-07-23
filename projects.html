@@ -1,29 +1,28 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
+<!DOCTYPE html><html class="dark" lang="en" style="background-color: #000000;"><head>
 <script>
     (function() {
-
         let theme;
         try {
             theme = localStorage.getItem('theme');
         } catch (e) {}
-        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            document.documentElement.classList.remove('light');
-        } else {
+        if (theme === 'light') {
             document.documentElement.classList.add('light');
             document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
         }
     })();
 </script>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=block" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style>
-  html, body { scrollbar-gutter: stable; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision; }
+  html, body { background-color: #000000 !important; background: #000000 !important; scrollbar-gutter: stable; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision; }
   .obscura-brand-logo {
       font-family: 'Bodoni Moda', 'Playfair Display', Didot, 'Bodoni MT', serif !important;
       font-weight: 700 !important;
@@ -456,8 +455,8 @@
         </button>
     </div>
 </header>
-<!-- Welcome Landing Screen (Designed to match the premium emergent.sh layout) -->
-<div id="welcome-landing-screen" class="w-full min-h-screen relative flex flex-col justify-between items-center text-center overflow-hidden bg-[#7fc3ff]">
+<!-- Welcome Landing Screen (Hidden by default to prevent sky blue flash) -->
+<div id="welcome-landing-screen" class="hidden w-full min-h-screen relative flex-col justify-between items-center text-center overflow-hidden bg-black" style="display: none !important;">
     <!-- Widescreen Sky Backdrop -->
     <img src="landing_sky_bg_1784471071994.png" class="absolute inset-0 w-full h-full object-cover select-none z-0 brightness-[1.05]" alt="Sky Background">
     
@@ -501,7 +500,7 @@
     </style>
 </div>
 
-<div id="portfolio-dashboard-content" class="hidden flex-grow flex flex-col w-full all-projects-active">
+<div id="portfolio-dashboard-content" class="flex-grow flex flex-col w-full all-projects-active">
     <!-- Content Canvas -->
     <div id="dashboard-content-canvas" class="pt-32 pb-6 flex-grow flex flex-col w-full">
         <div id="dashboard-page-heading" class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-12">
@@ -1139,67 +1138,74 @@
                 <!-- Dynamically populated -->
             </div>
                       <!-- Beautiful Section transition separator (Dual-Chain Scrolling Integration Marquee) -->
-            <div class="w-full py-24 sm:py-32 my-20 sm:my-28 relative overflow-hidden select-none">
-                <!-- Edge Fades (Pure White Fade matching light page surface) -->
-                <div class="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
-                <div class="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
+            <div class="w-full py-16 sm:py-24 my-12 sm:my-16 relative overflow-hidden select-none">
+                <!-- Global SVG Gradients for marquee icons -->
+                <svg class="hidden absolute w-0 h-0" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="global-ag-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8DC63F"/>
+                            <stop offset="35%" stop-color="#E85A37"/>
+                            <stop offset="70%" stop-color="#3B82F6"/>
+                            <stop offset="100%" stop-color="#2563EB"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <!-- Edge Fades (Pure Fade matching page background) -->
+                <div class="absolute inset-y-0 left-0 w-20 sm:w-48 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
+                <div class="absolute inset-y-0 right-0 w-20 sm:w-48 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
                 
-                <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-16 text-center">
+                <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full mb-12 sm:mb-16 text-center">
                     <span class="text-[10px] font-black uppercase tracking-[0.3em] text-primary dark:text-indigo-400 block mb-2">Powering The Stack</span>
                     <h4 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white">Core Software & Automations</h4>
                 </div>
-
-                <!-- Row 1: Scrolling Left -->
-                <div class="flex overflow-hidden mb-8 relative w-full items-center">
+                <div class="flex overflow-hidden mb-6 sm:mb-8 relative w-full items-center z-10">
                     <div id="scroll-wrapper-1" class="w-full flex transition-transform duration-300 ease-out">
-                        <div id="marquee-row-1" class="animate-marquee-left whitespace-nowrap flex items-center gap-6 py-2"></div>
+                        <div id="marquee-row-1" class="animate-marquee-left whitespace-nowrap flex items-center gap-6 sm:gap-8 py-2"></div>
                     </div>
                 </div>
 
                 <!-- Row 2: Scrolling Right -->
-                <div class="flex overflow-hidden relative w-full items-center">
+                <div class="flex overflow-hidden relative w-full items-center z-10">
                     <div id="scroll-wrapper-2" class="w-full flex transition-transform duration-300 ease-out" style="transform: translateX(-600px);">
-                        <div id="marquee-row-2" class="animate-marquee-right whitespace-nowrap flex items-center gap-6 py-2"></div>
+                        <div id="marquee-row-2" class="animate-marquee-right whitespace-nowrap flex items-center gap-6 sm:gap-8 py-2"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Dynamic Marquee Populator with Official SVGs -->
+            <!-- Dynamic Marquee Populator -->
             <script>
             document.addEventListener('DOMContentLoaded', () => {
-                // Row 1 unique logos (12 unique items)
+                // Row 1 logos matching reference image exactly
                 const row1Logos = [
-                    { name: 'n8n', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#FF6C37]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5zm-5-3c0-.83.67-1.5 1.5-1.5S11 12.67 11 13.5 10.33 15 9.5 15 8 14.33 8 13.5zm7.33-4.3c-.39-.39-.39-1.03 0-1.42l2-2a.996.996 0 1 1 1.41 1.41l-2 2a.996.996 0 0 1-1.41 0z"/></svg>` },
-                    { name: 'Figma', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 38 57" fill="none"><path d="M19 0C13.75 0 9.5 4.25 9.5 9.5C9.5 14.75 13.75 19 19 19C24.25 19 28.5 14.75 28.5 9.5C28.5 4.25 24.25 0 19 0Z" fill="#F24E1E"/><path d="M9.5 28.5C9.5 23.25 13.75 19 19 19H28.5V38H19C13.75 38 9.5 33.75 9.5 28.5Z" fill="#A259FF"/><path d="M9.5 47.5C9.5 42.25 13.75 38 19 38H28.5V47.5C28.5 52.75 24.25 57 19 57C13.75 57 9.5 52.75 9.5 47.5Z" fill="#0ACF83"/><path d="M28.5 19C28.5 24.25 32.75 28.5 38 28.5C43.25 28.5 47.5 24.25 47.5 19C47.5 13.75 43.25 9.5 38 9.5C32.75 9.5 28.5 13.75 28.5 19Z" transform="translate(-9.5)" fill="#1ABC9C"/><path d="M28.5 38C28.5 32.75 32.75 28.5 38 28.5V47.5C38 52.75 33.75 57 28.5 57C23.25 57 19 52.75 19 47.5C19 42.25 23.25 38 28.5 38Z" transform="translate(9.5 -9.5)" fill="#FF7262"/></svg>` },
-                    { name: 'GitHub', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 fill-current text-slate-800 dark:text-white" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.82 1.102.82 2.222v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>` },
-                    { name: 'Vercel', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-800 dark:text-white fill-current" viewBox="0 0 116 100"><path fill-rule="evenodd" clip-rule="evenodd" d="M57.5 0L115 100H0L57.5 0Z"/></svg>` },
-                    { name: 'NodeJS', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#339933] fill-current" viewBox="0 0 24 24"><path d="M12 2L3.5 6.9v9.8L12 21.6l8.5-4.9V6.9L12 2zM12.8 17.4c-0.2 0.3-0.5 0.4-0.8 0.4c-0.3 0-0.6-0.1-0.8-0.3c-0.5-0.4-0.6-1.1-0.2-1.6l2.1-2.6c0.4-0.5 1.1-0.6 1.6-0.2c0.5 0.4 0.6 1.1 0.2 1.6L12.8 17.4z M15 11.2l-3-2.3c-0.4-0.3-0.6-0.9-0.3-1.3c0.3-0.4 0.9-0.6 1.3-0.3l3 2.3c0.4 0.3 0.6 0.9 0.3 1.3C16 11.3 15.4 11.5 15 11.2z"/></svg>` },
-                    { name: 'NextJS', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-850 dark:text-white fill-current" viewBox="0 0 180 180"><path d="M165.7 90c0 41.8-33.9 75.7-75.7 75.7S14.3 131.8 14.3 90 48.2 14.3 90 14.3 165.7 48.2 165.7 90zm-75.7-53.7V90l32.5 45.7 5.7-4L98 87.2V36.3h-8z"/></svg>` },
-                    { name: 'React', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#61DAFB]" viewBox="-11.5 -10.23174 23 20.46348" fill="none"><ellipse rx="11" ry="4.2" stroke="currentColor" stroke-width="1.2"/><ellipse rx="11" ry="4.2" transform="rotate(60)" stroke="currentColor" stroke-width="1.2"/><ellipse rx="11" ry="4.2" transform="rotate(120)" stroke="currentColor" stroke-width="1.2"/><circle r="2" fill="currentColor"/></svg>` },
-                    { name: 'TypeScript', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#3178C6] fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm21.6 18.9c-.8.8-2 1.3-3.6 1.3-2.2 0-3.6-1.2-4-2.8h2.3c.3.8 1 1.2 1.8 1.2.9 0 1.5-.4 1.5-1.1 0-.8-.6-1.1-1.7-1.6l-.8-.3c-1.8-.8-2.8-1.7-2.8-3.4 0-2 1.6-3.4 3.7-3.4 1.8 0 3 1 3.5 2.4h-2.3c-.3-.7-.8-1.1-1.4-1.1-.8 0-1.2.4-1.2.9 0 .6.4.9 1.4 1.3l1 .4c2 .8 2.9 1.9 2.9 3.6 0 2.1-1.5 3.4-3.8 3.4zm-8.8-10h-2.9v10.5H7.7V8.9H4.8V6.7h8v2.2z"/></svg>` },
-                    { name: 'Docker', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#2496ED] fill-current" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119c.102 0 .186-.083.186-.185V8.99c0-.102-.084-.186-.186-.186h-2.119c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM11.561 11.078h2.119c.102 0 .185-.083.185-.185V8.99c0-.102-.083-.186-.185-.186h-2.119c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM9.138 11.078h2.119c.102 0 .186-.083.186-.185V8.99c0-.102-.084-.186-.186-.186H9.138c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM6.716 11.078h2.119c.102 0 .185-.083.185-.185V8.99c0-.102-.083-.186-.185-.186H6.716c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM9.138 8.657h2.119c.102 0 .186-.083.186-.186V6.57c0-.102-.084-.186-.186-.186H9.138c-.103 0-.186.084-.186.186v1.902c0 .103.083.186.186.186zM11.561 8.657h2.119c.102 0 .185-.083.185-.186V6.57c0-.102-.083-.186-.185-.186h-2.119c-.103 0-.186.084-.186.186v1.902c0 .103.083.186.186.186zM13.983 8.657h2.119c.102 0 .186-.083.186-.186V6.57c0-.102-.084-.186-.186-.186h-2.119c-.103 0-.186.084-.186.186v1.902c0 .103.083.186.186.186zM11.561 6.236h2.119c.102 0 .185-.083.185-.186V4.147c0-.102-.083-.186-.185-.186h-2.119c-.103 0-.186.084-.186.186v1.903c0 .102.083.185.186.185zM23.614 10.155c-.07-.387-.316-.855-.706-1.158-.389-.302-.855-.418-1.322-.418h-1.503V6.236c0-.102-.084-.186-.186-.186h-2.119c-.102 0-.186.084-.186.186v4.657c0 .102.084.185.186.185h5.105c.153 0 .306.05.408.153.102.102.153.255.153.407 0 3.906-3.136 7.078-7.002 7.078-3.864 0-7.001-3.172-7.001-7.078 0-.152.05-.305.153-.407.102-.102.255-.153.408-.153h.905c.102 0 .186-.083.186-.185V8.99c0-.102-.084-.186-.186-.186h-.905c-.467 0-.933.116-1.323.418-.39.303-.635.77-.705 1.158-.085.45-.05 1.103-.05 1.625 0 4.887 3.972 8.871 8.885 8.871 4.9 0 8.87-3.984 8.87-8.871 0-.522.035-1.175-.05-1.625z"/></svg>` },
-                    { name: 'TailwindCSS', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#06B6D4]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 6.036c-2.287 0-3.81 1.143-4.57 3.429 1.142-1.524 2.476-2.095 4.000-1.714.872.217 1.495.85 2.185 1.553C14.73 10.435 15.938 11.66 18.5 11.66c2.286 0 3.81-1.142 4.572-3.428-1.143 1.524-2.476 2.095-4 1.714-.872-.217-1.495-.85-2.185-1.553C15.807 7.26 14.598 6.036 12 6.036zm-7.428 5.624c-2.286 0-3.81 1.143-4.572 3.43 1.143-1.524 2.476-2.095 4.000-1.715.872.217 1.495.85 2.186 1.553C7.303 16.06 8.51 17.286 11.07 17.286c2.286 0 3.81-1.143 4.572-3.43-1.143 1.524-2.476 2.095-4.000 1.715-.872-.217-1.495-.85-2.186-1.553C8.375 12.887 7.168 11.66 4.572 11.66z"/></svg>` },
-                    { name: 'PostgreSQL', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#336791] fill-current" viewBox="0 0 24 24"><path d="M12 2c4.42 0 8 1.79 8 4s-3.58 4-8 4-8-1.79-8-4 3.58-4 8-4zm0 6c2.97 0 6-1.1 6-2s-3.03-2-6-2-6 1.1-6 2 3.03 2 6 2zm0 3c-4.42 0-8-1.79-8-4v3c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0 2.21-3.58 4-8 4zm0 5c-4.42 0-8-1.79-8-4v3c0 2.21 3.58 4 8 4s8-1.79 8-4v-3c0 2.21-3.58 4-8 4z"/></svg>` },
-                    { name: 'Redis', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#DC382D] fill-current" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 18l-10-5 10-5 10 5-10 5zm0-6l-10-5 10-5 10 5-10 5z"/></svg>` }
+                    { name: 'GitHub', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.82 1.102.82 2.222v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z" fill="#24292E"/></svg>` },
+                    { name: 'Firebase', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M3.89 15.57L8.36 2.27c.13-.38.65-.38.78 0l1.79 5.37.9-2.7c.13-.38.65-.38.78 0l4.17 12.51-8.15 4.58c-.4 .22-.89 .22-1.29 0L3.89 15.57z" fill="#FFCA28"/><path d="M13.5 11.23L11.83 7.64l-8 10.25 9.67-6.66z" fill="#FFA000"/><path d="M3.89 15.57L8.36 2.27c.13-.38.65-.38.78 0l1.79 5.37-7.04 7.93z" fill="#F57C00"/></svg>` },
+                    { name: 'React', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="-11.5 -10.23174 23 20.46348" fill="none"><ellipse rx="11" ry="4.2" stroke="#61DAFB" stroke-width="1.2"/><ellipse rx="11" ry="4.2" transform="rotate(60)" stroke="#61DAFB" stroke-width="1.2"/><ellipse rx="11" ry="4.2" transform="rotate(120)" stroke="#61DAFB" stroke-width="1.2"/><circle r="2" fill="#61DAFB"/></svg>` },
+                    { name: 'TailwindCSS', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M12 6.036c-2.287 0-3.81 1.143-4.57 3.429 1.142-1.524 2.476-2.095 4.000-1.714.872.217 1.495.85 2.185 1.553C14.73 10.435 15.938 11.66 18.5 11.66c2.286 0 3.81-1.142 4.572-3.428-1.143 1.524-2.476 2.095-4 1.714-.872-.217-1.495-.85-2.185-1.553C15.807 7.26 14.598 6.036 12 6.036zm-7.428 5.624c-2.286 0-3.81 1.143-4.572 3.43 1.143-1.524 2.476-2.095 4.000-1.715.872.217 1.495.85 2.186 1.553C7.303 16.06 8.51 17.286 11.07 17.286c2.286 0 3.81-1.143 4.572-3.43-1.143 1.524-2.476 2.095-4.000 1.715-.872-.217-1.495-.85-2.186-1.553C8.375 12.887 7.168 11.66 4.572 11.66z" fill="#06B6D4"/></svg>` },
+                    { name: 'VS Code', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M23.15 2.587a1.44 1.44 0 00-1.42.12L7.94 11.23l-4.48-3.4a.72.72 0 00-.98.11L.38 10.37a.72.72 0 00.1 1.01l4.24 3.32-4.24 3.32a.72.72 0 00-.1 1.01l2.1 2.43c.27.31.74.36 1.06.11l4.4-3.34 12.32 9.28a1.44 1.44 0 001.42.12l1.39-.75a1.44 1.44 0 00.75-1.27V3.857a1.44 1.44 0 00-.75-1.27zM18 16.5l-6-4.5 6-4.5v9z" fill="#007ACC"/><path d="M23.15 2.587l-1.39-.75a1.44 1.44 0 00-1.42.12L7.94 11.23l10.06 5.27 5.15-3.86a1.44 1.44 0 00.75-1.27V3.857a1.44 1.44 0 00-.75-1.27z" fill="#2091EB"/></svg>` },
+                    { name: 'Antigravity', svg: `<img src="assets/antigravity.png" class="w-6 h-6 sm:w-7 sm:h-7 object-contain" alt="Antigravity">` },
+                    { name: 'Cursor', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M12.19 1L2 6.89v10.22L12.19 23l10.19-5.89V6.89L12.19 1zm7.84 15.02l-7.84 4.53-7.84-4.53V7.98l7.84-4.53 7.84 4.53v8.04z" fill="#000000"/><path d="M12.19 8.21L7.54 10.9v4.2l4.65 2.69 4.65-2.69v-4.2l-4.65-2.69z" fill="#000000"/></svg>` },
+                    { name: 'n8n', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 100 58" fill="none"><circle cx="12" cy="29" r="8" stroke="#EA4B71" stroke-width="6.5" fill="none"/><circle cx="35" cy="29" r="8" stroke="#EA4B71" stroke-width="6.5" fill="none"/><circle cx="88" cy="14" r="8" stroke="#EA4B71" stroke-width="6.5" fill="none"/><circle cx="79" cy="44" r="8" stroke="#EA4B71" stroke-width="6.5" fill="none"/><path d="M 19 29 H 28 M 42 29 C 55 29 55 14 81 14 M 55 29 C 55 44 72 44 72 44" stroke="#EA4B71" stroke-width="6.5" stroke-linecap="round" fill="none"/></svg>` },
+                    { name: 'AWS', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M6.73 12.87c0 .49.07.88.22 1.17.15.29.38.44.69.44.33 0 .58-.11.75-.33.17-.22.25-.57.25-1.05v-3.7h1.61v3.7c0 .94-.24 1.63-.73 2.07-.48.44-1.15.66-2.01.66-.81 0-1.46-.22-1.95-.66-.49-.44-.73-1.13-.73-2.07v-3.7h1.62v3.701zm5.22.95c.19.46.47.81.84 1.05.37.24.81.36 1.32.36.56 0 1.02-.14 1.38-.43.36-.29.54-.7.54-1.24 0-.39-.11-.7-.34-.94-.23-.24-.6-.44-1.11-.6l-.99-.31c-.69-.22-1.19-.51-1.49-.87-.3-.36-.45-.81-.45-1.35 0-.75.3-1.34.89-1.78.59-.44 1.36-.66 2.31-.66.86 0 1.58.2 2.16.6.58.4 .93.97 1.05 1.71h-1.63c-.09-.36-.28-.63-.57-.81-.29-.18-.67-.27-1.14-.27-.47 0-.85.11-1.14.33-.29.22-.44.52-.44.9 0 .32.11.58.33.78.22.2.58.37 1.08.53l.97.31c.73.23 1.25.53 1.56.9.31.37.47.85.47 1.45 0 .82-.31 1.47-.93 1.95-.62.48-1.45.72-2.49.72-.98 0-1.78-.23-2.4-.69-.62-.46-.97-1.13-1.05-2.01h1.66zm9.4 1.98h-1.73l-1.39-5.18h.04l-1.4 5.18h-1.73l-2.07-7.2h1.68l1.29 5.25h.04l1.37-5.25h1.56l1.37 5.25h.04l1.28-5.25h1.64l-2.09 7.2z" fill="#232F3E"/><path d="M12 21c4.5 0 8.3-2.2 10.3-5.5-.3-.2-.7-.4-1.2-.5-1.7 2.8-5 4.6-8.8 4.6-3.8 0-7.2-1.9-8.9-4.8l-1.2.6C4 18.7 7.7 21 12 21z" fill="#FF9900"/></svg>` },
+                    { name: 'Vercel', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M12 1L24 22H0L12 1z" fill="#000000"/></svg>` }
                 ];
 
-                // Row 2 unique logos (10 unique items)
+                // Row 2 logos matching reference image order exactly
                 const row2Logos = [
-                    { name: 'VSCode', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#007ACC] fill-current" viewBox="0 0 24 24"><path d="M23.985 17.56l-3.08-14.887a1.042 1.042 0 0 0-.82-.821L5.198.773c-.563-.117-1.12.28-1.207.82l-3.2 15.688a1.042 1.042 0 0 0 .82 1.208l14.887 3.08c.564.117 1.12-.28 1.207-.82l3.2-15.688a1.042 1.042 0 0 0-.82-1.208z"/></svg>` },
-                    { name: 'OpenAI', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-emerald-600 dark:text-emerald-400 fill-current" viewBox="0 0 24 24"><path d="M22.5 12.5a3.5 3.5 0 0 0-3.5-3.5 3.5 3.5 0 0 0-.5.03A5.5 5.5 0 0 0 13 4a5.5 5.5 0 0 0-5.5 5.5v.03a3.5 3.5 0 0 0-3.5 3.5 3.5 0 0 0 3.5 3.5h9a3.5 3.5 0 0 0 3.5-3.5z"/></svg>` },
-                    { name: 'Slack', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 24 24" fill="none"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523 2.528 2.528 0 0 1-2.522-2.523 2.528 2.528 0 0 1 2.522-2.52h2.52v2.52zm1.261 0a2.528 2.528 0 0 1 2.52-2.52h5.043a2.528 2.528 0 0 1 2.522 2.52v5.043a2.528 2.528 0 0 1-2.522 2.52H8.803a2.528 2.528 0 0 1-2.52-2.52v-5.043z" fill="#36C5F0"/></svg>` },
-                    { name: 'Firebase', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#FFCA28] fill-current" viewBox="0 0 24 24"><path d="M3.89 15.57L8.36 2.27c.13-.38.65-.38.78 0l1.79 5.37.9-2.7c.13-.38.65-.38.78 0l4.17 12.51-8.15 4.58c-.4.22-.89.22-1.29 0L3.89 15.57z"/></svg>` },
-                    { name: 'Discord', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#5865F2] fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0c-.172-.393-.412-.875-.63-1.25a.078.078 0 0 0-.07-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C3.533 9.048 1.78 13.58 2.499 18.057a.082.082 0 0 0 .031.057c2.26 1.665 4.464 2.685 6.634 3.36a.078.078 0 0 0 .084-.028c.514-.702.97-1.463 1.366-2.26a.078.078 0 0 0-.043-.11c-.702-.266-1.371-.586-2.016-.93a.078.078 0 0 1-.008-.129c.135-.101.268-.205.395-.312a.078.078 0 0 1 .081-.01c4.186 1.917 8.705 1.917 12.83 0a.078.078 0 0 1 .08.01c.127.107.26.21.396.312a.078.078 0 0 1-.007.13c-.645.344-1.314.664-2.016.93a.078.078 0 0 0-.044.11c.395.797.852 1.558 1.366 2.26a.078.078 0 0 0 .084.028c2.18-.675 4.385-1.695 6.634-3.36a.082.082 0 0 0 .031-.057c.7-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>` },
-                    { name: 'Asana', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#F06A6A] fill-current" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><circle cx="7" cy="14" r="3"/><circle cx="17" cy="14" r="3"/></svg>` },
-                    { name: 'Jira', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#0052CC] fill-current" viewBox="0 0 24 24"><path d="M11.53 2c0 2.4-1.97 4.35-4.39 4.35H2v15.65h19.53c2.42 0 4.39-1.95 4.39-4.35V2H11.53z"/></svg>` },
-                    { name: 'Notion', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-800 dark:text-white fill-current" viewBox="0 0 24 24"><path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm2 4v12h2v-8.5l6 8.5h2V6h-2v8.5L8 6H6z"/></svg>` },
-                    { name: 'GitLab', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 text-[#FCA121] fill-current" viewBox="0 0 24 24"><path d="M23.95 13.58l-1.34-4.13a.996.996 0 0 0-.31-.47L12 1.6 1.7 8.98a.996.996 0 0 0-.31.47l-1.34 4.13a1 1 0 0 0 .36 1.09l11.09 8.05a1 1 0 0 0 1.18 0l11.09-8.05a1 1 0 0 0 .38-1.09z"/></svg>` },
-                    { name: 'Python', svg: `<svg class="w-8 h-8 sm:w-10 sm:h-10 fill-current" viewBox="0 0 24 24"><path d="M11.93 2.005c-2.3 0-4.13.2-5.5 1.5-1.56 1.48-1.47 3.03-1.47 4.54H9.6c.1 0 .2.08.2.2v4.06c0 .1-.09.18-.2.18H1.83c-.93 0-1.83.91-1.83 1.83v2.86c0 .92.9 1.83 1.83 1.83h2.86c.92 0 1.83-.91 1.83-1.83V16.6c0-.1.08-.2.2-.2h4.54c1.51 0 3.06.09 4.54-1.47 1.3-1.37 1.5-3.2 1.5-5.5V6.6c0-2.3-.2-4.13-1.5-5.5-1.48-1.56-3.03-1.47-4.54-1.47zM22.17 6.63h-2.86c-.92 0-1.83.91-1.83 1.83v2.86c0 .92.91 1.83 1.83 1.83h4.54c.1 0 .2.08.2.2v4.54c0 1.51-.09 3.06-1.47 4.54-1.37 1.3-3.2 1.5-5.5 1.5h-2.87c-2.3 0-4.13-.2-5.5-1.5-1.56-1.48-1.47-3.03-1.47-4.54H9.6c.1 0 .2.08.2.2v4.06c0 .1-.09.18-.2.18H1.83c-.93 0-1.83.91-1.83 1.83v2.86c0 .92.9 1.83 1.83 1.83h2.86c.92 0 1.83-.91 1.83-1.83z" fill="#3776AB"/></svg>` }
+                    { name: 'TypeScript', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#3178C6"/><path d="M11.5 14.5c.3.5.8.8 1.5.8.7 0 1.1-.3 1.1-.7 0-.5-.4-.7-1.3-1l-.6-.2c-1.4-.5-2.2-1.3-2.2-2.6 0-1.6 1.3-2.7 3.1-2.7 1.4 0 2.4.6 2.9 1.6l-1.4.9c-.3-.6-.8-.9-1.5-.9-.7 0-1.1.3-1.1.7 0 .4.3.7 1.2 1l.6.2c1.6.6 2.3 1.3 2.3 2.7 0 1.7-1.3 2.8-3.3 2.8-1.7 0-2.8-.8-3.4-1.9l1.5-.7zm-7.5-6h6v1.4H7.8v7.6H6.2V9.9H4V8.5z" fill="white"/></svg>` },
+                    { name: 'Figma', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 38 57" fill="none"><path d="M19 0C13.75 0 9.5 4.25 9.5 9.5C9.5 14.75 13.75 19 19 19C24.25 19 28.5 14.75 28.5 9.5C28.5 4.25 24.25 0 19 0Z" fill="#F24E1E"/><path d="M9.5 28.5C9.5 23.25 13.75 19 19 19H28.5V38H19C13.75 38 9.5 33.75 9.5 28.5Z" fill="#A259FF"/><path d="M9.5 47.5C9.5 42.25 13.75 38 19 38H28.5V47.5C28.5 52.75 24.25 57 19 57C13.75 57 9.5 52.75 9.5 47.5Z" fill="#0ACF83"/><path d="M28.5 19C28.5 24.25 32.75 28.5 38 28.5C43.25 28.5 47.5 24.25 47.5 19C47.5 13.75 43.25 9.5 38 9.5C32.75 9.5 28.5 13.75 28.5 19Z" transform="translate(-9.5)" fill="#1ABC9C"/><path d="M28.5 38C28.5 32.75 32.75 28.5 38 28.5V47.5C38 52.75 33.75 57 28.5 57C23.25 57 19 52.75 19 47.5C19 42.25 23.25 38 28.5 38Z" transform="translate(9.5 -9.5)" fill="#FF7262"/></svg>` },
+                    { name: 'OpenAI', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>` },
+                    { name: 'Discord', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#5865F2"/><path d="M17.317 6.37a14.791 14.791 0 0 0-3.885-1.151.074.074 0 0 0-.079.037c-.17.305-.35.7-.48 1.02a13.27 13.27 0 0 0-4.387 0c-.13-.32-.32-.715-.49-1.02a.078.078 0 0 0-.07-.037 14.736 14.736 0 0 0-3.885 1.151.069.069 0 0 0-.032.027C2.233 10.048 1.08 13.58 1.649 17.057a.082.082 0 0 0 .031.057c1.8 1.325 3.55 2.135 5.28 2.67a.078.078 0 0 0 .084-.028c.41-.56.77-1.16 1.09-1.8a.078.078 0 0 0-.043-.11c-.56-.21-1.09-.46-1.6-.74a.078.078 0 0 1-.008-.129c.11-.08.21-.16.31-.25a.078.078 0 0 1 .081-.01c3.33 1.53 6.93 1.53 10.22 0a.078.078 0 0 1 .08.01c.1.09.2.17.31.25a.078.078 0 0 1-.007.13c-.51.28-1.04.53-1.6.74a.078.078 0 0 1-.044.11c.32.64.68 1.24 1.09 1.8a.078.078 0 0 0 .084.028c1.73-.535 3.48-1.345 5.28-2.67a.082.082 0 0 0 .031-.057c.56-4.127-.67-7.659-2.83-10.66a.061.061 0 0 0-.031-.03z" fill="#FFFFFF"/></svg>` },
+                    { name: 'PostgreSQL', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M12 2c4.42 0 8 1.79 8 4s-3.58 4-8 4-8-1.79-8-4 3.58-4 8-4zm0 6c2.97 0 6-1.1 6-2s-3.03-2-6-2-6 1.1-6 2 3.03 2 6 2zm0 3c-4.42 0-8-1.79-8-4v3c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0 2.21-3.58 4-8 4zm0 5c-4.42 0-8-1.79-8-4v3c0 2.21 3.58 4 8 4s8-1.79 8-4v-3c0 2.21-3.58 4-8 4z" fill="#336791"/></svg>` },
+                    { name: 'Next.js', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 180 180" fill="none"><circle cx="90" cy="90" r="85" fill="#000000"/><path d="M140 145L75 60v85H60V35h15l65 85V35h15v110z" fill="#FFFFFF"/></svg>` },
+                    { name: 'Node.js', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12,2 22,7.5 22,18.5 12,24 2,18.5 2,7.5"/></svg>` },
+                    { name: 'Python', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M11.93 2c-2.3 0-4.13.2-5.5 1.5-1.56 1.48-1.47 3.03-1.47 4.54H9.6c.1 0 .2.08.2.2v4.06c0 .1-.09.18-.2.18H1.83c-.93 0-1.83.91-1.83 1.83v2.86c0 .92.9 1.83 1.83 1.83h2.86c.92 0 1.83-.91 1.83-1.83V16.6c0-.1.08-.2.2-.2h4.54c1.51 0 3.06.09 4.54-1.47 1.3-1.37 1.5-3.2 1.5-5.5V6.6c0-2.3-.2-4.13-1.5-5.5-1.48-1.56-3.03-1.47-4.54-1.47z" fill="#3776AB"/><path d="M12.07 22c2.3 0 4.13-.2 5.5-1.5 1.56-1.48 1.47-3.03 1.47-4.54H14.4c-.1 0-.2-.08-.2-.2v-4.06c0-.1.09-.18.2-.18h7.77c.93 0 1.83-.91 1.83-1.83V6.83c0-.92-.9-1.83-1.83-1.83h-2.86c-.92 0-1.83.91-1.83 1.83V7.4c0 .1-.08.2-.2.2h-4.54c-1.51 0-3.06-.09-4.54 1.47-1.3 1.37-1.5 3.2-1.5 5.5v4.54c0 2.3.2 4.13 1.5 5.5 1.48 1.56 3.03 1.47 4.54 1.47z" fill="#FFD43B"/></svg>` },
+                    { name: 'Docker', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="16" height="10" rx="2"/></svg>` },
+                    { name: 'Supabase', svg: `<svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none"><path d="M13.35 21.6c-.66.86-2.02.4-2.02-.68V13.5H3.64c-.9 0-1.42-1.03-.87-1.74l8.28-10.74c.66-.86 2.02-.4 2.02.68v7.42h7.69c.9 0 1.42 1.03.87 1.74l-8.28 10.74z" fill="#3ECF8E"/></svg>` }
                 ];
 
                 const generateCardsHTML = (logos) => {
                     return logos.map(logo => `
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-2xl border border-slate-200/70 flex items-center justify-center p-3.5 sm:p-5 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 select-none" title="${logo.name}">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white rounded-2xl border border-slate-100/90 flex items-center justify-center p-3 sm:p-3.5 shadow-[0_4px_16px_rgba(0,0,0,0.04)] hover:scale-110 hover:shadow-md transition-all duration-300 select-none" title="${logo.name}">
                             ${logo.svg}
                         </div>
                     `).join('');
@@ -1209,8 +1215,8 @@
                 const row2Container = document.getElementById('marquee-row-2');
                 
                 if (row1Container && row2Container) {
-                    const row1GroupHTML = `<div class="inline-flex items-center gap-6">${generateCardsHTML(row1Logos)}</div>`;
-                    const row2GroupHTML = `<div class="inline-flex items-center gap-6">${generateCardsHTML(row2Logos)}</div>`;
+                    const row1GroupHTML = `<div class="inline-flex items-center gap-6 sm:gap-8">${generateCardsHTML(row1Logos)}</div>`;
+                    const row2GroupHTML = `<div class="inline-flex items-center gap-6 sm:gap-8">${generateCardsHTML(row2Logos)}</div>`;
                     
                     // Duplicate exactly 4 times for perfect infinite translation and zero gaps
                     row1Container.innerHTML = row1GroupHTML.repeat(4);
