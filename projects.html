@@ -1,12 +1,6 @@
 <!DOCTYPE html><html class="light" lang="en"><head>
 <script>
     (function() {
-        const navEntries = window.performance && window.performance.getEntriesByType ? window.performance.getEntriesByType("navigation") : [];
-        const isReload = navEntries.length > 0 ? navEntries[0].type === "reload" : (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
-        if (isReload) {
-            window.location.replace("index.html");
-            return;
-        }
 
         let theme;
         try {
@@ -24,12 +18,17 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style>
   html, body { scrollbar-gutter: stable; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision; }
+  .obscura-brand-logo {
+      font-family: 'Bodoni Moda', 'Playfair Display', Didot, 'Bodoni MT', serif !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.02em !important;
+  }
   .glass-header { backdrop-filter: blur(12px); }
   .custom-scrollbar::-webkit-scrollbar { display: none; }
   .custom-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -41,15 +40,19 @@
   .active-feedback { transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, background-color 0.15s ease; }
   .active-feedback:active { transform: scale(0.96) !important; }
   .dropdown-shadow { box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15); }
-  @keyframes marqueeLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes marqueeLeft { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-25%, 0, 0); } }
   @keyframes marqueeRight {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
+      0% { transform: translate3d(-25%, 0, 0); }
+      100% { transform: translate3d(0, 0, 0); }
   }
   .animate-marquee-left {
       display: inline-flex;
-      gap: 1.5rem;
-      animation: marqueeLeft 45s linear infinite;
+      width: max-content;
+      animation: marqueeLeft 45s linear infinite !important;
+      will-change: transform;
+  }
+  .animate-marquee-left:hover {
+      animation-play-state: paused;
   }
   .animate-marquee-right {
       display: inline-flex;
@@ -107,10 +110,30 @@
       will-change: opacity, transform;
   }
 
-  /* 4. Thin nav bar */
+  /* 4. Frosted Glassmorphic Header Ribbon (Line & Glass hidden at top, animates in on scroll) */
   .obscura-showcase-nav {
       height: 72px;
-      border-bottom: none !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 9999 !important;
+      background: transparent !important;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      border-bottom: 1px solid transparent !important;
+      box-shadow: none !important;
+      transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .obscura-showcase-nav.is-scrolled {
+      background: rgba(10, 10, 14, 0.82) !important;
+      backdrop-filter: blur(24px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5) !important;
   }
   .obscura-showcase-nav a,
   .obscura-showcase-nav span {
@@ -134,9 +157,6 @@
       border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
       border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
   }
-  #obscura-main-sheet #obscura-ticker span {
-      color: rgba(0, 0, 0, 0.45) !important;
-  }
   #obscura-main-sheet h2.showcase-heading {
       color: #000000 !important;
   }
@@ -155,16 +175,29 @@
   }
 
   /* Card Light Mode Overrides inside White Drawer & Showcase Sections */
-  body.all-projects-showcase #categorized-sections-container .group {
+  body.all-projects-showcase #categorized-sections-container .grid .group {
       background-color: #ffffff !important;
       border: 1px solid rgba(0, 0, 0, 0.08) !important;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04) !important;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
-  body.all-projects-showcase #categorized-sections-container .group:hover {
+  body.all-projects-showcase #categorized-sections-container .grid .group:hover {
       transform: translateY(-4px) !important;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08) !important;
       border-color: rgba(0, 0, 0, 0.12) !important;
+  }
+  .hero-cta-link:hover .cta-text { border-color: #ffffff !important; }
+  .hero-cta-link svg {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.3s ease, color 0.3s ease !important;
+      will-change: transform;
+  }
+  .hero-cta-link:hover svg {
+      color: #ffffff !important;
+      stroke: #ffffff !important;
+      transform: translate(4px, 4px) scale(1.18) !important;
+  }
+  .hero-cta-link:active svg {
+      transform: translate(8px, 8px) scale(1.05) !important;
   }
   body.all-projects-showcase #categorized-sections-container .group h3 {
       color: #000000 !important;
@@ -275,9 +308,31 @@
       #obscura-hero-section { height: 100svh; height: 100vh; min-height: 100vh; }
       #obscura-main-sheet { margin-top: -100svh; margin-top: -100vh; }
   }
+  /* 10. Scroll-reveal entrance animation engine for drawer content, cards, headings & banners */
+  .reveal-on-scroll {
+      opacity: 0 !important;
+      transform: translateY(38px) scale(0.97) !important;
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      will-change: opacity, transform;
+  }
+
+  .reveal-on-scroll.is-revealed {
+      opacity: 1 !important;
+      transform: translateY(0) scale(1) !important;
+  }
+
+  .reveal-stagger-1 { transition-delay: 0.05s !important; }
+  .reveal-stagger-2 { transition-delay: 0.10s !important; }
+  .reveal-stagger-3 { transition-delay: 0.15s !important; }
+  .reveal-stagger-4 { transition-delay: 0.20s !important; }
+  .reveal-stagger-5 { transition-delay: 0.25s !important; }
+  .reveal-stagger-6 { transition-delay: 0.30s !important; }
+
   @media (prefers-reduced-motion: reduce) {
       #obscura-hero-section { transform: none !important; }
       #obscura-hero-content { opacity: 1 !important; }
+      .reveal-on-scroll { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
 </style>
 <meta charset="utf-8">
@@ -785,6 +840,20 @@
 
 </div>
 
+<!-- Fixed Frosted Glassmorphic Header Ribbon (Pinned z-9999 above drawer) -->
+<nav class="obscura-showcase-nav fixed top-0 left-0 w-full flex items-center justify-between pl-8 pr-8 sm:pl-[16rem] sm:pr-16 md:pl-[21rem] lg:pl-[28rem] xl:pl-[34rem] py-4.5 sm:py-5 select-none z-[9999] transition-all">
+    <a href="index.html" class="obscura-brand-logo text-xl sm:text-2xl text-white uppercase tracking-[0.02em]">OBSCURA</a>
+    
+    <div class="flex items-center gap-8 sm:gap-12 ml-auto">
+        <div class="hidden sm:flex items-center gap-8 sm:gap-10 text-white/65 tracking-[0.25em] uppercase text-[8.5px] font-sans font-medium">
+            <span class="cursor-pointer hover:text-white transition-colors">GALLERY</span>
+            <span class="cursor-pointer hover:text-white transition-colors">FEATURED</span>
+            <span class="cursor-pointer hover:text-white transition-colors">MANIFESTO</span>
+        </div>
+        <a href="#obscura-ticker" class="rounded-full bg-white text-black font-semibold px-5 py-2 text-[8.5px] tracking-[0.2em] uppercase hover:bg-white/90 transition-all font-mono">SUBMIT A SITE</a>
+    </div>
+</nav>
+
 <!-- Categorized Sections Container (Smooth Scroll Targets) -->
 <div id="categorized-sections-container" class="space-y-24 w-full">    <!-- Section: All Projects -->
     <div id="section-all-projects" class="scroll-mt-0 w-full">
@@ -793,22 +862,8 @@
             <!-- Sticky hero card -->
             <div id="obscura-hero-section" class="w-full text-white flex flex-col">
 
-                <!-- Top nav bar -->
-                <nav class="obscura-showcase-nav absolute top-0 left-0 w-full flex items-center justify-between pl-8 pr-8 sm:pl-[16rem] sm:pr-16 md:pl-[21rem] lg:pl-[28rem] xl:pl-[34rem] pt-6 select-none z-20">
-                    <a href="index.html" class="font-extrabold text-sm sm:text-base text-white tracking-[0.25em] uppercase font-sans">OBSCURA.</a>
-                    
-                    <div class="flex items-center gap-8 sm:gap-12 ml-auto">
-                        <div class="hidden sm:flex items-center gap-8 sm:gap-10 text-white/50 tracking-[0.25em] uppercase text-[8.5px] font-sans font-medium">
-                            <span class="cursor-pointer hover:text-white transition-colors">GALLERY</span>
-                            <span class="cursor-pointer hover:text-white transition-colors">FEATURED</span>
-                            <span class="cursor-pointer hover:text-white transition-colors">MANIFESTO</span>
-                        </div>
-                        <a href="#obscura-ticker" class="rounded-full bg-white text-black font-semibold px-5 py-2.5 text-[8.5px] tracking-[0.2em] uppercase hover:bg-white/90 transition-all font-mono">SUBMIT A SITE</a>
-                    </div>
-                </nav>
-
                 <!-- Hero text -->
-                <div id="obscura-hero-content" class="h-full flex items-center pl-8 pr-8 sm:pl-[16rem] sm:pr-16 md:pl-[21rem] lg:pl-[28rem] xl:pl-[34rem] relative z-10 pt-[7rem]">
+                <div id="obscura-hero-content" class="h-full flex items-center pl-8 pr-8 sm:pl-[16rem] sm:pr-16 md:pl-[21rem] lg:pl-[28rem] xl:pl-[34rem] relative z-10 pt-[8.5rem] sm:pt-[9rem]">
                     <div class="w-full flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
                         <!-- Left: big serif heading -->
                         <div id="obscura-hero-left">
@@ -825,10 +880,10 @@
                             </p>
                         </div>
                         <!-- Right: CTA link -->
-                        <div id="obscura-hero-right" class="flex-shrink-0 lg:mb-2">
-                            <a href="#obscura-ticker" class="inline-flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.25em] text-white/80 border-b border-white/40 pb-1.5 hover:border-white hover:text-white transition-colors">
-                                EXPLORE THE COLLECTION
-                                <span class="material-symbols-outlined text-[13px] translate-y-[1px]">south_east</span>
+                        <div id="obscura-hero-right" class="flex-shrink-0 mb-6 sm:mb-8 lg:mb-10 mr-14 sm:mr-[15rem] md:mr-[20rem] lg:mr-[26rem] xl:mr-[31rem] -translate-y-3 sm:-translate-y-5">
+                            <a href="#obscura-ticker" class="hero-cta-link inline-flex items-center gap-3.5 text-[11px] sm:text-[12.5px] font-mono font-medium uppercase tracking-[0.25em] text-white/90 hover:text-white transition-colors cursor-pointer select-none">
+                                <span class="cta-text border-b border-white/60 pb-1.5 transition-colors">EXPLORE THE COLLECTION</span>
+                                <svg class="w-5 h-5 sm:w-[22px] sm:h-[22px] text-white/90 flex-shrink-0 translate-y-[1px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="7" x2="17" y2="17"></line><polyline points="7 17 17 17 17 7"></polyline></svg>
                             </a>
                         </div>
                     </div>
@@ -837,28 +892,198 @@
         </div><!-- /#all-projects-intro -->
 
         <!-- ── Main Overlapping Content Card (Drawer sliding UP over fixed hero) ────── -->
-        <div id="obscura-main-sheet" class="relative z-30 bg-[#000000] rounded-t-[2.5rem] sm:rounded-t-[3.5rem] border-t border-white/20 shadow-[0_-30px_100px_rgba(0,0,0,0.98)] overflow-hidden pt-4">
+        <div id="obscura-main-sheet" class="relative z-30 bg-[#ffffff] rounded-t-[2.5rem] sm:rounded-t-[3.5rem] border-t border-black/10 shadow-[0_-30px_100px_rgba(0,0,0,0.08)] overflow-hidden pt-4">
             <!-- ── Ticker bar ────────────────────────────────────────────────────── -->
-            <div id="obscura-ticker" class="w-full py-4 overflow-hidden select-none border-y border-white/10">
-                <div class="animate-marquee-left whitespace-nowrap inline-flex items-center gap-10 text-[9px] font-bold uppercase tracking-[.26em] text-white/40">
-                    <span>Award Winning</span> <span class="text-white/20">✦</span>
-                    <span>Typographic Craft</span> <span class="text-white/20">✦</span>
-                    <span>Motion Design</span> <span class="text-white/20">✦</span>
-                    <span>Editorial Detail</span> <span class="text-white/20">✦</span>
-                    <span>Design Mastery</span> <span class="text-white/20">✦</span>
-                    <span>Pixel Perfect</span> <span class="text-white/20">✦</span>
-                    <span>Award Winning</span> <span class="text-white/20">✦</span>
-                    <span>Typographic Craft</span> <span class="text-white/20">✦</span>
-                    <span>Motion Design</span> <span class="text-white/20">✦</span>
-                    <span>Editorial Detail</span> <span class="text-white/20">✦</span>
-                    <span>Design Mastery</span> <span class="text-white/20">✦</span>
-                    <span>Pixel Perfect</span> <span class="text-white/20">✦</span>
-                    <span>Award Winning</span> <span class="text-white/20">✦</span>
-                    <span>Typographic Craft</span> <span class="text-white/20">✦</span>
-                    <span>Motion Design</span> <span class="text-white/20">✦</span>
-                    <span>Editorial Detail</span> <span class="text-white/20">✦</span>
-                    <span>Design Mastery</span> <span class="text-white/20">✦</span>
-                    <span>Pixel Perfect</span> <span class="text-white/20">✦</span>
+            <div id="obscura-ticker" class="w-full py-4 overflow-hidden select-none border-y border-black/10 bg-white">
+                <div class="animate-marquee-left flex items-center gap-0 whitespace-nowrap">
+                    <!-- Group 1 -->
+                    <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
+                        <div class="inline-flex items-center gap-5">
+                            <span class="obscura-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important;">OBSCURA</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-neutral-400">Award Winning</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Typographic Craft</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Motion Design & System</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Editorial Excellence</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-neutral-500 font-normal">Design Mastery</span>
+                            <span class="text-neutral-300 text-[11px]">★</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">High Craft & Digital Vision</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Pixel Perfect</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Finest Digital Works</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Creative Direction</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Curated Showcase</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
+                        </div>
+                    </div>
+                    <!-- Group 2 -->
+                    <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
+                        <div class="inline-flex items-center gap-5">
+                            <span class="obscura-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important;">OBSCURA</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-neutral-400">Award Winning</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Typographic Craft</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Motion Design & System</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Editorial Excellence</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-neutral-500 font-normal">Design Mastery</span>
+                            <span class="text-neutral-300 text-[11px]">★</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">High Craft & Digital Vision</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Pixel Perfect</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Finest Digital Works</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Creative Direction</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Curated Showcase</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
+                        </div>
+                    </div>
+                    <!-- Group 3 -->
+                    <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
+                        <div class="inline-flex items-center gap-5">
+                            <span class="obscura-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important;">OBSCURA</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-neutral-400">Award Winning</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Typographic Craft</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Motion Design & System</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Editorial Excellence</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-neutral-500 font-normal">Design Mastery</span>
+                            <span class="text-neutral-300 text-[11px]">★</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">High Craft & Digital Vision</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Pixel Perfect</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Finest Digital Works</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Creative Direction</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Curated Showcase</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
+                        </div>
+                    </div>
+                    <!-- Group 4 -->
+                    <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
+                        <div class="inline-flex items-center gap-5">
+                            <span class="obscura-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important;">OBSCURA</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-neutral-400">Award Winning</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Typographic Craft</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Motion Design & System</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Editorial Excellence</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-neutral-500 font-normal">Design Mastery</span>
+                            <span class="text-neutral-300 text-[11px]">★</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">High Craft & Digital Vision</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Pixel Perfect</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Finest Digital Works</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Creative Direction</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
+                        </div>
+                        <div class="inline-flex items-center gap-5">
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Curated Showcase</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -881,18 +1106,28 @@
 
     <!-- Section: Work -->
     <div id="section-work" class="scroll-mt-28 w-full">
-        <!-- Creative Work Premium Banner (Cinematic Full Screen Width & Height) -->
-        <div class="category-banner w-full h-[80vh] min-h-[580px] sm:h-[650px] lg:h-[720px] overflow-hidden relative mb-16 shadow-2xl group border-y border-outline-variant/10 dark:border-slate-800 bg-slate-950">
-            <img alt="Creative Work Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] group-hover:scale-[1.03] transition-transform duration-[10s] select-none z-0" src="creative_work_banner_1784469349995.png">
+        <!-- Creative Work Premium Banner (PC Full Size & Mobile Optimized) -->
+        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.15)] group border border-black/10 dark:border-white/15 bg-neutral-950 transition-all duration-500">
+            <img alt="Creative Work Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="creative_work_banner_1784469349995.png">
             <canvas id="canvas-work-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-transparent z-10"></div>
-            <div class="absolute inset-0 max-w-[1680px] mx-auto px-6 sm:px-10 w-full h-full flex flex-col justify-center items-start z-20 pointer-events-none select-none">
-                <div class="border-l-4 border-blue-500 pl-8 sm:pl-16">
-                    <span class="text-xs sm:text-sm uppercase tracking-[0.4em] font-extrabold text-blue-400 mb-4 block">Portfolio Showcase</span>
-                    <h3 class="text-4xl sm:text-7xl font-black tracking-tight mb-6 font-headline-lg leading-none bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
-                        Creative Work &<br>UI/UX Designs
+            <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/75 sm:via-neutral-950/60 to-transparent z-10"></div>
+            <div class="banner-spotlight absolute inset-0 z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 px-6 sm:px-12 lg:px-20 py-6 sm:py-10 w-full h-full flex flex-col justify-center items-start z-20">
+                <div class="border-l-2 border-blue-400/80 pl-4 sm:pl-8 lg:pl-12 space-y-2.5 sm:space-y-4 lg:space-y-6 max-w-3xl">
+                    <span class="text-[9.5px] sm:text-[11px] font-mono uppercase tracking-[0.25em] sm:tracking-[0.35em] text-blue-400 flex items-center gap-2 sm:gap-3">
+                        <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-blue-400 animate-pulse"></span> PORTFOLIO SHOWCASE
+                    </span>
+                    <h3 class="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal text-white tracking-tight leading-[1.08] font-serif">
+                        Creative Work &<br><span class="italic text-white/90">UI/UX Systems</span>
                     </h3>
-                    <p class="text-sm sm:text-xl text-slate-300 font-medium max-w-2xl leading-relaxed">Explore visual web tools, high-fidelity prototypes, and crafted interfaces designed to perfection.</p>
+                    <p class="text-xs sm:text-base lg:text-lg text-neutral-300 font-normal max-w-xl leading-relaxed line-clamp-3 sm:line-clamp-none">
+                        Visual web tools, high-fidelity prototypes, and crafted editorial interfaces designed for clarity and performance.
+                    </p>
+                    <div class="pt-2 sm:pt-4 flex items-center gap-3 sm:gap-4 flex-wrap">
+                        <a href="#grid-work" class="inline-flex items-center gap-2.5 px-5 py-2 sm:px-7 sm:py-3 rounded-full bg-white text-black font-mono text-[9.5px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold hover:bg-neutral-200 transition-all shadow-lg active:scale-95">
+                            Explore Collection ↘
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1015,18 +1250,28 @@
 
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
-        <!-- Personal Lab Premium Banner (Cinematic Full Screen Width & Height) -->
-        <div class="category-banner w-full h-[80vh] min-h-[580px] sm:h-[650px] lg:h-[720px] overflow-hidden relative mb-16 shadow-2xl group border-y border-outline-variant/10 dark:border-slate-800 bg-slate-950">
-            <img alt="Personal Lab Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] group-hover:scale-[1.03] transition-transform duration-[10s] select-none z-0" src="personal_lab_banner_1784469366510.png">
+        <!-- Personal Lab Premium Banner (PC Full Size & Mobile Optimized) -->
+        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.15)] group border border-black/10 dark:border-white/15 bg-neutral-950 transition-all duration-500">
+            <img alt="Personal Lab Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="personal_lab_banner_1784469366510.png">
             <canvas id="canvas-personal-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-transparent z-10"></div>
-            <div class="absolute inset-0 max-w-[1680px] mx-auto px-6 sm:px-10 w-full h-full flex flex-col justify-center items-start z-20 pointer-events-none select-none">
-                <div class="border-l-4 border-fuchsia-500 pl-8 sm:pl-16">
-                    <span class="text-xs sm:text-sm uppercase tracking-[0.4em] font-extrabold text-fuchsia-400 mb-4 block">Dev Laboratory</span>
-                    <h3 class="text-4xl sm:text-7xl font-black tracking-tight mb-6 font-headline-lg leading-none bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
-                        Personal Projects &<br>Sandbox
+            <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/75 sm:via-neutral-950/60 to-transparent z-10"></div>
+            <div class="banner-spotlight absolute inset-0 z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 px-6 sm:px-12 lg:px-20 py-6 sm:py-10 w-full h-full flex flex-col justify-center items-start z-20">
+                <div class="border-l-2 border-fuchsia-400/80 pl-4 sm:pl-8 lg:pl-12 space-y-2.5 sm:space-y-4 lg:space-y-6 max-w-3xl">
+                    <span class="text-[9.5px] sm:text-[11px] font-mono uppercase tracking-[0.25em] sm:tracking-[0.35em] text-fuchsia-400 flex items-center gap-2 sm:gap-3">
+                        <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-fuchsia-400 animate-pulse"></span> DEV LABORATORY
+                    </span>
+                    <h3 class="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal text-white tracking-tight leading-[1.08] font-serif">
+                        Personal Lab &<br><span class="italic text-white/90">Algorithmic Sandbox</span>
                     </h3>
-                    <p class="text-sm sm:text-xl text-slate-300 font-medium max-w-2xl leading-relaxed">A playground of custom algorithms, interactive terminal environments, and API integrations.</p>
+                    <p class="text-xs sm:text-base lg:text-lg text-neutral-300 font-normal max-w-xl leading-relaxed line-clamp-3 sm:line-clamp-none">
+                        A playground of custom algorithms, interactive terminal environments, and experimental API integrations.
+                    </p>
+                    <div class="pt-2 sm:pt-4 flex items-center gap-3 sm:gap-4 flex-wrap">
+                        <a href="#grid-personal" class="inline-flex items-center gap-2.5 px-5 py-2 sm:px-7 sm:py-3 rounded-full bg-white text-black font-mono text-[9.5px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold hover:bg-neutral-200 transition-all shadow-lg active:scale-95">
+                            Launch Sandbox ↘
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1092,18 +1337,28 @@
 
     <!-- Section: Collaboration -->
     <div id="section-collaboration" class="scroll-mt-28 w-full">
-        <!-- Collaboration Premium Banner (Cinematic Full Screen Width & Height) -->
-        <div class="category-banner w-full h-[80vh] min-h-[580px] sm:h-[650px] lg:h-[720px] overflow-hidden relative mb-16 shadow-2xl group border-y border-outline-variant/10 dark:border-slate-800 bg-slate-950">
-            <img alt="Collaboration Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.5] group-hover:scale-[1.03] transition-transform duration-[10s] select-none z-0" src="collaboration_banner_1784469380792.png">
+        <!-- Collaboration Premium Banner (PC Full Size & Mobile Optimized) -->
+        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.15)] group border border-black/10 dark:border-white/15 bg-neutral-950 transition-all duration-500">
+            <img alt="Collaboration Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="collaboration_banner_1784469380792.png">
             <canvas id="canvas-collaboration-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-transparent z-10"></div>
-            <div class="absolute inset-0 max-w-[1680px] mx-auto px-6 sm:px-10 w-full h-full flex flex-col justify-center items-start z-20 pointer-events-none select-none">
-                <div class="border-l-4 border-amber-500 pl-8 sm:pl-16">
-                    <span class="text-xs sm:text-sm uppercase tracking-[0.4em] font-extrabold text-amber-400 mb-4 block">Global Partnerships</span>
-                    <h3 class="text-4xl sm:text-7xl font-black tracking-tight mb-6 font-headline-lg leading-none bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
-                        Collaborative Spaces &<br>Repos
+            <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/75 sm:via-neutral-950/60 to-transparent z-10"></div>
+            <div class="banner-spotlight absolute inset-0 z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 px-6 sm:px-12 lg:px-20 py-6 sm:py-10 w-full h-full flex flex-col justify-center items-start z-20">
+                <div class="border-l-2 border-amber-400/80 pl-4 sm:pl-8 lg:pl-12 space-y-2.5 sm:space-y-4 lg:space-y-6 max-w-3xl">
+                    <span class="text-[9.5px] sm:text-[11px] font-mono uppercase tracking-[0.25em] sm:tracking-[0.35em] text-amber-400 flex items-center gap-2 sm:gap-3">
+                        <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-pulse"></span> GLOBAL PARTNERSHIPS
+                    </span>
+                    <h3 class="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal text-white tracking-tight leading-[1.08] font-serif">
+                        Collaborative Repos &<br><span class="italic text-white/90">Shared Projects</span>
                     </h3>
-                    <p class="text-sm sm:text-xl text-slate-300 font-medium max-w-2xl leading-relaxed">Joint developments, corporate integrations, and open-source contributions with developers worldwide.</p>
+                    <p class="text-xs sm:text-base lg:text-lg text-neutral-300 font-normal max-w-xl leading-relaxed line-clamp-3 sm:line-clamp-none">
+                        Joint developments, corporate integrations, and open-source contributions crafted alongside teams globally.
+                    </p>
+                    <div class="pt-2 sm:pt-4 flex items-center gap-3 sm:gap-4 flex-wrap">
+                        <a href="#grid-collaboration" class="inline-flex items-center gap-2.5 px-5 py-2 sm:px-7 sm:py-3 rounded-full bg-white text-black font-mono text-[9.5px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold hover:bg-neutral-200 transition-all shadow-lg active:scale-95">
+                            View Repositories ↘
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1463,6 +1718,19 @@
 
     // Dynamic dot particle canvas orbits inside category banners
     function initBannerParticles() {
+        // Interactive Spotlight Mouse Movement
+        document.querySelectorAll('.category-banner').forEach(banner => {
+            const spotlight = banner.querySelector('.banner-spotlight');
+            banner.addEventListener('mousemove', (e) => {
+                const rect = banner.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                if (spotlight) {
+                    spotlight.style.background = `radial-gradient(650px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.08), transparent 60%)`;
+                }
+            });
+        });
+
         const banners = [
             { canvasId: 'canvas-work-banner', color: '59, 130, 246', align: 'right' },       // blue
             { canvasId: 'canvas-personal-banner', color: '217, 70, 239', align: 'left' },    // fuchsia
@@ -2369,6 +2637,19 @@
         });
     });
 
+    // Smooth Navbar Glass Ribbon Scroll Activation
+    const showcaseNav = document.querySelector('.obscura-showcase-nav');
+    function updateShowcaseNavState() {
+        if (!showcaseNav) return;
+        if (window.scrollY > 25) {
+            showcaseNav.classList.add('is-scrolled');
+        } else {
+            showcaseNav.classList.remove('is-scrolled');
+        }
+    }
+    window.addEventListener('scroll', updateShowcaseNavState, { passive: true });
+    updateShowcaseNavState();
+
     // Scroll Spy: Update active state in sidebar based on current scroll position
     window.addEventListener('scroll', () => {
         const activeTabBtn = document.querySelector('.tab-btn.text-primary');
@@ -2506,6 +2787,69 @@
         } else {
             setupLenis();
         }
+    })();
+
+    // ── High-Performance Scroll-Reveal Animation Engine ────────────────────────
+    (function initScrollRevealEngine() {
+        function applyScrollObserver() {
+            const selectors = [
+                '#obscura-ticker',
+                'h1.showcase-heading',
+                'h2.showcase-heading',
+                '.category-banner',
+                '#categorized-sections-container h2',
+                '#categorized-sections-container .grid .group',
+                '#categorized-sections-container .dynamic-gallery-card',
+                '#scroll-wrapper-1',
+                '#scroll-wrapper-2'
+            ];
+
+            const targets = document.querySelectorAll(selectors.join(','));
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -30px 0px',
+                threshold: 0.04
+            };
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            targets.forEach((el) => {
+                if (!el.classList.contains('reveal-on-scroll')) {
+                    el.classList.add('reveal-on-scroll');
+                    
+                    if (el.parentElement && el.parentElement.classList.contains('grid')) {
+                        const siblings = Array.from(el.parentElement.children);
+                        const idx = siblings.indexOf(el);
+                        if (idx >= 0) {
+                            const staggerClass = `reveal-stagger-${(idx % 6) + 1}`;
+                            el.classList.add(staggerClass);
+                        }
+                    }
+                }
+                observer.observe(el);
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => setTimeout(applyScrollObserver, 150));
+        } else {
+            setTimeout(applyScrollObserver, 150);
+        }
+
+        // Re-scan whenever new dynamic cards are rendered into DOM
+        const container = document.getElementById('categorized-sections-container') || document.body;
+        const mutationObserver = new MutationObserver(() => {
+            setTimeout(applyScrollObserver, 50);
+        });
+        mutationObserver.observe(container, { childList: true, subtree: true });
     })();
 
 

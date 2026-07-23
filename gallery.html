@@ -3,13 +3,6 @@
 <head>
 <script>
     (function() {
-        // Redirect to landing page on refresh/reload
-        const navEntries = window.performance && window.performance.getEntriesByType ? window.performance.getEntriesByType("navigation") : [];
-        const isReload = navEntries.length > 0 ? navEntries[0].type === "reload" : (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
-        if (isReload) {
-            window.location.replace("index.html");
-            return;
-        }
 
         const theme = localStorage.getItem('theme');
         if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
