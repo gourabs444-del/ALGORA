@@ -203,41 +203,53 @@
   .hero-cta-link:active svg {
       transform: translate(8px, 8px) scale(1.05) !important;
   }
-  body.all-projects-showcase #categorized-sections-container .group h3 {
-      color: #000000 !important;
+  body.all-projects-showcase #categorized-sections-container .grid .group h3 {
+      color: #0f172a !important;
   }
-  body.all-projects-showcase #categorized-sections-container .group a.text-primary {
-      color: #000000 !important;
-  }
-  body.all-projects-showcase #categorized-sections-container .group .material-symbols-outlined {
-      color: #374151 !important;
-  }
-  body.all-projects-showcase #categorized-sections-container .group .fav-toggle-btn {
-      color: #9ca3af !important;
-  }
-  body.all-projects-showcase #categorized-sections-container .group .fav-toggle-btn:hover {
-      color: #f59e0b !important;
-  }
-  body.all-projects-showcase #categorized-sections-container .group .bg-primary\/10 {
-      background-color: rgba(0, 0, 0, 0.05) !important;
-      color: #000000 !important;
-  }
-  body.all-projects-showcase #categorized-sections-container .group .bg-primary\/10:hover {
-      background-color: rgba(0, 0, 0, 0.08) !important;
-  }
-  body.all-projects-showcase #categorized-sections-container .group a.px-3.5 {
-      background-color: #f3f4f6 !important;
-      color: #1f2937 !important;
-  }
-  body.all-projects-showcase #categorized-sections-container .group a.px-3.5:hover {
-      background-color: #e5e7eb !important;
-  }
-  body.all-projects-showcase #categorized-sections-container .group a.bg-primary\/10 {
-      background-color: #000000 !important;
+  .category-banner h3 {
       color: #ffffff !important;
   }
+  .category-banner h3 span {
+      color: #e2e8f0 !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group a.text-primary {
+      color: #2563eb !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group .material-symbols-outlined:not(.text-amber-500) {
+      color: #3b82f6 !important;
+  }
+  /* Star Favorite Button: Bright Warm Yellow - Orange */
+  body.all-projects-showcase #categorized-sections-container .group .fav-toggle-btn {
+      color: #f59e0b !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group .fav-toggle-btn:hover {
+      color: #d97706 !important;
+      transform: scale(1.15) !important;
+  }
+  /* View Button: Vibrant Soft Blue Accent Tint (Non-Black) */
+  body.all-projects-showcase #categorized-sections-container .group a.bg-primary\/10 {
+      background-color: rgba(37, 99, 235, 0.12) !important;
+      color: #2563eb !important;
+      font-weight: 700 !important;
+  }
   body.all-projects-showcase #categorized-sections-container .group a.bg-primary\/10:hover {
-      background-color: #1f2937 !important;
+      background-color: rgba(37, 99, 235, 0.22) !important;
+      color: #1d4ed8 !important;
+  }
+  /* About Button: Soft Clean Neutral Slate (Non-Black) */
+  body.all-projects-showcase #categorized-sections-container .group a.px-3.5:not(.bg-primary\/10) {
+      background-color: #f1f5f9 !important;
+      color: #475569 !important;
+      font-weight: 700 !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group a.px-3.5:not(.bg-primary\/10):hover {
+      background-color: #e2e8f0 !important;
+      color: #1e293b !important;
+  }
+  /* Rating Badge: Warm Yellow - Orange Tint */
+  body.all-projects-showcase #categorized-sections-container .group .project-rating-badge {
+      background-color: rgba(245, 158, 11, 0.12) !important;
+      color: #d97706 !important;
   }
 
   #obscura-ticker {
@@ -332,6 +344,10 @@
   .reveal-stagger-4 { transition-delay: 0.20s !important; }
   .reveal-stagger-5 { transition-delay: 0.25s !important; }
   .reveal-stagger-6 { transition-delay: 0.30s !important; }
+
+  .category-banner {
+      border-radius: 0 !important;
+  }
 
   @media (prefers-reduced-motion: reduce) {
       #obscura-hero-section { transform: none !important; }
@@ -1185,25 +1201,25 @@
 
     <!-- Section: Work -->
     <div id="section-work" class="scroll-mt-28 w-full">
-        <!-- Creative Work Premium Banner (PC Full Size & Mobile Optimized) -->
-        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.15)] group border border-black/10 dark:border-white/15 bg-neutral-950 transition-all duration-500">
-            <img alt="Creative Work Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="creative_work_banner_1784469349995.png">
+        <!-- Creative Work Premium Banner (High Fashion Brand Contrast, Zero Radius) -->
+        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] group border-y border-white/15 bg-neutral-950 transition-all duration-500">
+            <img alt="Creative Work Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.35] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="creative_work_banner_1784469349995.png">
             <canvas id="canvas-work-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
-            <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/75 sm:via-neutral-950/60 to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/98 via-black/90 sm:via-black/75 to-black/30 z-10"></div>
             <div class="banner-spotlight absolute inset-0 z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="absolute inset-0 px-6 sm:px-12 lg:px-20 py-6 sm:py-10 w-full h-full flex flex-col justify-center items-start z-20">
-                <div class="border-l-2 border-blue-400/80 pl-4 sm:pl-8 lg:pl-12 space-y-2.5 sm:space-y-4 lg:space-y-6 max-w-3xl">
-                    <span class="text-[9.5px] sm:text-[11px] font-mono uppercase tracking-[0.25em] sm:tracking-[0.35em] text-blue-400 flex items-center gap-2 sm:gap-3">
-                        <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-blue-400 animate-pulse"></span> PORTFOLIO SHOWCASE
+                <div class="border-l-4 border-sky-400 pl-4 sm:pl-8 lg:pl-12 space-y-3 sm:space-y-5 lg:space-y-6 max-w-3xl">
+                    <span class="text-[11px] sm:text-[13px] font-mono font-extrabold uppercase tracking-[0.38em] text-sky-400 flex items-center gap-2.5 sm:gap-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                        <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse shadow-[0_0_12px_#38bdf8]"></span> PORTFOLIO SHOWCASE
                     </span>
-                    <h3 class="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal text-white tracking-tight leading-[1.08] font-serif">
-                        Creative Work &<br><span class="italic text-white/90">UI/UX Systems</span>
+                    <h3 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] font-serif drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+                        Creative Work &<br><span class="italic font-light text-slate-300">UI/UX Systems</span>
                     </h3>
-                    <p class="text-xs sm:text-base lg:text-lg text-neutral-300 font-normal max-w-xl leading-relaxed line-clamp-3 sm:line-clamp-none">
+                    <p class="text-xs sm:text-base lg:text-lg text-slate-200 font-sans font-medium max-w-xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] line-clamp-3 sm:line-clamp-none">
                         Visual web tools, high-fidelity prototypes, and crafted editorial interfaces designed for clarity and performance.
                     </p>
                     <div class="pt-2 sm:pt-4 flex items-center gap-3 sm:gap-4 flex-wrap">
-                        <a href="#grid-work" class="inline-flex items-center gap-2.5 px-5 py-2 sm:px-7 sm:py-3 rounded-full bg-white text-black font-mono text-[9.5px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold hover:bg-neutral-200 transition-all shadow-lg active:scale-95">
+                        <a href="#grid-work" class="inline-flex items-center gap-2.5 px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-white text-black font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.25em] font-extrabold hover:bg-sky-400 hover:text-black transition-all shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:scale-95">
                             Explore Collection ↘
                         </a>
                     </div>
@@ -1336,25 +1352,25 @@
 
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
-        <!-- Personal Lab Premium Banner (PC Full Size & Mobile Optimized) -->
-        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.15)] group border border-black/10 dark:border-white/15 bg-neutral-950 transition-all duration-500">
-            <img alt="Personal Lab Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="personal_lab_banner_1784469366510.png">
+        <!-- Personal Lab Premium Banner (High Fashion Brand Contrast, Zero Radius) -->
+        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] group border-y border-white/15 bg-neutral-950 transition-all duration-500">
+            <img alt="Personal Lab Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.35] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="personal_lab_banner_1784469366510.png">
             <canvas id="canvas-personal-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
-            <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/75 sm:via-neutral-950/60 to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/98 via-black/90 sm:via-black/75 to-black/30 z-10"></div>
             <div class="banner-spotlight absolute inset-0 z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="absolute inset-0 px-6 sm:px-12 lg:px-20 py-6 sm:py-10 w-full h-full flex flex-col justify-center items-start z-20">
-                <div class="border-l-2 border-fuchsia-400/80 pl-4 sm:pl-8 lg:pl-12 space-y-2.5 sm:space-y-4 lg:space-y-6 max-w-3xl">
-                    <span class="text-[9.5px] sm:text-[11px] font-mono uppercase tracking-[0.25em] sm:tracking-[0.35em] text-fuchsia-400 flex items-center gap-2 sm:gap-3">
-                        <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-fuchsia-400 animate-pulse"></span> DEV LABORATORY
+                <div class="border-l-4 border-fuchsia-400 pl-4 sm:pl-8 lg:pl-12 space-y-3 sm:space-y-5 lg:space-y-6 max-w-3xl">
+                    <span class="text-[11px] sm:text-[13px] font-mono font-extrabold uppercase tracking-[0.38em] text-fuchsia-400 flex items-center gap-2.5 sm:gap-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                        <span class="w-2.5 h-2.5 rounded-full bg-fuchsia-400 animate-pulse shadow-[0_0_12px_#e879f9]"></span> DEV LABORATORY
                     </span>
-                    <h3 class="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal text-white tracking-tight leading-[1.08] font-serif">
-                        Personal Lab &<br><span class="italic text-white/90">Algorithmic Sandbox</span>
+                    <h3 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] font-serif drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+                        Personal Lab &<br><span class="italic font-light text-slate-300">Algorithmic Sandbox</span>
                     </h3>
-                    <p class="text-xs sm:text-base lg:text-lg text-neutral-300 font-normal max-w-xl leading-relaxed line-clamp-3 sm:line-clamp-none">
+                    <p class="text-xs sm:text-base lg:text-lg text-slate-200 font-sans font-medium max-w-xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] line-clamp-3 sm:line-clamp-none">
                         A playground of custom algorithms, interactive terminal environments, and experimental API integrations.
                     </p>
                     <div class="pt-2 sm:pt-4 flex items-center gap-3 sm:gap-4 flex-wrap">
-                        <a href="#grid-personal" class="inline-flex items-center gap-2.5 px-5 py-2 sm:px-7 sm:py-3 rounded-full bg-white text-black font-mono text-[9.5px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold hover:bg-neutral-200 transition-all shadow-lg active:scale-95">
+                        <a href="#grid-personal" class="inline-flex items-center gap-2.5 px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-white text-black font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.25em] font-extrabold hover:bg-fuchsia-400 hover:text-black transition-all shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:scale-95">
                             Launch Sandbox ↘
                         </a>
                     </div>
@@ -1423,25 +1439,25 @@
 
     <!-- Section: Collaboration -->
     <div id="section-collaboration" class="scroll-mt-28 w-full">
-        <!-- Collaboration Premium Banner (PC Full Size & Mobile Optimized) -->
-        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.15)] group border border-black/10 dark:border-white/15 bg-neutral-950 transition-all duration-500">
-            <img alt="Collaboration Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="collaboration_banner_1784469380792.png">
+        <!-- Collaboration Premium Banner (High Fashion Brand Contrast, Zero Radius) -->
+        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] group border-y border-white/15 bg-neutral-950 transition-all duration-500">
+            <img alt="Collaboration Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.35] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="collaboration_banner_1784469380792.png">
             <canvas id="canvas-collaboration-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
-            <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/75 sm:via-neutral-950/60 to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/98 via-black/90 sm:via-black/75 to-black/30 z-10"></div>
             <div class="banner-spotlight absolute inset-0 z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="absolute inset-0 px-6 sm:px-12 lg:px-20 py-6 sm:py-10 w-full h-full flex flex-col justify-center items-start z-20">
-                <div class="border-l-2 border-amber-400/80 pl-4 sm:pl-8 lg:pl-12 space-y-2.5 sm:space-y-4 lg:space-y-6 max-w-3xl">
-                    <span class="text-[9.5px] sm:text-[11px] font-mono uppercase tracking-[0.25em] sm:tracking-[0.35em] text-amber-400 flex items-center gap-2 sm:gap-3">
-                        <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-pulse"></span> GLOBAL PARTNERSHIPS
+                <div class="border-l-4 border-amber-400 pl-4 sm:pl-8 lg:pl-12 space-y-3 sm:space-y-5 lg:space-y-6 max-w-3xl">
+                    <span class="text-[11px] sm:text-[13px] font-mono font-extrabold uppercase tracking-[0.38em] text-amber-400 flex items-center gap-2.5 sm:gap-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_12px_#fbbf24]"></span> GLOBAL PARTNERSHIPS
                     </span>
-                    <h3 class="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal text-white tracking-tight leading-[1.08] font-serif">
-                        Collaborative Repos &<br><span class="italic text-white/90">Shared Projects</span>
+                    <h3 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] font-serif drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+                        Collaborative Repos &<br><span class="italic font-light text-slate-300">Shared Projects</span>
                     </h3>
-                    <p class="text-xs sm:text-base lg:text-lg text-neutral-300 font-normal max-w-xl leading-relaxed line-clamp-3 sm:line-clamp-none">
+                    <p class="text-xs sm:text-base lg:text-lg text-slate-200 font-sans font-medium max-w-xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] line-clamp-3 sm:line-clamp-none">
                         Joint developments, corporate integrations, and open-source contributions crafted alongside teams globally.
                     </p>
                     <div class="pt-2 sm:pt-4 flex items-center gap-3 sm:gap-4 flex-wrap">
-                        <a href="#grid-collaboration" class="inline-flex items-center gap-2.5 px-5 py-2 sm:px-7 sm:py-3 rounded-full bg-white text-black font-mono text-[9.5px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold hover:bg-neutral-200 transition-all shadow-lg active:scale-95">
+                        <a href="#grid-collaboration" class="inline-flex items-center gap-2.5 px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-white text-black font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.25em] font-extrabold hover:bg-amber-400 hover:text-black transition-all shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:scale-95">
                             View Repositories ↘
                         </a>
                     </div>
