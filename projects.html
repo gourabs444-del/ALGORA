@@ -1,6 +1,11 @@
 <!DOCTYPE html><html class="dark" lang="en" style="background-color: #000000;"><head>
 <script>
     (function() {
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
         let theme;
         try {
             theme = localStorage.getItem('theme');
