@@ -28,11 +28,12 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style>
   html, body { background-color: #000000 !important; background: #000000 !important; scrollbar-gutter: stable; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision; }
-  .obscura-brand-logo {
+  .obscura-brand-logo, .algora-brand-logo {
       font-family: 'Bodoni Moda', 'Playfair Display', Didot, 'Bodoni MT', serif !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.02em !important;
+      letter-spacing: 0.18em !important;
   }
+  .algora-brand-logo .algora-accent { color: #8b5cf6; }
+  .algora-symbol { display: inline-block; vertical-align: middle; margin-right: 0.35em; }
   .glass-header { backdrop-filter: blur(12px); }
   .custom-scrollbar::-webkit-scrollbar { display: none; }
   .custom-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -143,6 +144,10 @@
   .obscura-showcase-nav span {
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       letter-spacing: .25em;
+  }
+  .algora-brand-logo {
+      font-weight: 300 !important;
+      letter-spacing: 0.22em !important;
   }
 
   /* 5. Overlapping main content sheet that slides up like a drawer over the sticky hero */
@@ -937,7 +942,7 @@
 
 <!-- Fixed Frosted Glassmorphic Header Ribbon (Pinned z-9999 above drawer) -->
 <nav class="obscura-showcase-nav fixed top-0 left-0 w-full flex items-center justify-between pl-8 pr-8 sm:pl-[16rem] sm:pr-16 md:pl-[21rem] lg:pl-[28rem] xl:pl-[34rem] py-4.5 sm:py-5 select-none z-[9999] transition-all">
-    <a href="index.html" class="obscura-brand-logo text-xl sm:text-2xl text-white uppercase tracking-[0.02em]">OBSCURA</a>
+    <a href="index.html" class="algora-brand-logo text-lg sm:text-xl text-white/90 uppercase tracking-[0.22em] flex items-center gap-2" style="font-weight: 300 !important; text-decoration: none;"><svg class="algora-symbol w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49 L40 16 L63 49 C65 46 66 42 66 38 C66 22 55 8 40 8Z" fill="white"/><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M66 38 C66 22 55 8 40 8" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 58 L36 48 L40 38 L44 48Z" fill="#8b5cf6"/></svg><span>ALGOR<span class="algora-accent">A</span></span></a>
     
     <div class="flex items-center gap-8 sm:gap-12 ml-auto">
         <div class="hidden sm:flex items-center gap-8 sm:gap-10 text-white/65 tracking-[0.25em] uppercase text-[8.5px] font-sans font-medium">
@@ -994,7 +999,7 @@
                     <!-- Group 1 -->
                     <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
                         <div class="inline-flex items-center gap-5">
-                            <span class="obscura-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important;">OBSCURA</span>
+                            <span class="algora-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase inline-flex items-center gap-1.5" style="font-weight: 500 !important;"><svg class="w-4 h-4" viewBox="0 0 80 80" fill="none"><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49 L40 16 L63 49 C65 46 66 42 66 38 C66 22 55 8 40 8Z" fill="#525252"/><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M66 38 C66 22 55 8 40 8" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 58 L36 48 L40 38 L44 48Z" fill="#8b5cf6"/></svg>ALGOR<span style="color:#8b5cf6">A</span></span>
                             <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
@@ -1041,7 +1046,7 @@
                     <!-- Group 2 -->
                     <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
                         <div class="inline-flex items-center gap-5">
-                            <span class="obscura-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important;">OBSCURA</span>
+                            <span class="algora-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase inline-flex items-center gap-1.5" style="font-weight: 500 !important;"><svg class="w-4 h-4" viewBox="0 0 80 80" fill="none"><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49 L40 16 L63 49 C65 46 66 42 66 38 C66 22 55 8 40 8Z" fill="#525252"/><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M66 38 C66 22 55 8 40 8" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 58 L36 48 L40 38 L44 48Z" fill="#8b5cf6"/></svg>ALGOR<span style="color:#8b5cf6">A</span></span>
                             <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
@@ -1088,7 +1093,7 @@
                     <!-- Group 3 -->
                     <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
                         <div class="inline-flex items-center gap-5">
-                            <span class="obscura-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important;">OBSCURA</span>
+                            <span class="algora-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase inline-flex items-center gap-1.5" style="font-weight: 500 !important;"><svg class="w-4 h-4" viewBox="0 0 80 80" fill="none"><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49 L40 16 L63 49 C65 46 66 42 66 38 C66 22 55 8 40 8Z" fill="#525252"/><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M66 38 C66 22 55 8 40 8" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 58 L36 48 L40 38 L44 48Z" fill="#8b5cf6"/></svg>ALGOR<span style="color:#8b5cf6">A</span></span>
                             <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
@@ -1135,7 +1140,7 @@
                     <!-- Group 4 -->
                     <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
                         <div class="inline-flex items-center gap-5">
-                            <span class="obscura-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important;">OBSCURA</span>
+                            <span class="algora-brand-logo text-sm tracking-[0.2em] text-neutral-600 uppercase inline-flex items-center gap-1.5" style="font-weight: 500 !important;"><svg class="w-4 h-4" viewBox="0 0 80 80" fill="none"><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49 L40 16 L63 49 C65 46 66 42 66 38 C66 22 55 8 40 8Z" fill="#525252"/><path d="M40 8 C25 8 14 22 14 38 C14 42 15 46 17 49" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M66 38 C66 22 55 8 40 8" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 58 L36 48 L40 38 L44 48Z" fill="#8b5cf6"/></svg>ALGOR<span style="color:#8b5cf6">A</span></span>
                             <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
@@ -1385,54 +1390,103 @@
                 <!-- Dynamically populated -->
             </div>
             
-            <!-- Beautiful Section transition separator (Skills Progress Widget) -->
-            <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full py-16">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 sm:p-12 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900/40 dark:to-slate-900/80 rounded-3xl border border-outline-variant/20 dark:border-slate-800 shadow-bold-static relative overflow-hidden">
-                    <!-- Floating abstract light glow in the corner -->
-                    <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-fuchsia-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-                    
-                    <!-- Col 1: Coding Metrics Title & Description -->
-                    <div class="lg:col-span-2 space-y-4 text-left">
-                        <span class="text-[10px] font-black uppercase tracking-[0.3em] text-fuchsia-400">Sandbox Laboratory</span>
-                        <h4 class="text-xl sm:text-2xl font-bold text-on-surface dark:text-white">
-                            Coding Metrics & Custom Algorithms
-                        </h4>
-                        <p class="text-sm text-secondary dark:text-slate-300 max-w-xl leading-relaxed">
-                            We write clean, test-driven algorithms optimized for scale. Tap into our sandbox integrations or run local experiments in our isolated environments.
-                        </p>
+            <!-- Beautiful Section transition separator (Skills Circular Rings Widget) -->
+            <div class="max-w-[1680px] mx-auto w-full py-20 sm:py-28">
+                <div class="flex flex-col items-center text-center mb-12 sm:mb-16">
+                    <span class="text-[11px] font-black uppercase tracking-[0.4em] text-fuchsia-400 mb-3">Sandbox Laboratory</span>
+                    <h4 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+                        Coding Metrics & Custom Algorithms
+                    </h4>
+                    <p class="text-sm sm:text-base text-white/50 max-w-lg leading-relaxed">
+                        We write clean, test-driven algorithms optimized for scale. Tap into our sandbox integrations or run local experiments.
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center items-center gap-10 sm:gap-16 lg:gap-24">
+                    <!-- Ring 1: Algorithmic Optimization 95% -->
+                    <div class="skill-ring-item flex flex-col items-center gap-4">
+                        <div class="relative w-28 h-28 sm:w-36 sm:h-36">
+                            <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10"/>
+                                <circle class="skill-ring-circle" cx="60" cy="60" r="52" fill="none" stroke="url(#ring-grad-fuchsia)" stroke-width="10" stroke-linecap="round"
+                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" data-target-offset="16.34"/>
+                                <defs>
+                                    <linearGradient id="ring-grad-fuchsia" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#d946ef"/>
+                                        <stop offset="100%" stop-color="#f0abfc"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl sm:text-3xl font-extrabold text-white" style="font-family: 'Inter', sans-serif;">95<span class="text-sm font-bold text-white/50">%</span></span>
+                            </div>
+                        </div>
+                        <span class="text-xs sm:text-sm font-bold text-white/70 uppercase tracking-[0.15em]">Algorithmic Optimization</span>
                     </div>
-                    
-                    <!-- Col 2: Skills Bar / Progress Indicators -->
-                    <div class="space-y-4 flex flex-col justify-center text-left">
-                        <div>
-                            <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                                <span>Algorithmic Optimization</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-850 rounded-full overflow-hidden">
-                                <div class="w-[95%] h-full bg-fuchsia-500 rounded-full"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                                <span>Performance Speed</span>
-                                <span>98%</span>
-                            </div>
-                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-850 rounded-full overflow-hidden">
-                                <div class="w-[98%] h-full bg-emerald-500 rounded-full"></div>
+
+                    <!-- Ring 2: Performance Speed 98% -->
+                    <div class="skill-ring-item flex flex-col items-center gap-4">
+                        <div class="relative w-28 h-28 sm:w-36 sm:h-36">
+                            <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10"/>
+                                <circle class="skill-ring-circle" cx="60" cy="60" r="52" fill="none" stroke="url(#ring-grad-emerald)" stroke-width="10" stroke-linecap="round"
+                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" data-target-offset="6.53"/>
+                                <defs>
+                                    <linearGradient id="ring-grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#10b981"/>
+                                        <stop offset="100%" stop-color="#6ee7b7"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl sm:text-3xl font-extrabold text-white" style="font-family: 'Inter', sans-serif;">98<span class="text-sm font-bold text-white/50">%</span></span>
                             </div>
                         </div>
-                        <div>
-                            <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                                <span>Secure Integrations</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-850 rounded-full overflow-hidden">
-                                <div class="w-[100%] h-full bg-blue-500 rounded-full"></div>
+                        <span class="text-xs sm:text-sm font-bold text-white/70 uppercase tracking-[0.15em]">Performance Speed</span>
+                    </div>
+
+                    <!-- Ring 3: Secure Integrations 100% -->
+                    <div class="skill-ring-item flex flex-col items-center gap-4">
+                        <div class="relative w-28 h-28 sm:w-36 sm:h-36">
+                            <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10"/>
+                                <circle class="skill-ring-circle" cx="60" cy="60" r="52" fill="none" stroke="url(#ring-grad-blue)" stroke-width="10" stroke-linecap="round"
+                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" data-target-offset="0"/>
+                                <defs>
+                                    <linearGradient id="ring-grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#3b82f6"/>
+                                        <stop offset="100%" stop-color="#93c5fd"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl sm:text-3xl font-extrabold text-white" style="font-family: 'Inter', sans-serif;">100<span class="text-sm font-bold text-white/50">%</span></span>
                             </div>
                         </div>
+                        <span class="text-xs sm:text-sm font-bold text-white/70 uppercase tracking-[0.15em]">Secure Integrations</span>
                     </div>
                 </div>
+
+                <script>
+                (function initSkillRings() {
+                    const rings = document.querySelectorAll('.skill-ring-circle');
+                    if (!rings.length) return;
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const circle = entry.target;
+                                const targetOffset = parseFloat(circle.dataset.targetOffset);
+                                circle.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                                circle.style.strokeDashoffset = targetOffset;
+                                observer.unobserve(circle);
+                            }
+                        });
+                    }, { threshold: 0.3 });
+
+                    rings.forEach(ring => observer.observe(ring));
+                })();
+                </script>
             </div>
         </div>
     </div>
