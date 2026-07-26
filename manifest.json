@@ -1,0 +1,21 @@
+{
+  "name": "ALGORA Showcase & Digital Portfolio",
+  "short_name": "ALGORA",
+  "description": "Curating the Web's Finest digital design, interactive systems, and creative portfolio.",
+  "start_url": "/projects.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logo.png",
+      "sizes": "2048x2048",
+      "type": "image/png"
+    }
+  ]
+}
