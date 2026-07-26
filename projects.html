@@ -1016,10 +1016,19 @@
         </button>
     </div>
 
-    <!-- Right Group: Submit Button on PC, 3-Lines Menu Icon on Mobile Phone -->
-    <div class="flex items-center gap-3 ml-auto sm:ml-0">
+    <!-- Right Group: Submit Button on PC, Bell + Hamburger on Mobile -->
+    <div class="flex items-center gap-2 ml-auto sm:ml-0">
         <a href="#obscura-ticker" class="hidden sm:inline-flex rounded-full bg-white text-black font-bold px-4 py-2 sm:px-5 sm:py-2 text-[9px] sm:text-[10px] tracking-[0.18em] uppercase hover:bg-white/90 transition-all font-mono shadow-sm flex-shrink-0">SUBMIT A SITE</a>
         
+        <!-- Mobile Notification Bell Icon -->
+        <button class="sm:hidden w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer relative active:scale-95" aria-label="Notifications">
+            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+        </button>
+
         <!-- Mobile Phone 3-Lines Hamburger Menu Button -->
         <button id="nav-mobile-menu-toggle" class="sm:hidden p-1.5 rounded-lg text-white hover:bg-white/10 transition-colors flex items-center justify-center active:scale-95 cursor-pointer" aria-label="Toggle Menu">
             <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1027,16 +1036,42 @@
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
+        </button>
     </div>
 </nav>
 
 <!-- Mobile Phone Navigation Menu Dropdown (Triggered by 3-lines button) -->
 <div id="mobile-nav-dropdown" class="fixed top-[60px] right-3 left-3 sm:hidden z-[99999] bg-slate-900/95 backdrop-blur-2xl border border-white/20 rounded-2xl p-4 shadow-2xl transition-all duration-300 transform opacity-0 scale-95 pointer-events-none">
     <div class="flex flex-col gap-3 font-sans">
-        <a href="#categorized-sections-container" class="mobile-nav-item flex items-center justify-between px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold tracking-[0.18em] uppercase transition-colors" style="text-decoration: none;">
-            <span>CATEGORY</span>
-            <span class="material-symbols-outlined text-sm text-white/60">category</span>
-        </a>
+        <!-- CATEGORY Accordion -->
+        <div class="rounded-xl bg-white/10 overflow-hidden">
+            <button id="mobile-category-toggle" class="w-full flex items-center justify-between px-4 py-3 text-white text-xs font-bold tracking-[0.18em] uppercase hover:bg-white/10 transition-colors cursor-pointer">
+                <span>CATEGORY</span>
+                <svg id="mobile-category-arrow" class="w-4 h-4 text-white/60 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+            <div id="mobile-category-submenu" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="flex flex-col gap-1 px-3 pb-3">
+                    <a href="#categorized-sections-container" data-mobile-cat="websites" class="mobile-nav-item mobile-cat-item flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-white/5 hover:bg-white/15 text-white/80 hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-all" style="text-decoration: none;">
+                        <svg class="w-3.5 h-3.5 text-indigo-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg>
+                        Web Sites
+                    </a>
+                    <a href="#categorized-sections-container" data-mobile-cat="landing" class="mobile-nav-item mobile-cat-item flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-white/5 hover:bg-white/15 text-white/80 hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-all" style="text-decoration: none;">
+                        <svg class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4z"></path><path d="M8 20h8"></path><path d="M12 16v4"></path></svg>
+                        Landing Pages
+                    </a>
+                    <a href="#categorized-sections-container" data-mobile-cat="presets" class="mobile-nav-item mobile-cat-item flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-white/5 hover:bg-white/15 text-white/80 hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-all" style="text-decoration: none;">
+                        <svg class="w-3.5 h-3.5 text-amber-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"></path></svg>
+                        Presets & LUTs
+                    </a>
+                    <a href="#categorized-sections-container" data-mobile-cat="articles" class="mobile-nav-item mobile-cat-item flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-white/5 hover:bg-white/15 text-white/80 hover:text-white text-[11px] font-semibold tracking-wider uppercase transition-all" style="text-decoration: none;">
+                        <svg class="w-3.5 h-3.5 text-rose-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M16 13H8"></path><path d="M16 17H8"></path><path d="M10 9H8"></path></svg>
+                        Article / Blog
+                    </a>
+                </div>
+            </div>
+        </div>
         <a href="#contact-section" class="mobile-nav-item flex items-center justify-between px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold tracking-[0.18em] uppercase transition-colors" style="text-decoration: none;">
             <span>CONSULTANT</span>
             <span class="material-symbols-outlined text-sm text-white/60">support_agent</span>
@@ -2699,6 +2734,33 @@
             mobileSearchInput.addEventListener('input', (e) => {
                 headerSearchInput.value = e.target.value;
                 headerSearchInput.dispatchEvent(new Event('input', { bubbles: true }));
+            });
+        }
+
+        // CATEGORY Accordion Toggle
+        const catToggle = document.getElementById('mobile-category-toggle');
+        const catSubmenu = document.getElementById('mobile-category-submenu');
+        const catArrow = document.getElementById('mobile-category-arrow');
+        if (catToggle && catSubmenu && catArrow) {
+            catToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isExpanded = catSubmenu.style.maxHeight && catSubmenu.style.maxHeight !== '0px';
+                if (isExpanded) {
+                    catSubmenu.style.maxHeight = '0px';
+                    catArrow.style.transform = 'rotate(0deg)';
+                } else {
+                    catSubmenu.style.maxHeight = catSubmenu.scrollHeight + 'px';
+                    catArrow.style.transform = 'rotate(180deg)';
+                }
+            });
+
+            // Active sub-item highlight
+            const catItems = document.querySelectorAll('.mobile-cat-item');
+            catItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    catItems.forEach(i => i.classList.remove('bg-indigo-500/20', 'text-white', 'ring-1', 'ring-indigo-500/40'));
+                    item.classList.add('bg-indigo-500/20', 'text-white', 'ring-1', 'ring-indigo-500/40');
+                });
             });
         }
     }
