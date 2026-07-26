@@ -280,20 +280,25 @@
       background-color: rgba(37, 99, 235, 0.22) !important;
       color: #1d4ed8 !important;
   }
-  /* About Button: Soft Clean Neutral Slate (Non-Black) */
-  body.all-projects-showcase #categorized-sections-container .group a.px-3.5:not(.bg-primary\/10) {
-      background-color: #f1f5f9 !important;
-      color: #475569 !important;
+  /* About Button: No background box, clean text only */
+  body.all-projects-showcase #categorized-sections-container .group a.px-3\.5:not(.bg-primary\/10) {
+      background-color: transparent !important;
+      color: #94a3b8 !important;
       font-weight: 700 !important;
   }
-  body.all-projects-showcase #categorized-sections-container .group a.px-3.5:not(.bg-primary\/10):hover {
-      background-color: #e2e8f0 !important;
-      color: #1e293b !important;
+  body.all-projects-showcase #categorized-sections-container .group a.px-3\.5:not(.bg-primary\/10):hover {
+      background-color: transparent !important;
+      color: #e2e8f0 !important;
   }
-  /* Rating Badge: Warm Yellow - Orange Tint */
+  /* Rating Badge: No background, star is orange-yellow, number is different */
   body.all-projects-showcase #categorized-sections-container .group .project-rating-badge {
-      background-color: rgba(245, 158, 11, 0.12) !important;
-      color: #d97706 !important;
+      background-color: transparent !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group .project-rating-badge .material-symbols-outlined {
+      color: #f59e0b !important;
+  }
+  body.all-projects-showcase #categorized-sections-container .group .project-rating-badge .rating-val {
+      color: #cbd5e1 !important;
   }
 
   #obscura-ticker {
@@ -667,7 +672,7 @@
 <!-- Hidden original grid template used to dynamically populate categorized sections -->
 <div id="portfolio-grid-template" class="hidden">
 <!-- Card 1: CogniLens -->
-<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="websites">
     <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
         <!-- Image Slideshow Container -->
         <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out cognilens-slider" style="width: 300%; transform: translateX(0%);">
@@ -707,19 +712,19 @@
                 <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
                 </a>
-                <a href="project.html?id=cognilens" class="px-3.5 py-1.5 rounded-xl bg-surface-container-highest dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-highest/80 dark:hover:bg-slate-700 transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                <a href="project.html?id=cognilens" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
                     <span class="material-symbols-outlined text-[15px] font-black">info</span> About
                 </a>
             </div>
             <!-- Star Rating Badge -->
-            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-lg cursor-pointer hover:bg-amber-500/20 active:scale-95 transition-all select-none" data-project-id="cognilens" data-rating="4.9" data-rating-count="48">
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="cognilens" data-rating="4.9" data-rating-count="48">
                 <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
                 <span class="rating-val">4.9</span>
             </div>
         </div>
     </div>
 </div>
-<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="websites">
     <a href="https://github.com" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
         <img alt="GitHub" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1yg3Rv3UFrCeXMvNe72Hp8YtCUyKYYGFw3lZ40_TLkl9_PrkNarqms-SxEFpYNQ_PBf6z1Mp4jsIqh39I794RgJdqWOAUFBLqV65kHQ9jboAhF837U4J6VbK6v0Ayg1w5RTUwskuOyea9PJ6ilXcLEj1Vt1qi7avyrezYJLLYcz39j9DDDkidAqCH4CAwcegTCdPB1So4JTcCYjl_AsYnnnui-4mYi30oHEr-LhzbKx_yPks3yqxlfg">
     </a>
@@ -746,12 +751,12 @@
                 <a href="https://github.com" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
                 </a>
-                <a href="project.html?id=github" class="px-3.5 py-1.5 rounded-xl bg-surface-container-highest dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-highest/80 dark:hover:bg-slate-700 transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                <a href="project.html?id=github" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
                     <span class="material-symbols-outlined text-[15px] font-black">info</span> About
                 </a>
             </div>
             <!-- Star Rating Badge -->
-            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-lg cursor-pointer hover:bg-amber-500/20 active:scale-95 transition-all select-none" data-project-id="github" data-rating="4.8" data-rating-count="124">
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="github" data-rating="4.8" data-rating-count="124">
                 <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
                 <span class="rating-val">4.8</span>
             </div>
@@ -760,7 +765,7 @@
 </div>
 
 <!-- Card 3: Medium -->
-<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="articles">
     <a href="https://medium.com" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
         <img alt="Medium" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgPZttyel6fQX793a2h7hSqwOyPepPoJq8t_ta9dliqSu3QK8htYcaJuqVliwVg6i1zTtUj8rhocT_Lz44TSt9VI98IJAFt3eeOGeWLjzxjzPblS1KQAaY00sgHaeWbCY0p24KjuFOJ6D4-DnyXEMigD8myaJewKdhgIzVbb_jYk4ftub-kmrQzdzAZVrWdytuIJWqUVRBoKK0OY3nyKWfoiBKFSfA7Xv6E-SP_2zM9QiK1DxOuCtFmA">
     </a>
@@ -787,12 +792,12 @@
                 <a href="https://medium.com" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
                 </a>
-                <a href="project.html?id=medium" class="px-3.5 py-1.5 rounded-xl bg-surface-container-highest dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-highest/80 dark:hover:bg-slate-700 transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                <a href="project.html?id=medium" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
                     <span class="material-symbols-outlined text-[15px] font-black">info</span> About
                 </a>
             </div>
             <!-- Star Rating Badge -->
-            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-lg cursor-pointer hover:bg-amber-500/20 active:scale-95 transition-all select-none" data-project-id="medium" data-rating="4.5" data-rating-count="62">
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="medium" data-rating="4.5" data-rating-count="62">
                 <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
                 <span class="rating-val">4.5</span>
             </div>
@@ -801,7 +806,7 @@
 </div>
 
 <!-- Card 4: Figma -->
-<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="websites">
     <a href="https://figma.com" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
         <img alt="Figma" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYCT-RwQkJbI9qlpeZi46QXiDt3sOLnqRKh3EGjSk7XV175ykhfC4m3t7O6Ou4t5oolCohM0ke5qbzpzA1z2-E1UFJONVysaEQWb2Ewn2YtG8WwrMcU1nBKSNXzNWe-Ywcs7CKF6n5xQtSKWIXcUNT-XX9Z7oxeSaZc-00amB79dMcUB0UNO6aKiQ_-gzCgfZkz-cjPWI6Bk6DX_Zkk9PyV53MPD8aoVJFIv_bW0XWy-p1oxqQh2EN1A">
     </a>
@@ -828,12 +833,12 @@
                 <a href="https://figma.com" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
                 </a>
-                <a href="project.html?id=figma" class="px-3.5 py-1.5 rounded-xl bg-surface-container-highest dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-highest/80 dark:hover:bg-slate-700 transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                <a href="project.html?id=figma" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
                     <span class="material-symbols-outlined text-[15px] font-black">info</span> About
                 </a>
             </div>
             <!-- Star Rating Badge -->
-            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-lg cursor-pointer hover:bg-amber-500/20 active:scale-95 transition-all select-none" data-project-id="figma" data-rating="4.9" data-rating-count="186">
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="figma" data-rating="4.9" data-rating-count="186">
                 <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
                 <span class="rating-val">4.9</span>
             </div>
@@ -842,7 +847,7 @@
 </div>
 
 <!-- Card 5: Notion -->
-<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="websites">
     <a href="https://notion.so" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
         <img alt="Notion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFihVOdtvk4waI8MhC2s_5igxlcSD2iC4Pql0m41MtvwsX8QlvThlOtmg9ULoce6p59-j0k0ViAt8TY-UmFRAp0I_4QTlgse66E9tCMdAb0JftJp1aDz1KgWXb4ZCYx3PazJYvRs1TOzAtueAgstLzqYz08ALzWIMr29fkq-OkKMPufhVJygb7y2yLeKcpTEDqNjKGiIBDqHa8S_KC8YKUQn6nQkNx4fvFCqFlSzsXz9v6NK7kNbICww">
     </a>
@@ -869,12 +874,12 @@
                 <a href="https://notion.so" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
                 </a>
-                <a href="project.html?id=notion" class="px-3.5 py-1.5 rounded-xl bg-surface-container-highest dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-highest/80 dark:hover:bg-slate-700 transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                <a href="project.html?id=notion" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
                     <span class="material-symbols-outlined text-[15px] font-black">info</span> About
                 </a>
             </div>
             <!-- Star Rating Badge -->
-            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-lg cursor-pointer hover:bg-amber-500/20 active:scale-95 transition-all select-none" data-project-id="notion" data-rating="4.7" data-rating-count="93">
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="notion" data-rating="4.7" data-rating-count="93">
                 <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
                 <span class="rating-val">4.7</span>
             </div>
@@ -883,7 +888,7 @@
 </div>
 
 <!-- Card 6: Behance (Photo Gallery Slider) -->
-<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="presets">
     <a href="gallery.html" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
         <img alt="Photo Gallery Slider" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Yb6jl8EYeSS9hUeZPVasZLQBTJbT5f3k_h3r2RNIYjqNCsYu-MF_MGpYRAOA32EXso7TI1HdKBup9Pkw_gH9fFCoxb07zb-OB9n3iCaBJ7iEdwbXWXT-EnclEpB_vIo_O28TLcMB76Hb7JswAbr_GFn0pnq6FIX4WVOQpzJ0ykyfSXnN0HLWjM6bhTbyIgpLkcDZpifoigm96TO4tt2LHCpLos9zS13OpVVkKkfaceb5gOzbQ0O3bA">
     </a>
@@ -910,12 +915,12 @@
                 <a href="gallery.html" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
                 </a>
-                <a href="gallery.html" class="px-3.5 py-1.5 rounded-xl bg-surface-container-highest dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-highest/80 dark:hover:bg-slate-700 transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                <a href="gallery.html" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
                     <span class="material-symbols-outlined text-[15px] font-black">info</span> About
                 </a>
             </div>
             <!-- Star Rating Badge -->
-            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-lg cursor-pointer hover:bg-amber-500/20 active:scale-95 transition-all select-none" data-project-id="behance" data-rating="4.6" data-rating-count="75">
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="behance" data-rating="4.6" data-rating-count="75">
                 <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
                 <span class="rating-val">4.6</span>
             </div>
@@ -924,7 +929,7 @@
 </div>
 
 <!-- Card 7: GuildRank Arena -->
-<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800">
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="landing">
     <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
         <!-- Image Slideshow Container -->
         <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out guildrank-slider" style="width: 300%; transform: translateX(0%);">
@@ -963,12 +968,12 @@
                 <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
                 </a>
-                <a href="project.html?id=guildrank" class="px-3.5 py-1.5 rounded-xl bg-surface-container-highest dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-highest/80 dark:hover:bg-slate-700 transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                <a href="project.html?id=guildrank" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
                     <span class="material-symbols-outlined text-[15px] font-black">info</span> About
                 </a>
             </div>
             <!-- Star Rating Badge -->
-            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-lg cursor-pointer hover:bg-amber-500/20 active:scale-95 transition-all select-none" data-project-id="guildrank" data-rating="4.8" data-rating-count="56">
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="guildrank" data-rating="4.8" data-rating-count="56">
                 <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
                 <span class="rating-val">4.8</span>
             </div>
@@ -2754,12 +2759,48 @@
                 }
             });
 
-            // Active sub-item highlight
+            // Active sub-item highlight + category filtering
             const catItems = document.querySelectorAll('.mobile-cat-item');
             catItems.forEach(item => {
-                item.addEventListener('click', () => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const catType = item.getAttribute('data-mobile-cat');
+                    
+                    // Highlight active item
                     catItems.forEach(i => i.classList.remove('bg-indigo-500/20', 'text-white', 'ring-1', 'ring-indigo-500/40'));
                     item.classList.add('bg-indigo-500/20', 'text-white', 'ring-1', 'ring-indigo-500/40');
+
+                    // Filter project cards in the template grid
+                    const templateCards = document.querySelectorAll('#portfolio-grid-template > .group');
+                    templateCards.forEach(card => {
+                        const cardType = card.getAttribute('data-cat-type');
+                        if (cardType === catType) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    // Filter cards in all categorized section grids
+                    const allGridCards = document.querySelectorAll('#categorized-sections-container .group[data-cat-type]');
+                    allGridCards.forEach(card => {
+                        const cardType = card.getAttribute('data-cat-type');
+                        if (cardType === catType) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    // Scroll to the projects area
+                    const catContainer = document.getElementById('categorized-sections-container');
+                    if (catContainer) {
+                        catContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+
+                    // Close the mobile dropdown
+                    mobileNavDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                    mobileNavDropdown.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
                 });
             });
         }
