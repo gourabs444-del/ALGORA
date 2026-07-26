@@ -980,18 +980,54 @@
 </div>
 
 <!-- Fixed Frosted Glassmorphic Header Ribbon (Pinned z-9999 above drawer) -->
-<nav class="obscura-showcase-nav fixed top-0 left-0 w-full flex items-center justify-between pl-3.5 pr-4 sm:pl-[16rem] sm:pr-16 md:pl-[21rem] lg:pl-[28rem] xl:pl-[34rem] py-4.5 sm:py-5 select-none z-[9999] transition-all">
-    <a href="index.html" class="navbar-logo -ml-1 sm:ml-0 select-none transition-transform hover:scale-105" style="text-decoration: none; isolation: isolate;">
-        <img src="assets/logo.png?v=25.0" alt="ALGORA" class="h-8 sm:h-9 lg:h-10 w-auto object-contain" style="opacity: 1 !important; filter: brightness(1.25) contrast(1.25) drop-shadow(0 2px 8px rgba(0,0,0,0.85)) !important; background: transparent !important;">
+<nav class="obscura-showcase-nav fixed top-0 left-0 w-full flex items-center justify-between pl-3.5 pr-4 sm:pl-[16rem] sm:pr-6 md:pl-[21rem] md:pr-8 lg:pl-[28rem] lg:pr-10 xl:pl-[34rem] py-3.5 sm:py-5 select-none z-[9999] transition-all">
+    <a href="index.html" class="navbar-logo -ml-1 sm:ml-0 select-none transition-transform hover:scale-105 flex-shrink-0" style="text-decoration: none; isolation: isolate;">
+        <img src="assets/logo.png?v=25.0" alt="ALGORA" class="h-6 sm:h-9 lg:h-10 w-auto object-contain" style="opacity: 1 !important; filter: brightness(1.25) contrast(1.25) drop-shadow(0 2px 8px rgba(0,0,0,0.85)) !important; background: transparent !important;">
     </a>
     
-    <div class="flex items-center gap-8 sm:gap-12 ml-auto">
-        <div class="hidden sm:flex items-center gap-8 sm:gap-10 text-white/65 tracking-[0.25em] uppercase text-[8.5px] font-sans font-medium">
-            <span class="cursor-pointer hover:text-white transition-colors">GALLERY</span>
-            <span class="cursor-pointer hover:text-white transition-colors">FEATURED</span>
-            <span class="cursor-pointer hover:text-white transition-colors">MANIFESTO</span>
+    <!-- PC Middle Cluster (Shifted Left): CATEGORY, CONSULTANT, Search Bar, Bell Icon -->
+    <div class="hidden sm:flex flex-1 items-center justify-center gap-4 sm:gap-6 lg:gap-8 px-4 mr-6 sm:mr-12 md:mr-20 lg:mr-28">
+        <!-- High-Readability Navigation Links (CATEGORY & CONSULTANT) -->
+        <div class="flex items-center gap-5 sm:gap-7 text-white/90 tracking-[0.18em] uppercase text-[11px] sm:text-[12px] font-sans font-semibold">
+            <a href="#categorized-sections-container" class="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5" style="text-decoration: none;">
+                CATEGORY
+            </a>
+            <a href="#contact-section" class="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5" style="text-decoration: none;">
+                CONSULTANT
+            </a>
         </div>
-        <a href="#obscura-ticker" class="rounded-full bg-white text-black font-semibold px-5 py-2 text-[8.5px] tracking-[0.2em] uppercase hover:bg-white/90 transition-all font-mono">SUBMIT A SITE</a>
+        
+        <!-- Search Bar with Inline SVG Search Icon -->
+        <div class="relative items-center hidden md:flex">
+            <svg class="w-3.5 h-3.5 absolute left-3.5 text-white/60 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="nav-header-search-input" placeholder="Search..." class="bg-white/10 dark:bg-slate-900/60 border border-white/20 rounded-full py-1.5 pl-9 pr-3.5 text-[11px] text-white placeholder-white/60 outline-none focus:border-white/60 focus:bg-white/15 transition-all w-28 sm:w-36 lg:w-44 font-sans font-medium">
+        </div>
+
+        <!-- Notification Bell Icon (Inline SVG Vector) -->
+        <button class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer relative active:scale-95 flex-shrink-0" aria-label="Notifications">
+            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+        </button>
+    </div>
+
+    <!-- Right Group: Submit Button on PC, 3-Lines Menu Icon on Mobile Phone -->
+    <div class="flex items-center gap-3 ml-auto sm:ml-0">
+        <a href="#obscura-ticker" class="hidden sm:inline-flex rounded-full bg-white text-black font-bold px-4 py-2 sm:px-5 sm:py-2 text-[9px] sm:text-[10px] tracking-[0.18em] uppercase hover:bg-white/90 transition-all font-mono shadow-sm flex-shrink-0">SUBMIT A SITE</a>
+        
+        <!-- Mobile Phone 3-Lines Hamburger Menu Button -->
+        <button id="nav-mobile-menu-toggle" class="sm:hidden p-1.5 rounded-lg text-white hover:bg-white/10 transition-colors flex items-center justify-center active:scale-95 cursor-pointer" aria-label="Toggle Menu">
+            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
     </div>
 </nav>
 
@@ -2167,12 +2203,15 @@
         }
     }
 
+    const navHeaderSearchInput = document.getElementById('nav-header-search-input');
+
     function performSearch(queryVal) {
         const query = queryVal.toLowerCase().trim();
         
-        // Sync values to both inputs
+        // Sync values across all search inputs
         if (searchInput) searchInput.value = queryVal;
         if (mobileSearchInput) mobileSearchInput.value = queryVal;
+        if (navHeaderSearchInput) navHeaderSearchInput.value = queryVal;
 
         // Show/hide clear buttons
         if (query.length > 0) {
@@ -2184,6 +2223,10 @@
         }
 
         runLiveSearch(query);
+    }
+
+    if (navHeaderSearchInput) {
+        navHeaderSearchInput.addEventListener('input', (e) => performSearch(e.target.value));
     }
 
     if (searchInput) {
@@ -2589,18 +2632,22 @@
     // Sidebar Mobile Toggle
     const sidebar = document.getElementById('sidebar');
     const sidebarToggle = document.getElementById('sidebar-toggle');
+    const navMobileMenuToggle = document.getElementById('nav-mobile-menu-toggle');
     const sidebarClose = document.getElementById('sidebar-close');
 
-    if (sidebarToggle && sidebarClose && sidebar) {
-        sidebarToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            sidebar.classList.remove('-translate-x-full');
-            setTimeout(() => {
-                const activeTab = document.querySelector('.tab-btn.text-primary');
-                if (activeTab) updateTabIndicator(activeTab);
-            }, 100);
-        });
+    const openSidebar = (e) => {
+        if (e) e.stopPropagation();
+        if (sidebar) sidebar.classList.remove('-translate-x-full');
+        setTimeout(() => {
+            const activeTab = document.querySelector('.tab-btn.text-primary');
+            if (activeTab) updateTabIndicator(activeTab);
+        }, 100);
+    };
 
+    if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
+    if (navMobileMenuToggle) navMobileMenuToggle.addEventListener('click', openSidebar);
+
+    if (sidebarClose && sidebar) {
         sidebarClose.addEventListener('click', () => {
             sidebar.classList.add('-translate-x-full');
         });
@@ -2608,7 +2655,7 @@
         // Close sidebar on click outside on mobile
         document.addEventListener('click', (e) => {
             if (window.innerWidth < 1024) { // lg breakpoint
-                if (!sidebar.contains(e.target) && e.target !== sidebarToggle) {
+                if (!sidebar.contains(e.target) && e.target !== sidebarToggle && e.target !== navMobileMenuToggle) {
                     sidebar.classList.add('-translate-x-full');
                 }
             }
