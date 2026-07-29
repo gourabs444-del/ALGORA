@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vanya Lodge | Forest Sanctuary in Corbett</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            "colors": {
+                "primary": "#061b0e",
+                "on-secondary": "#ffffff",
+                "surface-tint": "#4d6453",
+                "on-primary-container": "#819986",
+                "on-primary-fixed": "#0b2013",
+                "background": "#fff8f4",
+                "on-tertiary-fixed": "#2c160b",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-highest": "#f4dfcb",
+                "on-background": "#241a0e",
+                "tertiary-fixed": "#ffdbcc",
+                "on-primary-fixed-variant": "#364c3c",
+                "inverse-on-surface": "#ffeedf",
+                "tertiary-container": "#3e261a",
+                "secondary-fixed": "#caedaf",
+                "inverse-primary": "#b4cdb8",
+                "on-secondary-container": "#4d6b39",
+                "surface-variant": "#f4dfcb",
+                "on-tertiary": "#ffffff",
+                "surface-container": "#ffead7",
+                "secondary-fixed-dim": "#aed195",
+                "on-error-container": "#93000a",
+                "inverse-surface": "#3a2e21",
+                "tertiary-fixed-dim": "#e6bead",
+                "surface-container-high": "#fae5d1",
+                "primary-fixed": "#d0e9d4",
+                "primary-container": "#1b3022",
+                "secondary-container": "#c7eaac",
+                "on-tertiary-container": "#af8b7b",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "on-tertiary-fixed-variant": "#5c4033",
+                "surface": "#fff8f4",
+                "on-surface": "#241a0e",
+                "outline-variant": "#c3c8c1",
+                "on-primary": "#ffffff",
+                "primary-fixed-dim": "#b4cdb8",
+                "surface-bright": "#fff8f4",
+                "surface-dim": "#ebd7c3",
+                "on-surface-variant": "#434843",
+                "error": "#ba1a1a",
+                "secondary": "#496635",
+                "surface-container-low": "#fff1e6",
+                "tertiary": "#271208",
+                "outline": "#737973",
+                "on-secondary-fixed": "#092100",
+                "on-secondary-fixed-variant": "#324e20"
+            },
+            "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+            "spacing": { "gutter": "24px", "section-padding-desktop": "120px", "margin-safe": "32px", "section-padding-mobile": "64px", "base": "8px" },
+            "fontFamily": { "display-lg": ["EB Garamond"], "body-md": ["Work Sans"], "headline-md": ["EB Garamond"], "headline-lg": ["EB Garamond"], "label-caps": ["Work Sans"], "body-lg": ["Work Sans"], "display-lg-mobile": ["EB Garamond"] },
+            "fontSize": {
+                "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                "headline-lg": ["36px", {"lineHeight": "44px", "fontWeight": "400"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}],
+                "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+            }
+        }
+    }
+}
+</script>
+<style>
+    .paper-texture { background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"); background-blend-mode: multiply; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .nav-scrolled { background-color: rgba(255, 248, 244, 0.95) !important; backdrop-filter: blur(8px); }
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary selection:text-on-secondary paper-texture overflow-x-hidden">
+<header class="fixed top-0 w-full z-50 bg-transparent transition-colors duration-500 ease-in-out" id="main-header">
+<div class="flex justify-between items-center px-gutter py-6 max-w-full mx-auto">
+<a class="font-display-lg text-[24px] tracking-widest text-primary" href="#">VANYA LODGE</a>
+<nav class="hidden md:flex gap-8">
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-primary transition-all duration-300" href="#about">The Estate</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-primary transition-all duration-300" href="#stay">Suites</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-primary transition-all duration-300" href="#experiences">Safaris</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-primary transition-all duration-300" href="#highlights">Conservation</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-primary transition-all duration-300" href="#">Journal</a>
+</nav>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 uppercase tracking-widest hover:bg-secondary transition-colors duration-300">Book Stay</button>
+</div>
+</header>
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Morning mist in Corbett forest" class="w-full h-full object-cover brightness-[0.85]" src="https://lh3.googleusercontent.com/aida/AP1WRLt73OOR_O8q5dN7dPFaRrX3hJI00ZYuMtUKkU3nK9_TyzgsOJ0Y90IATPs2iSXXZ4PL0-NUA3fXdYuRWeyohvUC4h6koCQ3AmsFlBsGiWVF1Iu-aWoDKt8VOpBxFyVUOHCs0izP7PYxDVA2SvmFIzgE6ii26ktPsCpsZLdwgZu1VzGMaApZPPFaLHQv8zPQW-uy4PWdTvbNEot-AmPQGbBhL0W6Y-qBJeCc_f-HrYojsKEcuJP-Pf_VKy4"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40"></div>
+<div class="relative z-10 text-center text-white px-gutter">
+<span class="font-label-caps text-label-caps tracking-[0.3em] uppercase mb-4 block reveal">Deep in the Corbett Wilderness</span>
+<h1 class="font-display-lg text-display-lg md:text-[80px] md:leading-[1] mb-8 max-w-4xl mx-auto reveal" style="transition-delay: 200ms;">An immersive retreat into the rhythm of the wild.</h1>
+<div class="reveal" style="transition-delay: 400ms;">
+<a class="inline-flex items-center gap-4 font-label-caps text-label-caps uppercase border-b-2 border-white pb-2 hover:gap-8 transition-all duration-500" href="#stay">Explore the Lodge <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-white text-[32px]">expand_more</span>
+</div>
+</section>
+<section class="relative z-20 -mt-16 max-w-6xl mx-auto px-gutter">
+<div class="bg-surface-container border-[0.5px] border-on-tertiary-fixed-variant p-8 md:p-12 grid grid-cols-1 md:grid-cols-4 gap-8 items-end">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant">Arrival</label>
+<input class="bg-transparent border-b border-on-tertiary-fixed-variant focus:border-primary focus:ring-0 font-body-md p-2 outline-none" type="date"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant">Departure</label>
+<input class="bg-transparent border-b border-on-tertiary-fixed-variant focus:border-primary focus:ring-0 font-body-md p-2 outline-none" type="date"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant">Guests</label>
+<select class="bg-transparent border-b border-on-tertiary-fixed-variant focus:border-primary focus:ring-0 font-body-md p-2 outline-none">
+<option>02 Adults</option><option>03 Adults</option><option>Families</option>
+</select>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps py-4 uppercase tracking-[0.2em] hover:bg-secondary transition-all">Check Availability</button>
+</div>
+</section>
+<section class="py-section-padding-desktop px-gutter max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center" id="about">
+<div class="md:col-span-6 reveal">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGHiHb4rUi-zbUIvyclzGwlN6gqb-diJZz5lBGFe6s8fcLtSzqnb29p4u2Nx3Hag7IWe4hsvhbd2DhkEjRwV9H6tk61J0IaNK33HrpvyKaPTjnvqBsmK4IMnVItIFaU3DIB8JrawsANQZ37lmgeiYKy5ujlr4QXCe7bO2swzHh_lGngJnlCTmJjfves6D40ukC8RWBbzx6MkkaC8Kqtt9Gfiky9MtaoJp59dGqnL-SNMEEECGVyHL4xw" alt="Forest"/>
+<div class="absolute inset-0 border-[24px] border-white/10 pointer-events-none"></div>
+</div>
+</div>
+<div class="md:col-span-5 md:col-start-8 flex flex-col gap-8 reveal" style="transition-delay: 200ms;">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Our Philosophy</span>
+<h2 class="font-display-lg text-display-lg text-primary">A dialogue between architecture and the earth.</h2>
+<p class="font-body-lg text-on-surface-variant">Vanya Lodge was born from a singular vision: to create a space where the boundaries between the indoors and the wilderness dissolve.</p>
+<div class="pt-4">
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary uppercase border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-all" href="#">Read our Story</a>
+</div>
+</div>
+</section>
+<section class="py-section-padding-desktop bg-surface-container-low paper-texture" id="stay">
+<div class="max-w-7xl mx-auto px-gutter mb-16 flex flex-col md:flex-row justify-between items-end">
+<div class="max-w-xl">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-4 block">The Sanctuaries</span>
+<h2 class="font-display-lg text-display-lg text-primary">Private dwellings designed for slow recovery.</h2>
+</div>
+</div>
+<div class="px-gutter max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="group reveal">
+<div class="relative aspect-[3/4] overflow-hidden mb-6 bg-surface-dim">
+<img alt="Forest Cottage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLu4aw5i9aUiEFsVdUC9jj9lBiP6UQBbfiwgjqmrkL4Ayf69wc3ley-TPIoGQ_ADefqEByyq91U5D7Rx2C03crThlsAoMT_R7Y-Smsiv5DQsXKWOcnY7xZB6qOZK6vNe536ky8HxB6hyO3BDd3BWoEY2vV6JhHsfSTLVNugStQlbKGfKtsQBEPp13cbQx1fnIv_vyJHI7QiY63cX-f7G7kdjLlNbJBNdP7Vvn6RHQ8Tjx7rQvj1o4ns-0yxw"/>
+</div>
+<h3 class="font-display-lg text-headline-lg mb-2">Forest Cottage</h3>
+<p class="font-body-md text-on-surface-variant mb-6">A standalone stone-and-wood retreat with a private deck.</p>
+<div class="flex justify-between items-center border-t border-outline-variant pt-4">
+<span class="font-label-caps text-label-caps uppercase">From ₹12,000 / Night</span>
+</div>
+</div>
+<div class="group reveal" style="transition-delay: 300ms;">
+<div class="relative aspect-[3/4] overflow-hidden mb-6 bg-surface-dim">
+<img alt="Premium Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLtQR6axfynrLaBHxkA8-QCnxT-8GEr4Roo2cWeBAjlMHPKb-4w7mjEywsQUYUKbyHJN_QIHgWoOUArkXqUrcWcDWVDUVQrJTDEEaBxsUXrRtj31RkJxvaic4xfoX9B3ODn5ETRWqFgx9J84RFxLJ8YzB9PolIEih-HJU3T35WCP0fptEMeWxX2eHIJgYPXS2aMGSsu0wQpR_2I6_T18ZJPx8lHxlzbpXVUgWypKjLGwcxhtBkhB21Vw6mN8"/>
+</div>
+<h3 class="font-display-lg text-headline-lg mb-2">Premium Suite</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Sweeping floor-to-ceiling vistas with private fireplace.</p>
+<div class="flex justify-between items-center border-t border-outline-variant pt-4">
+<span class="font-label-caps text-label-caps uppercase">From ₹18,500 / Night</span>
+</div>
+</div>
+<div class="group reveal" style="transition-delay: 500ms;">
+<div class="relative aspect-[3/4] overflow-hidden mb-6 bg-surface-dim">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVnahqIHwlQCzM2x5Yi2nIdG_kGwbzZz8C6M_7PbRUBFZTrvVyEIXJBb0j7DNVBls3xY1qqRG3-SKs5VAEuyfQbu55iqK0S4CcL50ub_cPXXOK7zqntMKmKxt41MvRZqvxDaqJDrwRQGNDGLuRC7jC_7zsv0Aqzu_TR4tjkM1linkoKGR7a-fDSnoUhTZp3lGrJkbp1AImboHDYnwEpDcZkbZGYkhKzLGI4-ZV6s1SJCxSOmGEw7dX5A" alt="Deluxe Room"/>
+</div>
+<h3 class="font-display-lg text-headline-lg mb-2">Deluxe Room</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Elegant simplicity with hand-crafted teak furniture.</p>
+<div class="flex justify-between items-center border-t border-outline-variant pt-4">
+<span class="font-label-caps text-label-caps uppercase">From ₹9,500 / Night</span>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-surface-container-low border-t border-outline-variant py-section-padding-desktop">
+<div class="max-w-7xl mx-auto px-gutter text-center">
+<a class="font-display-lg text-headline-lg text-primary" href="#">VANYA LODGE</a>
+<p class="font-body-md text-on-surface-variant mt-4">© 2024 Vanya Lodge. Crafted with respect for the Corbett Wilderness.</p>
+</div>
+</footer>
+<script>
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('main-header');
+    if (window.scrollY > 100) { header.classList.add('nav-scrolled', 'shadow-sm'); }
+    else { header.classList.remove('nav-scrolled', 'shadow-sm'); }
+});
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body></html>

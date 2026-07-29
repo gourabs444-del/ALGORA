@@ -84,6 +84,12 @@
   .active-feedback { transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, background-color 0.15s ease; }
   .active-feedback:active { transform: scale(0.96) !important; }
   .dropdown-shadow { box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15); }
+  @keyframes deckFadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-fadeIn { animation: deckFadeIn 0.4s ease-out; }
+  .deck-card { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .deck-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.15); }
+  .deck-hero-card { transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .deck-hero-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.18); }
   @keyframes marqueeLeft { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-25%, 0, 0); } }
   @keyframes marqueeRight {
       0% { transform: translate3d(-25%, 0, 0); }
@@ -512,6 +518,38 @@
 <span class="material-symbols-outlined group-hover:text-primary transition-colors" data-icon="handshake">handshake</span>
 <span class="font-body-md text-body-md">Collaboration</span>
 </a>
+<!-- CATEGORY Accordion in Sidebar -->
+<div class="relative z-10 rounded-xl overflow-hidden">
+    <button id="sidebar-category-toggle" class="w-full flex items-center justify-between gap-3 px-4 py-2.5 lg:py-3 rounded-xl text-on-surface-variant dark:text-slate-400 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-all cursor-pointer">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined group-hover:text-primary transition-colors">category</span>
+            <span class="font-body-md text-body-md">Category</span>
+        </div>
+        <svg id="sidebar-category-arrow" class="w-4 h-4 text-on-surface-variant/60 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+    </button>
+    <div id="sidebar-category-submenu" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+        <div class="flex flex-col gap-1 px-2 pb-2">
+            <a href="#" data-sidebar-cat="websites" class="sidebar-cat-item flex items-center gap-2.5 px-4 py-2 rounded-lg hover:bg-surface-container-high dark:hover:bg-slate-800 text-on-surface-variant dark:text-slate-400 hover:text-primary text-[13px] font-semibold transition-all cursor-pointer" style="text-decoration: none;">
+                <span class="material-symbols-outlined text-[16px] text-indigo-500">language</span>
+                Web Sites
+            </a>
+            <a href="#" data-sidebar-cat="landing" class="sidebar-cat-item flex items-center gap-2.5 px-4 py-2 rounded-lg hover:bg-surface-container-high dark:hover:bg-slate-800 text-on-surface-variant dark:text-slate-400 hover:text-primary text-[13px] font-semibold transition-all cursor-pointer" style="text-decoration: none;">
+                <span class="material-symbols-outlined text-[16px] text-emerald-500">rocket_launch</span>
+                Landing Pages
+            </a>
+            <a href="#" data-sidebar-cat="presets" class="sidebar-cat-item flex items-center gap-2.5 px-4 py-2 rounded-lg hover:bg-surface-container-high dark:hover:bg-slate-800 text-on-surface-variant dark:text-slate-400 hover:text-primary text-[13px] font-semibold transition-all cursor-pointer" style="text-decoration: none;">
+                <span class="material-symbols-outlined text-[16px] text-amber-500">palette</span>
+                Presets & LUTs
+            </a>
+            <a href="#" data-sidebar-cat="articles" class="sidebar-cat-item flex items-center gap-2.5 px-4 py-2 rounded-lg hover:bg-surface-container-high dark:hover:bg-slate-800 text-on-surface-variant dark:text-slate-400 hover:text-primary text-[13px] font-semibold transition-all cursor-pointer" style="text-decoration: none;">
+                <span class="material-symbols-outlined text-[16px] text-rose-500">article</span>
+                Article / Blog
+            </a>
+        </div>
+    </div>
+</div>
 <!-- Settings Wrapper (Restored to its original position inside nav) -->
 <div class="relative pt-1 lg:pt-2">
     <button class="w-full flex items-center justify-start gap-3 px-4 py-2.5 lg:py-3 text-on-surface-variant dark:text-slate-300 hover:bg-surface-container-high dark:hover:bg-slate-800 transition-colors rounded-xl group font-semibold active-feedback cursor-pointer" id="settings-trigger">
@@ -981,7 +1019,431 @@
     </div>
 </div>
 
+<!-- Card 8: AESTHETE Landing Page -->
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="landing">
+    <a href="aesthete.html" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+        <img alt="AESTHETE - Form & Essence" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQRrb1yhVY0H_fRm1DxoDAa63JuBpOWquWYs3u-Ja4huKCqYw-1KCjTX4t_Md1201gc2AWSTTNzxTuWNNCiwVo4d5NDHFvbYy_-2dtlxvPK0-MDNYp0jDDlE0cVbbLLbWSYgL-1hbVVxLP3PqFLrP_O_SHqHoiirKTnI2B4Y3bkpGQ3mO5QSEE9uL_HC4EKkARcDWTFBqgtA1o8wv9Mb4vbJudY2G8xatlS_ORmENlNbBTHLnTtICOSQ">
+    </a>
+    <div class="p-6">
+        <div class="flex items-start justify-between gap-3 mb-2 min-w-0">
+            <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white leading-snug truncate min-w-0">AESTHETE - Form & Essence</h3>
+            <span class="text-secondary hover:text-primary transition-colors mt-1 flex-shrink-0 cursor-pointer select-none">
+                <span class="material-symbols-outlined font-bold">more_horiz</span>
+            </span>
+        </div>
+        <!-- Website & Favorite Container -->
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-xs text-on-surface-variant dark:text-slate-400 flex items-center gap-1.5 truncate">
+                <span class="material-symbols-outlined text-[14px]">language</span>
+                aesthete.html
+            </span>
+            <button class="fav-toggle-btn text-slate-300 dark:text-slate-600 hover:text-amber-500 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="aesthete" aria-label="Toggle Favorite">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+            </button>
+        </div>
+        <div class="flex items-center justify-between mt-4 gap-2 flex-wrap sm:flex-nowrap">
+            <!-- Small Tag-like Buttons -->
+            <div class="flex gap-2">
+                <a href="aesthete.html" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
+                </a>
+                <a href="project.html?id=aesthete" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                    <span class="material-symbols-outlined text-[15px] font-black">info</span> About
+                </a>
+            </div>
+            <!-- Star Rating Badge -->
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="aesthete" data-rating="4.9" data-rating-count="72">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="rating-val">4.9</span>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Card 9: Vanya Lodge Landing Page -->
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="landing">
+    <a href="vanyalodge.html" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+        <img alt="Vanya Lodge - Forest Sanctuary" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLt73OOR_O8q5dN7dPFaRrX3hJI00ZYuMtUKkU3nK9_TyzgsOJ0Y90IATPs2iSXXZ4PL0-NUA3fXdYuRWeyohvUC4h6koCQ3AmsFlBsGiWVF1Iu-aWoDKt8VOpBxFyVUOHCs0izP7PYxDVA2SvmFIzgE6ii26ktPsCpsZLdwgZu1VzGMaApZPPFaLHQv8zPQW-uy4PWdTvbNEot-AmPQGbBhL0W6Y-qBJeCc_f-HrYojsKEcuJP-Pf_VKy4">
+    </a>
+    <div class="p-6">
+        <div class="flex items-start justify-between gap-3 mb-2 min-w-0">
+            <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white leading-snug truncate min-w-0">Vanya Lodge - Forest Sanctuary</h3>
+            <span class="text-secondary hover:text-primary transition-colors mt-1 flex-shrink-0 cursor-pointer select-none">
+                <span class="material-symbols-outlined font-bold">more_horiz</span>
+            </span>
+        </div>
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-xs text-on-surface-variant dark:text-slate-400 flex items-center gap-1.5 truncate">
+                <span class="material-symbols-outlined text-[14px]">language</span>
+                vanyalodge.html
+            </span>
+            <button class="fav-toggle-btn text-slate-300 dark:text-slate-600 hover:text-amber-500 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="vanyalodge" aria-label="Toggle Favorite">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+            </button>
+        </div>
+        <div class="flex items-center justify-between mt-4 gap-2 flex-wrap sm:flex-nowrap">
+            <div class="flex gap-2">
+                <a href="vanyalodge.html" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
+                </a>
+                <a href="project.html?id=vanyalodge" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                    <span class="material-symbols-outlined text-[15px] font-black">info</span> About
+                </a>
+            </div>
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="vanyalodge" data-rating="4.8" data-rating-count="35">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="rating-val">4.8</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card 10: Vantage Point Advisory Landing Page -->
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="landing">
+    <a href="vantagepoint.html" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+        <img alt="Vantage Point Advisory" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiM609JJgbguzMSXBM2HAo6CeZ4h60QnEZ-8kMaxQ55_p4zdhAaxH0kkulT92I805DYZJfCUyUOlDeO__VIqgDyQVn4_fGWINvIfp241dE0hzovInIh6-QHCegUx5llcdNRQQRCvO5s8g7HZuv-MPxnTWPj1uQlYw2vhJIFtzNnUHk-fjW_6o8CXg_d5AIBPT2J3WRB9ali6XRezsANsX-SimxVzirconP-zzMK1xEjDK-mkcehOkLqg">
+    </a>
+    <div class="p-6">
+        <div class="flex items-start justify-between gap-3 mb-2 min-w-0">
+            <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white leading-snug truncate min-w-0">Vantage Point Advisory</h3>
+            <span class="text-secondary hover:text-primary transition-colors mt-1 flex-shrink-0 cursor-pointer select-none">
+                <span class="material-symbols-outlined font-bold">more_horiz</span>
+            </span>
+        </div>
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-xs text-on-surface-variant dark:text-slate-400 flex items-center gap-1.5 truncate">
+                <span class="material-symbols-outlined text-[14px]">language</span>
+                vantagepoint.html
+            </span>
+            <button class="fav-toggle-btn text-slate-300 dark:text-slate-600 hover:text-amber-500 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="vantagepoint" aria-label="Toggle Favorite">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+            </button>
+        </div>
+        <div class="flex items-center justify-between mt-4 gap-2 flex-wrap sm:flex-nowrap">
+            <div class="flex gap-2">
+                <a href="vantagepoint.html" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
+                </a>
+                <a href="project.html?id=vantagepoint" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                    <span class="material-symbols-outlined text-[15px] font-black">info</span> About
+                </a>
+            </div>
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="vantagepoint" data-rating="4.7" data-rating-count="48">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="rating-val">4.7</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card 11: Juris Lexicon Landing Page -->
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="landing">
+    <a href="jurislexicon.html" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+        <img alt="Juris Lexicon - Institutional Strength" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLul3MhM3pa9c8_kuKlg-V01a3TF7-7GDvERp4ZykShBvy7AclvJGO5J2a6dtPAdHZfq_tJGll5UADtTR7YABrq_DeZQSPXdduiRPhE8wORimGYMfqpMdvs1k-HrADSHQvJqsWYWBweZdHmauTYWbqLkP_800P_i_9CG_bIOCYWsl_VXlQiyKtbLNJHD4wr-3LH9N_d70O-tcfn_FidDY3k3CoOookHXmD6mkkOHSkRDBH485JINBEZ0vbw">
+    </a>
+    <div class="p-6">
+        <div class="flex items-start justify-between gap-3 mb-2 min-w-0">
+            <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white leading-snug truncate min-w-0">Juris Lexicon</h3>
+            <span class="text-secondary hover:text-primary transition-colors mt-1 flex-shrink-0 cursor-pointer select-none">
+                <span class="material-symbols-outlined font-bold">more_horiz</span>
+            </span>
+        </div>
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-xs text-on-surface-variant dark:text-slate-400 flex items-center gap-1.5 truncate">
+                <span class="material-symbols-outlined text-[14px]">language</span>
+                jurislexicon.html
+            </span>
+            <button class="fav-toggle-btn text-slate-300 dark:text-slate-600 hover:text-amber-500 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="jurislexicon" aria-label="Toggle Favorite">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+            </button>
+        </div>
+        <div class="flex items-center justify-between mt-4 gap-2 flex-wrap sm:flex-nowrap">
+            <div class="flex gap-2">
+                <a href="jurislexicon.html" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
+                </a>
+                <a href="project.html?id=jurislexicon" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                    <span class="material-symbols-outlined text-[15px] font-black">info</span> About
+                </a>
+            </div>
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="jurislexicon" data-rating="4.9" data-rating-count="61">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="rating-val">4.9</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card 12: Juris Lexicon Dark Landing Page -->
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="landing">
+    <a href="jurislexicon-dark.html" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+        <img alt="Juris Lexicon - Justice Reimagined" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-FRCGEVsEZljFDQs1T3YakfO42jiUVWyZgW-vKhQJ5mod2esMeyq_dejzme-j-Es8TPKH-TPTmt8W1R7GVKx-T1Ix82usUq3ywQI7gFUjE5bqVGbTleHLnErEcPQm7ixSBxBDj0eYi_PPL1Rb5muGIgOb0oRa5l48-gqPW7WN-K4GxV_stSp6_vcbw-0PEy-PdEQkpXj7Ufye8IOAn_9NfEjPHKCO9L3fI-9mZW_4qijaJCWVzBz4">
+    </a>
+    <div class="p-6">
+        <div class="flex items-start justify-between gap-3 mb-2 min-w-0">
+            <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white leading-snug truncate min-w-0">Juris Lexicon — Dark</h3>
+            <span class="text-secondary hover:text-primary transition-colors mt-1 flex-shrink-0 cursor-pointer select-none">
+                <span class="material-symbols-outlined font-bold">more_horiz</span>
+            </span>
+        </div>
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-xs text-on-surface-variant dark:text-slate-400 flex items-center gap-1.5 truncate">
+                <span class="material-symbols-outlined text-[14px]">language</span>
+                jurislexicon-dark.html
+            </span>
+            <button class="fav-toggle-btn text-slate-300 dark:text-slate-600 hover:text-amber-500 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="jurislexicon-dark" aria-label="Toggle Favorite">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+            </button>
+        </div>
+        <div class="flex items-center justify-between mt-4 gap-2 flex-wrap sm:flex-nowrap">
+            <div class="flex gap-2">
+                <a href="jurislexicon-dark.html" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
+                </a>
+                <a href="project.html?id=jurislexicon-dark" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                    <span class="material-symbols-outlined text-[15px] font-black">info</span> About
+                </a>
+            </div>
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="jurislexicon-dark" data-rating="4.8" data-rating-count="52">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="rating-val">4.8</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card 13: BloomFi Landing Page -->
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="landing">
+    <a href="bloomfi.html" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+        <img alt="BloomFi - Where Brands Flourish" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWJLu5W4nWsDAtK09nZ0HZIXlFzLe8UyOmAq7bvzf4JjsnkxQ20YkX9LpGSAk2XYzP5h_16u-mKesCrli5xZ30l9aaf9oYHbd24SogFEL3GPussZpPCx3aGeiErPL28sg9Crdxj3q4KBIj3S3kHvuB3bEOeePrVzfXeZwE4J2Oh8YMuPBMZ6p1wcnR7vSBiGGrC0H_dIp6Gxhgzx8WURLCnmvAUiDO6gMmt4-Af8KiTdjLmc6xH3Q7">
+    </a>
+    <div class="p-6">
+        <div class="flex items-start justify-between gap-3 mb-2 min-w-0">
+            <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white leading-snug truncate min-w-0">BloomFi</h3>
+            <span class="text-secondary hover:text-primary transition-colors mt-1 flex-shrink-0 cursor-pointer select-none">
+                <span class="material-symbols-outlined font-bold">more_horiz</span>
+            </span>
+        </div>
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-xs text-on-surface-variant dark:text-slate-400 flex items-center gap-1.5 truncate">
+                <span class="material-symbols-outlined text-[14px]">language</span>
+                bloomfi.html
+            </span>
+            <button class="fav-toggle-btn text-slate-300 dark:text-slate-600 hover:text-amber-500 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="bloomfi" aria-label="Toggle Favorite">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+            </button>
+        </div>
+        <div class="flex items-center justify-between mt-4 gap-2 flex-wrap sm:flex-nowrap">
+            <div class="flex gap-2">
+                <a href="bloomfi.html" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
+                </a>
+                <a href="project.html?id=bloomfi" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                    <span class="material-symbols-outlined text-[15px] font-black">info</span> About
+                </a>
+            </div>
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="bloomfi" data-rating="4.7" data-rating-count="42">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="rating-val">4.7</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card 14: Lumina Artisanal Landing Page -->
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-bold-static card-floating block border border-outline-variant/10 dark:border-slate-800" data-cat-type="landing">
+    <a href="lumina.html" target="_blank" class="block aspect-[4/3] w-full relative overflow-hidden bg-surface-container-low cursor-pointer">
+        <img alt="Lumina Artisanal - A Symphony of Senses" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfQWeXDnBDvFbHBbVEIYCME2U26whouVOImpla27RI1wTKVmC0eRoErHpQ493-BFbe-R4AP36p21GSIYbYVAdK-72_DwTMiRL5ihWzDxNiTVlBN9nt-iNQ9V5hBp9TM51QyMOe-eyiOuLveks-vg7XUyysU-cZle1LNQP0G93PlmDHx2fRCbNerQ6s0EO3yiCmx0ms6SSBeb3DXnZtgFa8nkybf374Ze3LIwuX1qNd5rlT10WWQ3nn">
+    </a>
+    <div class="p-6">
+        <div class="flex items-start justify-between gap-3 mb-2 min-w-0">
+            <h3 class="text-lg font-bold tracking-tight text-on-surface dark:text-white leading-snug truncate min-w-0">Lumina Artisanal</h3>
+            <span class="text-secondary hover:text-primary transition-colors mt-1 flex-shrink-0 cursor-pointer select-none">
+                <span class="material-symbols-outlined font-bold">more_horiz</span>
+            </span>
+        </div>
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-xs text-on-surface-variant dark:text-slate-400 flex items-center gap-1.5 truncate">
+                <span class="material-symbols-outlined text-[14px]">language</span>
+                lumina.html
+            </span>
+            <button class="fav-toggle-btn text-slate-300 dark:text-slate-600 hover:text-amber-500 hover:scale-115 active:scale-90 transition-all cursor-pointer flex items-center justify-center" data-project-id="lumina" aria-label="Toggle Favorite">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">star</span>
+            </button>
+        </div>
+        <div class="flex items-center justify-between mt-4 gap-2 flex-wrap sm:flex-nowrap">
+            <div class="flex gap-2">
+                <a href="lumina.html" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[15px] font-black">visibility</span> View
+                </a>
+                <a href="project.html?id=lumina" class="px-3.5 py-1.5 rounded-xl text-on-surface-variant dark:text-slate-300 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer active-feedback flex items-center gap-1.5 font-bold text-[13px]">
+                    <span class="material-symbols-outlined text-[15px] font-black">info</span> About
+                </a>
+            </div>
+            <div class="project-rating-badge flex items-center gap-1 text-[13px] font-bold text-amber-500 px-2.5 py-1 rounded-lg cursor-pointer hover:text-amber-400 active:scale-95 transition-all select-none" data-project-id="lumina" data-rating="4.9" data-rating-count="38">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="rating-val">4.9</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- Landing Pages Deck (Hidden by default — shown when Landing Pages category is clicked) -->
+<style>
+    #landing-pages-deck { max-width: 1480px; margin: 0 auto; min-height: 100vh; padding: clamp(2rem, 5vw, 5.5rem) clamp(1.25rem, 4vw, 4rem); color: #f8fafc; background: radial-gradient(circle at 90% 0%, rgba(52, 211, 153, .14), transparent 31rem), radial-gradient(circle at 7% 35%, rgba(99, 102, 241, .14), transparent 28rem), #0a0d15; }
+    #landing-pages-deck .deck-hero-card, #landing-pages-deck .deck-card { border: 1px solid rgba(255, 255, 255, .13); box-shadow: 0 24px 60px rgba(0, 0, 0, .28); }
+    #landing-pages-deck .deck-card { background: #111827; transition: transform .35s cubic-bezier(.16, 1, .3, 1), border-color .35s ease, box-shadow .35s ease; }
+    #landing-pages-deck .deck-card:hover { transform: translateY(-8px); border-color: rgba(167, 243, 208, .65); box-shadow: 0 28px 70px rgba(0, 0, 0, .45); }
+</style>
+<div id="landing-pages-deck" class="hidden w-full animate-fadeIn">
+    <!-- Deck Header -->
+    <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+            <button id="deck-back-btn" class="w-9 h-9 rounded-full bg-white/10 dark:bg-slate-800 border border-outline-variant/20 dark:border-slate-700 flex items-center justify-center hover:bg-white/20 dark:hover:bg-slate-700 transition-all cursor-pointer active:scale-90 backdrop-blur-sm">
+                <span class="material-symbols-outlined text-[18px] text-on-surface dark:text-white">arrow_back</span>
+            </button>
+            <div>
+                <h2 class="text-xl sm:text-2xl font-bold text-on-surface dark:text-white tracking-tight">Landing Pages</h2>
+                <p class="text-xs text-on-surface-variant dark:text-slate-400 mt-0.5">Curated collection of premium landing pages</p>
+            </div>
+        </div>
+        <span class="text-xs font-bold text-emerald-100 bg-emerald-400/10 border border-emerald-300/20 px-3 py-1.5 rounded-full" id="deck-count-badge">6 Projects</span>
+    </div>
+
+    <!-- Featured Hero Card -->
+    <a href="bloomfi.html" target="_blank" class="deck-hero-card block relative rounded-2xl overflow-hidden mb-6 group cursor-pointer" style="text-decoration:none;">
+        <div class="aspect-[21/9] sm:aspect-[3/1] w-full relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWJLu5W4nWsDAtK09nZ0HZIXlFzLe8UyOmAq7bvzf4JjsnkxQ20YkX9LpGSAk2XYzP5h_16u-mKesCrli5xZ30l9aaf9oYHbd24SogFEL3GPussZpPCx3aGeiErPL28sg9Crdxj3q4KBIj3S3kHvuB3bEOeePrVzfXeZwE4J2Oh8YMuPBMZ6p1wcnR7vSBiGGrC0H_dIp6Gxhgzx8WURLCnmvAUiDO6gMmt4-Af8KiTdjLmc6xH3Q7" alt="BloomFi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                <span class="inline-block px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold uppercase tracking-wider mb-3 backdrop-blur-sm border border-emerald-500/20">Featured</span>
+                <h3 class="text-white text-2xl sm:text-3xl font-bold mb-1">BloomFi</h3>
+                <p class="text-white/60 text-sm">Where Brands Flourish — Marketing engine for digital ecosystems</p>
+            </div>
+            <div class="absolute top-4 right-4 flex items-center gap-1 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                <span class="material-symbols-outlined text-amber-400 text-[14px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="text-white text-xs font-bold">4.7</span>
+            </div>
+        </div>
+    </a>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <!-- Lumina Artisanal -->
+        <a href="lumina.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
+            <div class="aspect-[4/3] relative">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfQWeXDnBDvFbHBbVEIYCME2U26whouVOImpla27RI1wTKVmC0eRoErHpQ493-BFbe-R4AP36p21GSIYbYVAdK-72_DwTMiRL5ihWzDxNiTVlBN9nt-iNQ9V5hBp9TM51QyMOe-eyiOuLveks-vg7XUyysU-cZle1LNQP0G93PlmDHx2fRCbNerQ6s0EO3yiCmx0ms6SSBeb3DXnZtgFa8nkybf374Ze3LIwuX1qNd5rlT10WWQ3nn" alt="Lumina Artisanal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 class="text-white font-bold text-sm drop-shadow-lg">Lumina Artisanal</h4>
+                    <p class="text-white/60 text-xs mt-0.5">A Symphony of Senses</p>
+                </div>
+                <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-amber-400 text-[12px]" style="font-variation-settings:'FILL' 1;">star</span>
+                    <span class="text-white text-[11px] font-bold">4.9</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Juris Lexicon Dark -->
+        <a href="jurislexicon-dark.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
+            <div class="aspect-[4/3] relative">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-FRCGEVsEZljFDQs1T3YakfO42jiUVWyZgW-vKhQJ5mod2esMeyq_dejzme-j-Es8TPKH-TPTmt8W1R7GVKx-T1Ix82usUq3ywQI7gFUjE5bqVGbTleHLnErEcPQm7ixSBxBDj0eYi_PPL1Rb5muGIgOb0oRa5l48-gqPW7WN-K4GxV_stSp6_vcbw-0PEy-PdEQkpXj7Ufye8IOAn_9NfEjPHKCO9L3fI-9mZW_4qijaJCWVzBz4" alt="Juris Lexicon Dark" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 class="text-white font-bold text-sm drop-shadow-lg">Juris Lexicon — Dark</h4>
+                    <p class="text-white/60 text-xs mt-0.5">Justice. Reimagined.</p>
+                </div>
+                <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-amber-400 text-[12px]" style="font-variation-settings:'FILL' 1;">star</span>
+                    <span class="text-white text-[11px] font-bold">4.8</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Juris Lexicon -->
+        <a href="jurislexicon.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
+            <div class="aspect-[4/3] relative">
+                <img src="https://lh3.googleusercontent.com/aida/AP1WRLul3MhM3pa9c8_kuKlg-V01a3TF7-7GDvERp4ZykShBvy7AclvJGO5J2a6dtPAdHZfq_tJGll5UADtTR7YABrq_DeZQSPXdduiRPhE8wORimGYMfqpMdvs1k-HrADSHQvJqsWYWBweZdHmauTYWbqLkP_800P_i_9CG_bIOCYWsl_VXlQiyKtbLNJHD4wr-3LH9N_d70O-tcfn_FidDY3k3CoOookHXmD6mkkOHSkRDBH485JINBEZ0vbw" alt="Juris Lexicon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 class="text-white font-bold text-sm drop-shadow-lg">Juris Lexicon</h4>
+                    <p class="text-white/60 text-xs mt-0.5">Institutional Strength. Global Reach.</p>
+                </div>
+                <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-amber-400 text-[12px]" style="font-variation-settings:'FILL' 1;">star</span>
+                    <span class="text-white text-[11px] font-bold">4.9</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Vantage Point Advisory -->
+        <a href="vantagepoint.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
+            <div class="aspect-[4/3] relative">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHN5IbQ0XZGG3BjKsVE4kfmXZr34XGj0v3fTBG40E_m0uh-kJFcxg3QLhABFxkSY5N8BDk2MNdwDkIxWeLXaLKjUqBj5tCcYDW-17yxuTLNRCDgdQiqP5mPybSgQ7wK8T4tMlZgpqAc4I35tbbNlm4m5VxSqRwqq2i0sLfpM4HsBXtSO_T0SnPHrHcEUx-nz_gADdhw4PcKVG3x5nRKaBM5c-tN0lHbvdY7YC0RJXWPAMdLxdmYnr" alt="Vantage Point" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 class="text-white font-bold text-sm drop-shadow-lg">Vantage Point Advisory</h4>
+                    <p class="text-white/60 text-xs mt-0.5">Strategic Advice. Practical Solutions.</p>
+                </div>
+                <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-amber-400 text-[12px]" style="font-variation-settings:'FILL' 1;">star</span>
+                    <span class="text-white text-[11px] font-bold">4.7</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Vanya Lodge -->
+        <a href="vanyalodge.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
+            <div class="aspect-[4/3] relative">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWqOLDfr2xE7yPpXO5nEGLDEk78Z7yzXYvmYkDvvlXpJclY3nXcnbT3VQa_yUcq8PkCxCLjBjFfP0hmxDxhsClHMEWuD_Xt_Ox2qpC2-bXBsUVMOBEEbGPKFUcuwXFwkxm8p6a7pqhqRJZbLG7n8KT1S2UlpTI6q7I8HRG8ZGNcAH0jB_ECPG-4LPOhqsqG3sMsrqkV_jUepVuuxVGQ1h3RhWBQjGSJvOzaYMIg8k8YJm3l_28Xd" alt="Vanya Lodge" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 class="text-white font-bold text-sm drop-shadow-lg">Vanya Lodge</h4>
+                    <p class="text-white/60 text-xs mt-0.5">Forest Sanctuary in Corbett</p>
+                </div>
+                <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-amber-400 text-[12px]" style="font-variation-settings:'FILL' 1;">star</span>
+                    <span class="text-white text-[11px] font-bold">4.8</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- AESTHETE -->
+        <a href="aesthete.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
+            <div class="aspect-[4/3] relative">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqAb6VwTgHjJxJ3bwCWEjb_1T9BDjCIkqvTTIBRfB1mfW0IW7O_5UhfxwzJQpuXoHq7n2aSt-9qv_cfKaAEVcalBtZJRvJLuEPBj44NfmhwdPn6FkrATjz6eL0lbLKJj3X_j3C4I3-a4MBKNE_6oCiTPVxp_DKOW3i8Ru4kX9mgxMBxVDNYB4dMQqPEBvwMaOPbpVY0sGqvfxTGMY7hhaxnBTCpBQQQUUdxRJNhpEBEGQH_5BRvM3" alt="AESTHETE" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 class="text-white font-bold text-sm drop-shadow-lg">AESTHETE</h4>
+                    <p class="text-white/60 text-xs mt-0.5">Form & Essence</p>
+                </div>
+                <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-amber-400 text-[12px]" style="font-variation-settings:'FILL' 1;">star</span>
+                    <span class="text-white text-[11px] font-bold">4.9</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- GuildRank Arena -->
+        <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="hidden deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
+            <div class="aspect-[4/3] relative">
+                <img src="assets/thumbnails/guildrank_home.png?v=1.0" alt="GuildRank Arena" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 class="text-white font-bold text-sm drop-shadow-lg">GuildRank Arena</h4>
+                    <p class="text-white/60 text-xs mt-0.5">Competitive Gaming Profiles</p>
+                </div>
+                <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-amber-400 text-[12px]" style="font-variation-settings:'FILL' 1;">star</span>
+                    <span class="text-white text-[11px] font-bold">4.8</span>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
 
 <!-- Fixed Frosted Glassmorphic Header Ribbon (Pinned z-9999 above drawer) -->
@@ -994,9 +1456,34 @@
     <div class="hidden sm:flex flex-1 items-center justify-center gap-4 sm:gap-6 lg:gap-8 px-4 mr-6 sm:mr-12 md:mr-20 lg:mr-28">
         <!-- High-Readability Navigation Links (CATEGORY & CONSULTANT) -->
         <div class="flex items-center gap-5 sm:gap-7 text-white/90 tracking-[0.18em] uppercase text-[11px] sm:text-[12px] font-sans font-semibold">
-            <a href="#categorized-sections-container" class="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5" style="text-decoration: none;">
-                CATEGORY
-            </a>
+            <!-- CATEGORY with Dropdown -->
+            <div class="relative" id="header-cat-wrapper">
+                <button id="header-category-btn" class="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5 uppercase tracking-[0.18em] text-[11px] sm:text-[12px] font-semibold text-white/90 bg-transparent border-none outline-none">
+                    CATEGORY
+                    <svg class="w-3 h-3 text-white/50 transition-transform duration-300" id="header-cat-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <!-- Dropdown Panel -->
+                <div id="header-cat-dropdown" class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-44 bg-[#1a1a2e]/98 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl py-1.5 px-1.5 opacity-0 scale-95 pointer-events-none transition-all duration-200 z-[99999]">
+                    <a href="#" data-header-cat="websites" class="header-cat-item flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white/10 text-white/75 hover:text-white text-[11px] font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap" style="text-decoration:none;">
+                        <span class="w-2 h-2 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                        Web Sites
+                    </a>
+                    <a href="#" data-header-cat="landing" class="header-cat-item flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white/10 text-white/75 hover:text-white text-[11px] font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap" style="text-decoration:none;">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                        Landing Pages
+                    </a>
+                    <a href="#" data-header-cat="presets" class="header-cat-item flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white/10 text-white/75 hover:text-white text-[11px] font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap" style="text-decoration:none;">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0"></span>
+                        Presets &amp; LUTs
+                    </a>
+                    <a href="#" data-header-cat="articles" class="header-cat-item flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white/10 text-white/75 hover:text-white text-[11px] font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap" style="text-decoration:none;">
+                        <span class="w-2 h-2 rounded-full bg-rose-400 flex-shrink-0"></span>
+                        Article / Blog
+                    </a>
+                </div>
+            </div>
             <a href="#contact-section" class="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5" style="text-decoration: none;">
                 CONSULTANT
             </a>
@@ -1563,24 +2050,23 @@
             
             <!-- Beautiful Section transition separator (Skills Circular Rings Widget) -->
             <div class="max-w-[1680px] mx-auto w-full py-16 sm:py-24">
-                <div class="flex flex-col items-center text-center mb-12 sm:mb-16">
-                    <span class="text-[11px] font-mono font-extrabold uppercase tracking-[0.4em] text-fuchsia-500 dark:text-fuchsia-400 mb-3 px-4 py-1.5 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20">Sandbox Laboratory</span>
-                    <h4 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-3 font-serif">
+                <div class="flex flex-col items-center text-center mb-8 sm:mb-12">
+                    <h4 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mb-2 font-serif">
                         Coding Metrics & Custom Algorithms
                     </h4>
-                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed font-sans">
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed font-sans">
                         We write clean, test-driven algorithms optimized for scale. Tap into our sandbox metrics and live performance data.
                     </p>
                 </div>
                 
-                <div class="flex flex-wrap justify-center items-center gap-12 sm:gap-16 lg:gap-24 max-w-5xl mx-auto px-4">
+                <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-12 lg:gap-16 max-w-3xl mx-auto px-4">
                     <!-- Ring 1: Algorithmic Optimization 95% -->
-                    <div class="skill-ring-item flex flex-col items-center text-center gap-5 group">
-                        <div class="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
-                            <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_4px_16px_rgba(217,70,239,0.35)]" viewBox="0 0 120 120">
-                                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(217, 70, 239, 0.15)" stroke-width="10"/>
-                                <circle class="skill-ring-circle" cx="60" cy="60" r="50" fill="none" stroke="url(#ring-grad-fuchsia)" stroke-width="10" stroke-linecap="round"
-                                    stroke-dasharray="314.16" stroke-dashoffset="314.16" data-target-offset="15.71"/>
+                    <div class="skill-ring-item flex flex-col items-center text-center gap-3 group">
+                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+                            <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_2px_8px_rgba(217,70,239,0.25)]" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(217, 70, 239, 0.1)" stroke-width="6"/>
+                                <circle class="skill-ring-circle" cx="60" cy="60" r="52" fill="none" stroke="url(#ring-grad-fuchsia)" stroke-width="6" stroke-linecap="round"
+                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" data-target-offset="16.34"/>
                                 <defs>
                                     <linearGradient id="ring-grad-fuchsia" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" stop-color="#d946ef"/>
@@ -1590,21 +2076,21 @@
                             </svg>
                             <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
                                 <div class="flex items-baseline justify-center">
-                                    <span class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight" style="color: #0f172a !important; font-family: 'Inter', -apple-system, sans-serif !important;">95</span>
-                                    <span class="text-sm sm:text-base font-extrabold text-fuchsia-500 ml-0.5" style="color: #d946ef !important;">%</span>
+                                    <span class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight" style="color: #0f172a !important; font-family: 'Inter', -apple-system, sans-serif !important;">95</span>
+                                    <span class="text-[10px] sm:text-xs font-extrabold text-fuchsia-500 ml-0.5" style="color: #d946ef !important;">%</span>
                                 </div>
                             </div>
                         </div>
-                        <span class="text-[11px] font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.22em] max-w-[160px] leading-tight">Algorithmic Optimization</span>
+                        <span class="text-[9px] sm:text-[10px] font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.18em] max-w-[120px] leading-tight">Algorithmic Optimization</span>
                     </div>
 
                     <!-- Ring 2: Performance Speed 98% -->
-                    <div class="skill-ring-item flex flex-col items-center text-center gap-5 group">
-                        <div class="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
-                            <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_4px_16px_rgba(16,185,129,0.35)]" viewBox="0 0 120 120">
-                                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(16, 185, 129, 0.15)" stroke-width="10"/>
-                                <circle class="skill-ring-circle" cx="60" cy="60" r="50" fill="none" stroke="url(#ring-grad-emerald)" stroke-width="10" stroke-linecap="round"
-                                    stroke-dasharray="314.16" stroke-dashoffset="314.16" data-target-offset="6.28"/>
+                    <div class="skill-ring-item flex flex-col items-center text-center gap-3 group">
+                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+                            <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_2px_8px_rgba(16,185,129,0.25)]" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(16, 185, 129, 0.1)" stroke-width="6"/>
+                                <circle class="skill-ring-circle" cx="60" cy="60" r="52" fill="none" stroke="url(#ring-grad-emerald)" stroke-width="6" stroke-linecap="round"
+                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" data-target-offset="6.53"/>
                                 <defs>
                                     <linearGradient id="ring-grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" stop-color="#10b981"/>
@@ -1614,21 +2100,21 @@
                             </svg>
                             <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
                                 <div class="flex items-baseline justify-center">
-                                    <span class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight" style="color: #0f172a !important; font-family: 'Inter', -apple-system, sans-serif !important;">98</span>
-                                    <span class="text-sm sm:text-base font-extrabold text-emerald-500 ml-0.5" style="color: #10b981 !important;">%</span>
+                                    <span class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight" style="color: #0f172a !important; font-family: 'Inter', -apple-system, sans-serif !important;">98</span>
+                                    <span class="text-[10px] sm:text-xs font-extrabold text-emerald-500 ml-0.5" style="color: #10b981 !important;">%</span>
                                 </div>
                             </div>
                         </div>
-                        <span class="text-[11px] font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.22em] max-w-[160px] leading-tight">Performance Speed</span>
+                        <span class="text-[9px] sm:text-[10px] font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.18em] max-w-[120px] leading-tight">Performance Speed</span>
                     </div>
 
                     <!-- Ring 3: Secure Integrations 100% -->
-                    <div class="skill-ring-item flex flex-col items-center text-center gap-5 group">
-                        <div class="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
-                            <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_4px_16px_rgba(59,130,246,0.35)]" viewBox="0 0 120 120">
-                                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(59, 130, 246, 0.15)" stroke-width="10"/>
-                                <circle class="skill-ring-circle" cx="60" cy="60" r="50" fill="none" stroke="url(#ring-grad-blue)" stroke-width="10" stroke-linecap="round"
-                                    stroke-dasharray="314.16" stroke-dashoffset="314.16" data-target-offset="0"/>
+                    <div class="skill-ring-item flex flex-col items-center text-center gap-3 group">
+                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+                            <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_2px_8px_rgba(59,130,246,0.25)]" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(59, 130, 246, 0.1)" stroke-width="6"/>
+                                <circle class="skill-ring-circle" cx="60" cy="60" r="52" fill="none" stroke="url(#ring-grad-blue)" stroke-width="6" stroke-linecap="round"
+                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" data-target-offset="0"/>
                                 <defs>
                                     <linearGradient id="ring-grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" stop-color="#3b82f6"/>
@@ -1638,12 +2124,12 @@
                             </svg>
                             <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
                                 <div class="flex items-baseline justify-center">
-                                    <span class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight" style="color: #0f172a !important; font-family: 'Inter', -apple-system, sans-serif !important;">100</span>
-                                    <span class="text-sm sm:text-base font-extrabold text-blue-500 ml-0.5" style="color: #3b82f6 !important;">%</span>
+                                    <span class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight" style="color: #0f172a !important; font-family: 'Inter', -apple-system, sans-serif !important;">100</span>
+                                    <span class="text-[10px] sm:text-xs font-extrabold text-blue-500 ml-0.5" style="color: #3b82f6 !important;">%</span>
                                 </div>
                             </div>
                         </div>
-                        <span class="text-[11px] font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.22em] max-w-[160px] leading-tight">Secure Integrations</span>
+                        <span class="text-[9px] sm:text-[10px] font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.18em] max-w-[120px] leading-tight">Secure Integrations</span>
                     </div>
                 </div>
 
@@ -2717,14 +3203,14 @@
 
         // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
-            if (!mobileNavDropdown.contains(e.target) && e.target !== navMobileMenuToggle) {
+            if (!mobileNavDropdown.contains(e.target) && !navMobileMenuToggle.contains(e.target)) {
                 mobileNavDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
                 mobileNavDropdown.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
             }
         });
 
-        // Close dropdown when a link inside is clicked
-        const mobileNavLinks = mobileNavDropdown.querySelectorAll('.mobile-nav-item');
+        // Close dropdown when a link inside is clicked (but NOT category sub-items or category toggle)
+        const mobileNavLinks = mobileNavDropdown.querySelectorAll('.mobile-nav-item:not(.mobile-cat-item)');
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileNavDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
@@ -2770,6 +3256,16 @@
                     catItems.forEach(i => i.classList.remove('bg-indigo-500/20', 'text-white', 'ring-1', 'ring-indigo-500/40'));
                     item.classList.add('bg-indigo-500/20', 'text-white', 'ring-1', 'ring-indigo-500/40');
 
+                    // Close mobile nav dropdown
+                    mobileNavDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                    mobileNavDropdown.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+
+                    if (catType === 'landing') {
+                        showLandingPagesDeck();
+                        return;
+                    }
+                    hideLandingPagesDeck();
+
                     // Filter project cards in the template grid
                     const templateCards = document.querySelectorAll('#portfolio-grid-template > .group');
                     templateCards.forEach(card => {
@@ -2804,6 +3300,186 @@
                 });
             });
         }
+    }
+
+    // ====== SHARED: Landing Pages Deck Show/Hide ======
+    const landingDeck = document.getElementById('landing-pages-deck');
+    const categorizedContainer = document.getElementById('categorized-sections-container');
+
+    function showLandingPagesDeck() {
+        if (!landingDeck || !categorizedContainer) return;
+        // Hide main grid
+        categorizedContainer.style.display = 'none';
+        // Show deck
+        landingDeck.classList.remove('hidden');
+        // Re-trigger animation
+        landingDeck.classList.remove('animate-fadeIn');
+        void landingDeck.offsetWidth;
+        landingDeck.classList.add('animate-fadeIn');
+        // Scroll to deck
+        landingDeck.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function hideLandingPagesDeck() {
+        if (!landingDeck || !categorizedContainer) return;
+        landingDeck.classList.add('hidden');
+        categorizedContainer.style.display = '';
+        // Reset all card visibility
+        const allCards = document.querySelectorAll('#categorized-sections-container .group[data-cat-type]');
+        allCards.forEach(c => c.style.display = '');
+        const templateCards = document.querySelectorAll('#portfolio-grid-template > .group');
+        templateCards.forEach(c => c.style.display = '');
+    }
+
+    // Deck Back Button
+    const deckBackBtn = document.getElementById('deck-back-btn');
+    if (deckBackBtn) {
+        deckBackBtn.addEventListener('click', () => {
+            hideLandingPagesDeck();
+            if (categorizedContainer) {
+                categorizedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+
+    // HEADER CATEGORY Dropdown Toggle + Filtering
+    const headerCatBtn = document.getElementById('header-category-btn');
+    const headerCatDropdown = document.getElementById('header-cat-dropdown');
+    const headerCatArrow = document.getElementById('header-cat-arrow');
+    const headerCatWrapper = document.getElementById('header-cat-wrapper');
+
+    if (headerCatBtn && headerCatDropdown) {
+        headerCatBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !headerCatDropdown.classList.contains('pointer-events-none');
+            if (isOpen) {
+                headerCatDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                headerCatDropdown.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+                if (headerCatArrow) headerCatArrow.style.transform = 'rotate(0deg)';
+            } else {
+                headerCatDropdown.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                headerCatDropdown.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+                if (headerCatArrow) headerCatArrow.style.transform = 'rotate(180deg)';
+            }
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (headerCatWrapper && !headerCatWrapper.contains(e.target)) {
+                headerCatDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                headerCatDropdown.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+                if (headerCatArrow) headerCatArrow.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Category item click -> filter or show deck
+        const headerCatItems = document.querySelectorAll('.header-cat-item');
+        headerCatItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const catType = item.getAttribute('data-header-cat');
+
+                // Close dropdown
+                headerCatDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                headerCatDropdown.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+                if (headerCatArrow) headerCatArrow.style.transform = 'rotate(0deg)';
+
+                // If landing pages, show the beautiful deck
+                if (catType === 'landing') {
+                    showLandingPagesDeck();
+                    return;
+                }
+
+                // Otherwise, hide deck if visible and filter normally
+                hideLandingPagesDeck();
+
+                // Highlight active
+                headerCatItems.forEach(i => i.classList.remove('bg-white/20', 'text-white'));
+                item.classList.add('bg-white/20', 'text-white');
+
+                // Filter cards
+                const templateCards = document.querySelectorAll('#portfolio-grid-template > .group');
+                templateCards.forEach(card => {
+                    const cardType = card.getAttribute('data-cat-type');
+                    card.style.display = (cardType === catType) ? '' : 'none';
+                });
+                const allGridCards = document.querySelectorAll('#categorized-sections-container .group[data-cat-type]');
+                allGridCards.forEach(card => {
+                    const cardType = card.getAttribute('data-cat-type');
+                    card.style.display = (cardType === catType) ? '' : 'none';
+                });
+
+                const catContainer = document.getElementById('categorized-sections-container');
+                if (catContainer) catContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    }
+
+    // SIDEBAR CATEGORY Accordion Toggle + Filtering
+    const sidebarCatToggle = document.getElementById('sidebar-category-toggle');
+    const sidebarCatSubmenu = document.getElementById('sidebar-category-submenu');
+    const sidebarCatArrow = document.getElementById('sidebar-category-arrow');
+    if (sidebarCatToggle && sidebarCatSubmenu && sidebarCatArrow) {
+        sidebarCatToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isExpanded = sidebarCatSubmenu.style.maxHeight && sidebarCatSubmenu.style.maxHeight !== '0px';
+            if (isExpanded) {
+                sidebarCatSubmenu.style.maxHeight = '0px';
+                sidebarCatArrow.style.transform = 'rotate(0deg)';
+            } else {
+                sidebarCatSubmenu.style.maxHeight = sidebarCatSubmenu.scrollHeight + 'px';
+                sidebarCatArrow.style.transform = 'rotate(180deg)';
+            }
+        });
+
+        // Category filtering from sidebar
+        const sidebarCatItems = document.querySelectorAll('.sidebar-cat-item');
+        sidebarCatItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const catType = item.getAttribute('data-sidebar-cat');
+
+                // Highlight active
+                sidebarCatItems.forEach(i => {
+                    i.classList.remove('bg-primary/10', 'text-primary', 'font-bold');
+                });
+                item.classList.add('bg-primary/10', 'text-primary', 'font-bold');
+
+                if (catType === 'landing') {
+                    showLandingPagesDeck();
+                    return;
+                }
+                hideLandingPagesDeck();
+
+                // Filter cards in template grid
+                const templateCards = document.querySelectorAll('#portfolio-grid-template > .group');
+                templateCards.forEach(card => {
+                    const cardType = card.getAttribute('data-cat-type');
+                    if (cardType === catType) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Filter cards in categorized sections
+                const allGridCards = document.querySelectorAll('#categorized-sections-container .group[data-cat-type]');
+                allGridCards.forEach(card => {
+                    const cardType = card.getAttribute('data-cat-type');
+                    if (cardType === catType) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Scroll to projects area
+                const catContainer = document.getElementById('categorized-sections-container');
+                if (catContainer) {
+                    catContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
     }
 
     if (sidebarToggle && sidebarClose && sidebar) {
