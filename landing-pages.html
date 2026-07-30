@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Premium Landing Pages Collection | Algora</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface-container-highest": "#d3e4fe",
+                            "tertiary-fixed-dim": "#c4c7c9",
+                            "primary-container": "#131b2e",
+                            "inverse-on-surface": "#eaf1ff",
+                            "surface-container-low": "#eff4ff",
+                            "on-error": "#ffffff",
+                            "surface-dim": "#cbdbf5",
+                            "on-tertiary-fixed-variant": "#444749",
+                            "tertiary-container": "#191c1e",
+                            "error": "#ba1a1a",
+                            "on-primary-container": "#7c839b",
+                            "surface-variant": "#d3e4fe",
+                            "inverse-surface": "#213145",
+                            "surface-container-high": "#dce9ff",
+                            "tertiary-fixed": "#e0e3e5",
+                            "on-primary": "#ffffff",
+                            "on-surface-variant": "#45464d",
+                            "surface-container-lowest": "#ffffff",
+                            "primary-fixed": "#dae2fd",
+                            "on-secondary": "#ffffff",
+                            "on-primary-fixed": "#131b2e",
+                            "outline": "#76777d",
+                            "on-tertiary-container": "#818486",
+                            "inverse-primary": "#bec6e0",
+                            "secondary-fixed-dim": "#adc6ff",
+                            "surface-container": "#e5eeff",
+                            "surface-tint": "#565e74",
+                            "secondary": "#0058be",
+                            "on-secondary-fixed-variant": "#004395",
+                            "secondary-container": "#2170e4",
+                            "primary": "#000000",
+                            "on-surface": "#0b1c30",
+                            "on-secondary-container": "#fefcff",
+                            "outline-variant": "#c6c6cd",
+                            "error-container": "#ffdad6",
+                            "tertiary": "#000000",
+                            "on-primary-fixed-variant": "#3f465c",
+                            "surface-bright": "#f8f9ff",
+                            "primary-fixed-dim": "#bec6e0",
+                            "surface": "#f8f9ff",
+                            "background": "#f8f9ff",
+                            "on-tertiary-fixed": "#191c1e",
+                            "on-secondary-fixed": "#001a42",
+                            "secondary-fixed": "#d8e2ff",
+                            "on-tertiary": "#ffffff",
+                            "on-background": "#0b1c30",
+                            "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "component-padding": "1.5rem",
+                            "stack-sm": "0.5rem",
+                            "gutter-grid": "2rem",
+                            "section-gap": "8rem",
+                            "margin-page": "5vw",
+                            "stack-md": "1rem"
+                    },
+                    "fontFamily": {
+                            "headline-lg": ["Hanken Grotesk"],
+                            "body-md": ["Inter"],
+                            "label-caps": ["Hanken Grotesk"],
+                            "headline-md": ["Hanken Grotesk"],
+                            "headline-lg-mobile": ["Hanken Grotesk"],
+                            "button": ["Hanken Grotesk"],
+                            "display-hero": ["Hanken Grotesk"],
+                            "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                            "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                            "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                            "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                            "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                            "display-hero": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "body-lg": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        
+        /* Live Vector Scaling for Iframe Cards — 100% Crisp Native Vector Text with NO Scrollbars */
+        .iframe-preview-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden !important;
+            background: #ffffff;
+        }
+        .iframe-preview-frame {
+            width: 250%;
+            height: 250%;
+            border: none;
+            transform: scale(0.4);
+            transform-origin: top left;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow: hidden !important;
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+        }
+        .iframe-preview-frame::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="glass-nav sticky top-0 z-50 border-b border-outline-variant/30 w-full transition-all duration-300" id="mainNav">
+<div class="flex justify-between items-center px-margin-page h-20 w-full max-w-[1440px] mx-auto">
+<!-- Logo / Back to Projects -->
+<div class="flex items-center gap-4">
+    <a href="projects.html" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-on-surface flex items-center justify-center transition-all cursor-pointer" title="Back to Portfolio">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+    </a>
+    <a class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface hover:text-primary transition-colors duration-200" href="projects.html">
+        LANDING PAGES
+    </a>
+</div>
+
+<!-- Desktop Nav Links with Industries Dropdown & Start a Project Full Page Link -->
+<nav class="hidden md:flex items-center gap-8">
+<button type="button" onclick="filterByIndustry('')" class="text-primary font-bold border-b-2 border-primary py-2 font-body-md text-body-md cursor-pointer">All Collections</button>
+
+<!-- Industries Dropdown Container -->
+<div class="relative group py-2">
+    <button type="button" class="flex items-center gap-1 text-on-surface-variant/70 group-hover:text-primary font-body-md text-body-md transition-colors duration-200 cursor-pointer">
+        <span>Industries</span>
+        <span class="material-symbols-outlined text-[16px] group-hover:rotate-180 transition-transform duration-300">expand_more</span>
+    </button>
+    
+    <!-- Dropdown Menu -->
+    <div class="absolute left-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl p-2 flex flex-col gap-1 backdrop-blur-xl">
+            <button type="button" onclick="filterByIndustry('')" class="flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors text-left w-full">
+                <span class="material-symbols-outlined text-[18px] text-primary">apps</span>
+                <span>All Industries</span>
+            </button>
+            <div class="h-px bg-slate-100 dark:bg-slate-800 my-1"></div>
+            
+            <button type="button" onclick="filterByIndustry('Fashion')" class="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-lg transition-colors text-left w-full">
+                <span class="material-symbols-outlined text-[18px] text-purple-600">apparel</span>
+                <div class="flex flex-col"><span class="font-bold">Fashion</span><span class="text-[10px] text-slate-400">AESTHETE</span></div>
+            </button>
+            
+            <button type="button" onclick="filterByIndustry('Beauty')" class="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-lg transition-colors text-left w-full">
+                <span class="material-symbols-outlined text-[18px] text-emerald-600">spa</span>
+                <div class="flex flex-col"><span class="font-bold">Beauty & Skincare</span><span class="text-[10px] text-slate-400">Mamaearth</span></div>
+            </button>
+
+            <button type="button" onclick="filterByIndustry('SaaS')" class="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-lg transition-colors text-left w-full">
+                <span class="material-symbols-outlined text-[18px] text-blue-600">monitor</span>
+                <div class="flex flex-col"><span class="font-bold">SaaS & Digital</span><span class="text-[10px] text-slate-400">BloomFi</span></div>
+            </button>
+
+            <button type="button" onclick="filterByIndustry('Furniture')" class="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-lg transition-colors text-left w-full">
+                <span class="material-symbols-outlined text-[18px] text-amber-700">chair</span>
+                <div class="flex flex-col"><span class="font-bold">Furniture & Interiors</span><span class="text-[10px] text-slate-400">VALURA LIVING</span></div>
+            </button>
+
+            <button type="button" onclick="filterByIndustry('Artisanal')" class="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-lg transition-colors text-left w-full">
+                <span class="material-symbols-outlined text-[18px] text-amber-600">local_cafe</span>
+                <div class="flex flex-col"><span class="font-bold">Artisanal Cafe</span><span class="text-[10px] text-slate-400">Lumina Artisanal</span></div>
+            </button>
+
+            <button type="button" onclick="filterByIndustry('Legal')" class="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-lg transition-colors text-left w-full">
+                <span class="material-symbols-outlined text-[18px] text-amber-500">gavel</span>
+                <div class="flex flex-col"><span class="font-bold">Legal Counsel</span><span class="text-[10px] text-slate-400">Juris Lexicon</span></div>
+            </button>
+
+            <button type="button" onclick="filterByIndustry('Hospitality')" class="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-lg transition-colors text-left w-full">
+                <span class="material-symbols-outlined text-[18px] text-emerald-700">cabin</span>
+                <div class="flex flex-col"><span class="font-bold">Hospitality & Resort</span><span class="text-[10px] text-slate-400">Vanya Lodge</span></div>
+            </button>
+
+            <button type="button" onclick="filterByIndustry('Advisory')" class="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary rounded-lg transition-colors text-left w-full">
+                <span class="material-symbols-outlined text-[18px] text-cyan-600">domain</span>
+                <div class="flex flex-col"><span class="font-bold">Strategic Advisory</span><span class="text-[10px] text-slate-400">Vantage Point</span></div>
+            </button>
+        </div>
+    </div>
+</div>
+
+<a href="start-project.html" class="text-on-surface-variant/70 hover:text-primary py-2 font-body-md text-body-md transition-colors duration-200 font-semibold">Start a Project</a>
+</nav>
+
+<!-- Trailing Actions (Search Bar with Dedicated Button & Real-time + Enter execution) -->
+<div class="flex items-center gap-4">
+<div class="relative w-56 sm:w-72">
+    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-[18px] pointer-events-none">search</span>
+    <input type="text" id="landing-search-input" placeholder="Search here..." class="w-full bg-surface-container-low border border-outline-variant/40 focus:border-primary text-on-surface text-xs font-body-md pl-10 pr-10 py-2 rounded-full outline-none transition-all placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary shadow-sm"/>
+    <button id="landing-search-btn" type="button" class="absolute right-1 top-1/2 -translate-y-1/2 bg-primary text-on-primary w-7 h-7 rounded-full flex items-center justify-center hover:bg-slate-800 transition-all active:scale-95 shadow-sm cursor-pointer" title="Search">
+        <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+    </button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="w-full">
+<!-- Section 1: Hero -->
+<section class="px-margin-page py-section-gap max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-gutter-grid items-center">
+<div class="flex flex-col gap-stack-md">
+<h1 class="font-display-hero text-display-hero text-on-surface">A COLLECTION OF <br/><span class="text-primary font-extrabold">PREMIUM LANDING PAGES</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mt-4">
+                    Crafted for brands. Designed to convert. <br/>
+                    9 Handcrafted Landing Pages with live vector site rendering.
+                </p>
+<div class="flex flex-wrap items-center gap-4 mt-8">
+<a class="inline-flex items-center justify-center bg-primary text-on-primary font-button text-button uppercase px-8 py-4 rounded hover:bg-surface-tint transition-colors duration-300" href="#explore">
+                        Explore Collections
+                    </a>
+<a class="inline-flex items-center justify-center border border-primary text-primary bg-transparent font-button text-button uppercase px-8 py-4 rounded hover:bg-surface-container-low transition-colors duration-300" href="start-project.html">
+                        Start a Project
+                    </a>
+</div>
+</div>
+<div class="relative w-full h-[350px] lg:h-[480px] rounded-xl overflow-hidden border border-outline-variant/20 group">
+<img alt="Landing Page Mockups 4K" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="assets/hero_landing_mockup.jpg"/>
+</div>
+</section>
+
+<!-- Section 2: Collection Categories -->
+<section class="py-12 bg-surface-container-low border-y border-outline-variant/20">
+<div class="px-margin-page max-w-[1440px] mx-auto">
+<div class="flex overflow-x-auto hide-scrollbar gap-4 pb-4 items-center">
+<button type="button" onclick="filterByIndustry('Fashion')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[32px] text-primary">apparel</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Fashion</span>
+<span class="font-body-md text-xs text-on-surface-variant/70">AESTHETE</span>
+</button>
+<button type="button" onclick="filterByIndustry('Beauty')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[32px] text-primary">spa</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Beauty</span>
+<span class="font-body-md text-xs text-on-surface-variant/70">Mamaearth</span>
+</button>
+<button type="button" onclick="filterByIndustry('SaaS')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[32px] text-primary">monitor</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">SaaS</span>
+<span class="font-body-md text-xs text-on-surface-variant/70">BloomFi</span>
+</button>
+<button type="button" onclick="filterByIndustry('Furniture')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[32px] text-primary">chair</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Furniture</span>
+<span class="font-body-md text-xs text-on-surface-variant/70">Valura</span>
+</button>
+<button type="button" onclick="filterByIndustry('Artisanal')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[32px] text-primary">local_cafe</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Artisanal</span>
+<span class="font-body-md text-xs text-on-surface-variant/70">Lumina</span>
+</button>
+<button type="button" onclick="filterByIndustry('Legal')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[32px] text-primary">gavel</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Legal</span>
+<span class="font-body-md text-xs text-on-surface-variant/70">Juris Lexicon</span>
+</button>
+<button type="button" onclick="filterByIndustry('Hospitality')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[32px] text-primary">cabin</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Hospitality</span>
+<span class="font-body-md text-xs text-on-surface-variant/70">Vanya Lodge</span>
+</button>
+</div>
+</div>
+</section>
+
+<!-- Section 3: Featured Collection -->
+<section class="px-margin-page py-section-gap max-w-[1440px] mx-auto" id="featured">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter-grid items-center bg-surface-bright border border-outline-variant/20 rounded-xl overflow-hidden p-6 lg:p-12">
+<div class="order-2 lg:order-1 relative w-full aspect-[16/10] rounded-lg overflow-hidden border border-outline-variant/20 iframe-preview-container">
+    <iframe src="bloomfi.html" scrolling="no" class="iframe-preview-frame" title="BloomFi Live Preview"></iframe>
+</div>
+<div class="order-1 lg:order-2 flex flex-col gap-4 items-start pl-0 lg:pl-12">
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Featured Showcase</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">BloomFi Marketing</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+                        Where Brands Flourish — Next-generation marketing engine built for high-scale digital ecosystems.
+                    </p>
+<div class="flex items-center gap-3 mt-6">
+    <a class="inline-flex items-center justify-center border border-primary text-primary bg-transparent font-button text-button uppercase px-8 py-3 rounded hover:bg-primary hover:text-on-primary transition-colors duration-300" href="bloomfi.html" target="_blank">
+        View BloomFi Live
+    </a>
+    <a class="inline-flex items-center justify-center bg-primary text-on-primary font-button text-button uppercase px-6 py-3 rounded hover:bg-slate-800 transition-colors duration-300" href="start-project.html">
+        Start a Project
+    </a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Section 4: Filter & Sort Bar -->
+<section class="px-margin-page max-w-[1440px] mx-auto pt-12 pb-6 sticky top-20 z-40 bg-background/95 backdrop-blur-sm border-b border-outline-variant/20" id="explore">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex flex-wrap items-center gap-3">
+<button id="filter-count-btn" onclick="filterByIndustry('')" class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-6 py-2.5 rounded transition-all cursor-pointer">
+                        All Landing Pages
+                    </button>
+</div>
+<div class="font-body-md text-sm text-on-surface-variant font-medium">
+    Click any card to open live website
+</div>
+</div>
+</section>
+
+<!-- Section 5: Main Grid (Curated 9 Landing Pages) -->
+<section class="px-margin-page max-w-[1440px] mx-auto py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+<!-- Card 1: BloomFi -->
+<div class="group landing-card flex flex-col gap-3" data-keywords="bloomfi saas marketing engine growth flourish digital">
+    <a href="bloomfi.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-900 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
+        <iframe src="bloomfi.html" scrolling="no" class="iframe-preview-frame" title="BloomFi Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
+    </a>
+    <div class="flex justify-between items-start pt-1">
+        <div>
+            <a href="bloomfi.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">BloomFi</a>
+            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Marketing Engine • SaaS</p>
+        </div>
+        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+        </button>
+    </div>
+</div>
+
+<!-- Card 2: Mamaearth -->
+<div class="group landing-card flex flex-col gap-3" data-keywords="mamaearth skincare active naturalism vitamin c organic natural beauty">
+    <a href="mamaearth.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-[#faf7f2] relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
+        <iframe src="mamaearth.html" scrolling="no" class="iframe-preview-frame" title="Mamaearth Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
+    </a>
+    <div class="flex justify-between items-start pt-1">
+        <div>
+            <a href="mamaearth.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Mamaearth</a>
+            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Active Naturalism • Skincare</p>
+        </div>
+        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+        </button>
+    </div>
+</div>
+
+<!-- Card 3: VALURA LIVING -->
+<div class="group landing-card flex flex-col gap-3" data-keywords="valura living organic interior furniture architectural tactile rooted earth">
+    <a href="valura.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-[#f0ede6] relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
+        <iframe src="valura.html" scrolling="no" class="iframe-preview-frame" title="VALURA LIVING Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
+    </a>
+    <div class="flex justify-between items-start pt-1">
+        <div>
+            <a href="valura.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">VALURA LIVING</a>
+            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Organic Interiors • Furniture</p>
+        </div>
+        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+        </button>
+    </div>
+</div>
+
+<!-- Card 4: Lumina Artisanal -->
+<div class="group landing-card flex flex-col gap-3" data-keywords="lumina artisanal coffee gourmet bakery roastery cafe symphony senses">
+    <a href="lumina.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-[#241a15] relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
+        <iframe src="lumina.html" scrolling="no" class="iframe-preview-frame" title="Lumina Artisanal Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
+    </a>
+    <div class="flex justify-between items-start pt-1">
+        <div>
+            <a href="lumina.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Lumina Artisanal</a>
+            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Artisanal Coffee & Gourmet</p>
+        </div>
+        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+        </button>
+    </div>
+</div>
+
+<!-- Card 5: Juris Lexicon Dark -->
+<div class="group landing-card flex flex-col gap-3" data-keywords="juris lexicon dark legal counsel law firm institutional attorney justice reimagined">
+    <a href="jurislexicon-dark.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-950 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
+        <iframe src="jurislexicon-dark.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Dark Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
+    </a>
+    <div class="flex justify-between items-start pt-1">
+        <div>
+            <a href="jurislexicon-dark.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Juris Lexicon — Dark</a>
+            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Legal Counsel • Institutional</p>
+        </div>
+        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+        </button>
+    </div>
+</div>
+
+<!-- Card 6: Juris Lexicon -->
+<div class="group landing-card flex flex-col gap-3" data-keywords="juris lexicon legal law firm institutional attorney global reach">
+    <a href="jurislexicon.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-900 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
+        <iframe src="jurislexicon.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
+    </a>
+    <div class="flex justify-between items-start pt-1">
+        <div>
+            <a href="jurislexicon.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Juris Lexicon</a>
+            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Global Legal Firm</p>
+        </div>
+        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+        </button>
+    </div>
+</div>
+
+<!-- Card 7: Vantage Point Advisory -->
+<div class="group landing-card flex flex-col gap-3" data-keywords="vantage point advisory strategy consulting strategic executive performance">
+    <a href="vantagepoint.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-900 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
+        <iframe src="vantagepoint.html" scrolling="no" class="iframe-preview-frame" title="Vantage Point Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
+    </a>
+    <div class="flex justify-between items-start pt-1">
+        <div>
+            <a href="vantagepoint.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Vantage Point Advisory</a>
+            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Strategic Consulting</p>
+        </div>
+        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+        </button>
+    </div>
+</div>
+
+<!-- Card 8: Vanya Lodge -->
+<div class="group landing-card flex flex-col gap-3" data-keywords="vanyalodge vanya lodge forest sanctuary eco resort corbett wilderness retreat hospitality">
+    <a href="vanyalodge.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-emerald-950 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
+        <iframe src="vanyalodge.html" scrolling="no" class="iframe-preview-frame" title="Vanya Lodge Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
+    </a>
+    <div class="flex justify-between items-start pt-1">
+        <div>
+            <a href="vanyalodge.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Vanya Lodge</a>
+            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Forest Sanctuary • Eco Resort</p>
+        </div>
+        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+        </button>
+    </div>
+</div>
+
+<!-- Card 9: AESTHETE -->
+<div class="group landing-card flex flex-col gap-3" data-keywords="aesthete fashion luxury haute couture lookbook editorial form essence">
+    <a href="aesthete.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-neutral-900 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
+        <iframe src="aesthete.html" scrolling="no" class="iframe-preview-frame" title="AESTHETE Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
+    </a>
+    <div class="flex justify-between items-start pt-1">
+        <div>
+            <a href="aesthete.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">AESTHETE</a>
+            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Form & Essence • Fashion</p>
+        </div>
+        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+        </button>
+    </div>
+</div>
+
+</div>
+</section>
+
+<!-- Section 6: Stats Section -->
+<section class="py-16 bg-surface border-t border-outline-variant/20">
+<div class="px-margin-page max-w-[1440px] mx-auto">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x-0 lg:divide-x lg:divide-outline-variant/30">
+<div class="flex items-center justify-center gap-4 p-4">
+<span class="material-symbols-outlined text-[40px] text-primary">layers</span>
+<div class="flex flex-col">
+<span class="font-headline-md text-2xl text-on-surface">9</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Landing Pages</span>
+</div>
+</div>
+<div class="flex items-center justify-center gap-4 p-4">
+<span class="material-symbols-outlined text-[40px] text-primary">domain</span>
+<div class="flex flex-col">
+<span class="font-headline-md text-2xl text-on-surface">8</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Industries</span>
+</div>
+</div>
+<div class="flex items-center justify-center gap-4 p-4">
+<span class="material-symbols-outlined text-[40px] text-primary">draw</span>
+<div class="flex flex-col">
+<span class="font-headline-md text-2xl text-on-surface">Unique</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Designs</span>
+</div>
+</div>
+<div class="flex items-center justify-center gap-4 p-4">
+<span class="material-symbols-outlined text-[40px] text-primary">rocket_launch</span>
+<div class="flex flex-col">
+<span class="font-headline-md text-2xl text-on-surface">High</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Conversion</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-surface border-t border-outline-variant/20 py-8">
+<div class="px-margin-page max-w-[1440px] mx-auto text-center">
+<p class="font-body-md text-sm text-on-surface-variant/70">
+    © 2026 Algora Portfolio. All Landing Pages.
+</p>
+</div>
+</footer>
+
+<script>
+        // Sticky Nav shadow effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-sm');
+            } else {
+                nav.classList.remove('shadow-sm');
+            }
+        });
+
+        // Search logic implementation: Real-time, Enter Key, Button Click, Case-insensitive Substring Highlight
+        const searchInput = document.getElementById('landing-search-input');
+        const searchBtn = document.getElementById('landing-search-btn');
+        const filterCountBtn = document.getElementById('filter-count-btn');
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function performSearch() {
+            if (!searchInput) return;
+            const query = searchInput.value.trim();
+            const queryLower = query.toLowerCase();
+            const cards = document.querySelectorAll('.landing-card');
+            let matchCount = 0;
+
+            cards.forEach(card => {
+                const titleLink = card.querySelector('.card-title-text');
+                if (!titleLink) return;
+
+                if (!titleLink.hasAttribute('data-original-text')) {
+                    titleLink.setAttribute('data-original-text', titleLink.textContent);
+                }
+                const originalText = titleLink.getAttribute('data-original-text');
+                const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+                const fullCardText = (card.textContent + ' ' + keywords).toLowerCase();
+
+                if (!query) {
+                    card.style.display = '';
+                    titleLink.textContent = originalText;
+                    matchCount++;
+                } else if (fullCardText.includes(queryLower)) {
+                    card.style.display = '';
+                    matchCount++;
+
+                    // Case-insensitive substring highlight in card title
+                    if (originalText.toLowerCase().includes(queryLower)) {
+                        const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+                        titleLink.innerHTML = originalText.replace(regex, '<mark class="bg-amber-300 text-slate-950 font-extrabold px-1 rounded shadow-sm">$1</mark>');
+                    } else {
+                        titleLink.textContent = originalText;
+                    }
+                } else {
+                    card.style.display = 'none';
+                    titleLink.textContent = originalText;
+                }
+            });
+
+            if (filterCountBtn) {
+                filterCountBtn.textContent = query ? 'Matching Pages' : 'All Landing Pages';
+            }
+        }
+
+        function filterByIndustry(industry) {
+            if (searchInput) {
+                searchInput.value = industry;
+                performSearch();
+            }
+            const exploreSection = document.getElementById('explore');
+            if (exploreSection) {
+                exploreSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        if (searchInput) {
+            // 1. Real-time search as user types
+            searchInput.addEventListener('input', performSearch);
+
+            // 2. Pressing Enter key triggers search
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSearch();
+                    const exploreSection = document.getElementById('explore');
+                    if (exploreSection && searchInput.value.trim()) {
+                        exploreSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        }
+
+        // 3. Search button click triggers search
+        if (searchBtn) {
+            searchBtn.addEventListener('click', () => {
+                performSearch();
+                const exploreSection = document.getElementById('explore');
+                if (exploreSection && searchInput.value.trim()) {
+                    exploreSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+    </script>
+</body></html>

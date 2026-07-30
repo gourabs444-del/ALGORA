@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VALURA LIVING | Organic Warmth & Architectural Interiors</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .organic-mask {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+        .soft-curve {
+            border-radius: 2.5rem;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbf9f4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #433021;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#715a49",
+                        "surface-variant": "#e4e2dd",
+                        "on-surface": "#1b1c19",
+                        "inverse-surface": "#30312e",
+                        "surface-dim": "#dbdad5",
+                        "inverse-primary": "#dfc1ac",
+                        "tertiary": "#2d3a2d", /* Deep Forest Green */
+                        "surface-container-low": "#f5f3ee",
+                        "primary-fixed-dim": "#dfc1ac",
+                        "on-tertiary-container": "#bcbab9",
+                        "background": "#fbf9f4",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-primary-fixed": "#28180b",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#534431",
+                        "secondary": "#a65d37", /* Soft Terracotta */
+                        "surface-container-high": "#eae8e3",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#c98e4d", /* Warm Ochre */
+                        "secondary-fixed": "#f6dfc4",
+                        "primary": "#433021",
+                        "primary-fixed": "#fcddc7",
+                        "on-primary-container": "#d2b5a0",
+                        "secondary-container": "#f6dfc4",
+                        "on-secondary-container": "#73624c",
+                        "on-background": "#1b1c19",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#5b4636",
+                        "outline": "#80756d",
+                        "surface": "#fbf9f4",
+                        "surface-container": "#f0eee9",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "on-primary-fixed-variant": "#574333",
+                        "on-secondary-fixed": "#251909",
+                        "outline-variant": "#d2c4bb",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#4e453e",
+                        "tertiary-fixed": "#e5e2e1",
+                        "secondary-fixed-dim": "#d9c3a9",
+                        "surface-bright": "#fbf9f4",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "24px",
+                        "unit": "8px",
+                        "gutter": "32px",
+                        "section-gap": "160px",
+                        "margin-desktop": "80px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "display-xl-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "display-xl": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "display-xl-mobile": ["48px", {"lineHeight": "54px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-xl": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- NAVIGATION -->
+<nav class="fixed top-0 w-full z-50 border-b border-outline/10 bg-background/90 backdrop-blur-md">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex-1 hidden lg:flex gap-10 items-center">
+<a class="font-label-caps text-label-caps text-primary hover:text-secondary transition-colors duration-300 border-b border-secondary" href="#">Living Room</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Bedroom</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Collections</a>
+</div>
+<div class="flex-none text-center">
+<h1 class="font-headline-md text-headline-md tracking-tighter text-primary">VALURA</h1>
+</div>
+<div class="flex-1 flex justify-end gap-8 items-center">
+<div class="hidden md:flex gap-8 items-center mr-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors" href="#">About</a>
+</div>
+<button class="material-symbols-outlined text-primary hover:text-secondary transition-all">search</button>
+<button class="material-symbols-outlined text-primary hover:text-secondary transition-all">favorite</button>
+<button class="material-symbols-outlined text-primary hover:text-secondary transition-all">shopping_bag</button>
+</div>
+</div>
+</nav>
+<!-- HERO SECTION -->
+<header class="relative h-[90vh] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full parallax-bg" data-alt="A macro shot of hand-woven Belgian linen texture with warm sunset light hitting the fibers, showing intricate detail and organic warmth." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsVtyTfyRd06L08j4xyoiYizYaPOHAPV4jpjigi9nBcNxbxYBm1axA8_pPdmpixaKNXDok6MBxUm_jW-zAPKeHB4HKpMuormeFD-bBglx6IsyDEJjjb8wsdM3wtfWIajAaZ4-HuFrkUWC4CTf1UweuVAhREcIaQmD-PStIwxl7ZzwSoyY8OSGDf1LjyIWv9zzkSeyAo11OtZQPD6_15WtbQHs5jd0RnC-q-Z53rr2XA6q9Rw17YSzYEw')"></div>
+<div class="absolute inset-0 bg-primary/20 backdrop-sepia-[0.2]"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile md:px-margin-desktop">
+<p class="font-label-caps text-label-caps text-white mb-6 tracking-[0.4em] uppercase">The Tactile Experience</p>
+<h2 class="font-display-xl text-display-xl-mobile md:text-display-xl text-white mb-12 max-w-4xl mx-auto leading-tight italic">Rooted in Earth.</h2>
+<div class="flex flex-col md:flex-row gap-6 justify-center">
+<a class="px-10 py-5 bg-secondary text-white font-label-caps text-label-caps hover:bg-secondary/90 transition-all soft-curve" href="#collections">Shop Textures</a>
+<a class="px-10 py-5 border border-white text-white font-label-caps text-label-caps hover:bg-white hover:text-primary transition-all soft-curve" href="#spaces">Explore Materials</a>
+</div>
+</div>
+</header>
+<!-- MATERIAL LIBRARY -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto" id="materials">
+<div class="text-center mb-24">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block">THE MATERIAL CORE</span>
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">Organic Foundations</h3>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto mt-6">We begin with the earth. Every piece in our collection is an exploration of the relationship between raw material and human touch.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-gutter">
+<div class="text-center group cursor-crosshair">
+<div class="aspect-square bg-surface-container-high mb-6 overflow-hidden soft-curve">
+<img alt="Belgian Linen macro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg3BaNRo_7n9cTYhof4kpLYSEvdZr92cfvfJjwYoMqPWxaTjc3H_GUIYBLnBmOUJwPkhNK8hFSBRPTwKTe-zPcr1t69APPqOVXEc4GjZnUPkZzpUhtD8J5mU6nK-qmaakwr5rq2E5VNaAY1b9Gk-APe-lGA-ZC3GAWuz9nrQaD7QUzJ_s2WMUr06nhA8qHXxhqvBZBQToOSZdOlju7AUCfbLhtAKYlykPFCLspExJKWJK5Q4_0ya1HZg"/>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">BELGIAN LINEN</span>
+</div>
+<div class="text-center group cursor-crosshair">
+<div class="aspect-square bg-[#1A1A1A] mb-6 overflow-hidden soft-curve">
+<img alt="Matte Velvet macro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5aZo2FXwg5o6U_gDeqIJ_HibOEI8kwz6-7e_zz8bD9KTFZYm1aJrZU1WAmOjKBtwxy9CkRJKYirR9mVojnMAGS_CPBEQh_rbtKzlZV026pk0WtBtthQVXa9kikmC7_fHmmPTEowyjmDrsaN2GFbfXtJyaaVWyXh-lkS9VJHzNRpvXLLZ5wUkZOEhKzN2pvoayDTLm6FE9DS6MKVKxnkJ_RmSQTJJBAXRsHCSEEbEv1eHHA6QO8shYTg"/>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">MATTE VELVET</span>
+</div>
+<div class="text-center group cursor-crosshair">
+<div class="aspect-square bg-[#8B4513] mb-6 overflow-hidden soft-curve">
+<img alt="Grain Leather macro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVsHXDWb_70xYMJwo82IfIS30ejMiuWLUJyLBxokt965oBn-cBHLoCyLx0o5fvciWegcXgC6DDws7FKKPNfIMQDis6-K7ahwrFmS_JM4AXm2L2eGAkOmaN3Wpz6no7ACtQgt4GdrCqlQHzfVxGk6s18JW0JxNAcwnS83UtOErmSrKkHv41AdML_uS0xOYyeUac0FLmQ1K0CdWY1YtA12hH3_RNcYnbnHVahXwvyK-CtmQxCrHVW03NXQ"/>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">GRAIN LEATHER</span>
+</div>
+<div class="text-center group cursor-crosshair">
+<div class="aspect-square bg-[#F5F5F0] mb-6 overflow-hidden soft-curve">
+<img alt="Boucle texture" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHVjMBJZdyynGmrYfLFCYvn-Xu0mxdgT9nhFU0XDEe5SF08OYFPijEn2LTLNYSfUYhrrkt79ijdv79nuXqbKE72SB6oq8F33Pe9mChNwGWqpFpDt4CAtddFJOgTPxgvC0JS9tw-V36WIVjbhnLDLRQn1mzSo_IyNHauU1NnkefWV_0v1yUurebEvwU8Cy2tlkkS0mz9QIGs2N3YN6PVI57NO-e7u5v1bHAV4L2Vbnq-6LPit4Ec07UJA"/>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">BOUCLÉ</span>
+</div>
+<div class="text-center group cursor-crosshair">
+<div class="aspect-square bg-[#433021] mb-6 overflow-hidden soft-curve">
+<img alt="Oiled Walnut grain" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPbM0FKt41lvJ0gIzptTVjRirIVU_6_elb75tYld8GO4OSMMU50IP0LQ3Wl4IAQ4peROS0Of-A_MgvD3XuZH27J9GztCcsQb3RbJplTGPUcNkRDZbWeqOGwlf5AMNC85-f5RkY9YRnTA3r2deWrkVDyoJD3s4sAx3pVa0fmtQkMiQCaBSTZVGifjHgPN127Y2a9iZB6eUtMUvSZDhN0xf6B6vjPHmCQpPrN6FWTorrqY1Ygw15gy-UYA"/>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">OILED WALNUT</span>
+</div>
+<div class="text-center group cursor-crosshair">
+<div class="aspect-square bg-[#F0F0F0] mb-6 overflow-hidden soft-curve">
+<img alt="Forest Green Velvet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXjBH6pJIQFMQLo5qslOqnxAiFgMyz3Obm9hPvLM6IU2vfxW5ONUESg3nGf8Cefu1TxsPKQ_zGo2Eh_aRn28L-paUzDTe_IMKI8g8Rp55CrjdSXGR1j7tO6C9WmjNGk1zgT2Wy54a_QcxPZGcQLnfallx35GTiDUOjNziRoMjq3Fof2Bi_PuITKrUsOWxptibo_RQW95vHXuHiN7j55BtgEbSFw3k4zhpXG-PBQNkVNx-BPqni-9Kchg"/>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">FOREST VELVET</span>
+</div>
+</div>
+</section>
+<!-- FEATURED COLLECTIONS -->
+<section class="py-section-gap bg-surface-container-low overflow-hidden">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-12 gap-gutter items-center">
+<div class="col-span-12 md:col-span-5 mb-12 md:mb-0">
+<span class="font-label-caps text-label-caps text-tertiary-container mb-4 block">THE EARTH SERIES</span>
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-8">Architectural Identities</h3>
+<p class="font-body-lg text-on-surface-variant mb-8">A synthesis of geography and geometry. Each collection is a response to the natural landscapes of its origin.</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white">01</div>
+<span class="font-headline-md group-hover:text-secondary transition-colors">Terracotta Sunsets</span>
+</div>
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-tertiary flex items-center justify-center text-white">02</div>
+<span class="font-headline-md group-hover:text-tertiary transition-colors">Forest Echoes</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-7">
+<div class="grid grid-cols-2 gap-8">
+<div class="organic-mask overflow-hidden aspect-[4/5] bg-surface">
+<img alt="Terracotta interior detail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZGy9LB7503Tq_uzatI8ChAjTEH0KHTxgBlFIn4wZbXLSLxS9hVWR673Hwb0vws9Dbb6Jhm7MiUo7uUCv_MEomJvZbhp3t6X026KMEGPMoOCLKQoFeOCSDXB0bKHSegaJ3c0IqTe9pscVf24gfwvwXrZkfc1mR8qydUfpQEZB5oMH_ZEri8Nvt2vP_7Ry4CNbJRX0wiwvRS53TWBNW-PhNvhHaEBkHc5W9UXytvbz2jdL_6jk7AF1Czg"/>
+</div>
+<div class="organic-mask overflow-hidden aspect-[4/5] bg-surface mt-12">
+<img alt="Forest green furniture" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTEgM_jnBVIblZVws9XFksHmWvO-H_XRr8BySo9PI6v09IOX-P8wpECCyOCU_vx7NmRuVcaxpcZtp2fCHNcnOK6hebj2rFSP_8f1RhOaf5jf1EIazmLC6QvGLegj2sASiDOunlpeax147GmvkX_oaY6Jti0sFM22El0NumD9HnSlLFRtLJ0GHghRIQxL5UzeDph_ooab9yC_cmejhAuGmTTt2nQEn4iRDKa47YnZX6m6yUDjKFruWwig"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BESTSELLERS -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-gutter items-center">
+<div class="w-full md:w-1/2">
+<div class="relative group organic-mask overflow-hidden aspect-square">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Macro shot of the Elara chair's weave and grain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDMieE46DZnfkMNMRgcnFN83_38WXhsPdULGFyZAIeZNeauWQKbrAz_FFXIJXfihkuKd4wvHhb5ZmlXgSfjLy9n6fx734qR2J-qBfH8ll6K1e_iZGkOAJdAHmQcaQHxd06XKXHnS75z1tbxflvz-vGUANhmlWh0hAXj6gGfeU8R_cbGnWlOOCJ_BWICWpViMJMgHMe-qzM6q0EHixpQotg13tCUREqj9RadEY97xSEaH33-qv0U7L3cg"/>
+<div class="absolute top-12 left-12 bg-tertiary-container text-white px-6 py-2 font-label-caps text-label-caps soft-curve">BESTSELLER</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 pl-0 md:pl-20">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block">HANDCRAFTED SIGNATURE</span>
+<h3 class="font-display-xl text-display-xl-mobile md:text-display-xl mb-8">The Elara Chair</h3>
+<p class="font-body-lg text-on-surface-variant mb-12">Sculpted from a single silhouette, the Elara represents the pinnacle of Valura's 'Organic Warmth' philosophy. We use raw, unbleached fibers to preserve the material's natural spirit.</p>
+<div class="mb-12 flex gap-4">
+<div class="w-12 h-12 rounded-full border-2 border-secondary p-1 cursor-pointer">
+<div class="w-full h-full rounded-full bg-[#a65d37]"></div>
+</div>
+<div class="w-12 h-12 rounded-full cursor-pointer hover:border-2 hover:border-tertiary hover:p-1 transition-all">
+<div class="w-full h-full rounded-full bg-[#2d3a2d]"></div>
+</div>
+<div class="w-12 h-12 rounded-full cursor-pointer hover:border-2 hover:border-tertiary-container hover:p-1 transition-all">
+<div class="w-full h-full rounded-full bg-[#c98e4d]"></div>
+</div>
+</div>
+<button class="w-full md:w-auto px-12 py-5 bg-primary text-on-primary font-label-caps text-label-caps hover:bg-secondary transition-all soft-curve">Customize Texture</button>
+</div>
+</div>
+</section>
+<!-- CRAFTSMANSHIP -->
+<section class="py-section-gap bg-tertiary text-white overflow-hidden">
+<div class="px-margin-desktop max-w-container-max mx-auto relative">
+<div class="grid grid-cols-12 items-center">
+<div class="col-span-12 md:col-span-6 relative z-10">
+<h3 class="font-display-xl text-display-xl-mobile md:text-display-xl mb-12 italic">Honoring the Hand.</h3>
+<div class="space-y-8 font-body-lg text-white/80 max-w-md">
+<p>We believe furniture shouldn't just inhabit a space—it should anchor it. Our master artisans spend upwards of 200 hours on a single sectional, ensuring every dovetail joint is a testament to longevity.</p>
+<p>Every grain of walnut and every stitch of leather is chosen for its unique imperfections. In the organic world, perfection is found in the variation.</p>
+</div>
+<div class="mt-16 flex items-center gap-6">
+<div class="h-px w-24 bg-white/30"></div>
+<a class="font-label-caps text-label-caps text-tertiary-container hover:text-white transition-colors" href="#">Our Ethos</a>
+</div>
+</div>
+<div class="col-span-12 md:col-span-6 mt-12 md:mt-0 relative">
+<div class="aspect-square overflow-hidden organic-mask bg-surface-container-highest">
+<img class="w-full h-full object-cover sepia-[0.3]" alt="Macro of hands stitching leather" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4rdeRVSa0Ub8i_z3pL9coRfQHg826t-C5IJVDT6i-p3K06ktCmX0YySVHwFy-6M7cyHD6BHI7_Zo77ejx8BhLsT5xRv8_f_c5Nqn3nYv3tSaPL7FR6jCMa2JMTjO05FgFm80gL-NbtJRumDXC3h8yjL_eSBsKu8K6sGpDJvGmSqcGhErsxmwqZ-6X85VvD5_QvYq3NP9wL8nni5z6akd3MyE5QZ6bP2pT9LIls7nE3va_Ibe0u7z4MA"/>
+</div>
+<div class="hidden lg:block absolute -bottom-10 -left-20 w-72 h-72 border border-white/20 p-10 bg-secondary soft-curve">
+<p class="font-label-caps text-[10px] text-white/70 mb-4 tracking-widest uppercase">The Process</p>
+<p class="font-headline-md italic leading-tight">Sourced from the Earth. Shaped by the Hand.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SHOP BY CATEGORY -->
+<section class="py-section-gap bg-surface-container-low">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20">
+<h3 class="font-display-xl text-display-xl-mobile md:text-display-xl max-w-xl text-primary">Warmth for every corner.</h3>
+<a class="font-label-caps text-label-caps border-b border-secondary text-secondary mb-4" href="#">View All Categories</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-gutter gap-y-12">
+<a class="group text-center" href="#">
+<div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white group-hover:bg-secondary transition-all duration-500 organic-mask shadow-sm">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors text-3xl">chair</span>
+</div>
+<span class="font-label-caps text-label-caps tracking-widest block text-primary">SOFAS</span>
+</a>
+<a class="group text-center" href="#">
+<div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white group-hover:bg-tertiary transition-all duration-500 organic-mask shadow-sm">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors text-3xl">table_restaurant</span>
+</div>
+<span class="font-label-caps text-label-caps tracking-widest block text-primary">TABLES</span>
+</a>
+<a class="group text-center" href="#">
+<div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white group-hover:bg-tertiary-container transition-all duration-500 organic-mask shadow-sm">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors text-3xl">light</span>
+</div>
+<span class="font-label-caps text-label-caps tracking-widest block text-primary">LIGHTING</span>
+</a>
+<a class="group text-center" href="#">
+<div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white group-hover:bg-secondary transition-all duration-500 organic-mask shadow-sm">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors text-3xl">bed</span>
+</div>
+<span class="font-label-caps text-label-caps tracking-widest block text-primary">BEDROOM</span>
+</a>
+<a class="group text-center" href="#">
+<div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white group-hover:bg-tertiary transition-all duration-500 organic-mask shadow-sm">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors text-3xl">shelves</span>
+</div>
+<span class="font-label-caps text-label-caps tracking-widest block text-primary">STORAGE</span>
+</a>
+<a class="group text-center" href="#">
+<div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white group-hover:bg-tertiary-container transition-all duration-500 organic-mask shadow-sm">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors text-3xl">filter_vintage</span>
+</div>
+<span class="font-label-caps text-label-caps tracking-widest block text-primary">DÉCOR</span>
+</a>
+</div>
+</div>
+</section>
+<!-- SHOP BY ROOM -->
+<section class="py-section-gap bg-white relative" id="spaces">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-12 gap-gutter items-center">
+<div class="col-span-12 lg:col-span-7">
+<div class="relative group organic-mask overflow-hidden shadow-2xl">
+<img class="w-full aspect-square object-cover" alt="Macro of textured rug and walnut furniture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApxxdE2cwcPWZS_telgCtcTv1LgbTyFIuSqTfdQv-iA5uXXPtdOp2jresCzhfKfRXRMm_B2eItuUPMsQ368mHwUgA5Dzsw73bdJHgssxNSROzAyKz7iIpgs5uk9Rn92V0zgX8KYb8NtsBvOZBzMFiK4sIIrXnHnTGI6sDoS1K-ClUS4RazP198j2gLNtr0vMoXRmIgKVrPM0QlW9KgVXf1cqTNiq2ou35wLFQKE1AAiCs9rbDhaiYOTg"/>
+<div class="absolute inset-0 bg-secondary/10 group-hover:bg-secondary/20 transition-colors duration-500"></div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-5 lg:pl-12">
+<h3 class="font-display-xl text-display-xl-mobile md:text-headline-lg mb-8 text-primary">Tactile Narratives.</h3>
+<p class="font-body-lg text-on-surface-variant mb-12">We design for the way you feel when you brush your hand against a table or sink into a chair. Comfort is a sensory experience.</p>
+<ul class="space-y-6">
+<li class="border-b border-outline/20 pb-4 flex justify-between items-center group cursor-pointer hover:border-secondary transition-colors">
+<span class="font-label-caps text-label-caps text-primary group-hover:text-secondary transition-colors">THE LOUNGE TEXTURES</span>
+<span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity text-secondary">arrow_forward</span>
+</li>
+<li class="border-b border-outline/20 pb-4 flex justify-between items-center group cursor-pointer hover:border-tertiary transition-colors">
+<span class="font-label-caps text-label-caps text-primary group-hover:text-tertiary transition-colors">THE WOOD GRAIN SUITE</span>
+<span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity text-tertiary">arrow_forward</span>
+</li>
+<li class="border-b border-outline/20 pb-4 flex justify-between items-center group cursor-pointer hover:border-tertiary-container transition-colors">
+<span class="font-label-caps text-label-caps text-primary group-hover:text-tertiary-container transition-colors">THE WEAVED CHAMBER</span>
+<span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity text-tertiary-container">arrow_forward</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- NEWSLETTER -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto text-center">
+<h3 class="font-display-xl text-display-xl-mobile md:text-display-xl mb-12 max-w-4xl mx-auto uppercase text-primary">Stay Connected to the Earth.</h3>
+<p class="font-body-lg text-on-surface-variant mb-16 max-w-xl mx-auto">Join our inner circle for tactile stories and exclusive previews of seasonal natural collections.</p>
+<form class="max-w-2xl mx-auto flex flex-col md:flex-row gap-4">
+<input class="flex-1 bg-transparent border-b-2 border-secondary/30 text-primary py-4 px-2 focus:border-secondary focus:ring-0 outline-none placeholder:text-outline/50 font-body-md" placeholder="Your Email" type="email"/>
+<button class="px-12 py-4 bg-tertiary text-white font-label-caps text-label-caps hover:bg-tertiary/90 transition-all soft-curve" type="submit">Subscribe</button>
+</form>
+</section>
+<!-- FOOTER -->
+<footer class="bg-primary text-white relative w-full py-section-gap overflow-hidden">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display-xl text-[12vw] text-white/5 uppercase whitespace-nowrap pointer-events-none select-none">
+        ORGANIC LIVING
+    </div>
+<div class="grid grid-cols-12 gap-gutter px-margin-desktop max-w-container-max mx-auto relative z-10">
+<div class="col-span-12 lg:col-span-4 mb-20 lg:mb-0">
+<h4 class="font-display-xl text-headline-lg text-white mb-8 tracking-tighter">VALURA</h4>
+<p class="font-body-md text-white/60 max-w-xs mb-12">Crafting timeless architectural environments since 1984. Rooted in material truth and artisanal integrity.</p>
+<div class="flex gap-6">
+<a class="material-symbols-outlined text-white/60 hover:text-secondary transition-colors" href="#">public</a>
+<a class="material-symbols-outlined text-white/60 hover:text-secondary transition-colors" href="#">camera</a>
+<a class="material-symbols-outlined text-white/60 hover:text-secondary transition-colors" href="#">mail</a>
+</div>
+</div>
+<div class="col-span-6 md:col-span-3 lg:col-span-2">
+<h5 class="font-label-caps text-label-caps text-tertiary-container mb-8 tracking-widest">TEXTURES</h5>
+<ul class="space-y-4 font-label-caps text-[11px] text-white/50">
+<li><a class="hover:text-white hover:underline transition-all" href="#">RAW LINEN</a></li>
+<li><a class="hover:text-white hover:underline transition-all" href="#">EARTH LEATHERS</a></li>
+<li><a class="hover:text-white hover:underline transition-all" href="#">NATURAL WALNUT</a></li>
+<li><a class="hover:text-white hover:underline transition-all" href="#">BOUCLÉ WEAVES</a></li>
+</ul>
+</div>
+<div class="col-span-6 md:col-span-3 lg:col-span-2">
+<h5 class="font-label-caps text-label-caps text-tertiary-container mb-8 tracking-widest">COMPANY</h5>
+<ul class="space-y-4 font-label-caps text-[11px] text-white/50">
+<li><a class="hover:text-white hover:underline transition-all" href="#">OUR ETHOS</a></li>
+<li><a class="hover:text-white hover:underline transition-all" href="#">CRAFTSMANSHIP</a></li>
+<li><a class="hover:text-white hover:underline transition-all" href="#">SUSTAINABILITY</a></li>
+<li><a class="hover:text-white hover:underline transition-all" href="#">PRESS</a></li>
+</ul>
+</div>
+<div class="col-span-6 md:col-span-3 lg:col-span-2 mt-12 md:mt-0">
+<h5 class="font-label-caps text-label-caps text-tertiary-container mb-8 tracking-widest">SUPPORT</h5>
+<ul class="space-y-4 font-label-caps text-[11px] text-white/50">
+<li><a class="hover:text-white hover:underline transition-all" href="#">SHIPPING</a></li>
+<li><a class="hover:text-white hover:underline transition-all" href="#">CARE GUIDE</a></li>
+<li><a class="hover:text-white hover:underline transition-all" href="#">FAQ</a></li>
+<li><a class="hover:text-white hover:underline transition-all" href="#">CONTACT</a></li>
+</ul>
+</div>
+<div class="col-span-12 mt-24 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
+<p class="font-label-caps text-[10px] text-white/30 tracking-widest uppercase">© 2024 VALURA LIVING. DESIGNED FOR LIFE.</p>
+<div class="flex gap-12 font-label-caps text-[10px] text-white/30 tracking-widest">
+<a class="hover:text-white transition-colors" href="#">PRIVACY POLICY</a>
+<a class="hover:text-white transition-colors" href="#">TERMS OF SERVICE</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Smooth parallax effect for the hero
+    window.addEventListener('scroll', function() {
+        const parallax = document.querySelector('.parallax-bg');
+        if (parallax) {
+            let scrollPosition = window.pageYOffset;
+            parallax.style.transform = 'translateY(' + scrollPosition * 0.3 + 'px)';
+        }
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                entry.target.classList.remove('opacity-0', 'translate-y-10');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+        section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+        observer.observe(section);
+    });
+</script>
+</body></html>
