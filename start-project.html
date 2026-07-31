@@ -522,13 +522,6 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         setBudgetCurrency('INR');
-
-        // On mobile devices, auto scroll smoothly if URL has hash or when user clicks Start a Project
-        if (window.innerWidth < 640 && window.location.hash.includes('form')) {
-            setTimeout(() => {
-                document.getElementById('project-inquiry-form-section')?.scrollIntoView({ behavior: 'smooth' });
-            }, 300);
-        }
     });
 </script>
 <script src="js/inquiry-form.js"></script>
