@@ -135,13 +135,13 @@
 <body class="bg-background text-on-background antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
 <!-- TopNavBar -->
 <header class="glass-nav sticky top-0 z-50 border-b border-outline-variant/30 w-full transition-all duration-300" id="mainNav">
-<div class="flex justify-between items-center px-margin-page h-20 w-full max-w-[1440px] mx-auto">
+<div class="flex justify-between items-center px-4 sm:px-margin-page h-16 sm:h-20 w-full max-w-[1440px] mx-auto gap-2">
 <!-- Logo / Back to Projects -->
-<div class="flex items-center gap-4">
-    <a href="projects.html" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-on-surface flex items-center justify-center transition-all cursor-pointer" title="Back to Portfolio">
-        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<div class="flex items-center gap-2.5 sm:gap-4 shrink-0">
+    <a href="projects.html" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-on-surface flex items-center justify-center transition-all cursor-pointer" title="Back to Portfolio">
+        <span class="material-symbols-outlined text-[16px] sm:text-[18px]">arrow_back</span>
     </a>
-    <a class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface hover:text-primary transition-colors duration-200" href="projects.html">
+    <a class="font-headline-md text-sm sm:text-headline-md font-bold tracking-tighter text-on-surface hover:text-primary transition-colors duration-200 whitespace-nowrap" href="projects.html">
         LANDING PAGES
     </a>
 </div>
@@ -209,16 +209,16 @@
     </div>
 </div>
 
-<a href="start-project.html" class="text-on-surface-variant/70 hover:text-primary py-2 font-body-md text-body-md transition-colors duration-200 font-semibold">Start a Project</a>
+<a href="start-project.html#project-inquiry-form-section" class="text-on-surface-variant/70 hover:text-primary py-2 font-body-md text-body-md transition-colors duration-200 font-semibold">Start a Project</a>
 </nav>
 
 <!-- Trailing Actions (Search Bar with Dedicated Button & Real-time + Enter execution) -->
-<div class="flex items-center gap-4">
-<div class="relative w-56 sm:w-72">
-    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-[18px] pointer-events-none">search</span>
-    <input type="text" id="landing-search-input" placeholder="Search here..." class="w-full bg-surface-container-low border border-outline-variant/40 focus:border-primary text-on-surface text-xs font-body-md pl-10 pr-10 py-2 rounded-full outline-none transition-all placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary shadow-sm"/>
-    <button id="landing-search-btn" type="button" class="absolute right-1 top-1/2 -translate-y-1/2 bg-primary text-on-primary w-7 h-7 rounded-full flex items-center justify-center hover:bg-slate-800 transition-all active:scale-95 shadow-sm cursor-pointer" title="Search">
-        <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+<div class="flex items-center gap-2 sm:gap-4 shrink-0">
+<div class="relative w-36 sm:w-72">
+    <span class="material-symbols-outlined absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-[16px] sm:text-[18px] pointer-events-none">search</span>
+    <input type="text" id="landing-search-input" placeholder="Search..." class="w-full bg-surface-container-low border border-outline-variant/40 focus:border-primary text-on-surface text-xs font-body-md pl-8 sm:pl-10 pr-8 sm:pr-10 py-1.5 sm:py-2 rounded-full outline-none transition-all placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary shadow-sm"/>
+    <button id="landing-search-btn" type="button" class="absolute right-1 top-1/2 -translate-y-1/2 bg-primary text-on-primary w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center hover:bg-slate-800 transition-all active:scale-95 shadow-sm cursor-pointer" title="Search">
+        <span class="material-symbols-outlined text-[13px] sm:text-[15px]">arrow_forward</span>
     </button>
 </div>
 </div>
@@ -227,87 +227,87 @@
 <!-- Main Content -->
 <main class="w-full">
 <!-- Section 1: Hero -->
-<section class="px-margin-page py-section-gap max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-gutter-grid items-center">
+<section class="px-4 sm:px-margin-page py-8 sm:py-16 lg:py-section-gap max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-gutter-grid items-center">
 <div class="flex flex-col gap-stack-md">
-<h1 class="font-display-hero text-display-hero text-on-surface">A COLLECTION OF <br/><span class="text-primary font-extrabold">PREMIUM LANDING PAGES</span></h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mt-4">
-                    Crafted for brands. Designed to convert. <br/>
+<h1 class="font-display-hero text-2xl sm:text-4xl lg:text-[64px] leading-[1.15] lg:leading-[1.1] text-on-surface font-extrabold tracking-tight">A COLLECTION OF <br/><span class="text-primary">PREMIUM LANDING PAGES</span></h1>
+<p class="font-body-lg text-sm sm:text-body-lg text-on-surface-variant max-w-lg mt-2 sm:mt-4">
+                    Crafted for brands. Designed to convert. <br class="hidden sm:block"/>
                     9 Handcrafted Landing Pages with live vector site rendering.
                 </p>
-<div class="flex flex-wrap items-center gap-4 mt-8">
-<a class="inline-flex items-center justify-center bg-primary text-on-primary font-button text-button uppercase px-8 py-4 rounded hover:bg-surface-tint transition-colors duration-300" href="#explore">
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
+<a class="inline-flex items-center justify-center bg-primary text-on-primary font-button text-xs sm:text-button uppercase px-6 sm:px-8 py-3.5 sm:py-4 rounded hover:bg-surface-tint transition-colors duration-300 text-center font-bold" href="#explore">
                         Explore Collections
                     </a>
-<a class="inline-flex items-center justify-center border border-primary text-primary bg-transparent font-button text-button uppercase px-8 py-4 rounded hover:bg-surface-container-low transition-colors duration-300" href="start-project.html">
+<a class="inline-flex items-center justify-center border border-primary text-primary bg-transparent font-button text-xs sm:text-button uppercase px-6 sm:px-8 py-3.5 sm:py-4 rounded hover:bg-surface-container-low transition-colors duration-300 text-center font-bold" href="start-project.html#project-inquiry-form-section">
                         Start a Project
                     </a>
 </div>
 </div>
-<div class="relative w-full h-[350px] lg:h-[480px] rounded-xl overflow-hidden border border-outline-variant/20 group">
+<div class="relative w-full h-[200px] sm:h-[350px] lg:h-[480px] rounded-xl overflow-hidden border border-outline-variant/20 group">
 <img alt="Landing Page Mockups 4K" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="assets/hero_landing_mockup.jpg"/>
 </div>
 </section>
 
 <!-- Section 2: Collection Categories -->
-<section class="py-12 bg-surface-container-low border-y border-outline-variant/20">
-<div class="px-margin-page max-w-[1440px] mx-auto">
-<div class="flex overflow-x-auto hide-scrollbar gap-4 pb-4 items-center">
-<button type="button" onclick="filterByIndustry('Fashion')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
-<span class="material-symbols-outlined text-[32px] text-primary">apparel</span>
-<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Fashion</span>
-<span class="font-body-md text-xs text-on-surface-variant/70">AESTHETE</span>
+<section class="py-6 sm:py-12 bg-surface-container-low border-y border-outline-variant/20">
+<div class="px-4 sm:px-margin-page max-w-[1440px] mx-auto">
+<div class="flex overflow-x-auto hide-scrollbar gap-2.5 sm:gap-4 pb-2 sm:pb-4 items-center">
+<button type="button" onclick="filterByIndustry('Fashion')" class="flex flex-col items-center justify-center gap-2 sm:gap-3 min-w-[95px] sm:min-w-[120px] p-3 sm:p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[26px] sm:text-[32px] text-primary">apparel</span>
+<span class="font-label-caps text-[10px] sm:text-label-caps text-on-surface uppercase tracking-widest text-center">Fashion</span>
+<span class="font-body-md text-[10px] sm:text-xs text-on-surface-variant/70">AESTHETE</span>
 </button>
-<button type="button" onclick="filterByIndustry('Beauty')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
-<span class="material-symbols-outlined text-[32px] text-primary">spa</span>
-<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Beauty</span>
-<span class="font-body-md text-xs text-on-surface-variant/70">Mamaearth</span>
+<button type="button" onclick="filterByIndustry('Beauty')" class="flex flex-col items-center justify-center gap-2 sm:gap-3 min-w-[95px] sm:min-w-[120px] p-3 sm:p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[26px] sm:text-[32px] text-primary">spa</span>
+<span class="font-label-caps text-[10px] sm:text-label-caps text-on-surface uppercase tracking-widest text-center">Beauty</span>
+<span class="font-body-md text-[10px] sm:text-xs text-on-surface-variant/70">Mamaearth</span>
 </button>
-<button type="button" onclick="filterByIndustry('SaaS')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
-<span class="material-symbols-outlined text-[32px] text-primary">monitor</span>
-<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">SaaS</span>
-<span class="font-body-md text-xs text-on-surface-variant/70">BloomFi</span>
+<button type="button" onclick="filterByIndustry('SaaS')" class="flex flex-col items-center justify-center gap-2 sm:gap-3 min-w-[95px] sm:min-w-[120px] p-3 sm:p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[26px] sm:text-[32px] text-primary">monitor</span>
+<span class="font-label-caps text-[10px] sm:text-label-caps text-on-surface uppercase tracking-widest text-center">SaaS</span>
+<span class="font-body-md text-[10px] sm:text-xs text-on-surface-variant/70">BloomFi</span>
 </button>
-<button type="button" onclick="filterByIndustry('Furniture')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
-<span class="material-symbols-outlined text-[32px] text-primary">chair</span>
-<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Furniture</span>
-<span class="font-body-md text-xs text-on-surface-variant/70">Valura</span>
+<button type="button" onclick="filterByIndustry('Furniture')" class="flex flex-col items-center justify-center gap-2 sm:gap-3 min-w-[95px] sm:min-w-[120px] p-3 sm:p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[26px] sm:text-[32px] text-primary">chair</span>
+<span class="font-label-caps text-[10px] sm:text-label-caps text-on-surface uppercase tracking-widest text-center">Furniture</span>
+<span class="font-body-md text-[10px] sm:text-xs text-on-surface-variant/70">Valura</span>
 </button>
-<button type="button" onclick="filterByIndustry('Artisanal')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
-<span class="material-symbols-outlined text-[32px] text-primary">local_cafe</span>
-<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Artisanal</span>
-<span class="font-body-md text-xs text-on-surface-variant/70">Lumina</span>
+<button type="button" onclick="filterByIndustry('Artisanal')" class="flex flex-col items-center justify-center gap-2 sm:gap-3 min-w-[95px] sm:min-w-[120px] p-3 sm:p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[26px] sm:text-[32px] text-primary">local_cafe</span>
+<span class="font-label-caps text-[10px] sm:text-label-caps text-on-surface uppercase tracking-widest text-center">Artisanal</span>
+<span class="font-body-md text-[10px] sm:text-xs text-on-surface-variant/70">Lumina</span>
 </button>
-<button type="button" onclick="filterByIndustry('Legal')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
-<span class="material-symbols-outlined text-[32px] text-primary">gavel</span>
-<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Legal</span>
-<span class="font-body-md text-xs text-on-surface-variant/70">Juris Lexicon</span>
+<button type="button" onclick="filterByIndustry('Legal')" class="flex flex-col items-center justify-center gap-2 sm:gap-3 min-w-[95px] sm:min-w-[120px] p-3 sm:p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[26px] sm:text-[32px] text-primary">gavel</span>
+<span class="font-label-caps text-[10px] sm:text-label-caps text-on-surface uppercase tracking-widest text-center">Legal</span>
+<span class="font-body-md text-[10px] sm:text-xs text-on-surface-variant/70">Juris Lexicon</span>
 </button>
-<button type="button" onclick="filterByIndustry('Hospitality')" class="flex flex-col items-center justify-center gap-3 min-w-[120px] p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
-<span class="material-symbols-outlined text-[32px] text-primary">cabin</span>
-<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest text-center">Hospitality</span>
-<span class="font-body-md text-xs text-on-surface-variant/70">Vanya Lodge</span>
+<button type="button" onclick="filterByIndustry('Hospitality')" class="flex flex-col items-center justify-center gap-2 sm:gap-3 min-w-[95px] sm:min-w-[120px] p-3 sm:p-4 bg-surface rounded-lg border border-outline-variant/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[26px] sm:text-[32px] text-primary">cabin</span>
+<span class="font-label-caps text-[10px] sm:text-label-caps text-on-surface uppercase tracking-widest text-center">Hospitality</span>
+<span class="font-body-md text-[10px] sm:text-xs text-on-surface-variant/70">Vanya Lodge</span>
 </button>
 </div>
 </div>
 </section>
 
 <!-- Section 3: Featured Collection -->
-<section class="px-margin-page py-section-gap max-w-[1440px] mx-auto" id="featured">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter-grid items-center bg-surface-bright border border-outline-variant/20 rounded-xl overflow-hidden p-6 lg:p-12">
-<div class="order-2 lg:order-1 relative w-full aspect-[16/10] rounded-lg overflow-hidden border border-outline-variant/20 iframe-preview-container">
+<section class="px-4 sm:px-margin-page py-8 sm:py-section-gap max-w-[1440px] mx-auto" id="featured">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-gutter-grid items-center bg-surface-bright border border-outline-variant/20 rounded-xl overflow-hidden p-4 sm:p-6 lg:p-12">
+<div class="order-2 lg:order-1 relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-lg overflow-hidden border border-outline-variant/20 iframe-preview-container">
     <iframe src="bloomfi.html" scrolling="no" class="iframe-preview-frame" title="BloomFi Live Preview"></iframe>
 </div>
-<div class="order-1 lg:order-2 flex flex-col gap-4 items-start pl-0 lg:pl-12">
-<span class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Featured Showcase</span>
-<h2 class="font-headline-lg text-headline-lg text-on-surface">BloomFi Marketing</h2>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+<div class="order-1 lg:order-2 flex flex-col gap-3 sm:gap-4 items-start pl-0 lg:pl-12">
+<span class="font-label-caps text-xs sm:text-label-caps text-on-surface-variant tracking-widest uppercase">Featured Showcase</span>
+<h2 class="font-headline-lg text-2xl sm:text-headline-lg text-on-surface">BloomFi Marketing</h2>
+<p class="font-body-md text-sm sm:text-body-md text-on-surface-variant max-w-md">
                         Where Brands Flourish — Next-generation marketing engine built for high-scale digital ecosystems.
                     </p>
-<div class="flex items-center gap-3 mt-6">
-    <a class="inline-flex items-center justify-center border border-primary text-primary bg-transparent font-button text-button uppercase px-8 py-3 rounded hover:bg-primary hover:text-on-primary transition-colors duration-300" href="bloomfi.html" target="_blank">
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-4 sm:mt-6 w-full sm:w-auto">
+    <a class="inline-flex items-center justify-center border border-primary text-primary bg-transparent font-button text-xs sm:text-button uppercase px-6 py-3 rounded hover:bg-primary hover:text-on-primary transition-colors duration-300 text-center font-bold" href="bloomfi.html" target="_blank">
         View BloomFi Live
     </a>
-    <a class="inline-flex items-center justify-center bg-primary text-on-primary font-button text-button uppercase px-6 py-3 rounded hover:bg-slate-800 transition-colors duration-300" href="start-project.html">
+    <a class="inline-flex items-center justify-center bg-primary text-on-primary font-button text-xs sm:text-button uppercase px-6 py-3 rounded hover:bg-slate-800 transition-colors duration-300 text-center font-bold" href="start-project.html#project-inquiry-form-section">
         Start a Project
     </a>
 </div>
@@ -316,7 +316,8 @@
 </section>
 
 <!-- Section 4: Filter & Sort Bar -->
-<section class="px-margin-page max-w-[1440px] mx-auto pt-12 pb-6 sticky top-20 z-40 bg-background/95 backdrop-blur-sm border-b border-outline-variant/20" id="explore">
+<section class="px-4 sm:px-margin-page max-w-[1440px] mx-auto pt-6 sm:pt-12 pb-4 sm:pb-6 sticky top-16 sm:top-20 z-40 bg-background/95 backdrop-blur-sm border-b border-outline-variant/20" id="explore">
+
 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
 <div class="flex flex-wrap items-center gap-3">
 <button id="filter-count-btn" onclick="filterByIndustry('')" class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-6 py-2.5 rounded transition-all cursor-pointer">
