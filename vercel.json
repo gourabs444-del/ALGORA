@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "cleanUrls": false,
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "handle": "filesystem"
+    }
+  ]
+}
