@@ -143,16 +143,12 @@
             Tell us about your project and we'll get back to you within 24 hours to start the conversation.
           </p>
 
-<!-- Mobile-Only Direct Form CTA Callout -->
+<!-- Mobile-Only Continue Button -->
 <div class="mt-4 sm:hidden flex flex-col gap-2">
     <a href="#project-inquiry-form-section" onclick="document.getElementById('project-inquiry-form-section')?.scrollIntoView({behavior: 'smooth'})" class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-white font-bold text-sm shadow-md active:scale-95 transition-all cursor-pointer">
-        <span>Fill Inquiry Form Below</span>
-        <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 14l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+        <span>Continue</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 14l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
     </a>
-    <div class="flex items-center justify-center gap-1.5 text-[11px] text-outline font-medium">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>Form is ready below — scroll or tap above</span>
-    </div>
 </div>
 </div>
 <!-- Hero Illustration -->
@@ -406,15 +402,15 @@
 <section class="py-8 sm:py-12 border-t border-b border-outline-variant bg-surface-container-low" data-purpose="trust-section">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 <h3 class="text-xs sm:text-sm font-semibold text-outline uppercase tracking-wider mb-6 sm:mb-8">Built with</h3>
-<div class="grid grid-cols-2 sm:flex sm:flex-row flex-wrap justify-center items-center gap-6 sm:gap-12 md:gap-14 lg:gap-16 opacity-75 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex flex-row flex-wrap justify-center items-center gap-6 sm:gap-12 md:gap-14 lg:gap-16 opacity-75 grayscale hover:grayscale-0 transition-all duration-500">
     <!-- AWS Logo -->
     <div class="flex items-center justify-center gap-2 font-bold text-base sm:text-lg text-slate-900 tracking-tight shrink-0 h-8">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="Amazon Web Services" class="h-5 sm:h-6 w-auto object-contain block translate-y-[2.5px]" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="Amazon Web Services" class="h-6 sm:h-6 w-auto object-contain block translate-y-[2.5px]" />
     </div>
 
     <!-- React Logo -->
     <div class="flex items-center justify-center gap-2 font-bold text-base sm:text-lg text-slate-900 tracking-tight shrink-0 h-8">
-        <svg class="w-5 h-5 sm:w-6 sm:h-6 shrink-0" viewBox="-11.5 -10.23174 23 20.46348" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-6 h-6 shrink-0" viewBox="-11.5 -10.23174 23 20.46348" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="0" cy="0" r="2.05" fill="#61DAFB"/>
             <g stroke="#61DAFB" stroke-width="1" fill="none">
                 <ellipse rx="11" ry="4.2"/>
@@ -422,31 +418,31 @@
                 <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
             </g>
         </svg>
-        <span class="whitespace-nowrap">React</span>
+        <span class="hidden sm:inline whitespace-nowrap">React</span>
     </div>
 
     <!-- Vercel Logo -->
     <div class="flex items-center justify-center gap-2 font-black text-lg sm:text-xl text-slate-900 tracking-tighter shrink-0 h-8">
-        <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current shrink-0" viewBox="0 0 76 65"><path fill="#000" d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
-        <span class="whitespace-nowrap">Vercel</span>
+        <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 76 65"><path fill="#000" d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
+        <span class="hidden sm:inline whitespace-nowrap">Vercel</span>
     </div>
 
     <!-- Google Cloud Logo -->
     <div class="flex items-center justify-center gap-2 font-bold text-base sm:text-lg text-slate-800 tracking-tight shrink-0 h-8">
-        <svg class="w-5 h-5 sm:w-6 sm:h-6 shrink-0" viewBox="0 0 24 24"><path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-        <span class="whitespace-nowrap">Google Cloud</span>
+        <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24"><path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+        <span class="hidden sm:inline whitespace-nowrap">Google Cloud</span>
     </div>
 
     <!-- Figma Logo -->
     <div class="flex items-center justify-center gap-2 font-bold text-base sm:text-lg text-slate-900 tracking-tight shrink-0 h-8">
-        <svg class="w-4 h-5 sm:w-5 sm:h-6 shrink-0" viewBox="0 0 38 57" fill="none"><path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z" fill="#FF7262"/><path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/><path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#1ABCFE"/><path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/><path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/></svg>
-        <span class="whitespace-nowrap">Figma</span>
+        <svg class="w-5 h-6 shrink-0" viewBox="0 0 38 57" fill="none"><path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z" fill="#FF7262"/><path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/><path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#1ABCFE"/><path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/><path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/></svg>
+        <span class="hidden sm:inline whitespace-nowrap">Figma</span>
     </div>
 
     <!-- Supabase Logo -->
     <div class="flex items-center justify-center gap-2 font-extrabold text-base sm:text-lg text-slate-900 tracking-tight shrink-0 h-8">
-        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 fill-current shrink-0" viewBox="0 0 109 113"><path d="M63.7076 111.084C59.848 115.424 52.6562 112.569 52.8804 106.741L55.6792 33.8763H97.7713C107.039 33.8763 111.905 44.896 105.688 51.7766L63.7076 111.084Z"/><path opacity="0.6" d="M45.317 1.76729C49.1766 -2.57279 56.3684 0.281861 56.1442 6.1105L53.3454 78.9752H11.2533C1.98565 78.9752 -2.88057 67.9555 3.33644 61.0749L45.317 1.76729Z"/></svg>
-        <span class="whitespace-nowrap">Supabase</span>
+        <svg class="w-5 h-5 text-emerald-500 fill-current shrink-0" viewBox="0 0 109 113"><path d="M63.7076 111.084C59.848 115.424 52.6562 112.569 52.8804 106.741L55.6792 33.8763H97.7713C107.039 33.8763 111.905 44.896 105.688 51.7766L63.7076 111.084Z"/><path opacity="0.6" d="M45.317 1.76729C49.1766 -2.57279 56.3684 0.281861 56.1442 6.1105L53.3454 78.9752H11.2533C1.98565 78.9752 -2.88057 67.9555 3.33644 61.0749L45.317 1.76729Z"/></svg>
+        <span class="hidden sm:inline whitespace-nowrap">Supabase</span>
     </div>
 </div>
 </div>
