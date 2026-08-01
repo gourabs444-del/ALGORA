@@ -157,13 +157,12 @@
   #obscura-hero-title,
   #obscura-hero-desc {
       will-change: opacity, transform;
-      transform: translate3d(0, 0, 0);
+      transform: translateZ(0);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
-      contain: layout style paint;
   }
 
   #obscura-hero-content {
@@ -3835,7 +3834,9 @@
                 currentP = 0;
                 targetP = 0;
             } else if (isTouchDevice) {
-                currentP = targetP;
+                // High-speed lerp (0.35) for touch devices eliminates subpixel trembling/shaking during fast momentum scrolling
+                currentP += (targetP - currentP) * 0.35;
+                if (Math.abs(targetP - currentP) < 0.0001) currentP = targetP;
             } else {
                 currentP += (targetP - currentP) * 0.18;
                 if (Math.abs(targetP - currentP) < 0.0001) currentP = targetP;
@@ -3845,22 +3846,17 @@
                 if (currentP === 0 || sy === 0) {
                     content.style.opacity = '1';
                     content.style.transform = 'translate3d(0, 0px, 0)';
-                    content.style.visibility = 'visible';
-                } else if (currentP >= 0.9) {
-                    content.style.opacity = '0';
-                    content.style.visibility = 'hidden';
                 } else {
-                    content.style.visibility = 'visible';
-                    const fadeProgress = Math.min(1, currentP / 0.75);
-                    const opacity = Math.max(0, 1 - Math.pow(fadeProgress, 1.8));
-                    const translateY = isTouchDevice ? -(currentP * cachedVh * 0.3) : -(currentP * cachedVh * 0.5);
+                    const fadeProgress = Math.min(1, currentP / 0.8);
+                    const opacity = Math.max(0, 1 - Math.pow(fadeProgress, 2));
+                    const translateY = -(currentP * cachedVh * 0.5);
 
-                    content.style.opacity = opacity.toFixed(3);
-                    content.style.transform = `translate3d(0, ${Math.round(translateY)}px, 0)`;
+                    content.style.opacity = opacity.toFixed(4);
+                    content.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
                 }
             }
 
-            if (!isTouchDevice && Math.abs(targetP - currentP) >= 0.0001) {
+            if (Math.abs(targetP - currentP) >= 0.0001) {
                 schedule();
             }
         }
