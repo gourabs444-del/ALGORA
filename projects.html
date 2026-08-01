@@ -746,430 +746,478 @@
 <!-- Hidden original grid template used to dynamically populate categorized sections -->
 <div id="portfolio-grid-template" class="hidden">
 <!-- Card: CogniLens -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="websites">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out cognilens-slider" style="width: 300%; transform: translateX(0%);"><img alt="CogniLens - Home" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/cognilens_home.png?v=1.5"><img alt="CogniLens - Insights" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/cognilens_insights.png?v=1.5"><img alt="CogniLens - Dashboard" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/cognilens_dashboard_real.png?v=1.5"></div>
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="websites">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out cognilens-slider" style="width: 300%; transform: translateX(0%);"><img alt="CogniLens - Home" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/cognilens_home.png?v=1.5"><img alt="CogniLens - Insights" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/cognilens_insights.png?v=1.5"><img alt="CogniLens - Dashboard" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/cognilens_dashboard_real.png?v=1.5"></div>
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         <!-- Carousel 3 Dots Pill in White Part -->
-        <div class="flex justify-center items-center mb-2">
+        <div class="flex justify-center items-center mb-1.5">
             <div class="cognilens-dots flex items-center gap-1 py-0.5 px-1.5 rounded-full bg-[#f0f2f5] dark:bg-[#e9ecef] border border-[#e2e8f0] dark:border-[#d0d5dd] shadow-2xs">
                 <span data-slide="0" class="cursor-pointer w-2 h-1 rounded-full bg-[#525866] dark:bg-[#374151] transition-all duration-500 ease-out hover:opacity-75"></span>
                 <span data-slide="1" class="cursor-pointer w-1 h-1 rounded-full bg-[#c4c8d0] dark:bg-[#9ca3af] transition-all duration-500 ease-out hover:opacity-75"></span>
                 <span data-slide="2" class="cursor-pointer w-1 h-1 rounded-full bg-[#c4c8d0] dark:bg-[#9ca3af] transition-all duration-500 ease-out hover:opacity-75"></span>
             </div>
         </div>
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 CogniLens
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="cognilens" data-rating="4.9" data-rating-count="48">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="cognilens" data-rating="4.9" data-rating-count="48">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="cognilens" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: GitHub -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="websites">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="https://github.com" target="_blank" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="GitHub" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1yg3Rv3UFrCeXMvNe72Hp8YtCUyKYYGFw3lZ40_TLkl9_PrkNarqms-SxEFpYNQ_PBf6z1Mp4jsIqh39I794RgJdqWOAUFBLqV65kHQ9jboAhF837U4J6VbK6v0Ayg1w5RTUwskuOyea9PJ6ilXcLEj1Vt1qi7avyrezYJLLYcz39j9DDDkidAqCH4CAwcegTCdPB1So4JTcCYjl_AsYnnnui-4mYi30oHEr-LhzbKx_yPks3yqxlfg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="websites">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="https://github.com" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="GitHub" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1618401471353-b98aedd04e11?auto=format&fit=crop&w=1200&q=80">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="https://github.com" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 GitHub
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="github" data-rating="4.8" data-rating-count="124">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="github" data-rating="4.8" data-rating-count="124">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="github" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Medium -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="articles">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="https://medium.com" target="_blank" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Medium" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgPZttyel6fQX793a2h7hSqwOyPepPoJq8t_ta9dliqSu3QK8htYcaJuqVliwVg6i1zTtUj8rhocT_Lz44TSt9VI98IJAFt3eeOGeWLjzxjzPblS1KQAaY00sgHaeWbCY0p24KjuFOJ6D4-DnyXEMigD8myaJewKdhgIzVbb_jYk4ftub-kmrQzdzAZVrWdytuIJWqUVRBoKK0OY3nyKWfoiBKFSfA7Xv6E-SP_2zM9QiK1DxOuCtFmA">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="articles">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="https://medium.com" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Medium" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="https://medium.com" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Medium
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="medium" data-rating="4.5" data-rating-count="62">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="medium" data-rating="4.5" data-rating-count="62">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.5</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="medium" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Figma -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="websites">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="https://figma.com" target="_blank" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Figma" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYCT-RwQkJbI9qlpeZi46QXiDt3sOLnqRKh3EGjSk7XV175ykhfC4m3t7O6Ou4t5oolCohM0ke5qbzpzA1z2-E1UFJONVysaEQWb2Ewn2YtG8WwrMcU1nBKSNXzNWe-Ywcs7CKF6n5xQtSKWIXcUNT-XX9Z7oxeSaZc-00amB79dMcUB0UNO6aKiQ_-gzCgfZkz-cjPWI6Bk6DX_Zkk9PyV53MPD8aoVJFIv_bW0XWy-p1oxqQh2EN1A">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="websites">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="https://figma.com" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Figma" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1200&q=80">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="https://figma.com" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Figma
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="figma" data-rating="4.9" data-rating-count="186">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="figma" data-rating="4.9" data-rating-count="186">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="figma" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Notion -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="websites">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="https://notion.so" target="_blank" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Notion" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFihVOdtvk4waI8MhC2s_5igxlcSD2iC4Pql0m41MtvwsX8QlvThlOtmg9ULoce6p59-j0k0ViAt8TY-UmFRAp0I_4QTlgse66E9tCMdAb0JftJp1aDz1KgWXb4ZCYx3PazJYvRs1TOzAtueAgstLzqYz08ALzWIMr29fkq-OkKMPufhVJygb7y2yLeKcpTEDqNjKGiIBDqHa8S_KC8YKUQn6nQkNx4fvFCqFlSzsXz9v6NK7kNbICww">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="websites">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="https://notion.so" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Notion" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=1200&q=80">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="https://notion.so" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Notion
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="notion" data-rating="4.7" data-rating-count="93">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="notion" data-rating="4.7" data-rating-count="93">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.7</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="notion" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Behance Photo Gallery -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="presets">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Photo Gallery Slider" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Yb6jl8EYeSS9hUeZPVasZLQBTJbT5f3k_h3r2RNIYjqNCsYu-MF_MGpYRAOA32EXso7TI1HdKBup9Pkw_gH9fFCoxb07zb-OB9n3iCaBJ7iEdwbXWXT-EnclEpB_vIo_O28TLcMB76Hb7JswAbr_GFn0pnq6FIX4WVOQpzJ0ykyfSXnN0HLWjM6bhTbyIgpLkcDZpifoigm96TO4tt2LHCpLos9zS13OpVVkKkfaceb5gOzbQ0O3bA">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="presets">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Photo Gallery Slider" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&q=80">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="gallery.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Behance Photo Gallery
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="behance" data-rating="4.6" data-rating-count="75">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="behance" data-rating="4.6" data-rating-count="75">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.6</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="behance" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: GuildRank Arena -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out guildrank-slider" style="width: 300%; transform: translateX(0%);"><img alt="GuildRank - Home" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/guildrank_home.png?v=1.0"><img alt="GuildRank - Leaderboard" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/guildrank_leaderboard.png?v=1.0"><img alt="GuildRank - Profile" class="w-1/3 h-full object-cover object-top" src="assets/thumbnails/guildrank_profile.png?v=1.0"></div>
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out guildrank-slider" style="width: 300%; transform: translateX(0%);"><img alt="GuildRank - Home" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/guildrank_home.png?v=1.0"><img alt="GuildRank - Leaderboard" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/guildrank_leaderboard.png?v=1.0"><img alt="GuildRank - Profile" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/guildrank_profile.png?v=1.0"></div>
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         <!-- Carousel 3 Dots Pill in White Part -->
-        <div class="flex justify-center items-center mb-2">
+        <div class="flex justify-center items-center mb-1.5">
             <div class="guildrank-dots flex items-center gap-1 py-0.5 px-1.5 rounded-full bg-[#f0f2f5] dark:bg-[#e9ecef] border border-[#e2e8f0] dark:border-[#d0d5dd] shadow-2xs">
                 <span data-slide="0" class="cursor-pointer w-2 h-1 rounded-full bg-[#525866] dark:bg-[#374151] transition-all duration-500 ease-out hover:opacity-75"></span>
                 <span data-slide="1" class="cursor-pointer w-1 h-1 rounded-full bg-[#c4c8d0] dark:bg-[#9ca3af] transition-all duration-500 ease-out hover:opacity-75"></span>
                 <span data-slide="2" class="cursor-pointer w-1 h-1 rounded-full bg-[#c4c8d0] dark:bg-[#9ca3af] transition-all duration-500 ease-out hover:opacity-75"></span>
             </div>
         </div>
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 GuildRank Arena
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="guildrank" data-rating="4.8" data-rating-count="56">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="guildrank" data-rating="4.8" data-rating-count="56">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="guildrank" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: AESTHETE -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="aesthete.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="AESTHETE - Form & Essence" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/previews/aesthete.jpg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="aesthete.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="AESTHETE - Form & Essence" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/aesthete.jpg">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="aesthete.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 AESTHETE
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="aesthete" data-rating="4.9" data-rating-count="72">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="aesthete" data-rating="4.9" data-rating-count="72">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="aesthete" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Vanya Lodge -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="vanyalodge.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Vanya Lodge - Forest Sanctuary" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/previews/vanyalodge.jpg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="vanyalodge.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Vanya Lodge - Forest Sanctuary" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/vanyalodge.jpg">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="vanyalodge.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Vanya Lodge
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vanyalodge" data-rating="4.8" data-rating-count="35">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vanyalodge" data-rating="4.8" data-rating-count="35">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="vanyalodge" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Vantage Point -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="vantagepoint.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Vantage Point Advisory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/previews/vantagepoint.jpg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="vantagepoint.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Vantage Point Advisory" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/vantagepoint.jpg">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="vantagepoint.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Vantage Point
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vantagepoint" data-rating="4.7" data-rating-count="48">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vantagepoint" data-rating="4.7" data-rating-count="48">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.7</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="vantagepoint" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Juris Lexicon -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="jurislexicon.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Juris Lexicon - Institutional Strength" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/previews/juris.jpg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="jurislexicon.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Juris Lexicon - Institutional Strength" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/juris.jpg">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="jurislexicon.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Juris Lexicon
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon" data-rating="4.9" data-rating-count="61">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon" data-rating="4.9" data-rating-count="61">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="jurislexicon" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Juris Lexicon — Dark -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="jurislexicon-dark.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Juris Lexicon - Justice Reimagined" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/previews/jurisdark.jpg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="jurislexicon-dark.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Juris Lexicon - Justice Reimagined" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/jurisdark.jpg">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="jurislexicon-dark.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Juris Lexicon — Dark
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon-dark" data-rating="4.8" data-rating-count="52">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon-dark" data-rating="4.8" data-rating-count="52">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="jurislexicon-dark" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: BloomFi -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="bloomfi.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="BloomFi - Where Brands Flourish" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/previews/bloomfi.jpg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="bloomfi.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="BloomFi - Where Brands Flourish" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/bloomfi.jpg">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="bloomfi.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 BloomFi
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="bloomfi" data-rating="4.7" data-rating-count="42">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="bloomfi" data-rating="4.7" data-rating-count="42">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.7</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="bloomfi" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Lumina Artisanal -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="lumina.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Lumina Artisanal - A Symphony of Senses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/previews/lumina.jpg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="lumina.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Lumina Artisanal - A Symphony of Senses" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/lumina.jpg">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="lumina.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Lumina Artisanal
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="lumina" data-rating="4.9" data-rating-count="38">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="lumina" data-rating="4.9" data-rating-count="38">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="lumina" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: VALURA LIVING -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="valura.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="VALURA LIVING - Organic Warmth & Architectural Interiors" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/previews/valura.jpg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="valura.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="VALURA LIVING - Organic Warmth & Architectural Interiors" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/valura.jpg">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="valura.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 VALURA LIVING
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="valura" data-rating="4.8" data-rating-count="31">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="valura" data-rating="4.8" data-rating-count="31">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="valura" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Mamaearth -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Original Web Face Ratio aspect-[16/10] -->
-    <a href="mamaearth.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-        <img alt="Mamaearth | Active Naturalism" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/previews/mamaearth.jpg">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
+    <a href="mamaearth.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+        <img alt="Mamaearth | Active Naturalism" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/mamaearth.jpg">
     </a>
 
     <!-- White Body Area -->
-    <div class="pt-3 px-1 pb-0.5 w-full">
+    <div class="pt-2 px-1 pb-0.5 w-full">
         
-        <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
+            <!-- Website Name -->
             <a href="mamaearth.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Mamaearth
             </a>
-            <div class="flex items-center gap-2.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="mamaearth" data-rating="4.9" data-rating-count="56">
+
+            <!-- Rating & Favorite Symbol (Unticked Default) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="mamaearth" data-rating="4.9" data-rating-count="56">
                     <span>★</span>
                     <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
                 </div>
                 <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="mamaearth" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
             </div>
         </div>
@@ -2831,23 +2879,23 @@
                             } catch(e) {}
 
                             const card = document.createElement('div');
-                            card.className = "dynamic-gallery-card group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between";
+                            card.className = "dynamic-gallery-card group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between";
                             card.innerHTML = `
-                                <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-                                    <img alt="${photo.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${photo.src}">
+                                <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+                                    <img alt="${photo.title}" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="${photo.src}">
                                 </a>
-                                <div class="pt-3 px-1 pb-0.5 w-full">
-                                    <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+                                <div class="pt-2 px-1 pb-0.5 w-full">
+                                    <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
                                         <a href="gallery.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                                             ${photo.title}
                                         </a>
-                                        <div class="flex items-center gap-2.5 shrink-0">
-                                            <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
+                                        <div class="flex items-center gap-2 shrink-0">
+                                            <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
                                                 <span>★</span>
                                                 <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">${displayRating}</span>
                                             </div>
                                             <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="${photo.id}" aria-label="Toggle Favorite">
-                                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                                                <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                                             </button>
                                         </div>
                                     </div>
@@ -2950,23 +2998,23 @@
                     } catch(e) {}
 
                     const card = document.createElement('div');
-                    card.className = "dynamic-gallery-card group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between";
+                    card.className = "dynamic-gallery-card group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between";
                             card.innerHTML = `
-                                <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-                                    <img alt="${photo.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${photo.after}">
+                                <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+                                    <img alt="${photo.title}" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="${photo.after}">
                                 </a>
-                                <div class="pt-3 px-1 pb-0.5 w-full">
-                                    <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+                                <div class="pt-2 px-1 pb-0.5 w-full">
+                                    <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
                                         <a href="gallery.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                                             ${photo.title}
                                         </a>
-                                        <div class="flex items-center gap-2.5 shrink-0">
-                                            <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
+                                        <div class="flex items-center gap-2 shrink-0">
+                                            <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
                                                 <span>★</span>
                                                 <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">${displayRating}</span>
                                             </div>
                                             <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="${photo.id}" aria-label="Toggle Favorite">
-                                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                                                <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                                             </button>
                                         </div>
                                     </div>
@@ -4281,23 +4329,23 @@
                             } catch(e) {}
 
                             const card = document.createElement('div');
-                            card.className = "dynamic-gallery-card group apple-elevated-card bg-white dark:bg-slate-900 rounded-[24px] p-3.5 sm:p-4 flex flex-col justify-between";
+                            card.className = "dynamic-gallery-card group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between";
                             card.innerHTML = `
-                                <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[18px] overflow-hidden apple-image-container relative cursor-pointer group/img">
-                                    <img alt="${photo.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${photo.after}">
+                                <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+                                    <img alt="${photo.title}" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="${photo.after}">
                                 </a>
-                                <div class="pt-3 px-1 pb-0.5 w-full">
-                                    <div class="flex items-center justify-between gap-2 mt-1 w-full min-w-0">
+                                <div class="pt-2 px-1 pb-0.5 w-full">
+                                    <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
                                         <a href="gallery.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                                             ${photo.title}
                                         </a>
-                                        <div class="flex items-center gap-2.5 shrink-0">
-                                            <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
+                                        <div class="flex items-center gap-2 shrink-0">
+                                            <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
                                                 <span>★</span>
                                                 <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">${displayRating}</span>
                                             </div>
                                             <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="${photo.id}" aria-label="Toggle Favorite">
-                                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                                                <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                                             </button>
                                         </div>
                                     </div>
