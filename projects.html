@@ -3849,10 +3849,10 @@
                 } else {
                     const fadeProgress = Math.min(1, currentP / 0.8);
                     const opacity = Math.max(0, 1 - Math.pow(fadeProgress, 2));
-                    const translateY = isTouchDevice ? 0 : -(currentP * cachedVh * 0.5);
+                    const translateY = -(currentP * cachedVh * 0.5);
 
                     content.style.opacity = opacity;
-                    content.style.transform = isTouchDevice ? 'none' : `translate3d(0, ${translateY}px, 0)`;
+                    content.style.transform = `translate3d(0, ${translateY}px, 0)`;
                 }
             }
 
