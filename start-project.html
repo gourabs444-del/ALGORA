@@ -524,7 +524,9 @@
 
         const inquiryForm = document.getElementById('project-inquiry-form');
         if (inquiryForm) {
-            inquiryForm.addEventListener('submit', function() {
+            inquiryForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
                 const submitBtn = document.getElementById('submit-project-btn');
                 if (submitBtn) {
                     submitBtn.disabled = true;
@@ -535,7 +537,21 @@
                       </svg>
                       Submitting…`;
                 }
+
                 sessionStorage.setItem('inquiryLeadId', Date.now().toString());
+
+                try {
+                    await fetch('https://formspree.io/f/xjybbkwd', {
+                        method: 'POST',
+                        body: new FormData(inquiryForm),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                } catch (err) {}
+
+                // Smooth redirect to our custom Thank You card page!
+                window.location.href = 'thank-you.html';
             });
         }
     });
