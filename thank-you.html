@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         body {
@@ -33,45 +33,50 @@
                 linear-gradient(to right, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
         }
-        .sparkle-icon {
-            font-variation-settings: 'FILL' 1, 'wght' 700;
-        }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 sm:p-6 overflow-x-hidden">
 
-    <!-- MAIN DESIGN CARD (Matching user's customized specifications) -->
+    <!-- MAIN DESIGN CARD (1:1 Matching reference image typography & structure) -->
     <div class="relative w-full max-w-[420px] sm:max-w-[460px] rounded-[36px] overflow-hidden shadow-[0_32px_96px_-16px_rgba(99,102,241,0.45)] ty-gradient-bg border border-white/70 p-7 sm:p-9 flex flex-col justify-between min-h-[630px] sm:min-h-[670px]">
         
         <!-- Subtle Background Grid Pattern -->
         <div class="absolute inset-0 mesh-grid-overlay opacity-30 pointer-events-none"></div>
 
         <!-- TOP BAR -->
-        <div class="relative z-10 flex items-center justify-between">
-            <div>
-                <p class="text-[10px] sm:text-[11px] font-bold tracking-[0.18em] text-[#475569] uppercase">YOUR REQUEST HAS BEEN SUBMITTED</p>
+        <div class="relative z-10 flex items-start justify-between">
+            <div class="max-w-[200px]">
+                <p class="text-[10px] sm:text-[11px] font-bold tracking-[0.15em] text-[#475569] uppercase leading-tight">YOUR REQUEST HAS BEEN SUBMITTED</p>
             </div>
             <!-- ALGORA TYPO LOGO (Sleek Grey Serif Typography) -->
-            <div class="flex items-center gap-1">
+            <div>
                 <span class="font-serif text-slate-500/80 font-bold tracking-widest text-sm sm:text-base uppercase font-['Playfair_Display']">ALGORA.</span>
             </div>
         </div>
 
-        <!-- MAIN HEADLINE -->
-        <div class="relative z-10 my-auto pt-3 pb-4">
-            <div class="flex items-start justify-between">
-                <!-- Thank with Gemini 2-stars (small & elegant) + subtle white gradient touch on letter 'k' -->
-                <h1 class="text-6xl sm:text-7xl font-extrabold tracking-tight font-['Outfit'] leading-none">
-                    <span class="text-[#0f172a]">Than</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0f172a] via-slate-800 to-slate-200">k</span><span class="text-[#4f46e5] inline-flex gap-0.5 -translate-y-3 text-2xl sm:text-3xl font-normal ml-0.5">✦✦</span>
+        <!-- MAIN HEADLINE BLOCK (1:1 Exact Match to Reference Image) -->
+        <div class="relative z-10 my-auto pt-4 pb-4">
+            <!-- Line 1: "Thank" with dual sparkles at top-right of 'k' -->
+            <div class="relative inline-block">
+                <h1 class="text-6xl sm:text-7xl font-extrabold text-[#111625] tracking-tight font-['Outfit'] leading-none">
+                    Thank
                 </h1>
+                <!-- Dual sparkles icon -->
+                <div class="absolute -top-1 -right-7 sm:-right-8 flex items-start gap-0.5 text-[#3b4259]">
+                    <span class="text-xl sm:text-2xl font-bold">✦</span>
+                    <span class="text-xs sm:text-sm font-bold -mt-0.5">✦</span>
+                </div>
             </div>
-            <div class="flex items-baseline gap-3 mt-1">
-                <span class="text-6xl sm:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#4f46e5] via-[#6366f1] to-[#3b82f6] font-['Outfit'] leading-none">
+
+            <!-- Line 2: "You!" and stacked text right next to it -->
+            <div class="flex items-center gap-4 mt-1">
+                <h1 class="text-6xl sm:text-7xl font-extrabold text-[#818cf8] tracking-tight font-['Outfit'] leading-none">
                     You!
-                </span>
-                <span class="text-[10px] sm:text-xs font-extrabold tracking-widest text-[#4338ca] uppercase">
-                    WE'LL BE IN TOUCH
-                </span>
+                </h1>
+                <div class="text-[10px] sm:text-[11px] font-extrabold tracking-widest text-[#6366f1] uppercase leading-tight font-['Plus_Jakarta_Sans']">
+                    <div>WE'LL BE</div>
+                    <div>IN TOUCH</div>
+                </div>
             </div>
 
             <!-- MIDDLE HERO TEXT (Attracting Trust-Building Company Tagline) -->
