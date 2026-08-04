@@ -14,41 +14,41 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #0b0f17;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.2), transparent 70%),
-                radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.15), transparent 50%);
+                radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.22), transparent 70%),
+                radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.18), transparent 50%);
         }
         .ty-gradient-bg {
             background: linear-gradient(165deg, 
-                #f8fafc 0%, 
-                #edf2f7 20%, 
-                #c7d2fe 40%, 
-                #818cf8 60%, 
-                #4f46e5 80%, 
-                #3b82f6 100%
+                #ffffff 0%, 
+                #f8fafc 18%, 
+                #e0e7ff 35%, 
+                #a855f7 55%, 
+                #6366f1 75%, 
+                #38bdf8 92%, 
+                #0284c7 100%
             );
         }
         .mesh-grid-overlay {
             background-size: 28px 28px;
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.22) 1px, transparent 1px);
         }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 sm:p-6 overflow-x-hidden">
 
-    <!-- MAIN DESIGN CARD (1:1 Matching reference image typography & structure) -->
-    <div class="relative w-full max-w-[420px] sm:max-w-[460px] rounded-[36px] overflow-hidden shadow-[0_32px_96px_-16px_rgba(99,102,241,0.45)] ty-gradient-bg border border-white/70 p-7 sm:p-9 flex flex-col justify-between min-h-[630px] sm:min-h-[670px]">
+    <!-- MAIN DESIGN CARD -->
+    <div class="relative w-full max-w-[420px] sm:max-w-[460px] rounded-[36px] overflow-hidden shadow-[0_32px_96px_-16px_rgba(99,102,241,0.5)] ty-gradient-bg border border-white/80 p-7 sm:p-9 flex flex-col justify-between min-h-[630px] sm:min-h-[670px]">
         
         <!-- Subtle Background Grid Pattern -->
         <div class="absolute inset-0 mesh-grid-overlay opacity-30 pointer-events-none"></div>
 
         <!-- TOP BAR -->
         <div class="relative z-10 flex items-center justify-between">
-            <!-- GREEN CAPSULE BADGE -->
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-500/15 backdrop-blur-md border border-emerald-500/35 shadow-xs">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span class="text-[9px] sm:text-[10px] font-extrabold tracking-[0.14em] text-emerald-900 uppercase">YOUR REQUEST HAS BEEN SUBMITTED</span>
+            <!-- GREEN CAPSULE BADGE (Dot removed, text: SUBMITTED) -->
+            <div class="inline-flex items-center px-3.5 py-1 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/40 shadow-xs">
+                <span class="text-[10px] font-extrabold tracking-[0.18em] text-emerald-900 uppercase">SUBMITTED</span>
             </div>
             <!-- ALGORA TYPO LOGO (Sleek Grey Serif Typography) -->
             <div>
@@ -56,17 +56,17 @@
             </div>
         </div>
 
-        <!-- MAIN HEADLINE BLOCK (1:1 Exact Match to Reference Image) -->
+        <!-- MAIN HEADLINE BLOCK -->
         <div class="relative z-10 my-auto pt-4 pb-4">
-            <!-- Line 1: "Thank" with dual sparkles at top-right of 'k' -->
+            <!-- Line 1: "Thank" with dual sparkles (white touch/glow) at top-right of 'k' -->
             <div class="relative inline-block">
                 <h1 class="text-6xl sm:text-7xl font-extrabold text-[#111625] tracking-tight font-['Outfit'] leading-none">
                     Thank
                 </h1>
-                <!-- Dual sparkles icon -->
-                <div class="absolute -top-1 -right-7 sm:-right-8 flex items-start gap-0.5 text-[#3b4259]">
-                    <span class="text-xl sm:text-2xl font-bold">✦</span>
-                    <span class="text-xs sm:text-sm font-bold -mt-0.5">✦</span>
+                <!-- Dual sparkles icon with white touch & glow -->
+                <div class="absolute -top-1 -right-7 sm:-right-8 flex items-start gap-0.5 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]">
+                    <span class="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-tr from-indigo-200 via-white to-slate-100">✦</span>
+                    <span class="text-xs sm:text-sm font-bold -mt-0.5 bg-clip-text text-transparent bg-gradient-to-tr from-indigo-200 via-white to-slate-100">✦</span>
                 </div>
             </div>
 
@@ -88,11 +88,12 @@
                 <p class="text-3xl sm:text-4xl font-bold text-white/60 tracking-tight leading-tight">Digital Experiences</p>
             </div>
 
-            <!-- PILL BADGE -->
-            <div class="mt-5 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/40 shadow-sm text-xs font-semibold text-white">
+            <!-- CLICKABLE COPYABLE LEAD ID PILL BADGE -->
+            <button id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Lead ID" class="mt-5 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 shadow-sm text-xs font-semibold text-white transition-all cursor-pointer group active:scale-95">
                 <span class="w-4 h-4 rounded-full bg-white/40 flex items-center justify-center text-[10px] text-white">✦</span>
                 <span id="lead-id-display">Inquiry Confirmed</span>
-            </div>
+                <span class="material-symbols-outlined text-[14px] text-white/80 group-hover:text-white transition-colors" id="copy-icon">content_copy</span>
+            </button>
         </div>
 
         <!-- LOWER SECTION & ACTION BAR -->
@@ -123,6 +124,17 @@
         const leadId = sessionStorage.getItem('inquiryLeadId');
         if (leadId) {
             document.getElementById('lead-id-display').textContent = `ID: ${leadId}`;
+        }
+
+        function copyLeadId() {
+            const text = document.getElementById('lead-id-display').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = document.getElementById('copy-icon');
+                if (icon) {
+                    icon.textContent = 'check';
+                    setTimeout(() => { icon.textContent = 'content_copy'; }, 2000);
+                }
+            }).catch(() => {});
         }
     </script>
 </body>
