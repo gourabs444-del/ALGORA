@@ -4726,24 +4726,24 @@
             submitBtn.innerHTML = `Sending... <span class="material-symbols-outlined text-[16px] animate-spin">sync</span>`;
         }
 
-        // Dispatch email notification via Web3Forms API
-        const WEB3FORMS_ACCESS_KEY = '16495d1e-9bb0-4dd7-b453-c9e487e99c15';
+        // Dispatch email notification via Formspree Endpoint
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjybbkwd';
         const contactData = new FormData();
-        contactData.append('access_key', WEB3FORMS_ACCESS_KEY);
-        contactData.append('subject', `💬 New Contact Message from ${name}`);
-        contactData.append('from_name', name);
         contactData.append('name', name);
         contactData.append('email', email);
         contactData.append('message', message);
 
         try {
-            const res = await fetch('https://api.web3forms.com/submit', {
+            const res = await fetch(FORMSPREE_ENDPOINT, {
                 method: 'POST',
-                body: contactData
+                body: contactData,
+                headers: {
+                    'Accept': 'application/json'
+                }
             });
             const data = await res.json();
 
-            if (data.success) {
+            if (res.ok || data.ok) {
                 // Save to sent messages store
                 let sent = [];
                 try {
