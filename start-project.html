@@ -167,10 +167,12 @@
 <main class="py-8 sm:py-16" data-purpose="main-content">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="lg:grid lg:grid-cols-12 lg:gap-16">
-<!-- LEFT COLUMN: Project Inquiry Form -->
-<div class="lg:col-span-7 mb-12 lg:mb-0 scroll-mt-24" id="project-inquiry-form-section" data-purpose="inquiry-form-section">
-<h2 class="text-2xl sm:text-3xl font-serif font-semibold text-primary mb-6 sm:mb-10">Tell us about your project</h2>
-<form id="project-inquiry-form" action="#" class="space-y-6" method="POST" novalidate>
+<form id="project-inquiry-form" action="https://api.web3forms.com/submit" class="space-y-6" method="POST">
+<input type="hidden" name="access_key" value="16495d1e-9bb0-4dd7-b453-c9e487e99c15">
+<input type="hidden" name="subject" value="🚀 New Project Inquiry from Portfolio Website">
+<input type="hidden" name="from_name" value="Portfolio Website">
+<input type="hidden" name="redirect" value="thank-you.html">
+<input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden">
 <input type="hidden" name="formStartedAt" id="form-started-at">
 <!-- Name & Email Row -->
@@ -276,7 +278,7 @@
 </div>
 <!-- Project Details Textarea -->
 <div class="floating-label-group">
-<textarea class="floating-label-input form-input-glass block w-full rounded-xl border-outline-variant px-4 py-4 text-primary focus:ring-0 sm:text-sm" id="project-details" name="description" placeholder=" " required="" minlength="20" rows="5"></textarea>
+<textarea class="floating-label-input form-input-glass block w-full rounded-xl border-outline-variant px-4 py-4 text-primary focus:ring-0 sm:text-sm" id="project-details" name="message" placeholder=" " required="" minlength="10" rows="5"></textarea>
 <label class="floating-label" for="project-details">Tell us more about your project *</label>
 </div>
 <!-- Submit Button -->
@@ -521,8 +523,24 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         setBudgetCurrency('INR');
+
+        const inquiryForm = document.getElementById('project-inquiry-form');
+        if (inquiryForm) {
+            inquiryForm.addEventListener('submit', function() {
+                const submitBtn = document.getElementById('submit-project-btn');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = `
+                      <svg class="animate-spin -ml-1 mr-2 h-4 w-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                      </svg>
+                      Submitting…`;
+                }
+                sessionStorage.setItem('inquiryLeadId', Date.now().toString());
+            });
+        }
     });
 </script>
-<script src="js/inquiry-form.js"></script>
 
 </body></html>

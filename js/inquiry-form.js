@@ -77,95 +77,50 @@
     // Collect all form fields
     const raw = Object.fromEntries(new FormData(form).entries());
 
-    // Map HTML name "project-type" → JSON key "projectType"
     if ('project-type' in raw) {
       raw.projectType = raw['project-type'];
       delete raw['project-type'];
     }
 
-    // Set loading state
-    const originalText = submitBtn.textContent.trim();
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = `
-      <svg class="animate-spin -ml-1 mr-2 h-4 w-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-      </svg>
-      Submitting…`;
-
-    try {
-      const response = await fetch(`${apiBase}/api/inquiry`, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(raw),
-      });
-
-      const result = await response.json();
-
-      if (response.status === 201 && result.success) {
-        // Success — store lead ID and redirect
-        sessionStorage.setItem('inquiryLeadId', result.leadId || '');
-        window.location.assign('thank-you.html');
-        return;
-      }
-
-      // Validation errors from Zod (400)
-      if (response.status === 400 && result.fields) {
-        Object.entries(result.fields).forEach(([field, messages]) => {
-          showFieldError(field, messages);
-        });
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        // Scroll to first error
-        const firstError = form.querySelector('[data-error]');
-        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-      }
-
-      // Rate limit (429)
-      if (response.status === 429) {
-        throw new Error('Too many submissions. Please wait an hour and try again.');
-      }
-
-      // Duplicate (409)
-      if (response.status === 409) {
-        throw new Error('This inquiry was already submitted recently. Please wait 10 minutes before resubmitting.');
-      }
-
-      // Generic error
-      throw new Error(result.error || 'Something went wrong. Please try again.');
-
-    } catch (error) {
-      // Network or fetch failure
-      const message = error.name === 'TypeError'
-        ? 'Could not connect to the server. Please check your connection and try again.'
-        : error.message;
-
-      // Show a toast-style error at the top of the form
-      const existing = form.querySelector('#form-global-error');
-      if (existing) existing.remove();
-
-      const toast = document.createElement('div');
-      toast.id = 'form-global-error';
-      toast.style.cssText = `
-        background: #fef2f2;
-        border: 1px solid #fca5a5;
-        border-radius: 12px;
-        padding: 14px 18px;
-        color: #b91c1c;
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 1.5;
-        margin-bottom: 16px;
-      `;
-      toast.textContent = `⚠️  ${message}`;
-      form.prepend(toast);
-
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-
-      // Auto-dismiss toast after 8 seconds
-      setTimeout(() => toast.remove(), 8000);
+    // Visual loading state
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+        </svg>
+        Submitting…`;
     }
+
+    const WEB3FORMS_ACCESS_KEY = '16495d1e-9bb0-4dd7-b453-c9e487e99c15';
+
+    // Build FormData payload for Web3Forms email notification
+    const formData = new FormData();
+    formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+    formData.append('subject', `🚀 New Project Inquiry from ${raw.name || 'Client'}`);
+    formData.append('from_name', raw.name || 'Website Inquiry');
+    formData.append('name', raw.name || '');
+    formData.append('email', raw.email || '');
+    formData.append('company', raw.company || 'N/A');
+    formData.append('service', raw.service || 'General Inquiry');
+    formData.append('project_type', raw.projectType || raw['project-type'] || 'N/A');
+    formData.append('budget', raw.budget || 'Not Specified');
+    formData.append('timeline', raw.timeline || 'Flexible');
+    formData.append('message', raw.description || raw.message || 'No additional details');
+
+    // Asynchronous background dispatch — non-blocking!
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'
+    }).catch(err => console.log('Async email dispatch notice:', err));
+
+    sessionStorage.setItem('inquiryLeadId', Date.now().toString());
+
+    // Instant 0.1 second redirect to thank-you page!
+    setTimeout(() => {
+      window.location.assign('thank-you.html');
+    }, 150);
   });
 })();

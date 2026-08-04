@@ -4694,45 +4694,85 @@
         handleContactSubmit();
     }
 
-    window.handleContactSubmit = function(e) {
+    window.handleContactSubmit = async function(e) {
         if (e) e.preventDefault();
         
-        const name = document.getElementById('contact-name').value;
-        const email = document.getElementById('contact-email').value;
-        const message = document.getElementById('contact-message').value;
+        const nameEl = document.getElementById('contact-name');
+        const emailEl = document.getElementById('contact-email');
+        const messageEl = document.getElementById('contact-message');
+        const submitBtn = document.querySelector('#contact-form button[type="submit"]');
+
+        const name = nameEl ? nameEl.value.trim() : '';
+        const email = emailEl ? emailEl.value.trim() : '';
+        const message = messageEl ? messageEl.value.trim() : '';
         
         if (!name || !email || !message) {
-            alert("Please fill in all the message fields!");
+            alert("Please fill in all the required fields!");
             return;
         }
 
-        // Check authentication wall
+        // Check authentication wall if active
         if (localStorage.getItem('isLoggedIn') !== 'true') {
-            // Auto save progress
             autoSaveDraft();
-            
-            // Redirect to login
-            alert("Authentication Required: You will be redirected to the secure portal to dispatch your message. Your message has been saved as a local draft.");
+            alert("Authentication Required: You will be redirected to the secure portal to dispatch your message.");
             window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname + window.location.search + '#contact');
             return;
         }
         
-        // Logged in: send message
-        let sent = [];
+        // Prevent duplicate submissions while sending
+        const originalBtnHTML = submitBtn ? submitBtn.innerHTML : 'Send Message';
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `Sending... <span class="material-symbols-outlined text-[16px] animate-spin">sync</span>`;
+        }
+
+        // Dispatch email notification via Web3Forms API
+        const WEB3FORMS_ACCESS_KEY = '16495d1e-9bb0-4dd7-b453-c9e487e99c15';
+        const contactData = new FormData();
+        contactData.append('access_key', WEB3FORMS_ACCESS_KEY);
+        contactData.append('subject', `💬 New Contact Message from ${name}`);
+        contactData.append('from_name', name);
+        contactData.append('name', name);
+        contactData.append('email', email);
+        contactData.append('message', message);
+
         try {
-            sent = JSON.parse(localStorage.getItem('sent_messages') || '[]');
-        } catch(e) {}
-        
-        sent.push({ name, email, message, timestamp: Date.now() });
-        localStorage.setItem('sent_messages', JSON.stringify(sent));
-        
-        // Clear drafts & fields
-        localStorage.removeItem('contact_draft');
-        document.getElementById('contact-form').reset();
-        
-        alert("Message dispatched successfully!");
-        updateTabCounters();
-        switchContactTab('sent');
+            const res = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: contactData
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                // Save to sent messages store
+                let sent = [];
+                try {
+                    sent = JSON.parse(localStorage.getItem('sent_messages') || '[]');
+                } catch(err) {}
+                sent.push({ name, email, message, timestamp: Date.now() });
+                localStorage.setItem('sent_messages', JSON.stringify(sent));
+                
+                // Clear drafts & fields
+                localStorage.removeItem('contact_draft');
+                document.getElementById('contact-form').reset();
+                
+                // Success message
+                alert("✅ Message sent successfully! Thank you for reaching out.");
+                updateTabCounters();
+                switchContactTab('sent');
+            } else {
+                throw new Error(data.message || "Failed to send message. Please try again.");
+            }
+        } catch (error) {
+            // Show error message if submission fails
+            alert("❌ Error sending message: " + (error.message || "Network error. Please try again."));
+        } finally {
+            // Restore button state
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHTML;
+            }
+        }
     }
 
     // Initialize drafts
