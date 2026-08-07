@@ -31,7 +31,7 @@
 <meta property="og:image" content="assets/logo.png">
 <meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=block" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -272,11 +272,17 @@
   body.all-projects-showcase #categorized-sections-container .group h3 {
       color: #0f172a !important;
   }
-  .category-banner h3 {
+  .category-banner.dark-banner h3 {
       color: #ffffff !important;
   }
-  .category-banner h3 span {
+  .category-banner.dark-banner h3 span {
       color: #e2e8f0 !important;
+  }
+  .category-banner.light-banner h3 {
+      color: #0f172a !important;
+  }
+  .category-banner.light-banner h3 span {
+      color: inherit !important;
   }
   body.all-projects-showcase #categorized-sections-container .group a.text-primary {
       color: #2563eb !important;
@@ -533,10 +539,77 @@
           border-width: 0 !important;
           outline: none !important;
       }
+
+  /* Clean White Luxury Portfolio Cards globally */
+  .apple-elevated-card,
+  .dynamic-gallery-card,
+  #grid-all-projects .group,
+  #grid-personal .group,
+  #grid-collaboration .group {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+  }
+  
+  /* Website Name inside White Cards */
+  .apple-elevated-card a,
+  .dynamic-gallery-card a,
+  .apple-elevated-card .text-slate-950,
+  .dynamic-gallery-card .text-slate-950 {
+      color: #0f172a !important;
+  }
+  
+  /* Rating Badges inside White Cards */
+  .apple-elevated-card .project-rating-badge,
+  .dynamic-gallery-card .project-rating-badge {
+      background-color: rgba(15, 23, 42, 0.05) !important;
+      border-color: rgba(15, 23, 42, 0.1) !important;
+  }
+  .apple-elevated-card .project-rating-badge .rating-val,
+  .dynamic-gallery-card .project-rating-badge .rating-val {
+      color: #0f172a !important;
+  }
+  
+  /* Fav buttons inside White Cards */
+  .apple-elevated-card .fav-toggle-btn,
+  .dynamic-gallery-card .fav-toggle-btn {
+      color: #94a3b8 !important;
+  }
+  .apple-elevated-card .fav-toggle-btn:hover,
+  .dynamic-gallery-card .fav-toggle-btn:hover {
+      color: #ef4444 !important;
+  }
+
+  /* Iframe preview styles matching landing-pages.html */
+  .iframe-preview-container {
+      width: 100%;
+      position: relative;
+      overflow: hidden !important;
+      background: #ffffff;
+  }
+  .iframe-preview-frame {
+      width: 250%;
+      height: 250%;
+      border: none;
+      transform: scale(0.4);
+      transform-origin: top left;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+      overflow: hidden !important;
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+  }
+  .iframe-preview-frame::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+  }
 </style>
 <meta charset="utf-8">
 </head>
 <body class="all-projects-showcase bg-black text-white antialiased">
+<!-- Sidebar Navigation Shell -->
+
 <!-- Sidebar Navigation Shell -->
 <aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 bg-white dark:bg-slate-900 border-r border-outline-variant dark:border-slate-800 flex flex-col py-4 lg:py-8 px-6 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-y-auto lg:overflow-y-visible">
 <div class="mb-5 lg:mb-12 px-2 flex justify-between items-center">
@@ -940,7 +1013,7 @@
     </div>
 </div>
 <!-- Card: GuildRank Arena -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
+<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="websites">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
         <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out guildrank-slider" style="width: 300%; transform: translateX(0%);"><img alt="GuildRank - Home" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/guildrank_home.png?v=1.0"><img alt="GuildRank - Leaderboard" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/guildrank_leaderboard.png?v=1.0"><img alt="GuildRank - Profile" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/guildrank_profile.png?v=1.0"></div>
@@ -978,8 +1051,9 @@
 <!-- Card: AESTHETE -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="aesthete.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-        <img alt="AESTHETE - Form & Essence" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/aesthete.jpg">
+    <a href="aesthete.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
+        <iframe src="aesthete.html" scrolling="no" class="iframe-preview-frame" title="AESTHETE Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
     <!-- White Body Area -->
@@ -1007,8 +1081,9 @@
 <!-- Card: Vanya Lodge -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="vanyalodge.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-        <img alt="Vanya Lodge - Forest Sanctuary" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/vanyalodge.jpg">
+    <a href="vanyalodge.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
+        <iframe src="vanyalodge.html" scrolling="no" class="iframe-preview-frame" title="Vanya Lodge Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
     <!-- White Body Area -->
@@ -1036,8 +1111,9 @@
 <!-- Card: Vantage Point -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="vantagepoint.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-        <img alt="Vantage Point Advisory" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/vantagepoint.jpg">
+    <a href="vantagepoint.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
+        <iframe src="vantagepoint.html" scrolling="no" class="iframe-preview-frame" title="Vantage Point Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
     <!-- White Body Area -->
@@ -1065,8 +1141,9 @@
 <!-- Card: Juris Lexicon -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="jurislexicon.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-        <img alt="Juris Lexicon - Institutional Strength" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/juris.jpg">
+    <a href="jurislexicon.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
+        <iframe src="jurislexicon.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
     <!-- White Body Area -->
@@ -1094,8 +1171,9 @@
 <!-- Card: Juris Lexicon — Dark -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="jurislexicon-dark.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-        <img alt="Juris Lexicon - Justice Reimagined" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/jurisdark.jpg">
+    <a href="jurislexicon-dark.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
+        <iframe src="jurislexicon-dark.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Dark Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
     <!-- White Body Area -->
@@ -1123,8 +1201,9 @@
 <!-- Card: BloomFi -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="bloomfi.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-        <img alt="BloomFi - Where Brands Flourish" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/bloomfi.jpg">
+    <a href="bloomfi.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
+        <iframe src="bloomfi.html" scrolling="no" class="iframe-preview-frame" title="BloomFi Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
     <!-- White Body Area -->
@@ -1152,8 +1231,9 @@
 <!-- Card: Lumina Artisanal -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="lumina.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-        <img alt="Lumina Artisanal - A Symphony of Senses" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/lumina.jpg">
+    <a href="lumina.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
+        <iframe src="lumina.html" scrolling="no" class="iframe-preview-frame" title="Lumina Artisanal Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
     <!-- White Body Area -->
@@ -1181,8 +1261,9 @@
 <!-- Card: VALURA LIVING -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="valura.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-        <img alt="VALURA LIVING - Organic Warmth & Architectural Interiors" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/valura.jpg">
+    <a href="valura.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
+        <iframe src="valura.html" scrolling="no" class="iframe-preview-frame" title="VALURA LIVING Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
     <!-- White Body Area -->
@@ -1210,8 +1291,9 @@
 <!-- Card: Mamaearth -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="mamaearth.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-        <img alt="Mamaearth | Active Naturalism" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="assets/previews/mamaearth.jpg">
+    <a href="mamaearth.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
+        <iframe src="mamaearth.html" scrolling="no" class="iframe-preview-frame" title="Mamaearth Live Preview"></iframe>
+        <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
     <!-- White Body Area -->
@@ -1312,7 +1394,7 @@
         <!-- Lumina Artisanal -->
         <a href="lumina.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfQWeXDnBDvFbHBbVEIYCME2U26whouVOImpla27RI1wTKVmC0eRoErHpQ493-BFbe-R4AP36p21GSIYbYVAdK-72_DwTMiRL5ihWzDxNiTVlBN9nt-iNQ9V5hBp9TM51QyMOe-eyiOuLveks-vg7XUyysU-cZle1LNQP0G93PlmDHx2fRCbNerQ6s0EO3yiCmx0ms6SSBeb3DXnZtgFa8nkybf374Ze3LIwuX1qNd5rlT10WWQ3nn" alt="Lumina Artisanal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/lumina.jpg" alt="Lumina Artisanal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">Lumina Artisanal</h4>
@@ -1328,7 +1410,7 @@
         <!-- Juris Lexicon Dark -->
         <a href="jurislexicon-dark.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-FRCGEVsEZljFDQs1T3YakfO42jiUVWyZgW-vKhQJ5mod2esMeyq_dejzme-j-Es8TPKH-TPTmt8W1R7GVKx-T1Ix82usUq3ywQI7gFUjE5bqVGbTleHLnErEcPQm7ixSBxBDj0eYi_PPL1Rb5muGIgOb0oRa5l48-gqPW7WN-K4GxV_stSp6_vcbw-0PEy-PdEQkpXj7Ufye8IOAn_9NfEjPHKCO9L3fI-9mZW_4qijaJCWVzBz4" alt="Juris Lexicon Dark" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/jurislexicon-dark.jpg" alt="Juris Lexicon Dark" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">Juris Lexicon — Dark</h4>
@@ -1344,7 +1426,7 @@
         <!-- Juris Lexicon -->
         <a href="jurislexicon.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="https://lh3.googleusercontent.com/aida/AP1WRLul3MhM3pa9c8_kuKlg-V01a3TF7-7GDvERp4ZykShBvy7AclvJGO5J2a6dtPAdHZfq_tJGll5UADtTR7YABrq_DeZQSPXdduiRPhE8wORimGYMfqpMdvs1k-HrADSHQvJqsWYWBweZdHmauTYWbqLkP_800P_i_9CG_bIOCYWsl_VXlQiyKtbLNJHD4wr-3LH9N_d70O-tcfn_FidDY3k3CoOookHXmD6mkkOHSkRDBH485JINBEZ0vbw" alt="Juris Lexicon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/jurislexicon.jpg" alt="Juris Lexicon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">Juris Lexicon</h4>
@@ -1360,7 +1442,7 @@
         <!-- Vantage Point Advisory -->
         <a href="vantagepoint.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHN5IbQ0XZGG3BjKsVE4kfmXZr34XGj0v3fTBG40E_m0uh-kJFcxg3QLhABFxkSY5N8BDk2MNdwDkIxWeLXaLKjUqBj5tCcYDW-17yxuTLNRCDgdQiqP5mPybSgQ7wK8T4tMlZgpqAc4I35tbbNlm4m5VxSqRwqq2i0sLfpM4HsBXtSO_T0SnPHrHcEUx-nz_gADdhw4PcKVG3x5nRKaBM5c-tN0lHbvdY7YC0RJXWPAMdLxdmYnr" alt="Vantage Point" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/vantagepoint.jpg" alt="Vantage Point" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">Vantage Point Advisory</h4>
@@ -1376,7 +1458,7 @@
         <!-- Vanya Lodge -->
         <a href="vanyalodge.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWqOLDfr2xE7yPpXO5nEGLDEk78Z7yzXYvmYkDvvlXpJclY3nXcnbT3VQa_yUcq8PkCxCLjBjFfP0hmxDxhsClHMEWuD_Xt_Ox2qpC2-bXBsUVMOBEEbGPKFUcuwXFwkxm8p6a7pqhqRJZbLG7n8KT1S2UlpTI6q7I8HRG8ZGNcAH0jB_ECPG-4LPOhqsqG3sMsrqkV_jUepVuuxVGQ1h3RhWBQjGSJvOzaYMIg8k8YJm3l_28Xd" alt="Vanya Lodge" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/vanyalodge.jpg" alt="Vanya Lodge" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">Vanya Lodge</h4>
@@ -1392,7 +1474,7 @@
         <!-- AESTHETE -->
         <a href="aesthete.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqAb6VwTgHjJxJ3bwCWEjb_1T9BDjCIkqvTTIBRfB1mfW0IW7O_5UhfxwzJQpuXoHq7n2aSt-9qv_cfKaAEVcalBtZJRvJLuEPBj44NfmhwdPn6FkrATjz6eL0lbLKJj3X_j3C4I3-a4MBKNE_6oCiTPVxp_DKOW3i8Ru4kX9mgxMBxVDNYB4dMQqPEBvwMaOPbpVY0sGqvfxTGMY7hhaxnBTCpBQQQUUdxRJNhpEBEGQH_5BRvM3" alt="AESTHETE" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/aesthete.jpg" alt="AESTHETE" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">AESTHETE</h4>
@@ -1841,39 +1923,186 @@
 
     <!-- Section: Work -->
     <div id="section-work" class="scroll-mt-28 w-full">
-        <!-- Creative Work Premium Banner (High Fashion Brand Contrast, Zero Radius) -->
-        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] group border-y border-white/15 bg-neutral-950 transition-all duration-500">
-            <img alt="Creative Work Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.35] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="creative_work_banner_1784469349995.png">
-            <canvas id="canvas-work-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
-            <div class="absolute inset-0 bg-gradient-to-r from-black/98 via-black/90 sm:via-black/75 to-black/30 z-10"></div>
-            <div class="banner-spotlight absolute inset-0 z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="absolute inset-0 px-6 sm:px-12 lg:px-20 py-6 sm:py-10 w-full h-full flex flex-col justify-center items-start z-20">
-                <div class="border-l-4 border-sky-400 pl-4 sm:pl-8 lg:pl-12 space-y-3 sm:space-y-5 lg:space-y-6 max-w-3xl">
-                    <span class="text-[11px] sm:text-[13px] font-mono font-extrabold uppercase tracking-[0.38em] text-sky-400 flex items-center gap-2.5 sm:gap-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                        <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse shadow-[0_0_12px_#38bdf8]"></span> PORTFOLIO SHOWCASE
-                    </span>
-                    <h3 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] font-serif drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
-                        Creative Work &<br><span class="italic font-light text-slate-300">UI/UX Systems</span>
+        <!-- Creative Work Premium Banner (100% Pure Bright White, Soft Purple & Sky Blue Light Theme) -->
+        <div class="category-banner w-full min-h-[380px] sm:min-h-[480px] lg:min-h-[580px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_16px_50px_rgba(147,51,234,0.08)] group border-y border-purple-200/80 bg-gradient-to-r from-white via-purple-50 to-indigo-50 transition-all duration-500">
+            <img alt="Creative Work Banner" class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:scale-[1.03] transition-transform duration-700 ease-out select-none z-0" src="assets/creative_work_banner_white_purple.jpg">
+            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 sm:via-white/65 to-transparent z-10"></div>
+            <div class="relative z-20 px-6 sm:px-12 lg:px-20 py-10 sm:py-16 w-full h-full flex flex-col justify-center items-start">
+                <div class="border-l-4 border-purple-600 pl-6 sm:pl-10 lg:pl-12 space-y-4 sm:space-y-6 max-w-3xl">
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/95 border border-purple-300 shadow-xs backdrop-blur-md">
+                        <span class="w-2.5 h-2.5 rounded-full bg-purple-600 animate-pulse shadow-[0_0_10px_#9333ea]"></span>
+                        <span class="text-[10px] sm:text-[11px] font-mono font-extrabold uppercase tracking-[0.32em] text-purple-950">ALGORA SHOWCASE // 2025</span>
+                    </div>
+                    <h3 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-[#0f172a] tracking-tight leading-[1.05] font-['Outfit']">
+                        Creative Work & <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-purple-500 font-serif italic font-normal">UI/UX Systems</span>
                     </h3>
-                    <p class="text-xs sm:text-base lg:text-lg text-slate-200 font-sans font-medium max-w-xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] line-clamp-3 sm:line-clamp-none">
-                        Visual web tools, high-fidelity prototypes, and crafted editorial interfaces designed for clarity and performance.
+                    <p class="text-xs sm:text-base lg:text-lg text-slate-700 font-sans font-medium max-w-xl leading-relaxed">
+                        Visual web tools, high-fidelity prototypes, and crafted editorial interfaces designed for clarity and peak digital performance.
                     </p>
-                    <div class="pt-2 sm:pt-4 flex items-center gap-3 sm:gap-4 flex-wrap">
-                        <a href="#grid-work" class="inline-flex items-center gap-2.5 px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-white text-black font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.25em] font-extrabold hover:bg-sky-400 hover:text-black transition-all shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:scale-95">
+                    <div class="pt-3 flex items-center gap-3 sm:gap-4 flex-wrap">
+                        <a href="#section-work" class="inline-flex items-center gap-2.5 px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-purple-700 text-white font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.22em] font-extrabold hover:bg-purple-800 transition-all shadow-md hover:shadow-purple-500/25 active:scale-95">
                             Explore Collection ↘
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
-                <span class="material-symbols-outlined text-primary text-[28px]">work</span> Work
-            </h2>
-            <div id="grid-work" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-                <!-- Dynamically populated -->
+        <!-- Design Philosophy & 3 Reputation Pillar Cards -->
+        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full pt-12 sm:pt-16 pb-8 text-center">
+            <div class="flex flex-col items-center justify-center space-y-4 max-w-4xl mx-auto mb-12 sm:mb-16">
+                <span class="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.3em] text-slate-500 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> OUR CRAFT ARCHITECTURE
+                </span>
+                <h3 class="text-3xl sm:text-5xl lg:text-6xl font-normal text-[#090d16] tracking-tight leading-[1.1] font-['Cormorant_Garamond',serif]" style="color: #090d16 !important; opacity: 1 !important;">
+                    Engineered For Trust, <span class="italic font-light text-sky-500" style="color: #0284c7 !important; font-style: italic !important;">Speed & Scalability</span>
+                </h3>
+                <p class="text-xs sm:text-sm max-w-xl text-[#090d16] font-['Plus_Jakarta_Sans'] font-semibold leading-relaxed" style="color: #090d16 !important; opacity: 1 !important;">
+                    We don't just build websites — we construct high-performance digital systems that elevate brand authority and deliver measurable business conversion.
+                </p>
             </div>
-                      <!-- Beautiful Section transition separator (Dual-Chain Scrolling Integration Marquee) -->
+
+            <!-- 3 Reputation Pillar Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-left max-w-6xl mx-auto mb-16 sm:mb-20">
+                <!-- Pillar 1 -->
+                <div class="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300 group">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-mono font-bold text-sm mb-5 group-hover:scale-110 transition-transform">
+                        01
+                    </div>
+                    <h4 class="text-lg sm:text-xl font-bold text-[#090d16] mb-3 font-['Plus_Jakarta_Sans']" style="color: #090d16 !important;">
+                        MODERN VISUALS
+                    </h4>
+                    <p class="text-xs sm:text-sm text-[#334155] leading-relaxed font-['Plus_Jakarta_Sans']" style="color: #334155 !important;">
+                        We blend luxury design aesthetics, curated typography, motion micro-interactions, and high contrast layouts to make your brand stand out instantly.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300 group">
+                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-mono font-bold text-sm mb-5 group-hover:scale-110 transition-transform">
+                        02
+                    </div>
+                    <h4 class="text-lg sm:text-xl font-bold text-[#090d16] mb-3 font-['Plus_Jakarta_Sans']" style="color: #090d16 !important;">
+                        HIGH-SPEED SYSTEMS
+                    </h4>
+                    <p class="text-xs sm:text-sm text-[#334155] leading-relaxed font-['Plus_Jakarta_Sans']" style="color: #334155 !important;">
+                        Zero-bloat architecture, lightweight assets, and instant response CDN deployment deliver ultra-fast responsiveness and 99+ speed scores.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300 group">
+                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-mono font-bold text-sm mb-5 group-hover:scale-110 transition-transform">
+                        03
+                    </div>
+                    <h4 class="text-lg sm:text-xl font-bold text-[#090d16] mb-3 font-['Plus_Jakarta_Sans']" style="color: #090d16 !important;">
+                        AUTOMATED ENGINE
+                    </h4>
+                    <p class="text-xs sm:text-sm text-[#334155] leading-relaxed font-['Plus_Jakarta_Sans']" style="color: #334155 !important;">
+                        Real-time lead webhooks, event automation, and seamless integration workflows that convert page visitors into qualified clients 24/7.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Event-Driven Node Workflow Pipeline Canvas (100% Light Theme, No Black Boxes, Seamless Connecting Pipes) -->
+            <div class="max-w-5xl mx-auto py-12 mb-16 relative">
+                <div class="flex flex-col items-center justify-center text-center gap-2 mb-12">
+                    <span class="px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 text-[10px] font-mono font-bold flex items-center gap-2 shadow-xs">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> REAL-TIME PIPELINE ENGINE
+                    </span>
+                    <p class="text-xs sm:text-sm font-semibold font-['Plus_Jakarta_Sans'] max-w-md text-slate-600" style="color: #4b5563 !important;">
+                        Real-time event-driven node workflow from client brief to production deploy & webhook notification.
+                    </p>
+                </div>
+
+                <!-- Continuous Flow Diagram Container (Zero Gap Connecting Pipes & No Black Boxes) -->
+                <div class="w-full max-w-4xl mx-auto flex items-center justify-between gap-1 sm:gap-3 relative py-6 px-4">
+                    
+                    <!-- Node 1: Client Brief -->
+                    <div class="flex items-center gap-2.5 px-3 py-2.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm shrink-0 z-10 transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-md">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-400 to-blue-500 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                            ⚡
+                        </div>
+                        <div class="text-left pr-1">
+                            <span class="text-[9px] font-mono font-bold uppercase text-sky-600 block leading-none mb-1">TRIGGER</span>
+                            <span class="text-xs font-bold text-slate-800 block leading-tight" style="color: #0f172a !important;">Client Brief</span>
+                        </div>
+                    </div>
+
+                    <!-- Pipe 1 (Seamless Connected Line) -->
+                    <div class="flex-1 h-[4px] bg-emerald-500 min-w-[16px]"></div>
+
+                    <!-- Node 2: Strategy -->
+                    <div class="flex items-center gap-2.5 px-3 py-2.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm shrink-0 z-10 transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-md">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-400 to-green-500 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                            💡
+                        </div>
+                        <div class="text-left pr-1">
+                            <span class="text-[9px] font-mono font-bold uppercase text-emerald-600 block leading-none mb-1">STRATEGY</span>
+                            <span class="text-xs font-bold text-slate-800 block leading-tight" style="color: #0f172a !important;">UX Logic</span>
+                        </div>
+                    </div>
+
+                    <!-- Pipe 2 (Seamless Connected Line) -->
+                    <div class="flex-1 h-[4px] bg-emerald-500 min-w-[16px]"></div>
+
+                    <!-- Node 3: UI System -->
+                    <div class="flex items-center gap-2.5 px-3 py-2.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm shrink-0 z-10 transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-md">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-400 to-indigo-500 text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                            🎨
+                        </div>
+                        <div class="text-left pr-1">
+                            <span class="text-[9px] font-mono font-bold uppercase text-purple-600 block leading-none mb-1">DESIGN</span>
+                            <span class="text-xs font-bold text-slate-800 block leading-tight" style="color: #0f172a !important;">UI Tokens</span>
+                        </div>
+                    </div>
+
+                    <!-- Fork SVG Pipe (Zero Gap Bridge) -->
+                    <div class="w-10 sm:w-14 h-16 shrink-0 relative flex items-center justify-center">
+                        <svg class="w-full h-full overflow-visible" viewBox="0 0 56 56" fill="none">
+                            <path d="M 0 28 C 28 28, 28 12, 56 12" stroke="#10B981" stroke-width="4" stroke-linecap="round" fill="none"/>
+                            <path d="M 0 28 C 28 28, 28 44, 56 44" stroke="#10B981" stroke-width="4" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </div>
+
+                    <!-- Fork Sub-nodes: Code & Deploy -->
+                    <div class="flex flex-col gap-3 shrink-0 z-10">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-600 text-white flex items-center justify-center font-bold text-sm shadow-xs transition-transform duration-300 hover:scale-105" title="Code">
+                            💻
+                        </div>
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-400 to-teal-500 text-white flex items-center justify-center font-bold text-sm shadow-xs transition-transform duration-300 hover:scale-105" title="Deploy">
+                            🚀
+                        </div>
+                    </div>
+
+                    <!-- Connector Pipes to Outcome -->
+                    <div class="flex flex-col justify-between h-14 w-8 sm:w-12 shrink-0 py-2">
+                        <div class="h-[4px] w-full bg-emerald-500 rounded-full"></div>
+                        <div class="h-[4px] w-full bg-emerald-500 rounded-full"></div>
+                    </div>
+
+                    <!-- Outcome Badges (Clean White Pills, No Black Box) -->
+                    <div class="flex flex-col gap-3 shrink-0 z-10">
+                        <!-- Outcome 1 -->
+                        <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm transition-transform duration-300 hover:-translate-y-0.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="text-xs font-bold text-slate-900 flex items-center" style="color: #090d16 !important; line-height: 1 !important;">
+                                Vercel & Global CDN
+                            </span>
+                        </div>
+                        <!-- Outcome 2 -->
+                        <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm transition-transform duration-300 hover:-translate-y-0.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="text-xs font-bold text-slate-900 flex items-center" style="color: #090d16 !important; line-height: 1 !important;">
+                                Instant Lead Email
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beautiful Section transition separator (Dual-Chain Scrolling Integration Marquee) -->
             <div class="w-full py-16 sm:py-24 my-12 sm:my-16 relative overflow-hidden select-none">
                 <!-- Global SVG Gradients for marquee icons -->
                 <svg class="hidden absolute w-0 h-0" aria-hidden="true">
@@ -1996,185 +2225,530 @@
 
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
-        <!-- Personal Lab Premium Banner (High Fashion Brand Contrast, Zero Radius) -->
-        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] group border-y border-white/15 bg-neutral-950 transition-all duration-500">
-            <img alt="Personal Lab Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.35] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="personal_lab_banner_1784469366510.png">
-            <canvas id="canvas-personal-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
-            <div class="absolute inset-0 bg-gradient-to-r from-black/98 via-black/90 sm:via-black/75 to-black/30 z-10"></div>
-            <div class="banner-spotlight absolute inset-0 z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="absolute inset-0 px-6 sm:px-12 lg:px-20 py-6 sm:py-10 w-full h-full flex flex-col justify-center items-start z-20">
-                <div class="border-l-4 border-fuchsia-400 pl-4 sm:pl-8 lg:pl-12 space-y-3 sm:space-y-5 lg:space-y-6 max-w-3xl">
-                    <span class="text-[11px] sm:text-[13px] font-mono font-extrabold uppercase tracking-[0.38em] text-fuchsia-400 flex items-center gap-2.5 sm:gap-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                        <span class="w-2.5 h-2.5 rounded-full bg-fuchsia-400 animate-pulse shadow-[0_0_12px_#e879f9]"></span> DEV LABORATORY
-                    </span>
-                    <h3 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] font-serif drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
-                        Personal Lab &<br><span class="italic font-light text-slate-300">Algorithmic Sandbox</span>
+        <!-- Landing Page Showcase Banner (Ultra-Premium Dark Sapphire & Indigo 8K Theme) -->
+        <div class="category-banner dark-banner w-full min-h-[380px] sm:min-h-[480px] lg:min-h-[580px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_16px_50px_rgba(15,23,42,0.25)] group border-y border-slate-900 bg-slate-950 transition-all duration-500">
+            <img alt="Landing Page Showcase Banner" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-[1.03] transition-transform duration-700 ease-out select-none z-0" src="assets/landing_pages_colored_banner.jpg">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 sm:via-slate-950/40 to-transparent z-10"></div>
+            <div class="relative z-20 px-6 sm:px-12 lg:px-20 py-10 sm:py-16 w-full h-full flex flex-col justify-center items-start">
+                <div class="relative pl-6 sm:pl-10 lg:pl-12 space-y-4 sm:space-y-6 max-w-3xl">
+                    <!-- Short blue accent line -->
+                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-28 sm:h-36 bg-sky-400 rounded-full"></div>
+                    <h3 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white dark:text-white tracking-tight leading-[1.05] font-['Outfit']">
+                        Landing Page Showcase & <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-300 to-purple-400 font-serif italic font-normal">Conversion Systems</span>
                     </h3>
-                    <p class="text-xs sm:text-base lg:text-lg text-slate-200 font-sans font-medium max-w-xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] line-clamp-3 sm:line-clamp-none">
-                        A playground of custom algorithms, interactive terminal environments, and experimental API integrations.
+                    <p class="text-xs sm:text-base lg:text-lg text-slate-300 font-sans font-medium max-w-xl leading-relaxed">
+                        Curated collection of high-converting landing pages, SaaS web applications, and luxury brand digital interfaces engineered for scale.
                     </p>
-                    <div class="pt-2 sm:pt-4 flex items-center gap-3 sm:gap-4 flex-wrap">
-                        <a href="#grid-personal" class="inline-flex items-center gap-2.5 px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-white text-black font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.25em] font-extrabold hover:bg-fuchsia-400 hover:text-black transition-all shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:scale-95">
-                            Launch Sandbox ↘
+                    <div class="pt-3 flex items-center gap-3 sm:gap-4 flex-wrap">
+                        <a href="#grid-personal" class="inline-flex items-center gap-2.5 px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-gradient-to-r from-sky-50 to-indigo-600 text-white font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.22em] font-extrabold hover:from-sky-600 hover:to-indigo-700 transition-all shadow-md hover:shadow-sky-500/25 active:scale-95">
+                            Explore Showcase ↘
                         </a>
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
-                <span class="material-symbols-outlined text-primary text-[28px]">person</span> Personal
+                <span class="material-symbols-outlined text-primary text-[28px]">web</span> Featured Landing Pages
             </h2>
             <div id="grid-personal" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
                 <!-- Dynamically populated -->
             </div>
+        </div> <!-- Closes max-w-[1680px] -->
+
+        <!-- Beautiful Section transition separator (Skills Circular Rings Widget) -->
+        <div class="max-w-[1680px] mx-auto w-full py-16 sm:py-24">
+            <div class="flex flex-col items-center text-center mb-12">
+                <span class="px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200/80 text-sky-700 text-[10px] font-mono font-bold flex items-center gap-2 shadow-xs mb-3">
+                    ⚡ LIVE PERFORMANCE SPECS
+                </span>
+                <h4 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-3 font-['Outfit']">
+                    Coding Metrics & Custom Algorithms
+                </h4>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed font-sans">
+                    We write clean, test-driven algorithms optimized for scale. Tap into our sandbox metrics and live performance data.
+                </p>
+            </div>
             
-            <!-- Beautiful Section transition separator (Skills Circular Rings Widget) -->
-            <div class="max-w-[1680px] mx-auto w-full py-16 sm:py-24">
-                <div class="flex flex-col items-center text-center mb-8 sm:mb-12">
-                    <h4 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mb-2 font-serif">
-                        Coding Metrics & Custom Algorithms
-                    </h4>
-                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed font-sans">
-                        We write clean, test-driven algorithms optimized for scale. Tap into our sandbox metrics and live performance data.
+            <!-- 3 Large Circular Progress Rings Side-by-Side (iOS Style, Light Glass Theme) -->
+            <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-16 max-w-4xl mx-auto px-4 mb-16">
+                
+                <!-- Circle 1: Algorithmic Efficiency 95% -->
+                <div class="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-[0_10px_30px_rgba(0,0,0,0.03)] shrink-0 z-10 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:border-emerald-300 group">
+                    <div class="absolute inset-1 rounded-full bg-emerald-500/5 blur-xs opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_4px_12px_rgba(16,185,129,0.15)]" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(16, 185, 129, 0.06)" stroke-width="8"/>
+                        <circle class="skill-ring-circle" cx="60" cy="60" r="50" fill="none" stroke="url(#ring-grad-emerald)" stroke-width="8" stroke-linecap="round"
+                            stroke-dasharray="314.16" stroke-dashoffset="314.16" data-target-offset="15.71"/>
+                        <defs>
+                            <linearGradient id="ring-grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#10b981"/>
+                                <stop offset="100%" stop-color="#34d399"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                        <div class="flex items-baseline justify-center">
+                            <span class="text-xl sm:text-2xl font-black text-slate-900 font-['Outfit']">95</span>
+                            <span class="text-[10px] font-bold text-emerald-500 ml-0.5">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Circle 2: Response Speed 98% -->
+                <div class="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-[0_10px_30px_rgba(0,0,0,0.03)] shrink-0 z-10 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:border-cyan-300 group">
+                    <div class="absolute inset-1 rounded-full bg-cyan-500/5 blur-xs opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_4px_12px_rgba(6,182,212,0.15)]" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(6, 182, 212, 0.06)" stroke-width="8"/>
+                        <circle class="skill-ring-circle" cx="60" cy="60" r="50" fill="none" stroke="url(#ring-grad-cyan)" stroke-width="8" stroke-linecap="round"
+                            stroke-dasharray="314.16" stroke-dashoffset="314.16" data-target-offset="6.28"/>
+                        <defs>
+                            <linearGradient id="ring-grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#06b6d4"/>
+                                <stop offset="100%" stop-color="#22d3ee"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                        <div class="flex items-baseline justify-center">
+                            <span class="text-xl sm:text-2xl font-black text-slate-900 font-['Outfit']">98</span>
+                            <span class="text-[10px] font-bold text-cyan-500 ml-0.5">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Circle 3: Secure Integrations 100% -->
+                <div class="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-[0_10px_30px_rgba(0,0,0,0.03)] shrink-0 z-10 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:border-purple-300 group">
+                    <div class="absolute inset-1 rounded-full bg-fuchsia-500/5 blur-xs opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_4px_12px_rgba(217,70,239,0.15)]" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(217, 70, 239, 0.06)" stroke-width="8"/>
+                        <circle class="skill-ring-circle" cx="60" cy="60" r="50" fill="none" stroke="url(#ring-grad-fuchsia)" stroke-width="8" stroke-linecap="round"
+                            stroke-dasharray="314.16" stroke-dashoffset="314.16" data-target-offset="0.0"/>
+                        <defs>
+                            <linearGradient id="ring-grad-fuchsia" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#d946ef"/>
+                                <stop offset="100%" stop-color="#f472b6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                        <div class="flex items-baseline justify-center">
+                            <span class="text-xl sm:text-2xl font-black text-slate-900 font-['Outfit']">100</span>
+                            <span class="text-[10px] font-bold text-fuchsia-500 ml-0.5">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Descriptions Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-6 mt-12">
+                <!-- Desc 1 -->
+                <div class="p-6 rounded-[22px] bg-white border border-slate-200/60 shadow-[0_4px_16px_rgba(0,0,0,0.02)] transition-all hover:shadow-md">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        <h5 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Algorithmic Efficiency</h5>
+                    </div>
+                    <h6 class="text-sm font-bold text-slate-900 mb-2 font-['Outfit']">O(log n) Time Complexity</h6>
+                    <p class="text-[11px] text-slate-600 leading-relaxed font-sans">
+                        High-efficiency data structures optimized for sub-millisecond rendering, faster response curves, and zero rendering overhead.
                     </p>
                 </div>
-                
-                <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-12 lg:gap-16 max-w-3xl mx-auto px-4">
-                    <!-- Ring 1: Algorithmic Optimization 95% -->
-                    <div class="skill-ring-item flex flex-col items-center text-center gap-3 group">
-                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
-                            <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_2px_8px_rgba(217,70,239,0.25)]" viewBox="0 0 120 120">
-                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(217, 70, 239, 0.1)" stroke-width="6"/>
-                                <circle class="skill-ring-circle" cx="60" cy="60" r="52" fill="none" stroke="url(#ring-grad-fuchsia)" stroke-width="6" stroke-linecap="round"
-                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" data-target-offset="16.34"/>
-                                <defs>
-                                    <linearGradient id="ring-grad-fuchsia" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#d946ef"/>
-                                        <stop offset="100%" stop-color="#e879f9"/>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                                <div class="flex items-baseline justify-center">
-                                    <span class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight" style="color: #0f172a !important; font-family: 'Inter', -apple-system, sans-serif !important;">95</span>
-                                    <span class="text-[10px] sm:text-xs font-extrabold text-fuchsia-500 ml-0.5" style="color: #d946ef !important;">%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="text-[9px] sm:text-[10px] font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.18em] max-w-[120px] leading-tight">Algorithmic Optimization</span>
+                <!-- Desc 2 -->
+                <div class="p-6 rounded-[22px] bg-white border border-slate-200/60 shadow-[0_4px_16px_rgba(0,0,0,0.02)] transition-all hover:shadow-md">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+                        <h5 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Response Speed</h5>
                     </div>
-
-                    <!-- Ring 2: Performance Speed 98% -->
-                    <div class="skill-ring-item flex flex-col items-center text-center gap-3 group">
-                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
-                            <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_2px_8px_rgba(16,185,129,0.25)]" viewBox="0 0 120 120">
-                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(16, 185, 129, 0.1)" stroke-width="6"/>
-                                <circle class="skill-ring-circle" cx="60" cy="60" r="52" fill="none" stroke="url(#ring-grad-emerald)" stroke-width="6" stroke-linecap="round"
-                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" data-target-offset="6.53"/>
-                                <defs>
-                                    <linearGradient id="ring-grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#10b981"/>
-                                        <stop offset="100%" stop-color="#34d399"/>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                                <div class="flex items-baseline justify-center">
-                                    <span class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight" style="color: #0f172a !important; font-family: 'Inter', -apple-system, sans-serif !important;">98</span>
-                                    <span class="text-[10px] sm:text-xs font-extrabold text-emerald-500 ml-0.5" style="color: #10b981 !important;">%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="text-[9px] sm:text-[10px] font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.18em] max-w-[120px] leading-tight">Performance Speed</span>
-                    </div>
-
-                    <!-- Ring 3: Secure Integrations 100% -->
-                    <div class="skill-ring-item flex flex-col items-center text-center gap-3 group">
-                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
-                            <svg class="w-full h-full -rotate-90 filter drop-shadow-[0_2px_8px_rgba(59,130,246,0.25)]" viewBox="0 0 120 120">
-                                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(59, 130, 246, 0.1)" stroke-width="6"/>
-                                <circle class="skill-ring-circle" cx="60" cy="60" r="52" fill="none" stroke="url(#ring-grad-blue)" stroke-width="6" stroke-linecap="round"
-                                    stroke-dasharray="326.73" stroke-dashoffset="326.73" data-target-offset="0"/>
-                                <defs>
-                                    <linearGradient id="ring-grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#3b82f6"/>
-                                        <stop offset="100%" stop-color="#60a5fa"/>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                                <div class="flex items-baseline justify-center">
-                                    <span class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight" style="color: #0f172a !important; font-family: 'Inter', -apple-system, sans-serif !important;">100</span>
-                                    <span class="text-[10px] sm:text-xs font-extrabold text-blue-500 ml-0.5" style="color: #3b82f6 !important;">%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="text-[9px] sm:text-[10px] font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.18em] max-w-[120px] leading-tight">Secure Integrations</span>
-                    </div>
+                    <h6 class="text-sm font-bold text-slate-900 mb-2 font-['Outfit']">12ms Response Time</h6>
+                    <p class="text-[11px] text-slate-600 leading-relaxed font-sans">
+                        Ultra-low latency connection pipelines ensuring instant screen transitions, lazy loading of images, and real-time state sync.
+                    </p>
                 </div>
-
-                <script>
-                (function initSkillRings() {
-                    const rings = document.querySelectorAll('.skill-ring-circle');
-                    if (!rings.length) return;
-
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                const circle = entry.target;
-                                const targetOffset = parseFloat(circle.dataset.targetOffset);
-                                circle.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.16, 1, 0.3, 1)';
-                                circle.style.strokeDashoffset = targetOffset;
-                                observer.unobserve(circle);
-                            }
-                        });
-                    }, { threshold: 0.3 });
-
-                    rings.forEach(ring => observer.observe(ring));
-                })();
-                </script>
+                <!-- Desc 3 -->
+                <div class="p-6 rounded-[22px] bg-white border border-slate-200/60 shadow-[0_4px_16px_rgba(0,0,0,0.02)] transition-all hover:shadow-md">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-2.5 h-2.5 rounded-full bg-fuchsia-500"></span>
+                        <h5 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Secure Integrations</h5>
+                    </div>
+                    <h6 class="text-sm font-bold text-slate-900 mb-2 font-['Outfit']">TLS 1.3 Encryption</h6>
+                    <p class="text-[11px] text-slate-600 leading-relaxed font-sans">
+                        Hardened endpoints protected by active rate-limiting, strict CORS policies, and AES-256 credentials with security-first designs.
+                    </p>
+                </div>
             </div>
+
+            <script>
+            (function initSkillRings() {
+                const rings = document.querySelectorAll('.skill-ring-circle');
+                if (!rings.length) return;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const circle = entry.target;
+                            const targetOffset = parseFloat(circle.dataset.targetOffset);
+                            circle.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                            circle.style.strokeDashoffset = targetOffset;
+                            observer.unobserve(circle);
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                rings.forEach(ring => observer.observe(ring));
+            })();
+            </script>
         </div>
-    </div>
+    </div> <!-- Closes section-personal -->
 
     <!-- Section: Collaboration -->
     <div id="section-collaboration" class="scroll-mt-28 w-full">
-        <!-- Collaboration Premium Banner (High Fashion Brand Contrast, Zero Radius) -->
-        <div class="category-banner w-full h-[360px] sm:h-[460px] lg:h-[580px] xl:h-[640px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.4)] group border-y border-white/15 bg-neutral-950 transition-all duration-500">
-            <img alt="Collaboration Banner" class="absolute inset-0 w-full h-full object-cover brightness-[0.35] group-hover:scale-[1.04] transition-transform duration-700 ease-out select-none z-0" src="collaboration_banner_1784469380792.png">
-            <canvas id="canvas-collaboration-banner" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
-            <div class="absolute inset-0 bg-gradient-to-r from-black/98 via-black/90 sm:via-black/75 to-black/30 z-10"></div>
-            <div class="banner-spotlight absolute inset-0 z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="absolute inset-0 px-6 sm:px-12 lg:px-20 py-6 sm:py-10 w-full h-full flex flex-col justify-center items-start z-20">
-                <div class="border-l-4 border-amber-400 pl-4 sm:pl-8 lg:pl-12 space-y-3 sm:space-y-5 lg:space-y-6 max-w-3xl">
-                    <span class="text-[11px] sm:text-[13px] font-mono font-extrabold uppercase tracking-[0.38em] text-amber-400 flex items-center gap-2.5 sm:gap-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_12px_#fbbf24]"></span> GLOBAL PARTNERSHIPS
+        <!-- AI & Automation Banner (Dark Minimalist Purple Glow Hero Theme - Matching Reference Screenshot) -->
+        <div class="category-banner w-full h-screen min-h-[650px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-2xl group bg-[#070614] transition-all duration-500 flex items-center justify-center">
+            
+            <!-- Ambient Purple Aura Glowing Rays Background -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden">
+                <!-- Top-bottom glow beam -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[350px] bg-gradient-to-r from-purple-900/40 via-indigo-600/30 to-purple-900/40 blur-[100px] rounded-full opacity-80"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[180px] bg-gradient-to-r from-purple-500/30 via-purple-300/20 to-purple-500/30 blur-[70px] rounded-full"></div>
+                <!-- Curved light beams overlay -->
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-[#070614]/80 to-[#070614]"></div>
+            </div>
+            
+            <div class="relative z-20 w-full max-w-5xl px-6 sm:px-12 text-center flex flex-col items-center justify-center space-y-8">
+                
+                <!-- Pill Badge with Glowing Side Accent Lines -->
+                <div class="inline-flex items-center gap-3 animate-fade-in">
+                    <div class="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent via-purple-400 to-purple-300"></div>
+                    <span class="px-5 py-1.5 rounded-full bg-purple-950/70 border border-purple-500/40 text-purple-200 text-xs sm:text-sm font-medium tracking-wide shadow-[0_0_20px_rgba(168,85,247,0.3)] backdrop-blur-md">
+                        Autonomous Business Blueprints
                     </span>
-                    <h3 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] font-serif drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
-                        Collaborative Repos &<br><span class="italic font-light text-slate-300">Shared Projects</span>
-                    </h3>
-                    <p class="text-xs sm:text-base lg:text-lg text-slate-200 font-sans font-medium max-w-xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] line-clamp-3 sm:line-clamp-none">
-                        Joint developments, corporate integrations, and open-source contributions crafted alongside teams globally.
-                    </p>
-                    <div class="pt-2 sm:pt-4 flex items-center gap-3 sm:gap-4 flex-wrap">
-                        <a href="#grid-collaboration" class="inline-flex items-center gap-2.5 px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-white text-black font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.25em] font-extrabold hover:bg-amber-400 hover:text-black transition-all shadow-[0_10px_25px_rgba(0,0,0,0.5)] active:scale-95">
-                            View Repositories ↘
-                        </a>
+                    <div class="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent via-purple-400 to-purple-300"></div>
+                </div>
+                
+                <!-- Centered Headline -->
+                <h3 class="text-4xl sm:text-6xl lg:text-[76px] font-semibold text-white tracking-tight leading-[1.12] font-['Outfit',_'Inter',_sans-serif] max-w-4xl">
+                    Autonomous Business Blueprints &amp; <br class="hidden sm:inline">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-indigo-200 to-purple-400">AI-Driven Systems.</span>
+                </h3>
+                
+                <!-- Subtitle / Description -->
+                <p class="text-sm sm:text-base text-purple-200/70 font-['Inter'] font-normal leading-relaxed max-w-xl">
+                    Innovative capacity and efficiency for all business operations powered by AI.
+                </p>
+
+                <!-- What We Build Capabilities Grid (Minimal Dark Purple Glass Pills) -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-4xl pt-1">
+                    <!-- Item 1: AI Agents -->
+                    <div class="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:bg-white/[0.08] hover:border-purple-400/40 transition-all text-left group">
+                        <div class="w-9 h-9 rounded-xl bg-purple-500/15 border border-purple-400/30 text-purple-300 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-lg">psychology</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-white font-['Outfit']">AI Agents</h4>
+                            <p class="text-[10px] text-purple-200/60 font-['Inter']">Reasoning & Decisions</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: n8n Automation -->
+                    <div class="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:bg-white/[0.08] hover:border-indigo-400/40 transition-all text-left group">
+                        <div class="w-9 h-9 rounded-xl bg-indigo-500/15 border border-indigo-400/30 text-indigo-300 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-lg">hub</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-white font-['Outfit']">n8n Workflows</h4>
+                            <p class="text-[10px] text-purple-200/60 font-['Inter']">API & Webhook Sync</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: AI Chatbots -->
+                    <div class="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:bg-white/[0.08] hover:border-pink-400/40 transition-all text-left group">
+                        <div class="w-9 h-9 rounded-xl bg-pink-500/15 border border-pink-400/30 text-pink-300 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-lg">chat</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-white font-['Outfit']">AI Chatbots</h4>
+                            <p class="text-[10px] text-purple-200/60 font-['Inter']">24/7 Lead Capture</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Full Systems -->
+                    <div class="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md hover:bg-white/[0.08] hover:border-emerald-400/40 transition-all text-left group">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-lg">dashboard</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-white font-['Outfit']">Full Systems</h4>
+                            <p class="text-[10px] text-purple-200/60 font-['Inter']">Dashboards & Ops</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="pt-2">
+                    <a href="#grid-collaboration" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white text-xs sm:text-sm font-medium tracking-wide transition-all shadow-[0_0_25px_rgba(168,85,247,0.25)] hover:shadow-[0_0_35px_rgba(168,85,247,0.4)] hover:scale-105 active:scale-95 backdrop-blur-lg">
+                        Explore AI Systems ↘
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <!-- Premium High-Contrast Breakdown Section (No Module Lines, Vibrant Badge Colors, Premium Typography) -->
+        <div class="max-w-[1680px] mx-auto px-6 sm:px-12 w-full py-20 space-y-24 border-b border-slate-300 dark:border-slate-800">
+            
+            <!-- Main Section Header -->
+            <div class="space-y-6 max-w-4xl pb-4 mb-4">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-950 dark:text-white tracking-tight font-['Cormorant_Garamond',_'Bodoni_Moda',_'Playfair_Display',_serif] leading-[1.12]" style="color: #090d16 !important;">
+                    How We Solve Complex Business Bottlenecks &amp; Build <span class="italic font-normal text-purple-600 dark:text-purple-400" style="color: #7c3aed !important; -webkit-text-fill-color: #7c3aed !important;">Autonomous Systems</span>
+                </h2>
+                <p class="text-base sm:text-lg text-slate-900 dark:text-slate-100 font-['Inter'] leading-relaxed font-medium" style="color: #090d16 !important;">
+                    Most companies waste 40% of their operational hours on repetitive manual tasks, fragmented tools, and slow response times. Here is how our custom AI infrastructure delivers instant operational relief.
+                </p>
+            </div>
+
+            <!-- SECTION 1: Client Problems vs Immediate Client Relief -->
+            <div class="space-y-12 pt-4">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 dark:text-white font-['Outfit'] tracking-wide text-center uppercase py-2" style="color: #090d16 !important; letter-spacing: 0.06em;">
+                    Client Problems vs. Instant Operational Relief
+                </h3>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
+                    <!-- Column 1: Client Problems -->
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl">⚠️</span>
+                            <div>
+                                <h4 class="text-2xl font-black text-red-600 dark:text-red-500 font-['Outfit']">Common Business Friction &amp; Losses</h4>
+                                <p class="text-xs font-mono font-bold text-red-700 uppercase tracking-wider">Before Automation (Manual Chaos)</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Item 1 -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-9 h-9 rounded-full bg-red-600 text-white font-black flex items-center justify-center shrink-0 text-sm shadow-md shadow-red-500/30">1</div>
+                                <div class="space-y-1">
+                                    <h5 class="text-lg sm:text-xl font-bold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Lost Leads at 3 AM</h5>
+                                    <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">Potential clients contact you after hours, but get no reply for 8+ hours and choose a competitor.</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-9 h-9 rounded-full bg-red-600 text-white font-black flex items-center justify-center shrink-0 text-sm shadow-md shadow-red-500/30">2</div>
+                                <div class="space-y-1">
+                                    <h5 class="text-lg sm:text-xl font-bold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Manual Data Entry Burnout</h5>
+                                    <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">Staff spends hours copying data between CRM, Google Sheets, Email, and Accounting software.</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-9 h-9 rounded-full bg-red-600 text-white font-black flex items-center justify-center shrink-0 text-sm shadow-md shadow-red-500/30">3</div>
+                                <div class="space-y-1">
+                                    <h5 class="text-lg sm:text-xl font-bold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Human Error &amp; Slow Handoffs</h5>
+                                    <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">Forgotten follow-up emails, wrong invoice totals, and misplaced customer inquiries.</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-9 h-9 rounded-full bg-red-600 text-white font-black flex items-center justify-center shrink-0 text-sm shadow-md shadow-red-500/30">4</div>
+                                <div class="space-y-1">
+                                    <h5 class="text-lg sm:text-xl font-bold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">High Scaling Costs</h5>
+                                    <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">Hiring extra support &amp; ops staff just to handle basic repetitive inquiries.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Client Relief -->
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl">✨</span>
+                            <div>
+                                <h4 class="text-2xl font-black text-emerald-600 dark:text-emerald-500 font-['Outfit']">The Client Relief We Deliver</h4>
+                                <p class="text-xs font-mono font-bold text-emerald-700 uppercase tracking-wider">After Automation (Autonomous Peace)</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Item 1 -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-9 h-9 rounded-full bg-emerald-600 text-white font-black flex items-center justify-center shrink-0 text-sm shadow-md shadow-emerald-500/30">✓</div>
+                                <div class="space-y-1">
+                                    <h5 class="text-lg sm:text-xl font-bold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Instant 24/7 AI Engagement</h5>
+                                    <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">Autonomous LLM agents qualify leads, book appointments, and capture sales within seconds.</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-9 h-9 rounded-full bg-emerald-600 text-white font-black flex items-center justify-center shrink-0 text-sm shadow-md shadow-emerald-500/30">✓</div>
+                                <div class="space-y-1">
+                                    <h5 class="text-lg sm:text-xl font-bold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Zero Manual Data Entry</h5>
+                                    <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">Real-time n8n workflows automatically sync every lead, deal, and payment across all tools.</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-9 h-9 rounded-full bg-emerald-600 text-white font-black flex items-center justify-center shrink-0 text-sm shadow-md shadow-emerald-500/30">✓</div>
+                                <div class="space-y-1">
+                                    <h5 class="text-lg sm:text-xl font-bold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">99.9% Accuracy &amp; Self-Healing</h5>
+                                    <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">Automated retry loops and smart validation prevent errors before they happen.</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-9 h-9 rounded-full bg-emerald-600 text-white font-black flex items-center justify-center shrink-0 text-sm shadow-md shadow-emerald-500/30">✓</div>
+                                <div class="space-y-1">
+                                    <h5 class="text-lg sm:text-xl font-bold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Infinite Scale at Fixed Cost</h5>
+                                    <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">Handle 10x more transactions without adding extra operational payroll.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- SECTION 2: Visual Comparison Table (Others vs. Us) -->
+            <div class="space-y-10 pt-6">
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white font-['Outfit'] tracking-tight" style="color: #090d16 !important;">
+                    Others' Basic Bots vs. Our Smart AI Agents
+                </h3>
+
+                <!-- Comparison Flow Diagram / Visual Comparison Matrix -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[650px]">
+                        <thead>
+                            <tr class="border-b-2 border-slate-950 dark:border-slate-700 text-slate-950 dark:text-white font-['Outfit']">
+                                <th class="py-4 px-4 text-base sm:text-lg font-extrabold" style="color: #090d16 !important;">Feature Capability</th>
+                                <th class="py-4 px-4 text-base sm:text-lg font-extrabold text-red-600 dark:text-red-400">Basic Scripted Bots (Others)</th>
+                                <th class="py-4 px-4 text-base sm:text-lg font-extrabold text-purple-600 dark:text-purple-400">Our Autonomous AI Agents (Us)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-['Inter']">
+                            <tr>
+                                <td class="py-4 px-4 font-bold text-slate-950 dark:text-white text-sm sm:text-base" style="color: #090d16 !important;">1. Decision Intelligence</td>
+                                <td class="py-4 px-4 text-sm text-slate-900 dark:text-slate-300 font-medium" style="color: #1e293b !important;">❌ Rigid IF/ELSE keyword matching</td>
+                                <td class="py-4 px-4 text-sm text-purple-700 dark:text-purple-300 font-bold" style="color: #6d28d9 !important;">⚡ ReAct LLM Reasoning (GPT-4o / Claude 3.5)</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-bold text-slate-950 dark:text-white text-sm sm:text-base" style="color: #090d16 !important;">2. Context &amp; Memory</td>
+                                <td class="py-4 px-4 text-sm text-slate-900 dark:text-slate-300 font-medium" style="color: #1e293b !important;">❌ Single-turn memory (Forgets immediately)</td>
+                                <td class="py-4 px-4 text-sm text-purple-700 dark:text-purple-300 font-bold" style="color: #6d28d9 !important;">⚡ Full Vector DB RAG + Multi-turn memory</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-bold text-slate-950 dark:text-white text-sm sm:text-base" style="color: #090d16 !important;">3. Tool &amp; API Execution</td>
+                                <td class="py-4 px-4 text-sm text-slate-900 dark:text-slate-300 font-medium" style="color: #1e293b !important;">❌ Static links only (User does work)</td>
+                                <td class="py-4 px-4 text-sm text-purple-700 dark:text-purple-300 font-bold" style="color: #6d28d9 !important;">⚡ Executes live APIs, n8n workflows, CRM sync</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-bold text-slate-950 dark:text-white text-sm sm:text-base" style="color: #090d16 !important;">4. Handling Typos &amp; Accents</td>
+                                <td class="py-4 px-4 text-sm text-slate-900 dark:text-slate-300 font-medium" style="color: #1e293b !important;">❌ Breaks down &amp; shows error message</td>
+                                <td class="py-4 px-4 text-sm text-purple-700 dark:text-purple-300 font-bold" style="color: #6d28d9 !important;">⚡ Semantic understanding in 50+ languages</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECTION 3: n8n Workflow Architecture -->
+            <div class="space-y-10 pt-6">
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white font-['Outfit'] tracking-tight" style="color: #090d16 !important;">
+                    n8n Workflow Engine &amp; Integrated Tech Stack
+                </h3>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <div class="space-y-3">
+                        <div class="text-xs font-mono font-bold text-orange-600 uppercase tracking-wider">ENGINE ORCHESTRATION</div>
+                        <h4 class="text-2xl font-black text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Why We Use n8n Engine</h4>
+                        <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">
+                            n8n lets us build self-hosted, scalable, fair-cost automation pipelines without task limits. We trigger workflows via webhooks, cron jobs, or AI agent events.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider">CONNECTIVITY</div>
+                        <h4 class="text-2xl font-black text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Tools We Connect</h4>
+                        <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">
+                            CRM (HubSpot, Salesforce), Communication (WhatsApp, Slack, Gmail), DBs (PostgreSQL, Supabase), and Payment gateways (Stripe, Razorpay).
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="text-xs font-mono font-bold text-emerald-600 uppercase tracking-wider">BUSINESS IMPACT</div>
+                        <h4 class="text-2xl font-black text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Public &amp; Business Value</h4>
+                        <p class="text-sm sm:text-base text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">
+                            Clients save 20+ hours per week per employee, eliminate data sync errors completely, and offer lightning-fast service to their customers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: Step-by-Step Flowchart Process -->
+            <div class="space-y-10 pt-6">
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white font-['Outfit'] tracking-tight" style="color: #090d16 !important;">
+                    Our 4-Step System Delivery Process
+                </h3>
+
+                <!-- Visual Flowchart Connector -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="space-y-3 relative">
+                        <div class="flex items-center gap-3">
+                            <span class="text-4xl font-black text-purple-600 dark:text-purple-400 font-mono">01</span>
+                            <span class="hidden lg:block text-slate-300 font-bold text-xl">──────➔</span>
+                        </div>
+                        <h5 class="text-xl font-extrabold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Friction Audit</h5>
+                        <p class="text-sm text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">We analyze daily operations to identify repetitive manual bottlenecks and wasted team hours.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="space-y-3 relative">
+                        <div class="flex items-center gap-3">
+                            <span class="text-4xl font-black text-indigo-600 dark:text-indigo-400 font-mono">02</span>
+                            <span class="hidden lg:block text-slate-300 font-bold text-xl">──────➔</span>
+                        </div>
+                        <h5 class="text-xl font-extrabold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">AI Architecture</h5>
+                        <p class="text-sm text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">We design custom LLM prompts, vector knowledge bases, and n8n webhook routing pipelines.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="space-y-3 relative">
+                        <div class="flex items-center gap-3">
+                            <span class="text-4xl font-black text-sky-600 dark:text-sky-400 font-mono">03</span>
+                            <span class="hidden lg:block text-slate-300 font-bold text-xl">──────➔</span>
+                        </div>
+                        <h5 class="text-xl font-extrabold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">Cockpit Integration</h5>
+                        <p class="text-sm text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">We connect all your existing apps into a unified single-dashboard control cockpit.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-4xl font-black text-emerald-600 dark:text-emerald-400 font-mono">04</span>
+                        </div>
+                        <h5 class="text-xl font-extrabold text-slate-950 dark:text-white font-['Outfit']" style="color: #090d16 !important;">24/7 Autonomous Uptime</h5>
+                        <p class="text-sm text-slate-900 dark:text-slate-200 font-['Inter'] font-medium leading-relaxed" style="color: #1e293b !important;">Your system operates 24/7 automatically with self-healing error loops and live status metrics.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
+
+        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full pt-12 pb-16">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
-                <span class="material-symbols-outlined text-primary text-[28px]">handshake</span> Collaboration
+                <span class="material-symbols-outlined text-primary text-[28px]">handshake</span> Collaboration &amp; SaaS Systems
             </h2>
             <div id="grid-collaboration" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
                 <!-- Dynamically populated -->
             </div>
         </div>
     </div>
-</div>
 
 <!-- No Results State -->
 <div id="no-results" class="hidden flex-col items-center justify-center py-16 px-4 text-center">
@@ -2674,6 +3248,11 @@
             window.__favoritesFallback = favs;
         }
     }
+    // Global helper to show ONLY Landing Pages collection
+    window.showLandingCollection = function() {
+        window.location.href = 'landing-pages.html';
+    };
+
     // Search optimization: Live filter & Clear button
     const searchInput = document.getElementById('search-input');
     const searchClearBtn = document.getElementById('search-clear');
@@ -2948,10 +3527,10 @@
         const gridPersonal = document.getElementById('grid-personal');
         const gridCollab = document.getElementById('grid-collaboration');
         
-        if (!gridAll || !gridWork || !gridPersonal || !gridCollab) return;
+        if (!gridAll || !gridPersonal || !gridCollab) return;
         
         gridAll.innerHTML = '';
-        gridWork.innerHTML = '';
+        if (gridWork) gridWork.innerHTML = '';
         gridPersonal.innerHTML = '';
         gridCollab.innerHTML = '';
         
@@ -2967,19 +3546,17 @@
             const text = card.innerText.toLowerCase();
             
             // 2. Work Category
-            if (text.includes('design') || text.includes('inspiration') || text.includes('art') || text.includes('figma') || text.includes('cognilens')) {
+            if (gridWork && (text.includes('design') || text.includes('inspiration') || text.includes('art') || text.includes('figma') || text.includes('cognilens'))) {
                 const cloneWork = card.cloneNode(true);
                 attachFavEventListener(cloneWork);
                 gridWork.appendChild(cloneWork);
             }
             
-            // 3. Personal Category
-            if (text.includes('code') || text.includes('read') || text.includes('notion') || text.includes('git') || text.includes('behance')) {
-                if (!text.includes('design') && !text.includes('figma')) {
-                    const clonePersonal = card.cloneNode(true);
-                    attachFavEventListener(clonePersonal);
-                    gridPersonal.appendChild(clonePersonal);
-                }
+            // 3. Personal Category (Selected Landing Pages)
+            if (gridPersonal && card.getAttribute('data-cat-type') === 'landing') {
+                const clonePersonal = card.cloneNode(true);
+                attachFavEventListener(clonePersonal);
+                gridPersonal.appendChild(clonePersonal);
             }
             
             // 4. Collaboration Category
@@ -2991,6 +3568,26 @@
                 gridCollab.appendChild(cloneCollab);
             }
         });
+
+        // Append "Show All" card dynamically to gridPersonal (at the side of other cards)
+        if (gridPersonal) {
+            const showAllCard = document.createElement('div');
+            showAllCard.className = "group apple-elevated-card bg-white border border-slate-200/80 rounded-[22px] p-6 flex flex-col justify-between items-center text-center cursor-pointer min-h-[300px] transition-all hover:shadow-md hover:border-slate-300/80 shadow-sm";
+            showAllCard.onclick = window.showLandingCollection;
+            showAllCard.innerHTML = `
+                <div class="my-auto flex flex-col items-center gap-4">
+                    <div class="w-14 h-14 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center text-2xl font-bold shadow-xs">
+                        ✨
+                    </div>
+                    <h4 class="text-xl sm:text-2xl font-black text-slate-900 font-['Outfit'] tracking-tight max-w-[200px] leading-tight">EXPLORE FULL COLLECTION</h4>
+                    <p class="text-xs text-slate-500 max-w-[180px] font-sans">Click to show ONLY high-converting landing pages</p>
+                </div>
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-sky-600 flex items-center gap-1.5 hover:text-sky-700">
+                    Show Landing Pages ➔
+                </span>
+            `;
+            gridPersonal.appendChild(showAllCard);
+        }
 
         // 2. Dynamically fetch and append image edits from gallery.json into "All Projects" as separate cards
         fetch('data/gallery.json?v=' + Date.now())
