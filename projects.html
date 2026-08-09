@@ -413,10 +413,10 @@
   }
 
   /* 9. Responsive */
-  @media (max-width: 640px) {
-      #all-projects-intro  { height: 200svh; height: 200vh; }
-      #obscura-hero-section { height: 100svh; height: 100vh; min-height: 100vh; }
-      #obscura-main-sheet { margin-top: -100svh; margin-top: -100vh; }
+  @media (max-width: 768px) {
+      #all-projects-intro  { height: 200dvh; height: 200vh; }
+      #obscura-hero-section { height: 100dvh; height: 100vh; min-height: 100vh; }
+      #obscura-main-sheet { margin-top: -100dvh; margin-top: -100vh; }
   }
   /* 10. Scroll-reveal entrance animation engine for drawer content, cards, headings & banners */
   .reveal-on-scroll {
@@ -4428,6 +4428,8 @@
             cachedTravel = intro.offsetHeight - cachedVh;
         }
         window.addEventListener('resize', updateMetrics, { passive: true });
+        window.addEventListener('orientationchange', updateMetrics, { passive: true });
+        window.addEventListener('touchstart', updateMetrics, { passive: true });
         updateMetrics();
 
         function tick() {
@@ -4473,6 +4475,7 @@
         }
 
         window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('touchmove', schedule, { passive: true });
         tick(); // paint immediately on load
     })();
 
