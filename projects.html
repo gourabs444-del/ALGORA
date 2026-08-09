@@ -38,11 +38,6 @@
 <style>
   html, body { background-color: #000000 !important; background: #000000 !important; scrollbar-gutter: stable; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision; }
   @media (max-width: 1023px) {
-      html, body {
-          overflow-x: hidden !important;
-          max-width: 100vw !important;
-          width: 100% !important;
-      }
       #sidebar.-translate-x-full {
           display: none !important;
       }
@@ -132,6 +127,7 @@
 
   /* 2. The sticky hero card (stays fixed fullscreen filling the viewport) */
   #obscura-hero-section {
+      position: -webkit-sticky;
       position: sticky;
       top: 0;
       height: 100svh;
@@ -230,7 +226,6 @@
       transform: translate3d(0, 0, 0);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      contain: content;
   }
 
   /* Override inner elements for light drawer theme */
