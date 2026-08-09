@@ -429,25 +429,28 @@
   /* 10. Scroll-reveal entrance animation engine for drawer content, cards, headings & banners */
   .reveal-on-scroll {
       opacity: 0 !important;
-      transform: translate3d(0, 24px, 0) !important;
-      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      will-change: opacity, transform;
+      transform: translate3d(0, 50px, 0) scale(0.96) !important;
+      filter: blur(4px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      will-change: opacity, transform, filter;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
   }
 
   .reveal-on-scroll.is-revealed {
       opacity: 1 !important;
-      transform: translate3d(0, 0, 0) !important;
+      transform: translate3d(0, 0, 0) scale(1) !important;
+      filter: blur(0px) !important;
   }
 
-  .reveal-stagger-1 { transition-delay: 0.05s !important; }
-  .reveal-stagger-2 { transition-delay: 0.10s !important; }
-  .reveal-stagger-3 { transition-delay: 0.15s !important; }
-  .reveal-stagger-4 { transition-delay: 0.20s !important; }
-  .reveal-stagger-5 { transition-delay: 0.25s !important; }
-  .reveal-stagger-6 { transition-delay: 0.30s !important; }
+  .reveal-stagger-1 { transition-delay: 0.06s !important; }
+  .reveal-stagger-2 { transition-delay: 0.12s !important; }
+  .reveal-stagger-3 { transition-delay: 0.18s !important; }
+  .reveal-stagger-4 { transition-delay: 0.24s !important; }
+  .reveal-stagger-5 { transition-delay: 0.30s !important; }
+  .reveal-stagger-6 { transition-delay: 0.36s !important; }
 
   /* Mobile Phone Touch Scroll Performance Optimization */
   @media (max-width: 768px) {
@@ -1068,22 +1071,16 @@
 </div>
 <!-- Card: AESTHETE -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="aesthete.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe data-src="aesthete.html" scrolling="no" class="iframe-preview-frame" title="AESTHETE Live Preview" loading="lazy"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+    <a href="aesthete.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/aesthete.jpg" alt="AESTHETE Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
-        
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
             <a href="aesthete.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 AESTHETE
             </a>
-
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
             <div class="flex items-center gap-2 shrink-0">
                 <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="aesthete" data-rating="4.9" data-rating-count="72">
                     <span>★</span>
@@ -1098,22 +1095,16 @@
 </div>
 <!-- Card: Vanya Lodge -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="vanyalodge.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe data-src="vanyalodge.html" scrolling="no" class="iframe-preview-frame" title="Vanya Lodge Live Preview" loading="lazy"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+    <a href="vanyalodge.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/vanyalodge.jpg" alt="Vanya Lodge Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
-        
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
             <a href="vanyalodge.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Vanya Lodge
             </a>
-
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
             <div class="flex items-center gap-2 shrink-0">
                 <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vanyalodge" data-rating="4.8" data-rating-count="35">
                     <span>★</span>
@@ -1128,22 +1119,16 @@
 </div>
 <!-- Card: Vantage Point -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="vantagepoint.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe data-src="vantagepoint.html" scrolling="no" class="iframe-preview-frame" title="Vantage Point Live Preview" loading="lazy"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+    <a href="vantagepoint.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/vantagepoint.jpg" alt="Vantage Point Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
-        
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
             <a href="vantagepoint.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Vantage Point
             </a>
-
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
             <div class="flex items-center gap-2 shrink-0">
                 <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vantagepoint" data-rating="4.7" data-rating-count="48">
                     <span>★</span>
@@ -1158,22 +1143,16 @@
 </div>
 <!-- Card: Juris Lexicon -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="jurislexicon.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe data-src="jurislexicon.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Live Preview" loading="lazy"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+    <a href="jurislexicon.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/juris.jpg" alt="Juris Lexicon Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
-        
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
             <a href="jurislexicon.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Juris Lexicon
             </a>
-
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
             <div class="flex items-center gap-2 shrink-0">
                 <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon" data-rating="4.9" data-rating-count="61">
                     <span>★</span>
@@ -1188,22 +1167,16 @@
 </div>
 <!-- Card: Juris Lexicon — Dark -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="jurislexicon-dark.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe data-src="jurislexicon-dark.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Dark Live Preview" loading="lazy"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+    <a href="jurislexicon-dark.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/jurisdark.jpg" alt="Juris Lexicon Dark Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
-        
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
             <a href="jurislexicon-dark.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Juris Lexicon — Dark
             </a>
-
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
             <div class="flex items-center gap-2 shrink-0">
                 <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon-dark" data-rating="4.8" data-rating-count="52">
                     <span>★</span>
@@ -1218,22 +1191,16 @@
 </div>
 <!-- Card: BloomFi -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="bloomfi.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe data-src="bloomfi.html" scrolling="no" class="iframe-preview-frame" title="BloomFi Live Preview" loading="lazy"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+    <a href="bloomfi.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/bloomfi.jpg" alt="BloomFi Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
-        
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
             <a href="bloomfi.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 BloomFi
             </a>
-
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
             <div class="flex items-center gap-2 shrink-0">
                 <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="bloomfi" data-rating="4.7" data-rating-count="42">
                     <span>★</span>
@@ -1248,22 +1215,16 @@
 </div>
 <!-- Card: Lumina Artisanal -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="lumina.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe data-src="lumina.html" scrolling="no" class="iframe-preview-frame" title="Lumina Artisanal Live Preview" loading="lazy"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+    <a href="lumina.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/lumina.jpg" alt="Lumina Artisanal Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
-        
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
             <a href="lumina.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Lumina Artisanal
             </a>
-
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
             <div class="flex items-center gap-2 shrink-0">
                 <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="lumina" data-rating="4.9" data-rating-count="38">
                     <span>★</span>
@@ -1278,22 +1239,16 @@
 </div>
 <!-- Card: VALURA LIVING -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="valura.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe data-src="valura.html" scrolling="no" class="iframe-preview-frame" title="VALURA LIVING Live Preview" loading="lazy"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+    <a href="valura.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/valura.jpg" alt="VALURA LIVING Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
-        
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
             <a href="valura.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 VALURA LIVING
             </a>
-
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
             <div class="flex items-center gap-2 shrink-0">
                 <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="valura" data-rating="4.8" data-rating-count="31">
                     <span>★</span>
@@ -1308,22 +1263,16 @@
 </div>
 <!-- Card: Mamaearth -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="mamaearth.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe data-src="mamaearth.html" scrolling="no" class="iframe-preview-frame" title="Mamaearth Live Preview" loading="lazy"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+    <a href="mamaearth.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/mamaearth.jpg" alt="Mamaearth Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
-        
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
             <a href="mamaearth.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Mamaearth
             </a>
-
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
             <div class="flex items-center gap-2 shrink-0">
                 <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="mamaearth" data-rating="4.9" data-rating-count="56">
                     <span>★</span>
@@ -3668,6 +3617,7 @@
             });
         
         updateFavoritesGrid();
+        if (window.refreshScrollReveal) window.refreshScrollReveal();
     }
 
     // Theme Switch Logic
@@ -4543,82 +4493,91 @@
         }
     })();
 
-    // ── Lazy-load iframes only when scrolled into view ──────────────────────────
-    (function initLazyIframes() {
-        const iframes = document.querySelectorAll('iframe[data-src]');
-        if (!iframes.length) return;
-        const io = new IntersectionObserver((entries) => {
+    // ── Universal High-Performance Scroll-Reveal Animation Engine ─────────────
+    (function initScrollRevealEngine() {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.05
+        };
+
+        const revealObserver = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const iframe = entry.target;
-                    iframe.src = iframe.dataset.src;
-                    iframe.removeAttribute('data-src');
-                    io.unobserve(iframe);
+                    entry.target.classList.add('is-revealed');
+                    obs.unobserve(entry.target);
                 }
             });
-        }, { rootMargin: '200px' });
-        iframes.forEach(iframe => io.observe(iframe));
-    })();
+        }, observerOptions);
 
-    // ── High-Performance Scroll-Reveal Animation Engine ────────────────────────
-    (function initScrollRevealEngine() {
-        function applyScrollObserver() {
+        window.refreshScrollReveal = function() {
             const selectors = [
                 '#obscura-ticker',
+                '.category-banner',
                 'h1.showcase-heading',
                 'h2.showcase-heading',
-                '.category-banner',
+                'h3.showcase-heading',
+                '#section-all-projects .mb-10',
+                '#section-all-projects h2',
                 '#categorized-sections-container h2',
-                '#categorized-sections-container .grid .group',
+                '#categorized-sections-container h3',
+                '#categorized-sections-container p',
+                '#grid-all-projects > *',
+                '#grid-work > *',
+                '#grid-personal > *',
+                '#grid-collaboration > *',
+                '#grid-favorites > *',
+                '#categorized-sections-container .grid > *',
+                '#categorized-sections-container .group',
                 '#categorized-sections-container .dynamic-gallery-card',
+                '#categorized-sections-container .apple-elevated-card',
                 '#scroll-wrapper-1',
-                '#scroll-wrapper-2'
+                '#scroll-wrapper-2',
+                '#scroll-wrapper-1 > *',
+                '#scroll-wrapper-2 > *',
+                '.module-container'
             ];
 
-            const targets = document.querySelectorAll(selectors.join(','));
+            const elements = document.querySelectorAll(selectors.join(','));
+            elements.forEach((el) => {
+                if (el.closest('#obscura-hero-section')) return;
 
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -30px 0px',
-                threshold: 0.04
-            };
-
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-revealed');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            targets.forEach((el) => {
                 if (!el.classList.contains('reveal-on-scroll')) {
                     el.classList.add('reveal-on-scroll');
-                    
-                    if (el.parentElement && el.parentElement.classList.contains('grid')) {
-                        const siblings = Array.from(el.parentElement.children);
+
+                    // If it's a grid item, add staggered delay based on column index
+                    const parent = el.parentElement;
+                    if (parent && (parent.classList.contains('grid') || (parent.id && parent.id.startsWith('grid-')))) {
+                        const siblings = Array.from(parent.children);
                         const idx = siblings.indexOf(el);
                         if (idx >= 0) {
-                            const staggerClass = `reveal-stagger-${(idx % 6) + 1}`;
-                            el.classList.add(staggerClass);
+                            const staggerDelay = ((idx % 4) * 0.08).toFixed(2);
+                            el.style.transitionDelay = `${staggerDelay}s`;
                         }
                     }
+                    revealObserver.observe(el);
                 }
-                observer.observe(el);
             });
-        }
+        };
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => setTimeout(applyScrollObserver, 150));
+            document.addEventListener('DOMContentLoaded', () => {
+                window.refreshScrollReveal();
+                setTimeout(window.refreshScrollReveal, 150);
+            });
         } else {
-            setTimeout(applyScrollObserver, 150);
+            window.refreshScrollReveal();
+            setTimeout(window.refreshScrollReveal, 150);
         }
 
-        // Re-scan whenever new dynamic cards are rendered into DOM
+        setTimeout(window.refreshScrollReveal, 400);
+        setTimeout(window.refreshScrollReveal, 900);
+        setTimeout(window.refreshScrollReveal, 1800);
+
+        // Auto-observe newly added cards
         const container = document.getElementById('categorized-sections-container') || document.body;
         const mutationObserver = new MutationObserver(() => {
-            setTimeout(applyScrollObserver, 50);
+            window.refreshScrollReveal();
         });
         mutationObserver.observe(container, { childList: true, subtree: true });
     })();
