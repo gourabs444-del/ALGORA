@@ -4449,9 +4449,6 @@
             if (sy === 0) {
                 currentP = 0;
                 targetP = 0;
-            } else if (isTouchDevice) {
-                // Direct 1-to-1 sync on mobile touch devices eliminates scroll lag completely
-                currentP = targetP;
             } else {
                 currentP += (targetP - currentP) * 0.18;
                 if (Math.abs(targetP - currentP) < 0.0001) currentP = targetP;
@@ -4471,7 +4468,12 @@
                 }
             }
 
-            if (!isTouchDevice && Math.abs(targetP - currentP) >= 0.0001) {
+            if (hero) {
+                const dim = Math.min(0.85, currentP * 1.1);
+                hero.style.setProperty('--obs-dim', dim.toFixed(3));
+            }
+
+            if (Math.abs(targetP - currentP) >= 0.0001) {
                 schedule();
             }
         }
@@ -4490,9 +4492,6 @@
     // ── Ultra-Smooth Liquid Inertial Momentum Scroll (Lenis Engine) ───────────
     (function initSmoothScrollInertia() {
         function setupLenis() {
-            const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-            if (isTouchDevice) return; // Leave mobile touch scroll to 100% native 60fps browser momentum
-
             if (typeof Lenis !== 'undefined') {
                 window.lenisInstance = new Lenis({
                     duration: 1.1,
@@ -4500,6 +4499,7 @@
                     orientation: 'vertical',
                     gestureOrientation: 'vertical',
                     smoothWheel: true,
+                    smoothTouch: true,
                     wheelMultiplier: 0.95,
                     touchMultiplier: 1.5,
                     infinite: false,
@@ -4513,6 +4513,9 @@
                 requestAnimationFrame(raf);
 
                 window.lenisInstance.on('scroll', onScrollOptimized);
+                window.lenisInstance.on('scroll', () => {
+                    schedule();
+                });
             }
         }
 
