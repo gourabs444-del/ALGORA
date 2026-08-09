@@ -122,6 +122,7 @@
   /* 1. Scrollable container — height set to 200svh so hero stays fixed for 100vh of drawer slide */
   #all-projects-intro {
       position: relative;
+      height: 200vh;
       height: 200svh;
   }
 
@@ -130,6 +131,7 @@
       position: -webkit-sticky;
       position: sticky;
       top: 0;
+      height: 100vh;
       height: 100svh;
       min-height: 44rem;
       z-index: 10;
@@ -218,6 +220,7 @@
   #obscura-main-sheet {
       position: relative;
       z-index: 30;
+      margin-top: -100vh;
       margin-top: -100svh;
       background-color: #ffffff !important; /* Pure White Background */
       border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
@@ -409,9 +412,9 @@
 
   /* 9. Responsive */
   @media (max-width: 768px) {
-      #all-projects-intro  { height: 200dvh !important; height: 200vh !important; }
-      #obscura-hero-section { height: 100dvh !important; height: 100vh !important; min-height: 0 !important; min-height: 100dvh !important; }
-      #obscura-main-sheet { margin-top: -100dvh !important; margin-top: -100vh !important; }
+      #all-projects-intro  { height: 200vh !important; height: 200dvh !important; }
+      #obscura-hero-section { height: 100vh !important; height: 100dvh !important; min-height: 0 !important; min-height: 100dvh !important; }
+      #obscura-main-sheet { margin-top: -100vh !important; margin-top: -100dvh !important; }
   }
   /* 10. Scroll-reveal entrance animation engine for drawer content, cards, headings & banners */
   .reveal-on-scroll {
