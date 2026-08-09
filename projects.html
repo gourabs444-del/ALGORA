@@ -20,7 +20,7 @@
     })();
 </script>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 <title>ALGORA Showcase | Curated Web & Portfolio</title>
 <meta name="description" content="ALGORA Intelligence - Curating the Web's Finest digital design, interactive systems, and high-fidelity showcase.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -38,7 +38,15 @@
 <style>
   html, body { background-color: #000000 !important; background: #000000 !important; scrollbar-gutter: stable; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision; }
   @media (max-width: 1023px) {
-      #sidebar.-translate-x-full {
+      html, body {
+          overflow-x: hidden !important;
+          max-width: 100vw !important;
+          width: 100% !important;
+          position: relative !important;
+      }
+      #sidebar:not(.translate-x-0),
+      #sidebar.-translate-x-full,
+      #sidebar[class*="-translate-x-full"] {
           display: none !important;
       }
   }
