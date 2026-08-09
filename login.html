@@ -16,8 +16,9 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Account Access | WebLibrary Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Firebase App and Auth SDK (Compat) -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -51,7 +52,11 @@
   }
   html, body {
       width: 100%;
-      overflow-x: hidden;
+      height: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden !important;
+      overscroll-behavior: none;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: geometricPrecision;
@@ -224,7 +229,7 @@
 
 </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-[100dvh] flex flex-col justify-center items-center relative overflow-x-hidden p-4 py-3 sm:py-12 bg-grid-pattern">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 h-screen h-[100dvh] max-h-[100dvh] flex flex-col justify-center items-center relative overflow-hidden p-3 sm:p-4 bg-grid-pattern select-none">
 
 <!-- Morphing Watercolor Blobs (Artistic Background) -->
 <div class="artistic-blob blob-indigo w-[600px] h-[600px] lg:w-[800px] lg:h-[800px] -top-32 -left-32"></div>
@@ -313,208 +318,107 @@
 <div class="absolute top-[60%] left-[10%] w-2.5 h-2.5 bg-cyan-400 rounded-full animate-ping opacity-25" style="animation-duration: 6s;"></div>
 <div class="absolute bottom-[75%] right-[12%] w-3 h-3 bg-purple-400 rounded-full animate-ping opacity-30" style="animation-duration: 7s;"></div>
 
-<!-- Floating Glassmorphic Lens Disks (Artistic Elements) -->
-<div class="absolute top-[20%] left-[23%] w-32 h-32 rounded-full border border-white/30 dark:border-slate-800/40 bg-white/5 dark:bg-white/5 backdrop-blur-[3px] pointer-events-none z-0 hidden xl:block select-none animate-float-disk-1"></div>
-<div class="absolute bottom-[22%] right-[24%] w-40 h-40 rounded-full border border-white/30 dark:border-slate-800/40 bg-white/5 dark:bg-white/5 backdrop-blur-[3px] pointer-events-none z-0 hidden xl:block select-none animate-float-disk-2"></div>
-
-<!-- Simple Floating Shapes (Fills Mid-Left Space Without Clutter) -->
-<div class="absolute left-[24%] top-[38%] w-24 h-24 text-indigo-500/15 dark:text-blue-500/20 pointer-events-none z-0 hidden xl:block select-none animate-float-disk-1" style="animation-duration: 16s;">
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.5">
-        <circle cx="50" cy="50" r="40" />
-        <circle cx="50" cy="50" r="24" stroke-dasharray="4 4" />
-    </svg>
-</div>
-<div class="absolute left-[33%] top-[48%] w-14 h-14 text-pink-500/15 dark:text-pink-400/20 pointer-events-none z-0 hidden xl:block select-none animate-float-cube-2">
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.5">
-        <polygon points="50,15 85,35 85,75 50,95 15,75 15,35" />
-        <line x1="50" y1="15" x2="50" y2="95" />
-        <line x1="50" y1="55" x2="85" y2="35" />
-        <line x1="50" y1="55" x2="15" y2="35" />
-    </svg>
-</div>
-
-<!-- Decorative Floating Wireframe Isometric Cubes -->
-<div class="absolute top-[35%] right-[22%] w-24 h-24 text-indigo-500/10 dark:text-blue-500/15 pointer-events-none z-0 transform rotate-12 hidden xl:block select-none animate-float-cube-1">
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.5">
-        <path d="M50 15 L85 35 L85 75 L50 95 L15 75 L15 35 Z" />
-        <path d="M50 15 L50 95" />
-        <path d="M50 55 L85 35" />
-        <path d="M50 55 L15 35" />
-    </svg>
-</div>
-<div class="absolute bottom-[35%] left-[22%] w-28 h-28 text-pink-500/10 dark:text-purple-500/15 pointer-events-none z-0 transform -rotate-12 hidden xl:block select-none animate-float-cube-2">
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.4">
-        <path d="M50 20 L80 37 L80 72 L50 90 L20 72 L20 37 Z" />
-        <path d="M50 20 L50 90" />
-        <path d="M50 55 L80 37" />
-        <path d="M50 55 L20 37" />
-        <path d="M50 35 L68 45 L68 65 L50 75 L32 65 L32 45 Z" stroke-dasharray="2 2" />
-        <path d="M50 35 L50 75" stroke-dasharray="2 2" />
-        <path d="M50 55 L68 45" stroke-dasharray="2 2" />
-        <path d="M50 55 L32 45" stroke-dasharray="2 2" />
-    </svg>
-</div>
-
-<!-- Abstract Geometric Vector Shapes (Gyroscopes & Sparkle Stars) -->
-<div class="absolute top-[28%] left-[16%] w-24 h-24 text-cyan-500/10 dark:text-cyan-400/15 pointer-events-none z-0 transform rotate-45 hidden xl:block select-none animate-float-disk-1">
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.5">
-        <circle cx="50" cy="50" r="40" />
-        <circle cx="50" cy="50" r="30" stroke-dasharray="3 3" />
-        <ellipse cx="50" cy="50" rx="40" ry="12" transform="rotate(45 50 50)" />
-        <ellipse cx="50" cy="50" rx="40" ry="12" transform="rotate(-45 50 50)" />
-    </svg>
-</div>
-
-<div class="absolute bottom-[28%] right-[16%] w-16 h-16 text-pink-500/15 dark:text-pink-400/20 pointer-events-none z-0 hidden xl:block select-none animate-pulse" style="animation-duration: 4s;">
-    <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12,2L14.8,9.2L22,12L14.8,14.8L12,22L9.2,14.8L2,12L9.2,9.2Z" />
-    </svg>
-</div>
-
-<div class="absolute top-[45%] right-[12%] w-12 h-12 text-indigo-500/20 dark:text-indigo-400/25 pointer-events-none z-0 hidden xl:block select-none animate-pulse" style="animation-duration: 5s;">
-    <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12,2L14.8,9.2L22,12L14.8,14.8L12,22L9.2,14.8L2,12L9.2,9.2Z" />
-    </svg>
-</div>
-
-<!-- Decorative Grid Crosshairs (Static Detail) -->
-<span class="absolute top-[12%] left-[45%] text-[11px] font-mono text-slate-300/60 dark:text-slate-800/50 select-none pointer-events-none">+</span>
-<span class="absolute bottom-[15%] left-[30%] text-[11px] font-mono text-slate-300/60 dark:text-slate-800/50 select-none pointer-events-none">+</span>
-<span class="absolute top-[60%] right-[32%] text-[11px] font-mono text-slate-300/60 dark:text-slate-800/50 select-none pointer-events-none">+</span>
-<span class="absolute top-[35%] left-[15%] text-[11px] font-mono text-slate-300/60 dark:text-slate-800/50 select-none pointer-events-none">+</span>
-<span class="absolute bottom-[40%] right-[15%] text-[11px] font-mono text-slate-300/60 dark:text-slate-800/50 select-none pointer-events-none">+</span>
-
-<!-- Abstract Decorative Mesh 1 (Top Left) -->
-<div class="absolute top-10 left-10 w-72 h-72 text-indigo-500/5 dark:text-blue-500/10 pointer-events-none z-0 transform -rotate-12 hidden md:block select-none">
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.3">
-        <circle cx="50" cy="50" r="40" />
-        <circle cx="50" cy="50" r="30" />
-        <circle cx="50" cy="50" r="20" />
-        <circle cx="50" cy="50" r="10" />
-        <line x1="50" y1="10" x2="50" y2="90" />
-        <line x1="10" y1="50" x2="90" y2="50" />
-        <line x1="22" y1="22" x2="78" y2="78" />
-        <line x1="22" y1="78" x2="78" y2="22" />
-    </svg>
-</div>
-
-<!-- Abstract Decorative Mesh 2 (Bottom Right) -->
-<div class="absolute bottom-10 right-10 w-80 h-80 text-pink-500/5 dark:text-purple-500/10 pointer-events-none z-0 transform rotate-45 hidden md:block select-none">
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.25">
-        <path d="M10 10 L90 10 L90 90 L10 90 Z" />
-        <path d="M20 20 L80 20 L80 80 L20 80 Z" />
-        <path d="M30 30 L70 30 L70 70 L30 70 Z" />
-        <path d="M40 40 L60 40 L60 60 L40 60 Z" />
-        <line x1="10" y1="10" x2="90" y2="90" />
-        <line x1="10" y1="90" x2="90" y2="10" />
-    </svg>
-</div>
-
 <!-- Main Login Card Container -->
-<div class="auth-card w-full max-w-md glass-card border border-white/70 dark:border-slate-800 rounded-[32px] p-3.5 pb-4 sm:p-6 relative z-10">
+<div class="auth-card w-full max-w-[410px] glass-card border border-white/15 dark:border-slate-800/80 bg-slate-950/80 dark:bg-slate-950/85 rounded-[28px] p-4 sm:p-5 relative z-10 my-auto shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
     
     <!-- Back button inside card -->
-    <div class="absolute top-6 left-6 z-20">
-        <button onclick="history.back()" class="flex items-center gap-1 text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-blue-400 font-bold text-xs transition-colors active-feedback bg-transparent border-0 p-0 cursor-pointer">
-            <span class="material-symbols-outlined text-[16px] font-bold">arrow_back</span> Back
+    <div class="absolute top-4 left-4 z-20">
+        <button onclick="history.back()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white font-['Inter'] font-medium text-xs transition-all active-feedback cursor-pointer">
+            <span class="material-symbols-outlined text-[15px]">arrow_back</span> Back
         </button>
     </div>
 
-    <!-- Header Logo & Pulse effect -->
-    <div class="text-center px-3 pt-1.5 pb-2.5 sm:pb-6">
-        <div class="flex items-center justify-center mx-auto mb-1.5 sm:mb-4 text-primary dark:text-blue-400">
-            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
+    <!-- Header Logo & Title -->
+    <div class="text-center px-3 pt-2 pb-3">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400 mx-auto mb-2 shadow-[0_0_25px_rgba(59,130,246,0.35)]">
+            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
         </div>
-        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">Account Access</h2>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white font-['Outfit'] leading-tight">Account Access</h2>
     </div>
 
-    <div class="space-y-3 sm:space-y-5">
-        <!-- Email Authentication -->
-        <section class="email-panel rounded-[26px] border border-white/80 dark:border-slate-800 bg-white/72 dark:bg-slate-950/44 p-3.5 pb-4 sm:p-6 shadow-[0_14px_34px_rgba(15,23,42,0.08)]">
+    <div class="space-y-3">
+        <!-- Email Authentication Section -->
+        <section class="email-panel rounded-2xl border border-white/10 dark:border-slate-800/90 bg-slate-900/60 p-3 sm:p-4 shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
 
-            <!-- Mode Toggles (Sliding Indicator Tab Layout) -->
-            <div id="auth-tabs" data-mode="signin" class="auth-tabs relative grid grid-cols-2 gap-1.5 bg-slate-100 dark:bg-slate-900/60 p-1.5 rounded-2xl mb-3 sm:mb-6 border border-outline-variant/10 dark:border-slate-800/80">
-                <div id="tab-pill" class="tab-pill absolute top-1.5 bottom-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-[0_2px_8px_rgba(15,23,42,0.12)] z-0"></div>
-
-                <button id="tab-signin" type="button" class="w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback" onclick="toggleMode('signin')">
+            <!-- Mode Toggles (Crisp Pill Tab Switcher) -->
+            <div id="auth-tabs" data-mode="signin" class="grid grid-cols-2 gap-1 bg-slate-950/80 border border-white/10 p-1 rounded-xl mb-3">
+                <button id="tab-signin" type="button" class="w-full text-center py-2 rounded-lg font-['Inter'] font-bold text-xs transition-all text-white bg-blue-600 shadow-md cursor-pointer" onclick="toggleMode('signin')">
                     Sign In
                 </button>
-                <button id="tab-signup" type="button" class="w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback" onclick="toggleMode('signup')">
+                <button id="tab-signup" type="button" class="w-full text-center py-2 rounded-lg font-['Inter'] font-semibold text-xs transition-all text-slate-400 hover:text-white cursor-pointer" onclick="toggleMode('signup')">
                     Sign Up
                 </button>
             </div>
 
-            <form class="space-y-3 sm:space-y-4" id="auth-form" onsubmit="handleAuthSubmit(event)">
+            <form class="space-y-2.5" id="auth-form" onsubmit="handleAuthSubmit(event)">
                 <div id="signup-fields" class="email-mode-fields">
-                    <div class="space-y-4">
+                    <div class="space-y-2">
                         <div>
-                            <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-name">Full Name</label>
-                            <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
-                                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">person</span>
-                                <input id="auth-name" type="text" class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-2.5 sm:py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your full name">
+                            <label class="block text-[11px] font-['Inter'] font-semibold text-slate-300 mb-1" for="auth-name">Full Name</label>
+                            <div class="relative focus-glow border border-white/10 rounded-xl bg-slate-950/70 transition-all focus-within:border-blue-500">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">person</span>
+                                <input id="auth-name" type="text" class="w-full bg-transparent border-0 focus:ring-0 rounded-xl py-2 pl-9 pr-3 text-xs outline-none text-white font-['Inter'] placeholder-slate-500" placeholder="Enter your full name">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-email">Email Address</label>
-                    <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
-                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">mail</span>
-                        <input id="auth-email" type="email" required class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-2.5 sm:py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your email">
+                    <label class="block text-[11px] font-['Inter'] font-semibold text-slate-300 mb-1" for="auth-email">Email Address</label>
+                    <div class="relative focus-glow border border-white/10 rounded-xl bg-slate-950/70 transition-all focus-within:border-blue-500">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">mail</span>
+                        <input id="auth-email" type="email" required class="w-full bg-transparent border-0 focus:ring-0 rounded-xl py-2 pl-9 pr-3 text-xs outline-none text-white font-['Inter'] placeholder-slate-500" placeholder="Enter your email">
                     </div>
                 </div>
 
                 <div>
-                    <div class="flex justify-between items-center mb-1.5">
-                        <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300" for="auth-password">Password</label>
-                        <a href="#" id="forgot-password-link" onclick="handleForgotPassword(event)" class="text-xs font-semibold text-primary dark:text-blue-400 hover:underline">Forgot Password?</a>
+                    <div class="flex justify-between items-center mb-1">
+                        <label class="block text-[11px] font-['Inter'] font-semibold text-slate-300" for="auth-password">Password</label>
+                        <a href="#" id="forgot-password-link" onclick="handleForgotPassword(event)" class="text-[10px] font-['Inter'] font-medium text-blue-400 hover:text-blue-300 hover:underline">Forgot Password?</a>
                     </div>
-                    <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
-                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">lock</span>
-                        <input id="auth-password" type="password" required class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-2.5 sm:py-3.5 pl-11 pr-12 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Enter your password">
-                        <button type="button" id="password-toggle" class="absolute right-4 top-1/2 -translate-y-1/2 text-secondary/60 hover:text-primary dark:hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-center" aria-label="Toggle Password Visibility">
-                            <span class="material-symbols-outlined text-[20px]" id="eye-icon">visibility</span>
+                    <div class="relative focus-glow border border-white/10 rounded-xl bg-slate-950/70 transition-all focus-within:border-blue-500">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">lock</span>
+                        <input id="auth-password" type="password" required class="w-full bg-transparent border-0 focus:ring-0 rounded-xl py-2 pl-9 pr-10 text-xs outline-none text-white font-['Inter'] placeholder-slate-500" placeholder="Enter your password">
+                        <button type="button" id="password-toggle" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-center" aria-label="Toggle Password Visibility">
+                            <span class="material-symbols-outlined text-[18px]" id="eye-icon">visibility</span>
                         </button>
                     </div>
                 </div>
 
                 <div id="confirm-password-wrap" class="email-mode-fields">
                     <div>
-                        <label class="block text-body-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5" for="auth-confirm-password">Confirm Password</label>
-                        <div class="relative focus-glow border border-outline-variant/30 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 transition-all">
-                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60 text-[20px]">verified_user</span>
-                            <input id="auth-confirm-password" type="password" class="w-full bg-transparent border-0 focus:ring-0 rounded-2xl py-2.5 sm:py-3.5 pl-11 pr-4 text-body-sm outline-none text-slate-900 dark:text-white" placeholder="Confirm your password">
+                        <label class="block text-[11px] font-['Inter'] font-semibold text-slate-300 mb-1" for="auth-confirm-password">Confirm Password</label>
+                        <div class="relative focus-glow border border-white/10 rounded-xl bg-slate-950/70 transition-all focus-within:border-blue-500">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">verified_user</span>
+                            <input id="auth-confirm-password" type="password" class="w-full bg-transparent border-0 focus:ring-0 rounded-xl py-2 pl-9 pr-3 text-xs outline-none text-white font-['Inter'] placeholder-slate-500" placeholder="Confirm your password">
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="w-full bg-primary text-white font-bold py-3 sm:py-4 px-6 rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer mt-3.5 sm:mt-6" id="submit-btn">
-                    Sign In <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:from-blue-500 hover:to-indigo-500 text-white font-['Inter'] font-bold py-2.5 px-4 rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer mt-2 text-xs sm:text-sm" id="submit-btn">
+                    Sign In <span class="material-symbols-outlined text-[16px] font-bold">arrow_forward</span>
                 </button>
             </form>
         </section>
 
         <!-- Plain Text Divider Stack -->
-        <div class="text-center my-3 sm:my-6 select-none flex flex-col gap-1">
-            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 leading-none">or</span>
-            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 leading-none">continue with</span>
+        <div class="text-center my-1 select-none">
+            <span class="text-[9px] font-['Inter'] font-bold uppercase tracking-widest text-slate-400 leading-none">or continue with</span>
         </div>
 
         <!-- OAuth Authentication -->
-        <section class="oauth-panel rounded-[26px] border border-slate-200/70 dark:border-slate-800 bg-slate-950/[0.03] dark:bg-white/[0.035] p-3 sm:p-5">
-            <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
-                <button type="button" onclick="handleSocialAuth('Google')" class="social-button flex items-center justify-center gap-1.5 sm:gap-3 py-2.5 px-2 sm:py-3.5 sm:px-4 border border-outline-variant/50 dark:border-slate-800 rounded-2xl bg-white/90 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-100" aria-label="Continue with Google">
-                    <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.58 15.02 1 12 1 7.35 1 3.4 3.65 1.5 7.5l3.86 3C6.27 7.74 8.89 5.04 12 5.04z"/><path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.42 3.58l3.76 2.92c2.2-2.03 3.69-5.02 3.69-8.65z"/><path fill="#FBBC05" d="M5.36 14.5c-.24-.72-.38-1.49-.38-2.3s.14-1.58.38-2.3L1.5 6.9C.54 8.82 0 10.97 0 13.2s.54 4.38 1.5 6.3l3.86-3z"/><path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.92l-3.76-2.92c-1.1.74-2.52 1.18-4.2 1.18-3.11 0-5.73-2.7-6.64-5.46L1.5 15.88C3.4 19.73 7.35 23 12 23z"/></svg>
+        <section class="oauth-panel rounded-2xl border border-white/10 dark:border-slate-800/80 bg-slate-900/60 p-2.5">
+            <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="handleSocialAuth('Google')" class="social-button flex items-center justify-center gap-2 py-2 px-2 border border-white/10 rounded-xl bg-slate-950/80 hover:bg-slate-800 hover:border-white/20 transition-all cursor-pointer active-feedback text-xs font-['Inter'] font-semibold text-white" aria-label="Continue with Google">
+                    <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.58 15.02 1 12 1 7.35 1 3.4 3.65 1.5 7.5l3.86 3C6.27 7.74 8.89 5.04 12 5.04z"/><path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.42 3.58l3.76 2.92c2.2-2.03 3.69-5.02 3.69-8.65z"/><path fill="#FBBC05" d="M5.36 14.5c-.24-.72-.38-1.49-.38-2.3s.14-1.58.38-2.3L1.5 6.9C.54 8.82 0 10.97 0 13.2s.54 4.38 1.5 6.3l3.86-3z"/><path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.92l-3.76-2.92c-1.1.74-2.52 1.18-4.2 1.18-3.11 0-5.73-2.7-6.64-5.46L1.5 15.88C3.4 19.73 7.35 23 12 23z"/></svg>
                     Google
                 </button>
-                <button type="button" onclick="handleSocialAuth('Facebook')" class="social-button flex items-center justify-center gap-1.5 sm:gap-3 py-2.5 px-2 sm:py-3.5 sm:px-4 border border-outline-variant/50 dark:border-slate-800 rounded-2xl bg-white/90 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-850 hover:shadow-sm transition-all cursor-pointer active-feedback text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-100" aria-label="Continue with Facebook">
-                    <svg class="w-5 h-5 shrink-0 fill-current text-[#1877F2]" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <button type="button" onclick="handleSocialAuth('Facebook')" class="social-button flex items-center justify-center gap-2 py-2 px-2 border border-white/10 rounded-xl bg-slate-950/80 hover:bg-slate-800 hover:border-white/20 transition-all cursor-pointer active-feedback text-xs font-['Inter'] font-semibold text-white" aria-label="Continue with Facebook">
+                    <svg class="w-4 h-4 shrink-0 fill-current text-[#1877F2]" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     Facebook
                 </button>
             </div>
         </section>
-    </div>
     </div>
 </div>
 
@@ -600,28 +504,28 @@
         const authTabs = document.getElementById('auth-tabs');
 
         if (mode === 'signin') {
-            submitBtn.innerHTML = `Sign In <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>`;
+            submitBtn.innerHTML = `Sign In <span class="material-symbols-outlined text-[16px] font-bold">arrow_forward</span>`;
             signupFields.classList.remove('is-open');
             confirmPasswordWrap.classList.remove('is-open');
             nameInput.removeAttribute('required');
             confirmPasswordInput.removeAttribute('required');
             
             authTabs.dataset.mode = 'signin';
-            tabSignin.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
-            tabSignup.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
+            tabSignin.className = "w-full text-center py-2 rounded-lg font-['Inter'] font-bold text-xs transition-all text-white bg-blue-600 shadow-md cursor-pointer";
+            tabSignup.className = "w-full text-center py-2 rounded-lg font-['Inter'] font-semibold text-xs transition-all text-slate-400 hover:text-white cursor-pointer";
             
             const forgotLink = document.getElementById('forgot-password-link');
             if (forgotLink) forgotLink.classList.remove('hidden');
         } else {
-            submitBtn.innerHTML = `Create Account <span class="material-symbols-outlined text-[18px] font-bold">person_add</span>`;
+            submitBtn.innerHTML = `Create Account <span class="material-symbols-outlined text-[16px] font-bold">person_add</span>`;
             signupFields.classList.add('is-open');
             confirmPasswordWrap.classList.add('is-open');
             nameInput.setAttribute('required', 'required');
             confirmPasswordInput.setAttribute('required', 'required');
             
             authTabs.dataset.mode = 'signup';
-            tabSignup.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-primary dark:text-white z-10 cursor-pointer active-feedback";
-            tabSignin.className = "w-full text-center py-2.5 rounded-xl font-bold text-body-sm transition-all text-secondary dark:text-slate-400 z-10 cursor-pointer active-feedback";
+            tabSignup.className = "w-full text-center py-2 rounded-lg font-['Inter'] font-bold text-xs transition-all text-white bg-blue-600 shadow-md cursor-pointer";
+            tabSignin.className = "w-full text-center py-2 rounded-lg font-['Inter'] font-semibold text-xs transition-all text-slate-400 hover:text-white cursor-pointer";
             
             const forgotLink = document.getElementById('forgot-password-link');
             if (forgotLink) forgotLink.classList.add('hidden');
