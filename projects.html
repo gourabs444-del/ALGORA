@@ -417,9 +417,9 @@
 
   /* 9. Responsive */
   @media (max-width: 768px) {
-      #all-projects-intro  { height: 200vh !important; height: 200dvh !important; }
-      #obscura-hero-section { height: 100vh !important; height: 100dvh !important; min-height: 0 !important; min-height: 100dvh !important; position: -webkit-sticky !important; position: sticky !important; top: 0 !important; transform: translateZ(0); }
-      #obscura-main-sheet { margin-top: -100vh !important; margin-top: -100dvh !important; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.05) !important; transform: translateZ(0); }
+      #all-projects-intro  { height: 200vh !important; height: 200svh !important; }
+      #obscura-hero-section { height: 100vh !important; height: 100svh !important; min-height: 0 !important; min-height: 100svh !important; position: -webkit-sticky !important; position: sticky !important; top: 0 !important; transform: translateZ(0); }
+      #obscura-main-sheet { margin-top: -100vh !important; margin-top: -100svh !important; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.05) !important; transform: translateZ(0); }
   }
   /* 10. Scroll-reveal entrance animation engine for drawer content, cards, headings & banners */
   .reveal-on-scroll {
@@ -4424,14 +4424,23 @@
         let cachedIntroTop = 0;
         let cachedTravel = 0;
 
+        let lastWidth = window.innerWidth;
         function updateMetrics() {
             cachedVh = window.innerHeight;
             const sy = Math.max(0, window.scrollY || window.pageYOffset || 0);
             cachedIntroTop = intro.getBoundingClientRect().top + sy;
             cachedTravel = intro.offsetHeight - cachedVh;
         }
-        window.addEventListener('resize', updateMetrics, { passive: true });
-        window.addEventListener('orientationchange', updateMetrics, { passive: true });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth !== lastWidth) {
+                lastWidth = window.innerWidth;
+                updateMetrics();
+            }
+        }, { passive: true });
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updateMetrics, 120);
+        }, { passive: true });
 
         updateMetrics();
 
