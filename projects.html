@@ -30,8 +30,10 @@
 <meta property="og:description" content="ALGORA Intelligence - Curating the Web's Finest digital design and creative systems.">
 <meta property="og:image" content="assets/logo.png">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=block" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -164,20 +166,16 @@
       transition: none;
   }
 
-  #obscura-hero-section > .bg-gradient-to-tr { background: transparent !important; }
 
-  /* 3. Hero text wrapper — GPU accelerated layer promotion for zero mobile scroll jitter */
-  #obscura-hero-content,
-  #obscura-hero-left,
-  #obscura-hero-title,
-  #obscura-hero-desc {
+
+  /* 3. Hero text wrapper — GPU accelerated layer promotion */
+  #obscura-hero-content {
       will-change: opacity, transform;
       transform: translateZ(0);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
   }
 
   #obscura-hero-content {
@@ -1067,7 +1065,7 @@
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="aesthete.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe src="aesthete.html" scrolling="no" class="iframe-preview-frame" title="AESTHETE Live Preview"></iframe>
+        <iframe data-src="aesthete.html" scrolling="no" class="iframe-preview-frame" title="AESTHETE Live Preview" loading="lazy"></iframe>
         <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
@@ -1097,7 +1095,7 @@
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="vanyalodge.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe src="vanyalodge.html" scrolling="no" class="iframe-preview-frame" title="Vanya Lodge Live Preview"></iframe>
+        <iframe data-src="vanyalodge.html" scrolling="no" class="iframe-preview-frame" title="Vanya Lodge Live Preview" loading="lazy"></iframe>
         <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
@@ -1127,7 +1125,7 @@
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="vantagepoint.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe src="vantagepoint.html" scrolling="no" class="iframe-preview-frame" title="Vantage Point Live Preview"></iframe>
+        <iframe data-src="vantagepoint.html" scrolling="no" class="iframe-preview-frame" title="Vantage Point Live Preview" loading="lazy"></iframe>
         <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
@@ -1157,7 +1155,7 @@
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="jurislexicon.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe src="jurislexicon.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Live Preview"></iframe>
+        <iframe data-src="jurislexicon.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Live Preview" loading="lazy"></iframe>
         <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
@@ -1187,7 +1185,7 @@
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="jurislexicon-dark.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe src="jurislexicon-dark.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Dark Live Preview"></iframe>
+        <iframe data-src="jurislexicon-dark.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Dark Live Preview" loading="lazy"></iframe>
         <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
@@ -1217,7 +1215,7 @@
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="bloomfi.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe src="bloomfi.html" scrolling="no" class="iframe-preview-frame" title="BloomFi Live Preview"></iframe>
+        <iframe data-src="bloomfi.html" scrolling="no" class="iframe-preview-frame" title="BloomFi Live Preview" loading="lazy"></iframe>
         <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
@@ -1247,7 +1245,7 @@
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="lumina.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe src="lumina.html" scrolling="no" class="iframe-preview-frame" title="Lumina Artisanal Live Preview"></iframe>
+        <iframe data-src="lumina.html" scrolling="no" class="iframe-preview-frame" title="Lumina Artisanal Live Preview" loading="lazy"></iframe>
         <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
@@ -1277,7 +1275,7 @@
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="valura.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe src="valura.html" scrolling="no" class="iframe-preview-frame" title="VALURA LIVING Live Preview"></iframe>
+        <iframe data-src="valura.html" scrolling="no" class="iframe-preview-frame" title="VALURA LIVING Live Preview" loading="lazy"></iframe>
         <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
@@ -1307,7 +1305,7 @@
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
     <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
     <a href="mamaearth.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent iframe-preview-container">
-        <iframe src="mamaearth.html" scrolling="no" class="iframe-preview-frame" title="Mamaearth Live Preview"></iframe>
+        <iframe data-src="mamaearth.html" scrolling="no" class="iframe-preview-frame" title="Mamaearth Live Preview" loading="lazy"></iframe>
         <div class="absolute inset-0 bg-transparent"></div>
     </a>
 
@@ -4434,7 +4432,7 @@
         }
         window.addEventListener('resize', updateMetrics, { passive: true });
         window.addEventListener('orientationchange', updateMetrics, { passive: true });
-        window.addEventListener('touchstart', updateMetrics, { passive: true });
+
         updateMetrics();
 
         function tick() {
@@ -4451,8 +4449,9 @@
                     content.style.opacity = '1';
                     content.style.transform = 'translate3d(0, 0px, 0)';
                 } else {
-                    const fadeProgress = Math.min(1, currentP / 0.75);
-                    const opacity = Math.max(0, 1 - Math.pow(fadeProgress, 2));
+                    // Fade starts at 30% scroll, text visible longer in the gap
+                    const fadeProgress = currentP < 0.3 ? 0 : Math.min(1, (currentP - 0.3) / 0.5);
+                    const opacity = Math.max(0, 1 - fadeProgress);
                     const translateY = -(currentP * cachedVh * 0.45);
 
                     content.style.opacity = opacity;
@@ -4461,7 +4460,7 @@
             }
 
             if (hero) {
-                const dim = Math.min(0.85, currentP * 1.1);
+                const dim = Math.min(0.8, currentP * 0.9);
                 hero.style.setProperty('--obs-dim', dim.toFixed(3));
             }
         }
@@ -4481,16 +4480,17 @@
     (function initSmoothScrollInertia() {
         function setupLenis() {
             const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-            if (isTouchDevice) return; // Native 60fps mobile hardware touch scroll
+            if (isTouchDevice) return; // Native mobile hardware touch scroll
 
             if (typeof Lenis !== 'undefined') {
                 window.lenisInstance = new Lenis({
-                    duration: 1.0,
+                    duration: 1.2,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                     orientation: 'vertical',
                     gestureOrientation: 'vertical',
                     smoothWheel: true,
-                    wheelMultiplier: 1.0,
+                    wheelMultiplier: 0.9,
+                    touchMultiplier: 1.5,
                     infinite: false
                 });
 
@@ -4509,6 +4509,23 @@
         } else {
             setupLenis();
         }
+    })();
+
+    // ── Lazy-load iframes only when scrolled into view ──────────────────────────
+    (function initLazyIframes() {
+        const iframes = document.querySelectorAll('iframe[data-src]');
+        if (!iframes.length) return;
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    iframe.src = iframe.dataset.src;
+                    iframe.removeAttribute('data-src');
+                    io.unobserve(iframe);
+                }
+            });
+        }, { rootMargin: '200px' });
+        iframes.forEach(iframe => io.observe(iframe));
     })();
 
     // ── High-Performance Scroll-Reveal Animation Engine ────────────────────────

@@ -57,3 +57,5 @@ export function buildApp() {
 
   return app;
 }
+
+export default buildApp;
