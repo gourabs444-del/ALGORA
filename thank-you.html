@@ -127,8 +127,8 @@
         }
 
         function copyLeadId() {
-            const text = document.getElementById('lead-id-display').textContent;
-            navigator.clipboard.writeText(text).then(() => {
+            const rawId = sessionStorage.getItem('inquiryLeadId') || (document.getElementById('lead-id-display').textContent.replace(/[^0-9]/g, ''));
+            navigator.clipboard.writeText(rawId).then(() => {
                 const icon = document.getElementById('copy-icon');
                 if (icon) {
                     icon.textContent = 'check';
