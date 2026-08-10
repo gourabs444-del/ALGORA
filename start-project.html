@@ -51,16 +51,44 @@
     }
 
     .form-input-glass {
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(4px);
-      border: 1px solid theme('colors.outline-variant');
+      border: 1px solid #cbd5e1;
       transition: all 0.3s ease;
+      color: #0f172a;
     }
     
     .form-input-glass:focus {
-      background: rgba(255, 255, 255, 0.9);
-      border-color: theme('colors.primary');
-      box-shadow: 0 0 0 1px theme('colors.primary');
+      background: #ffffff;
+      border-color: #0f172a;
+      box-shadow: 0 0 0 1px #0f172a;
+    }
+
+    /* Unselected Muted Dropdown Options */
+    select.form-input-glass:invalid,
+    select.form-input-glass.empty-select {
+      color: #64748b !important;
+      opacity: 0.75 !important;
+      font-weight: 500 !important;
+    }
+
+    /* Selected Solid Bold Dropdown Options */
+    select.form-input-glass.selected-select {
+      color: #0f172a !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+      background-color: #ffffff !important;
+    }
+
+    /* Option Items in Dropdown Picker */
+    select.form-input-glass option {
+      color: #0f172a !important;
+      font-weight: 600 !important;
+      background-color: #ffffff !important;
+    }
+    select.form-input-glass option[disabled] {
+      color: #94a3b8 !important;
+      font-weight: 500 !important;
     }
 
     /* Floating label styles */
@@ -74,7 +102,8 @@
       font-size: 0.75rem;
       background-color: white;
       padding: 0 0.25rem;
-      color: theme('colors.primary');
+      color: #0f172a;
+      font-weight: 700;
     }
     .floating-label {
       position: absolute;
@@ -83,7 +112,9 @@
       transform: translateY(-50%);
       transition: all 0.2s ease-out;
       pointer-events: none;
-      color: theme('colors.outline');
+      color: #64748b;
+      opacity: 0.75;
+      font-weight: 500;
     }
     textarea.floating-label-input ~ .floating-label {
       top: 1rem;
@@ -545,8 +576,30 @@
         }
     }
 
+    function syncSelectStyle(selectEl) {
+        if (!selectEl) return;
+        if (!selectEl.value) {
+            selectEl.classList.add('empty-select');
+            selectEl.classList.remove('selected-select');
+            selectEl.style.color = '#64748b';
+            selectEl.style.fontWeight = '500';
+            selectEl.style.opacity = '0.75';
+        } else {
+            selectEl.classList.remove('empty-select');
+            selectEl.classList.add('selected-select');
+            selectEl.style.color = '#0f172a';
+            selectEl.style.fontWeight = '700';
+            selectEl.style.opacity = '1';
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         setBudgetCurrency('INR');
+
+        document.querySelectorAll('select.form-input-glass').forEach(sel => {
+            syncSelectStyle(sel);
+            sel.addEventListener('change', () => syncSelectStyle(sel));
+        });
 
         const inquiryForm = document.getElementById('project-inquiry-form');
         if (inquiryForm) {
