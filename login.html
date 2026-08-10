@@ -337,8 +337,31 @@
     </div>
 
     <div class="space-y-3">
+        <!-- Active Device Session Card (Show when user is already logged in on this device) -->
+        <div id="active-device-session" class="hidden rounded-2xl bg-gradient-to-br from-blue-950/80 via-slate-900/90 to-indigo-950/80 border border-blue-500/40 p-3.5 shadow-xl text-center">
+            <div class="flex items-center gap-3 text-left mb-3">
+                <img id="device-session-avatar" class="w-11 h-11 rounded-full border-2 border-blue-400 object-cover shadow-md shrink-0" src="" alt="Active Account">
+                <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-1.5">
+                        <p id="device-session-name" class="text-xs font-extrabold text-white truncate font-['Outfit']"></p>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" title="Active Device Session"></span>
+                    </div>
+                    <p id="device-session-email" class="text-[11px] font-medium text-blue-300 truncate font-['Inter']"></p>
+                </div>
+            </div>
+            <p class="text-[11px] text-slate-300 mb-3 font-['Inter']">Active account logged in on this device.</p>
+            <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="showSuccessAndRedirect()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-xl text-xs transition-all cursor-pointer shadow-lg active:scale-95">
+                    Continue &rarr;
+                </button>
+                <button type="button" onclick="switchDeviceAccount()" class="w-full bg-white/10 hover:bg-red-500/20 text-slate-300 hover:text-red-400 font-semibold py-2 rounded-xl text-xs transition-all cursor-pointer active:scale-95">
+                    Sign Out
+                </button>
+            </div>
+        </div>
+
         <!-- Email Authentication Section -->
-        <section class="email-panel rounded-2xl border border-white/10 dark:border-slate-800/90 bg-slate-900/60 p-3 sm:p-4 shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
+        <section id="email-auth-section" class="email-panel rounded-2xl border border-white/10 dark:border-slate-800/90 bg-slate-900/60 p-3 sm:p-4 shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
 
             <!-- Mode Toggles (Crisp Pill Tab Switcher) -->
             <div id="auth-tabs" data-mode="signin" class="grid grid-cols-2 gap-1 bg-slate-950/80 border border-white/10 p-1 rounded-xl mb-3">
@@ -534,10 +557,6 @@
 
     async function handleAuthSubmit(e) {
         e.preventDefault();
-        if (!isFirebaseConfigured) {
-            alert('Firebase configuration is still loading. Please try again in a moment.');
-            return;
-        }
 
         const email = document.getElementById('auth-email').value.trim();
         const password = document.getElementById('auth-password').value;
@@ -553,37 +572,106 @@
 
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-70', 'cursor-wait');
-        submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> Please wait`;
+        submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> Processing...`;
 
         try {
-            let credential;
-            if (mode === 'signup') {
-                credential = await auth.createUserWithEmailAndPassword(email, password);
-                await credential.user.updateProfile({ displayName: name });
-            } else {
-                credential = await auth.signInWithEmailAndPassword(email, password);
+            // ── Primary Backend Fastify API Endpoint Call ──────────────────────────
+            const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
+            const payload = mode === 'signup' ? { email, password, name } : { email, password };
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || result.message || 'Authentication failed');
             }
 
-            await saveAuthenticatedUser(credential.user, 'Portfolio User');
+            if (result.token) {
+                localStorage.setItem('portfolio_jwt_token', result.token);
+            }
+            if (result.user) {
+                localStorage.setItem('portfolio_auth_user', JSON.stringify(result.user));
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userName', result.user.name || 'User');
+                localStorage.setItem('userEmail', result.user.email || '');
+                localStorage.setItem('userPicture', 'assets/algora_logo.png');
+            }
+
             showSuccessAndRedirect();
-        } catch (error) {
-            console.error('Firebase email authentication error:', error);
-            const messages = {
-                'auth/email-already-in-use': 'An account already exists with this email. Please sign in instead.',
-                'auth/invalid-email': 'Please enter a valid email address.',
-                'auth/weak-password': 'Use a password with at least 6 characters.',
-                'auth/user-not-found': 'No account was found with this email.',
-                'auth/wrong-password': 'The password is incorrect. Please try again.',
-                'auth/invalid-credential': 'The email or password is incorrect.',
-                'auth/operation-not-allowed': 'Enable Email/Password in Firebase Authentication first.'
-            };
-            alert(messages[error.code] || error.message);
+        } catch (backendError) {
+            console.warn('Backend API submission error, trying session fallback:', backendError.message);
+            // If Firebase is configured, try Firebase fallback
+            if (typeof auth !== 'undefined' && auth) {
+                try {
+                    let credential;
+                    if (mode === 'signup') {
+                        credential = await auth.createUserWithEmailAndPassword(email, password);
+                        await credential.user.updateProfile({ displayName: name });
+                    } else {
+                        credential = await auth.signInWithEmailAndPassword(email, password);
+                    }
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userName', name || credential.user.displayName || 'User');
+                    localStorage.setItem('userEmail', email);
+                    showSuccessAndRedirect();
+                    return;
+                } catch (fbErr) {
+                    alert(fbErr.message);
+                    return;
+                }
+            }
+            alert(backendError.message);
         } finally {
             submitBtn.disabled = false;
             submitBtn.classList.remove('opacity-70', 'cursor-wait');
             submitBtn.innerHTML = originalButton;
         }
     }
+
+    // ── Active Device Session Detection ─────────────────────────────────
+    function checkActiveDeviceSession() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        const userEmail = localStorage.getItem('userEmail');
+        const userName = localStorage.getItem('userName');
+        const userPicture = localStorage.getItem('userPicture') || 'assets/algora_logo.png';
+
+        const activeCard = document.getElementById('active-device-session');
+        const emailSection = document.getElementById('email-auth-section');
+
+        if (isLoggedIn && userEmail && activeCard && emailSection) {
+            const avatarEl = document.getElementById('device-session-avatar');
+            const nameEl = document.getElementById('device-session-name');
+            const emailEl = document.getElementById('device-session-email');
+
+            if (nameEl) nameEl.innerText = userName || 'Logged In Account';
+            if (emailEl) emailEl.innerText = userEmail;
+            if (avatarEl) avatarEl.src = userPicture;
+
+            activeCard.classList.remove('hidden');
+            emailSection.classList.add('hidden');
+        }
+    }
+
+    function switchDeviceAccount() {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userPicture');
+        localStorage.removeItem('portfolio_jwt_token');
+        localStorage.removeItem('portfolio_auth_user');
+
+        const activeCard = document.getElementById('active-device-session');
+        const emailSection = document.getElementById('email-auth-section');
+        if (activeCard) activeCard.classList.add('hidden');
+        if (emailSection) emailSection.classList.remove('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', checkActiveDeviceSession);
 
     // ── FIREBASE AUTHENTICATION CONFIGURATION ──────────────────
     // Replace these placeholder details with your actual Firebase project config credentials.

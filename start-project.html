@@ -467,6 +467,11 @@
 <!-- END: Footer -->
 
 
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+
 <script>
     const inrBudgetOptions = [
         { text: 'Select Budget', value: '', disabled: true },
@@ -522,6 +527,16 @@
     document.addEventListener('DOMContentLoaded', () => {
         setBudgetCurrency('INR');
 
+        let db;
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(window.firebaseConfig);
+            }
+            db = firebase.firestore();
+        } catch (err) {
+            console.error('Firebase init error:', err);
+        }
+
         const inquiryForm = document.getElementById('project-inquiry-form');
         if (inquiryForm) {
             inquiryForm.addEventListener('submit', async function(e) {
@@ -538,19 +553,51 @@
                       Submitting…`;
                 }
 
-                sessionStorage.setItem('inquiryLeadId', Date.now().toString());
+                const generatedLeadId = Date.now().toString();
+                sessionStorage.setItem('inquiryLeadId', generatedLeadId);
 
+                const formData = new FormData(inquiryForm);
+                const dataObj = {
+                    leadId: generatedLeadId,
+                    name: formData.get('name') || '',
+                    email: formData.get('email') || '',
+                    company: formData.get('company') || '',
+                    service: formData.get('service') || '',
+                    projectType: formData.get('projectType') || '',
+                    budget: formData.get('budget') || '',
+                    timeline: formData.get('timeline') || '',
+                    description: formData.get('description') || '',
+                    contractAmount: 0,
+                    paidAmount: 0,
+                    paymentStatus: 'UNPAID',
+                    paymentHistory: [],
+                    adminNotes: '',
+                    status: 'NEW',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+
+                // 1. Save to Firebase Firestore
+                if (db) {
+                    try {
+                        await db.collection('inquiries').doc(generatedLeadId).set(dataObj);
+                    } catch (fErr) {
+                        console.error('Firestore save error:', fErr);
+                    }
+                }
+
+                // 2. Dispatch email notification with Reference ID included
                 try {
+                    formData.append('Reference_ID', generatedLeadId);
                     await fetch('https://formspree.io/f/xjybbkwd', {
                         method: 'POST',
-                        body: new FormData(inquiryForm),
+                        body: formData,
                         headers: {
                             'Accept': 'application/json'
                         }
                     });
                 } catch (err) {}
 
-                // Smooth redirect to our custom Thank You card page!
+                // Smooth redirect to custom Thank You card page!
                 window.location.href = 'thank-you.html';
             });
         }

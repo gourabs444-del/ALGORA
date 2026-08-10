@@ -5,6 +5,7 @@ import {
   getAllInquiries,
   getInquiryById,
   updateInquiryStatus,
+  updateInquiryFinancials,
   deleteInquiry,
 } from '../services/inquiry.js';
 
@@ -72,6 +73,15 @@ export async function updateInquiryStatusHandler(request, reply) {
     return reply.send(updated);
   } catch {
     return reply.code(404).send({ error: 'Inquiry not found.' });
+  }
+}
+
+export async function updateInquiryFinancialsHandler(request, reply) {
+  try {
+    const updated = await updateInquiryFinancials(request.params.id, request.body || {});
+    return reply.send(updated);
+  } catch (err) {
+    return reply.code(err.statusCode || 500).send({ error: err.message || 'Failed to update financials.' });
   }
 }
 

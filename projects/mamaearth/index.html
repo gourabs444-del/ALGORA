@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mamaearth | Active Naturalism</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#94f990",
+                        "surface": "#fcf9f8",
+                        "primary-container": "#00afef",
+                        "inverse-primary": "#80cfff",
+                        "tertiary-fixed": "#e4e2dd",
+                        "surface-container": "#f0eded",
+                        "on-primary-fixed-variant": "#004c6a",
+                        "primary-fixed-dim": "#80cfff",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "surface-container-high": "#eae7e7",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-background": "#1b1c1c",
+                        "tertiary-container": "#a5a4a0",
+                        "tertiary": "#5e5e5b",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bdc8d1",
+                        "primary": "#00658c",
+                        "secondary-container": "#91f78e",
+                        "secondary": "#006e1c",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#00658c",
+                        "on-surface-variant": "#3e4850",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-variant": "#e5e2e1",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed": "#1b1c19",
+                        "on-secondary-fixed": "#002204",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#003e58",
+                        "inverse-surface": "#303030",
+                        "on-secondary-fixed-variant": "#005313",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#3a3a37",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "secondary-fixed-dim": "#78dc77",
+                        "background": "#fcf9f8",
+                        "on-primary-fixed": "#001e2d",
+                        "on-secondary-container": "#00731e",
+                        "error": "#ba1a1a",
+                        "outline": "#6e7881",
+                        "primary-fixed": "#c5e7ff",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-surface": "#1b1c1c",
+                        "on-tertiary": "#ffffff",
+                        "soil-dark": "#2E2013",
+                        "soil-medium": "#4A3728"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "4xl": "2rem",
+                        "full": "9999px",
+                        "organic": "60% 40% 30% 70% / 60% 30% 70% 40%"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-lg": ["Open Sans"],
+                        "headline-sm": ["Montserrat"],
+                        "body-md": ["Open Sans"],
+                        "body-sm": ["Open Sans"],
+                        "label-md": ["Open Sans"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-xl-mobile": ["Montserrat"],
+                        "headline-xl": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glowing-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 175, 239, 0.15);
+        }
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0, 175, 239, 0.2);
+        }
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-on-scroll {
+            opacity: 0;
+        }
+        .fade-in-up-visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-150%); }
+            100% { transform: translateX(150%); }
+        }
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-150%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .organic-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+<!-- Announcement Bar -->
+<div class="bg-secondary-fixed text-on-secondary-fixed py-2 px-margin-mobile md:px-margin-desktop text-center font-label-md relative z-50">
+<p class="flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">eco</span>
+            Join our 'Plant Goodness' initiative. Every order plants a tree.
+            <a class="underline font-bold ml-2 hover:text-primary transition-colors" href="#">Learn More</a>
+</p>
+</div>
+<!-- TopNavBar -->
+<header class="bg-surface-bright/95 dark:bg-surface-dim/95 sticky top-0 w-full z-50 backdrop-blur-md border-b border-outline-variant/30 shadow-sm transition-all duration-300" id="main-header">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<button class="md:hidden text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<a class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface tracking-tight flex items-center shrink-0" href="#">
+<img alt="Mamaearth Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBaetlPoSRMWAHf8UgVY4mzeWrIaTdSlfYwY3vz27y6Ia6ryAsgfFOu77uo-2DA_VqAVC5hvPHlm7Fd0ti20AO5vDDCq0imX27HyS1JpjNy4dTwocXO0p1uegQ9vklKvT7SYdJSlz8h4CC99stLyxroWl8qNc3xs58sEz8DoRO10EnL8y-aIt4Er-KdxwRkR3sli5oxvi377Vxd6y8o5JRQEPDRMYbEfSBobIVCqmbG4zcsLML8QZS"/>
+</a>
+<nav class="hidden md:flex items-center gap-8 ml-8 flex-1 justify-center">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-md text-label-md" href="#">Shop All</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300 font-label-md text-label-md" href="#">Skin</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300 font-label-md text-label-md" href="#">Hair</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300 font-label-md text-label-md" href="#">Baby</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300 font-label-md text-label-md" href="#">Blog</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-300 font-label-md text-label-md" href="#">Our Mission</a>
+</nav>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary transition-all duration-300 hidden md:block">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="hover:text-primary transition-all duration-300 hidden md:block">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="hover:text-primary transition-all duration-300 hidden md:block">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="hover:text-primary transition-all duration-300 relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary-container text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">2</span>
+</button>
+</div>
+</div>
+</header>
+<main>
+<!-- HERO SECTION: Full-Width 4K Mamaearth Product Banner Background -->
+<section class="relative min-h-[85vh] flex items-center bg-surface-container-low overflow-hidden rounded-b-4xl py-16 md:py-24 border-b border-surface-variant/40">
+<!-- 4K Full-Width Product Collection Background Image -->
+<div class="absolute inset-0 z-0">
+    <img src="assets/mamaearth_hero_banner.jpg" alt="Mamaearth 4K Product Collection Banner" class="w-full h-full object-cover object-right md:object-center scale-105" id="hero-parallax-img" />
+    <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/20 md:from-white/90 md:via-white/70 md:to-transparent"></div>
+</div>
+
+<!-- Hero Content Layer -->
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop animate-on-scroll">
+<div class="max-w-xl">
+<div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-emerald-100/90 text-emerald-800 font-label-md text-xs sm:text-sm mb-6 w-max border border-emerald-200 shadow-xs">
+    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+    <span>New Arrival • 100% Natural & Toxin Free</span>
+</div>
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-3xl sm:text-5xl lg:text-6xl text-on-surface mb-6 font-bold leading-tight tracking-tight">
+    Glow naturally with <span class="text-emerald-700 underline decoration-amber-400 decoration-wavy decoration-2">Vitamin C</span>.
+</h1>
+<p class="font-body-lg text-base sm:text-body-lg text-on-surface-variant mb-8 max-w-lg leading-relaxed">
+    Unveil your skin's innate radiance. Crafted with natural Vitamin C and Turmeric to illuminate, hydrate, and protect against environmental stress.
+</p>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
+    <button class="bg-primary-container hover:bg-primary-container/90 text-white font-label-md text-sm sm:text-body-md py-4 px-8 rounded-full shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-95 shimmer-btn">
+        <span>Shop Now</span>
+        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+    </button>
+    <button class="bg-white/90 backdrop-blur-md border-[1.5px] border-primary-container text-primary-container hover:bg-emerald-50 font-label-md text-sm sm:text-body-md py-4 px-8 rounded-full transition-all duration-200 text-center cursor-pointer shadow-xs">
+        Explore Ingredients
+    </button>
+</div>
+<div class="flex flex-wrap items-center gap-6 pt-4 border-t border-surface-variant/60 text-xs sm:text-sm text-on-surface-variant/80 font-medium">
+    <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-emerald-600 text-[18px]">verified</span> Made Safe</div>
+    <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-emerald-600 text-[18px]">cruelty_free</span> Cruelty Free</div>
+    <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-emerald-600 text-[18px]">eco</span> Plastic Positive</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto animate-on-scroll">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Curated Best Sellers</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Our community's favorite natural formulas.</p>
+</div>
+<a class="font-label-md text-label-md text-primary hover:text-primary-container flex items-center gap-1 transition-colors" href="#">
+                    View All Products <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</a>
+</div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1: Onion Hair Oil -->
+<div class="group bg-white rounded-[24px] overflow-hidden hover-lift border border-surface-variant/70 relative shadow-xs hover:shadow-md transition-all duration-300">
+<div class="absolute top-3 left-3 z-10">
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-md text-[10px] py-1 px-2.5 rounded-full uppercase tracking-wider font-bold">Best Seller</span>
+</div>
+<button class="absolute top-3 right-3 z-10 w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-outline hover:text-primary-container transition-colors shadow-xs cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="aspect-[4/5] w-full relative overflow-hidden bg-surface-container-lowest p-4 flex items-center justify-center">
+<img alt="Mamaearth Onion Hair Oil" class="w-full h-full object-contain rounded-[20px] group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQU-dZySgaCEmZRIIa2PpJCKX1gkP7eqS3GQwi12_XhswHnDIJp_pIKBHuHGG6vnhY9EoHi4BGjWVRVMOhs_pS275haECNYtozbnKZNVpYDbNc8cWSz7djvo0oFXYaGpPMj07Vq7ImYRuOQ5l_rzTrPNChQGNSsG7g9ZielSeAJBwIcOe2u7G1oBN9juX88KxuMW2wfRlO1Odo5jATnzF5a61yYTAwLs6P5Ap9CYrZX-VxhsIoknui"/>
+</div>
+<div class="p-4 bg-white">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-[14px] text-yellow-400">star</span>
+<span class="font-label-md text-[12px] text-on-surface-variant font-semibold">4.8 (2.4k)</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-0.5 truncate font-bold">Onion Hair Oil</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3 truncate">For Hair Fall Control</p>
+<div class="flex items-center justify-between mt-auto pt-2 border-t border-surface-variant/40">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold text-lg">₹419</span>
+<button class="bg-primary-container/10 text-primary-container hover:bg-primary-container hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Card 2: Vitamin C Cream -->
+<div class="group bg-white rounded-[24px] overflow-hidden hover-lift border border-surface-variant/70 relative shadow-xs hover:shadow-md transition-all duration-300">
+<button class="absolute top-3 right-3 z-10 w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-outline hover:text-primary-container transition-colors shadow-xs cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="aspect-[4/5] w-full relative overflow-hidden bg-surface-container-lowest p-4 flex items-center justify-center">
+<img alt="Mamaearth Vitamin C Cream" class="w-full h-full object-contain rounded-[20px] group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1-YhaEBB-RZEq_TwHZl15CnIYTGaXCjfjnMibR10dq8UpGACzGyqPB7OeMS7cgHejefKkqFl44b_BWmZ41flBQWoTIEK2uGDKtdkYpt_nR6XSqXEG55MMBoEZsnIIwqtQNQgc7nH6WFE6lmR3OkVimXj2xsTQPePqVgCg_slyzh6uhG8P6s-SzWWvn5WpPktGxTHh6Zj3e93_DQhwyOu6CUIGEZ-vUpl-CvnE-kXNQQQCjCiJci8a"/>
+</div>
+<div class="p-4 bg-white">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-[14px] text-yellow-400">star</span>
+<span class="font-label-md text-[12px] text-on-surface-variant font-semibold">4.9 (1.1k)</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-0.5 truncate font-bold">Vitamin C Daily Cream</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3 truncate">Illuminating Hydration</p>
+<div class="flex items-center justify-between mt-auto pt-2 border-t border-surface-variant/40">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold text-lg">₹399</span>
+<button class="bg-primary-container/10 text-primary-container hover:bg-primary-container hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Card 3: Aloe Vera Gel -->
+<div class="group bg-white rounded-[24px] overflow-hidden hover-lift border border-surface-variant/70 relative shadow-xs hover:shadow-md transition-all duration-300">
+<div class="absolute top-3 left-3 z-10">
+<span class="bg-primary-container text-white font-label-md text-[10px] py-1 px-2.5 rounded-full uppercase tracking-wider font-bold">Toxin Free</span>
+</div>
+<button class="absolute top-3 right-3 z-10 w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-outline hover:text-primary-container transition-colors shadow-xs cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="aspect-[4/5] w-full relative overflow-hidden bg-surface-container-lowest p-4 flex items-center justify-center">
+<img alt="Mamaearth Aloe Vera Gel" class="w-full h-full object-contain rounded-[20px] group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV51tv-RwJukftb83JzgJmNJAFo70EhR6-EezWbHkVtdxgeb81CRn8ot7Y6rFMwpAQfhNJZHGmnFdtWpCyMm_ndkvDvFonELhEaRHTuoKLll558XDmbBuuF3UpdvVR0xYIVsahNOTxO75wS0Cy0MZt3xcK7rSD737lGI_2k4mo3rDmBXd2I7GQtO2dtXHcclL4cKFY_PEkq4XBnWRK23iWBWZvhtzj0RAJQF4d2onew9sN3Y8XzcOd"/>
+</div>
+<div class="p-4 bg-white">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-[14px] text-yellow-400">star</span>
+<span class="font-label-md text-[12px] text-on-surface-variant font-semibold">4.7 (890)</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-0.5 truncate font-bold">Aloe Vera Gel</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3 truncate">Pure Soothing Hydration</p>
+<div class="flex items-center justify-between mt-auto pt-2 border-t border-surface-variant/40">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold text-lg">₹319</span>
+<button class="bg-primary-container/10 text-primary-container hover:bg-primary-container hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Card 4: Ubtan Face Wash -->
+<div class="group bg-white rounded-[24px] overflow-hidden hover-lift border border-surface-variant/70 relative shadow-xs hover:shadow-md transition-all duration-300 hidden lg:block">
+<button class="absolute top-3 right-3 z-10 w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-outline hover:text-primary-container transition-colors shadow-xs cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="aspect-[4/5] w-full relative overflow-hidden bg-surface-container-lowest p-4 flex items-center justify-center">
+<img alt="Mamaearth Ubtan Face Wash" class="w-full h-full object-contain rounded-[20px] group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHc_63lI5DAVu3NI8qSoQ9wRXH04kt8kxo2sb3SylYG4v1mOUaDK4EAVYOlpy8B9PHU9Q6B9t-afT5VImsfJAVKTJL4Gkj3J55P62fmPveMG0L0PM96Enq9YGoWX4uEqOugh9tNF7y7JSn_x8oAm3dVgVJCp4sM89xU20YSc27eEE_FU9MQbKLhjchRA-Rhu4pnLmq0MZCvfQg-57jdgCm9M6vybv3n7ZUF3SLqVlFtDKX3zK-JAkN"/>
+</div>
+<div class="p-4 bg-white">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-[14px] text-yellow-400">star</span>
+<span class="font-label-md text-[12px] text-on-surface-variant font-semibold">4.9 (3.2k)</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-0.5 truncate font-bold">Ubtan Face Wash</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3 truncate">Tan Removal & Glow</p>
+<div class="flex items-center justify-between mt-auto pt-2 border-t border-surface-variant/40">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold text-lg">₹259</span>
+<button class="bg-primary-container/10 text-primary-container hover:bg-primary-container hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-surface-container-low animate-on-scroll rounded-t-4xl">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Nature's Best, Bottled.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Discover the active natural ingredients that power our formulations, sourced consciously for effective results.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:auto-rows-[300px]">
+<div class="md:col-span-2 group relative rounded-[2rem] overflow-hidden isolate shadow-sm border border-surface-variant">
+<img alt="Fresh Aloe Vera" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGt6AnxDCpPR8dHZPASe9i2Olq9xE5OcFyRU6ar_3uR-wd1T3niSZTN603xed_B2vYM-MhK6hIxZJSoT1yMrVmOE4P5YW-G3l8ZtvH1t2KONiydiSCC4Rp1O3lOBGLnEgaz6EYZA_lWW5stfQXRXn7Taf4Sxz1oKiYyJNk5J6Itv479tmdeTq9A5xPDP1E6VYozfEFHpgFdhXvsm62lWFVMUB6CzDhY8G9m3KVYt1EZ1HWXFlq-0hI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h3 class="font-headline-md text-headline-md text-white mb-2">Aloe Vera</h3>
+<p class="font-body-md text-body-md text-white/90 mb-4 max-w-md">Soothing, hydrating, and deeply nourishing for sensitive skin profiles.</p>
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-secondary-fixed hover:text-white transition-colors" href="#">
+                                Explore Aloe Range <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="group relative rounded-[2rem] overflow-hidden isolate shadow-sm border border-surface-variant">
+<div class="absolute inset-0 bg-surface-container-highest bg-cover bg-center group-hover:scale-105 transition-transform duration-700 ease-in-out" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuArER8s0ZPhhsragGBr-hrxGx7s_-xXTRNr2Tmzkk7fxaqkiaOxkXFYTfGyYuHoRuoUt2VdSHjatpqIksDfLBt8MwGXNTCIIzXbShC_uTH1MMMG9wjLsWHZebhJGv9sUP1gJ_9uriQXZe2OPzKJ0E3xwSxIirr1TngPI7D8QVnQ50c1K-Pdaun6cCICqRn0iH-kVvainP5DKnSCbjZlVJNYcwHEzNkxDQBnkxi7D_CLuQ7KUMk-BozX')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-headline-md text-headline-md text-white mb-1">Onion Seed</h3>
+<p class="font-body-sm text-body-sm text-white/80 mb-3">Strengthens hair follicles.</p>
+<a class="inline-flex items-center font-label-md text-label-md text-white hover:text-secondary-fixed transition-colors" href="#">
+                                Shop Hair Care
+                            </a>
+</div>
+</div>
+<div class="group relative rounded-[2rem] overflow-hidden isolate shadow-sm border border-surface-variant">
+<div class="absolute inset-0 bg-surface-container-highest bg-cover bg-center group-hover:scale-105 transition-transform duration-700 ease-in-out" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSHQ2us8eHZ4nXJAgUtfNBzdP3JFzna146UqBHM4zVr5D6RS7G_6Jj1dThaq38panLPPWTe-eNhjCpkD-yLwmdmByUf2l1krdwLFmXE5ioHsAySuTvtSa7VyIJ9GLcDc1bl28pXaUuRpu90CmDq_jl7O9ARQ90KhiuTx2Fsa9qbgirjxgVgjlJJoFAGnvDGMP7o4vyJQyIbmMk9nyCXFj7_Yx4R0dQgTKHSer72cASt3vmO1vYW5XL')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-headline-md text-headline-md text-white mb-1">Turmeric</h3>
+<p class="font-body-sm text-body-sm text-white/80 mb-3">Traditional glow enhancer.</p>
+<a class="inline-flex items-center font-label-md text-label-md text-white hover:text-secondary-fixed transition-colors" href="#">
+                                Shop Ubtan
+                            </a>
+</div>
+</div>
+<div class="md:col-span-2 group relative rounded-[2rem] overflow-hidden isolate shadow-sm border border-surface-variant bg-surface-bright flex items-center p-8">
+<div class="w-1/2 pr-8 z-10">
+<span class="inline-block px-3 py-1 bg-primary-container/10 text-primary-container rounded-full font-label-md text-[10px] uppercase tracking-wider mb-4">Clinical Efficacy</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Vitamin C</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Our stabilized Vitamin C complex brightens skin tone and neutralizes free radicals.</p>
+<a class="bg-primary-container text-white px-6 py-3 rounded-full font-label-md text-label-md hover:bg-primary-container/90 transition-colors inline-block shimmer-btn" href="#">
+                                View Collection
+                            </a>
+</div>
+<div class="absolute right-0 top-0 bottom-0 w-1/2 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-surface-bright to-transparent z-10"></div>
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700 ease-in-out" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwLJbAjaV3KVzyGshfmg-69ccJ6GrKnk7w-_d0Dfp0FQx74igsptnwMBeYh5W3H_D3o-5yYYLl1LI3_Lo5kJseY9v_13EZoJzoPOvfobymz-T8WCQLLd21c64zbj4QK2mXKXIq-iEmBFQmRiEfI6oqpSGAZD7Tc4iBiDJS4dQ3TOkyIhA4sf8ov9klz9mCdYWpG6X4Ri8IvDVjvaB1o2pcyOJgkDhT77KH-xuz-LmHepq0zrxw76he')"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 relative overflow-hidden isolate bg-soil-dark text-surface animate-on-scroll">
+<div class="absolute inset-0 -z-10">
+<img alt="Plant Goodness Initiative" class="w-full h-full object-cover opacity-60 mix-blend-overlay" src="https://lh3.googleusercontent.com/aida/AP1WRLsPtW252qfeeUONm8ESzTZpE5fvHfGhkFB09xLtaph2IP_Xu9qAYfgJkloUY437GAtjxrY2ERCZ4NPJZduRvJ_stckDP8FQ_2hwnMH2xxZTcFU_lwPY2uEsUZ_-ztseVur2h85hl0OM01G3BORHxy7DDIWDrlPcR9WtJZEkUo7vsXjMNXzb-ov_ID5WetaZqEBGzkuskFX0P0QDVV7SmoS8qXXITlyrPa73-aGf12jeEEumcLKiKtuUYQ"/>
+<div class="absolute inset-0 bg-soil-dark/70 mix-blend-multiply"></div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 flex flex-col md:flex-row items-center gap-16">
+<div class="md:w-1/2">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-fixed/20 border border-secondary-fixed/30 text-secondary-fixed font-label-md text-label-md mb-8">
+<span class="material-symbols-outlined text-[18px]">park</span>
+                        Plastic Positive Since 2018
+                    </div>
+<h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl mb-6 text-white">We plant goodness.</h2>
+<p class="font-body-lg text-body-lg text-surface-variant mb-8 opacity-90">
+                        Every time you buy from us, we link your order to a sapling that we plant. We are on a mission to plant 1 Million Trees by 2025. Track your tree's growth digitally and see the impact you're making.
+                    </p>
+<div class="flex items-center gap-6 mb-10">
+<div>
+<span class="block font-headline-lg text-headline-lg text-secondary-fixed mb-1">500k+</span>
+<span class="font-label-md text-label-md text-surface-variant uppercase tracking-wider">Trees Planted</span>
+</div>
+<div class="w-px h-12 bg-white/20"></div>
+<div>
+<span class="block font-headline-lg text-headline-lg text-primary-fixed-dim mb-1">10k+</span>
+<span class="font-label-md text-label-md text-surface-variant uppercase tracking-wider">Tons Plastic Recycled</span>
+</div>
+</div>
+<button class="bg-white text-soil-dark font-label-md text-label-md py-4 px-8 rounded-full hover:bg-surface-variant transition-colors flex items-center gap-2 hover:-translate-y-1 transition-transform">
+                        Track Your Tree
+                    </button>
+</div>
+<div class="md:w-1/2 w-full h-[400px] bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 relative flex flex-col justify-end">
+<div class="absolute top-8 left-8 right-8 flex justify-between items-start">
+<div>
+<p class="font-label-md text-[10px] text-white/50 uppercase tracking-widest mb-1">Sapling ID #84920</p>
+<h4 class="font-headline-sm text-headline-sm text-white">Neem Tree</h4>
+</div>
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-md text-[10px]">Healthy</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-60">
+<span class="material-symbols-outlined text-[120px] text-secondary-fixed font-light animate-float">nature</span>
+</div>
+<div class="bg-black/40 backdrop-blur-lg p-4 rounded-2xl border border-white/10 mt-auto z-10">
+<div class="flex justify-between font-label-md text-[12px] text-white/80 mb-2">
+<span>Growth Stage</span>
+<span>Sapling</span>
+</div>
+<div class="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed w-1/3 rounded-full"></div>
+</div>
+<p class="font-body-sm text-[12px] text-white/60 mt-3 text-center">Planted in Maharashtra, India</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 border-b border-surface-variant bg-white animate-on-scroll">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 rounded-full bg-secondary-container/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-secondary-container/40">
+<span class="material-symbols-outlined text-[28px] text-secondary">verified_user</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface mb-2">Made Safe Certified</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[200px]">Strictly tested to be safe for sensitive skin.</p>
+</div>
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 rounded-full bg-secondary-container/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-secondary-container/40">
+<span class="material-symbols-outlined text-[28px] text-secondary">cruelty_free</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface mb-2">Cruelty Free</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[200px]">We never test our products on animals.</p>
+</div>
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 rounded-full bg-secondary-container/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-secondary-container/40">
+<span class="material-symbols-outlined text-[28px] text-secondary">science</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface mb-2">Toxin Free</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[200px]">No harmful chemicals like parabens or sulfates.</p>
+</div>
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 rounded-full bg-secondary-container/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-secondary-container/40">
+<span class="material-symbols-outlined text-[28px] text-secondary">recycling</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface mb-2">Plastic Positive</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[200px]">We recycle more plastic than we use.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-tertiary-fixed dark:bg-inverse-surface text-tertiary dark:text-tertiary-fixed-dim w-full pt-20 pb-10 border-t bg-surface-container-low dark:bg-surface-container-highest animate-on-scroll">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-16">
+<div class="col-span-1 md:col-span-1 pr-8">
+<a class="font-headline-sm text-headline-sm font-semibold text-on-tertiary-fixed mb-6 block" href="#">
+<img alt="Mamaearth Logo" class="h-8 w-auto object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBaetlPoSRMWAHf8UgVY4mzeWrIaTdSlfYwY3vz27y6Ia6ryAsgfFOu77uo-2DA_VqAVC5hvPHlm7Fd0ti20AO5vDDCq0imX27HyS1JpjNy4dTwocXO0p1uegQ9vklKvT7SYdJSlz8h4CC99stLyxroWl8qNc3xs58sEz8DoRO10EnL8y-aIt4Er-KdxwRkR3sli5oxvi377Vxd6y8o5JRQEPDRMYbEfSBobIVCqmbG4zcsLML8QZS"/>
+</a>
+<p class="font-body-sm text-body-sm mb-6 text-tertiary">
+                    Crafting honest, natural, and safe products for you and your family. Goodness inside.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white/50 flex items-center justify-center hover:bg-primary-container hover:text-white transition-colors text-tertiary" href="#">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white/50 flex items-center justify-center hover:bg-primary-container hover:text-white transition-colors text-tertiary" href="#">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface font-bold mb-6">Explore</h4>
+<ul class="space-y-4 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">About Us</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">Ingredients</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">Sustainability</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface font-bold mb-6">Support</h4>
+<ul class="space-y-4 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">Track Order</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">Contact</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">Returns &amp; Refunds</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface font-bold mb-6">Legal</h4>
+<ul class="space-y-4 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-200 block" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-sm text-body-sm text-tertiary">
+                © 2024 Mamaearth. All rights reserved. Plastic Positive since 2018.
+            </p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified</span>
+<span class="font-label-md text-[10px] uppercase tracking-wider text-tertiary">Secure Checkout</span>
+</div>
+</div>
+</footer>
+<script>
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+
+            const heroImg = document.getElementById('hero-parallax-img');
+            if(heroImg) {
+                window.addEventListener('scroll', () => {
+                    let scrolled = window.scrollY;
+                    if(scrolled < window.innerHeight) {
+                        heroImg.style.transform = `translateY(${scrolled * 0.3}px) scale(1.05)`;
+                    }
+                });
+            }
+        });
+    </script>
+</body></html>

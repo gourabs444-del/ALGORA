@@ -104,24 +104,23 @@
   .deck-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.15); }
   .deck-hero-card { transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
   .deck-hero-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.18); }
-  @keyframes marqueeLeft { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-25%, 0, 0); } }
+  @keyframes marqueeLeft {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+  }
   @keyframes marqueeRight {
-      0% { transform: translate3d(-25%, 0, 0); }
+      0% { transform: translate3d(-50%, 0, 0); }
       100% { transform: translate3d(0, 0, 0); }
   }
   .animate-marquee-left {
-      display: inline-flex;
-      width: max-content;
-      animation: marqueeLeft 45s linear infinite !important;
+      display: inline-flex !important;
+      width: max-content !important;
+      animation: marqueeLeft 35s linear infinite !important;
       will-change: transform;
   }
-  .animate-marquee-left:hover {
-      animation-play-state: paused;
-  }
-  .animate-marquee-right {
-      display: inline-flex;
-      gap: 1.5rem;
-      animation: marqueeRight 45s linear infinite;
+  .animate-marquee-left:hover,
+  .animate-marquee-right:hover {
+      animation-play-state: running !important;
   }
 
   /* ═══════════════════════════════════════════════════════════════════════
@@ -1071,14 +1070,14 @@
 </div>
 <!-- Card: AESTHETE -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="aesthete.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/aesthete.jpg" alt="AESTHETE Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
+    <a href="projects/aesthete/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/aesthete.jpg" alt="AESTHETE" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="aesthete.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
+            <a href="projects/aesthete/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 AESTHETE
             </a>
             <div class="flex items-center gap-2 shrink-0">
@@ -1095,14 +1094,14 @@
 </div>
 <!-- Card: Vanya Lodge -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="vanyalodge.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/vanyalodge.jpg" alt="Vanya Lodge Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
+    <a href="projects/vanyalodge/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/vanyalodge.jpg" alt="Vanya Lodge" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="vanyalodge.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
+            <a href="projects/vanyalodge/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Vanya Lodge
             </a>
             <div class="flex items-center gap-2 shrink-0">
@@ -1119,14 +1118,14 @@
 </div>
 <!-- Card: Vantage Point -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="vantagepoint.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/vantagepoint.jpg" alt="Vantage Point Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
+    <a href="projects/vantagepoint/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/vantagepoint.jpg" alt="Vantage Point" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="vantagepoint.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
+            <a href="projects/vantagepoint/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Vantage Point
             </a>
             <div class="flex items-center gap-2 shrink-0">
@@ -1143,14 +1142,14 @@
 </div>
 <!-- Card: Juris Lexicon -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="jurislexicon.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/juris.jpg" alt="Juris Lexicon Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
+    <a href="projects/jurislexicon/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/juris.jpg" alt="Juris Lexicon" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="jurislexicon.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
+            <a href="projects/jurislexicon/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Juris Lexicon
             </a>
             <div class="flex items-center gap-2 shrink-0">
@@ -1167,14 +1166,14 @@
 </div>
 <!-- Card: Juris Lexicon — Dark -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="jurislexicon-dark.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/jurisdark.jpg" alt="Juris Lexicon Dark Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
+    <a href="projects/jurislexicon-dark/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/jurisdark.jpg" alt="Juris Lexicon Dark" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="jurislexicon-dark.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
+            <a href="projects/jurislexicon-dark/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Juris Lexicon — Dark
             </a>
             <div class="flex items-center gap-2 shrink-0">
@@ -1191,14 +1190,14 @@
 </div>
 <!-- Card: BloomFi -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="bloomfi.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/bloomfi.jpg" alt="BloomFi Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
+    <a href="projects/bloomfi/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/bloomfi.jpg" alt="BloomFi" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="bloomfi.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
+            <a href="projects/bloomfi/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 BloomFi
             </a>
             <div class="flex items-center gap-2 shrink-0">
@@ -1215,14 +1214,14 @@
 </div>
 <!-- Card: Lumina Artisanal -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="lumina.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/lumina.jpg" alt="Lumina Artisanal Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
+    <a href="projects/lumina/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/lumina.jpg" alt="Lumina Artisanal" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="lumina.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
+            <a href="projects/lumina/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Lumina Artisanal
             </a>
             <div class="flex items-center gap-2 shrink-0">
@@ -1239,14 +1238,14 @@
 </div>
 <!-- Card: VALURA LIVING -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="valura.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/valura.jpg" alt="VALURA LIVING Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
+    <a href="projects/valura/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/valura.jpg" alt="VALURA LIVING" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="valura.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
+            <a href="projects/valura/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 VALURA LIVING
             </a>
             <div class="flex items-center gap-2 shrink-0">
@@ -1263,14 +1262,14 @@
 </div>
 <!-- Card: Mamaearth -->
 <div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="mamaearth.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/mamaearth.jpg" alt="Mamaearth Live Preview" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" loading="lazy">
+    <a href="projects/mamaearth/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
+        <img src="assets/previews/mamaearth.jpg" alt="Mamaearth" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
     </a>
 
     <!-- White Body Area -->
     <div class="pt-2 px-1 pb-0.5 w-full">
         <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="mamaearth.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
+            <a href="projects/mamaearth/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
                 Mamaearth
             </a>
             <div class="flex items-center gap-2 shrink-0">
@@ -1312,7 +1311,7 @@
     <!-- Featured Hero Card -->
     <a href="bloomfi.html" target="_blank" class="deck-hero-card block relative rounded-2xl overflow-hidden mb-6 group cursor-pointer" style="text-decoration:none;">
         <div class="aspect-[21/9] sm:aspect-[3/1] w-full relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWJLu5W4nWsDAtK09nZ0HZIXlFzLe8UyOmAq7bvzf4JjsnkxQ20YkX9LpGSAk2XYzP5h_16u-mKesCrli5xZ30l9aaf9oYHbd24SogFEL3GPussZpPCx3aGeiErPL28sg9Crdxj3q4KBIj3S3kHvuB3bEOeePrVzfXeZwE4J2Oh8YMuPBMZ6p1wcnR7vSBiGGrC0H_dIp6Gxhgzx8WURLCnmvAUiDO6gMmt4-Af8KiTdjLmc6xH3Q7" alt="BloomFi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+            <img src="assets/previews/bloomfi.jpg" alt="BloomFi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                 <span class="inline-block px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold uppercase tracking-wider mb-3 backdrop-blur-sm border border-emerald-500/20">Featured</span>
@@ -1331,7 +1330,7 @@
         <!-- Mamaearth -->
         <a href="mamaearth.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMq4lior1ISVMZ4mXvmTi7WoyR7jpj5NL8JagKO2DATmPojwwP8i1kZSnSr_FKZzT3tkYFxn3liKuVer6qgXl1Adjmw29EzGaBpBGbfS6ns1lTvB3PzSl2f_MlktgzvGc-XjQdSRfK_uKjju-3fP1c0AfS2NJrn5fSFfwZYbK1W_vHtzpINYxmU3oVIBURK0mT5IZ5I16mipMkqAeVXEt7C2ss_qwN23LD0gN0TPUEUc75ZhEiadGs" alt="Mamaearth" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/mamaearth.jpg" alt="Mamaearth" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">Mamaearth</h4>
@@ -1346,7 +1345,7 @@
         <!-- VALURA LIVING -->
         <a href="valura.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVtyTfyRd06L08j4xyoiYizYaPOHAPV4jpjigi9nBcNxbxYBm1axA8_pPdmpixaKNXDok6MBxUm_jW-zAPKeHB4HKpMuormeFD-bBglx6IsyDEJjjb8wsdM3wtfWIajAaZ4-HuFrkUWC4CTf1UweuVAhREcIaQmD-PStIwxl7ZzwSoyY8OSGDf1LjyIWv9zzkSeyAo11OtZQPD6_15WtbQHs5jd0RnC-q-Z53rr2XA6q9Rw17YSzYEw" alt="VALURA LIVING" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/valura.jpg" alt="VALURA LIVING" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">VALURA LIVING</h4>
@@ -1375,9 +1374,9 @@
         </a>
 
         <!-- Juris Lexicon Dark -->
-        <a href="jurislexicon-dark.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
+        <a href="projects/jurislexicon-dark/index.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="assets/previews/jurislexicon-dark.jpg" alt="Juris Lexicon Dark" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/jurisdark.jpg" alt="Juris Lexicon Dark" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">Juris Lexicon — Dark</h4>
@@ -1391,9 +1390,9 @@
         </a>
 
         <!-- Juris Lexicon -->
-        <a href="jurislexicon.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
+        <a href="projects/jurislexicon/index.html" target="_blank" class="deck-card group relative rounded-2xl overflow-hidden cursor-pointer block" style="text-decoration:none;">
             <div class="aspect-[16/10] relative">
-                <img src="assets/previews/jurislexicon.jpg" alt="Juris Lexicon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <img src="assets/previews/juris.jpg" alt="Juris Lexicon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 class="text-white font-bold text-sm drop-shadow-lg">Juris Lexicon</h4>
@@ -2109,15 +2108,15 @@
                     <h4 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white">Core Software & Automations</h4>
                 </div>
                 <div class="flex overflow-hidden mb-6 sm:mb-8 relative w-full items-center z-10">
-                    <div id="scroll-wrapper-1" class="w-full flex transition-transform duration-300 ease-out">
-                        <div id="marquee-row-1" class="animate-marquee-left whitespace-nowrap flex items-center gap-6 sm:gap-8 py-2"></div>
+                    <div id="scroll-wrapper-1" class="w-full flex">
+                        <div id="marquee-row-1" class="whitespace-nowrap flex items-center py-2"></div>
                     </div>
                 </div>
 
                 <!-- Row 2: Scrolling Right -->
                 <div class="flex overflow-hidden relative w-full items-center z-10">
-                    <div id="scroll-wrapper-2" class="w-full flex transition-transform duration-300 ease-out" style="transform: translateX(-600px);">
-                        <div id="marquee-row-2" class="animate-marquee-right whitespace-nowrap flex items-center gap-6 sm:gap-8 py-2"></div>
+                    <div id="scroll-wrapper-2" class="w-full flex">
+                        <div id="marquee-row-2" class="whitespace-nowrap flex items-center py-2"></div>
                     </div>
                 </div>
             </div>
@@ -2165,44 +2164,42 @@
                 const row2Container = document.getElementById('marquee-row-2');
                 
                 if (row1Container && row2Container) {
-                    const row1GroupHTML = `<div class="inline-flex items-center gap-6 sm:gap-8">${generateCardsHTML(row1Logos)}</div>`;
-                    const row2GroupHTML = `<div class="inline-flex items-center gap-6 sm:gap-8">${generateCardsHTML(row2Logos)}</div>`;
+                    const row1GroupHTML = `<div class="inline-flex items-center gap-6 sm:gap-8 pr-6 sm:pr-8">${generateCardsHTML(row1Logos)}</div>`;
+                    const row2GroupHTML = `<div class="inline-flex items-center gap-6 sm:gap-8 pr-6 sm:pr-8">${generateCardsHTML(row2Logos)}</div>`;
                     
-                    // Duplicate exactly 4 times for perfect infinite translation and zero gaps
-                    row1Container.innerHTML = row1GroupHTML.repeat(4);
-                    row2Container.innerHTML = row2GroupHTML.repeat(4);
-                }
+                    row1Container.innerHTML = row1GroupHTML.repeat(6);
+                    row2Container.innerHTML = row2GroupHTML.repeat(6);
 
-                // Scroll parallax animation (interactive scroll-driven translation)
-                const scrollWrapper1 = document.getElementById('scroll-wrapper-1');
-                const scrollWrapper2 = document.getElementById('scroll-wrapper-2');
-                const marqueeSection = scrollWrapper1 ? scrollWrapper1.closest('.w-full') : null;
+                    let pos1 = 0;
+                    let pos2 = 0;
+                    let lastTimestamp = performance.now();
 
-                let isParallaxTicking = false;
-                const handleParallax = () => {
-                    if (!isParallaxTicking) {
-                        requestAnimationFrame(() => {
-                            if (marqueeSection) {
-                                const rect = marqueeSection.getBoundingClientRect();
-                                const viewportHeight = window.innerHeight;
-                                if (rect.top < viewportHeight && rect.bottom > 0) {
-                                    const relativeScroll = viewportHeight - rect.top;
-                                    if (scrollWrapper1) {
-                                        scrollWrapper1.style.transform = `translate3d(-${(relativeScroll * 0.14).toFixed(1)}px, 0, 0)`;
-                                    }
-                                    if (scrollWrapper2) {
-                                        scrollWrapper2.style.transform = `translate3d(${(-600 + relativeScroll * 0.14).toFixed(1)}px, 0, 0)`;
-                                    }
-                                }
-                            }
-                            isParallaxTicking = false;
-                        });
-                        isParallaxTicking = true;
+                    function run120FPSMarquee(timestamp) {
+                        const dt = Math.min((timestamp - lastTimestamp) / 1000, 0.05);
+                        lastTimestamp = timestamp;
+
+                        // Pleasant slow speed: 45 pixels per second (silky smooth on 120Hz displays)
+                        const moveStep = 45 * dt;
+
+                        pos1 -= moveStep;
+                        const setWidth1 = row1Container.scrollWidth / 6;
+                        if (Math.abs(pos1) >= setWidth1) {
+                            pos1 += setWidth1;
+                        }
+                        row1Container.style.transform = `translate3d(${pos1.toFixed(2)}px, 0, 0)`;
+
+                        pos2 += moveStep;
+                        const setWidth2 = row2Container.scrollWidth / 6;
+                        if (pos2 >= 0) {
+                            pos2 -= setWidth2;
+                        }
+                        row2Container.style.transform = `translate3d(${pos2.toFixed(2)}px, 0, 0)`;
+
+                        requestAnimationFrame(run120FPSMarquee);
                     }
-                };
 
-                window.addEventListener('scroll', handleParallax, { passive: true });
-                handleParallax(); // Initial positioning
+                    requestAnimationFrame(run120FPSMarquee);
+                }
             });
             </script>
         </div>
@@ -4687,6 +4684,23 @@
             });
         }, observerOptions);
 
+        // ── Lazy-load iframes only when scrolled into view ──────────────────────────
+        (function initLazyIframes() {
+            const iframes = document.querySelectorAll('iframe[data-src]');
+            if (!iframes.length) return;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const iframe = entry.target;
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                        io.unobserve(iframe);
+                    }
+                });
+            }, { rootMargin: '300px' });
+            iframes.forEach(iframe => io.observe(iframe));
+        })();
+
         window.refreshScrollReveal = function() {
             const selectors = [
                 '#obscura-ticker',
@@ -4708,16 +4722,12 @@
                 '#categorized-sections-container .group',
                 '#categorized-sections-container .dynamic-gallery-card',
                 '#categorized-sections-container .apple-elevated-card',
-                '#scroll-wrapper-1',
-                '#scroll-wrapper-2',
-                '#scroll-wrapper-1 > *',
-                '#scroll-wrapper-2 > *',
                 '.module-container'
             ];
 
             const elements = document.querySelectorAll(selectors.join(','));
             elements.forEach((el) => {
-                if (el.closest('#obscura-hero-section')) return;
+                if (el.closest('#obscura-hero-section') || el.closest('#marquee-row-1') || el.closest('#marquee-row-2') || el.id === 'marquee-row-1' || el.id === 'marquee-row-2') return;
 
                 if (!el.classList.contains('reveal-on-scroll')) {
                     el.classList.add('reveal-on-scroll');

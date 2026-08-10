@@ -12,28 +12,60 @@ enum InquiryStatus {
   NEW
   CONTACTED
   IN_PROGRESS
+  DELIVERED
   COMPLETED
   CLOSED
 }
 
+enum PaymentStatus {
+  UNPAID
+  PARTIALLY_PAID
+  FULLY_PAID
+  REFUNDED
+}
+
 model Inquiry {
-  id          String        @id @default(cuid())
-  leadId      String        @unique
-  name        String
-  email       String
-  company     String?
-  service     String
-  projectType String
-  budget      String?
-  timeline    String
-  description String
-  status      InquiryStatus @default(NEW)
-  ipAddress   String?
-  userAgent   String?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id             String        @id @default(cuid())
+  leadId         String        @unique
+  name           String
+  email          String
+  phone          String?
+  company        String?
+  service        String
+  projectType    String
+  budget         String?
+  timeline       String
+  description    String
+  status         InquiryStatus @default(NEW)
+  
+  // Financial & Enterprise CRM Fields
+  contractAmount Float?        @default(0)
+  paidAmount     Float?        @default(0)
+  paymentStatus  PaymentStatus @default(UNPAID)
+  paymentHistory Json?         @default("[]")
+  adminNotes     String?
+  replyNotes     String?
+  repliedAt      DateTime?
+
+  ipAddress      String?
+  userAgent      String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 
   @@index([status, createdAt])
   @@index([email, createdAt])
   @@map("inquiries")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("USER")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([email])
+  @@map("users")
 }

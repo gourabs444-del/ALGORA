@@ -1,0 +1,262 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AESTHETE | Form & Essence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Hanken+Grotesk:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#e5e2e1",
+                        "inverse-primary": "#c8c6c5",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-variant": "#e3e2e2",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-container-low": "#f5f3f3",
+                        "on-surface": "#1b1c1c",
+                        "tertiary": "#000000",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#000000",
+                        "inverse-surface": "#303031",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "outline": "#747878",
+                        "error": "#ba1a1a",
+                        "surface-container": "#efeded",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-surface-variant": "#444748",
+                        "on-background": "#1b1c1c",
+                        "on-secondary-container": "#5f6161",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#1d1b1a",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-dim": "#dbdad9",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e3e2e2",
+                        "secondary": "#5d5f5f",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c4c7c7",
+                        "background": "#fbf9f9",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface": "#fbf9f9",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "primary-container": "#1c1b1b",
+                        "surface-bright": "#fbf9f9",
+                        "secondary-container": "#dcdddd",
+                        "on-tertiary-container": "#868381",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#e6e1df",
+                        "on-primary-container": "#858383",
+                        "surface-container-high": "#e9e8e7",
+                        "surface-tint": "#5f5e5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-mobile": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "section-gap": "128px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Bodoni Moda"],
+                        "headline-md": ["Bodoni Moda"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Bodoni Moda"],
+                        "button": ["Hanken Grotesk"],
+                        "display-lg": ["Bodoni Moda"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["40px", {"lineHeight": "48px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .parallax-container {
+            clip-path: inset(0 0 0 0);
+        }
+        .parallax-bg {
+            transition: transform 0.1s linear;
+        }
+        .hover-zoom:hover img {
+            transform: scale(1.05);
+        }
+        .font-label-caps { font-family: 'Hanken Grotesk'; }
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-primary overflow-x-hidden">
+<nav class="fixed top-0 w-full z-50 h-20 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex items-center justify-between px-4 md:px-margin-desktop w-full mx-auto">
+<div class="flex items-center gap-10">
+<a class="font-display-lg text-headline-sm tracking-tighter text-primary dark:text-inverse-primary uppercase" href="#">AESTHETE</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-primary dark:text-inverse-primary border-b border-primary pb-1" href="#">Shop</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" href="#">Collections</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="hover:opacity-70 transition-opacity duration-300">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+<button class="hover:opacity-70 transition-opacity duration-300">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</button>
+</div>
+</nav>
+<main class="mt-20">
+<section class="min-h-[90vh] flex flex-col md:flex-row items-center justify-between px-4 md:px-margin-desktop py-16 gap-12 overflow-hidden">
+<div class="w-full md:w-1/2 reveal active">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">Form & Essence</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mb-12">A study in minimalist silhouettes and premium textiles. Discover the architecture of quiet luxury.</p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-10 py-4 font-label-caps text-label-caps tracking-widest uppercase hover:opacity-90 transition-opacity">Explore Collection</button>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-[70vh] relative group reveal active">
+<img class="w-full h-full object-cover grayscale-[0.2] transition-transform duration-700 group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQRrb1yhVY0H_fRm1DxoDAa63JuBpOWquWYs3u-Ja4huKCqYw-1KCjTX4t_Md1201gc2AWSTTNzxTuWNNCiwVo4d5NDHFvbYy_-2dtlxvPK0-MDNYp0jDDlE0cVbbLLbWSYgL-1hbVVxLP3PqFLrP_O_SHqHoiirKTnI2B4Y3bkpGQ3mO5QSEE9uL_HC4EKkARcDWTFBqgtA1o8wv9Mb4vbJudY2G8xatlS_ORmENlNbBTHLnTtICOSQ" alt="AESTHETE Fashion">
+<div class="absolute inset-0 border border-primary/10 pointer-events-none translate-x-4 translate-y-4 -z-10"></div>
+</div>
+</section>
+<section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col mb-16 reveal active">
+<span class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-on-surface-variant mb-4">Curated Selection</span>
+<h2 class="font-headline-md text-headline-md">New Arrivals</h2>
+</div>
+<div class="grid grid-cols-12 gap-gutter items-start">
+<div class="col-span-12 md:col-span-7 aspect-[4/5] bg-surface-container-low overflow-hidden hover-zoom reveal active">
+<img class="w-full h-full object-cover transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSd7PjzWicUqTs724Xbo8bxv2s8u8VeH4UuYbf3kFM6C6q-rv75MNnW5nxapaIWa3796on_Pofz6ya7-B_kbvW1t_TlVF37CWzOjzgHOrKDblSjNBb0UMApkwR6CTztUZu4nlsNiNYK8ACJeTMo9mHSTzU_eBZEbVdSzLpnRxQX4h287G_kT5hIhW6L3P4ssYWAJoN4Jj8Q1Bs_T3Tzwow8EuR70pc7FLf-ciyhtvqSslK38cr3t4org" alt="Sculptural Tote">
+<div class="p-6">
+<p class="font-label-caps text-label-caps uppercase text-primary">Sculptural Tote</p>
+<p class="font-body-md text-body-md text-on-surface-variant">$1,250</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-5 md:mt-32 reveal active" style="transition-delay: 0.2s;">
+<div class="aspect-[3/4] bg-surface-container-low overflow-hidden mb-8 hover-zoom">
+<img class="w-full h-full object-cover transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7uIOEv1W-063tV8SWETUTZumr3nKN4TGppMpROg0p894UoCRJ7vYdMph2WKmhqLJShsQa2R4ROyRqzPjoQc_AF_N7hxleTQQk5Vf5w4ijHQvzaSdocMlFvl2Jly9FUfwHfy2D9mzO5s5XRAUTuoVht23XcpHeLHfctxYR61YUhlRO4wEMUM9w8wXnj20OhkgMlawbl0DrsMhr3IdXkkTmz9EuNARGCT-WhrTxSLv7vvL8Evs-rzb6oA" alt="Column Coat">
+</div>
+<div class="p-4">
+<p class="font-label-caps text-label-caps uppercase text-primary">Column Coat</p>
+<p class="font-body-md text-body-md text-on-surface-variant">$2,800</p>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container py-section-gap px-4 md:px-margin-desktop overflow-hidden reveal active">
+<div class="max-w-3xl mx-auto text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-8">format_quote</span>
+<blockquote class="font-headline-md text-headline-md mb-10 italic">"Identity is the ultimate luxury."</blockquote>
+<div class="w-20 h-px bg-primary mx-auto mb-10"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">At AESTHETE, we believe that garments should be an extension of the self. Our collections are defined by a commitment to noble materials and the pursuit of the perfect silhouette.</p>
+</div>
+</section>
+<section class="relative h-screen w-full overflow-hidden parallax-container">
+<div class="absolute inset-0 z-0 parallax-bg" style="transform: translateY(0);">
+<img class="w-full h-[120%] object-cover object-center grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARc42U-Lx1jxlZE3x4L09-xoRAyn4802ZAD88EMaSr7EKPvpxc3zGFxmw-2oUYAj1xoYJ_DplruLfT36ANoe-Jiz3eNK6hEqtnQGl6GC2zmIcndwRh6PoEl8xpoh9uaaVpi0B8k2eC5W42Jhfr25J2_U35RCBI6g0EhuULEwviTYQoociDVViGOZ1TvJ7yL9_L5j1PZ8FNHJ_Dm451I04IwKGx8TkK2bDXUuR3G-c_YvyExCYJxoe01w" alt="Campaign">
+</div>
+<div class="absolute inset-0 bg-black/10 z-10"></div>
+<div class="relative z-20 h-full flex items-center justify-center text-white px-margin-mobile">
+<div class="text-center reveal active">
+<span class="font-label-caps text-label-caps uppercase tracking-[0.4em] mb-6 block">Campaign SS24</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-8">Structural Silhouettes</h2>
+<button class="border border-white text-white px-12 py-5 font-label-caps text-label-caps tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-500">View The Film</button>
+</div>
+</div>
+</section>
+<section class="py-section-gap px-4 md:px-margin-desktop border-t border-outline-variant/30 reveal active">
+<div class="max-w-2xl mx-auto text-center">
+<h2 class="font-headline-md text-headline-md mb-6 uppercase tracking-wider">Join The Aesthetic</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-10">Receive early access to seasonal drops and limited editions curated for the modern wardrobe.</p>
+<form class="flex flex-col md:flex-row gap-0 group">
+<input class="flex-grow bg-transparent border-b border-primary p-4 font-label-caps text-label-caps focus:ring-0 focus:outline-none focus:border-b-2 transition-all" placeholder="YOUR EMAIL ADDRESS" type="email">
+<button class="bg-primary text-on-primary px-12 py-4 font-label-caps text-label-caps tracking-[0.2em] uppercase transition-all duration-500 hover:tracking-[0.4em]" type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+</main>
+<footer class="relative w-full py-section-gap overflow-hidden bg-surface dark:bg-inverse-surface border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-start px-4 md:px-margin-desktop max-w-container-max mx-auto gap-gutter z-10 relative">
+<div class="mb-12 md:mb-0">
+<a class="font-display-lg text-headline-sm tracking-tighter text-primary dark:text-inverse-primary uppercase block mb-8" href="#">AESTHETE</a>
+<p class="max-w-xs font-body-md text-on-surface-variant">Elevating the everyday through architectural silhouettes and masterful craftsmanship.</p>
+</div>
+<div class="grid grid-cols-2 gap-16 md:gap-32">
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-bold">Explore</span>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Journal</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Stockists</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-bold">Legal</span>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping</a>
+</div>
+</div>
+</div>
+<div class="font-display-lg text-[120px] leading-none uppercase text-primary/5 dark:text-inverse-primary/5 absolute -bottom-10 left-0 w-full text-center pointer-events-none">AESTHETE</div>
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            reveals.forEach(reveal => revealObserver.observe(reveal));
+
+            const parallaxContainer = document.querySelector('.parallax-container');
+            const parallaxBg = document.querySelector('.parallax-bg');
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const containerTop = parallaxContainer.offsetTop;
+                const containerHeight = parallaxContainer.offsetHeight;
+                if (scrolled + window.innerHeight > containerTop && scrolled < containerTop + containerHeight) {
+                    const yOffset = (scrolled - containerTop) * 0.4;
+                    parallaxBg.style.transform = `translateY(${yOffset}px)`;
+                }
+            });
+        });
+</script>
+</body></html>

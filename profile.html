@@ -3,14 +3,8 @@
 <head>
 <script>
   (function() {
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-    } else {
-      document.documentElement.classList.add('light');
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.add('light');
+    document.documentElement.classList.remove('dark');
   })();
 </script>
 <meta charset="utf-8">
@@ -37,15 +31,39 @@
   };
 </script>
 <style>
-  html, body { width: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-  .glass { background: rgba(255,255,255,.78); backdrop-filter: blur(24px); box-shadow: 0 28px 90px rgba(15,23,42,.12); }
-  .dark .glass { background: rgba(15,23,42,.82); }
-  .field { transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease; }
-  .field:focus-within { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background-color: #f8fafc;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.06) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(168, 85, 247, 0.06) 0px, transparent 50%);
+  }
+  .glass-light {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(28px);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 25px 70px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  }
+  .profile-card-bg {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+  }
+  .input-box {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    transition: all 0.18s ease;
+  }
+  .input-box:focus-within {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+  }
   #crop-stage { touch-action: none; cursor: grab; }
   #crop-stage:active { cursor: grabbing; }
   
-  /* OnePlus OxygenOS style fluid elastic dropdown animation */
   .country-menu {
     opacity: 0;
     visibility: hidden;
@@ -61,7 +79,6 @@
     transform: scale(1) translateY(0);
   }
   
-  /* Dropdown Arrow rotation with smooth springy bounce */
   #country-arrow {
     transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
     display: inline-block;
@@ -71,59 +88,59 @@
   }
 </style>
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white font-sans">
-<div class="fixed inset-0 pointer-events-none">
-  <div class="absolute -top-28 -left-24 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl"></div>
-  <div class="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-emerald-400/10 blur-3xl"></div>
+<body class="min-h-screen bg-slate-50 text-slate-900 font-sans">
+<div class="fixed inset-0 pointer-events-none z-0">
+  <div class="absolute -top-28 -left-24 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"></div>
+  <div class="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-indigo-500/10 blur-3xl"></div>
 </div>
 
 <main class="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
   <header class="mb-8 flex items-center justify-between gap-4">
-    <button onclick="history.back()" class="inline-flex items-center gap-2 rounded-2xl border border-slate-200/70 bg-white/70 px-4 py-2 text-sm font-bold text-slate-600 shadow-sm backdrop-blur hover:text-primary dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-300 cursor-pointer">
+    <button onclick="history.back()" class="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 shadow-sm hover:border-blue-500 hover:text-blue-600 transition-all cursor-pointer">
       <span class="material-symbols-outlined text-[20px]">arrow_back</span>
       Back
     </button>
   </header>
 
-  <section class="glass rounded-[34px] border border-white/70 p-5 dark:border-slate-800 sm:p-8">
+  <section class="glass-light rounded-[36px] p-6 sm:p-10">
     <div class="grid gap-8 lg:grid-cols-[340px_1fr]">
-      <aside class="rounded-[28px] border border-slate-200/70 bg-white/72 p-5 dark:border-slate-800 dark:bg-slate-900/60">
+      <aside class="profile-card-bg rounded-[30px] p-6 shadow-sm">
         <div class="flex flex-col items-center text-center">
           <div class="relative cursor-pointer" onclick="document.getElementById('photo-input').click()">
-            <img id="profile-photo" alt="" class="h-36 w-36 rounded-full border-4 border-white dark:border-slate-800 object-cover shadow-2xl dark:shadow-slate-950/50 transition-transform duration-300 hover:scale-[1.02]">
-            <!-- Permanent Edit Button at Bottom Right -->
-            <button id="upload-trigger" type="button" class="absolute bottom-0 right-0 h-9 w-9 rounded-full bg-primary text-white shadow-lg flex items-center justify-center border-2 border-white dark:border-slate-800 hover:scale-110 active:scale-95 transition-all cursor-pointer">
+            <img id="profile-photo" alt="" class="h-36 w-36 rounded-full border-4 border-white object-cover shadow-xl shadow-blue-500/10 transition-transform duration-300 hover:scale-[1.02]">
+            <!-- Edit Button at Bottom Right -->
+            <button id="upload-trigger" type="button" class="absolute bottom-0 right-0 h-9 w-9 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-md flex items-center justify-center border-2 border-white hover:scale-110 active:scale-95 transition-all cursor-pointer">
               <span class="material-symbols-outlined text-[18px] font-bold">edit</span>
             </button>
           </div>
           <input id="photo-input" type="file" accept="image/*" class="hidden">
-          <h1 id="profile-name-preview" class="mt-8 text-2xl font-black tracking-tight">Profile</h1>
-          <p id="profile-email-preview" class="mt-1 text-sm font-semibold text-slate-500 dark:text-slate-400"></p>
-          <span id="profile-provider" class="mt-4 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-slate-500 dark:bg-slate-800 dark:text-slate-300"></span>
+          <h1 id="profile-name-preview" class="mt-6 text-2xl font-black tracking-tight text-slate-900">Profile</h1>
+          <p id="profile-email-preview" class="mt-1 text-sm font-semibold text-slate-500"></p>
+          <span id="profile-provider" class="mt-4 rounded-full bg-blue-50 border border-blue-200/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-blue-700"></span>
           
           <!-- Divider -->
-          <div class="my-6 w-full border-t border-slate-200/50 dark:border-slate-800/80"></div>
+          <div class="my-6 w-full border-t border-slate-200"></div>
           
           <!-- Live Preview Data Container -->
           <div class="w-full text-left space-y-5">
             <!-- Bio Preview Block -->
             <div>
-              <span class="block text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1.5">Bio</span>
-              <p id="preview-bio" class="text-xs font-semibold text-slate-400 dark:text-slate-500 italic leading-relaxed whitespace-pre-wrap break-words">No bio added yet.</p>
+              <span class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5">Bio</span>
+              <p id="preview-bio" class="text-xs font-semibold text-slate-500 italic leading-relaxed whitespace-pre-wrap break-words">No bio added yet.</p>
             </div>
             
             <!-- Contact Phone Preview Block -->
             <div id="preview-phone-container" class="hidden">
-              <span class="block text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1.5">Phone</span>
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-200">
-                <span class="material-symbols-outlined text-[16px] text-slate-400">call</span>
+              <span class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5">Phone</span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-800">
+                <span class="material-symbols-outlined text-[16px] text-blue-500">call</span>
                 <span id="preview-phone">-</span>
               </div>
             </div>
             
             <!-- Custom Links Preview Block -->
             <div id="preview-links-container" class="hidden">
-              <span class="block text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">Connected Links</span>
+              <span class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Connected Links</span>
               <div id="preview-links-list" class="flex flex-col gap-2">
                 <!-- Dynamically rendered custom links -->
               </div>
@@ -133,65 +150,65 @@
       </aside>
 
       <form id="profile-form" class="space-y-6">
-        <div class="grid gap-4 sm:grid-cols-2">
+        <div class="grid gap-5 sm:grid-cols-2">
           <label class="block">
-            <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Display Name</span>
-            <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
-              <input id="displayName" required class="w-full rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold outline-none focus:ring-0" placeholder="Your name">
+            <span class="mb-1.5 block text-xs font-extrabold uppercase tracking-wider text-slate-500">Display Name</span>
+            <span class="input-box flex rounded-2xl">
+              <input id="displayName" required class="w-full rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold text-slate-900 outline-none focus:ring-0 placeholder-slate-400" placeholder="Your full name">
             </span>
           </label>
           <label class="block">
-            <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Email</span>
-            <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
+            <span class="mb-1.5 block text-xs font-extrabold uppercase tracking-wider text-slate-500">Email Address</span>
+            <span class="input-box flex rounded-2xl bg-slate-50 border-slate-200">
               <input id="email" type="email" disabled class="w-full rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold text-slate-500 outline-none focus:ring-0" placeholder="Email">
             </span>
           </label>
           <div class="block sm:col-span-2">
-            <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Phone Number</span>
-            <div class="relative field flex items-center rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
+            <span class="mb-1.5 block text-xs font-extrabold uppercase tracking-wider text-slate-500">Phone Number</span>
+            <div class="relative input-box flex items-center rounded-2xl">
               <!-- Country Code Selector Button -->
               <div class="relative flex-shrink-0">
-                <button id="country-dropdown-btn" type="button" class="flex items-center gap-2 px-4 py-3.5 text-sm font-semibold hover:bg-slate-100/50 dark:hover:bg-slate-800/40 rounded-l-2xl transition-colors cursor-pointer border-r border-slate-200 dark:border-slate-800 h-full">
+                <button id="country-dropdown-btn" type="button" class="flex items-center gap-2 px-4 py-3.5 text-sm font-semibold hover:bg-slate-50 rounded-l-2xl transition-colors cursor-pointer border-r border-slate-200 h-full text-slate-800">
                   <img id="selected-flag" src="https://flagcdn.com/w20/in.png" alt="India" class="w-5 h-3.5 object-cover rounded-sm">
-                  <span id="selected-code" class="text-slate-800 dark:text-slate-200">+91</span>
+                  <span id="selected-code" class="text-slate-900 font-bold">+91</span>
                   <span id="country-arrow" class="material-symbols-outlined text-[16px] text-slate-400 font-bold select-none">keyboard_arrow_down</span>
                 </button>
                 <!-- Country Dropdown Menu -->
-                <div id="country-dropdown-menu" class="country-menu absolute top-full left-0 mt-2 w-64 max-h-60 overflow-y-auto rounded-2xl border border-slate-250/70 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900 z-50 py-1">
+                <div id="country-dropdown-menu" class="country-menu absolute top-full left-0 mt-2 w-64 max-h-60 overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-2xl z-50 py-1">
                   <!-- Country Search -->
-                  <div class="sticky top-0 bg-white dark:bg-slate-900 px-3 py-2 border-b border-slate-100 dark:border-slate-800/60">
-                    <input type="text" id="country-search" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs font-semibold outline-none focus:border-primary dark:text-white" placeholder="Search country...">
+                  <div class="sticky top-0 bg-white px-3 py-2 border-b border-slate-100">
+                    <input type="text" id="country-search" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-semibold outline-none focus:border-blue-500 text-slate-900 placeholder-slate-400" placeholder="Search country...">
                   </div>
                   <!-- Option List -->
-                  <div id="country-options-list" class="divide-y divide-slate-50 dark:divide-slate-800/30">
+                  <div id="country-options-list" class="divide-y divide-slate-100">
                     <!-- Loaded dynamically -->
                   </div>
                 </div>
               </div>
               <!-- Phone number input field -->
-              <input id="phone" type="tel" inputmode="numeric" class="w-full border-0 bg-transparent px-4 py-3.5 text-sm font-semibold outline-none focus:ring-0 rounded-r-2xl" placeholder="Enter phone number">
+              <input id="phone" type="tel" inputmode="numeric" class="w-full border-0 bg-transparent px-4 py-3.5 text-sm font-semibold text-slate-900 outline-none focus:ring-0 rounded-r-2xl placeholder-slate-400" placeholder="Enter phone number">
             </div>
           </div>
           <label class="block sm:col-span-2">
-            <span class="mb-1.5 block text-sm font-bold text-slate-600 dark:text-slate-300">Bio</span>
-            <span class="field flex rounded-2xl border border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900">
-              <textarea id="bio" rows="4" maxlength="280" class="w-full resize-none rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold outline-none focus:ring-0" placeholder="Short bio"></textarea>
+            <span class="mb-1.5 block text-xs font-extrabold uppercase tracking-wider text-slate-500">Bio</span>
+            <span class="input-box flex rounded-2xl">
+              <textarea id="bio" rows="4" maxlength="280" class="w-full resize-none rounded-2xl border-0 bg-transparent px-4 py-3.5 text-sm font-semibold text-slate-900 outline-none focus:ring-0 placeholder-slate-400" placeholder="Short bio about yourself"></textarea>
             </span>
             <!-- Word and Character Counter -->
-            <div class="flex justify-between items-center mt-1.5 px-1 text-xs text-slate-400 dark:text-slate-500 font-semibold select-none">
+            <div class="flex justify-between items-center mt-1.5 px-1 text-xs text-slate-400 font-semibold select-none">
               <span id="bio-word-count">0 words</span>
               <span id="bio-char-count">0 / 280 characters</span>
             </div>
           </label>
         </div>
 
-        <div class="rounded-[26px] border border-slate-200/70 bg-white/62 p-5 dark:border-slate-800 dark:bg-slate-900/50">
+        <div class="rounded-[28px] border border-slate-200 bg-slate-50/70 p-5 sm:p-6 shadow-xs">
           <div class="flex items-center justify-between mb-4">
             <div>
-              <h2 class="text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">Custom Links</h2>
-              <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Add up to 3 personal links (e.g. Portfolio, GitHub)</p>
+              <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Custom Links</h2>
+              <p class="text-xs text-slate-400 mt-0.5">Add up to 3 personal links (e.g. Portfolio, GitHub)</p>
             </div>
-            <button id="add-link-btn" type="button" class="inline-flex items-center gap-1.5 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary px-3.5 py-2 text-xs font-bold transition-all disabled:opacity-50 disabled:pointer-events-none active-feedback cursor-pointer">
+            <button id="add-link-btn" type="button" class="inline-flex items-center gap-1.5 rounded-xl bg-blue-50 border border-blue-200/80 hover:bg-blue-100/70 text-blue-600 px-3.5 py-2 text-xs font-bold transition-all disabled:opacity-50 disabled:pointer-events-none cursor-pointer">
               <span class="material-symbols-outlined text-[16px] font-bold">add</span>
               Add Link
             </button>
@@ -201,9 +218,9 @@
           </div>
         </div>
 
-        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p id="profile-status" class="min-h-5 text-sm font-bold text-slate-500 dark:text-slate-400"></p>
-          <button id="save-profile" type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60 cursor-pointer">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between pt-2">
+          <p id="profile-status" class="min-h-5 text-sm font-bold text-slate-500"></p>
+          <button id="save-profile" type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold px-8 py-3.5 text-sm shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer">
             <span class="material-symbols-outlined text-[19px]">save</span>
             Save Profile
           </button>

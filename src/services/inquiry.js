@@ -109,19 +109,84 @@ export async function getAllInquiries() {
 }
 
 /**
- * Get a single inquiry by ID (admin only).
+ * Get a single inquiry by ID or Lead ID.
  */
 export async function getInquiryById(id) {
-  return prisma.inquiry.findUnique({ where: { id } });
+  return prisma.inquiry.findFirst({
+    where: {
+      OR: [
+        { id },
+        { leadId: id },
+        { leadId: id.replace(/^LEAD-/i, '') },
+      ],
+    },
+  });
 }
 
 /**
  * Update inquiry status (admin only).
  */
 export async function updateInquiryStatus(id, status) {
+  const existing = await getInquiryById(id);
+  if (!existing) throw new Error('Inquiry not found');
   return prisma.inquiry.update({
-    where: { id },
-    data:  { status },
+    where: { id: existing.id },
+    data:  { status, updatedAt: new Date() },
+  });
+}
+
+/**
+ * Update financial & CRM details (admin only).
+ */
+export async function updateInquiryFinancials(id, { contractAmount, addPayment, adminNotes, replyNotes, status }) {
+  const existing = await getInquiryById(id);
+  if (!existing) {
+    const err = new Error('Inquiry not found');
+    err.statusCode = 404;
+    throw err;
+  }
+
+  let newContractAmount = contractAmount !== undefined ? Number(contractAmount) : (existing.contractAmount || 0);
+  let newPaidAmount = existing.paidAmount || 0;
+  let history = Array.isArray(existing.paymentHistory) ? existing.paymentHistory : [];
+
+  if (addPayment && Number(addPayment.amount) > 0) {
+    const amt = Number(addPayment.amount);
+    newPaidAmount += amt;
+    history.push({
+      amount: amt,
+      mode: addPayment.mode || 'UPI / Transfer',
+      txnId: addPayment.txnId || `TXN-${Date.now()}`,
+      note: addPayment.note || 'Payment recorded',
+      date: new Date().toISOString()
+    });
+  }
+
+  let paymentStatus = 'UNPAID';
+  if (newPaidAmount > 0 && newPaidAmount < newContractAmount) {
+    paymentStatus = 'PARTIALLY_PAID';
+  } else if (newPaidAmount >= newContractAmount && newContractAmount > 0) {
+    paymentStatus = 'FULLY_PAID';
+  }
+
+  const updateData = {
+    contractAmount: newContractAmount,
+    paidAmount: newPaidAmount,
+    paymentStatus,
+    paymentHistory: history,
+  };
+
+  if (adminNotes !== undefined) updateData.adminNotes = adminNotes;
+  if (replyNotes !== undefined) {
+    updateData.replyNotes = replyNotes;
+    updateData.repliedAt = new Date();
+    if (!status) updateData.status = 'CONTACTED';
+  }
+  if (status) updateData.status = status;
+
+  return prisma.inquiry.update({
+    where: { id: existing.id },
+    data: updateData,
   });
 }
 
@@ -129,5 +194,7 @@ export async function updateInquiryStatus(id, status) {
  * Delete an inquiry (admin only).
  */
 export async function deleteInquiry(id) {
-  return prisma.inquiry.delete({ where: { id } });
+  const existing = await getInquiryById(id);
+  if (!existing) throw new Error('Inquiry not found');
+  return prisma.inquiry.delete({ where: { id: existing.id } });
 }

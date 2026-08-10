@@ -1,8 +1,17 @@
 import Fastify from 'fastify';
+import fastifyJwt from '@fastify/jwt';
+import fastifyStatic from '@fastify/static';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { ZodError } from 'zod';
 import { env } from './config/env.js';
 import { registerSecurityPlugins } from './plugins/security.js';
 import { inquiryRoutes } from './routes/inquiries.js';
+import { authRoutes } from './routes/auth.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.join(__dirname, '..');
 
 export function buildApp() {
   const app = Fastify({
@@ -27,6 +36,17 @@ export function buildApp() {
   /* ── Security plugins ─────────────────────────────────────────────── */
   app.register(registerSecurityPlugins);
 
+  /* ── Static Files Plugin ───────────────────────────────────────────── */
+  app.register(fastifyStatic, {
+    root: rootDir,
+    prefix: '/',
+  });
+
+  /* ── JWT Authentication Plugin ────────────────────────────────────── */
+  app.register(fastifyJwt, {
+    secret: process.env.JWT_SECRET || 'super-secret-jwt-key-change-in-production-12345',
+  });
+
   /* ── Health check ─────────────────────────────────────────────────── */
   app.get('/health', async () => ({
     status:    'ok',
@@ -36,6 +56,7 @@ export function buildApp() {
 
   /* ── API Routes ───────────────────────────────────────────────────── */
   app.register(inquiryRoutes);
+  app.register(authRoutes);
 
   /* ── Global error handler ─────────────────────────────────────────── */
   app.setErrorHandler((error, request, reply) => {

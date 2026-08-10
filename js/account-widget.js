@@ -237,6 +237,76 @@
     }
   }
 
+  function syncHeaderNavbarAuthBtn() {
+    const navBtn = document.getElementById('nav-header-auth-btn');
+    if (!navBtn) return;
+
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const userName = localStorage.getItem('userName') || 'User';
+    const userEmail = localStorage.getItem('userEmail') || '';
+    const userPicture = localStorage.getItem('userPicture') || 'assets/algora_logo.png';
+
+    if (isLoggedIn) {
+      const wrapper = document.createElement('div');
+      wrapper.id = 'nav-header-user-wrapper';
+      wrapper.className = 'relative inline-block flex-shrink-0';
+      wrapper.innerHTML = `
+        <button id="nav-header-user-avatar" type="button" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-white/20 hover:border-white/40 hover:ring-2 hover:ring-white/20 transition-all cursor-pointer shadow-sm active:scale-95 flex-shrink-0 p-0" title="Google Account: ${userName}">
+          <img class="w-full h-full object-cover" src="${userPicture}" alt="${userName}">
+        </button>
+        <div id="nav-header-user-dropdown" class="hidden absolute right-0 top-12 w-[270px] rounded-[24px] bg-[#1e1e1e] border border-[#333333] p-4 shadow-2xl text-center z-[9999]" style="font-family: 'Roboto', 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;">
+          <p class="text-[11px] text-gray-400 font-normal mb-3 truncate" style="font-family: 'Roboto', sans-serif !important;">${userEmail}</p>
+          <div class="w-16 h-16 mx-auto mb-2 relative">
+            <img class="w-16 h-16 rounded-full object-cover border-2 border-blue-500 shadow-md" src="${userPicture}" alt="${userName}">
+          </div>
+          <h4 class="text-base font-semibold text-white tracking-tight" style="font-family: 'Google Sans', 'Roboto', sans-serif !important;">${userName}</h4>
+          <p class="text-xs text-gray-400 mt-0.5 mb-4" style="font-family: 'Roboto', sans-serif !important;">Portfolio Account</p>
+          
+          <div class="pt-3 border-t border-[#333333] space-y-2" style="font-family: -apple-system, BlinkMacSystemFont, 'Google Sans', 'Roboto', sans-serif !important; letter-spacing: normal !important;">
+            <a href="profile.html" class="block w-full py-2 px-4 rounded-full border border-gray-700 hover:bg-gray-800 text-xs font-medium text-gray-200 transition-all text-center" style="text-decoration:none; font-family: -apple-system, BlinkMacSystemFont, 'Google Sans', 'Roboto', sans-serif !important; letter-spacing: normal !important; text-transform: none !important;">
+              Edit Profile
+            </a>
+            <button id="nav-user-signout-btn" type="button" class="block w-full py-2 px-4 rounded-full bg-white/10 hover:bg-red-500/20 hover:text-red-400 text-xs font-medium text-white transition-all cursor-pointer text-center" style="font-family: -apple-system, BlinkMacSystemFont, 'Google Sans', 'Roboto', sans-serif !important; letter-spacing: normal !important; text-transform: none !important;">
+              Sign out
+            </button>
+          </div>
+        </div>
+      `;
+
+      navBtn.parentNode.replaceChild(wrapper, navBtn);
+
+      const avatarBtn = document.getElementById('nav-header-user-avatar');
+      const dropdown = document.getElementById('nav-header-user-dropdown');
+      const signoutBtn = document.getElementById('nav-user-signout-btn');
+
+      if (avatarBtn && dropdown) {
+        avatarBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          dropdown.classList.toggle('hidden');
+        });
+        document.addEventListener('click', () => dropdown.classList.add('hidden'));
+      }
+
+      if (signoutBtn) {
+        signoutBtn.addEventListener('click', async () => {
+          if (window.PortfolioAuth && window.PortfolioAuth.signOut) {
+            await window.PortfolioAuth.signOut();
+          }
+          localStorage.removeItem('isLoggedIn');
+          localStorage.removeItem('userName');
+          localStorage.removeItem('userEmail');
+          localStorage.removeItem('userPicture');
+          localStorage.removeItem('portfolio_jwt_token');
+          localStorage.removeItem('portfolio_auth_user');
+          window.location.reload();
+        });
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', syncHeaderNavbarAuthBtn);
+  setTimeout(syncHeaderNavbarAuthBtn, 300);
+
   window.PortfolioAuth.onAuthState(({ user, profile }) => {
     const photo = window.PortfolioAuth.getAvatar(profile, user);
     avatar.src = photo;
@@ -253,5 +323,6 @@
     }
 
     syncExistingProjectSidebar(user, profile);
+    syncHeaderNavbarAuthBtn();
   });
 })();
