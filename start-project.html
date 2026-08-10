@@ -617,22 +617,38 @@
                       Submitting…`;
                 }
 
+                const formData = new FormData(inquiryForm);
+
+                const clientName = (formData.get('name') || '').trim();
+                const clientEmail = (formData.get('email') || '').trim();
+                const clientService = (formData.get('service') || '').trim();
+                const clientProjectType = (formData.get('project-type') || formData.get('projectType') || '').trim();
+                const clientMessage = (formData.get('message') || formData.get('description') || '').trim();
+
+                // Strict Form Validation for Required (*) Fields
+                if (!clientName || !clientEmail || !clientService || !clientProjectType || !clientMessage) {
+                    alert('Please fill in all required (*) fields before submitting your project inquiry.');
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Submit Project';
+                    }
+                    return;
+                }
+
                 const generatedLeadId = Date.now().toString();
                 sessionStorage.setItem('inquiryLeadId', generatedLeadId);
-
-                const formData = new FormData(inquiryForm);
                 formData.append('Reference_ID', generatedLeadId);
 
                 const dataObj = {
                     leadId: generatedLeadId,
-                    name: formData.get('name') || '',
-                    email: formData.get('email') || '',
-                    company: formData.get('company') || '',
-                    service: formData.get('service') || '',
-                    projectType: formData.get('projectType') || '',
-                    budget: formData.get('budget') || '',
-                    timeline: formData.get('timeline') || '',
-                    description: formData.get('description') || '',
+                    name: clientName,
+                    email: clientEmail,
+                    company: (formData.get('company') || '').trim(),
+                    service: clientService,
+                    projectType: clientProjectType,
+                    budget: (formData.get('budget') || '').trim(),
+                    timeline: (formData.get('timeline') || '').trim(),
+                    description: clientMessage,
                     contractAmount: 0,
                     paidAmount: 0,
                     paymentStatus: 'UNPAID',
@@ -655,7 +671,7 @@
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            name: generatedLeadId,
+                            name: `ALGORA_LEAD_${generatedLeadId}`,
                             data: dataObj
                         })
                     });
