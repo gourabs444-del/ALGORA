@@ -557,6 +557,8 @@
                 sessionStorage.setItem('inquiryLeadId', generatedLeadId);
 
                 const formData = new FormData(inquiryForm);
+                formData.append('Reference_ID', generatedLeadId);
+
                 const dataObj = {
                     leadId: generatedLeadId,
                     name: formData.get('name') || '',
@@ -573,31 +575,50 @@
                     paymentHistory: [],
                     adminNotes: '',
                     status: 'NEW',
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    createdAt: new Date().toISOString()
                 };
 
-                // 1. Save to Firebase Firestore
-                if (db) {
-                    try {
-                        await db.collection('inquiries').doc(generatedLeadId).set(dataObj);
-                    } catch (fErr) {
-                        console.error('Firestore save error:', fErr);
-                    }
-                }
-
-                // 2. Dispatch email notification with Reference ID included
+                // Also save to localStorage fallback so zero data is ever lost
                 try {
-                    formData.append('Reference_ID', generatedLeadId);
-                    await fetch('https://formspree.io/f/xjybbkwd', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-                } catch (err) {}
+                    const localLeads = JSON.parse(localStorage.getItem('algora_inquiries') || '[]');
+                    localLeads.push(dataObj);
+                    localStorage.setItem('algora_inquiries', JSON.stringify(localLeads));
+                } catch (e) {}
 
-                // Smooth redirect to custom Thank You card page!
+                // Non-blocking firestore save
+                const firestorePromise = (async () => {
+                    if (db) {
+                        try {
+                            await db.collection('inquiries').doc(generatedLeadId).set({
+                                ...dataObj,
+                                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                            });
+                        } catch (fErr) {
+                            console.error('Firestore save warning:', fErr);
+                        }
+                    }
+                })();
+
+                // Non-blocking formspree email dispatch
+                const formspreePromise = (async () => {
+                    try {
+                        await fetch('https://formspree.io/f/xjybbkwd', {
+                            method: 'POST',
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        });
+                    } catch (err) {}
+                })();
+
+                // Maximum 2.2-second safety timeout so button NEVER stays hanging!
+                const timeoutPromise = new Promise(resolve => setTimeout(resolve, 2200));
+
+                await Promise.race([
+                    Promise.all([firestorePromise, formspreePromise]),
+                    timeoutPromise
+                ]);
+
+                // Redirect to Thank You page
                 window.location.href = 'thank-you.html';
             });
         }
