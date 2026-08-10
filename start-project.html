@@ -524,18 +524,29 @@
         });
     }
 
+    function getFirestoreDb() {
+        try {
+            const cfg = window.firebaseConfig || {
+                apiKey: "AIzaSyAZPGt_a9qDr36MtZl10l8t2cJ1pXngyyM",
+                authDomain: "portfolio-5141f.firebaseapp.com",
+                projectId: "portfolio-5141f",
+                storageBucket: "portfolio-5141f.firebasestorage.app",
+                messagingSenderId: "726171689300",
+                appId: "1:726171689300:web:70a4f6eed905e2899e28c1",
+                measurementId: "G-NX74FS2FBG"
+            };
+            if (!firebase.apps.length) {
+                firebase.initializeApp(cfg);
+            }
+            return firebase.firestore();
+        } catch (e) {
+            console.error('Firestore init error:', e);
+            return null;
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         setBudgetCurrency('INR');
-
-        let db;
-        try {
-            if (!firebase.apps.length) {
-                firebase.initializeApp(window.firebaseConfig);
-            }
-            db = firebase.firestore();
-        } catch (err) {
-            console.error('Firebase init error:', err);
-        }
 
         const inquiryForm = document.getElementById('project-inquiry-form');
         if (inquiryForm) {
@@ -587,9 +598,10 @@
 
                 // 1. Save to Firebase Firestore (Awaited with 3s timeout)
                 const firestoreSave = new Promise(async (resolve) => {
-                    if (db) {
+                    const dbInstance = getFirestoreDb();
+                    if (dbInstance) {
                         try {
-                            await db.collection('inquiries').doc(generatedLeadId).set({
+                            await dbInstance.collection('inquiries').doc(generatedLeadId).set({
                                 ...dataObj,
                                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
                             });
