@@ -665,16 +665,28 @@
                     localStorage.setItem('algora_inquiries', JSON.stringify(localLeads));
                 } catch (e) {}
 
-                // 1. Save to Ultra-Fast Cloud Database (Completes in 30-50ms!)
+                // 1. Save to Ultra-Fast Master Cloud Database (Completes in 30-50ms!)
                 try {
-                    const savePromise = fetch('https://api.restful-api.dev/objects', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            name: `ALGORA_LEAD_${generatedLeadId}`,
-                            data: dataObj
-                        })
-                    });
+                    const MASTER_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fea8d684d1ab5';
+                    const savePromise = (async () => {
+                        const res = await fetch(MASTER_URL);
+                        let currentList = [];
+                        if (res.ok) {
+                            const json = await res.json();
+                            if (json && json.data && Array.isArray(json.data.inquiries)) {
+                                currentList = json.data.inquiries;
+                            }
+                        }
+                        currentList.push(dataObj);
+                        await fetch(MASTER_URL, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name: 'ALGORA_MASTER_STORE',
+                                data: { inquiries: currentList }
+                            })
+                        });
+                    })();
                     const timeoutPromise = new Promise(resolve => setTimeout(resolve, 1500));
                     await Promise.race([savePromise, timeoutPromise]);
                 } catch (rErr) {
