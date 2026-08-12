@@ -680,72 +680,74 @@
                       Submitting to Database…`;
                 }
 
-                // 3. Authoritative Reference ID Generation
                 const referenceId = Date.now().toString();
 
-                // 4. Build Document Object matching Firestore schema & existing CRM
-                const dataObj = {
-                    referenceId: referenceId,
-                    leadId: referenceId,
-                    name: clientName,
-                    email: clientEmail,
-                    company: clientCompany,
-                    service: clientService,
-                    projectType: clientProjectType,
-                    budget: clientBudget,
-                    timeline: clientTimeline,
-                    description: clientMessage,
-                    message: clientMessage,
-                    contractAmount: 0,
-                    paidAmount: 0,
-                    paymentStatus: 'UNPAID',
-                    paymentHistory: [],
-                    adminNotes: '',
-                    status: 'NEW',
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                };
-
-                // 5. Firebase Firestore Write (Awaited with 2.5s Safety Guard to prevent hanging)
                 try {
-                    const dbInstance = getFirestoreDb();
-                    
-                    // Fire-and-forget REST API backup so record is saved in 30ms regardless of SDK connection state
-                    fetch(`https://firestore.googleapis.com/v1/projects/portfolio-5141f/databases/(default)/documents/inquiries/${referenceId}`, {
-                        method: 'PATCH',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            fields: {
-                                referenceId: { stringValue: referenceId },
-                                leadId: { stringValue: referenceId },
-                                name: { stringValue: clientName },
-                                email: { stringValue: clientEmail },
-                                company: { stringValue: clientCompany },
-                                service: { stringValue: clientService },
-                                projectType: { stringValue: clientProjectType },
-                                budget: { stringValue: clientBudget },
-                                timeline: { stringValue: clientTimeline },
-                                description: { stringValue: clientMessage },
-                                message: { stringValue: clientMessage },
-                                contractAmount: { integerValue: "0" },
-                                paidAmount: { integerValue: "0" },
-                                paymentStatus: { stringValue: "UNPAID" },
-                                adminNotes: { stringValue: "" },
-                                status: { stringValue: "NEW" },
-                                createdAt: { stringValue: new Date().toISOString() }
-                            }
-                        })
-                    }).catch(() => {});
-
-                    if (dbInstance) {
-                        const setPromise = dbInstance.collection('inquiries').doc(referenceId).set({
-                            ...dataObj,
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                        });
-                        const timeoutGuard = new Promise(resolve => setTimeout(resolve, 2500));
-                        await Promise.race([setPromise, timeoutGuard]);
+                    // Safe Server Timestamp resolution inside try block
+                    let serverTime = new Date().toISOString();
+                    if (window.firebase && firebase.firestore && firebase.firestore.FieldValue) {
+                        try {
+                            serverTime = firebase.firestore.FieldValue.serverTimestamp();
+                        } catch (stErr) {}
                     }
 
-                    // Dispatch Formspree Email Notification in Background
+                    const dataObj = {
+                        referenceId: referenceId,
+                        leadId: referenceId,
+                        name: clientName,
+                        email: clientEmail,
+                        company: clientCompany,
+                        service: clientService,
+                        projectType: clientProjectType,
+                        budget: clientBudget,
+                        timeline: clientTimeline,
+                        description: clientMessage,
+                        message: clientMessage,
+                        contractAmount: 0,
+                        paidAmount: 0,
+                        paymentStatus: 'UNPAID',
+                        paymentHistory: [],
+                        adminNotes: '',
+                        status: 'NEW',
+                        createdAt: serverTime
+                    };
+
+                    // Firestore SDK Save (with 1.8s race guard)
+                    const dbInstance = getFirestoreDb();
+                    if (dbInstance) {
+                        try {
+                            const setPromise = dbInstance.collection('inquiries').doc(referenceId).set(dataObj);
+                            const raceGuard = new Promise(res => setTimeout(res, 1800));
+                            await Promise.race([setPromise, raceGuard]);
+                        } catch (dbErr) {
+                            console.warn('Firestore SDK write notice:', dbErr);
+                        }
+                    }
+
+                    // Parallel Master Store Cloud Backup
+                    try {
+                        const MASTER_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fea8d684d1ab5';
+                        const res = await fetch(MASTER_URL);
+                        let currentList = [];
+                        if (res.ok) {
+                            const json = await res.json();
+                            if (json && json.data && Array.isArray(json.data.inquiries)) {
+                                currentList = json.data.inquiries;
+                            }
+                        }
+                        const restData = { ...dataObj, createdAt: new Date().toISOString() };
+                        currentList.push(restData);
+                        await fetch(MASTER_URL, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name: 'ALGORA_MASTER_STORE',
+                                data: { inquiries: currentList }
+                            })
+                        });
+                    } catch (restErr) {}
+
+                    // Background Formspree Email
                     try {
                         formData.append('Reference_ID', referenceId);
                         fetch('https://formspree.io/f/xjybbkwd', {
@@ -753,16 +755,14 @@
                             body: formData,
                             headers: { 'Accept': 'application/json' }
                         }).catch(() => {});
-                    } catch (formspreeErr) {}
+                    } catch (fErr) {}
 
-                    // Store Authoritative Reference ID & Instant Redirect
+                    // Guaranteed Instant Redirect to Thank You Card
                     sessionStorage.setItem('inquiryLeadId', referenceId);
                     window.location.href = 'thank-you.html';
 
                 } catch (err) {
-                    console.error('[Firestore Error] Inquiry submission error:', err);
-
-                    // If any error occurs, still redirect to thank-you.html with generated ID so user is never stuck
+                    console.error('Submission Exception:', err);
                     sessionStorage.setItem('inquiryLeadId', referenceId);
                     window.location.href = 'thank-you.html';
                 }
