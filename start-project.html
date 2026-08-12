@@ -55,8 +55,8 @@
         stroke-dashoffset: 82;
         transform: rotate(0deg);
       }
-      60% {
-        stroke-dashoffset: 18;
+      50% {
+        stroke-dashoffset: 35;
       }
       100% {
         stroke-dashoffset: 0;
@@ -67,36 +67,36 @@
     @keyframes proButtonPulse {
       0% {
         box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.8), 0 12px 28px -6px rgba(37, 99, 235, 0.5);
-        transform: scale(0.95);
+        transform: scale(0.97);
       }
-      40% {
-        box-shadow: 0 0 0 20px rgba(59, 130, 246, 0), 0 22px 45px -4px rgba(37, 99, 235, 0.9);
-        transform: scale(1.03);
+      45% {
+        box-shadow: 0 0 0 24px rgba(59, 130, 246, 0), 0 20px 40px -4px rgba(37, 99, 235, 0.7);
+        transform: scale(1.015);
       }
       100% {
-        box-shadow: 0 0 35px rgba(59, 130, 246, 0.7), 0 16px 36px -4px rgba(37, 99, 235, 0.75);
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 16px 36px -4px rgba(37, 99, 235, 0.6);
         transform: scale(1);
       }
     }
 
     @keyframes proSparkleOrbit {
-      0% { transform: rotate(0deg) translateX(13px) rotate(0deg); opacity: 1; }
+      0% { transform: rotate(0deg) translateX(13px) rotate(0deg); opacity: 0.9; }
       100% { transform: rotate(360deg) translateX(13px) rotate(-360deg); opacity: 1; }
     }
 
     .watery-fill-circle {
       stroke-dasharray: 82;
       stroke-dashoffset: 82;
-      animation: wateryRingFill 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: wateryRingFill 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       transform-origin: center;
     }
 
     .pro-click-active {
-      animation: proButtonPulse 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+      animation: proButtonPulse 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
     }
 
     .sparkle-orbit {
-      animation: proSparkleOrbit 0.65s linear infinite;
+      animation: proSparkleOrbit 1.35s cubic-bezier(0.22, 1, 0.36, 1) infinite;
     }
 
     .form-input-glass {
@@ -845,8 +845,8 @@
                         }).catch(() => {});
                     } catch (fErr) {}
 
-                    // Await Master Store & REST write completion (max 600ms) for guaranteed persistence
-                    const timeoutPromise = new Promise(res => setTimeout(res, 600));
+                    // Await Master Store & REST write completion (1350ms fluid animation window) for guaranteed persistence
+                    const timeoutPromise = new Promise(res => setTimeout(res, 1350));
                     await Promise.race([p3, timeoutPromise]);
 
                     // Instant Smooth Redirect
