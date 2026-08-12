@@ -757,7 +757,7 @@
                     }).catch(() => {});
 
                     const p3 = (async () => {
-                        const MASTER_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fea8d684d1ab5';
+                        const MASTER_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019ff4d5104b2eb2';
                         const res = await fetch(MASTER_URL, { keepalive: true });
                         let currentList = [];
                         if (res.ok) {
@@ -772,7 +772,7 @@
                             keepalive: true,
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
-                                name: 'ALGORA_MASTER_STORE',
+                                name: 'ALGORA_PRODUCTION_MASTER_STORE',
                                 data: { inquiries: currentList }
                             })
                         });
