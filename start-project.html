@@ -669,22 +669,22 @@
                     return;
                 }
 
-                // 2. Disable Submit Button & Show Loading State
+                // 2. Disable Submit Button & Show Smooth Animated Loading State
                 if (submitBtn) {
                     submitBtn.disabled = true;
                     submitBtn.innerHTML = `
-                      <svg class="animate-spin -ml-1 mr-2 h-4 w-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg class="animate-spin -ml-1 mr-2 h-4 w-4 inline text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                       </svg>
-                      Submitting to Database…`;
+                      Submitting…`;
                 }
 
                 const referenceId = Date.now().toString();
 
                 try {
-                    // Safe Server Timestamp resolution inside try block
-                    let serverTime = new Date().toISOString();
+                    const createdAtISO = new Date().toISOString();
+                    let serverTime = createdAtISO;
                     if (window.firebase && firebase.firestore && firebase.firestore.FieldValue) {
                         try {
                             serverTime = firebase.firestore.FieldValue.serverTimestamp();
@@ -712,20 +712,50 @@
                         createdAt: serverTime
                     };
 
-                    // Firestore SDK Save (with 1.8s race guard)
-                    const dbInstance = getFirestoreDb();
-                    if (dbInstance) {
-                        try {
-                            const setPromise = dbInstance.collection('inquiries').doc(referenceId).set(dataObj);
-                            const raceGuard = new Promise(res => setTimeout(res, 1800));
-                            await Promise.race([setPromise, raceGuard]);
-                        } catch (dbErr) {
-                            console.warn('Firestore SDK write notice:', dbErr);
-                        }
-                    }
+                    const plainObj = { ...dataObj, createdAt: createdAtISO };
 
-                    // Parallel Master Store Cloud Backup
+                    // 1. Instant LocalStorage Save (0ms)
                     try {
+                        const localLeads = JSON.parse(localStorage.getItem('algora_inquiries') || '[]');
+                        localLeads.push(plainObj);
+                        localStorage.setItem('algora_inquiries', JSON.stringify(localLeads));
+                    } catch (e) {}
+
+                    // 2. Parallel Instant Non-blocking Network Saves
+                    const p1 = (async () => {
+                        const dbInstance = getFirestoreDb();
+                        if (dbInstance) {
+                            await dbInstance.collection('inquiries').doc(referenceId).set(dataObj);
+                        }
+                    })().catch(() => {});
+
+                    const p2 = fetch(`https://firestore.googleapis.com/v1/projects/portfolio-5141f/databases/(default)/documents/inquiries/${referenceId}`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fields: {
+                                referenceId: { stringValue: referenceId },
+                                leadId: { stringValue: referenceId },
+                                name: { stringValue: clientName },
+                                email: { stringValue: clientEmail },
+                                company: { stringValue: clientCompany },
+                                service: { stringValue: clientService },
+                                projectType: { stringValue: clientProjectType },
+                                budget: { stringValue: clientBudget },
+                                timeline: { stringValue: clientTimeline },
+                                description: { stringValue: clientMessage },
+                                message: { stringValue: clientMessage },
+                                contractAmount: { integerValue: "0" },
+                                paidAmount: { integerValue: "0" },
+                                paymentStatus: { stringValue: "UNPAID" },
+                                adminNotes: { stringValue: "" },
+                                status: { stringValue: "NEW" },
+                                createdAt: { stringValue: createdAtISO }
+                            }
+                        })
+                    }).catch(() => {});
+
+                    const p3 = (async () => {
                         const MASTER_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fea8d684d1ab5';
                         const res = await fetch(MASTER_URL);
                         let currentList = [];
@@ -735,8 +765,7 @@
                                 currentList = json.data.inquiries;
                             }
                         }
-                        const restData = { ...dataObj, createdAt: new Date().toISOString() };
-                        currentList.push(restData);
+                        currentList.push(plainObj);
                         await fetch(MASTER_URL, {
                             method: 'PUT',
                             headers: { 'Content-Type': 'application/json' },
@@ -745,7 +774,7 @@
                                 data: { inquiries: currentList }
                             })
                         });
-                    } catch (restErr) {}
+                    })().catch(() => {});
 
                     // Background Formspree Email
                     try {
@@ -757,7 +786,11 @@
                         }).catch(() => {});
                     } catch (fErr) {}
 
-                    // Guaranteed Instant Redirect to Thank You Card
+                    // Fast 200ms timeout race guard for smooth transition
+                    const raceGuard = new Promise(res => setTimeout(res, 250));
+                    await Promise.race([Promise.all([p1, p2, p3]), raceGuard]);
+
+                    // Instant Smooth Redirect
                     sessionStorage.setItem('inquiryLeadId', referenceId);
                     window.location.href = 'thank-you.html';
 
