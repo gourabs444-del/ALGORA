@@ -48,6 +48,8 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
     @keyframes spinOneRound {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -672,17 +674,14 @@
                     return;
                 }
 
-                // 2. Disable Submit Button & Trigger 1-Round 360° Circle Spin Animation
+                // 2. Disable Submit Button & Show Smooth Animated Spinner
                 if (submitBtn) {
                     submitBtn.disabled = true;
-                    submitBtn.style.transition = 'all 0.3s ease';
                     submitBtn.innerHTML = `
-                      <span class="inline-block mr-2 text-white" style="animation: spinOneRound 0.65s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
-                        <svg class="w-4 h-4 inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none"></circle>
-                          <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                        </svg>
-                      </span>
+                      <svg class="animate-spin -ml-1 mr-2.5 h-4 w-4 inline text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                      </svg>
                       Submitting…`;
                 }
 
