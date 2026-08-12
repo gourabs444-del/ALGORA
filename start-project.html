@@ -50,17 +50,21 @@
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    @keyframes wateryRingFill {
+    @keyframes iosChargeFill {
       0% {
         stroke-dashoffset: 82;
-        transform: rotate(0deg);
+        opacity: 0.4;
       }
-      50% {
-        stroke-dashoffset: 35;
+      15% {
+        opacity: 1;
+      }
+      90% {
+        stroke-dashoffset: 0;
+        transform: scale(1);
       }
       100% {
         stroke-dashoffset: 0;
-        transform: rotate(360deg);
+        transform: scale(1.08);
       }
     }
 
@@ -74,29 +78,21 @@
         transform: scale(1.015);
       }
       100% {
-        box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 16px 36px -4px rgba(37, 99, 235, 0.6);
+        box-shadow: 0 0 35px rgba(59, 130, 246, 0.6), 0 16px 36px -4px rgba(37, 99, 235, 0.6);
         transform: scale(1);
       }
     }
 
-    @keyframes proSparkleOrbit {
-      0% { transform: rotate(0deg) translateX(13px) rotate(0deg); opacity: 0.9; }
-      100% { transform: rotate(360deg) translateX(13px) rotate(-360deg); opacity: 1; }
-    }
-
-    .watery-fill-circle {
+    .ios-charge-circle {
       stroke-dasharray: 82;
       stroke-dashoffset: 82;
-      animation: wateryRingFill 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: iosChargeFill 1.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       transform-origin: center;
+      filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.95));
     }
 
     .pro-click-active {
-      animation: proButtonPulse 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
-    }
-
-    .sparkle-orbit {
-      animation: proSparkleOrbit 1.35s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+      animation: proButtonPulse 1.25s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
     }
 
     .form-input-glass {
@@ -743,15 +739,13 @@
 
                     setTimeout(() => {
                         submitBtn.innerHTML = `
-                          <div class="relative w-7 h-7 flex items-center justify-center shrink-0 mx-auto">
-                            <svg class="w-7 h-7 transform -rotate-90" viewBox="0 0 32 32">
-                              <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="3" fill="none" class="text-white/20"></circle>
-                              <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round" class="text-white watery-fill-circle"></circle>
+                          <div class="relative w-8 h-8 flex items-center justify-center shrink-0 mx-auto">
+                            <svg class="w-8 h-8 transform -rotate-90" viewBox="0 0 32 32">
+                              <circle cx="16" cy="16" r="13" stroke="rgba(255, 255, 255, 0.2)" stroke-width="3" fill="none"></circle>
+                              <circle cx="16" cy="16" r="13" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" class="ios-charge-circle"></circle>
                             </svg>
-                            <span class="absolute sparkle-orbit text-[10px] text-cyan-300 pointer-events-none">✨</span>
-                            <span class="absolute text-[11px] text-white font-black animate-pulse select-none">✓</span>
                           </div>`;
-                    }, 220);
+                    }, 200);
                 }
 
                 const referenceId = Date.now().toString();
