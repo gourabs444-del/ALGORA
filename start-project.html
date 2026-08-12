@@ -621,89 +621,134 @@
 
                 const clientName = (formData.get('name') || '').trim();
                 const clientEmail = (formData.get('email') || '').trim();
+                const clientCompany = (formData.get('company') || '').trim();
                 const clientService = (formData.get('service') || '').trim();
                 const clientProjectType = (formData.get('project-type') || formData.get('projectType') || '').trim();
+                const clientBudget = (formData.get('budget') || '').trim();
+                const clientTimeline = (formData.get('timeline') || '').trim();
                 const clientMessage = (formData.get('message') || formData.get('description') || '').trim();
 
-                // Strict Form Validation for Required (*) Fields
-                if (!clientName || !clientEmail || !clientService || !clientProjectType || !clientMessage) {
-                    alert('Please fill in all required (*) fields before submitting your project inquiry.');
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = 'Submit Project';
+                const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Submit Project';
+
+                // Helper: Display user-facing error message banner
+                const showFormError = (msg) => {
+                    let errEl = document.getElementById('firestore-error-alert');
+                    if (!errEl) {
+                        errEl = document.createElement('div');
+                        errEl.id = 'firestore-error-alert';
+                        errEl.className = 'p-4 mb-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-bold flex items-center gap-2';
+                        inquiryForm.prepend(errEl);
                     }
+                    errEl.innerHTML = `<span class="material-symbols-outlined text-[18px]">error</span> ${escapeHtml(msg)}`;
+                    errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                };
+
+                // Clear previous errors
+                const existingErr = document.getElementById('firestore-error-alert');
+                if (existingErr) existingErr.remove();
+
+                // 1. Production Input Validation
+                if (!clientName || !clientEmail || !clientService || !clientProjectType || !clientMessage) {
+                    showFormError('Please fill in all required (*) fields before submitting your project inquiry.');
                     return;
                 }
 
-                const generatedLeadId = Date.now().toString();
-                sessionStorage.setItem('inquiryLeadId', generatedLeadId);
-                formData.append('Reference_ID', generatedLeadId);
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(clientEmail)) {
+                    showFormError('Please enter a valid email address.');
+                    return;
+                }
 
+                if (clientName.length > 100 || clientEmail.length > 100 || clientCompany.length > 100) {
+                    showFormError('Name, email, or company name exceeds maximum allowed length (100 characters).');
+                    return;
+                }
+
+                if (clientMessage.length > 5000) {
+                    showFormError('Project description is too long (maximum 5000 characters).');
+                    return;
+                }
+
+                // 2. Disable Submit Button & Show Loading State
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = `
+                      <svg class="animate-spin -ml-1 mr-2 h-4 w-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                      </svg>
+                      Submitting to Database…`;
+                }
+
+                // 3. Authoritative Reference ID Generation
+                const referenceId = Date.now().toString();
+
+                // 4. Build Document Object matching Firestore schema & existing CRM
                 const dataObj = {
-                    leadId: generatedLeadId,
+                    referenceId: referenceId,
+                    leadId: referenceId,
                     name: clientName,
                     email: clientEmail,
-                    company: (formData.get('company') || '').trim(),
+                    company: clientCompany,
                     service: clientService,
                     projectType: clientProjectType,
-                    budget: (formData.get('budget') || '').trim(),
-                    timeline: (formData.get('timeline') || '').trim(),
+                    budget: clientBudget,
+                    timeline: clientTimeline,
                     description: clientMessage,
+                    message: clientMessage,
                     contractAmount: 0,
                     paidAmount: 0,
                     paymentStatus: 'UNPAID',
                     paymentHistory: [],
                     adminNotes: '',
                     status: 'NEW',
-                    createdAt: new Date().toISOString()
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 };
 
-                // Also save to localStorage fallback so zero data is ever lost
+                // 5. Firebase Firestore Write (Awaited with NO Silent Error Swallowing)
                 try {
-                    const localLeads = JSON.parse(localStorage.getItem('algora_inquiries') || '[]');
-                    localLeads.push(dataObj);
-                    localStorage.setItem('algora_inquiries', JSON.stringify(localLeads));
-                } catch (e) {}
+                    const dbInstance = getFirestoreDb();
+                    if (!dbInstance) {
+                        throw new Error('Firebase Firestore service unavailable. Please refresh and try again.');
+                    }
 
-                // 1. Save to Ultra-Fast Master Cloud Database (Completes in 30-50ms!)
-                try {
-                    const MASTER_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fea8d684d1ab5';
-                    const savePromise = (async () => {
-                        const res = await fetch(MASTER_URL);
-                        let currentList = [];
-                        if (res.ok) {
-                            const json = await res.json();
-                            if (json && json.data && Array.isArray(json.data.inquiries)) {
-                                currentList = json.data.inquiries;
-                            }
-                        }
-                        currentList.push(dataObj);
-                        await fetch(MASTER_URL, {
-                            method: 'PUT',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                name: 'ALGORA_MASTER_STORE',
-                                data: { inquiries: currentList }
-                            })
-                        });
-                    })();
-                    const timeoutPromise = new Promise(resolve => setTimeout(resolve, 1500));
-                    await Promise.race([savePromise, timeoutPromise]);
-                } catch (rErr) {
-                    console.error('Cloud Save Warning:', rErr);
+                    // Save directly to Firestore collection "inquiries" with document ID = referenceId
+                    await dbInstance.collection('inquiries').doc(referenceId).set(dataObj);
+
+                    console.log(`[Firestore Success] Created document inquiries/${referenceId}`);
+
+                    // 6. Optional Email Notification Dispatch (Non-blocking background call)
+                    try {
+                        formData.append('Reference_ID', referenceId);
+                        fetch('https://formspree.io/f/xjybbkwd', {
+                            method: 'POST',
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        }).catch(() => {});
+                    } catch (formspreeErr) {}
+
+                    // 7. Store Authoritative Reference ID & Redirect ONLY on Verified Firestore Write Success
+                    sessionStorage.setItem('inquiryLeadId', referenceId);
+                    window.location.href = 'thank-you.html';
+
+                } catch (err) {
+                    console.error('[Firestore Error] Inquiry submission failed:', err);
+
+                    // Re-enable Submit Button & Show Clear Error Banner (Do NOT redirect to thank-you page!)
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnHtml;
+                    }
+
+                    showFormError(`Database Submission Failed: ${err.message || 'Unable to store inquiry'}. Please check your connection and try again.`);
                 }
+            });
+        }
 
-                // 2. Dispatch email notification in background
-                try {
-                    fetch('https://formspree.io/f/xjybbkwd', {
-                        method: 'POST',
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
-                    }).catch(() => {});
-                } catch (err) {}
-
-                // Smooth redirect to custom Thank You card page!
-                window.location.href = 'thank-you.html';
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
             });
         }
     });
