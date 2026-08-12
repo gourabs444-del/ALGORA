@@ -721,7 +721,7 @@
                         localStorage.setItem('algora_inquiries', JSON.stringify(localLeads));
                     } catch (e) {}
 
-                    // 2. Parallel Instant Non-blocking Network Saves
+                    // 2. Parallel Network Saves with keepalive: true (Guarantees completion across page redirects)
                     const p1 = (async () => {
                         const dbInstance = getFirestoreDb();
                         if (dbInstance) {
@@ -731,6 +731,7 @@
 
                     const p2 = fetch(`https://firestore.googleapis.com/v1/projects/portfolio-5141f/databases/(default)/documents/inquiries/${referenceId}`, {
                         method: 'PATCH',
+                        keepalive: true,
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             fields: {
@@ -757,7 +758,7 @@
 
                     const p3 = (async () => {
                         const MASTER_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fea8d684d1ab5';
-                        const res = await fetch(MASTER_URL);
+                        const res = await fetch(MASTER_URL, { keepalive: true });
                         let currentList = [];
                         if (res.ok) {
                             const json = await res.json();
@@ -768,6 +769,7 @@
                         currentList.push(plainObj);
                         await fetch(MASTER_URL, {
                             method: 'PUT',
+                            keepalive: true,
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
                                 name: 'ALGORA_MASTER_STORE',
@@ -781,14 +783,15 @@
                         formData.append('Reference_ID', referenceId);
                         fetch('https://formspree.io/f/xjybbkwd', {
                             method: 'POST',
+                            keepalive: true,
                             body: formData,
                             headers: { 'Accept': 'application/json' }
                         }).catch(() => {});
                     } catch (fErr) {}
 
-                    // Fast 200ms timeout race guard for smooth transition
-                    const raceGuard = new Promise(res => setTimeout(res, 250));
-                    await Promise.race([Promise.all([p1, p2, p3]), raceGuard]);
+                    // Await Master Store & REST write completion (max 600ms) for guaranteed persistence
+                    const timeoutPromise = new Promise(res => setTimeout(res, 600));
+                    await Promise.race([p3, timeoutPromise]);
 
                     // Instant Smooth Redirect
                     sessionStorage.setItem('inquiryLeadId', referenceId);
