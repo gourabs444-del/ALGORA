@@ -360,10 +360,10 @@
 <label class="floating-label" for="project-details">Tell us more about your project *</label>
 </div>
 <!-- Submit Button -->
-<div class="pt-4">
-<button id="submit-project-btn" class="w-full sm:w-auto inline-flex items-center justify-center px-9 py-4 border border-blue-500/30 text-base font-extrabold rounded-xl text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 shadow-[0_12px_28px_-6px_rgba(37,99,235,0.5)] hover:shadow-[0_16px_36px_-4px_rgba(37,99,235,0.7)] hover:scale-[1.02] active:scale-[0.98] uppercase tracking-wider cursor-pointer disabled:opacity-90 disabled:cursor-wait" type="submit">
-                Submit Project
-              </button>
+<div class="pt-4 flex items-center">
+<button id="submit-project-btn" class="w-full sm:w-auto inline-flex items-center justify-center h-14 px-9 border border-blue-500/30 text-base font-extrabold rounded-2xl text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_12px_28px_-6px_rgba(37,99,235,0.5)] hover:shadow-[0_16px_36px_-4px_rgba(37,99,235,0.7)] hover:scale-[1.02] active:scale-[0.98] uppercase tracking-wider cursor-pointer overflow-hidden disabled:opacity-100 disabled:cursor-wait" type="submit">
+  <span id="btn-text-label" class="inline-block transition-all duration-300 transform">Submit Project</span>
+</button>
 </div>
 </form>
 </div>
@@ -718,22 +718,40 @@
                     return;
                 }
 
-                // 2. Disable Submit Button & Trigger Pro Shockwave Pulse & Orbiting Sparkle Animation
+                // 2. Disable Submit Button & Morph Text into Circular Watery Progress Loader
                 if (submitBtn) {
                     submitBtn.disabled = true;
-                    submitBtn.classList.add('pro-click-active');
-                    submitBtn.innerHTML = `
-                      <span class="inline-flex items-center gap-3">
-                        <span class="relative w-7 h-7 flex items-center justify-center shrink-0">
-                          <svg class="w-7 h-7 transform -rotate-90" viewBox="0 0 32 32">
-                            <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="3" fill="none" class="text-white/20"></circle>
-                            <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round" class="text-white watery-fill-circle"></circle>
-                          </svg>
-                          <span class="absolute sparkle-orbit text-[10px] text-cyan-300 pointer-events-none">✨</span>
-                          <span class="absolute text-[11px] text-white font-black animate-pulse select-none">✓</span>
-                        </span>
-                        <span class="font-black tracking-widest text-sm uppercase text-white drop-shadow-md">Submitting…</span>
-                      </span>`;
+                    
+                    const label = document.getElementById('btn-text-label');
+                    if (label) {
+                        label.style.opacity = '0';
+                        label.style.transform = 'scale(0.6)';
+                    }
+
+                    // Morph button dimensions into a smooth 56px circular pill
+                    const initialWidth = submitBtn.offsetWidth;
+                    submitBtn.style.width = `${initialWidth}px`;
+                    
+                    requestAnimationFrame(() => {
+                        submitBtn.style.width = '56px';
+                        submitBtn.style.minWidth = '56px';
+                        submitBtn.style.height = '56px';
+                        submitBtn.style.padding = '0';
+                        submitBtn.style.borderRadius = '9999px';
+                        submitBtn.classList.add('shadow-[0_0_40px_rgba(37,99,235,0.85)]', 'pro-click-active');
+                    });
+
+                    setTimeout(() => {
+                        submitBtn.innerHTML = `
+                          <div class="relative w-7 h-7 flex items-center justify-center shrink-0 mx-auto">
+                            <svg class="w-7 h-7 transform -rotate-90" viewBox="0 0 32 32">
+                              <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="3" fill="none" class="text-white/20"></circle>
+                              <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round" class="text-white watery-fill-circle"></circle>
+                            </svg>
+                            <span class="absolute sparkle-orbit text-[10px] text-cyan-300 pointer-events-none">✨</span>
+                            <span class="absolute text-[11px] text-white font-black animate-pulse select-none">✓</span>
+                          </div>`;
+                    }, 220);
                 }
 
                 const referenceId = Date.now().toString();
