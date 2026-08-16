@@ -2615,7 +2615,7 @@
 
                 </div>
 
-                        <!-- Smooth Infinite Morphing Transition JavaScript -->
+                        <!-- Zero-Gap Fluid Liquid Crossfade Transition JavaScript (No Disappearing Blank Gap!) -->
                         <script>
                         (function(){
                             const objects = [
@@ -2625,25 +2625,38 @@
                                 document.getElementById('morph-n8n')
                             ];
                             let current = 0;
-                            setInterval(() => {
-                                // Transition out current
-                                if(objects[current]) {
-                                    objects[current].style.opacity = '0';
-                                    objects[current].style.transform = 'scale(0.75) rotate(-8deg)';
-                                    objects[current].style.pointerEvents = 'none';
+                            // Initialize all slides with zero-gap 1.2s fluid crossfade physics
+                            objects.forEach((obj, i) => {
+                                if(obj) {
+                                    obj.style.transition = 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+                                    if(i !== 0) {
+                                        obj.style.opacity = '0';
+                                        obj.style.transform = 'scale(0.85) translateY(20px)';
+                                        obj.style.pointerEvents = 'none';
+                                    } else {
+                                        obj.style.opacity = '1';
+                                        obj.style.transform = 'scale(1) translateY(0px)';
+                                        obj.style.pointerEvents = 'auto';
+                                    }
                                 }
+                            });
 
+                            setInterval(() => {
+                                const prev = current;
                                 current = (current + 1) % objects.length;
 
-                                // Transition in next with high-quality smooth timing
-                                setTimeout(() => {
-                                    if(objects[current]) {
-                                        objects[current].style.opacity = '1';
-                                        objects[current].style.transform = 'scale(1) rotate(0deg)';
-                                        objects[current].style.pointerEvents = 'auto';
-                                    }
-                                }, 300);
-                            }, 3200);
+                                // Simultaneous Zero-Gap Crossfade Transition (Previous morphs out AS next morphs in!)
+                                if(objects[prev]) {
+                                    objects[prev].style.opacity = '0';
+                                    objects[prev].style.transform = 'scale(0.85) translateY(-20px)';
+                                    objects[prev].style.pointerEvents = 'none';
+                                }
+                                if(objects[current]) {
+                                    objects[current].style.opacity = '1';
+                                    objects[current].style.transform = 'scale(1) translateY(0px)';
+                                    objects[current].style.pointerEvents = 'auto';
+                                }
+                            }, 3500);
                         })();
                         </script>
 
