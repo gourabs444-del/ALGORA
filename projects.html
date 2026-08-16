@@ -2385,28 +2385,28 @@
 
     <!-- Section: Collaboration -->
     <div id="section-collaboration" class="scroll-mt-28 w-full">
-        <!-- AI & Automation Banner (100% Full Edge-to-Edge Screen Width - EXACT SAME TO SAME REFERENCE REPLICATION) -->
-        <div class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[640px] h-screen bg-black overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-2xl transition-all duration-500 flex items-center justify-center p-0">
+        <!-- AI & Automation Banner (100% Full Viewport Edge-to-Edge - EXACT REFERENCE REPLICATION) -->
+        <div class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[720px] sm:h-[780px] bg-black overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-2xl transition-all duration-500">
             
-            <!-- Main 1-to-1 Reference Canvas Container -->
-            <div class="relative w-full h-full max-w-[1440px] mx-auto bg-black flex items-center justify-between p-6 sm:p-12 lg:p-16 overflow-hidden">
+            <!-- 1. Full Viewport Sweeping White Diagonal Sheet (Stretches 100% to right screen edge!) -->
+            <div class="absolute top-0 right-0 w-[58vw] min-w-[500px] h-full bg-[#f3f4f8] rounded-l-[200px] sm:rounded-l-[280px] shadow-2xl z-0 pointer-events-none">
+                <!-- Subtle grid texture inside white sheet -->
+                <div class="absolute inset-0 bg-[radial-gradient(#94a3b8_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-35"></div>
+            </div>
+
+            <!-- 2. Top Right (X) Close Icon Button (Exact match to Ref Image top right X!) -->
+            <div class="absolute top-8 right-10 sm:right-16 z-50 text-slate-700 hover:text-slate-950 cursor-pointer transition-colors">
+                <span class="material-symbols-outlined text-2xl font-bold">close</span>
+            </div>
+
+            <!-- 3. Absolute Content Layout spanning viewport left and right -->
+            <div class="relative z-10 w-full h-full max-w-[1720px] mx-auto px-8 sm:px-16 flex items-center justify-between">
                 
-                <!-- 1. Sweeping Curved White Card Background Sheet (Exact match to Reference Sheet!) -->
-                <div class="absolute top-0 right-0 w-[65%] sm:w-[58%] h-full bg-[#f1f3f8] rounded-l-[160px] sm:rounded-l-[220px] shadow-2xl z-0 transform translate-x-4 sm:translate-x-0">
-                    <!-- Subtle ambient grid/texture inside white sheet -->
-                    <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-40"></div>
-                </div>
-
-                <!-- 2. Top Right (X) Close Icon Button (Exact Match to Ref Image Top Right X!) -->
-                <div class="absolute top-6 right-8 sm:top-8 sm:right-12 z-40 text-slate-800 hover:text-slate-950 cursor-pointer transition-colors">
-                    <span class="material-symbols-outlined text-2xl font-bold">close</span>
-                </div>
-
-                <!-- 3. LEFT SECTION (Black Dark Canvas Area): Quote Text, Positive Title, Tilted Preview Card -->
-                <div class="relative z-20 w-full lg:w-[38%] h-full flex flex-col justify-between py-6 space-y-6">
+                <!-- LEFT SECTION (Black Dark Canvas Area - 35% Width) -->
+                <div class="relative z-20 w-full lg:w-[38%] h-full flex flex-col justify-between py-10">
                     
                     <!-- Quote Text Top Left -->
-                    <div class="space-y-1">
+                    <div class="space-y-1 pt-2">
                         <p class="text-xs sm:text-sm font-['Inter'] text-slate-400 font-normal leading-relaxed tracking-wide">
                             Ask me anything you wanna know.<br>
                             I'll tell you everything I know.
@@ -2414,18 +2414,18 @@
                     </div>
 
                     <!-- Main Positive Title -->
-                    <div class="space-y-1.5 pt-2">
-                        <h3 class="text-4xl sm:text-6xl font-extrabold text-white font-['Outfit'] tracking-tight leading-none">
+                    <div class="space-y-1.5 my-auto">
+                        <h3 class="text-5xl sm:text-7xl font-extrabold text-white font-['Outfit'] tracking-tight leading-none">
                             Positive
                         </h3>
-                        <p class="text-xs sm:text-sm font-mono text-slate-400 font-medium tracking-widest">
+                        <p class="text-xs sm:text-sm font-mono text-slate-400 font-medium tracking-widest uppercase">
                             8 Scenes
                         </p>
                     </div>
 
-                    <!-- Tilted Preview Window Card with (+) Badge & Follow Button (Exact Match to Ref Image Left Card!) -->
-                    <div class="pt-4 relative">
-                        <div class="w-64 sm:w-72 p-4 rounded-3xl bg-white border border-slate-200/90 shadow-[0_20px_45px_rgba(0,0,0,0.35)] transform -rotate-6 hover:rotate-0 transition-transform duration-300 relative group">
+                    <!-- Left Bottom Tilted Card with (+) Badge & Follow Button -->
+                    <div class="pb-4 relative">
+                        <div class="w-64 sm:w-72 p-4 rounded-3xl bg-white border border-slate-200/90 shadow-[0_20px_45px_rgba(0,0,0,0.4)] transform -rotate-6 hover:rotate-0 transition-transform duration-300 relative group">
                             <!-- Top Left (+) Icon Badge -->
                             <div class="absolute -top-3.5 -left-3.5 w-9 h-9 rounded-full bg-black border-2 border-white text-white flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
                                 <span class="material-symbols-outlined text-base font-bold">add</span>
@@ -2436,7 +2436,7 @@
                                 <img src="images/hero_futuristic_robot.jpg" class="w-full h-full object-cover object-top" alt="Card Preview">
                             </div>
 
-                            <!-- FOLLOW Black Pill Button -->
+                            <!-- FOLLOW Black Pill Button & Divstahere -->
                             <div class="flex flex-col items-start gap-1">
                                 <a href="#grid-collaboration" class="px-6 py-2 rounded-full bg-black hover:bg-slate-800 text-white font-mono font-bold text-[11px] tracking-wider uppercase transition-colors shadow-md">
                                     FOLLOW
@@ -2450,53 +2450,42 @@
 
                 </div>
 
-                <!-- 4. CENTER VERTICAL CURVED NODE BRIDGE (01, 02, 03 Chain - Exact Match to Reference Image Bridge!) -->
-                <div class="hidden lg:flex relative z-30 flex-col items-center justify-center space-y-8 px-4">
-                    <!-- Node 01 with Curved Connection Line -->
-                    <div class="relative flex items-center">
+                <!-- 4. CENTER VERTICAL CURVED SNAKE NODE BRIDGE (01, 02, 03 Chain) -->
+                <div class="hidden lg:flex relative z-30 flex-col items-center justify-center space-y-10 px-2 -ml-12">
+                    <div class="relative flex flex-col items-center space-y-8">
+                        <!-- Node 01 -->
                         <div class="w-12 h-12 rounded-full bg-white border-2 border-slate-950 shadow-2xl flex items-center justify-center text-slate-950 font-mono font-bold text-sm hover:scale-110 transition-transform cursor-pointer z-10">
                             01
                         </div>
-                    </div>
-
-                    <!-- Connection Pipe 1 -> 2 -->
-                    <div class="w-1 h-10 bg-slate-300 rounded-full"></div>
-
-                    <!-- Node 02 -->
-                    <div class="relative flex items-center">
+                        <div class="w-1 h-12 bg-slate-300 rounded-full"></div>
+                        <!-- Node 02 -->
                         <div class="w-12 h-12 rounded-full bg-white border-2 border-slate-950 shadow-2xl flex items-center justify-center text-slate-950 font-mono font-bold text-sm hover:scale-110 transition-transform cursor-pointer z-10">
                             02
                         </div>
-                    </div>
-
-                    <!-- Connection Pipe 2 -> 3 -->
-                    <div class="w-1 h-10 bg-slate-300 rounded-full"></div>
-
-                    <!-- Node 03 -->
-                    <div class="relative flex items-center">
+                        <div class="w-1 h-12 bg-slate-300 rounded-full"></div>
+                        <!-- Node 03 -->
                         <div class="w-12 h-12 rounded-full bg-white border-2 border-slate-950 shadow-2xl flex items-center justify-center text-slate-950 font-mono font-bold text-sm hover:scale-110 transition-transform cursor-pointer z-10">
                             03
                         </div>
                     </div>
                 </div>
 
-                <!-- 5. RIGHT SECTION (White Sheet Area): Character Artwork, Yao Guang Watermark, Graph Line Overlay -->
-                <div class="relative z-20 w-full lg:w-[50%] h-full flex flex-col justify-between items-center py-6 pl-4">
+                <!-- 5. RIGHT SECTION (White Sheet Area - 55% Width) -->
+                <div class="relative z-20 w-full lg:w-[54%] h-full flex flex-col justify-between items-end py-10 pr-4 sm:pr-8">
                     
-                    <!-- Giant Watermark Text (Exact match to "Yao Guang" watermark in Ref Image!) -->
-                    <div class="absolute top-10 right-8 font-['Outfit'] font-black text-6xl sm:text-8xl text-slate-300/50 tracking-tight leading-none pointer-events-none select-none uppercase z-0 text-right">
+                    <!-- Giant Watermark Text (Yao Guang) -->
+                    <div class="absolute top-12 right-12 font-['Outfit'] font-black text-7xl sm:text-8xl lg:text-[100px] text-slate-300/45 tracking-tight leading-none pointer-events-none select-none uppercase z-0 text-right">
                         Yao<br>Guang
                     </div>
 
-                    <!-- Center Hero Character Artwork Standing Container -->
-                    <div class="relative z-10 w-full max-w-md h-[400px] sm:h-[460px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white group my-auto">
-                        <img src="images/hero_futuristic_robot.jpg" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" alt="Character Artwork">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <!-- Center Hero Character Standing Artwork Container (Seamless Fill) -->
+                    <div class="relative z-10 w-full max-w-lg h-[460px] sm:h-[520px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white group my-auto">
+                        <img src="images/hero_futuristic_robot.jpg" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" alt="Robot Character Artwork">
                     </div>
 
-                    <!-- Bottom Right Polyline UI Graph Line Overlay (Exact Match to "A. Good, B. Complex, C. Simple" Graph!) -->
-                    <div class="relative z-20 w-full max-w-sm p-4 rounded-2xl bg-black/90 border border-slate-800 shadow-2xl text-white space-y-2 mt-auto">
-                        <div class="flex items-center justify-between text-[11px] font-mono font-bold text-slate-200">
+                    <!-- Bottom Right Polyline UI Graph Overlay (A. Good, B. Complex, C. Simple) -->
+                    <div class="relative z-20 w-full max-w-sm p-4.5 rounded-2xl bg-black/90 border border-slate-800 shadow-2xl text-white space-y-2.5 mt-auto mr-4">
+                        <div class="flex items-center justify-between text-xs font-mono font-bold text-slate-200">
                             <span>A. Good</span>
                             <span>B. Complex</span>
                             <span>C. Simple</span>
