@@ -2553,13 +2553,13 @@
                             circle.style.width = '44px';
                         }
 
-                        // 240 FPS Native requestAnimationFrame Physics Engine
+                        // 240 FPS Native requestAnimationFrame Physics Engine (Strict Edge Bounds Protection)
                         function run240fpsPhysics(targetX, duration, onDone) {
                             isAnimating = true;
                             const startX = currentX;
                             const dist = targetX - startX;
                             const baseW = 44;
-                            const peakW = 86; // Capsule width at exact midpoint
+                            const peakW = 76; // Peak Capsule Width
                             const addW = peakW - baseW;
                             const startTime = performance.now();
 
@@ -2572,15 +2572,18 @@
                                     ? 4 * progress * progress * progress 
                                     : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
-                                const x = startX + (dist * easePos);
+                                const rawX = startX + (dist * easePos);
                                 
                                 // Midpoint Sine Morph: sin(progress * PI)
-                                // 0ms = 44px (Circle) -> Midpoint = 86px (Capsule) -> Arrival = 44px (Circle)
                                 const morphFactor = Math.sin(progress * Math.PI);
                                 const w = baseW + (addW * morphFactor);
 
-                                // Apply sub-frame 240 FPS transform & width updates
-                                circle.style.transform = `translate3d(${x}px, 0, 0)`;
+                                // Strict Edge Bounds Math: safeX + w can NEVER exceed outer capsule padding boundary!
+                                const maxAllowedX = maxTranslateX + 44 - w;
+                                const safeX = Math.max(0, Math.min(rawX, maxAllowedX));
+
+                                // Apply 240 FPS sub-frame transform & width updates (Strictly bounded inside outer capsule!)
+                                circle.style.transform = `translate3d(${safeX}px, 0, 0)`;
                                 circle.style.width = `${w}px`;
 
                                 if (progress < 1) {
