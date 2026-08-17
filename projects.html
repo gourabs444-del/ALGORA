@@ -2553,13 +2553,13 @@
                             circle.style.width = '44px';
                         }
 
-                        // 240 FPS Native requestAnimationFrame Physics Engine (Strict Edge Bounds Protection)
+                        // 240 FPS Native Physics Engine (Organic Start Wind-Up + Midpoint Capsule Morph + Elastic Stop Settle)
                         function run240fpsPhysics(targetX, duration, onDone) {
                             isAnimating = true;
                             const startX = currentX;
                             const dist = targetX - startX;
                             const baseW = 44;
-                            const peakW = 76; // Peak Capsule Width
+                            const peakW = 78; // Peak Capsule Width at midpoint
                             const addW = peakW - baseW;
                             const startTime = performance.now();
 
@@ -2567,22 +2567,38 @@
                                 const elapsed = now - startTime;
                                 const progress = Math.min(elapsed / duration, 1);
 
-                                // Smooth Sine/Cubic Ease-In-Out Position Trajectory
+                                // 1. Smooth Main Trajectory (Custom Soft Quintic Ease-In-Out)
                                 const easePos = progress < 0.5 
-                                    ? 4 * progress * progress * progress 
-                                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                                    ? 16 * Math.pow(progress, 5)
+                                    : 1 - Math.pow(-2 * progress + 2, 5) / 2;
 
                                 const rawX = startX + (dist * easePos);
                                 
-                                // Midpoint Sine Morph: sin(progress * PI)
+                                // 2. Midpoint Sine Morph (Circle -> Capsule -> Circle)
                                 const morphFactor = Math.sin(progress * Math.PI);
-                                const w = baseW + (addW * morphFactor);
+                                let w = baseW + (addW * morphFactor);
 
-                                // Strict Edge Bounds Math: safeX + w can NEVER exceed outer capsule padding boundary!
+                                // 3. ORGANIC START ANIMATION (Anticipation Wind-Up / Pre-squash at 0% - 15% progress)
+                                if (progress < 0.15) {
+                                    const startProg = progress / 0.15;
+                                    // Squeeze circle slightly (44px -> 38px) before launching!
+                                    const squash = Math.sin(startProg * Math.PI) * 6;
+                                    w = baseW - squash;
+                                }
+
+                                // 4. ORGANIC STOP ANIMATION (Damped Spring Elastic Rebound at 85% - 100% progress)
+                                if (progress > 0.85) {
+                                    const stopProg = (progress - 0.85) / 0.15;
+                                    // Damped Spring Elastic Wobble (44px -> 48px -> 42px -> 44px)
+                                    const wobble = Math.sin(stopProg * Math.PI * 2.5) * Math.exp(-stopProg * 3) * 5;
+                                    w = baseW + wobble;
+                                }
+
+                                // Strict Edge Bounds Protection (safeX + w <= outer capsule boundary)
                                 const maxAllowedX = maxTranslateX + 44 - w;
                                 const safeX = Math.max(0, Math.min(rawX, maxAllowedX));
 
-                                // Apply 240 FPS sub-frame transform & width updates (Strictly bounded inside outer capsule!)
+                                // 240 FPS Sub-Frame GPU updates
                                 circle.style.transform = `translate3d(${safeX}px, 0, 0)`;
                                 circle.style.width = `${w}px`;
 
@@ -2590,7 +2606,7 @@
                                     requestAnimationFrame(step);
                                 } else {
                                     currentX = targetX;
-                                    circle.style.width = '44px'; // 100% Circle at rest
+                                    circle.style.width = '44px'; // Pure Circle at rest
                                     circle.style.transform = `translate3d(${targetX}px, 0, 0)`;
                                     isAnimating = false;
                                     if (onDone) onDone();
