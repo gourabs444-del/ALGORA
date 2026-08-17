@@ -2411,10 +2411,13 @@
             <!-- BACKGROUND LAYER 3: Ambient Lightning Flash Layer (Multi-Stage Thunder Pulse) -->
             <div id="monsoon-lightning" class="absolute inset-0 bg-sky-200/0 pointer-events-none z-[2] transition-colors duration-150"></div>
 
+            <!-- BACKGROUND LAYER 4: LIVE SILKY-SMOOTH SLOW MONSOON RAIN CANVAS -->
+            <canvas id="monsoon-rain-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[3]"></canvas>
+
             <!-- LIVE MONSOON WEATHER BADGE (Top-Right Floating Ambient Indicator) -->
             <div class="absolute top-6 right-6 sm:top-8 sm:right-10 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-xl border border-white/20 shadow-2xl text-[11px] font-['Space_Grotesk'] text-slate-200 font-bold tracking-widest uppercase">
                 <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                <span>☁️ LIVE MONSOON WEATHER • OVERCAST AMBIENCE</span>
+                <span>🌧️ LIVE MONSOON WEATHER • SMOOTH RAIN</span>
             </div>
 
             <!-- MAIN 2-COLUMN CONTENT CONTAINER (Compact Sleek Typography - Hero Focus on Banner Scenery) -->
@@ -2426,7 +2429,7 @@
                     <!-- Top Brand Header Line -->
                     <div class="flex items-center gap-2.5">
                         <div class="w-7 h-7 rounded-xl bg-emerald-500/25 text-emerald-300 flex items-center justify-center font-bold text-xs shadow-xl border border-emerald-400/40 backdrop-blur-lg">
-                            <span class="material-symbols-outlined text-base">cloud</span>
+                            <span class="material-symbols-outlined text-base">water_drop</span>
                         </div>
                         <span class="text-[11px] sm:text-xs font-['Space_Grotesk'] font-extrabold tracking-[0.25em] text-emerald-300 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                             ✦ AI &amp; AUTOMATION ✦
@@ -2527,8 +2530,140 @@
 
             </div>
 
-            <!-- Multi-Stage Thunder Lightning Flash Engine -->
+            <!-- LIVE HTML5 240 FPS SILKY-SMOOTH SLOW MONSOON RAIN ENGINE -->
             <script>
+            (function initSmoothSlowRainEngine() {
+                const canvas = document.getElementById('monsoon-rain-canvas');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let width = 0, height = 0;
+                let drops = [];
+                let ripples = [];
+
+                // 420 perfectly spaced drops for calm, atmospheric rainfall
+                const maxDrops = 420;
+                const maxRipples = 45;
+
+                // EXACT SAME UNIFIED SLANTED ANGLE FOR EVERY SINGLE DROP
+                const UNIFIED_SLANT = -1.4;
+
+                function resize() {
+                    const rect = canvas.getBoundingClientRect();
+                    width = canvas.width = rect.width || window.innerWidth;
+                    height = canvas.height = rect.height || 820;
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                // Gentle horizontal expanding ripple ring
+                class GentleRipple {
+                    constructor(x, y) {
+                        this.x = x;
+                        this.y = y;
+                        this.radius = 1.0;
+                        this.maxRadius = 8 + Math.random() * 12;
+                        this.speed = 0.24 + Math.random() * 0.2; // Slow, soothing wave expansion
+                        this.opacity = 0.38;
+                        this.lineWidth = 1.1;
+                    }
+                    update() {
+                        this.radius += this.speed;
+                        this.opacity -= 0.008; // Long graceful fade
+                        this.lineWidth = Math.max(0.25, this.lineWidth - 0.012);
+                    }
+                    draw() {
+                        if (this.opacity <= 0) return;
+                        ctx.beginPath();
+                        ctx.ellipse(this.x, this.y, this.radius * 2.6, this.radius, 0, 0, Math.PI * 2);
+                        ctx.strokeStyle = `rgba(220, 245, 255, ${this.opacity})`;
+                        ctx.lineWidth = this.lineWidth;
+                        ctx.stroke();
+                    }
+                }
+
+                // Silky-Smooth Slower Raindrop Particle
+                class SmoothRainDrop {
+                    constructor() {
+                        this.reset(true);
+                    }
+                    reset(init = false) {
+                        this.x = Math.random() * (width + 300) - 80;
+                        this.y = init ? Math.random() * height : -30;
+                        this.layer = Math.random();
+
+                        if (this.layer > 0.75) {
+                            // Foreground Layer (Gentle, Slow & Silky)
+                            this.speed = 4.8 + Math.random() * 1.4;
+                            this.len = 13 + Math.random() * 6;
+                            this.opacity = 0.42 + Math.random() * 0.25;
+                            this.width = 1.25;
+                        } else if (this.layer > 0.30) {
+                            // Midground Layer
+                            this.speed = 3.2 + Math.random() * 0.9;
+                            this.len = 8 + Math.random() * 4;
+                            this.opacity = 0.25 + Math.random() * 0.18;
+                            this.width = 0.85;
+                        } else {
+                            // Background Misty Drizzle Layer
+                            this.speed = 2.0 + Math.random() * 0.6;
+                            this.len = 5 + Math.random() * 3;
+                            this.opacity = 0.14 + Math.random() * 0.12;
+                            this.width = 0.6;
+                        }
+                        
+                        // Exact same angle for every drop
+                        this.slant = UNIFIED_SLANT;
+                    }
+                    update() {
+                        this.x += this.slant;
+                        this.y += this.speed;
+
+                        if (this.y > height) {
+                            if (this.layer > 0.45 && ripples.length < maxRipples) {
+                                ripples.push(new GentleRipple(this.x, height - 4));
+                            }
+                            this.reset();
+                        }
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.moveTo(this.x, this.y);
+                        ctx.lineTo(this.x + this.slant * (this.len / this.speed), this.y + this.len);
+                        ctx.strokeStyle = `rgba(220, 242, 255, ${this.opacity})`;
+                        ctx.lineWidth = this.width;
+                        ctx.lineCap = 'round';
+                        ctx.stroke();
+                    }
+                }
+
+                for (let i = 0; i < maxDrops; i++) {
+                    drops.push(new SmoothRainDrop());
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, width, height);
+
+                    // 1. Draw Gentle Ripples
+                    for (let i = ripples.length - 1; i >= 0; i--) {
+                        ripples[i].update();
+                        ripples[i].draw();
+                        if (ripples[i].opacity <= 0 || ripples[i].radius >= ripples[i].maxRadius) {
+                            ripples.splice(i, 1);
+                        }
+                    }
+
+                    // 2. Draw Silky Rain Streaks
+                    for (let i = 0; i < drops.length; i++) {
+                        drops[i].update();
+                        drops[i].draw();
+                    }
+
+                    requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+            })();
+
+            // Multi-Stage Thunder Lightning Flash Engine
             (function initMonsoonThunderEngine() {
                 const lightningEl = document.getElementById('monsoon-lightning');
                 const bgImg = document.getElementById('monsoon-bg-img');
