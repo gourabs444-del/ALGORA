@@ -2398,30 +2398,30 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-slate-950/40 via-transparent to-slate-950/40 pointer-events-none"></div>
             </div>
 
-            <!-- BACKGROUND LAYER 2: Live Seamless Looping Cloud & Mist Layers -->
+            <!-- BACKGROUND LAYER 2: Live Seamless Looping Dynamic Clouds & Mountain Mist -->
             <div class="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
-                <!-- Upper Thundercloud Drift Layer 1 (Drifting left to right) -->
-                <div class="monsoon-cloud-layer-1 absolute -top-12 left-0 w-[200%] h-[55%] pointer-events-none opacity-40"></div>
-                <!-- Upper Thundercloud Drift Layer 2 (Drifting right to left) -->
-                <div class="monsoon-cloud-layer-2 absolute -top-8 -left-[50%] w-[200%] h-[50%] pointer-events-none opacity-30"></div>
-                <!-- Valley Petrichor Fog Drift -->
-                <div class="monsoon-fog-layer absolute bottom-0 left-0 w-[200%] h-[35%] pointer-events-none opacity-25"></div>
+                <!-- Heavy Storm Cumulus Cloud Drift Layer 1 (Drifting Smoothly Left) -->
+                <div class="monsoon-cloud-layer-1 absolute -top-16 left-0 w-[200%] h-[60%] pointer-events-none"></div>
+                <!-- Ambient Daylight Cloud Mist Drift Layer 2 (Drifting Smoothly Right) -->
+                <div class="monsoon-cloud-layer-2 absolute -top-10 left-0 w-[200%] h-[50%] pointer-events-none"></div>
+                <!-- Rolling Mountain Valley Fog Drift -->
+                <div class="monsoon-fog-layer absolute top-[25%] left-0 w-[200%] h-[40%] pointer-events-none"></div>
             </div>
 
             <!-- BACKGROUND LAYER 3: Ambient Lightning Flash Layer (Multi-Stage Thunder Pulse) -->
             <div id="monsoon-lightning" class="absolute inset-0 bg-sky-200/0 pointer-events-none z-[2] transition-colors duration-150"></div>
 
-            <!-- BACKGROUND LAYER 4: LIVE SILKY-SMOOTH SLOW MONSOON RAIN CANVAS -->
+            <!-- BACKGROUND LAYER 4: LIVE HIGH-DENSITY DIRECTIONAL MONSOON RAIN CANVAS -->
             <canvas id="monsoon-rain-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[3]"></canvas>
 
             <!-- LIVE MONSOON WEATHER BADGE (Top-Right Floating Ambient Indicator) -->
             <div class="absolute top-6 right-6 sm:top-8 sm:right-10 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-xl border border-white/20 shadow-2xl text-[11px] font-['Space_Grotesk'] text-slate-200 font-bold tracking-widest uppercase">
                 <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                <span>🌧️ LIVE MONSOON WEATHER • SMOOTH RAIN</span>
+                <span>🌧️ LIVE MONSOON WEATHER • HEAVY RAIN</span>
             </div>
 
             <!-- MAIN 2-COLUMN CONTENT CONTAINER (Compact Sleek Typography - Hero Focus on Banner Scenery) -->
-            <div class="relative z-10 w-full max-w-[1720px] px-6 sm:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center h-full">
+            <div class="relative z-10 w-full max-w-[1720px] px-6 sm:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center h-full pb-14 sm:pb-16 lg:pb-20">
                 
                 <!-- LEFT COLUMN (5 cols - Sleek Compact Headline & Badges) -->
                 <div class="lg:col-span-5 flex flex-col justify-center text-left space-y-4 lg:space-y-5">
@@ -2469,7 +2469,7 @@
 
                 </div>
 
-                <!-- RIGHT COLUMN (7 cols - Compact Value Proposition & Social Links) -->
+                <!-- RIGHT COLUMN (7 cols - Compact Value Proposition) -->
                 <div class="lg:col-span-7 flex flex-col justify-center items-center text-left py-4 px-4 sm:px-8 space-y-4 select-none h-full w-full lg:translate-x-4 xl:translate-x-8">
                     
                     <div class="w-full max-w-2xl space-y-3.5 text-left">
@@ -2497,37 +2497,38 @@
                             </p>
                         </div>
 
-                        <!-- Bottom Section: Wide Border Line with Copyright on Left & Social Media on Right -->
-                        <div class="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-white/20 font-['Plus_Jakarta_Sans',_sans-serif]">
-                            <!-- Copyright Line -->
-                            <div class="text-[11px] text-slate-300 font-normal tracking-wide drop-shadow-md">
-                                © 2026 Algora Labs Inc. All rights reserved.
-                            </div>
-
-                            <!-- Social Media Handles -->
-                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-semibold text-white sm:ml-auto drop-shadow-md">
-                                <a href="https://x.com" target="_blank" class="hover:text-emerald-300 transition-colors">
-                                    X (Twitter)
-                                </a>
-                                <span class="text-slate-400">•</span>
-                                <a href="https://algora.ai" target="_blank" class="hover:text-emerald-300 transition-colors">
-                                    Algora.ai
-                                </a>
-                                <span class="text-slate-400">•</span>
-                                <a href="https://linkedin.com" target="_blank" class="hover:text-emerald-300 transition-colors">
-                                    LinkedIn
-                                </a>
-                                <span class="text-slate-400">•</span>
-                                <a href="https://github.com" target="_blank" class="hover:text-emerald-300 transition-colors">
-                                    GitHub
-                                </a>
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>
 
+            </div>
+
+            <!-- FLOATING GLASSMORPHISM FOOTER DOCK (Lifted Center Bottom Bar) -->
+            <div class="absolute bottom-5 sm:bottom-7 lg:bottom-8 left-1/2 -translate-x-1/2 z-20 w-[94%] max-w-4xl px-5 sm:px-8 py-2.5 sm:py-3 rounded-full bg-slate-950/70 backdrop-blur-2xl border border-white/20 shadow-[0_20px_45px_rgba(0,0,0,0.8)] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-xs font-['Space_Grotesk'] text-slate-200">
+                <!-- Copyright Line -->
+                <div class="text-slate-300 font-medium tracking-wide flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>© 2026 Algora Labs Inc. All rights reserved.</span>
+                </div>
+
+                <!-- Social Media Handles -->
+                <div class="flex flex-wrap items-center gap-x-4 sm:gap-x-5 gap-y-1 font-semibold text-white">
+                    <a href="https://x.com" target="_blank" class="hover:text-emerald-300 transition-colors">
+                        X (Twitter)
+                    </a>
+                    <span class="text-slate-500">•</span>
+                    <a href="https://algora.ai" target="_blank" class="hover:text-emerald-300 transition-colors">
+                        Algora.ai
+                    </a>
+                    <span class="text-slate-500">•</span>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-emerald-300 transition-colors">
+                        LinkedIn
+                    </a>
+                    <span class="text-slate-500">•</span>
+                    <a href="https://github.com" target="_blank" class="hover:text-emerald-300 transition-colors">
+                        GitHub
+                    </a>
+                </div>
             </div>
 
             <!-- LIVE HTML5 240 FPS HIGH-DENSITY MONSOON RAIN ENGINE (NO LAND RIPPLES) -->
@@ -2662,31 +2663,39 @@
             </script>
 
             <style>
-            @keyframes cloudLoop1 {
+            @keyframes monsoonCloudFlow1 {
                 0% { transform: translate3d(0, 0, 0); }
                 100% { transform: translate3d(-50%, 0, 0); }
             }
-            @keyframes cloudLoop2 {
-                0% { transform: translate3d(0, 0, 0); }
-                100% { transform: translate3d(50%, 0, 0); }
+            @keyframes monsoonCloudFlow2 {
+                0% { transform: translate3d(-50%, 0, 0); }
+                100% { transform: translate3d(0, 0, 0); }
             }
-            @keyframes fogLoop {
-                0% { transform: translate3d(0, 0, 0); }
-                100% { transform: translate3d(-35%, 0, 0); }
+            @keyframes monsoonMistWave {
+                0% { transform: translate3d(0, 0, 0) scaleY(1); opacity: 0.35; }
+                50% { transform: translate3d(-25%, -8px, 0) scaleY(1.18); opacity: 0.65; }
+                100% { transform: translate3d(-50%, 0, 0) scaleY(1); opacity: 0.35; }
             }
             .monsoon-cloud-layer-1 {
-                background: radial-gradient(ellipse 70% 50% at 25% 40%, rgba(15, 23, 42, 0.7), transparent 70%),
-                            radial-gradient(ellipse 80% 60% at 75% 35%, rgba(30, 41, 59, 0.65), transparent 70%);
-                animation: cloudLoop1 45s linear infinite;
+                background: radial-gradient(ellipse 45% 35% at 15% 30%, rgba(15, 23, 42, 0.85), transparent 70%),
+                            radial-gradient(ellipse 55% 40% at 50% 25%, rgba(30, 41, 59, 0.80), transparent 70%),
+                            radial-gradient(ellipse 50% 35% at 85% 30%, rgba(15, 23, 42, 0.85), transparent 70%),
+                            radial-gradient(ellipse 60% 45% at 120% 28%, rgba(30, 41, 59, 0.80), transparent 70%),
+                            radial-gradient(ellipse 50% 38% at 160% 30%, rgba(15, 23, 42, 0.85), transparent 70%);
+                animation: monsoonCloudFlow1 42s linear infinite;
             }
             .monsoon-cloud-layer-2 {
-                background: radial-gradient(ellipse 60% 45% at 30% 30%, rgba(255, 255, 255, 0.15), transparent 65%),
-                            radial-gradient(ellipse 70% 50% at 80% 45%, rgba(148, 163, 184, 0.2), transparent 70%);
-                animation: cloudLoop2 60s linear infinite;
+                background: radial-gradient(ellipse 50% 35% at 20% 20%, rgba(255, 255, 255, 0.22), transparent 65%),
+                            radial-gradient(ellipse 60% 40% at 65% 22%, rgba(226, 232, 240, 0.25), transparent 65%),
+                            radial-gradient(ellipse 55% 38% at 115% 20%, rgba(255, 255, 255, 0.20), transparent 65%),
+                            radial-gradient(ellipse 60% 40% at 165% 22%, rgba(226, 232, 240, 0.25), transparent 65%);
+                animation: monsoonCloudFlow2 55s linear infinite;
             }
             .monsoon-fog-layer {
-                background: linear-gradient(to top, rgba(15, 23, 42, 0.6), rgba(255, 255, 255, 0.08) 50%, transparent);
-                animation: fogLoop 35s ease-in-out infinite alternate;
+                background: radial-gradient(ellipse 70% 30% at 30% 50%, rgba(148, 163, 184, 0.35), transparent 70%),
+                            radial-gradient(ellipse 80% 35% at 80% 50%, rgba(203, 213, 225, 0.30), transparent 70%),
+                            radial-gradient(ellipse 70% 30% at 140% 50%, rgba(148, 163, 184, 0.35), transparent 70%);
+                animation: monsoonMistWave 28s ease-in-out infinite;
             }
             </style>
         </div>
