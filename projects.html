@@ -2385,138 +2385,107 @@
     </div> <!-- Closes section-personal -->
 
     <!-- Section: Collaboration -->
+    <!-- Section: Collaboration -->
     <div id="section-collaboration" class="scroll-mt-28 w-full">
         <!-- AI & Automation Banner (100% Fullscreen Viewport Height - LIVE MONSOON VILLAGE WEATHER & RAIN BANNER) -->
-        <!-- AI & Automation Banner (100% Fullscreen Viewport Height - LIVE MONSOON VILLAGE WEATHER & RAIN BANNER) -->
-        <div class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[750px] lg:min-h-[850px] bg-slate-950 text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(0,0,0,0.6)] transition-all duration-500 flex items-center justify-center py-8 sm:py-12 select-none">
+        <div class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[720px] lg:min-h-[820px] bg-slate-950 text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(0,0,0,0.6)] transition-all duration-500 flex items-center justify-center py-6 sm:py-10 select-none">
             
-            <!-- BACKGROUND LAYER 1: Pure Monsoon Village Backdrop (Vibrant landscape, dark clouds & bright white sky break, NO humans) -->
+            <!-- BACKGROUND LAYER 1: Pure Monsoon Village Backdrop (Static Steady Image, NO shaking, NO static painted rain, NO humans) -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <img id="monsoon-bg-img" src="monsoon_village_bg.jpg" alt="Live Monsoon Village Scenery" class="w-full h-full object-cover object-center scale-105 filter brightness-[0.96] contrast-[1.12] saturate-[1.18] transform-gpu will-change-transform transition-[filter] duration-150 animate-[monsoonDrift_30s_ease-in-out_infinite_alternate]" />
-                <!-- Subtle Atmospheric Vignette (Dark Storm Clouds at Top, Vibrant Landscape in Center) -->
+                <img id="monsoon-bg-img" src="monsoon_village_bg.jpg" alt="Live Monsoon Village Scenery" class="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.12] saturate-[1.18] transition-[filter] duration-150" />
+                <!-- Subtle Top and Bottom Vignette for High-Contrast Text Readability -->
                 <div class="absolute inset-0 bg-gradient-to-b from-slate-950/65 via-transparent to-slate-950/70 pointer-events-none"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/50 via-transparent to-slate-950/50 pointer-events-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/40 via-transparent to-slate-950/40 pointer-events-none"></div>
             </div>
 
-            <!-- BACKGROUND LAYER 2: Drifting Cloud & Fog Mist Layers -->
-            <div class="absolute inset-0 pointer-events-none z-[1] overflow-hidden opacity-30">
-                <div class="monsoon-mist-1 absolute -top-10 -left-1/4 w-[150%] h-[60%] bg-gradient-to-b from-white/20 via-slate-200/10 to-transparent blur-3xl transform-gpu"></div>
-                <div class="monsoon-mist-2 absolute bottom-0 -left-1/4 w-[150%] h-[45%] bg-gradient-to-t from-slate-900/60 via-white/10 to-transparent blur-2xl transform-gpu"></div>
+            <!-- BACKGROUND LAYER 2: Live Seamless Looping Cloud & Mist Layers -->
+            <div class="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
+                <!-- Upper Thundercloud Drift Layer 1 (Drifting left to right) -->
+                <div class="monsoon-cloud-layer-1 absolute -top-12 left-0 w-[200%] h-[55%] pointer-events-none opacity-40"></div>
+                <!-- Upper Thundercloud Drift Layer 2 (Drifting right to left) -->
+                <div class="monsoon-cloud-layer-2 absolute -top-8 -left-[50%] w-[200%] h-[50%] pointer-events-none opacity-30"></div>
+                <!-- Valley Petrichor Fog Drift -->
+                <div class="monsoon-fog-layer absolute bottom-0 left-0 w-[200%] h-[35%] pointer-events-none opacity-25"></div>
             </div>
 
             <!-- BACKGROUND LAYER 3: Ambient Lightning Flash Layer (Multi-Stage Thunder Pulse) -->
             <div id="monsoon-lightning" class="absolute inset-0 bg-sky-200/0 pointer-events-none z-[2] transition-colors duration-150"></div>
 
-            <!-- BACKGROUND LAYER 4: LIVE HTML5 240 FPS UNIFIED-DIRECTION RAIN & SPLASH SIMULATION CANVAS -->
+            <!-- BACKGROUND LAYER 4: LIVE HTML5 240 FPS HYPER-REALISTIC RAIN & SPLASH CANVAS -->
             <canvas id="monsoon-rain-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[3]"></canvas>
 
             <!-- LIVE MONSOON WEATHER BADGE (Top-Right Floating Ambient Indicator) -->
-            <div class="absolute top-6 right-6 sm:top-8 sm:right-10 z-20 flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-950/60 backdrop-blur-xl border border-white/20 shadow-2xl text-xs font-['Space_Grotesk'] text-slate-200 font-bold tracking-widest uppercase">
-                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+            <div class="absolute top-6 right-6 sm:top-8 sm:right-10 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-xl border border-white/20 shadow-2xl text-[11px] font-['Space_Grotesk'] text-slate-200 font-bold tracking-widest uppercase">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
                 <span>🌧️ LIVE MONSOON WEATHER • HEAVY RAIN</span>
             </div>
 
-            <!-- MAIN 2-COLUMN CONTENT CONTAINER (Direct Floating Typography - No Card Enclosures) -->
-            <div class="relative z-10 w-full max-w-[1920px] px-6 sm:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center h-full">
+            <!-- MAIN 2-COLUMN CONTENT CONTAINER (Compact Sleek Typography - Hero Focus on Banner Scenery) -->
+            <div class="relative z-10 w-full max-w-[1720px] px-6 sm:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center h-full">
                 
-                <!-- LEFT COLUMN (5 cols - Pure Floating Typography Directly Over Landscape) -->
-                <div class="lg:col-span-5 flex flex-col justify-center text-left space-y-6 lg:space-y-7">
+                <!-- LEFT COLUMN (5 cols - Sleek Compact Headline & Badges) -->
+                <div class="lg:col-span-5 flex flex-col justify-center text-left space-y-4 lg:space-y-5">
                     
                     <!-- Top Brand Header Line -->
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-2xl bg-emerald-500/25 text-emerald-300 flex items-center justify-center font-bold text-sm shadow-xl border border-emerald-400/40 backdrop-blur-lg">
-                            <span class="material-symbols-outlined text-xl">water_drop</span>
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-7 h-7 rounded-xl bg-emerald-500/25 text-emerald-300 flex items-center justify-center font-bold text-xs shadow-xl border border-emerald-400/40 backdrop-blur-lg">
+                            <span class="material-symbols-outlined text-base">water_drop</span>
                         </div>
-                        <span class="text-xs sm:text-sm font-['Space_Grotesk'] font-extrabold tracking-[0.3em] text-emerald-300 uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                        <span class="text-[11px] sm:text-xs font-['Space_Grotesk'] font-extrabold tracking-[0.25em] text-emerald-300 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                             ✦ AI &amp; AUTOMATION ✦
                         </span>
                     </div>
 
-                    <!-- Main Display Headline (SPECIAL AUTOMATION in High-Contrast Glowing White) -->
-                    <div class="space-y-1 relative">
-                        <h3 class="text-5xl sm:text-7xl lg:text-[84px] xl:text-[92px] font-black text-white tracking-[-0.03em] leading-[0.90] font-['Outfit',_sans-serif] uppercase drop-shadow-[0_10px_25px_rgba(0,0,0,0.95)]">
+                    <!-- Main Display Headline (SPECIAL AUTOMATION - Sleek Compact Size, No Underline) -->
+                    <div class="space-y-0.5 relative">
+                        <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-[-0.02em] leading-tight font-['Outfit',_sans-serif] uppercase drop-shadow-[0_8px_20px_rgba(0,0,0,0.95)]">
                             SPECIAL
                         </h3>
-                        <h3 class="text-5xl sm:text-7xl lg:text-[84px] xl:text-[92px] font-black text-emerald-300 tracking-[-0.03em] leading-[0.90] font-['Outfit',_sans-serif] uppercase drop-shadow-[0_12px_28px_rgba(16,185,129,0.45)] flex items-baseline">
-                            <span>AUTOMATIO</span><span class="relative text-emerald-300 drop-shadow-[0_4px_16px_rgba(16,185,129,0.6)]">N</span>
+                        <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black text-emerald-300 tracking-[-0.02em] leading-tight font-['Outfit',_sans-serif] uppercase drop-shadow-[0_10px_24px_rgba(16,185,129,0.45)]">
+                            AUTOMATION
                         </h3>
-                        <!-- Glowing Emerald Underline Bar -->
-                        <div class="w-52 sm:w-72 h-2.5 bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-500 rounded-full mt-4 shadow-[0_0_20px_rgba(52,211,153,0.9)]"></div>
                     </div>
 
-                    <!-- Subtitle Description Paragraph + Pills -->
-                    <div class="space-y-4 pt-1">
-                        <p class="text-base sm:text-lg text-slate-100 font-['Plus_Jakarta_Sans',_sans-serif] font-medium leading-relaxed max-w-lg drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-                            Engineered zero-latency AI swarms, <span class="italic font-serif font-normal font-['Cormorant_Garamond'] text-cyan-300 text-xl sm:text-2xl underline decoration-emerald-400">n8n workflow pipelines,</span> and 24/7 autonomous client operations.
+                    <!-- Subtitle Description Paragraph -->
+                    <div class="space-y-3 pt-0.5">
+                        <p class="text-xs sm:text-sm text-slate-100 font-['Plus_Jakarta_Sans',_sans-serif] font-medium leading-relaxed max-w-md drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                            Engineered zero-latency AI swarms, <span class="italic font-serif font-normal font-['Cormorant_Garamond'] text-cyan-300 text-base sm:text-lg underline decoration-emerald-400">n8n workflow pipelines,</span> and 24/7 autonomous client operations.
                         </p>
                         
                         <!-- Clean System Metrics Badges Pill Bar -->
-                        <div class="flex flex-wrap items-center gap-3 pt-1 text-xs font-['Space_Grotesk'] font-extrabold text-white">
-                            <span class="px-4 py-2 rounded-2xl bg-slate-950/60 backdrop-blur-xl border border-emerald-400/40 shadow-lg flex items-center gap-2 hover:scale-105 transition-transform drop-shadow-md">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                        <div class="flex flex-wrap items-center gap-2 pt-1 text-[11px] font-['Space_Grotesk'] font-extrabold text-white">
+                            <span class="px-3 py-1.5 rounded-xl bg-slate-950/60 backdrop-blur-xl border border-emerald-400/40 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform drop-shadow-md">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                                 ⚡ 12ms EXECUTION
                             </span>
-                            <span class="px-4 py-2 rounded-2xl bg-slate-950/60 backdrop-blur-xl border border-cyan-400/40 shadow-lg flex items-center gap-2 hover:scale-105 transition-transform drop-shadow-md">
+                            <span class="px-3 py-1.5 rounded-xl bg-slate-950/60 backdrop-blur-xl border border-cyan-400/40 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform drop-shadow-md">
                                 🔒 TLS 1.3 HARDENED
                             </span>
-                            <span class="px-4 py-2 rounded-2xl bg-slate-950/60 backdrop-blur-xl border border-emerald-400/40 shadow-lg flex items-center gap-2 hover:scale-105 transition-transform drop-shadow-md">
+                            <span class="px-3 py-1.5 rounded-xl bg-slate-950/60 backdrop-blur-xl border border-emerald-400/40 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform drop-shadow-md">
                                 🤖 24/7 AI SWARMS
                             </span>
                         </div>
                     </div>
 
-                    <!-- Call-to-Action 4K Ultra-HD Retina Liquid Gel Capsule Pill -->
-                    <div class="pt-2 flex items-center gap-4 antialiased [text-rendering:optimizeLegibility] [-webkit-font-smoothing:antialiased]">
-                        <div id="anim-capsule" class="relative w-[290px] sm:w-[330px] h-14 rounded-full p-[6px] backdrop-blur-2xl border border-white/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7),inset_0_1px_2px_rgba(255,255,255,0.6)] select-none overflow-hidden flex items-center justify-between will-change-transform transform-gpu bg-slate-950/60">
-                            
-                            <!-- 10 Vibrant GPU Theme Background Layers -->
-                            <div id="theme-bg-0" class="absolute inset-0 bg-gradient-to-r from-emerald-900/70 via-teal-800/70 to-emerald-700/70 transition-opacity duration-600 opacity-100"></div>
-                            <div id="theme-bg-1" class="absolute inset-0 bg-gradient-to-r from-cyan-900/70 via-sky-800/70 to-blue-700/70 transition-opacity duration-600 opacity-0"></div>
-                            <div id="theme-bg-2" class="absolute inset-0 bg-gradient-to-r from-indigo-900/70 via-purple-800/70 to-indigo-700/70 transition-opacity duration-600 opacity-0"></div>
-                            <div id="theme-bg-3" class="absolute inset-0 bg-gradient-to-r from-emerald-900/70 via-teal-800/70 to-emerald-700/70 transition-opacity duration-600 opacity-0"></div>
-                            <div id="theme-bg-4" class="absolute inset-0 bg-gradient-to-r from-amber-900/70 via-orange-800/70 to-amber-700/70 transition-opacity duration-600 opacity-0"></div>
-                            <div id="theme-bg-5" class="absolute inset-0 bg-gradient-to-r from-teal-900/70 via-emerald-800/70 to-teal-700/70 transition-opacity duration-600 opacity-0"></div>
-                            <div id="theme-bg-6" class="absolute inset-0 bg-gradient-to-r from-cyan-900/70 via-sky-800/70 to-cyan-700/70 transition-opacity duration-600 opacity-0"></div>
-                            <div id="theme-bg-7" class="absolute inset-0 bg-gradient-to-r from-violet-900/70 via-purple-800/70 to-violet-700/70 transition-opacity duration-600 opacity-0"></div>
-                            <div id="theme-bg-8" class="absolute inset-0 bg-gradient-to-r from-lime-900/70 via-emerald-800/70 to-lime-700/70 transition-opacity duration-600 opacity-0"></div>
-                            <div id="theme-bg-9" class="absolute inset-0 bg-gradient-to-r from-sky-900/70 via-indigo-800/70 to-sky-700/70 transition-opacity duration-600 opacity-0"></div>
-
-                            <!-- Inner Sliding Circle Button -->
-                            <div id="capsule-circle" class="h-11 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center shadow-[0_8px_25px_rgba(16,185,129,0.5)] z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu transition-[background-color,color] duration-600 ease-out p-0 m-0" style="width: 44px; transform: translate3d(264px, 0, 0);">
-                                <span id="capsule-arrow" class="material-symbols-outlined text-[22px] font-black leading-none select-none text-center flex items-center justify-center w-full h-full transition-transform duration-600 will-change-transform">arrow_forward</span>
-                            </div>
-
-                            <!-- Morphing Text Containers -->
-                            <div id="text-left-box" class="absolute inset-0 flex items-center justify-center px-12 z-20 text-center pointer-events-none transition-all duration-600 opacity-100">
-                                <span id="text-left" class="font-['Space_Grotesk'] font-medium text-xs sm:text-sm tracking-widest uppercase text-white transition-opacity duration-300">EXPLORE <span class="font-['Cormorant_Garamond'] font-medium italic text-emerald-300 tracking-normal text-base sm:text-lg">SYSTEMS</span></span>
-                            </div>
-
-                            <div id="text-right-box" class="absolute inset-0 flex items-center justify-center px-12 z-20 text-center pointer-events-none transition-all duration-600 opacity-0">
-                                <span id="text-right" class="font-['Cormorant_Garamond'] font-medium text-base sm:text-lg italic text-cyan-200 transition-opacity duration-300">Autonomous <span class="font-['Space_Grotesk'] font-medium not-italic text-emerald-300 uppercase text-xs tracking-widest">AI</span> Swarms</span>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
 
-                <!-- RIGHT COLUMN (7 cols - Pure Floating High-Contrast Text Directly Over Scenery) -->
-                <div class="lg:col-span-7 flex flex-col justify-center items-center text-left py-6 px-4 sm:px-8 lg:px-10 xl:px-12 space-y-6 select-none h-full w-full lg:translate-x-6 xl:translate-x-10">
+                <!-- RIGHT COLUMN (7 cols - Compact Value Proposition & Social Links) -->
+                <div class="lg:col-span-7 flex flex-col justify-center items-center text-left py-4 px-4 sm:px-8 space-y-4 select-none h-full w-full lg:translate-x-4 xl:translate-x-8">
                     
-                    <div class="w-full max-w-3xl xl:max-w-4xl space-y-5 text-left">
+                    <div class="w-full max-w-2xl space-y-3.5 text-left">
                         
                         <!-- Header & Title -->
-                        <div class="space-y-3">
-                            <div class="inline-flex items-center gap-2 text-xs font-['Space_Grotesk'] font-bold tracking-[0.25em] text-emerald-400 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                        <div class="space-y-1.5">
+                            <div class="inline-flex items-center gap-1.5 text-[11px] font-['Space_Grotesk'] font-bold tracking-[0.2em] text-emerald-400 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                                 <span>✦</span> HOW WE TRANSFORM YOUR OPERATIONS
                             </div>
-                            <h4 class="text-2xl sm:text-3xl lg:text-[34px] font-['Outfit',_sans-serif] font-bold tracking-tight text-white leading-[1.2] drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
+                            <h4 class="text-xl sm:text-2xl lg:text-[26px] font-['Outfit',_sans-serif] font-bold tracking-tight text-white leading-snug drop-shadow-[0_4px_14px_rgba(0,0,0,0.95)]">
                                 We Eliminate The Exhausting Manual Work Holding You Back.
                             </h4>
                         </div>
 
                         <!-- Editorial Paragraphs -->
-                        <div class="space-y-3.5 text-sm sm:text-base font-['Plus_Jakarta_Sans',_sans-serif] leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                        <div class="space-y-2 text-xs sm:text-sm font-['Plus_Jakarta_Sans',_sans-serif] leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                             <p class="text-slate-100 font-medium">
                                 Running a business shouldn’t mean spending 40+ hours every week copying data across tools, answering routine inquiries, and chasing down leads manually.
                             </p>
@@ -2529,14 +2498,14 @@
                         </div>
 
                         <!-- Bottom Section: Wide Border Line with Copyright on Left & Social Media on Right -->
-                        <div class="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-white/20 font-['Plus_Jakarta_Sans',_sans-serif]">
+                        <div class="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-white/20 font-['Plus_Jakarta_Sans',_sans-serif]">
                             <!-- Copyright Line -->
-                            <div class="text-xs text-slate-300 font-normal tracking-wide drop-shadow-md">
+                            <div class="text-[11px] text-slate-300 font-normal tracking-wide drop-shadow-md">
                                 © 2026 Algora Labs Inc. All rights reserved.
                             </div>
 
                             <!-- Social Media Handles -->
-                            <div class="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs font-semibold text-white sm:ml-auto drop-shadow-md">
+                            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-semibold text-white sm:ml-auto drop-shadow-md">
                                 <a href="https://x.com" target="_blank" class="hover:text-emerald-300 transition-colors">
                                     X (Twitter)
                                 </a>
@@ -2561,204 +2530,8 @@
 
             </div>
 
-            <!-- Swipe Capsule JavaScript Engine -->
+            <!-- LIVE HTML5 240 FPS HYPER-REALISTIC MONSOON RAIN & THUNDER ENGINE -->
             <script>
-            (function(){
-                const capsule = document.getElementById('anim-capsule');
-                const circle = document.getElementById('capsule-circle');
-                const arrow = document.getElementById('capsule-arrow');
-                const textLeft = document.getElementById('text-left');
-                const textRight = document.getElementById('text-right');
-                const textLeftBox = document.getElementById('text-left-box');
-                const textRightBox = document.getElementById('text-right-box');
-
-                const bgs = Array.from({length: 10}, (_, i) => document.getElementById(`theme-bg-${i}`));
-
-                // 10 Professional Enterprise Themes
-                const themes = [
-                    {
-                        textHTML: 'EXPLORE <span class="font-[\'Cormorant_Garamond\'] font-medium italic text-amber-800 tracking-normal text-base sm:text-lg">SYSTEMS</span>',
-                        side: "left",
-                        fontClass: "font-['Space_Grotesk'] font-medium text-xs sm:text-sm tracking-widest uppercase text-slate-900",
-                        circleBg: "bg-amber-400 text-slate-950",
-                        icon: "arrow_forward",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: 'Autonomous <span class="font-[\'Space_Grotesk\'] font-medium not-italic text-rose-800 uppercase text-xs tracking-widest">AI</span> Swarms',
-                        side: "right",
-                        fontClass: "font-['Cormorant_Garamond'] font-medium text-base sm:text-lg italic text-rose-950",
-                        circleBg: "bg-rose-500 text-white",
-                        icon: "hub",
-                        arrowRotate: "-180deg"
-                    },
-                    {
-                        textHTML: '24/7 <span class="font-[\'Playfair_Display\'] font-medium italic text-indigo-700 text-sm">NEURAL</span> PIPELINES',
-                        side: "left",
-                        fontClass: "font-['Outfit'] font-medium text-xs sm:text-sm tracking-[0.2em] uppercase text-indigo-950",
-                        circleBg: "bg-indigo-600 text-white",
-                        icon: "auto_awesome",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: 'Zero-Latency <span class="font-[\'Syne\'] font-medium text-emerald-800 text-sm">CORE</span>',
-                        side: "right",
-                        fontClass: "font-['Plus_Jakarta_Sans'] font-medium text-xs sm:text-sm tracking-wide text-emerald-950",
-                        circleBg: "bg-emerald-600 text-white",
-                        icon: "bolt",
-                        arrowRotate: "-180deg"
-                    },
-                    {
-                        textHTML: '<span class="font-[\'Cormorant_Garamond\'] font-medium italic text-orange-800 text-base">SYNAPSE</span> AUTOMATION',
-                        side: "left",
-                        fontClass: "font-['Syne'] font-medium text-xs sm:text-sm tracking-wider uppercase text-orange-950",
-                        circleBg: "bg-orange-500 text-white",
-                        icon: "memory",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: 'Enterprise <span class="font-[\'Unbounded\'] font-medium not-italic text-amber-800 text-xs">INTELLIGENCE</span>',
-                        side: "right",
-                        fontClass: "font-['Playfair_Display'] font-medium text-base sm:text-lg italic text-amber-950",
-                        circleBg: "bg-amber-600 text-white",
-                        icon: "insights",
-                        arrowRotate: "-180deg"
-                    },
-                    {
-                        textHTML: 'NEXT-GEN <span class="font-[\'Playfair_Display\'] font-medium italic text-cyan-800 text-sm">LLM</span> ROUTER',
-                        side: "left",
-                        fontClass: "font-['Unbounded'] font-medium text-[10px] sm:text-xs tracking-wider uppercase text-cyan-950",
-                        circleBg: "bg-cyan-600 text-white",
-                        icon: "arrow_forward",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: '<span class="font-[\'Cormorant_Garamond\'] font-medium italic text-violet-800 text-base sm:text-lg">QUANTUM</span> WORKFLOWS',
-                        side: "right",
-                        fontClass: "font-['Cinzel'] font-medium text-xs sm:text-sm tracking-widest text-violet-950",
-                        circleBg: "bg-violet-600 text-white",
-                        icon: "auto_awesome",
-                        arrowRotate: "-180deg"
-                    },
-                    {
-                        textHTML: 'SELF-HEALING <span class="font-[\'DM_Serif_Display\'] font-medium italic text-lime-800 text-sm">CODE</span>',
-                        side: "left",
-                        fontClass: "font-['Cabinet_Grotesk'] font-medium text-xs sm:text-sm tracking-widest uppercase text-lime-950",
-                        circleBg: "bg-lime-600 text-slate-950",
-                        icon: "terminal",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: 'Hyper-Scale <span class="font-[\'Syne\'] font-medium not-italic text-sky-800 text-xs">ORCHESTRATOR</span>',
-                        side: "right",
-                        fontClass: "font-['DM_Serif_Display'] font-medium text-base sm:text-lg italic text-sky-950",
-                        circleBg: "bg-sky-600 text-white",
-                        icon: "lan",
-                        arrowRotate: "-180deg"
-                    }
-                ];
-
-                let themeIdx = 0;
-                let maxTranslateX = 264;
-                let currentX = 264;
-                let isAnimating = false;
-
-                function updateBounds() {
-                    if (capsule) {
-                        const capWidth = capsule.offsetWidth || 320;
-                        maxTranslateX = capWidth - 56;
-                    }
-                }
-                updateBounds();
-                window.addEventListener('resize', updateBounds);
-
-                if (circle) {
-                    currentX = maxTranslateX;
-                    circle.style.transform = `translate3d(${maxTranslateX}px, 0, 0)`;
-                    circle.style.width = '44px';
-                }
-
-                // Clean 240 FPS Liquid Gel Engine
-                function run240fpsPhysics(targetX, duration, onDone) {
-                    isAnimating = true;
-                    const startX = currentX;
-                    const dist = targetX - startX;
-                    const baseW = 44;
-                    const peakW = 74;
-                    const addW = peakW - baseW;
-                    const startTime = performance.now();
-
-                    function step(now) {
-                        const elapsed = now - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-
-                        const easePos = 0.5 * (1 - Math.cos(Math.PI * progress));
-                        const rawX = startX + (dist * easePos);
-                        
-                        let w = baseW + (addW * Math.sin(progress * Math.PI));
-
-                        if (progress > 0.8) {
-                            const p = (progress - 0.8) / 0.2;
-                            const cushionCompress = Math.sin(p * Math.PI) * 5;
-                            w -= cushionCompress;
-                        }
-
-                        const maxAllowedX = maxTranslateX + 44 - w;
-                        const safeX = Math.max(0, Math.min(rawX, maxAllowedX));
-
-                        circle.style.transform = `translate3d(${safeX}px, 0, 0)`;
-                        circle.style.width = `${w}px`;
-
-                        if (progress < 1) {
-                            requestAnimationFrame(step);
-                        } else {
-                            currentX = targetX;
-                            circle.style.width = '44px';
-                            circle.style.transform = `translate3d(${targetX}px, 0, 0)`;
-                            isAnimating = false;
-                            if (onDone) onDone();
-                        }
-                    }
-
-                    requestAnimationFrame(step);
-                }
-
-                setInterval(() => {
-                    if (!circle || !arrow || isAnimating) return;
-
-                    themeIdx = (themeIdx + 1) % themes.length;
-                    const t = themes[themeIdx];
-
-                    bgs.forEach((bg, idx) => {
-                        if (bg) bg.style.opacity = (idx === themeIdx) ? '1' : '0';
-                    });
-
-                    arrow.textContent = t.icon;
-                    arrow.style.transform = `rotate(${t.arrowRotate})`;
-
-                    circle.className = `h-11 rounded-full flex items-center justify-center shadow-xl z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu transition-[background-color,color] duration-600 ease-out ${t.circleBg}`;
-
-                    textLeftBox.style.opacity = '0';
-                    textRightBox.style.opacity = '0';
-
-                    const targetX = (t.side === "right") ? 0 : maxTranslateX;
-
-                    run240fpsPhysics(targetX, 620, function onArrival() {
-                        if (t.side === "right") {
-                            textRight.className = t.fontClass;
-                            textRight.innerHTML = t.textHTML;
-                            textRightBox.style.opacity = '1';
-                        } else {
-                            textLeft.className = t.fontClass;
-                            textLeft.innerHTML = t.textHTML;
-                            textLeftBox.style.opacity = '1';
-                        }
-                    });
-
-                }, 4200);
-            })();
-
-            // LIVE HTML5 240 FPS UNIFIED-DIRECTION MONSOON RAIN & THUNDER ENGINE
             (function initMonsoonRainEngine() {
                 const canvas = document.getElementById('monsoon-rain-canvas');
                 if (!canvas) return;
@@ -2766,16 +2539,17 @@
                 let width = 0, height = 0;
                 let drops = [];
                 let splashes = [];
-                const maxDrops = 420;
-                const maxSplashes = 50;
+                // 780 drops for hyper-realistic real-life rain density & spacing
+                const maxDrops = 780;
+                const maxSplashes = 65;
 
-                // UNIFIED CONSTANT RAIN FLOW DIRECTION FOR EVERY DROP
-                const UNIFIED_SLANT = -2.8;
+                // UNIFIED CONSTANT RAIN FLOW DIRECTION FOR ALL DROPS
+                const UNIFIED_SLANT = -2.6;
 
                 function resize() {
                     const rect = canvas.getBoundingClientRect();
                     width = canvas.width = rect.width || window.innerWidth;
-                    height = canvas.height = rect.height || 850;
+                    height = canvas.height = rect.height || 820;
                 }
                 resize();
                 window.addEventListener('resize', resize);
@@ -2785,29 +2559,28 @@
                         this.reset(true);
                     }
                     reset(init = false) {
-                        this.x = Math.random() * (width + 400) - 100;
-                        this.y = init ? Math.random() * height : -40;
+                        this.x = Math.random() * (width + 450) - 120;
+                        this.y = init ? Math.random() * height : -50;
                         this.layer = Math.random();
-                        if (this.layer > 0.8) {
+                        if (this.layer > 0.78) {
                             // Foreground Heavy Smooth Streaks
-                            this.speed = 22 + Math.random() * 8;
-                            this.len = 28 + Math.random() * 18;
+                            this.speed = 24 + Math.random() * 8;
+                            this.len = 30 + Math.random() * 18;
                             this.opacity = 0.55 + Math.random() * 0.35;
-                            this.width = 1.7 + Math.random() * 0.6;
-                        } else if (this.layer > 0.35) {
+                            this.width = 1.6 + Math.random() * 0.6;
+                        } else if (this.layer > 0.32) {
                             // Midground Steady Rainfall
-                            this.speed = 15 + Math.random() * 5;
+                            this.speed = 16 + Math.random() * 6;
                             this.len = 18 + Math.random() * 10;
-                            this.opacity = 0.35 + Math.random() * 0.25;
-                            this.width = 1.1 + Math.random() * 0.4;
+                            this.opacity = 0.32 + Math.random() * 0.25;
+                            this.width = 1.0 + Math.random() * 0.4;
                         } else {
-                            // Background Misty Drizzle
+                            // Background Fine Misty Petrichor Drizzle
                             this.speed = 9 + Math.random() * 4;
                             this.len = 10 + Math.random() * 6;
-                            this.opacity = 0.18 + Math.random() * 0.2;
-                            this.width = 0.75;
+                            this.opacity = 0.16 + Math.random() * 0.18;
+                            this.width = 0.7;
                         }
-                        // Unified direction for every single drop
                         this.slant = UNIFIED_SLANT;
                     }
                     update() {
@@ -2815,8 +2588,8 @@
                         this.y += this.speed;
 
                         if (this.y > height) {
-                            if (this.layer > 0.5 && splashes.length < maxSplashes) {
-                                splashes.push(new Splash(this.x, height - 8));
+                            if (this.layer > 0.45 && splashes.length < maxSplashes) {
+                                splashes.push(new Splash(this.x, height - 6));
                             }
                             this.reset();
                         }
@@ -2838,18 +2611,18 @@
                         this.y = y;
                         this.radius = 1;
                         this.maxRadius = 3 + Math.random() * 4;
-                        this.opacity = 0.5;
+                        this.opacity = 0.45;
                     }
                     update() {
-                        this.radius += 0.4;
-                        this.opacity -= 0.04;
+                        this.radius += 0.35;
+                        this.opacity -= 0.035;
                     }
                     draw() {
                         if (this.opacity <= 0) return;
                         ctx.beginPath();
                         ctx.ellipse(this.x, this.y, this.radius * 2, this.radius * 0.7, 0, 0, Math.PI * 2);
                         ctx.strokeStyle = `rgba(230, 248, 255, ${this.opacity})`;
-                        ctx.lineWidth = 0.8;
+                        ctx.lineWidth = 0.75;
                         ctx.stroke();
                     }
                 }
@@ -2858,14 +2631,13 @@
                     drops.push(new RainDrop());
                 }
 
-                // Dramatic Multi-Stage Thunder & Sky Lightning Flash Engine
+                // Multi-Stage Thunder Lightning Flash Engine
                 const lightningEl = document.getElementById('monsoon-lightning');
                 const bgImg = document.getElementById('monsoon-bg-img');
 
                 function triggerThunderFlash() {
                     if (!lightningEl) return;
                     
-                    // Flash Phase 1: Rapid Pre-strike
                     lightningEl.style.backgroundColor = 'rgba(230, 245, 255, 0.45)';
                     if (bgImg) bgImg.style.filter = 'brightness(1.5) contrast(1.1) saturate(1.2)';
 
@@ -2873,26 +2645,23 @@
                         lightningEl.style.backgroundColor = 'rgba(230, 245, 255, 0.08)';
                         if (bgImg) bgImg.style.filter = 'brightness(1.05) contrast(1.12) saturate(1.18)';
 
-                        // Flash Phase 2: Main Thunder Lighting Strike
                         setTimeout(() => {
                             lightningEl.style.backgroundColor = 'rgba(245, 252, 255, 0.75)';
                             if (bgImg) bgImg.style.filter = 'brightness(1.65) contrast(1.1) saturate(1.25)';
 
                             setTimeout(() => {
-                                // Flash Phase 3: Rolling sky rumble afterglow
                                 lightningEl.style.backgroundColor = 'rgba(220, 240, 255, 0.25)';
                                 if (bgImg) bgImg.style.filter = 'brightness(1.2) contrast(1.12) saturate(1.18)';
 
                                 setTimeout(() => {
                                     lightningEl.style.backgroundColor = 'rgba(220, 240, 255, 0)';
-                                    if (bgImg) bgImg.style.filter = 'brightness(0.96) contrast(1.12) saturate(1.18)';
+                                    if (bgImg) bgImg.style.filter = 'brightness(0.98) contrast(1.12) saturate(1.18)';
                                 }, 120);
                             }, 90);
                         }, 50);
                     }, 70);
 
-                    // Next thunder strike in 7 to 13 seconds
-                    const nextDelay = 7000 + Math.random() * 6000;
+                    const nextDelay = 7000 + Math.random() * 7000;
                     setTimeout(triggerThunderFlash, nextDelay);
                 }
                 setTimeout(triggerThunderFlash, 4000);
@@ -2920,17 +2689,32 @@
             </script>
 
             <style>
-            @keyframes monsoonDrift {
-                0% { transform: scale(1.04) translate3d(0, 0, 0); }
-                50% { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
-                100% { transform: scale(1.04) translate3d(1%, 0.5%, 0); }
+            @keyframes cloudLoop1 {
+                0% { transform: translate3d(0, 0, 0); }
+                100% { transform: translate3d(-50%, 0, 0); }
             }
-            @keyframes mistMove {
-                0% { transform: translate3d(-5%, 0, 0); }
-                100% { transform: translate3d(5%, 0, 0); }
+            @keyframes cloudLoop2 {
+                0% { transform: translate3d(0, 0, 0); }
+                100% { transform: translate3d(50%, 0, 0); }
             }
-            .monsoon-mist-1 { animation: mistMove 22s ease-in-out infinite alternate; }
-            .monsoon-mist-2 { animation: mistMove 32s ease-in-out infinite alternate-reverse; }
+            @keyframes fogLoop {
+                0% { transform: translate3d(0, 0, 0); }
+                100% { transform: translate3d(-35%, 0, 0); }
+            }
+            .monsoon-cloud-layer-1 {
+                background: radial-gradient(ellipse 70% 50% at 25% 40%, rgba(15, 23, 42, 0.7), transparent 70%),
+                            radial-gradient(ellipse 80% 60% at 75% 35%, rgba(30, 41, 59, 0.65), transparent 70%);
+                animation: cloudLoop1 45s linear infinite;
+            }
+            .monsoon-cloud-layer-2 {
+                background: radial-gradient(ellipse 60% 45% at 30% 30%, rgba(255, 255, 255, 0.15), transparent 65%),
+                            radial-gradient(ellipse 70% 50% at 80% 45%, rgba(148, 163, 184, 0.2), transparent 70%);
+                animation: cloudLoop2 60s linear infinite;
+            }
+            .monsoon-fog-layer {
+                background: linear-gradient(to top, rgba(15, 23, 42, 0.6), rgba(255, 255, 255, 0.08) 50%, transparent);
+                animation: fogLoop 35s ease-in-out infinite alternate;
+            }
             </style>
         </div>
         <!-- Premium High-Contrast Breakdown Section (No Module Lines, Vibrant Badge Colors, Premium Typography) -->
