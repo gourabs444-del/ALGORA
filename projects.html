@@ -2453,9 +2453,8 @@
                         </div>
                     </div>
 
-                    <!-- Call-to-Action 240 FPS Native Hardware Physics Liquid Capsule Pill -->
+                    <!-- Call-to-Action 240 FPS Liquid Gel Capsule Pill (Concentric Geometry & Soft Edge Cushion) -->
                     <div class="pt-3 flex items-center gap-4">
-                        <!-- Outer Capsule pill: h-14 (56px), rounded-full (28px radius), concentric math: 22px inner radius + 6px padding = 28px outer radius! -->
                         <div id="anim-capsule" class="relative w-[290px] sm:w-[330px] h-14 rounded-full p-[6px] shadow-2xl select-none overflow-hidden flex items-center justify-between border-2 border-white/20 will-change-transform transform-gpu">
                             
                             <!-- GPU Theme Background Layers -->
@@ -2464,17 +2463,17 @@
                             <div id="theme-bg-2" class="absolute inset-0 bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 border-2 border-purple-400/50 transition-opacity duration-1000 opacity-0"></div>
                             <div id="theme-bg-3" class="absolute inset-0 bg-gradient-to-r from-amber-50 via-orange-100 to-amber-200 border-2 border-amber-500/40 transition-opacity duration-1000 opacity-0"></div>
 
-                            <!-- Inner Sliding Element: h-11 (44px), rounded-full (22px radius). Perfectly concentric with outer capsule! -->
+                            <!-- Inner Sliding Element (h-11 = 44px, 22px inner radius + 6px padding = 28px concentric outer radius) -->
                             <div id="capsule-circle" class="h-11 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow-xl z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu" style="width: 44px; transform: translate3d(264px, 0, 0);">
                                 <span id="capsule-arrow" class="material-symbols-outlined text-xl font-black transition-transform duration-700 will-change-transform">arrow_forward</span>
                             </div>
 
                             <!-- Morphing Text Containers (Left & Right GPU Layers) -->
-                            <div id="text-left-box" class="absolute inset-0 flex items-center justify-start pl-6 pr-14 z-20 transition-all duration-900 opacity-100 pointer-events-none">
+                            <div id="text-left-box" class="absolute inset-0 flex items-center justify-start pl-6 pr-14 z-20 transition-all duration-800 opacity-100 pointer-events-none">
                                 <span id="text-left" class="font-['Space_Grotesk'] font-extrabold text-xs sm:text-sm tracking-widest uppercase text-white transition-opacity duration-400">EXPLORE SYSTEMS</span>
                             </div>
 
-                            <div id="text-right-box" class="absolute inset-0 flex items-center justify-end pl-14 pr-6 z-20 transition-all duration-900 opacity-0 pointer-events-none">
+                            <div id="text-right-box" class="absolute inset-0 flex items-center justify-end pl-14 pr-6 z-20 transition-all duration-800 opacity-0 pointer-events-none">
                                 <span id="text-right" class="font-['Cormorant_Garamond'] font-black text-lg sm:text-xl italic text-slate-950 transition-opacity duration-400">Autonomous Swarms</span>
                             </div>
 
@@ -2541,7 +2540,7 @@
                         function updateBounds() {
                             if (capsule) {
                                 const capWidth = capsule.offsetWidth || 320;
-                                maxTranslateX = capWidth - 56; // 44px circle + 12px padding
+                                maxTranslateX = capWidth - 56;
                             }
                         }
                         updateBounds();
@@ -2553,13 +2552,13 @@
                             circle.style.width = '44px';
                         }
 
-                        // 240 FPS Native Physics Engine (Smooth Cosine Start + Gentle Elastic Overshoot Bounce-Back Stop)
+                        // Clean 240 FPS Liquid Gel Engine (Zero-Roughness Soft Cushion Edge Physics)
                         function run240fpsPhysics(targetX, duration, onDone) {
                             isAnimating = true;
                             const startX = currentX;
                             const dist = targetX - startX;
                             const baseW = 44;
-                            const peakW = 76; // Peak Capsule Width at midpoint
+                            const peakW = 74;
                             const addW = peakW - baseW;
                             const startTime = performance.now();
 
@@ -2567,32 +2566,21 @@
                                 const elapsed = now - startTime;
                                 const progress = Math.min(elapsed / duration, 1);
 
-                                // 1. Smooth Cosine Start & Glide Trajectory
-                                let easePos = 0.5 * (1 - Math.cos(Math.PI * progress));
-
-                                // 2. GENTLE ELASTIC OVERSHOOT & BOUNCE-BACK AT STOP (70% - 100% progress)
-                                // Smoothly overshoots past destination, then gently rebounds back into exact rest position!
-                                if (progress > 0.7) {
-                                    const p = (progress - 0.7) / 0.3;
-                                    // Damped Sine Rebound Curve: gently overshoots up to 7% and bounces back
-                                    const overshoot = Math.sin(p * Math.PI) * Math.exp(-p * 2.8) * 0.07;
-                                    easePos += overshoot;
-                                }
-
+                                // 1. Cosine Smooth Glide Trajectory (Zero initial & final jerk)
+                                const easePos = 0.5 * (1 - Math.cos(Math.PI * progress));
                                 const rawX = startX + (dist * easePos);
                                 
-                                // 3. Midpoint Sine Capsule Morph: sin(progress * PI)
-                                const morphFactor = Math.sin(progress * Math.PI);
-                                let w = baseW + (addW * morphFactor);
+                                // 2. Continuous Liquid Morphing (Circle -> Capsule at center -> Circle at end)
+                                let w = baseW + (addW * Math.sin(progress * Math.PI));
 
-                                // 4. Elastic Squish Rebound on Width during Bounce-Back
-                                if (progress > 0.75) {
-                                    const p = (progress - 0.75) / 0.25;
-                                    const squish = Math.sin(p * Math.PI * 2) * Math.exp(-p * 3) * 4;
-                                    w = baseW + squish;
+                                // 3. Liquid Cushion Contact (80% - 100% progress): Soft Gel Compression against wall
+                                if (progress > 0.8) {
+                                    const p = (progress - 0.8) / 0.2;
+                                    const cushionCompress = Math.sin(p * Math.PI) * 5;
+                                    w -= cushionCompress;
                                 }
 
-                                // Strict Edge Bounds Protection (safeX + w <= outer capsule boundary)
+                                // Strict Edge Bounds Protection Math (safeX + w <= outer padding edge)
                                 const maxAllowedX = maxTranslateX + 44 - w;
                                 const safeX = Math.max(0, Math.min(rawX, maxAllowedX));
 
@@ -2604,7 +2592,7 @@
                                     requestAnimationFrame(step);
                                 } else {
                                     currentX = targetX;
-                                    circle.style.width = '44px'; // Pure Circle at rest
+                                    circle.style.width = '44px';
                                     circle.style.transform = `translate3d(${targetX}px, 0, 0)`;
                                     isAnimating = false;
                                     if (onDone) onDone();
@@ -2620,12 +2608,10 @@
                             themeIdx = (themeIdx + 1) % themes.length;
                             const t = themes[themeIdx];
 
-                            // GPU Opacity Crossfade Theme BGs
                             bgs.forEach((bg, idx) => {
                                 if (bg) bg.style.opacity = (idx === themeIdx) ? '1' : '0';
                             });
 
-                            // Arrow Rotation
                             arrow.style.transform = `rotate(${t.arrowRotate})`;
                             circle.className = `h-11 rounded-full flex items-center justify-center shadow-xl z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu ${t.circleBg} ${t.circleText}`;
 
@@ -2635,7 +2621,6 @@
                                 textRight.className = t.fontClass;
                                 textRight.textContent = t.text;
 
-                                // Faster 240 FPS Physics glide Right -> Left (800ms snappy duration)
                                 run240fpsPhysics(0, 800);
 
                             } else {
@@ -2644,11 +2629,10 @@
                                 textLeft.className = t.fontClass;
                                 textLeft.textContent = t.text;
 
-                                // Faster 240 FPS Physics glide Left -> Right (800ms snappy duration)
                                 run240fpsPhysics(maxTranslateX, 800);
                             }
 
-                        }, 3500);
+                        }, 3400);
                     })();
                     </script>
 
