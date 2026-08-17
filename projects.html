@@ -2691,127 +2691,198 @@
 
                 </div>
 
-                <!-- RIGHT SECTION (48% Width): Standalone 3D Rotating & Floating Rubik's Cube Presentation Stage -->
-                <div class="w-full lg:w-[48%] relative flex items-center justify-center lg:justify-end h-full py-8">
+                <!-- RIGHT SECTION (48% Width): High-Quality Morphing Presentation Stage with Smooth Easing Curves & Rich Readable Text -->
+                <div class="w-full lg:w-[48%] relative flex items-center justify-center lg:justify-end h-full">
                     
-                    <!-- 3D Rubik's Cube Stage Container -->
-                    <div class="relative w-[320px] sm:w-[420px] lg:w-[480px] h-[360px] sm:h-[440px] flex items-center justify-center [perspective:1200px] select-none">
+                    <!-- Stage Container floating directly on Yellow Canvas -->
+                    <div id="pure-motion-stage" class="relative w-[360px] sm:w-[460px] lg:w-[560px] h-[460px] sm:h-[520px] lg:h-[560px] flex items-center justify-center pointer-events-auto">
                         
-                        <!-- Ambient 3D Radial Glow Background -->
-                        <div class="absolute inset-0 bg-gradient-to-tr from-amber-400/25 via-purple-500/20 to-emerald-400/25 rounded-full blur-3xl scale-90 pointer-events-none animate-pulse"></div>
-
-                        <!-- 3D Shadow Floor -->
-                        <div class="absolute bottom-4 w-48 sm:w-64 h-8 bg-slate-950/30 blur-xl rounded-full scale-100 pointer-events-none"></div>
-
-                        <!-- 3D RUBIK'S CUBE CONTAINER -->
-                        <div class="rubik-cube-3d relative w-44 sm:w-56 h-44 sm:h-56 [transform-style:preserve-3d] transition-transform duration-700">
-                            
-                            <!-- CUBE FACE: FRONT (Ruby Red) -->
-                            <div class="rubik-face rubik-front absolute inset-0 grid grid-cols-3 grid-rows-3 gap-1.5 p-2 bg-slate-950 rounded-2xl border-2 border-slate-900 shadow-2xl [transform:translateZ(88px)] sm:[transform:translateZ(112px)]">
-                                <div class="rounded-lg bg-gradient-to-br from-red-400 to-rose-600 shadow-inner border border-rose-300/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-red-400 to-rose-600 shadow-inner border border-rose-300/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-red-400 to-rose-600 shadow-inner border border-rose-300/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-red-400 to-rose-600 shadow-inner border border-rose-300/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-red-500 to-rose-700 shadow-inner border border-rose-300/40 flex items-center justify-center text-[10px] font-mono font-bold text-white/80">ALGORA</div>
-                                <div class="rounded-lg bg-gradient-to-br from-red-400 to-rose-600 shadow-inner border border-rose-300/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-red-400 to-rose-600 shadow-inner border border-rose-300/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-red-400 to-rose-600 shadow-inner border border-rose-300/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-red-400 to-rose-600 shadow-inner border border-rose-300/40"></div>
+                        <!-- SLIDE 1: 💻 Desktop Workspace Presentation -->
+                        <div id="morph-desktop" class="morph-object absolute inset-0 flex flex-col items-center justify-center p-4 transition-all duration-900 opacity-100 scale-100 rotate-0" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);">
+                            <div class="relative flex flex-col items-center space-y-4 text-center">
+                                <!-- Desktop Device Graphics -->
+                                <div class="w-64 sm:w-80 h-44 sm:h-52 rounded-2xl bg-gradient-to-tr from-slate-950 via-slate-900 to-slate-950 border-4 border-slate-950 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col justify-between p-4 relative">
+                                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                        <span class="text-[10px] font-mono text-amber-400 font-bold">DESKTOP SUITE v4</span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                    </div>
+                                    <div class="space-y-2 py-1">
+                                        <div class="flex justify-between text-xs font-mono text-slate-300">
+                                            <span>AI PIPELINE</span>
+                                            <span class="text-amber-400 font-bold">ACTIVE</span>
+                                        </div>
+                                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-amber-400 h-full w-[90%] rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-2 border-t border-slate-800">
+                                        <span>⚡ 12ms SYNC</span>
+                                        <span class="text-emerald-400 font-bold">99.9% LIVE</span>
+                                    </div>
+                                </div>
+                                <!-- Presentation Text Card -->
+                                <div class="p-4 rounded-3xl bg-white/95 border-2 border-slate-950/20 shadow-2xl space-y-1 text-slate-950 max-w-sm">
+                                    <h5 class="text-sm sm:text-base font-['Space_Grotesk'] font-black uppercase tracking-wider">💻 1. DESKTOP COMMAND SUITE</h5>
+                                    <p class="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-slate-700 leading-relaxed">
+                                        Real-time multi-agent terminal routing &amp; zero-latency system telemetry.
+                                    </p>
+                                </div>
                             </div>
-
-                            <!-- CUBE FACE: BACK (Electric Amber/Orange) -->
-                            <div class="rubik-face rubik-back absolute inset-0 grid grid-cols-3 grid-rows-3 gap-1.5 p-2 bg-slate-950 rounded-2xl border-2 border-slate-900 shadow-2xl [transform:rotateY(180deg)_translateZ(88px)] sm:[transform:rotateY(180deg)_translateZ(112px)]">
-                                <div class="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-inner border border-amber-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-inner border border-amber-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-inner border border-amber-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-inner border border-amber-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-inner border border-amber-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-inner border border-amber-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-inner border border-amber-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-inner border border-amber-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 shadow-inner border border-amber-200/40"></div>
-                            </div>
-
-                            <!-- CUBE FACE: RIGHT (Ocean Indigo Blue) -->
-                            <div class="rubik-face rubik-right absolute inset-0 grid grid-cols-3 grid-rows-3 gap-1.5 p-2 bg-slate-950 rounded-2xl border-2 border-slate-900 shadow-2xl [transform:rotateY(90deg)_translateZ(88px)] sm:[transform:rotateY(90deg)_translateZ(112px)]">
-                                <div class="rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 shadow-inner border border-blue-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 shadow-inner border border-blue-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 shadow-inner border border-blue-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 shadow-inner border border-blue-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 shadow-inner border border-blue-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 shadow-inner border border-blue-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 shadow-inner border border-blue-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 shadow-inner border border-blue-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 shadow-inner border border-blue-200/40"></div>
-                            </div>
-
-                            <!-- CUBE FACE: LEFT (Emerald Cyber Green) -->
-                            <div class="rubik-face rubik-left absolute inset-0 grid grid-cols-3 grid-rows-3 gap-1.5 p-2 bg-slate-950 rounded-2xl border-2 border-slate-900 shadow-2xl [transform:rotateY(-90deg)_translateZ(88px)] sm:[transform:rotateY(-90deg)_translateZ(112px)]">
-                                <div class="rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 shadow-inner border border-emerald-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 shadow-inner border border-emerald-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 shadow-inner border border-emerald-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 shadow-inner border border-emerald-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 shadow-inner border border-emerald-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 shadow-inner border border-emerald-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 shadow-inner border border-emerald-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 shadow-inner border border-emerald-200/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 shadow-inner border border-emerald-200/40"></div>
-                            </div>
-
-                            <!-- CUBE FACE: TOP (Pure Platinum White) -->
-                            <div class="rubik-face rubik-top absolute inset-0 grid grid-cols-3 grid-rows-3 gap-1.5 p-2 bg-slate-950 rounded-2xl border-2 border-slate-900 shadow-2xl [transform:rotateX(90deg)_translateZ(88px)] sm:[transform:rotateX(90deg)_translateZ(112px)]">
-                                <div class="rounded-lg bg-gradient-to-br from-slate-100 to-slate-300 shadow-inner border border-white"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-slate-100 to-slate-300 shadow-inner border border-white"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-slate-100 to-slate-300 shadow-inner border border-white"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-slate-100 to-slate-300 shadow-inner border border-white"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-slate-100 to-slate-300 shadow-inner border border-white"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-slate-100 to-slate-300 shadow-inner border border-white"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-slate-100 to-slate-300 shadow-inner border border-white"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-slate-100 to-slate-300 shadow-inner border border-white"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-slate-100 to-slate-300 shadow-inner border border-white"></div>
-                            </div>
-
-                            <!-- CUBE FACE: BOTTOM (Canary Yellow) -->
-                            <div class="rubik-face rubik-bottom absolute inset-0 grid grid-cols-3 grid-rows-3 gap-1.5 p-2 bg-slate-950 rounded-2xl border-2 border-slate-900 shadow-2xl [transform:rotateX(-90deg)_translateZ(88px)] sm:[transform:rotateX(-90deg)_translateZ(112px)]">
-                                <div class="rounded-lg bg-gradient-to-br from-yellow-300 to-amber-400 shadow-inner border border-yellow-100/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-yellow-300 to-amber-400 shadow-inner border border-yellow-100/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-yellow-300 to-amber-400 shadow-inner border border-yellow-100/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-yellow-300 to-amber-400 shadow-inner border border-yellow-100/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-yellow-300 to-amber-400 shadow-inner border border-yellow-100/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-yellow-300 to-amber-400 shadow-inner border border-yellow-100/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-yellow-300 to-amber-400 shadow-inner border border-yellow-100/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-yellow-300 to-amber-400 shadow-inner border border-yellow-100/40"></div>
-                                <div class="rounded-lg bg-gradient-to-br from-yellow-300 to-amber-400 shadow-inner border border-yellow-100/40"></div>
-                            </div>
-
                         </div>
+
+                        <!-- SLIDE 2: 📱 Mobile Smartphone Presentation -->
+                        <div id="morph-mobile" class="morph-object absolute inset-0 flex flex-col items-center justify-center p-4 transition-all duration-900 opacity-0 scale-75 -rotate-6 pointer-events-none" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);">
+                            <div class="relative flex flex-col items-center space-y-4 text-center">
+                                <!-- Mobile Smartphone Device -->
+                                <div class="w-48 sm:w-56 h-72 sm:h-80 rounded-[40px] bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-4 border-slate-950 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col justify-between">
+                                    <div class="w-16 h-3 bg-slate-800 rounded-full mx-auto mb-1"></div>
+                                    <div class="space-y-3 font-mono text-xs text-left">
+                                        <div class="p-2.5 rounded-2xl bg-amber-500/20 text-amber-200 border border-amber-400/30 text-[11px]">
+                                            🤖 Mobile AI Assistant Active
+                                        </div>
+                                        <div class="p-2.5 rounded-2xl bg-slate-800 text-slate-200 text-[11px]">
+                                            ⚡ 100% Client Lead Capture
+                                        </div>
+                                    </div>
+                                    <div class="w-12 h-1 bg-amber-400 rounded-full mx-auto"></div>
+                                </div>
+                                <!-- Presentation Text Card -->
+                                <div class="p-4 rounded-3xl bg-white/95 border-2 border-slate-950/20 shadow-2xl space-y-1 text-slate-950 max-w-sm">
+                                    <h5 class="text-sm sm:text-base font-['Space_Grotesk'] font-black uppercase tracking-wider">📱 2. MOBILE AI APP ENGINE</h5>
+                                    <p class="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-slate-700 leading-relaxed">
+                                        Conversational voice &amp; chat bots for 24/7 autonomous client capture.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 3: 👦 RICH HUMAN TECH DEVELOPER CHARACTER WITH PRESENTATION TEXT -->
+                        <div id="morph-boy" class="morph-object absolute inset-0 flex flex-col items-center justify-center p-4 transition-all duration-900 opacity-0 scale-75 rotate-6 pointer-events-none" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);">
+                            <div class="relative flex flex-col items-center space-y-4 text-center">
+                                
+                                <!-- Floating Hologram Badge Left -->
+                                <div class="absolute -top-3 -left-4 z-30 px-3 py-1.5 rounded-2xl bg-slate-950 text-amber-400 border border-amber-400/50 shadow-2xl text-[10px] font-mono font-bold flex items-center gap-2 transform -rotate-12 animate-pulse">
+                                    <span class="material-symbols-outlined text-sm">headphones</span>
+                                    <span>NEURAL HEADSET</span>
+                                </div>
+
+                                <!-- Floating Code Badge Right -->
+                                <div class="absolute top-10 -right-6 z-30 px-3 py-1.5 rounded-2xl bg-slate-950 text-emerald-400 border border-emerald-400/50 shadow-2xl text-[10px] font-mono font-bold flex items-center gap-2 transform rotate-12 animate-pulse">
+                                    <span class="material-symbols-outlined text-sm">code</span>
+                                    <span>&lt;AI_SWARM&gt;</span>
+                                </div>
+
+                                <!-- Human Developer Avatar Portrait -->
+                                <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-gradient-to-tr from-slate-950 via-slate-900 to-amber-950 p-2 shadow-[0_25px_60px_rgba(0,0,0,0.6)] border-4 border-slate-950 flex items-center justify-center relative">
+                                    <!-- Spinning Laser Spark Ring -->
+                                    <div class="absolute inset-0 rounded-full border-2 border-dashed border-amber-400/60 animate-spin" style="animation-duration: 14s;"></div>
+
+                                    <div class="w-full h-full rounded-full bg-slate-950 flex flex-col items-center justify-center text-amber-400 relative overflow-hidden border-4 border-slate-900">
+                                        <span class="material-symbols-outlined text-8xl text-amber-300 transform scale-110 drop-shadow-[0_0_25px_rgba(245,158,11,0.8)]">face_6</span>
+                                    </div>
+                                </div>
+
+                                <!-- Presentation Text Card for Human Character -->
+                                <div class="p-4 rounded-3xl bg-white/95 border-2 border-slate-950/20 shadow-2xl space-y-1 text-slate-950 max-w-sm">
+                                    <h5 class="text-sm sm:text-base font-['Space_Grotesk'] font-black uppercase tracking-wider">👦 3. CHIEF AI ARCHITECT</h5>
+                                    <p class="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-slate-700 leading-relaxed">
+                                        Human-in-the-loop autonomous AI swarms &amp; custom enterprise logic.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 4: ⚡ n8n Connected Workflow Node Presentation -->
+                        <div id="morph-n8n" class="morph-object absolute inset-0 flex flex-col items-center justify-center p-4 transition-all duration-900 opacity-0 scale-75 rotate-0 pointer-events-none" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);">
+                            <div class="relative flex flex-col items-center space-y-4 text-center">
+                                <!-- n8n Workflow Device Graphics -->
+                                <div class="w-64 sm:w-80 h-44 sm:h-52 rounded-3xl bg-slate-950 border-4 border-slate-950 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col justify-between relative">
+                                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                        <span class="text-xs font-mono font-bold text-amber-400">n8n NODE PIPELINE</span>
+                                        <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono">1,420 EV/SEC</span>
+                                    </div>
+                                    <div class="flex items-center justify-between px-2">
+                                        <div class="w-12 h-12 rounded-2xl bg-purple-950 border-2 border-purple-500 text-purple-200 flex flex-col items-center justify-center">
+                                            <span class="material-symbols-outlined text-lg">bolt</span>
+                                            <span class="text-[8px] font-mono">Trigger</span>
+                                        </div>
+                                        <div class="w-6 h-1 bg-amber-400"></div>
+                                        <div class="w-12 h-12 rounded-2xl bg-amber-950 border-2 border-amber-500 text-amber-200 flex flex-col items-center justify-center">
+                                            <span class="material-symbols-outlined text-lg">hub</span>
+                                            <span class="text-[8px] font-mono">n8n Node</span>
+                                        </div>
+                                        <div class="w-6 h-1 bg-amber-400"></div>
+                                        <div class="w-12 h-12 rounded-2xl bg-cyan-950 border-2 border-cyan-500 text-cyan-200 flex flex-col items-center justify-center">
+                                            <span class="material-symbols-outlined text-lg">database</span>
+                                            <span class="text-[8px] font-mono">Postgres</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-1.5 rounded-xl bg-slate-900 text-center font-mono text-[10px] text-amber-300">
+                                        ⚡ Webhook ➔ Router ➔ CRM
+                                    </div>
+                                </div>
+                                <!-- Presentation Text Card -->
+                                <div class="p-4 rounded-3xl bg-white/95 border-2 border-slate-950/20 shadow-2xl space-y-1 text-slate-950 max-w-sm">
+                                    <h5 class="text-sm sm:text-base font-['Space_Grotesk'] font-black uppercase tracking-wider">⚡ 4. n8n WORKFLOW ROUTER</h5>
+                                    <p class="text-xs font-['Plus_Jakarta_Sans'] font-semibold text-slate-700 leading-relaxed">
+                                        Automated webhooks, database sync &amp; multi-tool API connections.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
 
-                <!-- Continuous 3D Rubik's Cube Floating & Orbital Spin Animation -->
-                <style>
-                .rubik-cube-3d {
-                    animation: rubikFloatSpin 16s infinite cubic-bezier(0.4, 0, 0.2, 1);
-                }
+                        <!-- Zero-Gap Fluid Liquid Crossfade Transition JavaScript (No Disappearing Blank Gap!) -->
+                        <script>
+                        (function(){
+                            const objects = [
+                                document.getElementById('morph-desktop'),
+                                document.getElementById('morph-mobile'),
+                                document.getElementById('morph-boy'),
+                                document.getElementById('morph-n8n')
+                            ];
+                            let current = 0;
+                            // Initialize all slides with zero-gap 1.2s fluid crossfade physics
+                            objects.forEach((obj, i) => {
+                                if(obj) {
+                                    obj.style.transition = 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+                                    if(i !== 0) {
+                                        obj.style.opacity = '0';
+                                        obj.style.transform = 'scale(0.85) translateY(20px)';
+                                        obj.style.pointerEvents = 'none';
+                                    } else {
+                                        obj.style.opacity = '1';
+                                        obj.style.transform = 'scale(1) translateY(0px)';
+                                        obj.style.pointerEvents = 'auto';
+                                    }
+                                }
+                            });
 
-                @keyframes rubikFloatSpin {
-                    0% {
-                        transform: rotateX(-22deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
-                    }
-                    25% {
-                        transform: rotateX(-32deg) rotateY(90deg) rotateZ(8deg) translateY(-18px);
-                    }
-                    50% {
-                        transform: rotateX(-15deg) rotateY(180deg) rotateZ(-6deg) translateY(0px);
-                    }
-                    75% {
-                        transform: rotateX(-28deg) rotateY(270deg) rotateZ(8deg) translateY(-18px);
-                    }
-                    100% {
-                        transform: rotateX(-22deg) rotateY(360deg) rotateZ(0deg) translateY(0px);
-                    }
-                }
-                </style>
+                            setInterval(() => {
+                                const prev = current;
+                                current = (current + 1) % objects.length;
+
+                                // Simultaneous Zero-Gap Crossfade Transition (Previous morphs out AS next morphs in!)
+                                if(objects[prev]) {
+                                    objects[prev].style.opacity = '0';
+                                    objects[prev].style.transform = 'scale(0.85) translateY(-20px)';
+                                    objects[prev].style.pointerEvents = 'none';
+                                }
+                                if(objects[current]) {
+                                    objects[current].style.opacity = '1';
+                                    objects[current].style.transform = 'scale(1) translateY(0px)';
+                                    objects[current].style.pointerEvents = 'auto';
+                                }
+                            }, 3500);
+                        })();
+                        </script>
+
+                    </div>
+
+                </div>
 
             </div>
         </div>
