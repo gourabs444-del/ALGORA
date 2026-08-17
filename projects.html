@@ -2553,13 +2553,13 @@
                             circle.style.width = '44px';
                         }
 
-                        // 240 FPS Native Physics Engine (Silky Smooth Cosine Start & Soft Landing Stop)
+                        // 240 FPS Native Physics Engine (Smooth Cosine Start + Gentle Elastic Overshoot Bounce-Back Stop)
                         function run240fpsPhysics(targetX, duration, onDone) {
                             isAnimating = true;
                             const startX = currentX;
                             const dist = targetX - startX;
                             const baseW = 44;
-                            const peakW = 76; // Peak Capsule Width at exact midpoint
+                            const peakW = 76; // Peak Capsule Width at midpoint
                             const addW = peakW - baseW;
                             const startTime = performance.now();
 
@@ -2567,18 +2567,32 @@
                                 const elapsed = now - startTime;
                                 const progress = Math.min(elapsed / duration, 1);
 
-                                // 1. Smooth Cosine Minimum-Jerk Trajectory (Zero initial/final velocity & acceleration)
-                                // Softly accelerates from 0 at start, decelerates softly to 0 at stop!
-                                const easePos = 0.5 * (1 - Math.cos(Math.PI * progress));
+                                // 1. Smooth Cosine Start & Glide Trajectory
+                                let easePos = 0.5 * (1 - Math.cos(Math.PI * progress));
+
+                                // 2. GENTLE ELASTIC OVERSHOOT & BOUNCE-BACK AT STOP (70% - 100% progress)
+                                // Smoothly overshoots past destination, then gently rebounds back into exact rest position!
+                                if (progress > 0.7) {
+                                    const p = (progress - 0.7) / 0.3;
+                                    // Damped Sine Rebound Curve: gently overshoots up to 7% and bounces back
+                                    const overshoot = Math.sin(p * Math.PI) * Math.exp(-p * 2.8) * 0.07;
+                                    easePos += overshoot;
+                                }
 
                                 const rawX = startX + (dist * easePos);
                                 
-                                // 2. Midpoint Sine Capsule Morph: sin(progress * PI)
-                                // Smoothly expands 44px -> 76px at center -> 44px at stop
+                                // 3. Midpoint Sine Capsule Morph: sin(progress * PI)
                                 const morphFactor = Math.sin(progress * Math.PI);
-                                const w = baseW + (addW * morphFactor);
+                                let w = baseW + (addW * morphFactor);
 
-                                // 3. Strict Edge Bounds Protection (safeX + w <= outer capsule boundary)
+                                // 4. Elastic Squish Rebound on Width during Bounce-Back
+                                if (progress > 0.75) {
+                                    const p = (progress - 0.75) / 0.25;
+                                    const squish = Math.sin(p * Math.PI * 2) * Math.exp(-p * 3) * 4;
+                                    w = baseW + squish;
+                                }
+
+                                // Strict Edge Bounds Protection (safeX + w <= outer capsule boundary)
                                 const maxAllowedX = maxTranslateX + 44 - w;
                                 const safeX = Math.max(0, Math.min(rawX, maxAllowedX));
 
