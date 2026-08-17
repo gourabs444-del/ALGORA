@@ -296,9 +296,24 @@
         ================================================= -->
         <section id="ocean-landing-hero" class="ocean-hero-container" aria-label="Ocean Horizon Experience">
             
-            <!-- 8K LUXURY YACHT IN CLEAN SUNNY WEATHER WITH BIRDS -->
+            <!-- SVG FLUID WATER TURBULENCE DISPLACEMENT FILTER -->
+            <svg class="ocean-water-filter-def" aria-hidden="true" style="position: absolute; width: 0; height: 0; pointer-events: none;">
+                <filter id="ocean-water-ripple" x="-10%" y="-10%" width="120%" height="120%">
+                    <feTurbulence id="ocean-turbulence-node" type="fractalNoise" baseFrequency="0.012 0.035" numOctaves="2" result="noise" seed="5"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+                </filter>
+            </svg>
+
+            <!-- 8K LUXURY YACHT BASE LAYER -->
             <div class="ocean-bg-layer">
+                <!-- Sky & Yacht Base Image -->
                 <img src="assets/luxury_yacht_clean_weather.jpg" alt="Luxury Superyacht Sailing in Clear Sunny Weather with Birds" class="ocean-bg-image" id="ocean-bg-img">
+                
+                <!-- Fluid Animated Ocean Water Wave Layer (Displaced & Undulating in Real Time) -->
+                <div class="ocean-water-flow-layer">
+                    <img src="assets/luxury_yacht_clean_weather.jpg" alt="Animated Water Waves" class="ocean-water-displaced-img">
+                </div>
+
                 <div class="ocean-sun-glow"></div>
                 <div class="ocean-gradient-overlay"></div>
             </div>

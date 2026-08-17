@@ -1,41 +1,49 @@
 /**
- * REAL-LIFE CINEMATIC OCEAN HORIZON ENGINE (IMAX FIDELITY)
+ * REAL-LIFE CINEMATIC OCEAN HORIZON & FLUID WAVE ENGINE
  * Portfolio / js/ocean-hero.js
  * 
- * 1. Photorealistic Natural Sun Caustics, Water Glitter & Surface Shimmer
- * 2. High-Fidelity Avian Seagull Flight Simulation
+ * Features:
+ *  1. Real-Time SVG Ocean Water Surface Turbulence & Wave Displacement (60 FPS Fluid Motion)
+ *  2. Multi-Layered Moving Water Wave Swells, Wake Foam & Shimmering Sun Caustics
+ *  3. Flocking White Seagulls Flight Physics with Natural Wing Articulation
  */
 
 (function initRealLifeOceanExperience() {
 
-    // Force reliable background video continuous autoplay
-    const bgVideo = document.getElementById('ocean-bg-video');
-    if (bgVideo) {
-        bgVideo.muted = true;
-        const playPromise = bgVideo.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(() => {
-                document.addEventListener('touchstart', () => bgVideo.play(), { once: true });
-                document.addEventListener('click', () => bgVideo.play(), { once: true });
-            });
+    /* ============================================================
+       1. REAL-TIME SVG WATER TURBULENCE DISPLACEMENT ENGINE
+       ============================================================ */
+    const turbulenceNode = document.getElementById('ocean-turbulence-node');
+    let turbTime = 0;
+    
+    function animateWaterTurbulence() {
+        turbTime += 0.006;
+        if (turbulenceNode) {
+            // Dynamic oscillating harmonic frequencies that create undulating fluid water ripples
+            const freqX = 0.012 + Math.sin(turbTime * 1.8) * 0.004;
+            const freqY = 0.032 + Math.cos(turbTime * 2.2) * 0.008;
+            turbulenceNode.setAttribute('baseFrequency', `${freqX.toFixed(4)} ${freqY.toFixed(4)}`);
         }
+        requestAnimationFrame(animateWaterTurbulence);
     }
+    animateWaterTurbulence();
+
 
     /* ============================================================
-       1. PHOTOREALISTIC WATER SPECULAR GLINT & CAUSTICS ENGINE
+       2. MULTI-LAYERED OCEAN WAVE SWELLS & SUN CAUSTICS CANVAS
        ============================================================ */
     const waveCanvas = document.getElementById('ocean-wave-canvas');
     if (waveCanvas) {
         const ctx = waveCanvas.getContext('2d');
         let width = 0, height = 0;
-        let time = 0;
+        let waveTime = 0;
         let mouseX = -1000, mouseY = -1000;
         let targetMouseX = -1000, targetMouseY = -1000;
 
         function resizeWaveCanvas() {
             const rect = waveCanvas.getBoundingClientRect();
             width = waveCanvas.width = rect.width || window.innerWidth;
-            height = waveCanvas.height = rect.height || (window.innerHeight * 0.55);
+            height = waveCanvas.height = rect.height || (window.innerHeight * 0.52);
         }
         resizeWaveCanvas();
         window.addEventListener('resize', resizeWaveCanvas);
@@ -46,31 +54,92 @@
             targetMouseY = e.clientY - rect.top;
         });
 
-        // 110 Photorealistic Sunlight Shimmer Points on Water Swells
+        // 95 Sun Caustic Specular Glints on Wave Crests
         const glints = [];
-        const GLINT_COUNT = 110;
+        const GLINT_COUNT = 95;
         for (let i = 0; i < GLINT_COUNT; i++) {
             glints.push({
                 xRatio: Math.random(),
-                yRatio: 0.12 + Math.random() * 0.85,
-                baseSize: 0.8 + Math.random() * 2.8,
+                yRatio: 0.15 + Math.random() * 0.82,
+                baseSize: 1.0 + Math.random() * 3.2,
                 phase: Math.random() * Math.PI * 2,
-                speed: 0.02 + Math.random() * 0.04,
-                drift: (Math.random() - 0.5) * 0.15,
-                starFlare: Math.random() > 0.65
+                speed: 0.025 + Math.random() * 0.045,
+                drift: (Math.random() - 0.5) * 0.2,
+                starFlare: Math.random() > 0.6
             });
         }
 
-        function drawRealWaterEffects() {
+        function drawWaveCanvas() {
             ctx.clearRect(0, 0, width, height);
-            time += 0.015;
+            waveTime += 0.016;
 
-            mouseX += (targetMouseX - mouseX) * 0.06;
-            mouseY += (targetMouseY - mouseY) * 0.06;
+            mouseX += (targetMouseX - mouseX) * 0.08;
+            mouseY += (targetMouseY - mouseY) * 0.08;
 
+            // 3 Moving Translucent Wave Swell Highlights (Adds dynamic physical wave roll across water)
+            const waveLayers = [
+                {
+                    yRatio: 0.35,
+                    amplitude: 8,
+                    frequency: 0.005,
+                    speed: 1.2,
+                    color: 'rgba(56, 189, 248, 0.14)',
+                    crestColor: 'rgba(255, 255, 255, 0.28)'
+                },
+                {
+                    yRatio: 0.62,
+                    amplitude: 12,
+                    frequency: 0.004,
+                    speed: 1.6,
+                    color: 'rgba(14, 165, 233, 0.18)',
+                    crestColor: 'rgba(255, 255, 255, 0.35)'
+                },
+                {
+                    yRatio: 0.86,
+                    amplitude: 15,
+                    frequency: 0.0035,
+                    speed: 2.0,
+                    color: 'rgba(2, 132, 199, 0.22)',
+                    crestColor: 'rgba(255, 255, 255, 0.45)'
+                }
+            ];
+
+            waveLayers.forEach((wl, idx) => {
+                ctx.beginPath();
+                const baseY = height * wl.yRatio;
+
+                for (let x = 0; x <= width; x += 8) {
+                    let y = baseY + 
+                            Math.sin(x * wl.frequency + waveTime * wl.speed + idx) * wl.amplitude +
+                            Math.cos(x * (wl.frequency * 1.6) - waveTime * (wl.speed * 0.8)) * (wl.amplitude * 0.4);
+
+                    // Interactive mouse water swell
+                    const dx = x - mouseX;
+                    const dy = y - mouseY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 180) {
+                        y += Math.sin(dist * 0.08 - waveTime * 4) * ((1 - dist / 180) * 10);
+                    }
+
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+
+                ctx.lineTo(width, height);
+                ctx.lineTo(0, height);
+                ctx.closePath();
+
+                ctx.fillStyle = wl.color;
+                ctx.fill();
+
+                // Foaming water crest highlight
+                ctx.strokeStyle = wl.crestColor;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            });
+
+            // Draw Sun Caustic Specular Glitters
             ctx.globalCompositeOperation = 'screen';
-
-            // Draw Natural Water Surface Sunlight Sparkles
             glints.forEach(glint => {
                 glint.phase += glint.speed;
                 glint.xRatio += glint.drift / width;
@@ -78,61 +147,49 @@
                 if (glint.xRatio < 0) glint.xRatio = 1;
 
                 const gx = glint.xRatio * width;
-                // Vertical wave swell motion
-                const gy = height * glint.yRatio + Math.sin(gx * 0.005 + time * 1.8) * 6;
+                const gy = height * glint.yRatio + Math.sin(gx * 0.005 + waveTime * 2.0) * 7;
 
-                // Mouse proximity shimmer
-                const dx = gx - mouseX;
-                const dy = gy - mouseY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                let extraIntensity = 0;
-                if (dist < 160) {
-                    extraIntensity = (1 - dist / 160) * 0.5;
-                }
-
-                const rawIntensity = (Math.sin(glint.phase) + 1) * 0.4 + extraIntensity;
+                const rawIntensity = (Math.sin(glint.phase) + 1) * 0.45;
                 const alpha = Math.min(1, Math.max(0, rawIntensity));
 
                 if (alpha > 0.08) {
                     ctx.save();
                     ctx.translate(gx, gy);
 
-                    // Core soft sun glint
-                    const radGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, glint.baseSize * 2.5);
+                    const radGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, glint.baseSize * 3);
                     radGrad.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.95})`);
                     radGrad.addColorStop(0.3, `rgba(224, 242, 254, ${alpha * 0.6})`);
                     radGrad.addColorStop(1, 'rgba(56, 189, 248, 0)');
 
                     ctx.fillStyle = radGrad;
                     ctx.beginPath();
-                    ctx.arc(0, 0, glint.baseSize * 2.5, 0, Math.PI * 2);
+                    ctx.arc(0, 0, glint.baseSize * 3, 0, Math.PI * 2);
                     ctx.fill();
 
-                    // Anamorphic horizontal sun flare cross for bright points
-                    if (glint.starFlare && alpha > 0.5) {
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.6})`;
-                        ctx.lineWidth = 0.75;
+                    if (glint.starFlare && alpha > 0.45) {
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.7})`;
+                        ctx.lineWidth = 0.8;
                         ctx.beginPath();
-                        ctx.moveTo(-glint.baseSize * 4, 0);
-                        ctx.lineTo(glint.baseSize * 4, 0);
-                        ctx.moveTo(0, -glint.baseSize * 2);
-                        ctx.lineTo(0, glint.baseSize * 2);
+                        ctx.moveTo(-glint.baseSize * 4.5, 0);
+                        ctx.lineTo(glint.baseSize * 4.5, 0);
+                        ctx.moveTo(0, -glint.baseSize * 2.5);
+                        ctx.lineTo(0, glint.baseSize * 2.5);
                         ctx.stroke();
                     }
 
                     ctx.restore();
                 }
             });
-
             ctx.globalCompositeOperation = 'source-over';
-            requestAnimationFrame(drawRealWaterEffects);
+
+            requestAnimationFrame(drawWaveCanvas);
         }
-        drawRealWaterEffects();
+        drawWaveCanvas();
     }
 
 
     /* ============================================================
-       2. PHOTOREALISTIC AVIAN SEAGULL FLIGHT ENGINE
+       3. FLOCKING WHITE SEAGULLS FLIGHT SIMULATION
        ============================================================ */
     const birdsCanvas = document.getElementById('ocean-birds-canvas');
     if (birdsCanvas) {
@@ -153,19 +210,19 @@
             }
 
             reset(init = false, customX = null) {
-                this.scale = 0.35 + Math.random() * 0.55; // Distance scaling
-                this.wingspan = 18 * this.scale;
-                this.speed = (1.2 + Math.random() * 0.9) * (this.scale * 1.15);
+                this.scale = 0.40 + Math.random() * 0.60;
+                this.wingspan = 19 * this.scale;
+                this.speed = (1.3 + Math.random() * 1.0) * (this.scale * 1.15);
                 
                 this.x = customX !== null ? customX : (init ? Math.random() * bWidth : -60);
-                this.y = (bHeight * 0.08) + Math.random() * (bHeight * 0.55);
+                this.y = (bHeight * 0.08) + Math.random() * (bHeight * 0.50);
                 this.baseY = this.y;
 
                 this.flapPhase = Math.random() * Math.PI * 2;
-                this.flapSpeed = 0.09 + Math.random() * 0.04;
+                this.flapSpeed = 0.10 + Math.random() * 0.04;
                 this.glideTimer = 0;
                 this.isGliding = false;
-                this.glideDuration = 140 + Math.random() * 200;
+                this.glideDuration = 130 + Math.random() * 180;
                 this.flapDuration = 70 + Math.random() * 90;
                 
                 this.yNoise = Math.random() * 100;
@@ -173,12 +230,9 @@
 
             update() {
                 this.x += this.speed;
-                this.yNoise += 0.012;
-                
-                // Natural atmospheric wind drift
-                this.y = this.baseY + Math.sin(this.yNoise) * (12 * this.scale);
+                this.yNoise += 0.014;
+                this.y = this.baseY + Math.sin(this.yNoise) * (14 * this.scale);
 
-                // Flap and Glide cycles
                 this.glideTimer++;
                 if (!this.isGliding && this.glideTimer > this.flapDuration) {
                     this.isGliding = true;
@@ -202,20 +256,18 @@
                 bCtx.translate(this.x, this.y);
 
                 let wingDeflection = this.isGliding 
-                    ? Math.sin(this.yNoise) * 1.0 
-                    : Math.sin(this.flapPhase) * (this.wingspan * 0.65);
+                    ? Math.sin(this.yNoise) * 1.2 
+                    : Math.sin(this.flapPhase) * (this.wingspan * 0.70);
 
                 const w = this.wingspan;
                 const bodyL = 8 * this.scale;
 
-                // Subtle atmospheric depth fade & ambient shadow
                 bCtx.shadowColor = 'rgba(15, 23, 42, 0.35)';
                 bCtx.shadowBlur = 5 * this.scale;
                 bCtx.shadowOffsetY = 2.5 * this.scale;
 
-                // Real avian gull wing anatomy
-                bCtx.beginPath();
                 // Left Wing
+                bCtx.beginPath();
                 bCtx.moveTo(0, 0);
                 bCtx.bezierCurveTo(-w * 0.3, -wingDeflection * 0.9, -w * 0.7, wingDeflection * 0.2, -w, wingDeflection * 0.5);
                 bCtx.bezierCurveTo(-w * 0.6, wingDeflection * 0.1, -w * 0.25, -wingDeflection * 0.2, 0, bodyL * 0.4);
@@ -228,17 +280,17 @@
                 bCtx.fillStyle = 'rgba(255, 255, 255, 0.96)';
                 bCtx.fill();
 
-                // Slender Gull Body & Beak
+                // Torso
                 bCtx.beginPath();
-                bCtx.ellipse(0, 0, 1.6 * this.scale, bodyL * 0.6, 0, 0, Math.PI * 2);
+                bCtx.ellipse(0, 0, 1.7 * this.scale, bodyL * 0.6, 0, 0, Math.PI * 2);
                 bCtx.fillStyle = '#ffffff';
                 bCtx.fill();
 
-                // Soft dark wingtip feather tips
+                // Dark Wingtips
                 bCtx.beginPath();
-                bCtx.arc(-w, wingDeflection * 0.5, 1.0 * this.scale, 0, Math.PI * 2);
-                bCtx.arc(w, wingDeflection * 0.5, 1.0 * this.scale, 0, Math.PI * 2);
-                bCtx.fillStyle = 'rgba(30, 41, 59, 0.7)';
+                bCtx.arc(-w, wingDeflection * 0.5, 1.1 * this.scale, 0, Math.PI * 2);
+                bCtx.arc(w, wingDeflection * 0.5, 1.1 * this.scale, 0, Math.PI * 2);
+                bCtx.fillStyle = 'rgba(30, 41, 59, 0.75)';
                 bCtx.fill();
 
                 bCtx.restore();
@@ -246,7 +298,7 @@
         }
 
         const birds = [];
-        const BIRD_COUNT = 5;
+        const BIRD_COUNT = 6;
         for (let i = 0; i < BIRD_COUNT; i++) {
             const posX = (bWidth / BIRD_COUNT) * i + (Math.random() * 80 - 40);
             birds.push(new RealCinematicSeagull(posX));

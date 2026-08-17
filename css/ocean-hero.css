@@ -38,7 +38,34 @@
     object-fit: cover;
     object-position: center;
     will-change: transform, filter;
-    filter: brightness(0.95) contrast(1.08) saturate(1.15);
+    filter: brightness(0.98) contrast(1.05) saturate(1.10);
+}
+
+/* Fluid Animated Ocean Water Wave Layer (Real-Time Turbulence Wave Deformation) */
+.ocean-water-flow-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 52%;
+    overflow: hidden;
+    filter: url(#ocean-water-ripple);
+    pointer-events: none;
+    z-index: 1;
+    mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 15%, black 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 15%, black 100%);
+}
+
+.ocean-water-displaced-img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.98) contrast(1.06) saturate(1.12);
 }
 
 /* Realistic Ocean Wave Roll & Yacht Pitching Physics */
