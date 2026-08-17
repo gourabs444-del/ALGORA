@@ -2512,7 +2512,7 @@
                 </a>
             </div>
 
-            <!-- LIVE HTML5 240 FPS HIGH-DENSITY MONSOON RAIN ENGINE (NO LAND RIPPLES) -->
+            <!-- LIVE HTML5 240 FPS HIGH-DENSITY MONSOON RAIN ENGINE (RESPONSIVE VIEWPORT-CALIBRATED) -->
             <script>
             (function initRealisticRainEngine() {
                 const canvas = document.getElementById('monsoon-rain-canvas');
@@ -2521,8 +2521,13 @@
                 let width = 0, height = 0;
                 let drops = [];
 
-                // 1150 continuous rain streaks for dense, immersive monsoon rainfall
-                const maxDrops = 1150;
+                // Responsive Drop Count: 1150 on PC/Desktop, calibrated 190 on Mobile for full scenery visibility
+                function getTargetDropCount() {
+                    const w = window.innerWidth;
+                    if (w < 768) return 190;   // Mobile phone: clear, open view of mountains and village
+                    if (w < 1024) return 500;  // Tablet: balanced rainfall
+                    return 1150;               // PC/Desktop: Full intense cinematic monsoon
+                }
 
                 // EXACT UNIFIED CRISP SLANTED RAIN ANGLE
                 const UNIFIED_SLANT = -2.2;
@@ -2531,9 +2536,15 @@
                     const rect = canvas.getBoundingClientRect();
                     width = canvas.width = rect.width || window.innerWidth;
                     height = canvas.height = rect.height || 820;
+
+                    const targetCount = getTargetDropCount();
+                    while (drops.length < targetCount) {
+                        drops.push(new RealRainStreak());
+                    }
+                    if (drops.length > targetCount) {
+                        drops.length = targetCount;
+                    }
                 }
-                resize();
-                window.addEventListener('resize', resize);
 
                 // Elongated Directional Rain Streak Particle (100% Authentic Water Physics)
                 class RealRainStreak {
@@ -2544,25 +2555,26 @@
                         this.x = Math.random() * (width + 500) - 120;
                         this.y = init ? Math.random() * height : -60;
                         this.layer = Math.random();
+                        const isMobile = window.innerWidth < 768;
 
                         if (this.layer > 0.76) {
                             // Foreground Heavy Water Streaks
                             this.speed = 15.5 + Math.random() * 3.5;
-                            this.len = 34 + Math.random() * 16;
-                            this.opacity = 0.46 + Math.random() * 0.25;
-                            this.width = 1.35;
+                            this.len = isMobile ? (22 + Math.random() * 10) : (34 + Math.random() * 16);
+                            this.opacity = isMobile ? (0.28 + Math.random() * 0.18) : (0.46 + Math.random() * 0.25);
+                            this.width = isMobile ? 0.95 : 1.35;
                         } else if (this.layer > 0.28) {
                             // Midground Steady Rainfall Streaks
                             this.speed = 11.5 + Math.random() * 2.5;
-                            this.len = 22 + Math.random() * 10;
-                            this.opacity = 0.28 + Math.random() * 0.18;
-                            this.width = 0.95;
+                            this.len = isMobile ? (15 + Math.random() * 7) : (22 + Math.random() * 10);
+                            this.opacity = isMobile ? (0.18 + Math.random() * 0.14) : (0.28 + Math.random() * 0.18);
+                            this.width = isMobile ? 0.75 : 0.95;
                         } else {
                             // Background Fine Rain Streaks
                             this.speed = 8.0 + Math.random() * 2.0;
-                            this.len = 14 + Math.random() * 6;
-                            this.opacity = 0.15 + Math.random() * 0.12;
-                            this.width = 0.65;
+                            this.len = isMobile ? (10 + Math.random() * 5) : (14 + Math.random() * 6);
+                            this.opacity = isMobile ? (0.10 + Math.random() * 0.08) : (0.15 + Math.random() * 0.12);
+                            this.width = isMobile ? 0.50 : 0.65;
                         }
                         
                         this.slant = UNIFIED_SLANT;
@@ -2587,14 +2599,13 @@
                     }
                 }
 
-                for (let i = 0; i < maxDrops; i++) {
-                    drops.push(new RealRainStreak());
-                }
+                resize();
+                window.addEventListener('resize', resize);
 
                 function animate() {
                     ctx.clearRect(0, 0, width, height);
 
-                    // Draw All High-Density Rain Streaks
+                    // Draw Rain Streaks
                     for (let i = 0; i < drops.length; i++) {
                         drops[i].update();
                         drops[i].draw();
