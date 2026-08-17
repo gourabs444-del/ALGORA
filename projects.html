@@ -2385,44 +2385,30 @@
 
     <!-- Section: Collaboration -->
     <div id="section-collaboration" class="scroll-mt-28 w-full">
-        <!-- AI & Automation Banner (100% Viewport Edge-to-Edge Full Screen - Split Curved Yellow / Light Yellow Architecture per User Sketch) -->
-        <div class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[750px] lg:min-h-[820px] bg-[#FFFBEB] dark:bg-[#1E1B18] text-slate-950 overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(245,158,11,0.2)] transition-all duration-500 flex items-center justify-center py-12 lg:py-16">
+        <!-- AI & Automation Banner (100% Viewport Edge-to-Edge Full Screen - Warm Gold Luxury Web Banner Edition) -->
+        <div class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[750px] bg-gradient-to-r from-amber-400 via-amber-500 to-amber-500 text-slate-950 overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(245,158,11,0.3)] transition-all duration-500 flex items-center justify-center py-8">
             
-            <!-- BACKGROUND LAYER 1: Light Yellow Base (#Light yellow as drawn on Right) -->
-            <div class="absolute inset-0 bg-gradient-to-br from-[#FEF9C3] via-[#FEF08A]/60 to-[#FDE047]/30 pointer-events-none z-0"></div>
-
-            <!-- BACKGROUND LAYER 2: Vibrant Deep Yellow Curved Shape (#yellow on Left, sweeping through the 'N' of Automation) -->
-            <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" preserveAspectRatio="none" viewBox="0 0 1440 900">
-                <defs>
-                    <linearGradient id="bannerYellowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#F59E0B" />
-                        <stop offset="50%" stop-color="#FBBF24" />
-                        <stop offset="100%" stop-color="#F59E0B" />
-                    </linearGradient>
-                    <filter id="curveShadow" x="-5%" y="-5%" width="115%" height="115%">
-                        <feDropShadow dx="8" dy="0" stdDeviation="16" flood-color="#000000" flood-opacity="0.12" />
-                    </filter>
-                </defs>
-                <!-- Curved dividing shape from Top-Left (x: 440) curving out to middle-right (x: 740, intersecting 'N'), then curving down to Bottom (x: 520) -->
-                <path d="M 0 0 L 440 0 C 620 180, 750 360, 710 520 C 680 660, 580 780, 520 900 L 0 900 Z" fill="url(#bannerYellowGrad)" filter="url(#curveShadow)" />
-                <!-- Divide Line Stroke -->
-                <path d="M 440 0 C 620 180, 750 360, 710 520 C 680 660, 580 780, 520 900" fill="none" stroke="#D97706" stroke-width="3" stroke-opacity="0.6" />
-            </svg>
-
-            <!-- BACKGROUND LAYER 3: White Bottom-Left Corner Cutout Arch (Labeled "White" in bottom-left corner of sketch!) -->
-            <div class="absolute bottom-0 left-0 w-36 sm:w-48 lg:w-60 h-36 sm:h-48 lg:h-60 bg-white rounded-tr-full pointer-events-none z-0 shadow-lg border-t-2 border-r-2 border-slate-100/50"></div>
-
-            <!-- Subtle Decorative Elements (+) -->
-            <div class="absolute top-16 left-[22%] text-white/70 font-bold text-xl pointer-events-none z-0">△</div>
-            <div class="absolute bottom-28 left-[38%] text-slate-950/40 font-bold text-3xl pointer-events-none z-0">+</div>
-            <div class="absolute top-20 right-[10%] text-amber-700/40 font-bold text-2xl pointer-events-none z-0">+</div>
-            <div class="absolute bottom-16 right-[25%] text-amber-600/30 font-bold text-xl pointer-events-none z-0">○</div>
-
-            <!-- MAIN 2-COLUMN CONTENT CONTAINER (Matching User's Hand-Drawn Layout!) -->
-            <div class="relative z-10 w-full max-w-[1680px] px-6 sm:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center h-full">
+            <!-- Floating Decorative Abstract Elements (Circles ○, Triangles △, Plus +) -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+                <!-- White Curved Fluid Cutout Sheet on Bottom-Left -->
+                <div class="absolute bottom-0 left-0 w-[520px] h-[400px] bg-white rounded-tr-[280px] pointer-events-none z-0"></div>
                 
-                <!-- LEFT COLUMN (5.5 cols - Over #yellow Area): Brand, SPECIAL AUTOMATION Headline & Animated CTA Capsule -->
-                <div class="lg:col-span-6 xl:col-span-5 flex flex-col justify-center text-left space-y-6 lg:space-y-8">
+                <!-- White Small Floating Decorative Circles & Triangles -->
+                <div class="absolute top-12 left-[48%] w-12 h-12 rounded-full border-2 border-white/70 pointer-events-none"></div>
+                <div class="absolute top-24 left-[54%] w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[20px] border-b-slate-900/40 transform rotate-45 pointer-events-none"></div>
+                <div class="absolute top-16 left-[22%] text-white/60 font-bold text-xl pointer-events-none">△</div>
+                <div class="absolute bottom-28 left-[34%] text-slate-950/60 font-bold text-3xl pointer-events-none">+</div>
+                <div class="absolute top-20 right-[10%] text-white/80 font-bold text-2xl pointer-events-none">+</div>
+
+                <!-- Subtle Radial Warm Lighting Glow -->
+                <div class="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-300/50 blur-[120px] rounded-full"></div>
+            </div>
+            
+            <!-- Main Content Grid spanning Left Text & Right Golden Fluid Wave Frame -->
+            <div class="relative z-10 w-full max-w-[1650px] px-8 sm:px-16 flex flex-col lg:flex-row items-center justify-between h-full gap-10">
+                
+                <!-- LEFT CONTENT AREA (Full Width - High Aesthetic Luxury Typography Edition) -->
+                <div class="w-full max-w-4xl flex flex-col justify-center text-left space-y-7 pt-4">
                     
                     <!-- Top Brand Header Line -->
                     <div class="flex items-center gap-3">
@@ -2434,26 +2420,42 @@
                         </span>
                     </div>
 
-                    <!-- Main Display Headline (SPECIAL AUTOMATION with 'N' crossing divide line) -->
-                    <div class="space-y-1 relative">
-                        <h3 class="text-5xl sm:text-7xl lg:text-[88px] xl:text-[98px] font-black text-slate-950 tracking-[-0.03em] leading-[0.90] font-['Outfit',_sans-serif] uppercase">
+                    <!-- Main Display Headline (Ultra-Aesthetic Luxury Font Mix) -->
+                    <div class="space-y-1">
+                        <h3 class="text-5xl sm:text-7xl lg:text-[96px] font-black text-slate-950 tracking-[-0.03em] leading-[0.90] font-['Outfit',_sans-serif] uppercase">
                             SPECIAL
                         </h3>
-                        <h3 class="text-5xl sm:text-7xl lg:text-[88px] xl:text-[98px] font-black text-white tracking-[-0.03em] leading-[0.90] font-['Outfit',_sans-serif] uppercase drop-shadow-[0_15px_30px_rgba(0,0,0,0.35)] flex items-baseline">
-                            <span>AUTOMATIO</span><span class="relative text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)]">N</span>
+                        <h3 class="text-6xl sm:text-8xl lg:text-[116px] font-black text-white tracking-[-0.03em] leading-[0.90] font-['Outfit',_sans-serif] uppercase drop-shadow-[0_15px_30px_rgba(0,0,0,0.35)]">
+                            AUTOMATION
                         </h3>
-                        <!-- Underline Bar -->
-                        <div class="w-52 sm:w-72 h-3 bg-slate-950 rounded-full mt-4 shadow-md"></div>
+                        <!-- Luxury Curved Gold & Charcoal Underline Bar -->
+                        <div class="w-60 sm:w-80 h-3 bg-slate-950 rounded-full mt-4 shadow-md"></div>
                     </div>
 
-                    <!-- Subtitle Description -->
-                    <p class="text-base sm:text-lg text-slate-950 font-['Plus_Jakarta_Sans',_sans-serif] font-bold leading-relaxed max-w-lg">
-                        Zero-latency AI swarms, <span class="italic font-serif font-normal font-['Cormorant_Garamond'] text-white text-xl sm:text-2xl underline decoration-amber-300">n8n workflow pipelines,</span> and 24/7 autonomous client operations.
-                    </p>
+                    <!-- Subtitle Description Paragraph + Aesthetic Luxury Pills -->
+                    <div class="space-y-4 pt-1">
+                        <p class="text-base sm:text-lg text-slate-950 font-['Plus_Jakarta_Sans',_sans-serif] font-bold leading-relaxed max-w-xl">
+                            Engineered zero-latency AI swarms, <span class="italic font-serif font-normal font-['Cormorant_Garamond'] text-white text-xl sm:text-2xl underline decoration-amber-300">n8n workflow pipelines,</span> and 24/7 autonomous client operations.
+                        </p>
+                        
+                        <!-- Clean System Metrics Badges Pill Bar (Aesthetic Typography) -->
+                        <div class="flex flex-wrap items-center gap-3 pt-2 text-xs font-['Space_Grotesk'] font-extrabold text-slate-950">
+                            <span class="px-4 py-2.5 rounded-2xl bg-white/90 border-2 border-slate-950/30 shadow-xl flex items-center gap-2.5 hover:scale-105 transition-transform">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-ping"></span>
+                                ⚡ 12ms EXECUTION
+                            </span>
+                            <span class="px-4 py-2.5 rounded-2xl bg-white/90 border-2 border-slate-950/30 shadow-xl flex items-center gap-2.5 hover:scale-105 transition-transform">
+                                🔒 TLS 1.3 HARDENED
+                            </span>
+                            <span class="px-4 py-2.5 rounded-2xl bg-white/90 border-2 border-slate-950/30 shadow-xl flex items-center gap-2.5 hover:scale-105 transition-transform">
+                                🤖 24/7 AI SWARMS
+                            </span>
+                        </div>
+                    </div>
 
-                    <!-- Call-to-Action 4K Ultra-HD Retina Liquid Gel Capsule Pill -->
-                    <div class="pt-2 flex items-center gap-4 antialiased [text-rendering:optimizeLegibility] [-webkit-font-smoothing:antialiased]">
-                        <div id="anim-capsule" class="relative w-[290px] sm:w-[330px] h-14 rounded-full p-[6px] backdrop-blur-2xl border border-white/60 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25),inset_0_1px_2px_rgba(255,255,255,0.9)] select-none overflow-hidden flex items-center justify-between will-change-transform transform-gpu bg-white/40">
+                    <!-- Call-to-Action 4K Ultra-HD Retina Liquid Gel Capsule Pill (Dead-Center Icon Alignment & 4K Glassmorphism) -->
+                    <div class="pt-3 flex items-center gap-4 antialiased [text-rendering:optimizeLegibility] [-webkit-font-smoothing:antialiased]">
+                        <div id="anim-capsule" class="relative w-[290px] sm:w-[330px] h-14 rounded-full p-[6px] backdrop-blur-2xl border border-white/50 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25),inset_0_1px_2px_rgba(255,255,255,0.9)] select-none overflow-hidden flex items-center justify-between will-change-transform transform-gpu">
                             
                             <!-- 10 Vibrant GPU Theme Background Layers (4K Ultra-HD Crisp Gradients) -->
                             <div id="theme-bg-0" class="absolute inset-0 bg-gradient-to-r from-amber-100 via-amber-200 to-amber-300 transition-opacity duration-600 opacity-100"></div>
@@ -2467,12 +2469,12 @@
                             <div id="theme-bg-8" class="absolute inset-0 bg-gradient-to-r from-lime-100 via-emerald-100 to-lime-200 transition-opacity duration-600 opacity-0"></div>
                             <div id="theme-bg-9" class="absolute inset-0 bg-gradient-to-r from-sky-100 via-indigo-100 to-sky-200 transition-opacity duration-600 opacity-0"></div>
 
-                            <!-- Inner Sliding Circle Button -->
+                            <!-- Inner Sliding Circle Button: 100% Mathematically Dead-Centered Icon Flex Box! -->
                             <div id="capsule-circle" class="h-11 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.22)] z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu transition-[background-color,color] duration-600 ease-out p-0 m-0" style="width: 44px; transform: translate3d(264px, 0, 0);">
                                 <span id="capsule-arrow" class="material-symbols-outlined text-[22px] font-black leading-none select-none text-center flex items-center justify-center w-full h-full transition-transform duration-600 will-change-transform">arrow_forward</span>
                             </div>
 
-                            <!-- Morphing Text Containers -->
+                            <!-- Morphing Text Containers (Dead-Centered 4K Layout) -->
                             <div id="text-left-box" class="absolute inset-0 flex items-center justify-center px-12 z-20 text-center pointer-events-none transition-all duration-600 opacity-100">
                                 <span id="text-left" class="font-['Space_Grotesk'] font-medium text-xs sm:text-sm tracking-widest uppercase text-slate-900 transition-opacity duration-300">EXPLORE <span class="font-['Cormorant_Garamond'] font-medium italic text-amber-800 tracking-normal text-base sm:text-lg">SYSTEMS</span></span>
                             </div>
@@ -2484,294 +2486,210 @@
                         </div>
                     </div>
 
-                </div>
+                    <script>
+                    (function(){
+                        const capsule = document.getElementById('anim-capsule');
+                        const circle = document.getElementById('capsule-circle');
+                        const arrow = document.getElementById('capsule-arrow');
+                        const textLeft = document.getElementById('text-left');
+                        const textRight = document.getElementById('text-right');
+                        const textLeftBox = document.getElementById('text-left-box');
+                        const textRightBox = document.getElementById('text-right-box');
 
-                <!-- RIGHT COLUMN (6.5 cols - Over #Light yellow Area): Rich Structured Content Section ("Content ⬇") -->
-                <div class="lg:col-span-6 xl:col-span-7 flex flex-col justify-center space-y-6 pl-0 lg:pl-8 xl:pl-12">
-                    
-                    <!-- Content Header Pill -->
-                    <div class="flex items-center gap-3">
-                        <span class="px-4 py-1.5 rounded-full bg-slate-950 text-amber-400 text-xs font-mono font-bold tracking-wider uppercase shadow-md flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>⚡ ENTERPRISE AI ARCHITECTURE</span>
-                        </span>
-                        <span class="text-xs font-mono font-bold text-amber-900/80">LIVE DEPLOYMENT</span>
-                    </div>
+                        const bgs = Array.from({length: 10}, (_, i) => document.getElementById(`theme-bg-${i}`));
 
-                    <!-- Main Section Header Text -->
-                    <div class="space-y-2">
-                        <h4 class="text-2xl sm:text-3xl lg:text-4xl font-['Outfit',_sans-serif] font-extrabold text-slate-950 tracking-tight leading-tight">
-                            Autonomous Swarms &amp; Intelligent Workflow Automation
-                        </h4>
-                        <p class="text-sm sm:text-base font-['Plus_Jakarta_Sans',_sans-serif] text-slate-800 font-medium leading-relaxed">
-                            Algora engineers custom multi-agent intelligence layers and event-driven automation nodes, transforming complex business operations into frictionless, self-governing pipelines.
-                        </p>
-                    </div>
+                        // 10 Professional Enterprise Themes (Clean Corporate & Tech System Icons)
+                        const themes = [
+                            {
+                                textHTML: 'EXPLORE <span class="font-[\'Cormorant_Garamond\'] font-medium italic text-amber-800 tracking-normal text-base sm:text-lg">SYSTEMS</span>',
+                                side: "left",
+                                fontClass: "font-['Space_Grotesk'] font-medium text-xs sm:text-sm tracking-widest uppercase text-slate-900",
+                                circleBg: "bg-amber-400 text-slate-950",
+                                icon: "arrow_forward",
+                                arrowRotate: "0deg"
+                            },
+                            {
+                                textHTML: 'Autonomous <span class="font-[\'Space_Grotesk\'] font-medium not-italic text-rose-800 uppercase text-xs tracking-widest">AI</span> Swarms',
+                                side: "right",
+                                fontClass: "font-['Cormorant_Garamond'] font-medium text-base sm:text-lg italic text-rose-950",
+                                circleBg: "bg-rose-500 text-white",
+                                icon: "hub", // Enterprise Network Hub
+                                arrowRotate: "-180deg"
+                            },
+                            {
+                                textHTML: '24/7 <span class="font-[\'Playfair_Display\'] font-medium italic text-indigo-700 text-sm">NEURAL</span> PIPELINES',
+                                side: "left",
+                                fontClass: "font-['Outfit'] font-medium text-xs sm:text-sm tracking-[0.2em] uppercase text-indigo-950",
+                                circleBg: "bg-indigo-600 text-white",
+                                icon: "auto_awesome", // AI Core Sparkle
+                                arrowRotate: "0deg"
+                            },
+                            {
+                                textHTML: 'Zero-Latency <span class="font-[\'Syne\'] font-medium text-emerald-800 text-sm">CORE</span>',
+                                side: "right",
+                                fontClass: "font-['Plus_Jakarta_Sans'] font-medium text-xs sm:text-sm tracking-wide text-emerald-950",
+                                circleBg: "bg-emerald-600 text-white",
+                                icon: "bolt", // High-Speed Quantum Power
+                                arrowRotate: "-180deg"
+                            },
+                            {
+                                textHTML: '<span class="font-[\'Cormorant_Garamond\'] font-medium italic text-orange-800 text-base">SYNAPSE</span> AUTOMATION',
+                                side: "left",
+                                fontClass: "font-['Syne'] font-medium text-xs sm:text-sm tracking-wider uppercase text-orange-950",
+                                circleBg: "bg-orange-500 text-white",
+                                icon: "memory", // Synapse Processor Unit
+                                arrowRotate: "0deg"
+                            },
+                            {
+                                textHTML: 'Enterprise <span class="font-[\'Unbounded\'] font-medium not-italic text-amber-800 text-xs">INTELLIGENCE</span>',
+                                side: "right",
+                                fontClass: "font-['Playfair_Display'] font-medium text-base sm:text-lg italic text-amber-950",
+                                circleBg: "bg-amber-600 text-white",
+                                icon: "insights", // Analytics Core
+                                arrowRotate: "-180deg"
+                            },
+                            {
+                                textHTML: 'NEXT-GEN <span class="font-[\'Playfair_Display\'] font-medium italic text-cyan-800 text-sm">LLM</span> ROUTER',
+                                side: "left",
+                                fontClass: "font-['Unbounded'] font-medium text-[10px] sm:text-xs tracking-wider uppercase text-cyan-950",
+                                circleBg: "bg-cyan-600 text-white",
+                                icon: "arrow_forward",
+                                arrowRotate: "0deg"
+                            },
+                            {
+                                textHTML: '<span class="font-[\'Cormorant_Garamond\'] font-medium italic text-violet-800 text-base sm:text-lg">QUANTUM</span> WORKFLOWS',
+                                side: "right",
+                                fontClass: "font-['Cinzel'] font-medium text-xs sm:text-sm tracking-widest text-violet-950",
+                                circleBg: "bg-violet-600 text-white",
+                                icon: "auto_awesome", // Quantum Spark
+                                arrowRotate: "-180deg"
+                            },
+                            {
+                                textHTML: 'SELF-HEALING <span class="font-[\'DM_Serif_Display\'] font-medium italic text-lime-800 text-sm">CODE</span>',
+                                side: "left",
+                                fontClass: "font-['Cabinet_Grotesk'] font-medium text-xs sm:text-sm tracking-widest uppercase text-lime-950",
+                                circleBg: "bg-lime-600 text-slate-950",
+                                icon: "terminal", // Code Terminal
+                                arrowRotate: "0deg"
+                            },
+                            {
+                                textHTML: 'Hyper-Scale <span class="font-[\'Syne\'] font-medium not-italic text-sky-800 text-xs">ORCHESTRATOR</span>',
+                                side: "right",
+                                fontClass: "font-['DM_Serif_Display'] font-medium text-base sm:text-lg italic text-sky-950",
+                                circleBg: "bg-sky-600 text-white",
+                                icon: "lan", // Cloud Infrastructure Network
+                                arrowRotate: "-180deg"
+                            }
+                        ];
 
-                    <!-- 4 Interactive Content Feature Cards Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                        
-                        <!-- Card 1: Multi-Agent Swarms -->
-                        <div class="p-4 sm:p-5 rounded-3xl bg-white/85 backdrop-blur-xl border border-amber-200/80 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1 space-y-2 group">
-                            <div class="w-10 h-10 rounded-2xl bg-amber-500/15 text-amber-700 flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-2xl">auto_awesome</span>
-                            </div>
-                            <h5 class="text-sm font-['Space_Grotesk'] font-bold text-slate-950 uppercase tracking-wide">Multi-Agent Swarms</h5>
-                            <p class="text-xs text-slate-700 font-medium leading-relaxed">
-                                Coordinated AI swarms executing research, code review, data routing, and real-time execution.
-                            </p>
-                        </div>
+                        let themeIdx = 0;
+                        let maxTranslateX = 264;
+                        let currentX = 264;
+                        let isAnimating = false;
 
-                        <!-- Card 2: Zero-Latency Event Routing -->
-                        <div class="p-4 sm:p-5 rounded-3xl bg-white/85 backdrop-blur-xl border border-amber-200/80 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1 space-y-2 group">
-                            <div class="w-10 h-10 rounded-2xl bg-emerald-500/15 text-emerald-700 flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-2xl">bolt</span>
-                            </div>
-                            <h5 class="text-sm font-['Space_Grotesk'] font-bold text-slate-950 uppercase tracking-wide">12ms Sub-Second Speed</h5>
-                            <p class="text-xs text-slate-700 font-medium leading-relaxed">
-                                Ultra-fast edge webhooks and stream transformers ensuring instantaneous user responses.
-                            </p>
-                        </div>
+                        function updateBounds() {
+                            if (capsule) {
+                                const capWidth = capsule.offsetWidth || 320;
+                                maxTranslateX = capWidth - 56;
+                            }
+                        }
+                        updateBounds();
+                        window.addEventListener('resize', updateBounds);
 
-                        <!-- Card 3: n8n Node Integrations -->
-                        <div class="p-4 sm:p-5 rounded-3xl bg-white/85 backdrop-blur-xl border border-amber-200/80 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1 space-y-2 group">
-                            <div class="w-10 h-10 rounded-2xl bg-purple-500/15 text-purple-700 flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-2xl">lan</span>
-                            </div>
-                            <h5 class="text-sm font-['Space_Grotesk'] font-bold text-slate-950 uppercase tracking-wide">n8n Workflow Hub</h5>
-                            <p class="text-xs text-slate-700 font-medium leading-relaxed">
-                                End-to-end integration connecting CRMs, vector databases, Slack, and cloud APIs.
-                            </p>
-                        </div>
+                        if (circle) {
+                            currentX = maxTranslateX;
+                            circle.style.transform = `translate3d(${maxTranslateX}px, 0, 0)`;
+                            circle.style.width = '44px';
+                        }
 
-                        <!-- Card 4: Self-Healing Architecture -->
-                        <div class="p-4 sm:p-5 rounded-3xl bg-white/85 backdrop-blur-xl border border-amber-200/80 shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1 space-y-2 group">
-                            <div class="w-10 h-10 rounded-2xl bg-cyan-500/15 text-cyan-700 flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-2xl">terminal</span>
-                            </div>
-                            <h5 class="text-sm font-['Space_Grotesk'] font-bold text-slate-950 uppercase tracking-wide">Self-Healing Logic</h5>
-                            <p class="text-xs text-slate-700 font-medium leading-relaxed">
-                                Automatic error retry queues, fallback model routing, and TLS 1.3 enterprise security.
-                            </p>
-                        </div>
+                        // Clean 240 FPS Liquid Gel Engine (Zero-Roughness Soft Edge Cushion)
+                        function run240fpsPhysics(targetX, duration, onDone) {
+                            isAnimating = true;
+                            const startX = currentX;
+                            const dist = targetX - startX;
+                            const baseW = 44;
+                            const peakW = 74;
+                            const addW = peakW - baseW;
+                            const startTime = performance.now();
 
-                    </div>
+                            function step(now) {
+                                const elapsed = now - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
 
-                    <!-- Bottom Live Status Metrics Row -->
-                    <div class="pt-2 flex flex-wrap items-center gap-3 text-xs font-mono font-bold text-slate-900">
-                        <span class="px-3.5 py-1.5 rounded-2xl bg-amber-300/60 border border-amber-400/80 flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                            1,420 EV/SEC ACTIVE
-                        </span>
-                        <span class="px-3.5 py-1.5 rounded-2xl bg-amber-300/60 border border-amber-400/80 flex items-center gap-2">
-                            ⚡ 99.99% UPTIME
-                        </span>
-                        <span class="px-3.5 py-1.5 rounded-2xl bg-amber-300/60 border border-amber-400/80 flex items-center gap-2">
-                            🔒 ZERO-LEAK SECURITY
-                        </span>
-                    </div>
+                                const easePos = 0.5 * (1 - Math.cos(Math.PI * progress));
+                                const rawX = startX + (dist * easePos);
+                                
+                                let w = baseW + (addW * Math.sin(progress * Math.PI));
 
+                                if (progress > 0.8) {
+                                    const p = (progress - 0.8) / 0.2;
+                                    const cushionCompress = Math.sin(p * Math.PI) * 5;
+                                    w -= cushionCompress;
+                                }
+
+                                const maxAllowedX = maxTranslateX + 44 - w;
+                                const safeX = Math.max(0, Math.min(rawX, maxAllowedX));
+
+                                circle.style.transform = `translate3d(${safeX}px, 0, 0)`;
+                                circle.style.width = `${w}px`;
+
+                                if (progress < 1) {
+                                    requestAnimationFrame(step);
+                                } else {
+                                    currentX = targetX;
+                                    circle.style.width = '44px';
+                                    circle.style.transform = `translate3d(${targetX}px, 0, 0)`;
+                                    isAnimating = false;
+                                    if (onDone) onDone(); // Triggered EXACTLY upon button arrival at destination!
+                                }
+                            }
+
+                            requestAnimationFrame(step);
+                        }
+
+                        setInterval(() => {
+                            if (!circle || !arrow || isAnimating) return;
+
+                            themeIdx = (themeIdx + 1) % themes.length;
+                            const t = themes[themeIdx];
+
+                            // 1. GPU Opacity Crossfade Theme BGs
+                            bgs.forEach((bg, idx) => {
+                                if (bg) bg.style.opacity = (idx === themeIdx) ? '1' : '0';
+                            });
+
+                            // 2. Update Icon & Rotate Arrow (Counter-Clockwise -180deg for Right->Left, 0deg for Left->Right)
+                            arrow.textContent = t.icon;
+                            arrow.style.transform = `rotate(${t.arrowRotate})`;
+
+                            // 3. Morph Circle Button Color IN PARALLEL WITH SWIPE START!
+                            circle.className = `h-11 rounded-full flex items-center justify-center shadow-xl z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu transition-[background-color,color] duration-600 ease-out ${t.circleBg}`;
+
+                            // 4. Hide text boxes during swipe glide
+                            textLeftBox.style.opacity = '0';
+                            textRightBox.style.opacity = '0';
+
+                            const targetX = (t.side === "right") ? 0 : maxTranslateX;
+
+                            // 5. Run 240 FPS Physics Swipe (620ms duration)
+                            run240fpsPhysics(targetX, 620, function onArrival() {
+                                // 6. ANIMATE & REVEAL TEXT ONLY AFTER BUTTON COMPLETELY ARRIVES AT DESTINATION!
+                                if (t.side === "right") {
+                                    textRight.className = t.fontClass;
+                                    textRight.innerHTML = t.textHTML;
+                                    textRightBox.style.opacity = '1';
+                                } else {
+                                    textLeft.className = t.fontClass;
+                                    textLeft.innerHTML = t.textHTML;
+                                    textLeftBox.style.opacity = '1';
+                                }
+                            });
+
+                        }, 4200);
+                    })();
                 </div>
 
             </div>
-
-            <!-- Swipe Capsule JavaScript Engine -->
-            <script>
-            (function(){
-                const capsule = document.getElementById('anim-capsule');
-                const circle = document.getElementById('capsule-circle');
-                const arrow = document.getElementById('capsule-arrow');
-                const textLeft = document.getElementById('text-left');
-                const textRight = document.getElementById('text-right');
-                const textLeftBox = document.getElementById('text-left-box');
-                const textRightBox = document.getElementById('text-right-box');
-
-                const bgs = Array.from({length: 10}, (_, i) => document.getElementById(`theme-bg-${i}`));
-
-                // 10 Professional Enterprise Themes
-                const themes = [
-                    {
-                        textHTML: 'EXPLORE <span class="font-[\'Cormorant_Garamond\'] font-medium italic text-amber-800 tracking-normal text-base sm:text-lg">SYSTEMS</span>',
-                        side: "left",
-                        fontClass: "font-['Space_Grotesk'] font-medium text-xs sm:text-sm tracking-widest uppercase text-slate-900",
-                        circleBg: "bg-amber-400 text-slate-950",
-                        icon: "arrow_forward",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: 'Autonomous <span class="font-[\'Space_Grotesk\'] font-medium not-italic text-rose-800 uppercase text-xs tracking-widest">AI</span> Swarms',
-                        side: "right",
-                        fontClass: "font-['Cormorant_Garamond'] font-medium text-base sm:text-lg italic text-rose-950",
-                        circleBg: "bg-rose-500 text-white",
-                        icon: "hub",
-                        arrowRotate: "-180deg"
-                    },
-                    {
-                        textHTML: '24/7 <span class="font-[\'Playfair_Display\'] font-medium italic text-indigo-700 text-sm">NEURAL</span> PIPELINES',
-                        side: "left",
-                        fontClass: "font-['Outfit'] font-medium text-xs sm:text-sm tracking-[0.2em] uppercase text-indigo-950",
-                        circleBg: "bg-indigo-600 text-white",
-                        icon: "auto_awesome",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: 'Zero-Latency <span class="font-[\'Syne\'] font-medium text-emerald-800 text-sm">CORE</span>',
-                        side: "right",
-                        fontClass: "font-['Plus_Jakarta_Sans'] font-medium text-xs sm:text-sm tracking-wide text-emerald-950",
-                        circleBg: "bg-emerald-600 text-white",
-                        icon: "bolt",
-                        arrowRotate: "-180deg"
-                    },
-                    {
-                        textHTML: '<span class="font-[\'Cormorant_Garamond\'] font-medium italic text-orange-800 text-base">SYNAPSE</span> AUTOMATION',
-                        side: "left",
-                        fontClass: "font-['Syne'] font-medium text-xs sm:text-sm tracking-wider uppercase text-orange-950",
-                        circleBg: "bg-orange-500 text-white",
-                        icon: "memory",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: 'Enterprise <span class="font-[\'Unbounded\'] font-medium not-italic text-amber-800 text-xs">INTELLIGENCE</span>',
-                        side: "right",
-                        fontClass: "font-['Playfair_Display'] font-medium text-base sm:text-lg italic text-amber-950",
-                        circleBg: "bg-amber-600 text-white",
-                        icon: "insights",
-                        arrowRotate: "-180deg"
-                    },
-                    {
-                        textHTML: 'NEXT-GEN <span class="font-[\'Playfair_Display\'] font-medium italic text-cyan-800 text-sm">LLM</span> ROUTER',
-                        side: "left",
-                        fontClass: "font-['Unbounded'] font-medium text-[10px] sm:text-xs tracking-wider uppercase text-cyan-950",
-                        circleBg: "bg-cyan-600 text-white",
-                        icon: "arrow_forward",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: '<span class="font-[\'Cormorant_Garamond\'] font-medium italic text-violet-800 text-base sm:text-lg">QUANTUM</span> WORKFLOWS',
-                        side: "right",
-                        fontClass: "font-['Cinzel'] font-medium text-xs sm:text-sm tracking-widest text-violet-950",
-                        circleBg: "bg-violet-600 text-white",
-                        icon: "auto_awesome",
-                        arrowRotate: "-180deg"
-                    },
-                    {
-                        textHTML: 'SELF-HEALING <span class="font-[\'DM_Serif_Display\'] font-medium italic text-lime-800 text-sm">CODE</span>',
-                        side: "left",
-                        fontClass: "font-['Cabinet_Grotesk'] font-medium text-xs sm:text-sm tracking-widest uppercase text-lime-950",
-                        circleBg: "bg-lime-600 text-slate-950",
-                        icon: "terminal",
-                        arrowRotate: "0deg"
-                    },
-                    {
-                        textHTML: 'Hyper-Scale <span class="font-[\'Syne\'] font-medium not-italic text-sky-800 text-xs">ORCHESTRATOR</span>',
-                        side: "right",
-                        fontClass: "font-['DM_Serif_Display'] font-medium text-base sm:text-lg italic text-sky-950",
-                        circleBg: "bg-sky-600 text-white",
-                        icon: "lan",
-                        arrowRotate: "-180deg"
-                    }
-                ];
-
-                let themeIdx = 0;
-                let maxTranslateX = 264;
-                let currentX = 264;
-                let isAnimating = false;
-
-                function updateBounds() {
-                    if (capsule) {
-                        const capWidth = capsule.offsetWidth || 320;
-                        maxTranslateX = capWidth - 56;
-                    }
-                }
-                updateBounds();
-                window.addEventListener('resize', updateBounds);
-
-                if (circle) {
-                    currentX = maxTranslateX;
-                    circle.style.transform = `translate3d(${maxTranslateX}px, 0, 0)`;
-                    circle.style.width = '44px';
-                }
-
-                // Clean 240 FPS Liquid Gel Engine
-                function run240fpsPhysics(targetX, duration, onDone) {
-                    isAnimating = true;
-                    const startX = currentX;
-                    const dist = targetX - startX;
-                    const baseW = 44;
-                    const peakW = 74;
-                    const addW = peakW - baseW;
-                    const startTime = performance.now();
-
-                    function step(now) {
-                        const elapsed = now - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-
-                        const easePos = 0.5 * (1 - Math.cos(Math.PI * progress));
-                        const rawX = startX + (dist * easePos);
-                        
-                        let w = baseW + (addW * Math.sin(progress * Math.PI));
-
-                        if (progress > 0.8) {
-                            const p = (progress - 0.8) / 0.2;
-                            const cushionCompress = Math.sin(p * Math.PI) * 5;
-                            w -= cushionCompress;
-                        }
-
-                        const maxAllowedX = maxTranslateX + 44 - w;
-                        const safeX = Math.max(0, Math.min(rawX, maxAllowedX));
-
-                        circle.style.transform = `translate3d(${safeX}px, 0, 0)`;
-                        circle.style.width = `${w}px`;
-
-                        if (progress < 1) {
-                            requestAnimationFrame(step);
-                        } else {
-                            currentX = targetX;
-                            circle.style.width = '44px';
-                            circle.style.transform = `translate3d(${targetX}px, 0, 0)`;
-                            isAnimating = false;
-                            if (onDone) onDone();
-                        }
-                    }
-
-                    requestAnimationFrame(step);
-                }
-
-                setInterval(() => {
-                    if (!circle || !arrow || isAnimating) return;
-
-                    themeIdx = (themeIdx + 1) % themes.length;
-                    const t = themes[themeIdx];
-
-                    bgs.forEach((bg, idx) => {
-                        if (bg) bg.style.opacity = (idx === themeIdx) ? '1' : '0';
-                    });
-
-                    arrow.textContent = t.icon;
-                    arrow.style.transform = `rotate(${t.arrowRotate})`;
-
-                    circle.className = `h-11 rounded-full flex items-center justify-center shadow-xl z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu transition-[background-color,color] duration-600 ease-out ${t.circleBg}`;
-
-                    textLeftBox.style.opacity = '0';
-                    textRightBox.style.opacity = '0';
-
-                    const targetX = (t.side === "right") ? 0 : maxTranslateX;
-
-                    run240fpsPhysics(targetX, 620, function onArrival() {
-                        if (t.side === "right") {
-                            textRight.className = t.fontClass;
-                            textRight.innerHTML = t.textHTML;
-                            textRightBox.style.opacity = '1';
-                        } else {
-                            textLeft.className = t.fontClass;
-                            textLeft.innerHTML = t.textHTML;
-                            textLeftBox.style.opacity = '1';
-                        }
-                    });
-
-                }, 4200);
-            })();
-            </script>
         </div>
         <!-- Premium High-Contrast Breakdown Section (No Module Lines, Vibrant Badge Colors, Premium Typography) -->
         <div class="max-w-[1680px] mx-auto px-6 sm:px-12 w-full py-20 space-y-24 border-b border-slate-300 dark:border-slate-800">
