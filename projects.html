@@ -2453,19 +2453,20 @@
                         </div>
                     </div>
 
-                    <!-- Call-to-Action 120 FPS Hardware-Accelerated Liquid Morphing Capsule Pill (Zero Lag, 120Hz GPU Composited) -->
+                    <!-- Call-to-Action 240 FPS Native Hardware Physics Liquid Capsule Pill -->
                     <div class="pt-3 flex items-center gap-4">
-                        <div id="anim-capsule" class="relative w-[290px] sm:w-[330px] h-14 rounded-full p-1.5 shadow-2xl select-none overflow-hidden flex items-center justify-between border-2 border-white/20 will-change-transform transform-gpu">
+                        <!-- Outer Capsule pill: h-14 (56px), rounded-full (28px radius), concentric math: 22px inner radius + 6px padding = 28px outer radius! -->
+                        <div id="anim-capsule" class="relative w-[290px] sm:w-[330px] h-14 rounded-full p-[6px] shadow-2xl select-none overflow-hidden flex items-center justify-between border-2 border-white/20 will-change-transform transform-gpu">
                             
-                            <!-- GPU Theme Background Layers (Zero layout thrashing, pure 120fps GPU opacity crossfade) -->
+                            <!-- GPU Theme Background Layers -->
                             <div id="theme-bg-0" class="absolute inset-0 bg-[#181a20] transition-opacity duration-1000 opacity-100"></div>
                             <div id="theme-bg-1" class="absolute inset-0 bg-gradient-to-r from-white via-amber-100 to-amber-200 border-2 border-amber-400/60 transition-opacity duration-1000 opacity-0"></div>
                             <div id="theme-bg-2" class="absolute inset-0 bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 border-2 border-purple-400/50 transition-opacity duration-1000 opacity-0"></div>
                             <div id="theme-bg-3" class="absolute inset-0 bg-gradient-to-r from-amber-50 via-orange-100 to-amber-200 border-2 border-amber-500/40 transition-opacity duration-1000 opacity-0"></div>
 
-                            <!-- 120 FPS High-Level Physics Pill Element (Circle -> Capsule at Center -> Circle upon Ease-Out Arrival!) -->
-                            <div id="capsule-circle" class="h-11 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow-xl z-30 absolute top-1.5 left-1.5 will-change-transform transform-gpu" style="width: 2.75rem; transform: translate3d(264px, 0, 0);">
-                                <span id="capsule-arrow" class="material-symbols-outlined text-xl font-black transition-transform duration-900 will-change-transform">arrow_forward</span>
+                            <!-- Inner Sliding Element: h-11 (44px), rounded-full (22px radius). Perfectly concentric with outer capsule! -->
+                            <div id="capsule-circle" class="h-11 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow-xl z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu" style="width: 44px; transform: translate3d(264px, 0, 0);">
+                                <span id="capsule-arrow" class="material-symbols-outlined text-xl font-black transition-transform duration-700 will-change-transform">arrow_forward</span>
                             </div>
 
                             <!-- Morphing Text Containers (Left & Right GPU Layers) -->
@@ -2497,7 +2498,6 @@
                             document.getElementById('theme-bg-3')
                         ];
 
-                        // 4 Aesthetic Luxury Themes (Midpoint Peak Capsule Physics)
                         const themes = [
                             {
                                 text: "EXPLORE SYSTEMS",
@@ -2535,24 +2535,70 @@
 
                         let themeIdx = 0;
                         let maxTranslateX = 264;
+                        let currentX = 264;
+                        let isAnimating = false;
 
                         function updateBounds() {
                             if (capsule) {
                                 const capWidth = capsule.offsetWidth || 320;
-                                maxTranslateX = capWidth - 56; // 44px circle width + 12px padding
+                                maxTranslateX = capWidth - 56; // 44px circle + 12px padding
                             }
                         }
                         updateBounds();
                         window.addEventListener('resize', updateBounds);
 
-                        // Set initial position (Right side)
                         if (circle) {
+                            currentX = maxTranslateX;
                             circle.style.transform = `translate3d(${maxTranslateX}px, 0, 0)`;
-                            circle.style.width = '2.75rem';
+                            circle.style.width = '44px';
+                        }
+
+                        // 240 FPS Native requestAnimationFrame Physics Engine
+                        function run240fpsPhysics(targetX, duration, onDone) {
+                            isAnimating = true;
+                            const startX = currentX;
+                            const dist = targetX - startX;
+                            const baseW = 44;
+                            const peakW = 86; // Capsule width at exact midpoint
+                            const addW = peakW - baseW;
+                            const startTime = performance.now();
+
+                            function step(now) {
+                                const elapsed = now - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+
+                                // Smooth Sine/Cubic Ease-In-Out Position Trajectory
+                                const easePos = progress < 0.5 
+                                    ? 4 * progress * progress * progress 
+                                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+                                const x = startX + (dist * easePos);
+                                
+                                // Midpoint Sine Morph: sin(progress * PI)
+                                // 0ms = 44px (Circle) -> Midpoint = 86px (Capsule) -> Arrival = 44px (Circle)
+                                const morphFactor = Math.sin(progress * Math.PI);
+                                const w = baseW + (addW * morphFactor);
+
+                                // Apply sub-frame 240 FPS transform & width updates
+                                circle.style.transform = `translate3d(${x}px, 0, 0)`;
+                                circle.style.width = `${w}px`;
+
+                                if (progress < 1) {
+                                    requestAnimationFrame(step);
+                                } else {
+                                    currentX = targetX;
+                                    circle.style.width = '44px'; // 100% Circle at rest
+                                    circle.style.transform = `translate3d(${targetX}px, 0, 0)`;
+                                    isAnimating = false;
+                                    if (onDone) onDone();
+                                }
+                            }
+
+                            requestAnimationFrame(step);
                         }
 
                         setInterval(() => {
-                            if (!circle || !arrow) return;
+                            if (!circle || !arrow || isAnimating) return;
 
                             themeIdx = (themeIdx + 1) % themes.length;
                             const t = themes[themeIdx];
@@ -2564,58 +2610,28 @@
 
                             // Arrow Rotation
                             arrow.style.transform = `rotate(${t.arrowRotate})`;
-
-                            // Circle Styling
-                            circle.className = `h-11 rounded-full flex items-center justify-center shadow-xl z-30 absolute top-1.5 left-1.5 will-change-transform transform-gpu ${t.circleBg} ${t.circleText}`;
+                            circle.className = `h-11 rounded-full flex items-center justify-center shadow-xl z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu ${t.circleBg} ${t.circleText}`;
 
                             if (t.side === "right") {
-                                // Moving Right -> Left (MaxX -> 0px)
-                                const midX = maxTranslateX / 2;
-
-                                // PHASE 1 (0ms - 550ms): Accelerate from Start Edge to Center Midpoint
-                                // Circle (44px) -> Capsule (84px) while accelerating to midpoint!
-                                circle.style.transition = 'transform 0.55s cubic-bezier(0.4, 0, 0.6, 1), width 0.55s cubic-bezier(0.4, 0, 0.6, 1), background-color 0.8s ease, color 0.8s ease';
-                                circle.style.transform = `translate3d(${midX}px, 0, 0)`;
-                                circle.style.width = '5.25rem'; // Reaches peak capsule width at center!
-
                                 textLeftBox.style.opacity = '0';
                                 textRightBox.style.opacity = '1';
                                 textRight.className = t.fontClass;
                                 textRight.textContent = t.text;
 
-                                // PHASE 2 (550ms - 1100ms): Decelerate from Center Midpoint to Destination Edge
-                                // Capsule (84px) -> Circle (44px) while decelerating to destination!
-                                setTimeout(() => {
-                                    circle.style.transition = 'transform 0.55s cubic-bezier(0, 0, 0.2, 1), width 0.55s cubic-bezier(0, 0, 0.2, 1)';
-                                    circle.style.transform = `translate3d(0px, 0, 0)`;
-                                    circle.style.width = '2.75rem'; // Reverts to circle upon arrival!
-                                }, 550);
+                                // 240 FPS Physics glide Right -> Left (maxTranslateX -> 0px)
+                                run240fpsPhysics(0, 1100);
 
                             } else {
-                                // Moving Left -> Right (0px -> MaxX)
-                                const midX = (maxTranslateX - 40) / 2;
-
-                                // PHASE 1 (0ms - 550ms): Accelerate from Start Edge to Center Midpoint
-                                // Circle (44px) -> Capsule (84px) while accelerating to midpoint!
-                                circle.style.transition = 'transform 0.55s cubic-bezier(0.4, 0, 0.6, 1), width 0.55s cubic-bezier(0.4, 0, 0.6, 1), background-color 0.8s ease, color 0.8s ease';
-                                circle.style.transform = `translate3d(${midX}px, 0, 0)`;
-                                circle.style.width = '5.25rem'; // Reaches peak capsule width at center!
-
                                 textRightBox.style.opacity = '0';
                                 textLeftBox.style.opacity = '1';
                                 textLeft.className = t.fontClass;
                                 textLeft.textContent = t.text;
 
-                                // PHASE 2 (550ms - 1100ms): Decelerate from Center Midpoint to Destination Edge
-                                // Capsule (84px) -> Circle (44px) while decelerating to destination!
-                                setTimeout(() => {
-                                    circle.style.transition = 'transform 0.55s cubic-bezier(0, 0, 0.2, 1), width 0.55s cubic-bezier(0, 0, 0.2, 1)';
-                                    circle.style.transform = `translate3d(${maxTranslateX}px, 0, 0)`;
-                                    circle.style.width = '2.75rem'; // Reverts to circle upon arrival!
-                                }, 550);
+                                // 240 FPS Physics glide Left -> Right (0px -> maxTranslateX)
+                                run240fpsPhysics(maxTranslateX, 1100);
                             }
 
-                        }, 4000);
+                        }, 4200);
                     })();
                     </script>
 
