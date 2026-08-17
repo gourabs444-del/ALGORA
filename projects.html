@@ -2453,18 +2453,18 @@
                         </div>
                     </div>
 
-                    <!-- Call-to-Action Liquid Morphing Animated Capsule Pill (Non-clickable showcase as per sketch) -->
+                    <!-- Call-to-Action Ultra-Smooth Liquid Morphing Capsule Pill with Dynamic Luxury Taglines -->
                     <div class="pt-3 flex items-center gap-4">
-                        <div id="anim-capsule" class="relative w-[280px] sm:w-[320px] h-14 rounded-full bg-[#181a20] border-2 border-slate-950/40 p-1.5 shadow-2xl transition-all duration-700 select-none overflow-hidden flex items-center justify-between">
+                        <div id="anim-capsule" class="relative w-[290px] sm:w-[330px] h-14 rounded-full bg-[#181a20] border-2 border-white/20 p-1.5 shadow-2xl transition-all duration-1000 select-none overflow-hidden flex items-center justify-between">
                             
                             <!-- Liquid Morphing Element (Stretches into Capsule during motion, snaps to Circle when resting!) -->
-                            <div id="capsule-circle" class="h-11 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow-xl z-20 absolute top-1.5 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" style="left: calc(100% - 3.125rem); width: 2.75rem;">
-                                <span id="capsule-arrow" class="material-symbols-outlined text-xl font-black transition-transform duration-700">arrow_forward</span>
+                            <div id="capsule-circle" class="h-11 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow-xl z-20 absolute top-1.5 transition-all duration-1100 ease-[cubic-bezier(0.16,1,0.3,1)]" style="left: calc(100% - 3.125rem); width: 2.75rem;">
+                                <span id="capsule-arrow" class="material-symbols-outlined text-xl font-black transition-transform duration-1000">arrow_forward</span>
                             </div>
 
                             <!-- Morphing Text Container -->
-                            <div id="capsule-text-box" class="w-full h-full flex items-center justify-start transition-all duration-700 z-10 pl-6 pr-14 text-white font-['Space_Grotesk'] font-extrabold text-xs sm:text-sm tracking-widest uppercase">
-                                <span id="capsule-text" class="transition-opacity duration-400">EXPLORE SYSTEMS</span>
+                            <div id="capsule-text-box" class="w-full h-full flex items-center justify-start transition-all duration-1000 z-10 pl-6 pr-14 text-white font-['Space_Grotesk'] font-extrabold text-xs sm:text-sm tracking-widest uppercase">
+                                <span id="capsule-text" class="transition-opacity duration-500">EXPLORE SYSTEMS</span>
                             </div>
 
                         </div>
@@ -2477,54 +2477,84 @@
                         const arrow = document.getElementById('capsule-arrow');
                         const textBox = document.getElementById('capsule-text-box');
                         const text = document.getElementById('capsule-text');
-                        let isRight = true;
+
+                        // 4 Aesthetic Luxury Taglines with Unique Fonts & Color Combos
+                        const themes = [
+                            {
+                                text: "EXPLORE SYSTEMS",
+                                side: "left",
+                                fontClass: "font-['Space_Grotesk'] font-extrabold text-xs sm:text-sm tracking-widest uppercase text-white",
+                                capsuleClass: "relative w-[290px] sm:w-[330px] h-14 rounded-full bg-[#181a20] border-2 border-white/20 p-1.5 shadow-2xl transition-all duration-1200 ease-[cubic-bezier(0.16,1,0.3,1)] select-none overflow-hidden flex items-center justify-between",
+                                circleClass: "bg-amber-400 text-slate-950",
+                                arrowRotate: "0deg"
+                            },
+                            {
+                                text: "Autonomous Swarms",
+                                side: "right",
+                                fontClass: "font-['Cormorant_Garamond'] font-black text-lg sm:text-xl italic text-slate-950",
+                                capsuleClass: "relative w-[290px] sm:w-[330px] h-14 rounded-full bg-gradient-to-r from-white via-amber-100 to-amber-200 border-2 border-amber-400/60 p-1.5 shadow-2xl transition-all duration-1200 ease-[cubic-bezier(0.16,1,0.3,1)] select-none overflow-hidden flex items-center justify-between",
+                                circleClass: "bg-slate-950 text-amber-400",
+                                arrowRotate: "180deg"
+                            },
+                            {
+                                text: "24/7 AI PIPELINES",
+                                side: "left",
+                                fontClass: "font-['Outfit'] font-black text-xs sm:text-sm tracking-[0.2em] uppercase text-amber-300",
+                                capsuleClass: "relative w-[290px] sm:w-[330px] h-14 rounded-full bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 border-2 border-purple-400/50 p-1.5 shadow-2xl transition-all duration-1200 ease-[cubic-bezier(0.16,1,0.3,1)] select-none overflow-hidden flex items-center justify-between",
+                                circleClass: "bg-amber-400 text-slate-950",
+                                arrowRotate: "0deg"
+                            },
+                            {
+                                text: "Zero-Latency Neural Core",
+                                side: "right",
+                                fontClass: "font-['Plus_Jakarta_Sans'] font-extrabold text-xs sm:text-sm tracking-wide text-slate-900",
+                                capsuleClass: "relative w-[290px] sm:w-[330px] h-14 rounded-full bg-gradient-to-r from-amber-50 via-orange-100 to-amber-200 border-2 border-amber-500/40 p-1.5 shadow-2xl transition-all duration-1200 ease-[cubic-bezier(0.16,1,0.3,1)] select-none overflow-hidden flex items-center justify-between",
+                                circleClass: "bg-emerald-700 text-white",
+                                arrowRotate: "180deg"
+                            }
+                        ];
+
+                        let themeIdx = 0;
 
                         setInterval(() => {
                             if (!capsule || !circle || !arrow || !textBox || !text) return;
-                            
+
                             text.style.opacity = '0';
 
-                            // PHASE 1: STRETCH INTO CAPSULE SHAPE WHILE MOVING
-                            circle.style.width = '5.25rem'; // Stretches into capsule shape during motion!
+                            // PHASE 1: Liquid stretch into capsule shape during motion
+                            circle.style.transition = "all 1.1s cubic-bezier(0.16, 1, 0.3, 1)";
+                            circle.style.width = '5.5rem'; // Liquid stretch!
 
-                            if (isRight) {
-                                // Slide circle to Left side (strictly inside padding, no edge overflow!)
+                            themeIdx = (themeIdx + 1) % themes.length;
+                            const t = themes[themeIdx];
+
+                            if (t.side === "right") {
+                                // Slide circle to Left side (strictly padded inside)
                                 circle.style.left = '0.375rem';
-                                arrow.style.transform = 'rotate(180deg)';
-                                
-                                // Capsule background color & border morphs
-                                capsule.className = "relative w-[280px] sm:w-[320px] h-14 rounded-full bg-gradient-to-r from-white via-amber-100 to-amber-200 border-2 border-amber-400/60 p-1.5 shadow-2xl transition-all duration-700 select-none overflow-hidden flex items-center justify-between";
-                                
-                                // Text moves to Right of circle & font changes
-                                textBox.className = "w-full h-full flex items-center justify-end transition-all duration-700 z-10 pl-14 pr-6 text-slate-950 font-['Cormorant_Garamond'] font-black text-lg sm:text-xl italic";
-                                text.textContent = "Autonomous Systems";
-                                
-                                isRight = false;
+                                arrow.style.transform = `rotate(${t.arrowRotate})`;
+                                textBox.className = `w-full h-full flex items-center justify-end transition-all duration-1200 z-10 pl-14 pr-6 ${t.fontClass}`;
                             } else {
                                 // Slide circle back to Right side
-                                circle.style.left = 'calc(100% - 5.625rem)'; // Position offset for 5.25rem width
-                                arrow.style.transform = 'rotate(0deg)';
-                                
-                                // Capsule background color reverts
-                                capsule.className = "relative w-[280px] sm:w-[320px] h-14 rounded-full bg-[#181a20] border-2 border-slate-950/40 p-1.5 shadow-2xl transition-all duration-700 select-none overflow-hidden flex items-center justify-between";
-                                
-                                // Text moves to Left of circle & font changes to Space Grotesk
-                                textBox.className = "w-full h-full flex items-center justify-start transition-all duration-700 z-10 pl-6 pr-14 text-white font-['Space_Grotesk'] font-extrabold text-xs sm:text-sm tracking-widest uppercase";
-                                text.textContent = "EXPLORE SYSTEMS";
-                                
-                                isRight = true;
+                                circle.style.left = 'calc(100% - 5.875rem)'; // Position offset for stretched width
+                                arrow.style.transform = `rotate(${t.arrowRotate})`;
+                                textBox.className = `w-full h-full flex items-center justify-start transition-all duration-1200 z-10 pl-6 pr-14 ${t.fontClass}`;
                             }
 
-                            // PHASE 2: SNAP BACK INTO PERFECT CIRCLE AS SOON AS MOTION STOPS!
+                            // Update Capsule Theme & Circle styling
+                            capsule.className = t.capsuleClass;
+                            circle.className = `h-11 rounded-full flex items-center justify-center shadow-xl z-20 absolute top-1.5 transition-all duration-1100 ease-[cubic-bezier(0.16,1,0.3,1)] ${t.circleClass}`;
+                            text.textContent = t.text;
+
+                            // PHASE 2: Settle smoothly back into Perfect Circle upon arrival!
                             setTimeout(() => {
-                                circle.style.width = '2.75rem'; // Snaps back into perfect circle upon arrival!
-                                if (isRight) {
+                                circle.style.width = '2.75rem'; // Snaps back to circle!
+                                if (t.side === "left") {
                                     circle.style.left = 'calc(100% - 3.125rem)'; // Perfect right padding inside edge
                                 }
                                 text.style.opacity = '1';
-                            }, 650);
+                            }, 1000);
 
-                        }, 3200);
+                        }, 4200); // Buttery slow 4.2s interval
                     })();
                     </script>
 
