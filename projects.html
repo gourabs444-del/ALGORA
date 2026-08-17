@@ -2463,8 +2463,8 @@
                             <div id="theme-bg-2" class="absolute inset-0 bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 border-2 border-purple-400/50 transition-opacity duration-1000 opacity-0"></div>
                             <div id="theme-bg-3" class="absolute inset-0 bg-gradient-to-r from-amber-50 via-orange-100 to-amber-200 border-2 border-amber-500/40 transition-opacity duration-1000 opacity-0"></div>
 
-                            <!-- 120 FPS Ease-Out Morphing Pill Element (Capsule while moving, INSTANT Circle as soon as motion stops!) -->
-                            <div id="capsule-circle" class="h-11 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow-xl z-30 absolute top-1.5 left-1.5 will-change-transform transform-gpu" style="transition: transform 0.9s cubic-bezier(0, 0, 0.2, 1), width 0.9s cubic-bezier(0, 0, 0.2, 1), background-color 0.8s ease, color 0.8s ease; width: 2.75rem; transform: translate3d(264px, 0, 0);">
+                            <!-- 120 FPS High-Level Physics Pill Element (Circle -> Capsule at Center -> Circle upon Ease-Out Arrival!) -->
+                            <div id="capsule-circle" class="h-11 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow-xl z-30 absolute top-1.5 left-1.5 will-change-transform transform-gpu" style="width: 2.75rem; transform: translate3d(264px, 0, 0);">
                                 <span id="capsule-arrow" class="material-symbols-outlined text-xl font-black transition-transform duration-900 will-change-transform">arrow_forward</span>
                             </div>
 
@@ -2497,7 +2497,7 @@
                             document.getElementById('theme-bg-3')
                         ];
 
-                        // 4 Aesthetic Luxury Themes (Ease-Out Physics & Instant Circle Snap)
+                        // 4 Aesthetic Luxury Themes (Midpoint Peak Capsule Physics)
                         const themes = [
                             {
                                 text: "EXPLORE SYSTEMS",
@@ -2569,37 +2569,50 @@
                             circle.className = `h-11 rounded-full flex items-center justify-center shadow-xl z-30 absolute top-1.5 left-1.5 will-change-transform transform-gpu ${t.circleBg} ${t.circleText}`;
 
                             if (t.side === "right") {
-                                // Slide to Left side (0.9s Ease-Out duration)
-                                // PHASE 1: Expands into Capsule Shape WHILE moving
-                                circle.style.width = '5.25rem';
-                                circle.style.transform = `translate3d(0px, 0, 0)`;
+                                // Moving Right -> Left (MaxX -> 0px)
+                                const midX = maxTranslateX / 2;
+
+                                // PHASE 1 (0ms - 550ms): Accelerate from Start Edge to Center Midpoint
+                                // Circle (44px) -> Capsule (84px) while accelerating to midpoint!
+                                circle.style.transition = 'transform 0.55s cubic-bezier(0.4, 0, 0.6, 1), width 0.55s cubic-bezier(0.4, 0, 0.6, 1), background-color 0.8s ease, color 0.8s ease';
+                                circle.style.transform = `translate3d(${midX}px, 0, 0)`;
+                                circle.style.width = '5.25rem'; // Reaches peak capsule width at center!
 
                                 textLeftBox.style.opacity = '0';
                                 textRightBox.style.opacity = '1';
                                 textRight.className = t.fontClass;
                                 textRight.textContent = t.text;
 
-                                // PHASE 2: INSTANTLY snap back to Perfect Circle at 900ms when motion stops!
+                                // PHASE 2 (550ms - 1100ms): Decelerate from Center Midpoint to Destination Edge
+                                // Capsule (84px) -> Circle (44px) while decelerating to destination!
                                 setTimeout(() => {
-                                    circle.style.width = '2.75rem';
-                                }, 900);
+                                    circle.style.transition = 'transform 0.55s cubic-bezier(0, 0, 0.2, 1), width 0.55s cubic-bezier(0, 0, 0.2, 1)';
+                                    circle.style.transform = `translate3d(0px, 0, 0)`;
+                                    circle.style.width = '2.75rem'; // Reverts to circle upon arrival!
+                                }, 550);
 
                             } else {
-                                // Slide to Right side (0.9s Ease-Out duration)
-                                // PHASE 1: Expands into Capsule Shape WHILE moving
-                                circle.style.width = '5.25rem';
-                                circle.style.transform = `translate3d(${maxTranslateX - 40}px, 0, 0)`;
+                                // Moving Left -> Right (0px -> MaxX)
+                                const midX = (maxTranslateX - 40) / 2;
+
+                                // PHASE 1 (0ms - 550ms): Accelerate from Start Edge to Center Midpoint
+                                // Circle (44px) -> Capsule (84px) while accelerating to midpoint!
+                                circle.style.transition = 'transform 0.55s cubic-bezier(0.4, 0, 0.6, 1), width 0.55s cubic-bezier(0.4, 0, 0.6, 1), background-color 0.8s ease, color 0.8s ease';
+                                circle.style.transform = `translate3d(${midX}px, 0, 0)`;
+                                circle.style.width = '5.25rem'; // Reaches peak capsule width at center!
 
                                 textRightBox.style.opacity = '0';
                                 textLeftBox.style.opacity = '1';
                                 textLeft.className = t.fontClass;
                                 textLeft.textContent = t.text;
 
-                                // PHASE 2: INSTANTLY snap back to Perfect Circle at 900ms when motion stops!
+                                // PHASE 2 (550ms - 1100ms): Decelerate from Center Midpoint to Destination Edge
+                                // Capsule (84px) -> Circle (44px) while decelerating to destination!
                                 setTimeout(() => {
-                                    circle.style.width = '2.75rem';
+                                    circle.style.transition = 'transform 0.55s cubic-bezier(0, 0, 0.2, 1), width 0.55s cubic-bezier(0, 0, 0.2, 1)';
                                     circle.style.transform = `translate3d(${maxTranslateX}px, 0, 0)`;
-                                }, 900);
+                                    circle.style.width = '2.75rem'; // Reverts to circle upon arrival!
+                                }, 550);
                             }
 
                         }, 4000);
