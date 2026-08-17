@@ -2547,8 +2547,8 @@
                 const maxRipples = 120;
                 const maxBeads = 80;
 
-                // UNIFIED CONSTANT WIND SLANT ANGLE
-                const UNIFIED_SLANT = -2.6;
+                // UNIFIED CONSTANT GENTLE WIND SLANT ANGLE
+                const UNIFIED_SLANT = -1.6;
 
                 function resize() {
                     const rect = canvas.getBoundingClientRect();
@@ -2580,15 +2580,15 @@
                         this.y = y;
                         this.radius = 1.0;
                         this.maxRadius = (10 + Math.random() * 16) * intensity;
-                        this.speed = 0.55 + Math.random() * 0.45;
+                        this.speed = 0.38 + Math.random() * 0.32; // Soothing gentle expansion
                         this.opacity = (0.55 + Math.random() * 0.35) * intensity;
-                        this.lineWidth = 1.4;
+                        this.lineWidth = 1.3;
                         this.ringOffset = 0.55; // Secondary inner concentric ring
                     }
                     update() {
                         this.radius += this.speed;
-                        this.opacity -= 0.018;
-                        this.lineWidth = Math.max(0.3, this.lineWidth - 0.025);
+                        this.opacity -= 0.012; // Natural longer fade
+                        this.lineWidth = Math.max(0.3, this.lineWidth - 0.018);
                     }
                     draw() {
                         if (this.opacity <= 0) return;
@@ -2601,7 +2601,7 @@
                         ctx.stroke();
 
                         // Secondary Inner Concentric Ring
-                        if (this.radius > 4) {
+                        if (this.radius > 3.5) {
                             const innerR = this.radius * this.ringOffset;
                             const innerAlpha = this.opacity * 0.7;
                             ctx.beginPath();
@@ -2612,10 +2612,10 @@
                         }
 
                         // Subtle Water Surface Impact Flash Glow
-                        if (this.radius < 6) {
-                            const glowAlpha = Math.min(this.opacity * 0.5, 0.4);
+                        if (this.radius < 5) {
+                            const glowAlpha = Math.min(this.opacity * 0.45, 0.35);
                             ctx.beginPath();
-                            ctx.ellipse(this.x, this.y, this.radius * 3.2, this.radius * 1.2, 0, 0, Math.PI * 2);
+                            ctx.ellipse(this.x, this.y, this.radius * 3.0, this.radius * 1.1, 0, 0, Math.PI * 2);
                             ctx.fillStyle = `rgba(240, 252, 255, ${glowAlpha})`;
                             ctx.fill();
                         }
@@ -2627,23 +2627,23 @@
                     constructor(x, y) {
                         this.x = x;
                         this.y = y;
-                        this.vx = (Math.random() - 0.5) * 2.2;
-                        this.vy = -(1.8 + Math.random() * 3.2); // Jumps upwards
-                        this.gravity = 0.22;
-                        this.size = 1.0 + Math.random() * 0.9;
-                        this.opacity = 0.8;
+                        this.vx = (Math.random() - 0.5) * 1.6;
+                        this.vy = -(1.2 + Math.random() * 2.0); // Gentle jump upwards
+                        this.gravity = 0.14;
+                        this.size = 0.9 + Math.random() * 0.8;
+                        this.opacity = 0.75;
                         this.originY = y;
                     }
                     update() {
                         this.x += this.vx;
                         this.vy += this.gravity;
                         this.y += this.vy;
-                        this.opacity -= 0.025;
+                        this.opacity -= 0.02;
 
                         // Upon landing back down on water surface, trigger mini ripple
                         if (this.vy > 0 && this.y >= this.originY) {
                             if (ripples.length < maxRipples) {
-                                ripples.push(new WaterRipple(this.x, this.originY, 0.5));
+                                ripples.push(new WaterRipple(this.x, this.originY, 0.45));
                             }
                             this.opacity = 0;
                         }
@@ -2657,34 +2657,34 @@
                     }
                 }
 
-                // Rain Drop Simulation
+                // Rain Drop Simulation (Calibrated Softer, Smoother, Natural Speed)
                 class RainDrop {
                     constructor() {
                         this.reset(true);
                     }
                     reset(init = false) {
-                        this.x = Math.random() * (width + 450) - 120;
-                        this.y = init ? Math.random() * height : -50;
+                        this.x = Math.random() * (width + 350) - 100;
+                        this.y = init ? Math.random() * height : -40;
                         this.layer = Math.random();
                         
                         if (this.layer > 0.76) {
-                            // Foreground Heavy Streak
-                            this.speed = 24 + Math.random() * 8;
-                            this.len = 30 + Math.random() * 18;
-                            this.opacity = 0.55 + Math.random() * 0.35;
-                            this.width = 1.6 + Math.random() * 0.6;
+                            // Foreground Calmer Heavy Streak (Gentle realistic speed)
+                            this.speed = 10.5 + Math.random() * 3.5;
+                            this.len = 16 + Math.random() * 10;
+                            this.opacity = 0.52 + Math.random() * 0.32;
+                            this.width = 1.4 + Math.random() * 0.5;
                         } else if (this.layer > 0.30) {
-                            // Midground Steady Rainfall
-                            this.speed = 16 + Math.random() * 6;
-                            this.len = 18 + Math.random() * 10;
-                            this.opacity = 0.32 + Math.random() * 0.25;
-                            this.width = 1.0 + Math.random() * 0.4;
+                            // Midground Steady Rain
+                            this.speed = 7.0 + Math.random() * 2.5;
+                            this.len = 11 + Math.random() * 6;
+                            this.opacity = 0.30 + Math.random() * 0.22;
+                            this.width = 0.95 + Math.random() * 0.35;
                         } else {
                             // Background Fine Misty Drizzle
-                            this.speed = 9 + Math.random() * 4;
-                            this.len = 10 + Math.random() * 6;
-                            this.opacity = 0.16 + Math.random() * 0.18;
-                            this.width = 0.7;
+                            this.speed = 4.2 + Math.random() * 1.8;
+                            this.len = 6 + Math.random() * 4;
+                            this.opacity = 0.15 + Math.random() * 0.16;
+                            this.width = 0.65;
                         }
                         this.slant = UNIFIED_SLANT;
                     }
