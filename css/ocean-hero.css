@@ -31,16 +31,14 @@
     overflow: hidden;
 }
 
-.ocean-bg-image {
+.ocean-bg-image,
+.ocean-bg-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
-    transform-origin: 50% 65%;
-    transform: scale(1.03);
-    animation: cinematicOceanSwell 16s ease-in-out infinite alternate;
+    object-position: center;
     will-change: transform, filter;
-    filter: brightness(0.98) contrast(1.05) saturate(1.08);
+    filter: brightness(0.95) contrast(1.08) saturate(1.15);
 }
 
 /* Realistic Ocean Wave Roll & Yacht Pitching Physics */
