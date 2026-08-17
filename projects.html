@@ -2635,8 +2635,8 @@
                                 textRight.className = t.fontClass;
                                 textRight.textContent = t.text;
 
-                                // 240 FPS Physics glide Right -> Left (maxTranslateX -> 0px)
-                                run240fpsPhysics(0, 1100);
+                                // Faster 240 FPS Physics glide Right -> Left (800ms snappy duration)
+                                run240fpsPhysics(0, 800);
 
                             } else {
                                 textRightBox.style.opacity = '0';
@@ -2644,11 +2644,11 @@
                                 textLeft.className = t.fontClass;
                                 textLeft.textContent = t.text;
 
-                                // 240 FPS Physics glide Left -> Right (0px -> maxTranslateX)
-                                run240fpsPhysics(maxTranslateX, 1100);
+                                // Faster 240 FPS Physics glide Left -> Right (800ms snappy duration)
+                                run240fpsPhysics(maxTranslateX, 800);
                             }
 
-                        }, 4200);
+                        }, 3500);
                     })();
                     </script>
 
