@@ -2411,13 +2411,10 @@
             <!-- BACKGROUND LAYER 3: Ambient Lightning Flash Layer (Multi-Stage Thunder Pulse) -->
             <div id="monsoon-lightning" class="absolute inset-0 bg-sky-200/0 pointer-events-none z-[2] transition-colors duration-150"></div>
 
-            <!-- BACKGROUND LAYER 4: LIVE HTML5 240 FPS HYPER-REALISTIC RAIN & SPLASH CANVAS -->
-            <canvas id="monsoon-rain-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[3]"></canvas>
-
             <!-- LIVE MONSOON WEATHER BADGE (Top-Right Floating Ambient Indicator) -->
             <div class="absolute top-6 right-6 sm:top-8 sm:right-10 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/60 backdrop-blur-xl border border-white/20 shadow-2xl text-[11px] font-['Space_Grotesk'] text-slate-200 font-bold tracking-widest uppercase">
                 <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                <span>🌧️ LIVE MONSOON WEATHER • HEAVY RAIN</span>
+                <span>☁️ LIVE MONSOON WEATHER • OVERCAST AMBIENCE</span>
             </div>
 
             <!-- MAIN 2-COLUMN CONTENT CONTAINER (Compact Sleek Typography - Hero Focus on Banner Scenery) -->
@@ -2429,7 +2426,7 @@
                     <!-- Top Brand Header Line -->
                     <div class="flex items-center gap-2.5">
                         <div class="w-7 h-7 rounded-xl bg-emerald-500/25 text-emerald-300 flex items-center justify-center font-bold text-xs shadow-xl border border-emerald-400/40 backdrop-blur-lg">
-                            <span class="material-symbols-outlined text-base">water_drop</span>
+                            <span class="material-symbols-outlined text-base">cloud</span>
                         </div>
                         <span class="text-[11px] sm:text-xs font-['Space_Grotesk'] font-extrabold tracking-[0.25em] text-emerald-300 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                             ✦ AI &amp; AUTOMATION ✦
@@ -2530,227 +2527,9 @@
 
             </div>
 
-            <!-- LIVE HTML5 240 FPS HYPER-REALISTIC MONSOON RAIN & WATER PUDDLE RIPPLE ENGINE -->
+            <!-- Multi-Stage Thunder Lightning Flash Engine -->
             <script>
-            (function initMonsoonRainAndPuddleEngine() {
-                const canvas = document.getElementById('monsoon-rain-canvas');
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                let width = 0, height = 0;
-                let drops = [];
-                let splashes = [];
-                let ripples = [];
-                let splashBeads = [];
-
-                // 820 drops for hyper-realistic monsoon rainfall density
-                const maxDrops = 820;
-                const maxRipples = 120;
-                const maxBeads = 80;
-
-                // UNIFIED CONSTANT GENTLE WIND SLANT ANGLE
-                const UNIFIED_SLANT = -1.6;
-
-                function resize() {
-                    const rect = canvas.getBoundingClientRect();
-                    width = canvas.width = rect.width || window.innerWidth;
-                    height = canvas.height = rect.height || 820;
-                }
-                resize();
-                window.addEventListener('resize', resize);
-
-                // Water Puddle & Flooded Terrace Regions (Mapped to the Scenery Landscape)
-                function isWaterPuddleRegion(x, y) {
-                    const nx = x / width;
-                    const ny = y / height;
-
-                    // Region 1: Flooded Green Rice Terraces (Left to Center)
-                    const inRiceTerrace = (nx >= 0.04 && nx <= 0.62 && ny >= 0.60 && ny <= 0.94);
-                    // Region 2: Wet Cobblestone Pathway with Accumulated Puddles (Center to Right)
-                    const inStonePuddles = (nx >= 0.48 && nx <= 0.86 && ny >= 0.66 && ny <= 1.0);
-                    // Region 3: Deep Foreground Water Channels & Pond Bottom
-                    const inForegroundPond = (ny >= 0.84);
-
-                    return inRiceTerrace || inStonePuddles || inForegroundPond;
-                }
-
-                // Concentric Elliptical Water Ripple Class (With 3D Horizontal Surface Perspective)
-                class WaterRipple {
-                    constructor(x, y, intensity = 1.0) {
-                        this.x = x;
-                        this.y = y;
-                        this.radius = 1.0;
-                        this.maxRadius = (10 + Math.random() * 16) * intensity;
-                        this.speed = 0.38 + Math.random() * 0.32; // Soothing gentle expansion
-                        this.opacity = (0.55 + Math.random() * 0.35) * intensity;
-                        this.lineWidth = 1.3;
-                        this.ringOffset = 0.55; // Secondary inner concentric ring
-                    }
-                    update() {
-                        this.radius += this.speed;
-                        this.opacity -= 0.012; // Natural longer fade
-                        this.lineWidth = Math.max(0.3, this.lineWidth - 0.018);
-                    }
-                    draw() {
-                        if (this.opacity <= 0) return;
-                        
-                        // Outer Main Ripple Ring (Horizontal Perspective Ratio 2.7:1)
-                        ctx.beginPath();
-                        ctx.ellipse(this.x, this.y, this.radius * 2.7, this.radius, 0, 0, Math.PI * 2);
-                        ctx.strokeStyle = `rgba(220, 245, 255, ${this.opacity})`;
-                        ctx.lineWidth = this.lineWidth;
-                        ctx.stroke();
-
-                        // Secondary Inner Concentric Ring
-                        if (this.radius > 3.5) {
-                            const innerR = this.radius * this.ringOffset;
-                            const innerAlpha = this.opacity * 0.7;
-                            ctx.beginPath();
-                            ctx.ellipse(this.x, this.y, innerR * 2.7, innerR, 0, 0, Math.PI * 2);
-                            ctx.strokeStyle = `rgba(235, 250, 255, ${innerAlpha})`;
-                            ctx.lineWidth = Math.max(0.25, this.lineWidth * 0.8);
-                            ctx.stroke();
-                        }
-
-                        // Subtle Water Surface Impact Flash Glow
-                        if (this.radius < 5) {
-                            const glowAlpha = Math.min(this.opacity * 0.45, 0.35);
-                            ctx.beginPath();
-                            ctx.ellipse(this.x, this.y, this.radius * 3.0, this.radius * 1.1, 0, 0, Math.PI * 2);
-                            ctx.fillStyle = `rgba(240, 252, 255, ${glowAlpha})`;
-                            ctx.fill();
-                        }
-                    }
-                }
-
-                // Vertical Water Droplet Splash Bead (Crown Splash with Gravity)
-                class SplashBead {
-                    constructor(x, y) {
-                        this.x = x;
-                        this.y = y;
-                        this.vx = (Math.random() - 0.5) * 1.6;
-                        this.vy = -(1.2 + Math.random() * 2.0); // Gentle jump upwards
-                        this.gravity = 0.14;
-                        this.size = 0.9 + Math.random() * 0.8;
-                        this.opacity = 0.75;
-                        this.originY = y;
-                    }
-                    update() {
-                        this.x += this.vx;
-                        this.vy += this.gravity;
-                        this.y += this.vy;
-                        this.opacity -= 0.02;
-
-                        // Upon landing back down on water surface, trigger mini ripple
-                        if (this.vy > 0 && this.y >= this.originY) {
-                            if (ripples.length < maxRipples) {
-                                ripples.push(new WaterRipple(this.x, this.originY, 0.45));
-                            }
-                            this.opacity = 0;
-                        }
-                    }
-                    draw() {
-                        if (this.opacity <= 0) return;
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(235, 250, 255, ${this.opacity})`;
-                        ctx.fill();
-                    }
-                }
-
-                // Rain Drop Simulation (Calibrated Softer, Smoother, Natural Speed)
-                class RainDrop {
-                    constructor() {
-                        this.reset(true);
-                    }
-                    reset(init = false) {
-                        this.x = Math.random() * (width + 350) - 100;
-                        this.y = init ? Math.random() * height : -40;
-                        this.layer = Math.random();
-                        
-                        if (this.layer > 0.76) {
-                            // Foreground Calmer Heavy Streak (Gentle realistic speed)
-                            this.speed = 10.5 + Math.random() * 3.5;
-                            this.len = 16 + Math.random() * 10;
-                            this.opacity = 0.52 + Math.random() * 0.32;
-                            this.width = 1.4 + Math.random() * 0.5;
-                        } else if (this.layer > 0.30) {
-                            // Midground Steady Rain
-                            this.speed = 7.0 + Math.random() * 2.5;
-                            this.len = 11 + Math.random() * 6;
-                            this.opacity = 0.30 + Math.random() * 0.22;
-                            this.width = 0.95 + Math.random() * 0.35;
-                        } else {
-                            // Background Fine Misty Drizzle
-                            this.speed = 4.2 + Math.random() * 1.8;
-                            this.len = 6 + Math.random() * 4;
-                            this.opacity = 0.15 + Math.random() * 0.16;
-                            this.width = 0.65;
-                        }
-                        this.slant = UNIFIED_SLANT;
-                    }
-                    update() {
-                        this.x += this.slant;
-                        this.y += this.speed;
-
-                        // Check water puddle impact collision
-                        if (this.y >= height * 0.60 && isWaterPuddleRegion(this.x, this.y)) {
-                            // 35% of drops hitting puddle trigger ripples & splash beads
-                            if (Math.random() < 0.35) {
-                                this.triggerWaterImpact(this.x, this.y);
-                                this.reset();
-                                return;
-                            }
-                        }
-
-                        // Bottom boundary impact
-                        if (this.y > height) {
-                            if (this.layer > 0.45) {
-                                this.triggerWaterImpact(this.x, height - 4);
-                            }
-                            this.reset();
-                        }
-                    }
-                    triggerWaterImpact(ix, iy) {
-                        // Spawn concentric horizontal water ripple
-                        if (ripples.length < maxRipples) {
-                            ripples.push(new WaterRipple(ix, iy, this.layer > 0.7 ? 1.2 : 0.8));
-                        }
-                        // Spawn vertical crown splash water beads
-                        if (this.layer > 0.6 && splashBeads.length < maxBeads) {
-                            const beadCount = 2 + Math.floor(Math.random() * 3);
-                            for (let b = 0; b < beadCount; b++) {
-                                splashBeads.push(new SplashBead(ix, iy));
-                            }
-                        }
-                    }
-                    draw() {
-                        ctx.beginPath();
-                        ctx.moveTo(this.x, this.y);
-                        ctx.lineTo(this.x + this.slant * (this.len / this.speed), this.y + this.len);
-                        ctx.strokeStyle = `rgba(225, 245, 255, ${this.opacity})`;
-                        ctx.lineWidth = this.width;
-                        ctx.lineCap = 'round';
-                        ctx.stroke();
-                    }
-                }
-
-                for (let i = 0; i < maxDrops; i++) {
-                    drops.push(new RainDrop());
-                }
-
-                // Interactive Mouse Touch Water Disturbance in Puddle Zones
-                canvas.addEventListener('mousemove', (e) => {
-                    const rect = canvas.getBoundingClientRect();
-                    const mx = e.clientX - rect.left;
-                    const my = e.clientY - rect.top;
-                    if (isWaterPuddleRegion(mx, my)) {
-                        if (ripples.length < maxRipples) {
-                            ripples.push(new WaterRipple(mx, my, 1.1));
-                        }
-                    }
-                });
-
-                // Multi-Stage Thunder Lightning Flash Engine
+            (function initMonsoonThunderEngine() {
                 const lightningEl = document.getElementById('monsoon-lightning');
                 const bgImg = document.getElementById('monsoon-bg-img');
 
@@ -2758,7 +2537,7 @@
                     if (!lightningEl) return;
                     
                     lightningEl.style.backgroundColor = 'rgba(230, 245, 255, 0.45)';
-                    if (bgImg) bgImg.style.filter = 'brightness(1.5) contrast(1.1) saturate(1.2)';
+                    if (bgImg) bgImg.style.filter = 'brightness(1.45) contrast(1.1) saturate(1.2)';
 
                     setTimeout(() => {
                         lightningEl.style.backgroundColor = 'rgba(230, 245, 255, 0.08)';
@@ -2766,11 +2545,11 @@
 
                         setTimeout(() => {
                             lightningEl.style.backgroundColor = 'rgba(245, 252, 255, 0.75)';
-                            if (bgImg) bgImg.style.filter = 'brightness(1.65) contrast(1.1) saturate(1.25)';
+                            if (bgImg) bgImg.style.filter = 'brightness(1.6) contrast(1.1) saturate(1.25)';
 
                             setTimeout(() => {
-                                lightningEl.style.backgroundColor = 'rgba(220, 240, 255, 0.25)';
-                                if (bgImg) bgImg.style.filter = 'brightness(1.2) contrast(1.12) saturate(1.18)';
+                                lightningEl.style.backgroundColor = 'rgba(220, 240, 255, 0.22)';
+                                if (bgImg) bgImg.style.filter = 'brightness(1.18) contrast(1.12) saturate(1.18)';
 
                                 setTimeout(() => {
                                     lightningEl.style.backgroundColor = 'rgba(220, 240, 255, 0)';
@@ -2780,41 +2559,10 @@
                         }, 50);
                     }, 70);
 
-                    const nextDelay = 7000 + Math.random() * 7000;
+                    const nextDelay = 7500 + Math.random() * 8000;
                     setTimeout(triggerThunderFlash, nextDelay);
                 }
                 setTimeout(triggerThunderFlash, 4000);
-
-                function animate() {
-                    ctx.clearRect(0, 0, width, height);
-
-                    // 1. Draw & Update Dynamic Water Puddle Ripples
-                    for (let i = ripples.length - 1; i >= 0; i--) {
-                        ripples[i].update();
-                        ripples[i].draw();
-                        if (ripples[i].opacity <= 0 || ripples[i].radius >= ripples[i].maxRadius) {
-                            ripples.splice(i, 1);
-                        }
-                    }
-
-                    // 2. Draw & Update Vertical Water Droplet Splash Beads
-                    for (let i = splashBeads.length - 1; i >= 0; i--) {
-                        splashBeads[i].update();
-                        splashBeads[i].draw();
-                        if (splashBeads[i].opacity <= 0) {
-                            splashBeads.splice(i, 1);
-                        }
-                    }
-
-                    // 3. Draw & Update Rain Streaks
-                    for (let i = 0; i < drops.length; i++) {
-                        drops[i].update();
-                        drops[i].draw();
-                    }
-
-                    requestAnimationFrame(animate);
-                }
-                requestAnimationFrame(animate);
             })();
             </script>
 
