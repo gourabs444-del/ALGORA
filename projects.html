@@ -2552,35 +2552,55 @@
                             circle.style.width = '44px';
                         }
 
-                        // Clean 240 FPS Liquid Gel Engine (Zero-Roughness Soft Cushion Edge Physics)
+                        // 240 FPS Native Physics Engine (Sine Glide + Edge Wall Impact Bounce-Back Rebound)
                         function run240fpsPhysics(targetX, duration, onDone) {
                             isAnimating = true;
                             const startX = currentX;
                             const dist = targetX - startX;
                             const baseW = 44;
-                            const peakW = 74;
+                            const peakW = 76;
                             const addW = peakW - baseW;
                             const startTime = performance.now();
+                            // Direction vector: +1 if moving to Left (bounces back Right), -1 if moving to Right (bounces back Left)
+                            const bounceDir = (targetX < startX) ? 1 : -1;
 
                             function step(now) {
                                 const elapsed = now - startTime;
                                 const progress = Math.min(elapsed / duration, 1);
 
-                                // 1. Cosine Smooth Glide Trajectory (Zero initial & final jerk)
-                                const easePos = 0.5 * (1 - Math.cos(Math.PI * progress));
-                                const rawX = startX + (dist * easePos);
-                                
-                                // 2. Continuous Liquid Morphing (Circle -> Capsule at center -> Circle at end)
-                                let w = baseW + (addW * Math.sin(progress * Math.PI));
-
-                                // 3. Liquid Cushion Contact (80% - 100% progress): Soft Gel Compression against wall
-                                if (progress > 0.8) {
-                                    const p = (progress - 0.8) / 0.2;
-                                    const cushionCompress = Math.sin(p * Math.PI) * 5;
-                                    w -= cushionCompress;
+                                // 1. Smooth Glide Trajectory to Target Wall (0% -> 72% progress)
+                                let easePos;
+                                if (progress <= 0.72) {
+                                    const p = progress / 0.72;
+                                    easePos = 0.5 * (1 - Math.cos(Math.PI * p));
+                                } else {
+                                    easePos = 1;
                                 }
 
-                                // Strict Edge Bounds Protection Math (safeX + w <= outer padding edge)
+                                // 2. Directional Wall Impact Bounce-Back Offset (72% -> 100% progress)
+                                // Upon hitting edge wall at 72%, it bounces BACK away from wall and settles at 100%!
+                                let bounceOffset = 0;
+                                if (progress > 0.72) {
+                                    const p = (progress - 0.72) / 0.28;
+                                    // Damped Sine Wave Bounce-Back: bounces back up to 12px away from edge wall
+                                    bounceOffset = bounceDir * Math.sin(p * Math.PI) * Math.exp(-p * 2.2) * 12;
+                                }
+
+                                const rawX = startX + (dist * easePos) + bounceOffset;
+                                
+                                // 3. Liquid Capsule Morph (0% -> 72% progress)
+                                let w;
+                                if (progress <= 0.72) {
+                                    const p = progress / 0.72;
+                                    w = baseW + (addW * Math.sin(p * Math.PI));
+                                } else {
+                                    // 4. Elastic Squish Rebound on Width during Wall Bounce-Back (72% -> 100%)
+                                    const p = (progress - 0.72) / 0.28;
+                                    const squish = Math.sin(p * Math.PI) * Math.exp(-p * 2) * 6;
+                                    w = baseW - squish;
+                                }
+
+                                // Strict Edge Bounds Math: safeX + w <= maxTranslateX + 44
                                 const maxAllowedX = maxTranslateX + 44 - w;
                                 const safeX = Math.max(0, Math.min(rawX, maxAllowedX));
 
