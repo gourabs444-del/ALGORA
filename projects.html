@@ -2530,7 +2530,7 @@
 
             </div>
 
-            <!-- LIVE HTML5 240 FPS REALISTIC DIRECTIONAL MONSOON RAIN ENGINE -->
+            <!-- LIVE HTML5 240 FPS HIGH-DENSITY MONSOON RAIN ENGINE (NO LAND RIPPLES) -->
             <script>
             (function initRealisticRainEngine() {
                 const canvas = document.getElementById('monsoon-rain-canvas');
@@ -2538,11 +2538,9 @@
                 const ctx = canvas.getContext('2d');
                 let width = 0, height = 0;
                 let drops = [];
-                let ripples = [];
 
-                // 620 continuous rain streaks for authentic monsoon shower density
-                const maxDrops = 620;
-                const maxRipples = 60;
+                // 1150 continuous rain streaks for dense, immersive monsoon rainfall
+                const maxDrops = 1150;
 
                 // EXACT UNIFIED CRISP SLANTED RAIN ANGLE
                 const UNIFIED_SLANT = -2.2;
@@ -2555,59 +2553,33 @@
                 resize();
                 window.addEventListener('resize', resize);
 
-                // Water impact surface ripple
-                class RainRipple {
-                    constructor(x, y) {
-                        this.x = x;
-                        this.y = y;
-                        this.radius = 1.0;
-                        this.maxRadius = 6 + Math.random() * 10;
-                        this.speed = 0.45 + Math.random() * 0.35;
-                        this.opacity = 0.55;
-                        this.lineWidth = 1.2;
-                    }
-                    update() {
-                        this.radius += this.speed;
-                        this.opacity -= 0.022;
-                        this.lineWidth = Math.max(0.3, this.lineWidth - 0.025);
-                    }
-                    draw() {
-                        if (this.opacity <= 0) return;
-                        ctx.beginPath();
-                        ctx.ellipse(this.x, this.y, this.radius * 2.8, this.radius * 0.9, 0, 0, Math.PI * 2);
-                        ctx.strokeStyle = `rgba(220, 245, 255, ${this.opacity})`;
-                        ctx.lineWidth = this.lineWidth;
-                        ctx.stroke();
-                    }
-                }
-
                 // Elongated Directional Rain Streak Particle (100% Authentic Water Physics)
                 class RealRainStreak {
                     constructor() {
                         this.reset(true);
                     }
                     reset(init = false) {
-                        this.x = Math.random() * (width + 450) - 100;
+                        this.x = Math.random() * (width + 500) - 120;
                         this.y = init ? Math.random() * height : -60;
                         this.layer = Math.random();
 
-                        if (this.layer > 0.74) {
+                        if (this.layer > 0.76) {
                             // Foreground Heavy Water Streaks
                             this.speed = 15.5 + Math.random() * 3.5;
                             this.len = 34 + Math.random() * 16;
-                            this.opacity = 0.48 + Math.random() * 0.25;
+                            this.opacity = 0.46 + Math.random() * 0.25;
                             this.width = 1.35;
-                        } else if (this.layer > 0.30) {
+                        } else if (this.layer > 0.28) {
                             // Midground Steady Rainfall Streaks
                             this.speed = 11.5 + Math.random() * 2.5;
                             this.len = 22 + Math.random() * 10;
-                            this.opacity = 0.30 + Math.random() * 0.18;
+                            this.opacity = 0.28 + Math.random() * 0.18;
                             this.width = 0.95;
                         } else {
                             // Background Fine Rain Streaks
                             this.speed = 8.0 + Math.random() * 2.0;
                             this.len = 14 + Math.random() * 6;
-                            this.opacity = 0.16 + Math.random() * 0.12;
+                            this.opacity = 0.15 + Math.random() * 0.12;
                             this.width = 0.65;
                         }
                         
@@ -2617,10 +2589,7 @@
                         this.x += this.slant * (this.speed / 10);
                         this.y += this.speed;
 
-                        if (this.y > height) {
-                            if (this.layer > 0.45 && ripples.length < maxRipples) {
-                                ripples.push(new RainRipple(this.x, height - 4));
-                            }
+                        if (this.y > height + 40) {
                             this.reset();
                         }
                     }
@@ -2643,16 +2612,7 @@
                 function animate() {
                     ctx.clearRect(0, 0, width, height);
 
-                    // 1. Draw Surface Ripples
-                    for (let i = ripples.length - 1; i >= 0; i--) {
-                        ripples[i].update();
-                        ripples[i].draw();
-                        if (ripples[i].opacity <= 0 || ripples[i].radius >= ripples[i].maxRadius) {
-                            ripples.splice(i, 1);
-                        }
-                    }
-
-                    // 2. Draw Elongated Rain Streaks
+                    // Draw All High-Density Rain Streaks
                     for (let i = 0; i < drops.length; i++) {
                         drops[i].update();
                         drops[i].draw();
