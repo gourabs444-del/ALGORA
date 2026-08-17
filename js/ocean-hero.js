@@ -8,6 +8,19 @@
 
 (function initRealLifeOceanExperience() {
 
+    // Force reliable background video continuous autoplay
+    const bgVideo = document.getElementById('ocean-bg-video');
+    if (bgVideo) {
+        bgVideo.muted = true;
+        const playPromise = bgVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                document.addEventListener('touchstart', () => bgVideo.play(), { once: true });
+                document.addEventListener('click', () => bgVideo.play(), { once: true });
+            });
+        }
+    }
+
     /* ============================================================
        1. PHOTOREALISTIC WATER SPECULAR GLINT & CAUSTICS ENGINE
        ============================================================ */
