@@ -2530,9 +2530,9 @@
 
             </div>
 
-            <!-- LIVE HTML5 240 FPS SILKY-SMOOTH SLOW MONSOON RAIN ENGINE -->
+            <!-- LIVE HTML5 240 FPS REALISTIC DIRECTIONAL MONSOON RAIN ENGINE -->
             <script>
-            (function initSmoothSlowRainEngine() {
+            (function initRealisticRainEngine() {
                 const canvas = document.getElementById('monsoon-rain-canvas');
                 if (!canvas) return;
                 const ctx = canvas.getContext('2d');
@@ -2540,12 +2540,12 @@
                 let drops = [];
                 let ripples = [];
 
-                // 420 perfectly spaced drops for calm, atmospheric rainfall
-                const maxDrops = 420;
-                const maxRipples = 45;
+                // 620 continuous rain streaks for authentic monsoon shower density
+                const maxDrops = 620;
+                const maxRipples = 60;
 
-                // EXACT SAME UNIFIED SLANTED ANGLE FOR EVERY SINGLE DROP
-                const UNIFIED_SLANT = -1.4;
+                // EXACT UNIFIED CRISP SLANTED RAIN ANGLE
+                const UNIFIED_SLANT = -2.2;
 
                 function resize() {
                     const rect = canvas.getBoundingClientRect();
@@ -2555,72 +2555,71 @@
                 resize();
                 window.addEventListener('resize', resize);
 
-                // Gentle horizontal expanding ripple ring
-                class GentleRipple {
+                // Water impact surface ripple
+                class RainRipple {
                     constructor(x, y) {
                         this.x = x;
                         this.y = y;
                         this.radius = 1.0;
-                        this.maxRadius = 8 + Math.random() * 12;
-                        this.speed = 0.24 + Math.random() * 0.2; // Slow, soothing wave expansion
-                        this.opacity = 0.38;
-                        this.lineWidth = 1.1;
+                        this.maxRadius = 6 + Math.random() * 10;
+                        this.speed = 0.45 + Math.random() * 0.35;
+                        this.opacity = 0.55;
+                        this.lineWidth = 1.2;
                     }
                     update() {
                         this.radius += this.speed;
-                        this.opacity -= 0.008; // Long graceful fade
-                        this.lineWidth = Math.max(0.25, this.lineWidth - 0.012);
+                        this.opacity -= 0.022;
+                        this.lineWidth = Math.max(0.3, this.lineWidth - 0.025);
                     }
                     draw() {
                         if (this.opacity <= 0) return;
                         ctx.beginPath();
-                        ctx.ellipse(this.x, this.y, this.radius * 2.6, this.radius, 0, 0, Math.PI * 2);
+                        ctx.ellipse(this.x, this.y, this.radius * 2.8, this.radius * 0.9, 0, 0, Math.PI * 2);
                         ctx.strokeStyle = `rgba(220, 245, 255, ${this.opacity})`;
                         ctx.lineWidth = this.lineWidth;
                         ctx.stroke();
                     }
                 }
 
-                // Silky-Smooth Slower Raindrop Particle
-                class SmoothRainDrop {
+                // Elongated Directional Rain Streak Particle (100% Authentic Water Physics)
+                class RealRainStreak {
                     constructor() {
                         this.reset(true);
                     }
                     reset(init = false) {
-                        this.x = Math.random() * (width + 300) - 80;
-                        this.y = init ? Math.random() * height : -30;
+                        this.x = Math.random() * (width + 450) - 100;
+                        this.y = init ? Math.random() * height : -60;
                         this.layer = Math.random();
 
-                        if (this.layer > 0.75) {
-                            // Foreground Layer (Gentle, Slow & Silky)
-                            this.speed = 4.8 + Math.random() * 1.4;
-                            this.len = 13 + Math.random() * 6;
-                            this.opacity = 0.42 + Math.random() * 0.25;
-                            this.width = 1.25;
+                        if (this.layer > 0.74) {
+                            // Foreground Heavy Water Streaks
+                            this.speed = 15.5 + Math.random() * 3.5;
+                            this.len = 34 + Math.random() * 16;
+                            this.opacity = 0.48 + Math.random() * 0.25;
+                            this.width = 1.35;
                         } else if (this.layer > 0.30) {
-                            // Midground Layer
-                            this.speed = 3.2 + Math.random() * 0.9;
-                            this.len = 8 + Math.random() * 4;
-                            this.opacity = 0.25 + Math.random() * 0.18;
-                            this.width = 0.85;
+                            // Midground Steady Rainfall Streaks
+                            this.speed = 11.5 + Math.random() * 2.5;
+                            this.len = 22 + Math.random() * 10;
+                            this.opacity = 0.30 + Math.random() * 0.18;
+                            this.width = 0.95;
                         } else {
-                            // Background Misty Drizzle Layer
-                            this.speed = 2.0 + Math.random() * 0.6;
-                            this.len = 5 + Math.random() * 3;
-                            this.opacity = 0.14 + Math.random() * 0.12;
-                            this.width = 0.6;
+                            // Background Fine Rain Streaks
+                            this.speed = 8.0 + Math.random() * 2.0;
+                            this.len = 14 + Math.random() * 6;
+                            this.opacity = 0.16 + Math.random() * 0.12;
+                            this.width = 0.65;
                         }
                         
-                        // Exact same angle for every drop
                         this.slant = UNIFIED_SLANT;
                     }
                     update() {
-                        this.x += this.slant;
+                        this.x += this.slant * (this.speed / 10);
                         this.y += this.speed;
 
                         if (this.y > height) {
                             if (this.layer > 0.45 && ripples.length < maxRipples) {
-                                ripples.push(new GentleRipple(this.x, height - 4));
+                                ripples.push(new RainRipple(this.x, height - 4));
                             }
                             this.reset();
                         }
@@ -2628,8 +2627,9 @@
                     draw() {
                         ctx.beginPath();
                         ctx.moveTo(this.x, this.y);
-                        ctx.lineTo(this.x + this.slant * (this.len / this.speed), this.y + this.len);
-                        ctx.strokeStyle = `rgba(220, 242, 255, ${this.opacity})`;
+                        // Directional streak along the unified slant angle
+                        ctx.lineTo(this.x + this.slant * (this.len / 10), this.y + this.len);
+                        ctx.strokeStyle = `rgba(220, 245, 255, ${this.opacity})`;
                         ctx.lineWidth = this.width;
                         ctx.lineCap = 'round';
                         ctx.stroke();
@@ -2637,13 +2637,13 @@
                 }
 
                 for (let i = 0; i < maxDrops; i++) {
-                    drops.push(new SmoothRainDrop());
+                    drops.push(new RealRainStreak());
                 }
 
                 function animate() {
                     ctx.clearRect(0, 0, width, height);
 
-                    // 1. Draw Gentle Ripples
+                    // 1. Draw Surface Ripples
                     for (let i = ripples.length - 1; i >= 0; i--) {
                         ripples[i].update();
                         ripples[i].draw();
@@ -2652,7 +2652,7 @@
                         }
                     }
 
-                    // 2. Draw Silky Rain Streaks
+                    // 2. Draw Elongated Rain Streaks
                     for (let i = 0; i < drops.length; i++) {
                         drops[i].update();
                         drops[i].draw();
