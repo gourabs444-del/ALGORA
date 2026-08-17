@@ -10,10 +10,20 @@
 
 (function initRealLifeOceanExperience() {
 
-    /* ============================================================
-       1. REAL-TIME SVG WATER TURBULENCE DISPLACEMENT ENGINE
-       ============================================================ */
-    const turbulenceNode = document.getElementById('ocean-turbulence-node');
+    // Ensure live-action background video autoplays and resumes seamlessly
+    const bgVideo = document.getElementById('ocean-bg-video');
+    if (bgVideo) {
+        bgVideo.muted = true;
+        const playPromise = bgVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                const tryPlay = () => { bgVideo.play(); };
+                document.addEventListener('touchstart', tryPlay, { once: true });
+                document.addEventListener('click', tryPlay, { once: true });
+                window.addEventListener('scroll', tryPlay, { once: true });
+            });
+        }
+    }
     let turbTime = 0;
     
     function animateWaterTurbulence() {
