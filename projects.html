@@ -2498,13 +2498,14 @@
 
                         const bgs = Array.from({length: 10}, (_, i) => document.getElementById(`theme-bg-${i}`));
 
-                        // 10 Aesthetic Luxury Themes (Zero Dark Backgrounds + Vibrant Google Fonts + Synced Swipe Color Morphing)
+                        // 10 Aesthetic Luxury Themes with PS5 Controller Button Icons & Counter-Clockwise Rotation
                         const themes = [
                             {
                                 text: "EXPLORE SYSTEMS",
                                 side: "left",
                                 fontClass: "font-['Space_Grotesk'] font-extrabold text-xs sm:text-sm tracking-widest uppercase text-slate-900",
                                 circleBg: "bg-amber-400 text-slate-950",
+                                icon: "arrow_forward",
                                 arrowRotate: "0deg"
                             },
                             {
@@ -2512,27 +2513,31 @@
                                 side: "right",
                                 fontClass: "font-['Cormorant_Garamond'] font-black text-lg sm:text-xl italic text-rose-950",
                                 circleBg: "bg-rose-500 text-white",
-                                arrowRotate: "180deg"
+                                icon: "radio_button_unchecked", // PS5 Circle O Button
+                                arrowRotate: "-180deg" // Counter-Clockwise rotation on Right -> Left
                             },
                             {
                                 text: "24/7 NEURAL PIPELINES",
                                 side: "left",
                                 fontClass: "font-['Outfit'] font-black text-xs sm:text-sm tracking-[0.2em] uppercase text-indigo-950",
                                 circleBg: "bg-indigo-600 text-white",
-                                arrowRotate: "0deg"
+                                icon: "change_history", // PS5 Triangle △ Button
+                                arrowRotate: "0deg" // No face rotation on Left -> Right
                             },
                             {
                                 text: "Zero-Latency Neural Core",
                                 side: "right",
                                 fontClass: "font-['Plus_Jakarta_Sans'] font-extrabold text-xs sm:text-sm tracking-wide text-emerald-950",
                                 circleBg: "bg-emerald-600 text-white",
-                                arrowRotate: "180deg"
+                                icon: "sports_esports", // PS Gamepad Controller
+                                arrowRotate: "-180deg" // Counter-Clockwise
                             },
                             {
                                 text: "SYNAPSE AUTOMATION",
                                 side: "left",
                                 fontClass: "font-['Syne'] font-extrabold text-xs sm:text-sm tracking-wider uppercase text-orange-950",
                                 circleBg: "bg-orange-500 text-white",
+                                icon: "crop_square", // PS5 Square ▢ Button
                                 arrowRotate: "0deg"
                             },
                             {
@@ -2540,13 +2545,15 @@
                                 side: "right",
                                 fontClass: "font-['Playfair_Display'] font-bold text-base sm:text-lg italic text-amber-950",
                                 circleBg: "bg-amber-600 text-white",
-                                arrowRotate: "180deg"
+                                icon: "close", // PS5 Cross X Button
+                                arrowRotate: "-180deg" // Counter-Clockwise
                             },
                             {
                                 text: "NEXT-GEN LLM ROUTER",
                                 side: "left",
                                 fontClass: "font-['Unbounded'] font-extrabold text-[10px] sm:text-xs tracking-wider uppercase text-cyan-950",
                                 circleBg: "bg-cyan-600 text-white",
+                                icon: "arrow_forward",
                                 arrowRotate: "0deg"
                             },
                             {
@@ -2554,13 +2561,15 @@
                                 side: "right",
                                 fontClass: "font-['Cinzel'] font-black text-xs sm:text-sm tracking-widest text-violet-950",
                                 circleBg: "bg-violet-600 text-white",
-                                arrowRotate: "180deg"
+                                icon: "radio_button_unchecked", // PS5 Circle O Button
+                                arrowRotate: "-180deg" // Counter-Clockwise
                             },
                             {
                                 text: "SELF-HEALING CODE",
                                 side: "left",
                                 fontClass: "font-['Cabinet_Grotesk'] font-black text-xs sm:text-sm tracking-widest uppercase text-lime-950",
                                 circleBg: "bg-lime-600 text-slate-950",
+                                icon: "sports_esports", // PS Gamepad
                                 arrowRotate: "0deg"
                             },
                             {
@@ -2568,7 +2577,8 @@
                                 side: "right",
                                 fontClass: "font-['DM_Serif_Display'] text-base sm:text-lg italic text-sky-950",
                                 circleBg: "bg-sky-600 text-white",
-                                arrowRotate: "180deg"
+                                icon: "change_history", // PS5 Triangle △ Button
+                                arrowRotate: "-180deg" // Counter-Clockwise
                             }
                         ];
 
@@ -2592,7 +2602,7 @@
                             circle.style.width = '44px';
                         }
 
-                        // Clean 240 FPS Liquid Gel Engine (Synchronized Color Morphing + Soft Edge Cushion)
+                        // Clean 240 FPS Liquid Gel Engine (Zero-Roughness Soft Edge Cushion)
                         function run240fpsPhysics(targetX, duration, onDone) {
                             isAnimating = true;
                             const startX = currentX;
@@ -2630,7 +2640,7 @@
                                     circle.style.width = '44px';
                                     circle.style.transform = `translate3d(${targetX}px, 0, 0)`;
                                     isAnimating = false;
-                                    if (onDone) onDone();
+                                    if (onDone) onDone(); // Triggered EXACTLY upon button arrival at destination!
                                 }
                             }
 
@@ -2643,31 +2653,37 @@
                             themeIdx = (themeIdx + 1) % themes.length;
                             const t = themes[themeIdx];
 
-                            // GPU Opacity Crossfade Theme BGs
+                            // 1. GPU Opacity Crossfade Theme BGs
                             bgs.forEach((bg, idx) => {
                                 if (bg) bg.style.opacity = (idx === themeIdx) ? '1' : '0';
                             });
 
-                            // Rotate Arrow & Morph Circle Button Color IN PARALLEL WITH SWIPE START!
+                            // 2. Update Icon & Rotate Arrow (Counter-Clockwise -180deg for Right->Left, 0deg for Left->Right)
+                            arrow.textContent = t.icon;
                             arrow.style.transform = `rotate(${t.arrowRotate})`;
+
+                            // 3. Morph Circle Button Color IN PARALLEL WITH SWIPE START!
                             circle.className = `h-11 rounded-full flex items-center justify-center shadow-xl z-30 absolute top-[6px] left-[6px] will-change-transform transform-gpu transition-[background-color,color] duration-600 ease-out ${t.circleBg}`;
 
-                            if (t.side === "right") {
-                                textLeftBox.style.opacity = '0';
-                                textRightBox.style.opacity = '1';
-                                textRight.className = t.fontClass;
-                                textRight.textContent = t.text;
+                            // 4. Hide text boxes during swipe glide
+                            textLeftBox.style.opacity = '0';
+                            textRightBox.style.opacity = '0';
 
-                                run240fpsPhysics(0, 620);
+                            const targetX = (t.side === "right") ? 0 : maxTranslateX;
 
-                            } else {
-                                textRightBox.style.opacity = '0';
-                                textLeftBox.style.opacity = '1';
-                                textLeft.className = t.fontClass;
-                                textLeft.textContent = t.text;
-
-                                run240fpsPhysics(maxTranslateX, 620);
-                            }
+                            // 5. Run 240 FPS Physics Swipe (620ms duration)
+                            run240fpsPhysics(targetX, 620, function onArrival() {
+                                // 6. ANIMATE & REVEAL TEXT ONLY AFTER BUTTON COMPLETELY ARRIVES AT DESTINATION!
+                                if (t.side === "right") {
+                                    textRight.className = t.fontClass;
+                                    textRight.textContent = t.text;
+                                    textRightBox.style.opacity = '1';
+                                } else {
+                                    textLeft.className = t.fontClass;
+                                    textLeft.textContent = t.text;
+                                    textLeftBox.style.opacity = '1';
+                                }
+                            });
 
                         }, 2800);
                     })();
