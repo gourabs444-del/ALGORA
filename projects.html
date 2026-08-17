@@ -2474,13 +2474,13 @@
                                 <span id="capsule-arrow" class="material-symbols-outlined text-[22px] font-black leading-none select-none text-center flex items-center justify-center w-full h-full transition-transform duration-600 will-change-transform">arrow_forward</span>
                             </div>
 
-                            <!-- Morphing Text Containers (Left & Right GPU Layers) -->
-                            <div id="text-left-box" class="absolute inset-0 flex items-center justify-start pl-6 pr-14 z-20 transition-all duration-600 opacity-100 pointer-events-none">
-                                <span id="text-left" class="font-['Space_Grotesk'] font-extrabold text-xs sm:text-sm tracking-widest uppercase text-slate-900 transition-opacity duration-300">EXPLORE SYSTEMS</span>
+                            <!-- Morphing Text Containers (Dead-Centered 4K Layout) -->
+                            <div id="text-left-box" class="absolute inset-0 flex items-center justify-center px-12 z-20 text-center pointer-events-none transition-all duration-600 opacity-100">
+                                <span id="text-left" class="font-['Space_Grotesk'] font-extrabold text-xs sm:text-sm tracking-widest uppercase text-slate-900 transition-opacity duration-300">EXPLORE <span class="font-['Cormorant_Garamond'] font-bold italic text-amber-800 tracking-normal text-base sm:text-lg">SYSTEMS</span></span>
                             </div>
 
-                            <div id="text-right-box" class="absolute inset-0 flex items-center justify-end pl-14 pr-6 z-20 transition-all duration-600 opacity-0 pointer-events-none">
-                                <span id="text-right" class="font-['Cormorant_Garamond'] font-black text-lg sm:text-xl italic text-rose-950 transition-opacity duration-300">Autonomous AI Swarms</span>
+                            <div id="text-right-box" class="absolute inset-0 flex items-center justify-center px-12 z-20 text-center pointer-events-none transition-all duration-600 opacity-0">
+                                <span id="text-right" class="font-['Cormorant_Garamond'] font-black text-base sm:text-lg italic text-rose-950 transition-opacity duration-300">Autonomous <span class="font-['Space_Grotesk'] font-extrabold not-italic text-rose-800 uppercase text-xs tracking-widest">AI</span> Swarms</span>
                             </div>
 
                         </div>
@@ -2498,10 +2498,10 @@
 
                         const bgs = Array.from({length: 10}, (_, i) => document.getElementById(`theme-bg-${i}`));
 
-                        // 10 Aesthetic Luxury Themes with PS5 Controller Button Icons & Counter-Clockwise Rotation
+                        // 10 Editorial Luxury Themes (Dead-Centered Text + Mixed-Font Aesthetic Typography + PS5 Icons)
                         const themes = [
                             {
-                                text: "EXPLORE SYSTEMS",
+                                textHTML: 'EXPLORE <span class="font-[\'Cormorant_Garamond\'] font-bold italic text-amber-800 tracking-normal text-base sm:text-lg">SYSTEMS</span>',
                                 side: "left",
                                 fontClass: "font-['Space_Grotesk'] font-extrabold text-xs sm:text-sm tracking-widest uppercase text-slate-900",
                                 circleBg: "bg-amber-400 text-slate-950",
@@ -2509,31 +2509,31 @@
                                 arrowRotate: "0deg"
                             },
                             {
-                                text: "Autonomous AI Swarms",
+                                textHTML: 'Autonomous <span class="font-[\'Space_Grotesk\'] font-extrabold not-italic text-rose-800 uppercase text-xs tracking-widest">AI</span> Swarms',
                                 side: "right",
-                                fontClass: "font-['Cormorant_Garamond'] font-black text-lg sm:text-xl italic text-rose-950",
+                                fontClass: "font-['Cormorant_Garamond'] font-black text-base sm:text-lg italic text-rose-950",
                                 circleBg: "bg-rose-500 text-white",
                                 icon: "radio_button_unchecked", // PS5 Circle O Button
-                                arrowRotate: "-180deg" // Counter-Clockwise rotation on Right -> Left
+                                arrowRotate: "-180deg"
                             },
                             {
-                                text: "24/7 NEURAL PIPELINES",
+                                textHTML: '24/7 <span class="font-[\'Playfair_Display\'] font-black italic text-indigo-700 text-sm">NEURAL</span> PIPELINES',
                                 side: "left",
                                 fontClass: "font-['Outfit'] font-black text-xs sm:text-sm tracking-[0.2em] uppercase text-indigo-950",
                                 circleBg: "bg-indigo-600 text-white",
                                 icon: "change_history", // PS5 Triangle △ Button
-                                arrowRotate: "0deg" // No face rotation on Left -> Right
+                                arrowRotate: "0deg"
                             },
                             {
-                                text: "Zero-Latency Neural Core",
+                                textHTML: 'Zero-Latency <span class="font-[\'Syne\'] font-extrabold text-emerald-800 text-sm">CORE</span>',
                                 side: "right",
                                 fontClass: "font-['Plus_Jakarta_Sans'] font-extrabold text-xs sm:text-sm tracking-wide text-emerald-950",
                                 circleBg: "bg-emerald-600 text-white",
                                 icon: "sports_esports", // PS Gamepad Controller
-                                arrowRotate: "-180deg" // Counter-Clockwise
+                                arrowRotate: "-180deg"
                             },
                             {
-                                text: "SYNAPSE AUTOMATION",
+                                textHTML: '<span class="font-[\'Cormorant_Garamond\'] font-bold italic text-orange-800 text-base">SYNAPSE</span> AUTOMATION',
                                 side: "left",
                                 fontClass: "font-['Syne'] font-extrabold text-xs sm:text-sm tracking-wider uppercase text-orange-950",
                                 circleBg: "bg-orange-500 text-white",
@@ -2541,15 +2541,15 @@
                                 arrowRotate: "0deg"
                             },
                             {
-                                text: "Enterprise Intelligence",
+                                textHTML: 'Enterprise <span class="font-[\'Unbounded\'] font-black not-italic text-amber-800 text-xs">INTELLIGENCE</span>',
                                 side: "right",
                                 fontClass: "font-['Playfair_Display'] font-bold text-base sm:text-lg italic text-amber-950",
                                 circleBg: "bg-amber-600 text-white",
                                 icon: "close", // PS5 Cross X Button
-                                arrowRotate: "-180deg" // Counter-Clockwise
+                                arrowRotate: "-180deg"
                             },
                             {
-                                text: "NEXT-GEN LLM ROUTER",
+                                textHTML: 'NEXT-GEN <span class="font-[\'Playfair_Display\'] font-black italic text-cyan-800 text-sm">LLM</span> ROUTER',
                                 side: "left",
                                 fontClass: "font-['Unbounded'] font-extrabold text-[10px] sm:text-xs tracking-wider uppercase text-cyan-950",
                                 circleBg: "bg-cyan-600 text-white",
@@ -2557,15 +2557,15 @@
                                 arrowRotate: "0deg"
                             },
                             {
-                                text: "QUANTUM WORKFLOWS",
+                                textHTML: '<span class="font-[\'Cormorant_Garamond\'] font-bold italic text-violet-800 text-base sm:text-lg">QUANTUM</span> WORKFLOWS',
                                 side: "right",
                                 fontClass: "font-['Cinzel'] font-black text-xs sm:text-sm tracking-widest text-violet-950",
                                 circleBg: "bg-violet-600 text-white",
                                 icon: "radio_button_unchecked", // PS5 Circle O Button
-                                arrowRotate: "-180deg" // Counter-Clockwise
+                                arrowRotate: "-180deg"
                             },
                             {
-                                text: "SELF-HEALING CODE",
+                                textHTML: 'SELF-HEALING <span class="font-[\'DM_Serif_Display\'] font-bold italic text-lime-800 text-sm">CODE</span>',
                                 side: "left",
                                 fontClass: "font-['Cabinet_Grotesk'] font-black text-xs sm:text-sm tracking-widest uppercase text-lime-950",
                                 circleBg: "bg-lime-600 text-slate-950",
@@ -2573,12 +2573,12 @@
                                 arrowRotate: "0deg"
                             },
                             {
-                                text: "Hyper-Scale Orchestrator",
+                                textHTML: 'Hyper-Scale <span class="font-[\'Syne\'] font-black not-italic text-sky-800 text-xs">ORCHESTRATOR</span>',
                                 side: "right",
                                 fontClass: "font-['DM_Serif_Display'] text-base sm:text-lg italic text-sky-950",
                                 circleBg: "bg-sky-600 text-white",
                                 icon: "change_history", // PS5 Triangle △ Button
-                                arrowRotate: "-180deg" // Counter-Clockwise
+                                arrowRotate: "-180deg"
                             }
                         ];
 
@@ -2676,11 +2676,11 @@
                                 // 6. ANIMATE & REVEAL TEXT ONLY AFTER BUTTON COMPLETELY ARRIVES AT DESTINATION!
                                 if (t.side === "right") {
                                     textRight.className = t.fontClass;
-                                    textRight.textContent = t.text;
+                                    textRight.innerHTML = t.textHTML;
                                     textRightBox.style.opacity = '1';
                                 } else {
                                     textLeft.className = t.fontClass;
-                                    textLeft.textContent = t.text;
+                                    textLeft.innerHTML = t.textHTML;
                                     textLeftBox.style.opacity = '1';
                                 }
                             });
