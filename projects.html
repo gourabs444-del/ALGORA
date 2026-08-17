@@ -2621,7 +2621,8 @@
                                 textRight.className = t.fontClass;
                                 textRight.textContent = t.text;
 
-                                run240fpsPhysics(0, 800);
+                                // Fast 620ms 240 FPS Fluid Physics Glide Right -> Left
+                                run240fpsPhysics(0, 620);
 
                             } else {
                                 textRightBox.style.opacity = '0';
@@ -2629,10 +2630,11 @@
                                 textLeft.className = t.fontClass;
                                 textLeft.textContent = t.text;
 
-                                run240fpsPhysics(maxTranslateX, 800);
+                                // Fast 620ms 240 FPS Fluid Physics Glide Left -> Right
+                                run240fpsPhysics(maxTranslateX, 620);
                             }
 
-                        }, 3400);
+                        }, 2800);
                     })();
                     </script>
 
