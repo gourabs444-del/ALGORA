@@ -2623,19 +2623,28 @@
                 let prevMouseX = 0, prevMouseY = 0;
                 let isMouseInside = false;
 
-                // Real-Time Scroll Gravity & Inertia State Tracking
+                // Real-Time Directional Scroll Inertia & Fluid Sloshing Physics
                 let lastScrollY = window.scrollY;
                 let scrollVelocity = 0;
-                let scrollGForce = 0;
+                let sloshMomentum = 0;
+                let sloshPhase = 0;
+                let targetTilt = 0;
+                let currentTilt = 0;
 
                 window.addEventListener('scroll', () => {
                     const currentScrollY = window.scrollY;
                     const deltaScroll = currentScrollY - lastScrollY;
-                    // Filter sudden jumps
-                    if (Math.abs(deltaScroll) < 150) {
-                        scrollVelocity += deltaScroll * 0.35;
-                    }
                     lastScrollY = currentScrollY;
+
+                    // Filter out non-scroll resets
+                    if (Math.abs(deltaScroll) < 180) {
+                        // Directional impulse: scrolling down pushes banner up -> positive slosh impulse
+                        scrollVelocity += deltaScroll * 0.45;
+                        sloshMomentum += deltaScroll * 0.35;
+                        
+                        // Directional tilt angle (left-right slope)
+                        targetTilt = Math.max(-24, Math.min(24, deltaScroll * 0.28));
+                    }
                 }, { passive: true });
 
                 container.addEventListener('mouseenter', () => isMouseInside = true);
@@ -2659,9 +2668,9 @@
                         const currentWaterY = getWaterHeightAt(mouseX);
                         const distToWater = Math.abs(mouseY - currentWaterY);
 
-                        if (distToWater < 40) {
+                        if (distToWater < 45) {
                             // Gentle natural water touch impulse
-                            const dragForce = Math.max(-14, Math.min(14, (deltaY * 0.35) + (deltaX * 0.15)));
+                            const dragForce = Math.max(-16, Math.min(16, (deltaY * 0.35) + (deltaX * 0.15)));
                             splashWater(mouseX, dragForce, 14);
                         }
                     }
@@ -2674,7 +2683,7 @@
                 container.addEventListener('click', (e) => {
                     const rect = container.getBoundingClientRect();
                     const cx = e.clientX - rect.left;
-                    splashWater(cx, -25, 18);
+                    splashWater(cx, -30, 20);
                 });
 
                 function getWaterHeightAt(x) {
@@ -2695,24 +2704,35 @@
                     lastTime = now;
                     time += dt;
 
-                    // 1. UPDATE SCROLL GRAVITY INERTIA PHYSICS
-                    scrollGForce += (scrollVelocity - scrollGForce) * 0.15;
-                    scrollVelocity *= 0.88; // Viscous scroll decay
+                    // 1. UPDATE DIRECTIONAL SCROLL SLOSH & MOMENTUM PHYSICS (120 FPS SMOOTH)
+                    scrollVelocity *= Math.pow(0.86, 60 * dt);
+                    sloshMomentum *= Math.pow(0.92, 60 * dt);
+                    currentTilt += (targetTilt - currentTilt) * (1 - Math.pow(0.85, 60 * dt));
+                    targetTilt *= Math.pow(0.88, 60 * dt);
 
-                    // G-force vertical fluid compression + directional slosh
-                    const gForceDisplacement = Math.max(-28, Math.min(28, scrollGForce * 0.45));
+                    // If there is momentum, advance traveling slosh wave phase
+                    if (Math.abs(sloshMomentum) > 0.05) {
+                        sloshPhase += dt * (2.8 + Math.abs(sloshMomentum) * 0.08);
+                    }
 
-                    // 2. UPDATE PRIMARY WATER SURFACE (CALM SWELL + SCROLL GRAVITY SLOSH)
+                    // 2. UPDATE PRIMARY WATER SURFACE (CALM SWELL + DIRECTIONAL TRAVELING SURGE)
                     for (let i = 0; i < waterColumns.length; i++) {
                         const col = waterColumns[i];
-                        const normX = (col.x / width) - 0.5; // -0.5 to 0.5 center normalized
+                        const normX = (col.x / width) - 0.5; // -0.5 (left) to +0.5 (right)
                         
-                        // Scroll G-force creates both vertical compression and natural inertia tilt across the surface
-                        const scrollSloshOffset = gForceDisplacement * (1 + normX * 0.6);
+                        // Directional Traveling Wave (Sloshes back and forth across width)
+                        const travelingSurge = Math.sin((col.x / width) * Math.PI * 2 - sloshPhase) * (sloshMomentum * 0.32);
+                        
+                        // Directional Surface Tilt (Linear slope from left to right)
+                        const tiltOffset = normX * currentTilt;
 
-                        // Very subtle, calm, glassy swell (3.5px amplitude)
+                        // Vertical G-force inertia compression
+                        const gForceOffset = Math.max(-18, Math.min(18, scrollVelocity * 0.25));
+
+                        // Base serene ambient harmonic tide
                         const ambientTide = Math.sin(col.x * 0.0012 + time * 0.35) * 3.5 + Math.cos(col.x * 0.0022 - time * 0.25) * 2.0;
-                        const target = col.targetHeight + ambientTide + scrollSloshOffset;
+                        
+                        const target = col.targetHeight + ambientTide + travelingSurge + tiltOffset + gForceOffset;
 
                         const displacement = col.height - target;
                         const springForce = -TENSION * displacement - DAMPENING * col.velocity;
@@ -2720,14 +2740,17 @@
                         col.height += col.velocity * 60 * dt;
                     }
 
-                    // 3. UPDATE DEEP BACKGROUND WATER LAYER (PARALLAX GRAVITY EFFECT)
+                    // 3. UPDATE DEEP BACKGROUND WATER LAYER (PARALLAX DIRECTIONAL SLOSH)
                     for (let i = 0; i < deepColumns.length; i++) {
                         const dCol = deepColumns[i];
                         const normX = (dCol.x / width) - 0.5;
-                        const deepScrollOffset = (gForceDisplacement * 0.75) * (1 - normX * 0.4);
+                        
+                        const deepTravelingSurge = Math.sin((dCol.x / width) * Math.PI * 2 - sloshPhase + 0.6) * (sloshMomentum * 0.24);
+                        const deepTiltOffset = normX * (currentTilt * 0.75);
+                        const deepGForceOffset = Math.max(-14, Math.min(14, scrollVelocity * 0.18));
 
                         const deepTide = Math.sin(dCol.x * 0.0014 + time * 0.30 + 1.0) * 4.5 + Math.cos(dCol.x * 0.0020 - time * 0.20) * 2.5;
-                        const dTarget = dCol.targetHeight + deepTide + deepScrollOffset;
+                        const dTarget = dCol.targetHeight + deepTide + deepTravelingSurge + deepTiltOffset + deepGForceOffset;
 
                         const dDisplacement = dCol.height - dTarget;
                         const dSpringForce = -(TENSION * 0.8) * dDisplacement - (DAMPENING * 1.2) * dCol.velocity;
@@ -2735,7 +2758,7 @@
                         dCol.height += dCol.velocity * 60 * dt;
                     }
 
-                    // 4. SMOOTH HYDRODYNAMIC WAVE DIFFUSION (4 passes for calm glassy waves)
+                    // 4. SMOOTH HYDRODYNAMIC WAVE DIFFUSION (4 passes for glassy fluid flow)
                     const leftDeltas = new Array(waterColumns.length).fill(0);
                     const rightDeltas = new Array(waterColumns.length).fill(0);
 
