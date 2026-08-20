@@ -187,7 +187,7 @@
       contain: layout style;
   }
 
-  /* 4. Frosted Glassmorphic Header Ribbon (Line & Glass hidden at top, animates in on scroll) */
+  /* 4. Frosted Glassmorphic Header Ribbon (Always Dark Obsidian Glass — Never Turns White / Never Mixes) */
   .obscura-showcase-nav {
       height: 72px;
       position: fixed !important;
@@ -195,22 +195,22 @@
       left: 0 !important;
       width: 100% !important;
       z-index: 9999 !important;
-      background: transparent !important;
-      backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
-      border-bottom: 1px solid transparent !important;
-      box-shadow: none !important;
+      background: rgba(10, 12, 18, 0.94) !important;
+      backdrop-filter: blur(24px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 -1px 0 rgba(255, 255, 255, 0.08) !important;
       transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                   border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                   backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                   box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
   .obscura-showcase-nav.is-scrolled {
-      background: rgba(10, 12, 18, 0.88) !important;
-      backdrop-filter: blur(24px) saturate(180%) !important;
-      -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 -1px 0 rgba(255, 255, 255, 0.08) !important;
+      background: rgba(10, 12, 18, 0.98) !important;
+      backdrop-filter: blur(28px) saturate(200%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.75), inset 0 -1px 0 rgba(255, 255, 255, 0.1) !important;
   }
   .obscura-showcase-nav a,
   .obscura-showcase-nav span {
@@ -397,9 +397,7 @@
   /* Remove the gap between sections (Tailwind's space-y uses margin-top on children) */
   body.all-projects-showcase #categorized-sections-container > * + * { margin-top: 0 !important; }
 
-  /* 8. Remove division borders and shadows between white sections and headers for seamless white background */
-  header,
-  .glass-header,
+  /* 8. Remove division borders between showcase sections */
   #section-all-projects,
   #section-favorites,
   #section-work,
@@ -409,7 +407,17 @@
       border-bottom: none !important;
       border-top-width: 0px !important;
       border-bottom-width: 0px !important;
-      box-shadow: none !important;
+  }
+
+  .glass-header {
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06) !important;
+  }
+  .dark .glass-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
   }
 
   /* 8. Serif heading class */
