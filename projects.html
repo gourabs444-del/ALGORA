@@ -237,19 +237,11 @@
       -webkit-backface-visibility: hidden;
   }
 
-  /* Permanent Black ALGORA Ribbon — NEVER turns white */
-  #obscura-ticker,
-  #obscura-main-sheet #obscura-ticker,
-  div#obscura-ticker {
-      background-color: #000000 !important;
-      background: #000000 !important;
-      border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
-      border-left: 0 !important;
-      border-right: 0 !important;
-      border-color: rgba(255, 255, 255, 0.15) !important;
-      color: #ffffff !important;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6) !important;
+  /* Override inner elements for light drawer theme */
+  #obscura-main-sheet #obscura-ticker {
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
   }
   #obscura-main-sheet h2.showcase-heading {
       color: #000000 !important;
@@ -359,16 +351,14 @@
   }
 
   #obscura-ticker {
-      position: relative !important;
-      z-index: 25 !important;
+      position: relative;
+      z-index: 5;
       border-radius: 0 !important;
       border-left:   0 !important;
       border-right:  0 !important;
-      border-color: rgba(255, 255, 255, 0.15) !important;
-      background-color: #000000 !important;
-      background: #000000 !important;
+      border-color: rgba(255,255,255,.1) !important;
+      background: transparent !important;
       margin-top: 0 !important;
-      color: #ffffff !important;
   }
 
   /* 6. Force a uniform, pure white background for the content sections and drawer sheet */
@@ -1910,61 +1900,61 @@
 
         <!-- ── Main Overlapping Content Card (Drawer sliding UP over fixed hero) ────── -->
         <div id="obscura-main-sheet" class="relative z-30 bg-[#ffffff] rounded-t-[2.5rem] sm:rounded-t-[3.5rem] border-t border-black/10 shadow-[0_-30px_100px_rgba(0,0,0,0.08)] overflow-hidden pt-4">
-            <!-- ── Permanent Black ALGORA Luxury Ribbon (Never Turns White) ──────────────── -->
-            <div id="obscura-ticker" class="w-full py-4 overflow-hidden select-none border-y border-white/15 bg-black text-white shadow-2xl">
+            <!-- ── Ticker bar ────────────────────────────────────────────────────── -->
+            <div id="obscura-ticker" class="w-full py-4 overflow-hidden select-none border-y border-black/10 bg-white">
                 <div class="animate-marquee-left flex items-center gap-0 whitespace-nowrap">
                     <!-- Group 1 -->
                     <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
                         <div class="inline-flex items-center gap-5">
                             <div class="inline-flex items-center gap-2 select-none">
                                 <svg viewBox="0 0 100 100" class="w-4 h-4 flex-shrink-0" fill="none">
-                                    <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#a855f7" stroke-width="6" stroke-linecap="round" fill="none"/>
-                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#e2e8f0"/>
-                                    <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#a855f7"/>
+                                    <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" fill="none"/>
+                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#525252"/>
+                                    <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#8b5cf6"/>
                                 </svg>
-                                <span class="font-serif text-sm tracking-[0.22em] text-white uppercase algora-logo-title" style="font-weight: 600 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span class="algora-accent-a" style="color:#a855f7; text-shadow: 0 0 12px rgba(168,85,247,0.8);">A</span></span>
+                                <span class="font-serif text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span style="color:#8b5cf6">A</span></span>
                             </div>
-                            <span class="text-purple-400 text-[11px] algora-star">✦</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-slate-300">Award Winning</span>
-                            <span class="text-purple-400 text-[11px]">◆</span>
+                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-neutral-400">Award Winning</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif italic text-[14px] text-slate-200 font-normal tracking-wide">Typographic Craft</span>
-                            <span class="text-purple-400 text-[11px]">◈</span>
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Typographic Craft</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Motion Design & System</span>
-                            <span class="text-purple-400 text-[11px]">✽</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Motion Design & System</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Editorial Excellence</span>
-                            <span class="text-purple-400 text-[11px]">❖</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Editorial Excellence</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-slate-200 font-normal">Design Mastery</span>
-                            <span class="text-purple-400 text-[11px]">★</span>
+                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-neutral-500 font-normal">Design Mastery</span>
+                            <span class="text-neutral-300 text-[11px]">★</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">High Craft & Digital Vision</span>
-                            <span class="text-purple-400 text-[11px]">✦</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">High Craft & Digital Vision</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Pixel Perfect</span>
-                            <span class="text-purple-400 text-[11px]">◆</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Pixel Perfect</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif italic text-[14px] text-slate-200 font-normal tracking-wide">Finest Digital Works</span>
-                            <span class="text-purple-400 text-[11px]">◈</span>
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Finest Digital Works</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Creative Direction</span>
-                            <span class="text-purple-400 text-[11px]">✽</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Creative Direction</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Curated Showcase</span>
-                            <span class="text-purple-400 text-[11px]">❖</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Curated Showcase</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
                         </div>
                     </div>
                     <!-- Group 2 -->
@@ -1972,53 +1962,53 @@
                         <div class="inline-flex items-center gap-5">
                             <div class="inline-flex items-center gap-2 select-none">
                                 <svg viewBox="0 0 100 100" class="w-4 h-4 flex-shrink-0" fill="none">
-                                    <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#a855f7" stroke-width="6" stroke-linecap="round" fill="none"/>
-                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#e2e8f0"/>
-                                    <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#a855f7"/>
+                                    <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" fill="none"/>
+                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#525252"/>
+                                    <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#8b5cf6"/>
                                 </svg>
-                                <span class="font-serif text-sm tracking-[0.22em] text-white uppercase algora-logo-title" style="font-weight: 600 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span class="algora-accent-a" style="color:#a855f7; text-shadow: 0 0 12px rgba(168,85,247,0.8);">A</span></span>
+                                <span class="font-serif text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span style="color:#8b5cf6">A</span></span>
                             </div>
-                            <span class="text-purple-400 text-[11px] algora-star">✦</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-slate-300">Award Winning</span>
-                            <span class="text-purple-400 text-[11px]">◆</span>
+                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-neutral-400">Award Winning</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif italic text-[14px] text-slate-200 font-normal tracking-wide">Typographic Craft</span>
-                            <span class="text-purple-400 text-[11px]">◈</span>
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Typographic Craft</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Motion Design & System</span>
-                            <span class="text-purple-400 text-[11px]">✽</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Motion Design & System</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Editorial Excellence</span>
-                            <span class="text-purple-400 text-[11px]">❖</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Editorial Excellence</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-slate-200 font-normal">Design Mastery</span>
-                            <span class="text-purple-400 text-[11px]">★</span>
+                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-neutral-500 font-normal">Design Mastery</span>
+                            <span class="text-neutral-300 text-[11px]">★</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">High Craft & Digital Vision</span>
-                            <span class="text-purple-400 text-[11px]">✦</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">High Craft & Digital Vision</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Pixel Perfect</span>
-                            <span class="text-purple-400 text-[11px]">◆</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Pixel Perfect</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif italic text-[14px] text-slate-200 font-normal tracking-wide">Finest Digital Works</span>
-                            <span class="text-purple-400 text-[11px]">◈</span>
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Finest Digital Works</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Creative Direction</span>
-                            <span class="text-purple-400 text-[11px]">✽</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Creative Direction</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Curated Showcase</span>
-                            <span class="text-purple-400 text-[11px]">❖</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Curated Showcase</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
                         </div>
                     </div>
                     <!-- Group 3 -->
@@ -2026,53 +2016,53 @@
                         <div class="inline-flex items-center gap-5">
                             <div class="inline-flex items-center gap-2 select-none">
                                 <svg viewBox="0 0 100 100" class="w-4 h-4 flex-shrink-0" fill="none">
-                                    <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#a855f7" stroke-width="6" stroke-linecap="round" fill="none"/>
-                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#e2e8f0"/>
-                                    <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#a855f7"/>
+                                    <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" fill="none"/>
+                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#525252"/>
+                                    <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#8b5cf6"/>
                                 </svg>
-                                <span class="font-serif text-sm tracking-[0.22em] text-white uppercase algora-logo-title" style="font-weight: 600 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span class="algora-accent-a" style="color:#a855f7; text-shadow: 0 0 12px rgba(168,85,247,0.8);">A</span></span>
+                                <span class="font-serif text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span style="color:#8b5cf6">A</span></span>
                             </div>
-                            <span class="text-purple-400 text-[11px] algora-star">✦</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-slate-300">Award Winning</span>
-                            <span class="text-purple-400 text-[11px]">◆</span>
+                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-neutral-400">Award Winning</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif italic text-[14px] text-slate-200 font-normal tracking-wide">Typographic Craft</span>
-                            <span class="text-purple-400 text-[11px]">◈</span>
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Typographic Craft</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Motion Design & System</span>
-                            <span class="text-purple-400 text-[11px]">✽</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Motion Design & System</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Editorial Excellence</span>
-                            <span class="text-purple-400 text-[11px]">❖</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Editorial Excellence</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-slate-200 font-normal">Design Mastery</span>
-                            <span class="text-purple-400 text-[11px]">★</span>
+                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-neutral-500 font-normal">Design Mastery</span>
+                            <span class="text-neutral-300 text-[11px]">★</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">High Craft & Digital Vision</span>
-                            <span class="text-purple-400 text-[11px]">✦</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">High Craft & Digital Vision</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Pixel Perfect</span>
-                            <span class="text-purple-400 text-[11px]">◆</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Pixel Perfect</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif italic text-[14px] text-slate-200 font-normal tracking-wide">Finest Digital Works</span>
-                            <span class="text-purple-400 text-[11px]">◈</span>
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Finest Digital Works</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Creative Direction</span>
-                            <span class="text-purple-400 text-[11px]">✽</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Creative Direction</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Curated Showcase</span>
-                            <span class="text-purple-400 text-[11px]">❖</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Curated Showcase</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
                         </div>
                     </div>
                     <!-- Group 4 -->
@@ -2080,53 +2070,53 @@
                         <div class="inline-flex items-center gap-5">
                             <div class="inline-flex items-center gap-2 select-none">
                                 <svg viewBox="0 0 100 100" class="w-4 h-4 flex-shrink-0" fill="none">
-                                    <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#a855f7" stroke-width="6" stroke-linecap="round" fill="none"/>
-                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#e2e8f0"/>
-                                    <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#a855f7"/>
+                                    <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" fill="none"/>
+                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#525252"/>
+                                    <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#8b5cf6"/>
                                 </svg>
-                                <span class="font-serif text-sm tracking-[0.22em] text-white uppercase algora-logo-title" style="font-weight: 600 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span class="algora-accent-a" style="color:#a855f7; text-shadow: 0 0 12px rgba(168,85,247,0.8);">A</span></span>
+                                <span class="font-serif text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span style="color:#8b5cf6">A</span></span>
                             </div>
-                            <span class="text-purple-400 text-[11px] algora-star">✦</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-slate-300">Award Winning</span>
-                            <span class="text-purple-400 text-[11px]">◆</span>
+                            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.26em] text-neutral-400">Award Winning</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif italic text-[14px] text-slate-200 font-normal tracking-wide">Typographic Craft</span>
-                            <span class="text-purple-400 text-[11px]">◈</span>
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Typographic Craft</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Motion Design & System</span>
-                            <span class="text-purple-400 text-[11px]">✽</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Motion Design & System</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Editorial Excellence</span>
-                            <span class="text-purple-400 text-[11px]">❖</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Editorial Excellence</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-slate-200 font-normal">Design Mastery</span>
-                            <span class="text-purple-400 text-[11px]">★</span>
+                            <span class="font-serif text-[13.5px] uppercase tracking-[0.22em] text-neutral-500 font-normal">Design Mastery</span>
+                            <span class="text-neutral-300 text-[11px]">★</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">High Craft & Digital Vision</span>
-                            <span class="text-purple-400 text-[11px]">✦</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">High Craft & Digital Vision</span>
+                            <span class="text-neutral-300 text-[11px]">✦</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Pixel Perfect</span>
-                            <span class="text-purple-400 text-[11px]">◆</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Pixel Perfect</span>
+                            <span class="text-neutral-300 text-[11px]">◆</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-serif italic text-[14px] text-slate-200 font-normal tracking-wide">Finest Digital Works</span>
-                            <span class="text-purple-400 text-[11px]">◈</span>
+                            <span class="font-serif italic text-[14px] text-neutral-500 font-normal tracking-wide">Finest Digital Works</span>
+                            <span class="text-neutral-300 text-[11px]">◈</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Creative Direction</span>
-                            <span class="text-purple-400 text-[11px]">✽</span>
+                            <span class="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">Creative Direction</span>
+                            <span class="text-neutral-300 text-[11px]">✽</span>
                         </div>
                         <div class="inline-flex items-center gap-5">
-                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-slate-300">Curated Showcase</span>
-                            <span class="text-purple-400 text-[11px]">❖</span>
+                            <span class="font-sans text-[11px] font-medium uppercase tracking-[0.26em] text-neutral-400">Curated Showcase</span>
+                            <span class="text-neutral-300 text-[11px]">❖</span>
                         </div>
                     </div>
                 </div>
@@ -5675,6 +5665,7 @@
 
         window.refreshScrollReveal = function() {
             const selectors = [
+                '#obscura-ticker',
                 '.category-banner',
                 'h1.showcase-heading',
                 'h2.showcase-heading',
