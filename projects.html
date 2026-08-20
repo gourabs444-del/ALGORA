@@ -2533,7 +2533,7 @@
                 let width, height;
                 let numColumns;
                 let waterColumns = [];
-                let antigravityDots = [];
+                let comicDots = [];
 
                 const TENSION = 0.022;      // Spring stiffness (water surface tension)
                 const DAMPENING = 0.016;    // Water viscosity decay (gradual fluid momentum)
@@ -2557,25 +2557,33 @@
                         });
                     }
 
-                    // 2. Initialize Google Antigravity Floating Dots Matrix
-                    const dotCount = Math.min(140, Math.floor(width / 11));
-                    antigravityDots = [];
+                    // 2. Initialize Comic Halftone Dots Matrix on Water Surface
+                    comicDots = [];
+                    const rows = 4;
+                    const cols = Math.min(60, Math.floor(width / 24));
+                    const spacingX = width / cols;
 
-                    for (let i = 0; i < dotCount; i++) {
-                        const baseX = (i / dotCount) * width + (Math.random() - 0.5) * 20;
-                        const baseYOffset = (Math.random() - 0.5) * 160;
-                        antigravityDots.push({
-                            baseX: baseX,
-                            baseYOffset: baseYOffset,
-                            x: baseX,
-                            y: height * 0.58 + baseYOffset,
-                            vx: 0,
-                            vy: 0,
-                            radius: 2.2 + Math.random() * 3.5,
-                            color: ['#2563eb', '#7c3aed', '#06b6d4', '#9333ea', '#ffffff'][Math.floor(Math.random() * 5)],
-                            mass: 1.0 + Math.random() * 0.8,
-                            glow: 8 + Math.random() * 12
-                        });
+                    for (let r = 0; r < rows; r++) {
+                        for (let c = 0; c < cols; c++) {
+                            const baseX = c * spacingX + (r % 2 === 1 ? spacingX * 0.5 : 0) + (Math.random() - 0.5) * 6;
+                            const baseYOffset = (r - (rows - 1) * 0.5) * 26 - 15; // Floating around the water crest
+                            const colorPalette = ['#2563eb', '#7c3aed', '#06b6d4', '#9333ea', '#ffffff'];
+                            const dotColor = colorPalette[(r + c) % colorPalette.length];
+
+                            comicDots.push({
+                                baseX: baseX,
+                                baseYOffset: baseYOffset,
+                                x: baseX,
+                                y: height * 0.58 + baseYOffset,
+                                vx: 0,
+                                vy: 0,
+                                baseRadius: r === 1 ? 4.5 : (r === 2 ? 3.8 : 2.8),
+                                radius: r === 1 ? 4.5 : (r === 2 ? 3.8 : 2.8),
+                                color: dotColor,
+                                strokeColor: dotColor === '#ffffff' ? '#2563eb' : '#0f172a',
+                                touchScale: 1.0
+                            });
+                        }
                     }
                 }
                 setupSimulation();
@@ -2613,8 +2621,7 @@
                     freqBtn.addEventListener('click', () => {
                         modeIndex = (modeIndex + 1) % modes.length;
                         if (freqText) freqText.innerText = modes[modeIndex].name;
-                        // Splash water with a massive burst
-                        splashWater(width * 0.5, 95, 30);
+                        splashWater(width * 0.5, 80, 28);
                     });
                 }
 
@@ -2629,7 +2636,7 @@
                     }
                 }
 
-                // Mouse State Tracking & Interactive Water Momentum
+                // Direct Cursor Touch Physics
                 let mouseX = -9999, mouseY = -9999;
                 let prevMouseX = 0, prevMouseY = 0;
                 let isMouseInside = false;
@@ -2650,13 +2657,14 @@
                     const deltaY = mouseY - prevMouseY;
                     const mouseSpeed = Math.hypot(deltaX, deltaY);
 
-                    // If mouse is near water surface, impart true momentum
-                    if (mouseSpeed > 1.5) {
-                        const surfaceY = height * 0.58;
-                        const distToSurface = Math.abs(mouseY - surfaceY);
-                        if (distToSurface < 180) {
-                            const splashPower = Math.min(45, (deltaY || deltaX) * 0.85);
-                            splashWater(mouseX, splashPower, 18);
+                    // Water surface splash ONLY when cursor physically intersects water height
+                    if (mouseSpeed > 1.2) {
+                        const currentWaterY = getWaterHeightAt(mouseX);
+                        const distToWater = Math.abs(mouseY - currentWaterY);
+                        // Physical touch collision with water surface within 40px
+                        if (distToWater < 40) {
+                            const splashForce = Math.max(-35, Math.min(35, deltaY * 0.75 + (deltaX * 0.25)));
+                            splashWater(mouseX, splashForce, 16);
                         }
                     }
 
@@ -2667,7 +2675,19 @@
                 container.addEventListener('click', (e) => {
                     const rect = container.getBoundingClientRect();
                     const cx = e.clientX - rect.left;
-                    splashWater(cx, -70, 25);
+                    splashWater(cx, -65, 22);
+
+                    // Explode nearby comic dots outward
+                    for (let i = 0; i < comicDots.length; i++) {
+                        const dot = comicDots[i];
+                        const dist = Math.hypot(dot.x - cx, dot.y - (e.clientY - rect.top));
+                        if (dist < 120) {
+                            const angle = Math.atan2(dot.y - (e.clientY - rect.top), dot.x - cx);
+                            dot.vx += Math.cos(angle) * (1 - dist / 120) * 22;
+                            dot.vy += Math.sin(angle) * (1 - dist / 120) * 22;
+                            dot.touchScale = 1.6;
+                        }
+                    }
                 });
 
                 // Helper to query live fluid water height at any x coordinate
@@ -2684,8 +2704,8 @@
                 let time = 0;
                 let lastTime = performance.now();
 
-                function animateWaterAndAntigravity(now) {
-                    requestAnimationFrame(animateWaterAndAntigravity);
+                function animateWaterAndComicDots(now) {
+                    requestAnimationFrame(animateWaterAndComicDots);
                     const dt = Math.min((now - lastTime) / 1000, 0.05);
                     lastTime = now;
                     time += dt;
@@ -2693,11 +2713,11 @@
                     // 1. UPDATE REAL WATER SPRING-MASS PHYSICS
                     for (let i = 0; i < waterColumns.length; i++) {
                         const col = waterColumns[i];
-                        // Ambient harmonic tidal swell
-                        const ambientTide = Math.sin(col.x * 0.0015 + time * 0.8) * 22 + Math.cos(col.x * 0.003 - time * 0.5) * 12;
+                        // Gentle natural harmonic wave motion
+                        const ambientTide = Math.sin(col.x * 0.0016 + time * 0.75) * 20 + Math.cos(col.x * 0.003 - time * 0.45) * 10;
                         const target = col.targetHeight + ambientTide;
 
-                        // Hooke's Law Spring Force
+                        // Hooke's Law Spring Force with fluid inertia
                         const displacement = col.height - target;
                         const springForce = -TENSION * displacement - DAMPENING * col.velocity;
                         col.velocity += springForce * 60 * dt;
@@ -2712,11 +2732,11 @@
                         for (let i = 0; i < waterColumns.length; i++) {
                             if (i > 0) {
                                 leftDeltas[i] = SPREAD * (waterColumns[i].height - waterColumns[i - 1].height);
-                                waterColumns[i - 1].velocity += leftDeltas[i] * 60 * dt * 0.3;
+                                waterColumns[i - 1].velocity += leftDeltas[i] * 60 * dt * 0.28;
                             }
                             if (i < waterColumns.length - 1) {
                                 rightDeltas[i] = SPREAD * (waterColumns[i].height - waterColumns[i + 1].height);
-                                waterColumns[i + 1].velocity += rightDeltas[i] * 60 * dt * 0.3;
+                                waterColumns[i + 1].velocity += rightDeltas[i] * 60 * dt * 0.28;
                             }
                         }
                         for (let i = 0; i < waterColumns.length; i++) {
@@ -2725,43 +2745,46 @@
                         }
                     }
 
-                    // 2. UPDATE GOOGLE ANTIGRAVITY PARTICLES MATRIX
-                    for (let i = 0; i < antigravityDots.length; i++) {
-                        const dot = antigravityDots[i];
-                        // Target equilibrium anchor (tied to live water wave height)
+                    // 2. UPDATE COMIC DOTS (ONLY MANIPULATE ON DIRECT CURSOR TOUCH)
+                    const touchRadius = 45; // Physical direct touch threshold
+
+                    for (let i = 0; i < comicDots.length; i++) {
+                        const dot = comicDots[i];
+                        // Natural wave resting position
                         const waterSurfaceY = getWaterHeightAt(dot.baseX);
                         const targetAnchorY = waterSurfaceY + dot.baseYOffset;
                         const targetAnchorX = dot.baseX;
 
-                        // Antigravity Repulsion from Mouse Cursor
+                        // Direct Physical Touch Collision with Cursor
                         const distToMouse = Math.hypot(dot.x - mouseX, dot.y - mouseY);
-                        const repulsionRadius = 180;
 
-                        if (distToMouse < repulsionRadius && isMouseInside) {
-                            const force = (1 - distToMouse / repulsionRadius);
+                        if (distToMouse < touchRadius && isMouseInside) {
+                            // Touch detected! Apply physical displacement impulse
+                            const touchFactor = (1 - distToMouse / touchRadius);
                             const angle = Math.atan2(dot.y - mouseY, dot.x - mouseX);
                             
-                            // Radial push away (antigravity scattering)
-                            dot.vx += Math.cos(angle) * force * 18 / dot.mass;
-                            dot.vy += Math.sin(angle) * force * 18 / dot.mass;
+                            const pushForce = touchFactor * 14;
+                            dot.vx += Math.cos(angle) * pushForce;
+                            dot.vy += Math.sin(angle) * pushForce;
 
-                            // Swirl vortex around cursor
-                            dot.vx += -Math.sin(angle) * force * 6 / dot.mass;
-                            dot.vy += Math.cos(angle) * force * 6 / dot.mass;
+                            dot.touchScale = 1.45; // Pop comic scale on touch
                         }
 
-                        // Elastic Spring Force towards Wave Equilibrium Anchor
+                        // Comic Elastic Spring Snap-back to Wave surface
                         const springDistX = dot.x - targetAnchorX;
                         const springDistY = dot.y - targetAnchorY;
 
-                        const springK = 0.045;
-                        const drag = 0.91; // smooth air drag
+                        const springK = 0.055; // Snappy comic return
+                        const drag = 0.88;    // Viscous air drag
 
                         dot.vx = (dot.vx - springK * springDistX) * drag;
                         dot.vy = (dot.vy - springK * springDistY) * drag;
 
                         dot.x += dot.vx * 60 * dt;
                         dot.y += dot.vy * 60 * dt;
+
+                        // Smooth touch scale easing back to normal
+                        dot.touchScale += (1.0 - dot.touchScale) * 0.1;
                     }
 
                     // 3. RENDER CANVASES & SHADERS
@@ -2775,7 +2798,7 @@
                     ctx.moveTo(0, height);
                     for (let i = 0; i < waterColumns.length; i++) {
                         const c = waterColumns[i];
-                        const secY = c.height - 45 + Math.sin(c.x * 0.002 + time * 0.6) * 15;
+                        const secY = c.height - 40 + Math.sin(c.x * 0.002 + time * 0.6) * 14;
                         if (i === 0) ctx.lineTo(c.x, secY);
                         else ctx.lineTo(c.x, secY);
                     }
@@ -2817,63 +2840,35 @@
                         const yc = (waterColumns[i].height + waterColumns[i + 1].height) / 2;
                         ctx.quadraticCurveTo(waterColumns[i].x, waterColumns[i].height, xc, yc);
                     }
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.75)';
-                    ctx.lineWidth = 3;
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+                    ctx.lineWidth = 2.5;
                     ctx.stroke();
 
-                    // 4. RENDER GOOGLE ANTIGRAVITY DOTS & CONNECTING WEB
-                    // Draw connecting strings between neighboring antigravity dots
-                    for (let i = 0; i < antigravityDots.length; i++) {
-                        for (let j = i + 1; j < antigravityDots.length; j++) {
-                            const d1 = antigravityDots[i];
-                            const d2 = antigravityDots[j];
-                            const dist = Math.hypot(d1.x - d2.x, d1.y - d2.y);
-                            if (dist < 85) {
-                                ctx.beginPath();
-                                ctx.moveTo(d1.x, d1.y);
-                                ctx.lineTo(d2.x, d2.y);
-                                ctx.strokeStyle = `rgba(99, 102, 241, ${(1 - dist / 85) * 0.35})`;
-                                ctx.lineWidth = 1;
-                                ctx.stroke();
-                            }
-                        }
-                    }
+                    // 4. RENDER COMIC HALFTONE POP DOTS (NO DNA STRINGS • PURE COMIC STYLE)
+                    for (let i = 0; i < comicDots.length; i++) {
+                        const dot = comicDots[i];
+                        const r = dot.baseRadius * dot.touchScale;
 
-                    // Draw connecting line to cursor when within antigravity field
-                    if (isMouseInside) {
-                        for (let i = 0; i < antigravityDots.length; i++) {
-                            const dot = antigravityDots[i];
-                            const distToMouse = Math.hypot(dot.x - mouseX, dot.y - mouseY);
-                            if (distToMouse < 160) {
-                                ctx.beginPath();
-                                ctx.moveTo(dot.x, dot.y);
-                                ctx.lineTo(mouseX, mouseY);
-                                ctx.strokeStyle = `rgba(124, 58, 237, ${(1 - distToMouse / 160) * 0.45})`;
-                                ctx.lineWidth = 1.2;
-                                ctx.stroke();
-                            }
-                        }
-                    }
-
-                    // Render Glowing Antigravity Dots
-                    for (let i = 0; i < antigravityDots.length; i++) {
-                        const dot = antigravityDots[i];
+                        ctx.save();
                         ctx.beginPath();
-                        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+                        ctx.arc(dot.x, dot.y, r, 0, Math.PI * 2);
                         ctx.fillStyle = dot.color;
-                        ctx.shadowColor = dot.color;
-                        ctx.shadowBlur = dot.glow;
                         ctx.fill();
-                        ctx.shadowBlur = 0;
 
-                        // Inner specular pearl highlight
+                        // Crisp Comic Halftone Outline
+                        ctx.strokeStyle = dot.strokeColor;
+                        ctx.lineWidth = 1.0;
+                        ctx.stroke();
+
+                        // Subtle Comic Pop Glint
                         ctx.beginPath();
-                        ctx.arc(dot.x - dot.radius * 0.3, dot.y - dot.radius * 0.3, dot.radius * 0.35, 0, Math.PI * 2);
-                        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                        ctx.arc(dot.x - r * 0.25, dot.y - r * 0.25, r * 0.3, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
                         ctx.fill();
+                        ctx.restore();
                     }
                 }
-                requestAnimationFrame(animateWaterAndAntigravity);
+                requestAnimationFrame(animateWaterAndComicDots);
 
             })();
             </script>
