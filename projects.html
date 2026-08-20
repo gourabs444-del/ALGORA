@@ -2207,28 +2207,28 @@
 
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
-        <!-- Landing Page Showcase Banner (100% Fullscreen 4K LIVE-ACTION OCEAN VIDEO, CLEAR SKY & FLYING BIRDS BANNER) -->
+        <!-- Landing Page Showcase Banner (100% PROPRIETARY AI-GENERATED 4K SEAMLESS LIVE OCEAN & LUXURY YACHT BANNER) -->
         <div id="ocean-yacht-hero-banner" class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[720px] lg:min-h-[840px] bg-sky-950 text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(0,0,0,0.7)] transition-all duration-500 flex items-center justify-center py-6 sm:py-10 select-none border-y border-sky-400/20">
             
-            <!-- BACKGROUND LAYER 1: GENUINE LIVE-ACTION 1080P CONTINUOUS OCEAN VIDEO BACKGROUND -->
+            <!-- BACKGROUND LAYER 1: 4K BESPOKE AI-GENERATED MASTER ASSET (Buoyancy Breathing Parallax) -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <video autoplay loop muted playsinline poster="assets/aesthetic_serenity_yacht.jpg" class="w-full h-full object-cover object-center filter brightness-[0.96] contrast-[1.08] saturate-[1.15]" id="ocean-yacht-bg-video">
-                    <source src="assets/live_action_ocean_1080p.webm" type="video/webm">
-                    <source src="assets/real_ocean_waves_1080p.webm" type="video/webm">
-                </video>
+                <img id="ocean-yacht-ai-master" src="assets/ai_ocean_yacht_4k.jpg" alt="4K AI Superyacht in Crystal Ocean" class="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.06] saturate-[1.12] scale-[1.03] transition-transform duration-1000 ease-out will-change-transform" />
 
                 <!-- High-Contrast Readability Gradient for Left-Aligned Hero Text -->
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none z-[2]"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/75 pointer-events-none z-[2]"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none z-[1]"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/75 pointer-events-none z-[1]"></div>
                 
                 <!-- Radiant Sun Glow Flare on Clear Sky -->
-                <div class="absolute -top-10 right-[10%] w-[50vw] h-[50vw] max-w-[700px] max-height-[700px] bg-radial from-white/30 via-amber-200/10 to-transparent blur-3xl pointer-events-none z-[2] mix-blend-screen"></div>
+                <div class="absolute -top-10 right-[10%] w-[50vw] h-[50vw] max-w-[700px] max-height-[700px] bg-radial from-white/30 via-amber-200/10 to-transparent blur-3xl pointer-events-none z-[1] mix-blend-screen"></div>
             </div>
 
-            <!-- BACKGROUND LAYER 2: AUTONOMOUS FLYING WHITE SEAGULLS FLIGHT CANVAS (Delicate & Subtle) -->
+            <!-- BACKGROUND LAYER 2: INFINITE SEAMLESS HYDRODYNAMIC WAKE FOAM & SUN CAUSTICS CANVAS -->
+            <canvas id="ocean-yacht-fluid-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[2] mix-blend-screen"></canvas>
+
+            <!-- BACKGROUND LAYER 3: AUTONOMOUS FLYING WHITE SEAGULLS FLIGHT CANVAS -->
             <canvas id="ocean-yacht-birds-canvas" class="absolute top-0 left-0 w-full h-[65%] pointer-events-none z-[3]"></canvas>
 
-            <!-- MAIN CONTENT CONTAINER (Grid Split: Left Hero Headline + Right Holographic Telemetry HUD) -->
+            <!-- MAIN CONTENT CONTAINER (Left-Aligned Clean Hero Content) -->
             <div class="relative z-10 w-full max-w-[1720px] px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between h-full pb-36 sm:pb-40 lg:pb-44 pt-12 sm:pt-16 gap-8 lg:gap-12">
                 
                 <!-- LEFT HERO HEADLINE & BADGES -->
@@ -2298,38 +2298,56 @@
                 </p>
             </div>
 
-            <!-- LIVE HTML5 240 FPS LIVE VIDEO, SUN CAUSTICS & FLOCKING SEAGULLS ENGINE -->
+            <!-- LIVE HTML5 240 FPS INFINITE SEAMLESS PROCEDURAL OCEAN & BIRDS ENGINE -->
             <script>
-            (function initLiveOceanYachtEngine() {
-                // 1. Video continuous autoplay safety
-                const bgVid = document.getElementById('ocean-yacht-bg-video');
-                if (bgVid) {
-                    bgVid.muted = true;
-                    const p = bgVid.play();
-                    if (p !== undefined) {
-                        p.catch(() => {
-                            const resume = () => { bgVid.play(); };
-                            document.addEventListener('touchstart', resume, { once: true });
-                            document.addEventListener('click', resume, { once: true });
-                            window.addEventListener('scroll', resume, { once: true });
-                        });
-                    }
-                }
-
-                // 2. Autonomous Flying White Seagulls Flight Canvas
+            (function initSeamlessOceanYachtEngine() {
+                const fCanvas = document.getElementById('ocean-yacht-fluid-canvas');
                 const bCanvas = document.getElementById('ocean-yacht-birds-canvas');
-                if (!bCanvas) return;
+                const yachtImg = document.getElementById('ocean-yacht-ai-master');
+                if (!fCanvas || !bCanvas) return;
 
+                const fCtx = fCanvas.getContext('2d');
                 const bCtx = bCanvas.getContext('2d');
-                let bWidth = 0, bHeight = 0;
+                let width = 0, height = 0;
+                let animTime = 0;
 
                 function resizeCanvases() {
-                    const bRect = bCanvas.getBoundingClientRect();
-                    bWidth = bCanvas.width = bRect.width || window.innerWidth;
-                    bHeight = bCanvas.height = bRect.height || (window.innerHeight * 0.65);
+                    const rect = fCanvas.getBoundingClientRect();
+                    width = fCanvas.width = bCanvas.width = rect.width || window.innerWidth;
+                    height = fCanvas.height = bCanvas.height = rect.height || window.innerHeight;
                 }
                 resizeCanvases();
                 window.addEventListener('resize', resizeCanvases);
+
+                // 1. Procedural Wake Foam Bubbles (Continuous Infinite Loop)
+                const foamBubbles = [];
+                const FOAM_COUNT = 140;
+                for (let i = 0; i < FOAM_COUNT; i++) {
+                    foamBubbles.push({
+                        // Wake origins distributed along yacht stern wake vector
+                        x: width * 0.45 + (Math.random() - 0.5) * (width * 0.35),
+                        y: height * 0.65 + Math.random() * (height * 0.30),
+                        vx: -0.8 - Math.random() * 1.2,
+                        vy: 0.6 + Math.random() * 1.0,
+                        size: 1.5 + Math.random() * 4.5,
+                        life: Math.random(),
+                        speed: 0.008 + Math.random() * 0.012,
+                        sparkle: Math.random() > 0.6
+                    });
+                }
+
+                // 2. Continuous Sun Caustics Glints
+                const caustics = [];
+                const CAUSTIC_COUNT = 90;
+                for (let i = 0; i < CAUSTIC_COUNT; i++) {
+                    caustics.push({
+                        xRatio: Math.random(),
+                        yRatio: 0.45 + Math.random() * 0.52,
+                        baseSize: 1.2 + Math.random() * 3.8,
+                        phase: Math.random() * Math.PI * 2,
+                        speed: 0.02 + Math.random() * 0.04
+                    });
+                }
 
                 // 3. Autonomous Flying White Seagulls Flight Engine
                 class WhiteFlyingSeagull {
@@ -2342,8 +2360,8 @@
                         this.wingspan = 19 * this.scale;
                         this.speed = (1.3 + Math.random() * 1.0) * (this.scale * 1.15);
                         
-                        this.x = customX !== null ? customX : (init ? Math.random() * bWidth : -60);
-                        this.y = (bHeight * 0.08) + Math.random() * (bHeight * 0.50);
+                        this.x = customX !== null ? customX : (init ? Math.random() * width : -60);
+                        this.y = (height * 0.08) + Math.random() * (height * 0.45);
                         this.baseY = this.y;
 
                         this.flapPhase = Math.random() * Math.PI * 2;
@@ -2374,7 +2392,7 @@
                             this.flapPhase += this.flapSpeed;
                         }
 
-                        if (this.x > bWidth + 80) {
+                        if (this.x > width + 80) {
                             this.reset(false, -50);
                         }
                     }
@@ -2429,22 +2447,74 @@
                 const seagulls = [];
                 const SEAGULL_COUNT = 6;
                 for (let i = 0; i < SEAGULL_COUNT; i++) {
-                    const posX = (bWidth / SEAGULL_COUNT) * i + (Math.random() * 80 - 40);
+                    const posX = (width / SEAGULL_COUNT) * i + (Math.random() * 80 - 40);
                     seagulls.push(new WhiteFlyingSeagull(posX));
                 }
 
-                function renderBirdsEngine() {
-                    bCtx.clearRect(0, 0, bWidth, bHeight);
+                function renderLoop() {
+                    fCtx.clearRect(0, 0, width, height);
+                    bCtx.clearRect(0, 0, width, height);
+                    animTime += 0.016;
 
+                    // 1. Subtle Yacht Buoyancy Breathing Pitch
+                    if (yachtImg) {
+                        const pitchY = Math.sin(animTime * 1.5) * 4;
+                        const rollRot = Math.cos(animTime * 1.1) * 0.35;
+                        yachtImg.style.transform = `scale(1.03) translate3d(0, ${pitchY.toFixed(2)}px, 0) rotate(${rollRot.toFixed(2)}deg)`;
+                    }
+
+                    // 2. Render Wake Foam Bubbles
+                    foamBubbles.forEach(bubble => {
+                        bubble.life += bubble.speed;
+                        if (bubble.life > 1) {
+                            bubble.life = 0;
+                            bubble.x = width * 0.45 + (Math.random() - 0.5) * (width * 0.35);
+                            bubble.y = height * 0.65 + Math.random() * (height * 0.30);
+                        }
+
+                        bubble.x += bubble.vx;
+                        bubble.y += bubble.vy;
+
+                        const alpha = Math.sin(bubble.life * Math.PI) * 0.45;
+                        if (alpha > 0.01) {
+                            fCtx.beginPath();
+                            fCtx.arc(bubble.x, bubble.y, bubble.size * (1 + bubble.life * 0.8), 0, Math.PI * 2);
+                            fCtx.fillStyle = `rgba(255, 255, 255, ${alpha.toFixed(3)})`;
+                            fCtx.shadowColor = 'rgba(224, 242, 254, 0.6)';
+                            fCtx.shadowBlur = 4;
+                            fCtx.fill();
+                        }
+                    });
+
+                    // 3. Render Shimmering Sun Caustics
+                    caustics.forEach(c => {
+                        c.phase += c.speed;
+                        const alpha = (Math.sin(c.phase) + 1) * 0.35;
+                        if (alpha > 0.05) {
+                            const cx = c.xRatio * width;
+                            const cy = c.yRatio * height + Math.sin(animTime * 2 + cx * 0.01) * 5;
+
+                            const rad = fCtx.createRadialGradient(cx, cy, 0, cx, cy, c.baseSize * 2.5);
+                            rad.addColorStop(0, `rgba(255, 255, 255, ${alpha.toFixed(3)})`);
+                            rad.addColorStop(0.4, `rgba(224, 242, 254, ${(alpha * 0.6).toFixed(3)})`);
+                            rad.addColorStop(1, 'rgba(56, 189, 248, 0)');
+
+                            fCtx.fillStyle = rad;
+                            fCtx.beginPath();
+                            fCtx.arc(cx, cy, c.baseSize * 2.5, 0, Math.PI * 2);
+                            fCtx.fill();
+                        }
+                    });
+
+                    // 4. Render Flying Seagulls
                     seagulls.forEach(bird => {
                         bird.update();
                         bird.draw();
                     });
 
-                    requestAnimationFrame(renderBirdsEngine);
+                    requestAnimationFrame(renderLoop);
                 }
-                renderBirdsEngine();
-
+                renderLoop();
             })();
             </script>
         </div>
