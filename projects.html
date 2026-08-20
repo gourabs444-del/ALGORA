@@ -2512,11 +2512,11 @@
             </div>
 
             <!-- ═══════════════════════════════════════════════════════════════════
-                 THREE.JS 3D WEBGL ENGINE (ANTHROPIC CLAUDE WARM LINEN THEME)
+                 THREE.JS 3D WEBGL LIVE ANIMATED ENGINE (CLAUDE TOURBILLON & ARTIFACTS)
                  ═══════════════════════════════════════════════════════════════════ -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
             <script>
-            (function initClaudeEditorial3DExplosionBanner() {
+            (function initLiveClaude3DExplosionBanner() {
                 const canvas = document.getElementById('algora-collection-webgl-canvas');
                 if (!canvas || typeof THREE === 'undefined') return;
 
@@ -2539,21 +2539,31 @@
                 renderer.toneMapping = THREE.ACESFilmicToneMapping;
                 renderer.toneMappingExposure = 1.15;
 
-                // 2. High-Tech Dynamic Texture Generator for Claude Warm Parchment Cards
-                function createClaudeCardTexture(title, subtitle, category, colorHex, badge, hasChart) {
-                    const c = document.createElement('canvas');
-                    c.width = 512;
-                    c.height = 680;
-                    const ctx = c.getContext('2d');
+                // 2. Real-Time Dynamic Live Canvas Texture Engine
+                // Screen 1: Aesthete (Live Rotating Crest & Editorial Typography)
+                const c1 = document.createElement('canvas'); c1.width = 512; c1.height = 680;
+                const ctx1 = c1.getContext('2d');
+                const tex1 = new THREE.CanvasTexture(c1);
 
-                    // Warm Linen Parchment Background
+                // Screen 2: BloomFi (Live Running Neon Waveform Graph & Pulse)
+                const c2 = document.createElement('canvas'); c2.width = 512; c2.height = 680;
+                const ctx2 = c2.getContext('2d');
+                const tex2 = new THREE.CanvasTexture(c2);
+
+                // Screen 3: Lumina (Live Procedural Neural Synapse & Particles)
+                const c3 = document.createElement('canvas'); c3.width = 512; c3.height = 680;
+                const ctx3 = c3.getContext('2d');
+                const tex3 = new THREE.CanvasTexture(c3);
+
+                function renderLiveScreen(ctx, time, title, subtitle, category, colorHex, type) {
+                    // Base Linen Background
                     const bgGrad = ctx.createLinearGradient(0, 0, 512, 680);
                     bgGrad.addColorStop(0, '#FFFFFF');
                     bgGrad.addColorStop(1, '#F7F4EE');
                     ctx.fillStyle = bgGrad;
                     ctx.fillRect(0, 0, 512, 680);
 
-                    // Soft Terracotta / Stone Hairline Border
+                    // Soft Terracotta Border
                     ctx.strokeStyle = '#E2DDD2';
                     ctx.lineWidth = 6;
                     ctx.strokeRect(8, 8, 496, 664);
@@ -2566,13 +2576,19 @@
                     ctx.lineWidth = 2;
                     ctx.stroke();
 
+                    // Live Pulsing Dot
                     ctx.fillStyle = colorHex;
-                    ctx.font = 'bold 18px monospace';
-                    ctx.fillText(category.toUpperCase(), 55, 66);
+                    ctx.beginPath();
+                    ctx.arc(52, 60, 5 + Math.sin(time * 6) * 1.5, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = colorHex;
+                    ctx.font = 'bold 17px monospace';
+                    ctx.fillText(category.toUpperCase(), 70, 66);
 
                     ctx.fillStyle = '#1F1B18';
-                    ctx.font = 'bold 16px monospace';
-                    ctx.fillText(badge, 405, 66);
+                    ctx.font = 'bold 15px monospace';
+                    ctx.fillText('● LIVE 120 FPS', 370, 66);
 
                     // Title (Editorial Serif)
                     ctx.fillStyle = '#1F1B18';
@@ -2591,43 +2607,91 @@
                     ctx.strokeStyle = '#E8E3DA';
                     ctx.stroke();
 
-                    if (hasChart) {
-                        // Dynamic Terracotta Waveform Chart
+                    if (type === 'chart') {
+                        // LIVE RUNNING CONTINUOUS SINE WAVEFORM GRAPH
                         ctx.strokeStyle = colorHex;
                         ctx.lineWidth = 6;
                         ctx.beginPath();
-                        ctx.moveTo(55, 480);
-                        ctx.bezierCurveTo(150, 360, 260, 520, 360, 300);
-                        ctx.bezierCurveTo(400, 240, 440, 320, 455, 270);
+                        for (let x = 55; x <= 455; x += 8) {
+                            const normalizedX = (x - 55) / 400;
+                            const y = 380 + Math.sin(normalizedX * 6 + time * 4) * 55 + Math.cos(normalizedX * 10 - time * 2) * 25;
+                            if (x === 55) ctx.moveTo(x, y);
+                            else ctx.lineTo(x, y);
+                        }
                         ctx.stroke();
 
-                        const cGrad = ctx.createLinearGradient(0, 270, 0, 520);
-                        cGrad.addColorStop(0, colorHex + '40');
-                        cGrad.addColorStop(1, 'transparent');
-                        ctx.fillStyle = cGrad;
+                        // Waveform Area Glow
                         ctx.lineTo(455, 520);
                         ctx.lineTo(55, 520);
                         ctx.closePath();
+                        const cGrad = ctx.createLinearGradient(0, 300, 0, 520);
+                        cGrad.addColorStop(0, colorHex + '44');
+                        cGrad.addColorStop(1, 'transparent');
+                        ctx.fillStyle = cGrad;
                         ctx.fill();
 
+                        // Live Telemetry Value
+                        const dynamicVal = (340 + Math.sin(time * 2) * 12).toFixed(1);
                         ctx.fillStyle = '#1F1B18';
-                        ctx.font = 'bold 32px monospace';
-                        ctx.fillText('+340% VELOCITY', 60, 265);
-                    } else {
-                        // High-Craft Monogram Crest
-                        ctx.fillStyle = colorHex + '15';
-                        ctx.beginPath();
-                        ctx.arc(256, 380, 75, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.strokeStyle = colorHex;
-                        ctx.lineWidth = 4;
-                        ctx.stroke();
+                        ctx.font = 'bold 30px monospace';
+                        ctx.fillText(`+${dynamicVal}% VELOCITY`, 60, 265);
 
                         ctx.fillStyle = colorHex;
-                        ctx.font = 'bold 55px serif';
+                        ctx.font = 'bold 15px monospace';
+                        ctx.fillText(`STREAM: ${Math.floor(time * 60)} TICKS`, 60, 290);
+                    } else if (type === 'crest') {
+                        // LIVE ROTATING EDITORIAL CREST
+                        const cx = 256, cy = 380;
+                        ctx.save();
+                        ctx.translate(cx, cy);
+                        ctx.rotate(time * 0.6);
+                        
+                        ctx.strokeStyle = colorHex;
+                        ctx.lineWidth = 4;
+                        ctx.strokeRect(-60, -60, 120, 120);
+
+                        ctx.strokeStyle = '#DCD5C8';
+                        ctx.lineWidth = 2;
+                        ctx.beginPath();
+                        ctx.arc(0, 0, 75, 0, Math.PI * 2);
+                        ctx.stroke();
+
+                        ctx.restore();
+
+                        ctx.fillStyle = colorHex;
+                        ctx.font = 'bold 50px serif';
                         ctx.textAlign = 'center';
-                        ctx.fillText('✦', 256, 400);
+                        ctx.fillText('✦', cx, cy + 18);
                         ctx.textAlign = 'left';
+                    } else {
+                        // LIVE PROCEDURAL NEURAL AI NODES
+                        const cx = 256, cy = 380;
+                        for (let i = 0; i < 6; i++) {
+                            const angle = (i / 6) * Math.PI * 2 + time * 0.8;
+                            const r = 65 + Math.sin(time * 3 + i) * 18;
+                            const nx = cx + Math.cos(angle) * r;
+                            const ny = cy + Math.sin(angle) * r;
+
+                            ctx.strokeStyle = colorHex + '66';
+                            ctx.lineWidth = 2;
+                            ctx.beginPath();
+                            ctx.moveTo(cx, cy);
+                            ctx.lineTo(nx, ny);
+                            ctx.stroke();
+
+                            ctx.fillStyle = colorHex;
+                            ctx.beginPath();
+                            ctx.arc(nx, ny, 6, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+
+                        ctx.fillStyle = '#1F1B18';
+                        ctx.beginPath();
+                        ctx.arc(cx, cy, 14, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.strokeStyle = colorHex;
+                        ctx.lineWidth = 3;
+                        ctx.stroke();
                     }
 
                     // Bottom Action Strip (Claude Deep Espresso Bar)
@@ -2638,11 +2702,9 @@
                     ctx.fillStyle = '#DA7756';
                     ctx.font = 'bold 20px monospace';
                     ctx.fillText('EXPLORE ARTIFACT  ➔', 110, 618);
-
-                    return new THREE.CanvasTexture(c);
                 }
 
-                // 3. Central Exploding 3D Monolith Stack (3 Master Faces in Claude Warm Parchment)
+                // 3. Central Exploding 3D Monolith Stack (3 Master Faces)
                 const masterGroup = new THREE.Group();
                 scene.add(masterGroup);
                 masterGroup.position.set(0, 2.5, 0);
@@ -2651,36 +2713,26 @@
 
                 function create3DClaudeMonolithMesh(tex, edgeColorHex, url) {
                     const materials = [
-                        new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }), // right
-                        new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }), // left
-                        new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }), // top
-                        new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }), // bottom
-                        new THREE.MeshStandardMaterial({ map: tex, metalness: 0.15, roughness: 0.25 }), // front
-                        new THREE.MeshStandardMaterial({ color: 0xF7F4EE, metalness: 0.2, roughness: 0.25 })  // back
+                        new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }),
+                        new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }),
+                        new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }),
+                        new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }),
+                        new THREE.MeshStandardMaterial({ map: tex, metalness: 0.15, roughness: 0.25 }),
+                        new THREE.MeshStandardMaterial({ color: 0xF7F4EE, metalness: 0.2, roughness: 0.25 })
                     ];
 
                     const mesh = new THREE.Mesh(cardGeo, materials);
                     mesh.userData = { url: url, baseScale: 1.0 };
 
-                    // Terracotta Accent Edges
                     const edgesGeo = new THREE.EdgesGeometry(cardGeo);
                     const edgesMat = new THREE.LineBasicMaterial({ color: edgeColorHex, linewidth: 2, transparent: true, opacity: 0.9 });
-                    const edges = new THREE.LineSegments(edgesGeo, edgesMat);
-                    mesh.add(edges);
+                    mesh.add(new THREE.LineSegments(edgesGeo, edgesMat));
 
                     return mesh;
                 }
 
-                // Face 1: Aesthete Studio (Left Wing)
-                const tex1 = createClaudeCardTexture('Aesthete Studio', 'Editorial Luxury & Architecture', '01 • Luxury Craft', '#DA7756', '120 FPS', false);
                 const mesh1 = create3DClaudeMonolithMesh(tex1, 0xDA7756, 'aesthete.html');
-
-                // Face 2: BloomFi Banking (Center Core)
-                const tex2 = createClaudeCardTexture('BloomFi Banking', 'FinTech Liquidity & Digital Wallet', '02 • FinTech Engine', '#B85433', 'CORE', true);
                 const mesh2 = create3DClaudeMonolithMesh(tex2, 0xB85433, 'bloomfi.html');
-
-                // Face 3: Lumina AI Studio (Right Wing)
-                const tex3 = createClaudeCardTexture('Lumina AI Studio', 'Generative Prompt Synthesis & Shaders', '03 • Gen AI Lab', '#DA7756', 'SHADERS', false);
                 const mesh3 = create3DClaudeMonolithMesh(tex3, 0xDA7756, 'lumina.html');
 
                 masterGroup.add(mesh1);
@@ -2689,21 +2741,37 @@
 
                 const interactiveMeshes = [mesh1, mesh2, mesh3];
 
-                // 4. 3D Curved Orbital Conveyor Rail Track (8 Floating 3D Cards in Warm Space)
+                // 4. 3D Kinetic Tourbillon Gyroscope Rings (Mechanical Watch Movement in 3D)
+                const tourbillonGroup = new THREE.Group();
+                masterGroup.add(tourbillonGroup);
+
+                const ringMat1 = new THREE.MeshStandardMaterial({ color: 0xDA7756, metalness: 0.85, roughness: 0.15 });
+                const ringMat2 = new THREE.MeshStandardMaterial({ color: 0xD99B66, metalness: 0.75, roughness: 0.25, wireframe: true });
+                const ringMat3 = new THREE.MeshStandardMaterial({ color: 0xC25E3E, metalness: 0.9, roughness: 0.1 });
+
+                const ring1 = new THREE.Mesh(new THREE.TorusGeometry(10.5, 0.08, 16, 100), ringMat1);
+                const ring2 = new THREE.Mesh(new THREE.TorusGeometry(12.5, 0.06, 16, 100), ringMat2);
+                const ring3 = new THREE.Mesh(new THREE.TorusGeometry(14.5, 0.05, 16, 100), ringMat3);
+
+                tourbillonGroup.add(ring1);
+                tourbillonGroup.add(ring2);
+                tourbillonGroup.add(ring3);
+
+                // 5. 3D Curved Orbital Conveyor Rail Track (8 Floating 3D Cards in Warm Space)
                 const railGroup = new THREE.Group();
                 scene.add(railGroup);
                 railGroup.position.set(0, -6.5, -4);
 
                 const railCardGeo = new THREE.BoxGeometry(4.2, 5.8, 0.25);
                 const railProjects = [
-                    { title: 'Mamaearth', sub: 'E-Commerce Scale', cat: 'Store', color: '#2E7D32', badge: 'PRO', chart: false, url: 'mamaearth.html' },
-                    { title: 'JurisLexicon', sub: 'Legal Intelligence', cat: 'Tech', color: '#3949AB', badge: 'NLP', chart: false, url: 'jurislexicon-dark.html' },
-                    { title: 'Valura Real Estate', sub: '3D Spatial Estates', cat: 'Spatial', color: '#DA7756', badge: '3D', chart: true, url: 'valura.html' },
-                    { title: 'Vanya Safari', sub: 'Nature Eco-Retreat', cat: 'Hospitality', color: '#C25E3E', badge: 'ECO', chart: false, url: 'vanya-lodge.html' },
-                    { title: 'VantagePoint', sub: 'Telemetry Analytics', cat: 'Analytics', color: '#00796B', badge: 'OPS', chart: true, url: 'vantagepoint.html' },
-                    { title: 'Aesthete Luxury', sub: 'Editorial Monolith', cat: 'Design', color: '#DA7756', badge: '120FPS', chart: false, url: 'aesthete.html' },
-                    { title: 'BloomFi Core', sub: 'Multi-Currency Flow', cat: 'Banking', color: '#B85433', badge: 'CORE', chart: true, url: 'bloomfi.html' },
-                    { title: 'Lumina Shaders', sub: 'Real-Time GPU Canvas', cat: 'AI Studio', color: '#DA7756', badge: 'GPU', chart: false, url: 'lumina.html' }
+                    { title: 'Mamaearth', sub: 'E-Commerce Scale', cat: 'Store', color: '#2E7D32', url: 'mamaearth.html' },
+                    { title: 'JurisLexicon', sub: 'Legal Intelligence', cat: 'Tech', color: '#3949AB', url: 'jurislexicon-dark.html' },
+                    { title: 'Valura Real Estate', sub: '3D Spatial Estates', cat: 'Spatial', color: '#DA7756', url: 'valura.html' },
+                    { title: 'Vanya Safari', sub: 'Nature Eco-Retreat', cat: 'Hospitality', color: '#C25E3E', url: 'vanya-lodge.html' },
+                    { title: 'VantagePoint', sub: 'Telemetry Analytics', cat: 'Analytics', color: '#00796B', url: 'vantagepoint.html' },
+                    { title: 'Aesthete Luxury', sub: 'Editorial Monolith', cat: 'Design', color: '#DA7756', url: 'aesthete.html' },
+                    { title: 'BloomFi Core', sub: 'Multi-Currency Flow', cat: 'Banking', color: '#B85433', url: 'bloomfi.html' },
+                    { title: 'Lumina Shaders', sub: 'Real-Time GPU Canvas', cat: 'AI Studio', color: '#DA7756', url: 'lumina.html' }
                 ];
 
                 const railMeshes = [];
@@ -2712,13 +2780,17 @@
                 const railCount = railProjects.length;
 
                 railProjects.forEach((p, idx) => {
-                    const tex = createClaudeCardTexture(p.title, p.sub, p.cat, p.color, p.badge, p.chart);
+                    const rc = document.createElement('canvas'); rc.width = 512; rc.height = 680;
+                    const rctx = rc.getContext('2d');
+                    renderLiveScreen(rctx, 0, p.title, p.sub, p.cat, p.color, idx % 2 === 0 ? 'crest' : 'chart');
+                    const rtex = new THREE.CanvasTexture(rc);
+
                     const mat = [
                         new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }),
                         new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }),
                         new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }),
                         new THREE.MeshStandardMaterial({ color: 0xEDE8DF, metalness: 0.3, roughness: 0.2 }),
-                        new THREE.MeshStandardMaterial({ map: tex, roughness: 0.2, metalness: 0.15 }),
+                        new THREE.MeshStandardMaterial({ map: rtex, roughness: 0.2, metalness: 0.15 }),
                         new THREE.MeshStandardMaterial({ color: 0xF7F4EE, metalness: 0.2, roughness: 0.2 })
                     ];
                     const mesh = new THREE.Mesh(railCardGeo, mat);
@@ -2733,7 +2805,7 @@
                     interactiveMeshes.push(mesh);
                 });
 
-                // 5. Floating Amber & Terracotta Dust Particles
+                // 6. Floating Amber & Terracotta Dust Particles
                 const starCount = 850;
                 const starGeo = new THREE.BufferGeometry();
                 const starPos = new Float32Array(starCount * 3);
@@ -2747,7 +2819,7 @@
                 const stars = new THREE.Points(starGeo, starMat);
                 scene.add(stars);
 
-                // 6. Warm Claude Daylight Studio Lighting
+                // 7. Warm Claude Daylight Studio Lighting
                 const ambLight = new THREE.AmbientLight(0xFFFAF0, 2.2);
                 scene.add(ambLight);
 
@@ -2767,7 +2839,7 @@
                 amberLight.position.set(0, -6, 16);
                 scene.add(amberLight);
 
-                // 7. Interactive State & Mouse Inertia Controller
+                // 8. Interactive State & Mouse Inertia Controller
                 let isExploded = true;
                 let orbitSpeedMultiplier = 1.0;
                 let mouseX = 0, mouseY = 0;
@@ -2775,7 +2847,6 @@
                 let isDragging = false, prevMouseX = 0, prevMouseY = 0;
                 let manualDragAngleY = 0;
 
-                // Explosion Toggle Controller
                 function setExplosion(state) {
                     isExploded = state;
                     const btnText = document.getElementById('webgl-explode-text');
@@ -2798,7 +2869,7 @@
                     });
                 }
 
-                // Mouse & Drag Orbiting
+                // Mouse Tracking
                 window.addEventListener('mousemove', (e) => {
                     const rect = container.getBoundingClientRect();
                     if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
@@ -2851,13 +2922,22 @@
                 }
                 window.addEventListener('resize', onResize);
 
-                // 8. 120 FPS Physics Animation Loop
+                // 9. 120 FPS Physics & Live Canvas Rendering Loop
                 const clock = new THREE.Clock();
 
                 function animate() {
                     requestAnimationFrame(animate);
-                    const delta = clock.getDelta();
                     const time = clock.getElapsedTime();
+
+                    // RENDER LIVE REAL-TIME CANVASES ON EVERY FRAME
+                    renderLiveScreen(ctx1, time, 'Aesthete Studio', 'Editorial Luxury & Architecture', '01 • Luxury Craft', '#DA7756', 'crest');
+                    tex1.needsUpdate = true;
+
+                    renderLiveScreen(ctx2, time, 'BloomFi Banking', 'FinTech Liquidity & Digital Wallet', '02 • FinTech Engine', '#B85433', 'chart');
+                    tex2.needsUpdate = true;
+
+                    renderLiveScreen(ctx3, time, 'Lumina AI Studio', 'Generative Prompt Synthesis & Shaders', '03 • Gen AI Lab', '#DA7756', 'neural');
+                    tex3.needsUpdate = true;
 
                     // Smooth Camera Parallax Inertia
                     targetRotX += (mouseY * 0.15 - targetRotX) * 0.05;
@@ -2868,30 +2948,39 @@
                     camera.position.y = 4 + targetRotX * 12;
                     camera.lookAt(0, 0, 0);
 
+                    // 3D Tourbillon Mechanical Gyroscope Rotation
+                    ring1.rotation.x = time * 0.8;
+                    ring1.rotation.y = time * 0.4;
+
+                    ring2.rotation.y = -time * 0.6;
+                    ring2.rotation.z = time * 0.5;
+
+                    ring3.rotation.x = -time * 0.3;
+                    ring3.rotation.z = -time * 0.7;
+
+                    // Master Group Continuous Levitation
+                    masterGroup.position.y = 2.5 + Math.sin(time * 1.5) * 0.4;
+
                     // Exploding 3D Physics Lerp for Master Faces
                     if (isExploded) {
-                        // Face 1 (Left Wing Fan-out)
                         mesh1.position.x += (-8.6 - mesh1.position.x) * 0.06;
-                        mesh1.position.y += (0.2 + Math.sin(time * 1.5) * 0.25 - mesh1.position.y) * 0.06;
+                        mesh1.position.y += (0.2 + Math.sin(time * 1.8) * 0.3 - mesh1.position.y) * 0.06;
                         mesh1.position.z += (1.8 - mesh1.position.z) * 0.06;
                         mesh1.rotation.y += (0.38 - mesh1.rotation.y) * 0.06;
                         mesh1.rotation.z += (0.04 - mesh1.rotation.z) * 0.06;
 
-                        // Face 2 (Center Core Lift)
                         mesh2.position.x += (0 - mesh2.position.x) * 0.06;
-                        mesh2.position.y += (0.6 + Math.sin(time * 1.5 + 1.0) * 0.3 - mesh2.position.y) * 0.06;
+                        mesh2.position.y += (0.6 + Math.sin(time * 1.8 + 1.0) * 0.35 - mesh2.position.y) * 0.06;
                         mesh2.position.z += (6.5 - mesh2.position.z) * 0.06;
                         mesh2.rotation.y += (Math.sin(time * 0.8) * 0.06 - mesh2.rotation.y) * 0.06;
                         mesh2.rotation.z += (0 - mesh2.rotation.z) * 0.06;
 
-                        // Face 3 (Right Wing Fan-out)
                         mesh3.position.x += (8.6 - mesh3.position.x) * 0.06;
-                        mesh3.position.y += (0.2 + Math.sin(time * 1.5 + 2.0) * 0.25 - mesh3.position.y) * 0.06;
+                        mesh3.position.y += (0.2 + Math.sin(time * 1.8 + 2.0) * 0.3 - mesh3.position.y) * 0.06;
                         mesh3.position.z += (1.8 - mesh3.position.z) * 0.06;
                         mesh3.rotation.y += (-0.38 - mesh3.rotation.y) * 0.06;
                         mesh3.rotation.z += (-0.04 - mesh3.rotation.z) * 0.06;
                     } else {
-                        // Assembled into 1 Solid Monolith Deck
                         mesh1.position.x += (-0.3 - mesh1.position.x) * 0.08;
                         mesh1.position.y += (0 - mesh1.position.y) * 0.08;
                         mesh1.position.z += (0 - mesh1.position.z) * 0.08;
@@ -2911,7 +3000,7 @@
                         mesh3.rotation.z += (0 - mesh3.rotation.z) * 0.08;
                     }
 
-                    // 3D Orbital Conveyor Rail Motion (Continuous 3D Carousel along Ellipse)
+                    // 3D Orbital Conveyor Rail Motion
                     const railAngleSpeed = time * 0.18 * orbitSpeedMultiplier;
                     railMeshes.forEach((m) => {
                         const curAngle = m.userData.angleOffset + railAngleSpeed;
