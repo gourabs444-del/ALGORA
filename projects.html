@@ -2521,10 +2521,10 @@
             </div>
 
             <!-- ═══════════════════════════════════════════════════════════════════
-                 REAL WATER SPRING-MASS FLUID DYNAMICS & GOOGLE ANTIGRAVITY DOTS ENGINE
+                 HYPER-REALISTIC FLUID WATER DYNAMICS ENGINE (NO DOTS • PURE WATER)
                  ═══════════════════════════════════════════════════════════════════ -->
             <script>
-            (function initRealWaterAndAntigravityEngine() {
+            (function initHyperRealisticWaterEngine() {
                 const canvas = document.getElementById('algora-aurora-canvas');
                 if (!canvas) return;
                 const ctx = canvas.getContext('2d');
@@ -2533,85 +2533,69 @@
                 let width, height;
                 let numColumns;
                 let waterColumns = [];
-                let comicDots = [];
+                let deepColumns = [];
 
-                const TENSION = 0.022;      // Spring stiffness (water surface tension)
-                const DAMPENING = 0.016;    // Water viscosity decay (gradual fluid momentum)
-                const SPREAD = 0.28;        // Wave propagation speed to neighbors
+                const TENSION = 0.024;      // Realistic water surface tension
+                const DAMPENING = 0.012;    // Fluid viscosity decay (smooth continuous ripples)
+                const SPREAD = 0.32;        // Hydrodynamic wave propagation speed
 
-                function setupSimulation() {
+                function setupWaterSimulation() {
                     width = canvas.width = container.clientWidth || window.innerWidth;
                     height = canvas.height = container.clientHeight || window.innerHeight;
 
-                    // 1. Initialize Spring-Mass Real Water Surface Columns
-                    const columnSpacing = Math.max(6, Math.floor(width / 180));
+                    const columnSpacing = Math.max(4, Math.floor(width / 240));
                     numColumns = Math.ceil(width / columnSpacing) + 2;
                     waterColumns = [];
+                    deepColumns = [];
 
                     for (let i = 0; i < numColumns; i++) {
+                        const posX = i * columnSpacing;
                         waterColumns.push({
-                            x: i * columnSpacing,
+                            x: posX,
                             targetHeight: height * 0.58,
                             height: height * 0.58,
                             velocity: 0
                         });
-                    }
-
-                    // 2. Initialize Comic Halftone Dots Matrix on Water Surface
-                    comicDots = [];
-                    const rows = 4;
-                    const cols = Math.min(60, Math.floor(width / 24));
-                    const spacingX = width / cols;
-
-                    for (let r = 0; r < rows; r++) {
-                        for (let c = 0; c < cols; c++) {
-                            const baseX = c * spacingX + (r % 2 === 1 ? spacingX * 0.5 : 0) + (Math.random() - 0.5) * 6;
-                            const baseYOffset = (r - (rows - 1) * 0.5) * 26 - 15; // Floating around the water crest
-                            const colorPalette = ['#2563eb', '#7c3aed', '#06b6d4', '#9333ea', '#ffffff'];
-                            const dotColor = colorPalette[(r + c) % colorPalette.length];
-
-                            comicDots.push({
-                                baseX: baseX,
-                                baseYOffset: baseYOffset,
-                                x: baseX,
-                                y: height * 0.58 + baseYOffset,
-                                vx: 0,
-                                vy: 0,
-                                baseRadius: r === 1 ? 4.5 : (r === 2 ? 3.8 : 2.8),
-                                radius: r === 1 ? 4.5 : (r === 2 ? 3.8 : 2.8),
-                                color: dotColor,
-                                strokeColor: dotColor === '#ffffff' ? '#2563eb' : '#0f172a',
-                                touchScale: 1.0
-                            });
-                        }
+                        deepColumns.push({
+                            x: posX,
+                            targetHeight: height * 0.53,
+                            height: height * 0.53,
+                            velocity: 0
+                        });
                     }
                 }
-                setupSimulation();
-                window.addEventListener('resize', setupSimulation);
+                setupWaterSimulation();
+                window.addEventListener('resize', setupWaterSimulation);
 
-                // Fluid Aurora Color Modes
+                // Water Color Themes (Blue, Purple & Opal White)
                 let modeIndex = 0;
                 const modes = [
                     {
-                        name: 'ROYAL BLUE & PURPLE AURORA',
-                        gradTop: 'rgba(37, 99, 235, 0.42)',
-                        gradBottom: 'rgba(124, 58, 237, 0.06)',
-                        secGradTop: 'rgba(147, 51, 234, 0.35)',
-                        secGradBottom: 'rgba(59, 130, 246, 0.04)'
+                        name: 'ROYAL BLUE & VIOLET WATER',
+                        deepGradTop: 'rgba(37, 99, 235, 0.40)',
+                        deepGradBottom: 'rgba(124, 58, 237, 0.08)',
+                        surfGradTop: 'rgba(6, 182, 212, 0.45)',
+                        surfGradBottom: 'rgba(59, 130, 246, 0.12)',
+                        crestColor: 'rgba(255, 255, 255, 0.95)',
+                        causticColor: 'rgba(165, 243, 252, 0.25)'
                     },
                     {
-                        name: 'CYAN & NEON VIOLET WAVE',
-                        gradTop: 'rgba(6, 182, 212, 0.45)',
-                        gradBottom: 'rgba(147, 51, 234, 0.05)',
-                        secGradTop: 'rgba(124, 58, 237, 0.40)',
-                        secGradBottom: 'rgba(6, 182, 212, 0.05)'
+                        name: 'CYAN & NEON INDIGO WATER',
+                        deepGradTop: 'rgba(79, 70, 229, 0.42)',
+                        deepGradBottom: 'rgba(6, 182, 212, 0.08)',
+                        surfGradTop: 'rgba(14, 165, 233, 0.48)',
+                        surfGradBottom: 'rgba(147, 51, 234, 0.10)',
+                        crestColor: 'rgba(255, 255, 255, 0.95)',
+                        causticColor: 'rgba(224, 231, 255, 0.30)'
                     },
                     {
-                        name: 'OPAL WHITE & SAPPHIRE STREAM',
-                        gradTop: 'rgba(29, 78, 216, 0.40)',
-                        gradBottom: 'rgba(219, 234, 254, 0.12)',
-                        secGradTop: 'rgba(109, 40, 217, 0.32)',
-                        secGradBottom: 'rgba(243, 232, 255, 0.08)'
+                        name: 'OPAL SAPPHIRE CRYSTAL STREAM',
+                        deepGradTop: 'rgba(30, 64, 175, 0.42)',
+                        deepGradBottom: 'rgba(243, 232, 255, 0.10)',
+                        surfGradTop: 'rgba(59, 130, 246, 0.45)',
+                        surfGradBottom: 'rgba(219, 234, 254, 0.15)',
+                        crestColor: 'rgba(255, 255, 255, 0.95)',
+                        causticColor: 'rgba(255, 255, 255, 0.35)'
                     }
                 ];
 
@@ -2621,22 +2605,23 @@
                     freqBtn.addEventListener('click', () => {
                         modeIndex = (modeIndex + 1) % modes.length;
                         if (freqText) freqText.innerText = modes[modeIndex].name;
-                        splashWater(width * 0.5, 80, 28);
+                        splashWater(width * 0.5, 90, 32);
                     });
                 }
 
-                // Splash Function for Real Water Displacement
-                function splashWater(x, speed, radius = 20) {
+                // Physical Splash Impulse & Hydrodynamic Wave Propagation
+                function splashWater(x, speed, radius = 24) {
                     for (let i = 0; i < waterColumns.length; i++) {
                         const dist = Math.abs(x - waterColumns[i].x);
                         if (dist < radius * 8) {
                             const factor = Math.cos((dist / (radius * 8)) * (Math.PI / 2));
                             waterColumns[i].velocity += speed * factor;
+                            if (deepColumns[i]) deepColumns[i].velocity += speed * factor * 0.6;
                         }
                     }
                 }
 
-                // Direct Cursor Touch Physics
+                // Interactive Mouse Water Dragging & Physical Displacement
                 let mouseX = -9999, mouseY = -9999;
                 let prevMouseX = 0, prevMouseY = 0;
                 let isMouseInside = false;
@@ -2657,14 +2642,15 @@
                     const deltaY = mouseY - prevMouseY;
                     const mouseSpeed = Math.hypot(deltaX, deltaY);
 
-                    // Water surface splash ONLY when cursor physically intersects water height
-                    if (mouseSpeed > 1.2) {
+                    // Liquid interaction when mouse touches water surface
+                    if (mouseSpeed > 1.0) {
                         const currentWaterY = getWaterHeightAt(mouseX);
                         const distToWater = Math.abs(mouseY - currentWaterY);
-                        // Physical touch collision with water surface within 40px
-                        if (distToWater < 40) {
-                            const splashForce = Math.max(-35, Math.min(35, deltaY * 0.75 + (deltaX * 0.25)));
-                            splashWater(mouseX, splashForce, 16);
+
+                        if (distToWater < 60) {
+                            // Fluid drag force (proportional to mouse movement speed)
+                            const dragForce = Math.max(-45, Math.min(45, (deltaY * 0.85) + (deltaX * 0.35)));
+                            splashWater(mouseX, dragForce, 18);
                         }
                     }
 
@@ -2672,25 +2658,13 @@
                     prevMouseY = mouseY;
                 });
 
+                // Splash on click
                 container.addEventListener('click', (e) => {
                     const rect = container.getBoundingClientRect();
                     const cx = e.clientX - rect.left;
-                    splashWater(cx, -65, 22);
-
-                    // Explode nearby comic dots outward
-                    for (let i = 0; i < comicDots.length; i++) {
-                        const dot = comicDots[i];
-                        const dist = Math.hypot(dot.x - cx, dot.y - (e.clientY - rect.top));
-                        if (dist < 120) {
-                            const angle = Math.atan2(dot.y - (e.clientY - rect.top), dot.x - cx);
-                            dot.vx += Math.cos(angle) * (1 - dist / 120) * 22;
-                            dot.vy += Math.sin(angle) * (1 - dist / 120) * 22;
-                            dot.touchScale = 1.6;
-                        }
-                    }
+                    splashWater(cx, -75, 26);
                 });
 
-                // Helper to query live fluid water height at any x coordinate
                 function getWaterHeightAt(x) {
                     if (waterColumns.length === 0) return height * 0.58;
                     const colWidth = waterColumns[1].x - waterColumns[0].x;
@@ -2700,43 +2674,53 @@
                     return waterColumns[index].height * (1 - t) + waterColumns[nextIndex].height * t;
                 }
 
-                // Physics Time Tracking
                 let time = 0;
                 let lastTime = performance.now();
 
-                function animateWaterAndComicDots(now) {
-                    requestAnimationFrame(animateWaterAndComicDots);
+                function animateRealisticWater(now) {
+                    requestAnimationFrame(animateRealisticWater);
                     const dt = Math.min((now - lastTime) / 1000, 0.05);
                     lastTime = now;
                     time += dt;
 
-                    // 1. UPDATE REAL WATER SPRING-MASS PHYSICS
+                    // 1. UPDATE PRIMARY WATER SURFACE SPRING PHYSICS
                     for (let i = 0; i < waterColumns.length; i++) {
                         const col = waterColumns[i];
-                        // Gentle natural harmonic wave motion
-                        const ambientTide = Math.sin(col.x * 0.0016 + time * 0.75) * 20 + Math.cos(col.x * 0.003 - time * 0.45) * 10;
+                        // Gentle ambient harmonic tidal swell (smooth natural swell)
+                        const ambientTide = Math.sin(col.x * 0.0016 + time * 0.7) * 22 + Math.cos(col.x * 0.003 - time * 0.4) * 10;
                         const target = col.targetHeight + ambientTide;
 
-                        // Hooke's Law Spring Force with fluid inertia
                         const displacement = col.height - target;
                         const springForce = -TENSION * displacement - DAMPENING * col.velocity;
                         col.velocity += springForce * 60 * dt;
                         col.height += col.velocity * 60 * dt;
                     }
 
-                    // Spread wave displacement across neighboring columns (Laplacian Wave Propagation)
+                    // 2. UPDATE DEEP BACKGROUND WATER LAYER PHYSICS
+                    for (let i = 0; i < deepColumns.length; i++) {
+                        const dCol = deepColumns[i];
+                        const deepTide = Math.sin(dCol.x * 0.0018 + time * 0.55 + 1.2) * 26 + Math.cos(dCol.x * 0.0028 - time * 0.35) * 12;
+                        const dTarget = dCol.targetHeight + deepTide;
+
+                        const dDisplacement = dCol.height - dTarget;
+                        const dSpringForce = -(TENSION * 0.85) * dDisplacement - (DAMPENING * 1.1) * dCol.velocity;
+                        dCol.velocity += dSpringForce * 60 * dt;
+                        dCol.height += dCol.velocity * 60 * dt;
+                    }
+
+                    // 3. MULTI-PASS HYDRODYNAMIC WAVE SPREAD (Laplacian Wave Propagation)
                     const leftDeltas = new Array(waterColumns.length).fill(0);
                     const rightDeltas = new Array(waterColumns.length).fill(0);
 
-                    for (let passes = 0; passes < 6; passes++) {
+                    for (let passes = 0; passes < 7; passes++) {
                         for (let i = 0; i < waterColumns.length; i++) {
                             if (i > 0) {
                                 leftDeltas[i] = SPREAD * (waterColumns[i].height - waterColumns[i - 1].height);
-                                waterColumns[i - 1].velocity += leftDeltas[i] * 60 * dt * 0.28;
+                                waterColumns[i - 1].velocity += leftDeltas[i] * 60 * dt * 0.3;
                             }
                             if (i < waterColumns.length - 1) {
                                 rightDeltas[i] = SPREAD * (waterColumns[i].height - waterColumns[i + 1].height);
-                                waterColumns[i + 1].velocity += rightDeltas[i] * 60 * dt * 0.28;
+                                waterColumns[i + 1].velocity += rightDeltas[i] * 60 * dt * 0.3;
                             }
                         }
                         for (let i = 0; i < waterColumns.length; i++) {
@@ -2745,73 +2729,60 @@
                         }
                     }
 
-                    // 2. UPDATE COMIC DOTS (ONLY MANIPULATE ON DIRECT CURSOR TOUCH)
-                    const touchRadius = 45; // Physical direct touch threshold
-
-                    for (let i = 0; i < comicDots.length; i++) {
-                        const dot = comicDots[i];
-                        // Natural wave resting position
-                        const waterSurfaceY = getWaterHeightAt(dot.baseX);
-                        const targetAnchorY = waterSurfaceY + dot.baseYOffset;
-                        const targetAnchorX = dot.baseX;
-
-                        // Direct Physical Touch Collision with Cursor
-                        const distToMouse = Math.hypot(dot.x - mouseX, dot.y - mouseY);
-
-                        if (distToMouse < touchRadius && isMouseInside) {
-                            // Touch detected! Apply physical displacement impulse
-                            const touchFactor = (1 - distToMouse / touchRadius);
-                            const angle = Math.atan2(dot.y - mouseY, dot.x - mouseX);
-                            
-                            const pushForce = touchFactor * 14;
-                            dot.vx += Math.cos(angle) * pushForce;
-                            dot.vy += Math.sin(angle) * pushForce;
-
-                            dot.touchScale = 1.45; // Pop comic scale on touch
+                    // Spread for deep layer
+                    for (let passes = 0; passes < 4; passes++) {
+                        for (let i = 0; i < deepColumns.length; i++) {
+                            if (i > 0) {
+                                const ld = (SPREAD * 0.7) * (deepColumns[i].height - deepColumns[i - 1].height);
+                                deepColumns[i - 1].velocity += ld * 60 * dt * 0.25;
+                                deepColumns[i - 1].height += ld * 0.5;
+                            }
+                            if (i < deepColumns.length - 1) {
+                                const rd = (SPREAD * 0.7) * (deepColumns[i].height - deepColumns[i + 1].height);
+                                deepColumns[i + 1].velocity += rd * 60 * dt * 0.25;
+                                deepColumns[i + 1].height += rd * 0.5;
+                            }
                         }
-
-                        // Comic Elastic Spring Snap-back to Wave surface
-                        const springDistX = dot.x - targetAnchorX;
-                        const springDistY = dot.y - targetAnchorY;
-
-                        const springK = 0.055; // Snappy comic return
-                        const drag = 0.88;    // Viscous air drag
-
-                        dot.vx = (dot.vx - springK * springDistX) * drag;
-                        dot.vy = (dot.vy - springK * springDistY) * drag;
-
-                        dot.x += dot.vx * 60 * dt;
-                        dot.y += dot.vy * 60 * dt;
-
-                        // Smooth touch scale easing back to normal
-                        dot.touchScale += (1.0 - dot.touchScale) * 0.1;
                     }
 
-                    // 3. RENDER CANVASES & SHADERS
+                    // 4. RENDER LIQUID WATER LAYERS
                     ctx.fillStyle = '#ffffff';
                     ctx.fillRect(0, 0, width, height);
 
                     const curMode = modes[modeIndex];
 
-                    // Render Secondary Background Water Wave
+                    // Render Deep Background Water Wave
                     ctx.beginPath();
                     ctx.moveTo(0, height);
-                    for (let i = 0; i < waterColumns.length; i++) {
-                        const c = waterColumns[i];
-                        const secY = c.height - 40 + Math.sin(c.x * 0.002 + time * 0.6) * 14;
-                        if (i === 0) ctx.lineTo(c.x, secY);
-                        else ctx.lineTo(c.x, secY);
+                    ctx.lineTo(deepColumns[0].x, deepColumns[0].height);
+
+                    for (let i = 1; i < deepColumns.length - 1; i++) {
+                        const xc = (deepColumns[i].x + deepColumns[i + 1].x) / 2;
+                        const yc = (deepColumns[i].height + deepColumns[i + 1].height) / 2;
+                        ctx.quadraticCurveTo(deepColumns[i].x, deepColumns[i].height, xc, yc);
                     }
+                    ctx.lineTo(deepColumns[deepColumns.length - 1].x, deepColumns[deepColumns.length - 1].height);
                     ctx.lineTo(width, height);
                     ctx.closePath();
 
-                    const secGrad = ctx.createLinearGradient(0, height * 0.4, width, height);
-                    secGrad.addColorStop(0, curMode.secGradTop);
-                    secGrad.addColorStop(1, curMode.secGradBottom);
-                    ctx.fillStyle = secGrad;
+                    const deepGrad = ctx.createLinearGradient(0, height * 0.38, width, height);
+                    deepGrad.addColorStop(0, curMode.deepGradTop);
+                    deepGrad.addColorStop(1, curMode.deepGradBottom);
+                    ctx.fillStyle = deepGrad;
                     ctx.fill();
 
-                    // Render Primary Master Water Wave (Real Physics Curve)
+                    // Render Liquid Caustics Shimmer in the Water Body
+                    ctx.save();
+                    ctx.beginPath();
+                    for (let x = 0; x < width; x += 30) {
+                        const causticY = getWaterHeightAt(x) + 40 + Math.sin(x * 0.015 + time * 1.5) * 12;
+                        ctx.rect(x, causticY, 20, 3 + Math.sin(x * 0.02 + time * 2) * 2);
+                    }
+                    ctx.fillStyle = curMode.causticColor;
+                    ctx.fill();
+                    ctx.restore();
+
+                    // Render Primary Master Liquid Water Surface
                     ctx.beginPath();
                     ctx.moveTo(0, height);
                     ctx.lineTo(waterColumns[0].x, waterColumns[0].height);
@@ -2826,13 +2797,14 @@
                     ctx.lineTo(width, height);
                     ctx.closePath();
 
-                    const primGrad = ctx.createLinearGradient(0, height * 0.35, width, height);
-                    primGrad.addColorStop(0, curMode.gradTop);
-                    primGrad.addColorStop(1, curMode.gradBottom);
-                    ctx.fillStyle = primGrad;
+                    const surfGrad = ctx.createLinearGradient(0, height * 0.42, width, height);
+                    surfGrad.addColorStop(0, curMode.surfGradTop);
+                    surfGrad.addColorStop(1, curMode.surfGradBottom);
+                    ctx.fillStyle = surfGrad;
                     ctx.fill();
 
-                    // Water Surface Specular Crest Line
+                    // Render Specular Meniscus Glow & Light Crest
+                    ctx.save();
                     ctx.beginPath();
                     ctx.moveTo(waterColumns[0].x, waterColumns[0].height);
                     for (let i = 1; i < waterColumns.length - 1; i++) {
@@ -2840,35 +2812,26 @@
                         const yc = (waterColumns[i].height + waterColumns[i + 1].height) / 2;
                         ctx.quadraticCurveTo(waterColumns[i].x, waterColumns[i].height, xc, yc);
                     }
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
-                    ctx.lineWidth = 2.5;
+                    ctx.strokeStyle = curMode.crestColor;
+                    ctx.lineWidth = 3;
+                    ctx.shadowColor = '#ffffff';
+                    ctx.shadowBlur = 12;
                     ctx.stroke();
 
-                    // 4. RENDER COMIC HALFTONE POP DOTS (NO DNA STRINGS • PURE COMIC STYLE)
-                    for (let i = 0; i < comicDots.length; i++) {
-                        const dot = comicDots[i];
-                        const r = dot.baseRadius * dot.touchScale;
-
-                        ctx.save();
-                        ctx.beginPath();
-                        ctx.arc(dot.x, dot.y, r, 0, Math.PI * 2);
-                        ctx.fillStyle = dot.color;
-                        ctx.fill();
-
-                        // Crisp Comic Halftone Outline
-                        ctx.strokeStyle = dot.strokeColor;
-                        ctx.lineWidth = 1.0;
-                        ctx.stroke();
-
-                        // Subtle Comic Pop Glint
-                        ctx.beginPath();
-                        ctx.arc(dot.x - r * 0.25, dot.y - r * 0.25, r * 0.3, 0, Math.PI * 2);
-                        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-                        ctx.fill();
-                        ctx.restore();
+                    // Subtle secondary micro-shimmer line
+                    ctx.beginPath();
+                    ctx.moveTo(waterColumns[0].x, waterColumns[0].height + 3);
+                    for (let i = 1; i < waterColumns.length - 1; i++) {
+                        const xc = (waterColumns[i].x + waterColumns[i + 1].x) / 2;
+                        const yc = (waterColumns[i].height + waterColumns[i + 1].height) / 2 + 3;
+                        ctx.quadraticCurveTo(waterColumns[i].x, waterColumns[i].height + 3, xc, yc);
                     }
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                    ctx.restore();
                 }
-                requestAnimationFrame(animateWaterAndComicDots);
+                requestAnimationFrame(animateRealisticWater);
 
             })();
             </script>
