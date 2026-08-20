@@ -2207,36 +2207,30 @@
 
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
-        <!-- Landing Page Showcase Banner (100% AUTHENTIC 1080P SEAMLESS LIVE DRONE OCEAN & BOAT BANNER) -->
-        <div id="ocean-yacht-hero-banner" class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[720px] lg:min-h-[840px] bg-sky-950 text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(0,0,0,0.7)] transition-all duration-500 flex items-center justify-center py-6 sm:py-10 select-none border-y border-sky-400/20">
+        <!-- Landing Page Showcase Banner (3D ANIMATED HIGH-QUALITY MOTION GRAPHICS LIVE BANNER) -->
+        <div id="ocean-yacht-hero-banner" class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[720px] lg:min-h-[840px] bg-slate-950 text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(0,0,0,0.85)] transition-all duration-500 flex items-center justify-center py-6 sm:py-10 select-none border-y border-sky-400/20">
             
-            <!-- BACKGROUND LAYER 1: AUTHENTIC 1080P SEAMLESS LIVE DRONE OCEAN & BOAT VIDEO -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <video autoplay loop muted playsinline poster="assets/preview_speedboat.jpg" class="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.06] saturate-[1.12]" id="ocean-yacht-master-video">
-                    <source src="assets/live_ocean_yacht_loop_1080p.webm" type="video/webm">
-                    <source src="assets/live_ocean_yacht_loop_1080p.mp4" type="video/mp4">
-                    <source src="assets/aerial_speedboat_ocean_1440p.webm" type="video/webm">
-                </video>
+            <!-- BACKGROUND LAYER 1: 3D THREE.JS MOTION GRAPHICS WEBGL CANVAS -->
+            <canvas id="three-motion-graphics-canvas" class="absolute inset-0 w-full h-full object-cover z-0"></canvas>
 
-                <!-- High-Contrast Readability Gradient for Left-Aligned Hero Text -->
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none z-[1]"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/75 pointer-events-none z-[1]"></div>
-                
-                <!-- Radiant Sun Glow Flare on Clear Sky -->
-                <div class="absolute -top-10 right-[10%] w-[50vw] h-[50vw] max-w-[700px] max-height-[700px] bg-radial from-white/30 via-amber-200/10 to-transparent blur-3xl pointer-events-none z-[1] mix-blend-screen"></div>
-            </div>
+            <!-- High-Contrast Readability Gradient for Left-Aligned Hero Text -->
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/55 to-transparent pointer-events-none z-[1]"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/85 pointer-events-none z-[1]"></div>
+            
+            <!-- Ambient 3D Volumetric Glow Flares -->
+            <div class="absolute top-1/4 right-[15%] w-[45vw] h-[45vw] max-w-[650px] max-height-[650px] bg-radial from-cyan-500/20 via-indigo-600/10 to-transparent blur-3xl pointer-events-none z-[1] mix-blend-screen"></div>
 
             <!-- MAIN CONTENT CONTAINER (Left-Aligned Clean Hero Content) -->
-            <div class="relative z-10 w-full max-w-[1720px] px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between h-full pb-36 sm:pb-40 lg:pb-44 pt-12 sm:pt-16 gap-8 lg:gap-12">
+            <div class="relative z-10 w-full max-w-[1720px] px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between h-full pb-36 sm:pb-40 lg:pb-44 pt-12 sm:pt-16 gap-8 lg:gap-12 pointer-events-none">
                 
-                <!-- LEFT HERO HEADLINE & BADGES -->
-                <div class="w-full max-w-2xl flex flex-col justify-center text-left space-y-4 lg:space-y-5">
+                <!-- LEFT HERO HEADLINE & BADGES (Pointer Events Auto for Clicking) -->
+                <div class="w-full max-w-2xl flex flex-col justify-center text-left space-y-4 lg:space-y-5 pointer-events-auto">
                     
                     <!-- Top Brand Header Line -->
                     <div class="flex items-center gap-2">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-xl border border-white/40 text-[10px] sm:text-[11px] font-['Space_Grotesk'] font-bold tracking-[0.25em] text-white uppercase shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                            <span class="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-ping"></span>
-                            ☀️ AZURE HORIZON • HIGH-CONVERTING LANDING SYSTEMS
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-xl border border-cyan-400/30 text-[10px] sm:text-[11px] font-['Space_Grotesk'] font-bold tracking-[0.25em] text-cyan-300 uppercase shadow-[0_0_15px_rgba(6,182,212,0.25)]">
+                            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+                            ✦ 3D MOTION GRAPHICS • HIGH-CONVERTING LANDING SYSTEMS
                         </span>
                     </div>
 
@@ -2252,26 +2246,26 @@
 
                     <!-- Subtitle Description Paragraph -->
                     <div class="space-y-3 pt-1">
-                        <p class="text-xs sm:text-sm lg:text-base text-slate-100 font-['Plus_Jakarta_Sans',_sans-serif] font-normal leading-relaxed max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                        <p class="text-xs sm:text-sm lg:text-base text-slate-200 font-['Plus_Jakarta_Sans',_sans-serif] font-normal leading-relaxed max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
                             Curated collection of bespoke high-converting landing pages, SaaS web platforms, and luxury brand digital flagships engineered for <span class="italic font-serif text-cyan-200 text-sm sm:text-base underline decoration-cyan-300/60 decoration-1 underline-offset-2">maximum conversion velocity</span> and zero-latency scale.
                         </p>
                         
                         <!-- Clean System Metrics Badges Pill Bar -->
                         <div class="flex flex-wrap items-center gap-2 pt-1 text-[11px] font-['Space_Grotesk'] font-medium text-white">
-                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-sky-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-sky-300">
+                            <span class="px-3 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-xl border border-sky-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-sky-300">
                                 ⚡ SUB-10MS RENDER
                             </span>
-                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-cyan-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-cyan-300">
+                            <span class="px-3 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-xl border border-cyan-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-cyan-300">
                                 📈 +340% CONVERSION LIFT
                             </span>
-                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-indigo-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-indigo-300">
+                            <span class="px-3 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-xl border border-indigo-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-indigo-300">
                                 🛡️ ZERO CLS • 100 LIGHTHOUSE
                             </span>
                         </div>
 
                         <!-- CTA Actions -->
                         <div class="pt-3 flex items-center gap-3 sm:gap-4 flex-wrap">
-                            <a href="#grid-personal" class="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-white text-sky-950 font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.22em] font-extrabold hover:bg-sky-50 hover:text-sky-900 transition-all shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:shadow-white/60 active:scale-95">
+                            <a href="#grid-personal" class="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-white text-slate-950 font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.22em] font-extrabold hover:bg-cyan-50 hover:text-cyan-900 transition-all shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:shadow-cyan-400/50 active:scale-95">
                                 <span>Explore 12+ Landing Pages</span>
                                 <span class="material-symbols-outlined text-[16px]">south_east</span>
                             </a>
@@ -2280,11 +2274,11 @@
 
                 </div>
 
-                <!-- Left Hero Section (Clean, Spacious, Edge-to-Edge Video Visibility) -->
+                <!-- Right Hero Section: Clean 3D Viewport Interaction Area -->
             </div>
 
             <!-- VALUE PROPOSITION TEXT (Sophisticated Greyish Professional Theme) -->
-            <div class="absolute bottom-7 sm:bottom-9 lg:bottom-10 left-1/2 -translate-x-1/2 z-20 w-[94%] max-w-2xl text-center space-y-1.5 select-none px-4">
+            <div class="absolute bottom-7 sm:bottom-9 lg:bottom-10 left-1/2 -translate-x-1/2 z-20 w-[94%] max-w-2xl text-center space-y-1.5 select-none px-4 pointer-events-none">
                 <div class="inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-['Space_Grotesk'] font-medium tracking-[0.22em] text-slate-400 uppercase drop-shadow-sm">
                     <span class="text-slate-500">✦</span> HIGH-PERFORMANCE DIGITAL SHOWCASE
                 </div>
@@ -2296,22 +2290,272 @@
                 </p>
             </div>
 
-            <!-- CONTINUOUS AUTOPLAY ENFORCEMENT SCRIPT -->
+            <!-- THREE.JS HIGH-QUALITY 3D MOTION GRAPHICS ENGINE -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
             <script>
-            (function initMasterOceanVideo() {
-                const vid = document.getElementById('ocean-yacht-master-video');
-                if (vid) {
-                    vid.muted = true;
-                    const p = vid.play();
-                    if (p !== undefined) {
-                        p.catch(() => {
-                            const resume = () => { vid.play(); };
-                            document.addEventListener('touchstart', resume, { once: true });
-                            document.addEventListener('click', resume, { once: true });
-                            window.addEventListener('scroll', resume, { once: true });
-                        });
-                    }
+            (function initThreeMotionGraphicsBanner() {
+                const canvas = document.getElementById('three-motion-graphics-canvas');
+                if (!canvas || typeof THREE === 'undefined') return;
+
+                const container = document.getElementById('ocean-yacht-hero-banner');
+                let width = container.clientWidth || window.innerWidth;
+                let height = container.clientHeight || window.innerHeight;
+
+                // 1. Scene, Camera, Renderer
+                const scene = new THREE.Scene();
+                scene.fog = new THREE.FogExp2(0x020617, 0.018);
+
+                const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 1000);
+                camera.position.set(0, 14, 38);
+                camera.lookAt(0, 2, 0);
+
+                const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+                renderer.setSize(width, height);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                renderer.toneMapping = THREE.ACESFilmicToneMapping;
+                renderer.toneMappingExposure = 1.15;
+
+                // 2. 3D Procedural Undulating Ocean / Cyber Wave Mesh
+                const waveGeo = new THREE.PlaneGeometry(130, 85, 75, 55);
+                const waveMat = new THREE.MeshStandardMaterial({
+                    color: 0x071e3d,
+                    roughness: 0.25,
+                    metalness: 0.85,
+                    wireframe: false,
+                    flatShading: true
+                });
+                const waveMesh = new THREE.Mesh(waveGeo, waveMat);
+                waveMesh.rotation.x = -Math.PI / 2.3;
+                waveMesh.position.set(0, -6, -5);
+                scene.add(waveMesh);
+
+                // Wireframe Grid Overlay for High-Tech Motion Graphics Aesthetic
+                const wireMat = new THREE.MeshBasicMaterial({
+                    color: 0x06b6d4,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.22
+                });
+                const wireMesh = new THREE.Mesh(waveGeo, wireMat);
+                wireMesh.rotation.x = -Math.PI / 2.3;
+                wireMesh.position.set(0, -5.95, -5);
+                scene.add(wireMesh);
+
+                const posAttr = waveGeo.attributes.position;
+                const origZ = new Float32Array(posAttr.count);
+                for (let i = 0; i < posAttr.count; i++) {
+                    origZ[i] = posAttr.getZ(i);
                 }
+
+                // 3. 3D Floating Glassmorphic UI Viewport Monoliths
+                function createUIMonolith(title, colorHex, xPos, yPos, zPos, rotY) {
+                    const group = new THREE.Group();
+
+                    // Glass panel
+                    const panelGeo = new THREE.BoxGeometry(10, 6.2, 0.35);
+                    const panelMat = new THREE.MeshPhysicalMaterial({
+                        color: 0x0f172a,
+                        roughness: 0.15,
+                        metalness: 0.1,
+                        transmission: 0.6,
+                        opacity: 0.85,
+                        transparent: true,
+                        reflectivity: 0.9,
+                        clearcoat: 1.0,
+                        clearcoatRoughness: 0.1
+                    });
+                    const panel = new THREE.Mesh(panelGeo, panelMat);
+                    group.add(panel);
+
+                    // Glowing Edges
+                    const edgesGeo = new THREE.EdgesGeometry(panelGeo);
+                    const edgesMat = new THREE.LineBasicMaterial({ color: colorHex, linewidth: 2, transparent: true, opacity: 0.75 });
+                    const edges = new THREE.LineSegments(edgesGeo, edgesMat);
+                    group.add(edges);
+
+                    // Dynamic UI Canvas Texture
+                    const uiCanvas = document.createElement('canvas');
+                    uiCanvas.width = 512;
+                    uiCanvas.height = 320;
+                    const uctx = uiCanvas.getContext('2d');
+                    
+                    // Render UI graphics
+                    uctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
+                    uctx.fillRect(0, 0, 512, 320);
+
+                    // Header bar
+                    uctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+                    uctx.fillRect(0, 0, 512, 45);
+                    uctx.fillStyle = '#ef4444'; uctx.beginPath(); uctx.arc(25, 22, 6, 0, Math.PI*2); uctx.fill();
+                    uctx.fillStyle = '#eab308'; uctx.beginPath(); uctx.arc(45, 22, 6, 0, Math.PI*2); uctx.fill();
+                    uctx.fillStyle = '#22c55e'; uctx.beginPath(); uctx.arc(65, 22, 6, 0, Math.PI*2); uctx.fill();
+
+                    // Title
+                    uctx.fillStyle = '#ffffff';
+                    uctx.font = 'bold 20px sans-serif';
+                    uctx.fillText(title, 90, 30);
+
+                    // Chart / UI Layout
+                    uctx.strokeStyle = '#38bdf8';
+                    uctx.lineWidth = 4;
+                    uctx.beginPath();
+                    uctx.moveTo(30, 240);
+                    uctx.bezierCurveTo(120, 180, 220, 260, 320, 120);
+                    uctx.bezierCurveTo(380, 80, 430, 110, 480, 70);
+                    uctx.stroke();
+
+                    // Chart Glow Area
+                    uctx.lineTo(480, 270);
+                    uctx.lineTo(30, 270);
+                    uctx.closePath();
+                    const grad = uctx.createLinearGradient(0, 70, 0, 270);
+                    grad.addColorStop(0, 'rgba(56, 189, 248, 0.35)');
+                    grad.addColorStop(1, 'rgba(56, 189, 248, 0)');
+                    uctx.fillStyle = grad;
+                    uctx.fill();
+
+                    // UI Metric Badges
+                    uctx.fillStyle = 'rgba(255,255,255,0.06)';
+                    uctx.roundRect ? uctx.roundRect(30, 65, 130, 55, 8) : uctx.fillRect(30, 65, 130, 55);
+                    uctx.fill();
+                    uctx.fillStyle = '#38bdf8';
+                    uctx.font = 'bold 22px sans-serif';
+                    uctx.fillText('+340%', 45, 98);
+                    uctx.fillStyle = '#94a3b8';
+                    uctx.font = '12px sans-serif';
+                    uctx.fillText('CONVERSION', 45, 114);
+
+                    const uiTexture = new THREE.CanvasTexture(uiCanvas);
+                    const uiFaceGeo = new THREE.PlaneGeometry(9.7, 5.9);
+                    const uiFaceMat = new THREE.MeshBasicMaterial({ map: uiTexture, transparent: true, opacity: 0.95 });
+                    const uiFace = new THREE.Mesh(uiFaceGeo, uiFaceMat);
+                    uiFace.position.z = 0.18;
+                    group.add(uiFace);
+
+                    group.position.set(xPos, yPos, zPos);
+                    group.rotation.y = rotY;
+                    scene.add(group);
+
+                    return group;
+                }
+
+                const monoliths = [
+                    createUIMonolith('SaaS Conversion Core', 0x38bdf8, 12, 4.5, 2, -0.32),
+                    createUIMonolith('Luxury Digital Flagship', 0x818cf8, 17, 7.5, -7, -0.42),
+                    createUIMonolith('AI Automation Flow', 0x22d3ee, 7, 0.5, 8, -0.22)
+                ];
+
+                // 4. 3D Particle Cloud (Kinetic Starfield & Cyber Dust)
+                const particleCount = 900;
+                const particleGeo = new THREE.BufferGeometry();
+                const particlePos = new Float32Array(particleCount * 3);
+                const particleScales = new Float32Array(particleCount);
+
+                for (let i = 0; i < particleCount; i++) {
+                    particlePos[i * 3] = (Math.random() - 0.5) * 110;
+                    particlePos[i * 3 + 1] = Math.random() * 45 - 5;
+                    particlePos[i * 3 + 2] = (Math.random() - 0.5) * 80;
+                    particleScales[i] = Math.random() * 2.5 + 0.5;
+                }
+
+                particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+
+                const particleMat = new THREE.PointsMaterial({
+                    color: 0x67e8f9,
+                    size: 0.35,
+                    transparent: true,
+                    opacity: 0.65,
+                    blending: THREE.AdditiveBlending
+                });
+                const particles = new THREE.Points(particleGeo, particleMat);
+                scene.add(particles);
+
+                // 5. Dynamic 3D Lights
+                const ambientLight = new THREE.AmbientLight(0x0f172a, 1.8);
+                scene.add(ambientLight);
+
+                const dirLight = new THREE.DirectionalLight(0xffffff, 1.4);
+                dirLight.position.set(-15, 30, 20);
+                scene.add(dirLight);
+
+                const cyanPoint = new THREE.PointLight(0x06b6d4, 3.5, 60);
+                cyanPoint.position.set(10, 8, 10);
+                scene.add(cyanPoint);
+
+                const purplePoint = new THREE.PointLight(0x818cf8, 3.0, 60);
+                purplePoint.position.set(-15, 6, 5);
+                scene.add(purplePoint);
+
+                // 6. Interactive Mouse Parallax Tracking
+                let mouseX = 0, mouseY = 0;
+                let targetX = 0, targetY = 0;
+
+                window.addEventListener('mousemove', (e) => {
+                    const rect = container.getBoundingClientRect();
+                    if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                        mouseX = ((e.clientX - rect.left) / width - 0.5) * 2;
+                        mouseY = -((e.clientY - rect.top) / height - 0.5) * 2;
+                    }
+                });
+
+                // Resize handler
+                function onResize() {
+                    width = container.clientWidth || window.innerWidth;
+                    height = container.clientHeight || window.innerHeight;
+                    camera.aspect = width / height;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(width, height);
+                }
+                window.addEventListener('resize', onResize);
+
+                // 7. Render Loop (60/120/240 FPS)
+                let clock = new THREE.Clock();
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    const time = clock.getElapsedTime();
+
+                    // Smooth Camera Parallax Lerp
+                    targetX += (mouseX * 4.5 - targetX) * 0.04;
+                    targetY += (mouseY * 2.5 - targetY) * 0.04;
+                    camera.position.x = targetX;
+                    camera.position.y = 14 + targetY;
+                    camera.lookAt(targetX * 0.3, 2, 0);
+
+                    // Wave Mesh Vertex Deformation (Hydrodynamic 3D Ocean Waves)
+                    for (let i = 0; i < posAttr.count; i++) {
+                        const vx = posAttr.getX(i);
+                        const vy = posAttr.getY(i);
+                        const z = Math.sin(vx * 0.12 + time * 1.8) * 2.2 +
+                                  Math.cos(vy * 0.15 + time * 1.4) * 1.8 +
+                                  Math.sin((vx + vy) * 0.08 + time * 2.2) * 1.2;
+                        posAttr.setZ(i, origZ[i] + z);
+                    }
+                    posAttr.needsUpdate = true;
+                    waveGeo.computeVertexNormals();
+
+                    // Monoliths 3D Floating & Bobbing Motion
+                    monoliths.forEach((m, idx) => {
+                        m.position.y += Math.sin(time * 1.5 + idx * 2.0) * 0.012;
+                        m.rotation.y += Math.sin(time * 0.8 + idx) * 0.002;
+                        m.rotation.z = Math.sin(time * 1.2 + idx) * 0.02;
+                    });
+
+                    // Orbiting Lights
+                    cyanPoint.position.x = 10 + Math.sin(time * 0.9) * 8;
+                    cyanPoint.position.z = 10 + Math.cos(time * 0.9) * 8;
+
+                    purplePoint.position.x = -12 + Math.cos(time * 0.7) * 7;
+                    purplePoint.position.z = 5 + Math.sin(time * 0.7) * 7;
+
+                    // Particle Drift
+                    particles.rotation.y = time * 0.03;
+                    particles.rotation.x = Math.sin(time * 0.02) * 0.05;
+
+                    renderer.render(scene, camera);
+                }
+                animate();
+
             })();
             </script>
         </div>
