@@ -2207,28 +2207,372 @@
 
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
-        <!-- Landing Page Showcase Banner (Ultra-Premium Dark Sapphire & Indigo 8K Theme) -->
-        <div class="category-banner dark-banner w-full min-h-[380px] sm:min-h-[480px] lg:min-h-[580px] rounded-none overflow-hidden relative mb-12 sm:mb-16 lg:mb-20 shadow-[0_16px_50px_rgba(15,23,42,0.25)] group border-y border-slate-900 bg-slate-950 transition-all duration-500">
-            <img alt="Landing Page Showcase Banner" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-[1.03] transition-transform duration-700 ease-out select-none z-0" src="assets/landing_pages_colored_banner.jpg">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 sm:via-slate-950/40 to-transparent z-10"></div>
-            <div class="relative z-20 px-6 sm:px-12 lg:px-20 py-10 sm:py-16 w-full h-full flex flex-col justify-center items-start">
-                <div class="relative pl-6 sm:pl-10 lg:pl-12 space-y-4 sm:space-y-6 max-w-3xl">
-                    <!-- Short blue accent line -->
-                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-28 sm:h-36 bg-sky-400 rounded-full"></div>
-                    <h3 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white dark:text-white tracking-tight leading-[1.05] font-['Outfit']">
-                        Landing Page Showcase & <br class="hidden sm:inline">
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-300 to-purple-400 font-serif italic font-normal">Conversion Systems</span>
-                    </h3>
-                    <p class="text-xs sm:text-base lg:text-lg text-slate-300 font-sans font-medium max-w-xl leading-relaxed">
-                        Curated collection of high-converting landing pages, SaaS web applications, and luxury brand digital interfaces engineered for scale.
-                    </p>
-                    <div class="pt-3 flex items-center gap-3 sm:gap-4 flex-wrap">
-                        <a href="#grid-personal" class="inline-flex items-center gap-2.5 px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-gradient-to-r from-sky-50 to-indigo-600 text-white font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.22em] font-extrabold hover:from-sky-600 hover:to-indigo-700 transition-all shadow-md hover:shadow-sky-500/25 active:scale-95">
-                            Explore Showcase ↘
-                        </a>
+        <!-- Landing Page Showcase Banner (100% Fullscreen 4K LIVE INTERACTIVE QUANTUM PRISM & CONVERSION SYSTEMS BANNER) -->
+        <div id="quantum-prism-hero-banner" class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[720px] lg:min-h-[840px] bg-slate-950 text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(0,0,0,0.7)] transition-all duration-500 flex items-center justify-center py-6 sm:py-10 select-none border-y border-indigo-500/20">
+            
+            <!-- BACKGROUND LAYER 1: 4K Ultra-HD Prismatic Crystal Backdrop (Breathing Slow Parallax) -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                <img id="quantum-prism-bg-img" src="assets/quantum_prism_banner_4k.jpg" alt="4K Quantum Prism Showcase" class="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.08] saturate-[1.15] scale-[1.02] transition-transform duration-1000 ease-out" />
+                <!-- Vignette & High-Contrast Readability Gradient for Left-Aligned Hero Text -->
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-slate-950/30 pointer-events-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/80 pointer-events-none"></div>
+                <!-- Ambient Violet & Cyan Nebula Glows -->
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none animate-pulse" style="animation-duration: 8s;"></div>
+                <div class="absolute bottom-1/3 right-1/4 w-[30rem] h-[30rem] bg-indigo-600/15 rounded-full blur-[120px] pointer-events-none animate-pulse" style="animation-duration: 10s;"></div>
+            </div>
+
+            <!-- BACKGROUND LAYER 2: INTERACTIVE 4K QUANTUM PRISM, LASER THREADS & PHOTON PARTICLES CANVAS -->
+            <canvas id="quantum-prism-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[2]"></canvas>
+
+            <!-- BACKGROUND LAYER 3: DYNAMIC OPTICAL LENS FLARES & CAUSTIC LIGHT SWEEP CANVAS -->
+            <canvas id="quantum-flare-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[3] mix-blend-screen"></canvas>
+
+            <!-- MAIN CONTENT CONTAINER (Grid Split: Left Hero Headline + Right Holographic Telemetry HUD) -->
+            <div class="relative z-10 w-full max-w-[1720px] px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between h-full pb-36 sm:pb-40 lg:pb-44 pt-12 sm:pt-16 gap-8 lg:gap-12">
+                
+                <!-- LEFT HERO HEADLINE & BADGES -->
+                <div class="w-full max-w-2xl flex flex-col justify-center text-left space-y-4 lg:space-y-5">
+                    
+                    <!-- Top Brand Header Line -->
+                    <div class="flex items-center gap-2">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[10px] sm:text-[11px] font-['Space_Grotesk'] font-bold tracking-[0.25em] text-cyan-300 uppercase shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+                            ✦ 4K QUANTUM CONVERSION ARCHITECTURE
+                        </span>
+                    </div>
+
+                    <!-- Main Display Headline -->
+                    <div class="space-y-0.5 relative font-['Outfit',_sans-serif]">
+                        <h3 class="text-4xl sm:text-6xl lg:text-7xl xl:text-[76px] font-extrabold text-white tracking-tight leading-[0.95] drop-shadow-[0_10px_25px_rgba(0,0,0,0.95)]">
+                            Landing Page <br class="hidden sm:inline">Showcase &
+                        </h3>
+                        <h2 class="text-4xl sm:text-6xl lg:text-7xl xl:text-[78px] font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-200 to-purple-300 tracking-tight leading-[0.95] drop-shadow-[0_10px_28px_rgba(99,102,241,0.5)]">
+                            Conversion Systems
+                        </h2>
+                    </div>
+
+                    <!-- Subtitle Description Paragraph -->
+                    <div class="space-y-3 pt-1">
+                        <p class="text-xs sm:text-sm lg:text-base text-slate-200 font-['Plus_Jakarta_Sans',_sans-serif] font-normal leading-relaxed max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                            Curated collection of bespoke high-converting landing pages, SaaS web platforms, and luxury brand digital flagships engineered for <span class="italic font-serif text-cyan-300 text-sm sm:text-base underline decoration-cyan-400/60 decoration-1 underline-offset-2">maximum conversion velocity</span> and zero-latency scale.
+                        </p>
+                        
+                        <!-- Clean System Metrics Badges Pill Bar -->
+                        <div class="flex flex-wrap items-center gap-2 pt-1 text-[11px] font-['Space_Grotesk'] font-medium text-white">
+                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-cyan-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-cyan-300">
+                                ⚡ SUB-10MS RENDER
+                            </span>
+                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-indigo-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-indigo-300">
+                                📈 +340% CONVERSION LIFT
+                            </span>
+                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-purple-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-purple-300">
+                                🛡️ ZERO CLS • 100 LIGHTHOUSE
+                            </span>
+                        </div>
+
+                        <!-- CTA Actions -->
+                        <div class="pt-3 flex items-center gap-3 sm:gap-4 flex-wrap">
+                            <a href="#grid-personal" class="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.22em] font-extrabold hover:from-cyan-400 hover:to-indigo-500 transition-all shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:shadow-cyan-400/60 active:scale-95">
+                                <span>Explore 12+ Landing Pages</span>
+                                <span class="material-symbols-outlined text-[16px]">south_east</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT HOLOGRAPHIC TELEMETRY HUD CARD (Desktop / Tablet) -->
+                <div class="hidden md:flex flex-col gap-4 w-full max-w-sm shrink-0">
+                    <div class="relative p-6 rounded-3xl bg-slate-900/60 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden group hover:border-cyan-400/50 transition-all duration-300">
+                        <!-- Ambient gradient accent -->
+                        <div class="absolute -top-12 -right-12 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl group-hover:bg-cyan-500/30 transition-all"></div>
+                        
+                        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span class="text-[10px] font-['Space_Grotesk'] font-bold tracking-widest text-slate-300 uppercase">SYSTEM STATUS</span>
+                            </div>
+                            <span class="text-[9px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded-md border border-cyan-800/40">4K OPTIMIZED</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <div class="space-y-1">
+                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-400 uppercase tracking-wider">Conversion Velocity</div>
+                                <div class="text-2xl font-extrabold text-white font-['Outfit'] flex items-center gap-1">
+                                    <span>+284%</span>
+                                    <span class="text-emerald-400 text-xs font-mono font-normal">↑</span>
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-400 uppercase tracking-wider">Edge Latency</div>
+                                <div class="text-2xl font-extrabold text-cyan-300 font-['Outfit'] flex items-center gap-1">
+                                    <span>8.4ms</span>
+                                    <span class="text-cyan-400 text-xs font-mono font-normal">avg</span>
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-400 uppercase tracking-wider">Core Web Vitals</div>
+                                <div class="text-2xl font-extrabold text-emerald-300 font-['Outfit']">
+                                    100/100
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-400 uppercase tracking-wider">A/B Engine</div>
+                                <div class="text-sm font-bold text-indigo-300 font-mono pt-1 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> ACTIVE
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                            <span>INTERACTIVE MOUSE WARP</span>
+                            <span class="text-cyan-300">240 FPS READY</span>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
+            <!-- VALUE PROPOSITION TEXT (Soft Non-Bold, Elegant Subtle Transparency) -->
+            <div class="absolute bottom-20 sm:bottom-24 lg:bottom-26 left-1/2 -translate-x-1/2 z-20 w-[94%] max-w-2xl text-center space-y-1 select-none px-4">
+                <div class="inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-['Space_Grotesk'] font-normal tracking-[0.25em] text-cyan-400/90 uppercase drop-shadow-sm">
+                    <span>✦</span> HIGH-PERFORMANCE DIGITAL SHOWCASE
+                </div>
+                <h4 class="text-[11px] sm:text-xs lg:text-[13px] font-['Outfit',_sans-serif] font-normal tracking-[0.03em] [word-spacing:0.12em] text-white/90 leading-snug drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                    Engineered To Turn Passive Visitors Into High-Value Customers.
+                </h4>
+                <p class="text-[10px] sm:text-[11px] text-slate-300/80 font-['Plus_Jakarta_Sans',_sans-serif] font-normal leading-relaxed [word-spacing:0.15em] tracking-[0.02em] drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                    Every pixel, layout flow, and interactive element is designed with behavioral psychology and speed benchmarks — <span class="text-cyan-300 font-normal">delivering world-class aesthetics that elevate brand authority and drive sustainable revenue.</span>
+                </p>
+            </div>
+
+            <!-- FLOATING SEE-THROUGH TRANSPARENT CRYSTAL GLASS SOCIAL DOCK (Compact Bottom Center) -->
+            <div class="absolute bottom-5 sm:bottom-6 lg:bottom-7 left-1/2 -translate-x-1/2 z-20 px-4 sm:px-5 py-1.5 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/30 shadow-[0_8px_32px_0_rgba(0,0,0,0.35),inset_0_1px_1px_0_rgba(255,255,255,0.35)] flex items-center justify-center gap-2.5 sm:gap-3.5 text-white">
+                <!-- X (Twitter) -->
+                <a href="https://x.com" target="_blank" aria-label="X (Twitter)" class="w-7 h-7 rounded-full flex items-center justify-center text-white hover:text-cyan-300 hover:bg-white/20 hover:scale-110 transition-all drop-shadow-md" title="X (Twitter)">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                
+                <span class="w-px h-3 bg-white/25"></span>
+
+                <!-- Algora.ai / Web -->
+                <a href="https://algora.ai" target="_blank" aria-label="Algora.ai" class="w-7 h-7 rounded-full flex items-center justify-center text-white hover:text-cyan-300 hover:bg-white/20 hover:scale-110 transition-all drop-shadow-md" title="Algora.ai">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </a>
+
+                <span class="w-px h-3 bg-white/25"></span>
+
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="w-7 h-7 rounded-full flex items-center justify-center text-white hover:text-blue-400 hover:bg-white/20 hover:scale-110 transition-all drop-shadow-md" title="LinkedIn">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                    </svg>
+                </a>
+
+                <span class="w-px h-3 bg-white/25"></span>
+
+                <!-- GitHub -->
+                <a href="https://github.com" target="_blank" aria-label="GitHub" class="w-7 h-7 rounded-full flex items-center justify-center text-white hover:text-white hover:bg-white/20 hover:scale-110 transition-all drop-shadow-md" title="GitHub">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- LIVE HTML5 240 FPS QUANTUM PRISM & LASER CAUSTIC ENGINE -->
+            <script>
+            (function initQuantumPrismEngine() {
+                // 1. Quantum Prism Particle Mesh Canvas
+                const pCanvas = document.getElementById('quantum-prism-canvas');
+                const fCanvas = document.getElementById('quantum-flare-canvas');
+                if (!pCanvas || !fCanvas) return;
+
+                const pCtx = pCanvas.getContext('2d');
+                const fCtx = fCanvas.getContext('2d');
+                let width = 0, height = 0;
+                let mouseX = -2000, mouseY = -2000;
+                let targetMouseX = -2000, targetMouseY = -2000;
+                let animTime = 0;
+
+                function resizeCanvases() {
+                    const rect = pCanvas.getBoundingClientRect();
+                    width = pCanvas.width = fCanvas.width = rect.width || window.innerWidth;
+                    height = pCanvas.height = fCanvas.height = rect.height || window.innerHeight;
+                }
+                resizeCanvases();
+                window.addEventListener('resize', resizeCanvases);
+
+                // Track mouse/touch for interactive gravitational warping
+                const heroBanner = document.getElementById('quantum-prism-hero-banner');
+                if (heroBanner) {
+                    heroBanner.addEventListener('mousemove', (e) => {
+                        const rect = heroBanner.getBoundingClientRect();
+                        targetMouseX = e.clientX - rect.left;
+                        targetMouseY = e.clientY - rect.top;
+                    });
+                    heroBanner.addEventListener('mouseleave', () => {
+                        targetMouseX = -2000;
+                        targetMouseY = -2000;
+                    });
+                    heroBanner.addEventListener('touchmove', (e) => {
+                        if (e.touches && e.touches[0]) {
+                            const rect = heroBanner.getBoundingClientRect();
+                            targetMouseX = e.touches[0].clientX - rect.left;
+                            targetMouseY = e.touches[0].clientY - rect.top;
+                        }
+                    }, { passive: true });
+                }
+
+                // 140 Floating Chromatic Crystal Nodes & Quantum Photons
+                const isMobile = window.innerWidth < 768;
+                const PARTICLE_COUNT = isMobile ? 65 : 140;
+                const particles = [];
+
+                const colors = [
+                    'rgba(56, 189, 248, ',   // Cyan / Sky
+                    'rgba(129, 140, 248, ',  // Indigo
+                    'rgba(192, 132, 252, ',  // Purple / Violet
+                    'rgba(244, 114, 182, ',  // Pink / Magenta
+                    'rgba(255, 255, 255, '   // Pure White
+                ];
+
+                for (let i = 0; i < PARTICLE_COUNT; i++) {
+                    particles.push({
+                        x: Math.random() * (width || window.innerWidth),
+                        y: Math.random() * (height || window.innerHeight),
+                        vx: (Math.random() - 0.5) * 0.8,
+                        vy: (Math.random() - 0.5) * 0.8,
+                        size: 1.2 + Math.random() * 3.5,
+                        colorBase: colors[Math.floor(Math.random() * colors.length)],
+                        alphaPhase: Math.random() * Math.PI * 2,
+                        alphaSpeed: 0.02 + Math.random() * 0.04,
+                        isCrystalShard: Math.random() > 0.65,
+                        rotation: Math.random() * Math.PI * 2,
+                        rotSpeed: (Math.random() - 0.5) * 0.03
+                    });
+                }
+
+                // 3 Anamorphic Sweeping Laser Rays
+                const laserBeams = [
+                    { angle: -0.65, speed: 0.008, color: 'rgba(56, 189, 248, 0.25)', width: 4 },
+                    { angle: 0.75, speed: -0.006, color: 'rgba(168, 85, 247, 0.22)', width: 5 },
+                    { angle: 0.25, speed: 0.010, color: 'rgba(236, 72, 153, 0.18)', width: 3 }
+                ];
+
+                function renderQuantumEngine() {
+                    pCtx.clearRect(0, 0, width, height);
+                    fCtx.clearRect(0, 0, width, height);
+                    animTime += 0.016;
+
+                    // Smooth mouse easing
+                    mouseX += (targetMouseX - mouseX) * 0.08;
+                    mouseY += (targetMouseY - mouseY) * 0.08;
+
+                    // 1. Draw Anamorphic Sweeping Laser Rays on Flare Canvas
+                    fCtx.save();
+                    fCtx.translate(width * 0.55, height * 0.5);
+                    laserBeams.forEach((beam) => {
+                        const curAngle = beam.angle + Math.sin(animTime * beam.speed * 40) * 0.15;
+                        fCtx.save();
+                        fCtx.rotate(curAngle);
+                        
+                        const beamGrad = fCtx.createLinearGradient(-width, 0, width, 0);
+                        beamGrad.addColorStop(0, 'rgba(0,0,0,0)');
+                        beamGrad.addColorStop(0.3, beam.color);
+                        beamGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.6)');
+                        beamGrad.addColorStop(0.7, beam.color);
+                        beamGrad.addColorStop(1, 'rgba(0,0,0,0)');
+                        
+                        fCtx.fillStyle = beamGrad;
+                        fCtx.fillRect(-width, -beam.width * 0.5, width * 2, beam.width);
+                        fCtx.restore();
+                    });
+                    fCtx.restore();
+
+                    // 2. Update & Draw Particles + Interconnecting Laser Mesh Threads
+                    for (let i = 0; i < particles.length; i++) {
+                        const p = particles[i];
+
+                        // Interactive Gravitational Warp around cursor
+                        const dx = mouseX - p.x;
+                        const dy = mouseY - p.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 220) {
+                            const force = (1 - dist / 220) * 0.9;
+                            p.vx += (dx / dist) * force * 0.25;
+                            p.vy += (dy / dist) * force * 0.25;
+                        }
+
+                        // Apply velocities with soft damping
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.vx *= 0.985;
+                        p.vy *= 0.985;
+                        p.rotation += p.rotSpeed;
+                        p.alphaPhase += p.alphaSpeed;
+
+                        // Screen Wrap
+                        if (p.x < -20) p.x = width + 20;
+                        if (p.x > width + 20) p.x = -20;
+                        if (p.y < -20) p.y = height + 20;
+                        if (p.y > height + 20) p.y = -20;
+
+                        const alpha = (Math.sin(p.alphaPhase) + 1) * 0.4 + 0.2;
+
+                        // Draw Particle
+                        pCtx.save();
+                        pCtx.translate(p.x, p.y);
+                        pCtx.rotate(p.rotation);
+
+                        if (p.isCrystalShard) {
+                            // 3D Diamond / Faceted Crystal Shard
+                            pCtx.beginPath();
+                            pCtx.moveTo(0, -p.size * 2);
+                            pCtx.lineTo(p.size * 1.5, 0);
+                            pCtx.lineTo(0, p.size * 2);
+                            pCtx.lineTo(-p.size * 1.5, 0);
+                            pCtx.closePath();
+                            pCtx.fillStyle = p.colorBase + alpha + ')';
+                            pCtx.shadowColor = p.colorBase + '0.9)';
+                            pCtx.shadowBlur = 10;
+                            pCtx.fill();
+                        } else {
+                            // Glowing Quantum Photon Mote
+                            pCtx.beginPath();
+                            pCtx.arc(0, 0, p.size, 0, Math.PI * 2);
+                            pCtx.fillStyle = p.colorBase + alpha + ')';
+                            pCtx.shadowColor = p.colorBase + '0.8)';
+                            pCtx.shadowBlur = 8;
+                            pCtx.fill();
+                        }
+                        pCtx.restore();
+
+                        // Connect nearby particles with laser filaments (Laser Mesh)
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const p2 = particles[j];
+                            const pDist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                            const maxDist = isMobile ? 80 : 120;
+                            if (pDist < maxDist) {
+                                const lineAlpha = (1 - pDist / maxDist) * 0.35;
+                                pCtx.beginPath();
+                                pCtx.moveTo(p.x, p.y);
+                                pCtx.lineTo(p2.x, p2.y);
+                                pCtx.strokeStyle = 'rgba(99, 102, 241, ' + lineAlpha + ')';
+                                pCtx.lineWidth = 0.8;
+                                pCtx.stroke();
+                            }
+                        }
+                    }
+
+                    requestAnimationFrame(renderQuantumEngine);
+                }
+                renderQuantumEngine();
+            })();
+            </script>
         </div>
         
         <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
