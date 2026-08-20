@@ -2450,41 +2450,45 @@
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
         <!-- ═══════════════════════════════════════════════════════════════════════
-             TRUE 3D WEBGL EXPLODING COLLECTION MATRIX & 3D ORBITAL RAIL (WATCH-STYLE 3D)
+             LUMINOUS LIGHT 3D WEBGL EXPLODING COLLECTION MATRIX (PORCELAIN & TITANIUM)
              ═══════════════════════════════════════════════════════════════════════ -->
-        <div id="algora-collection-hero-banner" class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[860px] sm:h-[920px] lg:h-[980px] bg-[#05060a] text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_30px_90px_rgba(0,0,0,0.98)] select-none border-y border-purple-500/20">
+        <div id="algora-collection-hero-banner" class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[860px] sm:h-[920px] lg:h-[980px] bg-[#f0f3f9] text-slate-900 overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_20px_60px_rgba(0,0,0,0.08)] select-none border-y border-[#cbd5e1]">
             
-            <!-- MASTER 3D THREE.JS WEBGL CANVAS (FULL VIEWPORT 3D ENGINE) -->
+            <!-- MASTER 3D THREE.JS WEBGL CANVAS (LIGHT SCENE) -->
             <canvas id="algora-collection-webgl-canvas" class="absolute inset-0 w-full h-full object-cover z-0 cursor-grab active:cursor-grabbing"></canvas>
 
-            <!-- Gradient Vignette & Atmospheric Fog Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-t from-[#05060a] via-transparent to-[#05060a]/80 pointer-events-none z-[1]"></div>
-            <div class="absolute inset-0 bg-radial from-transparent via-[#05060a]/30 to-[#05060a]/90 pointer-events-none z-[1]"></div>
+            <!-- Luminous Atmospheric Vignette & Studio Light Overlays -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#f0f3f9] via-transparent to-[#f0f3f9]/85 pointer-events-none z-[1]"></div>
+            <div class="absolute inset-0 bg-radial from-transparent via-[#f0f3f9]/20 to-[#f0f3f9]/80 pointer-events-none z-[1]"></div>
+            
+            <!-- Soft Prismatic Light Flare Blooms -->
+            <div class="absolute -top-24 left-1/4 w-[550px] h-[550px] rounded-full bg-purple-300/25 blur-[120px] pointer-events-none z-[1]"></div>
+            <div class="absolute -bottom-24 right-1/4 w-[550px] h-[550px] rounded-full bg-cyan-300/25 blur-[120px] pointer-events-none z-[1]"></div>
 
             <!-- TOP HUD & BRAND HEADER OVERLAY -->
             <div class="absolute top-8 sm:top-12 left-0 right-0 z-10 max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 pointer-events-none">
                 <div class="space-y-2 pointer-events-auto">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-900/30 backdrop-blur-xl border border-purple-400/40 text-[10px] sm:text-xs font-mono tracking-widest text-purple-300 uppercase shadow-[0_0_20px_rgba(168,85,247,0.3)]">
-                        <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
-                        <span>✦ 3D WEBGL SPATIAL MATRIX &bull; EXPLODING COLLECTION SYSTEM</span>
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-xl border border-purple-300/80 text-[10px] sm:text-xs font-mono tracking-widest text-purple-700 uppercase shadow-xs font-bold">
+                        <span class="w-2 h-2 rounded-full bg-purple-600 animate-ping"></span>
+                        <span>✦ 3D SPATIAL MATRIX &bull; PORCELAIN &amp; TITANIUM COLLECTION</span>
                     </div>
-                    <h2 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight text-white leading-none">
-                        Kinetic 3D Collection <br>
-                        <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-cyan-200 to-amber-200">Flagships in Motion</span>
+                    <h2 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight text-[#0f172a] leading-none">
+                        Kinetic 3D Showcase <br>
+                        <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-cyan-700">Flagships in Motion</span>
                     </h2>
                 </div>
 
                 <!-- 3D INTERACTIVE CONTROL HUD -->
                 <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pointer-events-auto">
-                    <button id="webgl-explode-btn" class="px-5 py-2.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(168,85,247,0.4)] active:scale-95 flex items-center gap-2 cursor-pointer">
+                    <button id="webgl-explode-btn" class="px-5 py-2.5 rounded-full bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-[0_4px_16px_rgba(124,58,237,0.3)] active:scale-95 flex items-center gap-2 cursor-pointer">
                         <span id="webgl-explode-icon">💥</span>
                         <span id="webgl-explode-text">EXPLODE 3D FACES</span>
                     </button>
-                    <button id="webgl-speed-btn" class="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono font-semibold text-xs tracking-wider transition-all active:scale-95 flex items-center gap-2 cursor-pointer backdrop-blur-xl">
+                    <button id="webgl-speed-btn" class="px-4 py-2.5 rounded-full bg-white/90 hover:bg-white border border-[#cbd5e1] text-[#0f172a] font-mono font-bold text-xs tracking-wider transition-all active:scale-95 flex items-center gap-2 cursor-pointer backdrop-blur-xl shadow-xs">
                         <span>⚡</span>
                         <span id="webgl-speed-text">1X ORBIT SPEED</span>
                     </button>
-                    <a href="start-project.html" class="px-5 py-2.5 rounded-full bg-white text-slate-950 font-mono font-bold text-xs uppercase tracking-wider transition-all hover:bg-neutral-100 shadow-md active:scale-95 hidden sm:inline-flex items-center gap-2">
+                    <a href="start-project.html" class="px-5 py-2.5 rounded-full bg-[#000000] hover:bg-[#1e293b] text-white font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 hidden sm:inline-flex items-center gap-2">
                         <span>START PROJECT</span>
                         <span>&rarr;</span>
                     </a>
@@ -2492,27 +2496,27 @@
             </div>
 
             <!-- BOTTOM TELEMETRY & INSTRUCTION STRIP -->
-            <div class="absolute bottom-6 sm:bottom-8 left-0 right-0 z-10 max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-400 pointer-events-none select-none">
+            <div class="absolute bottom-6 sm:bottom-8 left-0 right-0 z-10 max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#475569] pointer-events-none select-none">
                 <div class="flex items-center gap-4">
-                    <span class="flex items-center gap-1.5 text-emerald-400">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="flex items-center gap-1.5 text-emerald-700 font-bold">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
                         <span>120.0 FPS &bull; WEBGL 2.0 SPATIAL</span>
                     </span>
-                    <span class="hidden md:inline text-neutral-600">|</span>
-                    <span class="hidden md:inline text-neutral-400">DRAG MOUSE TO ORBIT 3D SCENE &bull; CLICK ANY 3D CARD TO OPEN PROJECT</span>
+                    <span class="hidden md:inline text-slate-400">|</span>
+                    <span class="hidden md:inline text-[#475569] font-medium">DRAG MOUSE TO ORBIT 3D SCENE &bull; CLICK ANY 3D CARD TO OPEN PROJECT</span>
                 </div>
                 <div class="inline-flex items-center gap-3">
-                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-cyan-300">8 FLAGSHIPS LIVE</span>
-                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-purple-300">REAL-TIME SHADERS</span>
+                    <span class="px-3 py-1 rounded-full bg-white/80 border border-[#cbd5e1] text-cyan-800 font-bold shadow-xs">8 FLAGSHIPS LIVE</span>
+                    <span class="px-3 py-1 rounded-full bg-white/80 border border-[#cbd5e1] text-purple-800 font-bold shadow-xs">PORCELAIN SHADERS</span>
                 </div>
             </div>
 
             <!-- ═══════════════════════════════════════════════════════════════════
-                 THREE.JS 3D WEBGL EXPLODING & ORBITAL CONVEYOR ENGINE (WATCH-GRADE)
+                 THREE.JS 3D WEBGL ENGINE (LIGHT PORCELAIN & TITANIUM WATCH THEME)
                  ═══════════════════════════════════════════════════════════════════ -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
             <script>
-            (function initWatchGrade3DExplosionBanner() {
+            (function initLightMode3DExplosionBanner() {
                 const canvas = document.getElementById('algora-collection-webgl-canvas');
                 if (!canvas || typeof THREE === 'undefined') return;
 
@@ -2520,9 +2524,9 @@
                 let width = container.clientWidth || window.innerWidth;
                 let height = container.clientHeight || window.innerHeight;
 
-                // 1. Scene, Camera, High-Precision WebGL Renderer
+                // 1. Scene, Camera, High-Precision WebGL Renderer (Light Background)
                 const scene = new THREE.Scene();
-                scene.fog = new THREE.FogExp2(0x05060a, 0.014);
+                scene.fog = new THREE.FogExp2(0xf0f3f9, 0.012);
 
                 const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
                 camera.position.set(0, 4, 38);
@@ -2531,33 +2535,34 @@
                 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
                 renderer.setSize(width, height);
                 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                renderer.setClearColor(0xf0f3f9, 1);
                 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-                renderer.toneMappingExposure = 1.25;
+                renderer.toneMappingExposure = 1.15;
 
-                // 2. High-Tech Dynamic Texture Generator for 3D Cards
-                function createCardTexture(title, subtitle, category, colorHex, accentHex, badge, hasChart) {
+                // 2. High-Tech Dynamic Texture Generator for Light Cards
+                function createLightCardTexture(title, subtitle, category, colorHex, badge, hasChart) {
                     const c = document.createElement('canvas');
                     c.width = 512;
                     c.height = 680;
                     const ctx = c.getContext('2d');
 
-                    // Base background with subtle gradient
+                    // Crisp Pearl Alabaster Background
                     const bgGrad = ctx.createLinearGradient(0, 0, 512, 680);
-                    bgGrad.addColorStop(0, '#10121c');
-                    bgGrad.addColorStop(1, '#07080f');
+                    bgGrad.addColorStop(0, '#ffffff');
+                    bgGrad.addColorStop(1, '#f8fafc');
                     ctx.fillStyle = bgGrad;
                     ctx.fillRect(0, 0, 512, 680);
 
-                    // Decorative Metallic Border Glow
-                    ctx.strokeStyle = colorHex;
-                    ctx.lineWidth = 8;
-                    ctx.strokeRect(10, 10, 492, 660);
+                    // Soft Hairline Metallic Border
+                    ctx.strokeStyle = '#cbd5e1';
+                    ctx.lineWidth = 6;
+                    ctx.strokeRect(8, 8, 496, 664);
 
                     // Top Status Pill
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
+                    ctx.fillStyle = '#f1f5f9';
                     ctx.roundRect ? ctx.roundRect(35, 35, 442, 50, 25) : ctx.fillRect(35, 35, 442, 50);
                     ctx.fill();
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                    ctx.strokeStyle = '#e2e8f0';
                     ctx.lineWidth = 2;
                     ctx.stroke();
 
@@ -2565,31 +2570,31 @@
                     ctx.font = 'bold 18px monospace';
                     ctx.fillText(category.toUpperCase(), 55, 66);
 
-                    ctx.fillStyle = '#ffffff';
+                    ctx.fillStyle = '#0f172a';
                     ctx.font = 'bold 16px monospace';
-                    ctx.fillText(badge, 410, 66);
+                    ctx.fillText(badge, 405, 66);
 
                     // Title
-                    ctx.fillStyle = '#ffffff';
+                    ctx.fillStyle = '#0f172a';
                     ctx.font = 'bold 36px serif';
                     ctx.fillText(title, 35, 140);
 
                     // Subtitle
-                    ctx.fillStyle = '#94a3b8';
+                    ctx.fillStyle = '#475569';
                     ctx.font = '20px sans-serif';
                     ctx.fillText(subtitle, 35, 178);
 
                     // Center Interactive Graphic Box
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+                    ctx.fillStyle = '#f8fafc';
                     ctx.roundRect ? ctx.roundRect(35, 210, 442, 340, 20) : ctx.fillRect(35, 210, 442, 340);
                     ctx.fill();
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+                    ctx.strokeStyle = '#e2e8f0';
                     ctx.stroke();
 
                     if (hasChart) {
-                        // Dynamic Neon Waveform Chart
+                        // Dynamic High-Contrast Waveform Chart
                         ctx.strokeStyle = colorHex;
-                        ctx.lineWidth = 5;
+                        ctx.lineWidth = 6;
                         ctx.beginPath();
                         ctx.moveTo(55, 480);
                         ctx.bezierCurveTo(150, 360, 260, 520, 360, 300);
@@ -2597,7 +2602,7 @@
                         ctx.stroke();
 
                         const cGrad = ctx.createLinearGradient(0, 270, 0, 520);
-                        cGrad.addColorStop(0, colorHex + '55');
+                        cGrad.addColorStop(0, colorHex + '33');
                         cGrad.addColorStop(1, 'transparent');
                         ctx.fillStyle = cGrad;
                         ctx.lineTo(455, 520);
@@ -2605,12 +2610,12 @@
                         ctx.closePath();
                         ctx.fill();
 
-                        ctx.fillStyle = '#ffffff';
+                        ctx.fillStyle = '#0f172a';
                         ctx.font = 'bold 32px monospace';
                         ctx.fillText('+340% VELOCITY', 60, 265);
                     } else {
                         // High-Craft Monogram Crest
-                        ctx.fillStyle = colorHex + '22';
+                        ctx.fillStyle = colorHex + '18';
                         ctx.beginPath();
                         ctx.arc(256, 380, 75, 0, Math.PI * 2);
                         ctx.fill();
@@ -2625,41 +2630,41 @@
                         ctx.textAlign = 'left';
                     }
 
-                    // Bottom Action Strip
-                    ctx.fillStyle = accentHex;
+                    // Bottom Action Strip (Crisp Solid Black Button)
+                    ctx.fillStyle = '#0f172a';
                     ctx.roundRect ? ctx.roundRect(35, 580, 442, 60, 15) : ctx.fillRect(35, 580, 442, 60);
                     ctx.fill();
 
-                    ctx.fillStyle = '#000000';
+                    ctx.fillStyle = '#ffffff';
                     ctx.font = 'bold 20px monospace';
                     ctx.fillText('VIEW LIVE PROJECT  ➔', 110, 618);
 
                     return new THREE.CanvasTexture(c);
                 }
 
-                // 3. Central Exploding 3D Monolith Stack (3 Master Faces)
+                // 3. Central Exploding 3D Monolith Stack (3 Master Faces in Light Porcelain)
                 const masterGroup = new THREE.Group();
                 scene.add(masterGroup);
                 masterGroup.position.set(0, 2.5, 0);
 
                 const cardGeo = new THREE.BoxGeometry(6.4, 8.8, 0.45);
 
-                function create3DMonolithMesh(tex, edgeColorHex, url) {
+                function create3DLightMonolithMesh(tex, edgeColorHex, url) {
                     const materials = [
-                        new THREE.MeshStandardMaterial({ color: 0x1e202e, metalness: 0.85, roughness: 0.2 }), // right
-                        new THREE.MeshStandardMaterial({ color: 0x1e202e, metalness: 0.85, roughness: 0.2 }), // left
-                        new THREE.MeshStandardMaterial({ color: 0x1e202e, metalness: 0.85, roughness: 0.2 }), // top
-                        new THREE.MeshStandardMaterial({ color: 0x1e202e, metalness: 0.85, roughness: 0.2 }), // bottom
-                        new THREE.MeshStandardMaterial({ map: tex, metalness: 0.4, roughness: 0.3, emissive: 0x050510 }), // front
-                        new THREE.MeshStandardMaterial({ color: 0x0a0b12, metalness: 0.9, roughness: 0.1 })  // back
+                        new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.4, roughness: 0.15 }), // right
+                        new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.4, roughness: 0.15 }), // left
+                        new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.4, roughness: 0.15 }), // top
+                        new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.4, roughness: 0.15 }), // bottom
+                        new THREE.MeshStandardMaterial({ map: tex, metalness: 0.15, roughness: 0.2 }), // front
+                        new THREE.MeshStandardMaterial({ color: 0xf8fafc, metalness: 0.3, roughness: 0.2 })  // back
                     ];
 
                     const mesh = new THREE.Mesh(cardGeo, materials);
                     mesh.userData = { url: url, baseScale: 1.0 };
 
-                    // Glowing Edges
+                    // Subtle Hairline Edges
                     const edgesGeo = new THREE.EdgesGeometry(cardGeo);
-                    const edgesMat = new THREE.LineBasicMaterial({ color: edgeColorHex, linewidth: 2, transparent: true, opacity: 0.85 });
+                    const edgesMat = new THREE.LineBasicMaterial({ color: edgeColorHex, linewidth: 2, transparent: true, opacity: 0.9 });
                     const edges = new THREE.LineSegments(edgesGeo, edgesMat);
                     mesh.add(edges);
 
@@ -2667,16 +2672,16 @@
                 }
 
                 // Face 1: Aesthete Studio (Left Wing)
-                const tex1 = createCardTexture('Aesthete Studio', 'Editorial Luxury & Architecture', '01 • Luxury Craft', '#a855f7', '#d8b4fe', '120 FPS', false);
-                const mesh1 = create3DMonolithMesh(tex1, 0xa855f7, 'aesthete.html');
+                const tex1 = createLightCardTexture('Aesthete Studio', 'Editorial Luxury & Architecture', '01 • Luxury Craft', '#7c3aed', '120 FPS', false);
+                const mesh1 = create3DLightMonolithMesh(tex1, 0x7c3aed, 'aesthete.html');
 
                 // Face 2: BloomFi Banking (Center Core)
-                const tex2 = createCardTexture('BloomFi Banking', 'FinTech Liquidity & Digital Wallet', '02 • FinTech Engine', '#06b6d4', '#67e8f9', 'CORE', true);
-                const mesh2 = create3DMonolithMesh(tex2, 0x06b6d4, 'bloomfi.html');
+                const tex2 = createLightCardTexture('BloomFi Banking', 'FinTech Liquidity & Digital Wallet', '02 • FinTech Engine', '#0284c7', 'CORE', true);
+                const mesh2 = create3DLightMonolithMesh(tex2, 0x0284c7, 'bloomfi.html');
 
                 // Face 3: Lumina AI Studio (Right Wing)
-                const tex3 = createCardTexture('Lumina AI Studio', 'Generative Prompt Synthesis & Shaders', '03 • Gen AI Lab', '#f59e0b', '#fcd34d', 'SHADERS', false);
-                const mesh3 = create3DMonolithMesh(tex3, 0xf59e0b, 'lumina.html');
+                const tex3 = createLightCardTexture('Lumina AI Studio', 'Generative Prompt Synthesis & Shaders', '03 • Gen AI Lab', '#d97706', 'SHADERS', false);
+                const mesh3 = create3DLightMonolithMesh(tex3, 0xd97706, 'lumina.html');
 
                 masterGroup.add(mesh1);
                 masterGroup.add(mesh2);
@@ -2684,21 +2689,21 @@
 
                 const interactiveMeshes = [mesh1, mesh2, mesh3];
 
-                // 4. 3D Curved Orbital Conveyor Rail Track (8 Floating 3D Cards in Deep Space)
+                // 4. 3D Curved Orbital Conveyor Rail Track (8 Floating 3D Cards in Light Space)
                 const railGroup = new THREE.Group();
                 scene.add(railGroup);
                 railGroup.position.set(0, -6.5, -4);
 
                 const railCardGeo = new THREE.BoxGeometry(4.2, 5.8, 0.25);
                 const railProjects = [
-                    { title: 'Mamaearth', sub: 'E-Commerce Scale', cat: 'Store', color: '#10b981', accent: '#6ee7b7', badge: 'PRO', chart: false, url: 'mamaearth.html' },
-                    { title: 'JurisLexicon', sub: 'Legal Intelligence', cat: 'Tech', color: '#6366f1', accent: '#a5b4fc', badge: 'NLP', chart: false, url: 'jurislexicon-dark.html' },
-                    { title: 'Valura Real Estate', sub: '3D Spatial Estates', cat: 'Spatial', color: '#ec4899', accent: '#fbcfe8', badge: '3D', chart: true, url: 'valura.html' },
-                    { title: 'Vanya Safari', sub: 'Nature Eco-Retreat', cat: 'Hospitality', color: '#eab308', accent: '#fef08a', badge: 'ECO', chart: false, url: 'vanya-lodge.html' },
-                    { title: 'VantagePoint', sub: 'Telemetry Analytics', cat: 'Analytics', color: '#14b8a6', accent: '#99f6e4', badge: 'OPS', chart: true, url: 'vantagepoint.html' },
-                    { title: 'Aesthete Luxury', sub: 'Editorial Monolith', cat: 'Design', color: '#a855f7', accent: '#e9d5ff', badge: '120FPS', chart: false, url: 'aesthete.html' },
-                    { title: 'BloomFi Core', sub: 'Multi-Currency Flow', cat: 'Banking', color: '#06b6d4', accent: '#a5f3fc', badge: 'CORE', chart: true, url: 'bloomfi.html' },
-                    { title: 'Lumina Shaders', sub: 'Real-Time GPU Canvas', cat: 'AI Studio', color: '#f59e0b', accent: '#fde68a', badge: 'GPU', chart: false, url: 'lumina.html' }
+                    { title: 'Mamaearth', sub: 'E-Commerce Scale', cat: 'Store', color: '#059669', badge: 'PRO', chart: false, url: 'mamaearth.html' },
+                    { title: 'JurisLexicon', sub: 'Legal Intelligence', cat: 'Tech', color: '#4f46e5', badge: 'NLP', chart: false, url: 'jurislexicon-dark.html' },
+                    { title: 'Valura Real Estate', sub: '3D Spatial Estates', cat: 'Spatial', color: '#db2777', badge: '3D', chart: true, url: 'valura.html' },
+                    { title: 'Vanya Safari', sub: 'Nature Eco-Retreat', cat: 'Hospitality', color: '#ca8a04', badge: 'ECO', chart: false, url: 'vanya-lodge.html' },
+                    { title: 'VantagePoint', sub: 'Telemetry Analytics', cat: 'Analytics', color: '#0d9488', badge: 'OPS', chart: true, url: 'vantagepoint.html' },
+                    { title: 'Aesthete Luxury', sub: 'Editorial Monolith', cat: 'Design', color: '#7c3aed', badge: '120FPS', chart: false, url: 'aesthete.html' },
+                    { title: 'BloomFi Core', sub: 'Multi-Currency Flow', cat: 'Banking', color: '#0284c7', badge: 'CORE', chart: true, url: 'bloomfi.html' },
+                    { title: 'Lumina Shaders', sub: 'Real-Time GPU Canvas', cat: 'AI Studio', color: '#d97706', badge: 'GPU', chart: false, url: 'lumina.html' }
                 ];
 
                 const railMeshes = [];
@@ -2707,20 +2712,20 @@
                 const railCount = railProjects.length;
 
                 railProjects.forEach((p, idx) => {
-                    const tex = createCardTexture(p.title, p.sub, p.cat, p.color, p.accent, p.badge, p.chart);
+                    const tex = createLightCardTexture(p.title, p.sub, p.cat, p.color, p.badge, p.chart);
                     const mat = [
-                        new THREE.MeshStandardMaterial({ color: 0x151722 }),
-                        new THREE.MeshStandardMaterial({ color: 0x151722 }),
-                        new THREE.MeshStandardMaterial({ color: 0x151722 }),
-                        new THREE.MeshStandardMaterial({ color: 0x151722 }),
-                        new THREE.MeshStandardMaterial({ map: tex, roughness: 0.3, metalness: 0.4 }),
-                        new THREE.MeshStandardMaterial({ color: 0x0a0b12 })
+                        new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.3, roughness: 0.2 }),
+                        new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.3, roughness: 0.2 }),
+                        new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.3, roughness: 0.2 }),
+                        new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.3, roughness: 0.2 }),
+                        new THREE.MeshStandardMaterial({ map: tex, roughness: 0.2, metalness: 0.15 }),
+                        new THREE.MeshStandardMaterial({ color: 0xf8fafc, metalness: 0.2, roughness: 0.2 })
                     ];
                     const mesh = new THREE.Mesh(railCardGeo, mat);
                     mesh.userData = { url: p.url, baseScale: 1.0, angleOffset: (idx / railCount) * Math.PI * 2 };
 
                     const edgesGeo = new THREE.EdgesGeometry(railCardGeo);
-                    const edgesMat = new THREE.LineBasicMaterial({ color: p.color, linewidth: 1.5, transparent: true, opacity: 0.7 });
+                    const edgesMat = new THREE.LineBasicMaterial({ color: p.color, linewidth: 1.5, transparent: true, opacity: 0.8 });
                     mesh.add(new THREE.LineSegments(edgesGeo, edgesMat));
 
                     railGroup.add(mesh);
@@ -2728,8 +2733,8 @@
                     interactiveMeshes.push(mesh);
                 });
 
-                // 5. Ambient 3D Starfield & Space Dust
-                const starCount = 1200;
+                // 5. Floating Prismatic Micro-Particles (Soft Violet & Cyan Dust)
+                const starCount = 900;
                 const starGeo = new THREE.BufferGeometry();
                 const starPos = new Float32Array(starCount * 3);
                 for (let i = 0; i < starCount * 3; i += 3) {
@@ -2738,23 +2743,27 @@
                     starPos[i + 2] = (Math.random() - 0.5) * 80;
                 }
                 starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-                const starMat = new THREE.PointsMaterial({ size: 0.28, color: 0x93c5fd, transparent: true, opacity: 0.65, blending: THREE.AdditiveBlending });
+                const starMat = new THREE.PointsMaterial({ size: 0.32, color: 0x818cf8, transparent: true, opacity: 0.5 });
                 const stars = new THREE.Points(starGeo, starMat);
                 scene.add(stars);
 
-                // 6. Dynamic Colored Point Lights for Specular Metallic Glints
-                const ambLight = new THREE.AmbientLight(0x0f172a, 1.8);
+                // 6. High-Key Studio Lighting (Bright Ambient + Directional Sun + Specular Lights)
+                const ambLight = new THREE.AmbientLight(0xffffff, 2.2);
                 scene.add(ambLight);
 
-                const purpleLight = new THREE.PointLight(0xa855f7, 4.5, 70);
+                const sunLight = new THREE.DirectionalLight(0xffffff, 1.8);
+                sunLight.position.set(-15, 30, 25);
+                scene.add(sunLight);
+
+                const purpleLight = new THREE.PointLight(0x8b5cf6, 3.0, 70);
                 purpleLight.position.set(-14, 8, 12);
                 scene.add(purpleLight);
 
-                const cyanLight = new THREE.PointLight(0x06b6d4, 4.0, 70);
+                const cyanLight = new THREE.PointLight(0x06b6d4, 2.5, 70);
                 cyanLight.position.set(14, 8, 12);
                 scene.add(cyanLight);
 
-                const amberLight = new THREE.PointLight(0xf59e0b, 3.5, 70);
+                const amberLight = new THREE.PointLight(0xf59e0b, 2.0, 70);
                 amberLight.position.set(0, -6, 16);
                 scene.add(amberLight);
 
