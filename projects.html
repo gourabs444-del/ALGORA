@@ -2502,7 +2502,28 @@
                         <span>&darr;</span>
                     </a>
                 </div>
-(function initHyperRealisticWaterEngine() {
+            </div>
+
+            <!-- BOTTOM ULTRA-TECH TELEMETRY STRIP -->
+            <div class="relative z-10 max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-16 w-full pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500 pointer-events-none select-none">
+                <div class="flex items-center gap-4 pointer-events-auto">
+                    <span class="flex items-center gap-2 text-blue-700 font-bold">
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse"></span>
+                        <span>120.0 FPS &bull; SILKY FLUID MOTION</span>
+                    </span>
+                    <span class="hidden md:inline text-slate-300">|</span>
+                    <span class="hidden md:inline text-slate-600 font-medium">MOVE MOUSE OR SCROLL TO MANIPULATE FLUID SURFACE</span>
+                </div>
+                <div class="inline-flex items-center gap-3 pointer-events-auto">
+                    <span class="px-4 py-1.5 rounded-full bg-white/90 border border-blue-200 text-blue-800 font-bold shadow-xs">AI GENERATIVE WAITING PARTICLES</span>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════════
+                 HYPER-REALISTIC FLUID WATER & AI WAITING DOTS ENGINE
+                 ═══════════════════════════════════════════════════════════════════ -->
+            <script>
+            (function initHyperRealisticWaterEngine() {
                 const canvas = document.getElementById('algora-aurora-canvas');
                 if (!canvas) return;
                 const ctx = canvas.getContext('2d');
