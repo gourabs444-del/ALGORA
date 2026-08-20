@@ -150,6 +150,118 @@
                 box-shadow: 0 0 0 4.5px #38bdf8, 0 15px 40px rgba(56, 189, 248, 0.60);
             }
         }
+
+        /* Ultra High Quality Search Bar & Capsule Button */
+        .premium-search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 9999px;
+            box-shadow: 
+                0 2px 8px -1px rgba(15, 23, 42, 0.05),
+                0 1px 2px 0 rgba(15, 23, 42, 0.03),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dark .premium-search-box {
+            background: rgba(15, 23, 42, 0.85);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                0 4px 20px -2px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .premium-search-box:focus-within {
+            border-color: #0284c7 !important;
+            background: #ffffff !important;
+            box-shadow: 
+                0 0 0 3.5px rgba(2, 132, 199, 0.18),
+                0 8px 24px -4px rgba(2, 132, 199, 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+        }
+
+        .dark .premium-search-box:focus-within {
+            border-color: #38bdf8 !important;
+            background: #0f172a !important;
+            box-shadow: 
+                0 0 0 3.5px rgba(56, 189, 248, 0.22),
+                0 10px 30px -4px rgba(56, 189, 248, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+        }
+
+        .premium-search-input {
+            width: 100%;
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #0f172a;
+        }
+
+        .dark .premium-search-input {
+            color: #f8fafc;
+        }
+
+        .premium-search-capsule-btn {
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 2px 10px rgba(2, 132, 199, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
+        }
+
+        .premium-search-capsule-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transition: transform 0.6s ease;
+        }
+
+        .premium-search-capsule-btn:hover {
+            transform: translateY(-50%) scale(1.04);
+            box-shadow: 
+                0 4px 18px rgba(37, 99, 235, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 50%, #4338ca 100%);
+        }
+
+        .premium-search-capsule-btn:hover::before {
+            transform: translateX(200%);
+        }
+
+        .premium-search-capsule-btn:active {
+            transform: translateY(-50%) scale(0.96);
+        }
     </style>
 </head>
 <body class="bg-background text-on-background antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
@@ -234,10 +346,11 @@
 
 <!-- Trailing Actions (Search Bar with Dedicated Button & Real-time + Enter execution) -->
 <div class="flex items-center gap-2 sm:gap-4 shrink-0">
-<div class="relative w-44 sm:w-80">
-    <span class="material-symbols-outlined absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-[16px] sm:text-[18px] pointer-events-none">search</span>
-    <input type="text" id="landing-search-input" placeholder="Search pages..." class="w-full bg-surface-container-low border border-outline-variant/40 focus:border-primary text-on-surface text-xs font-body-md pl-8 sm:pl-10 pr-20 py-1.5 sm:py-2 rounded-full outline-none transition-all placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary shadow-sm"/>
-    <button id="landing-search-btn" type="button" class="absolute right-1 top-1/2 -translate-y-1/2 bg-primary hover:bg-slate-800 text-on-primary px-3 py-1 sm:py-1.5 rounded-full flex items-center justify-center text-[10px] sm:text-[11px] font-bold font-mono uppercase tracking-wider transition-all active:scale-95 shadow-sm cursor-pointer" title="Search">
+<div class="premium-search-box relative w-48 sm:w-80 lg:w-96 flex items-center">
+    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-sky-600 dark:text-sky-400 font-bold pointer-events-none text-[18px]">search</span>
+    <input type="text" id="landing-search-input" placeholder="Search landing pages..." class="premium-search-input py-2 pl-9 pr-24 text-xs sm:text-[13px]" autocomplete="off"/>
+    <button id="landing-search-btn" type="button" class="premium-search-capsule-btn" title="Search">
+        <span class="text-[11px]">⚡</span>
         <span>Search</span>
     </button>
 </div>
@@ -677,5 +790,16 @@
                 performSearch(true);
             });
         }
+
+        // Global Keyboard Shortcut (Cmd+K / Ctrl+K)
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                if (searchInput) {
+                    searchInput.focus();
+                    searchInput.select();
+                }
+            }
+        });
     </script>
 </body></html>

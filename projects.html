@@ -628,6 +628,178 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
   }
 
+  /* =========================================================================
+     ULTRA HIGH-QUALITY SEARCH BAR & CAPSULE BUTTON (Apple / Linear Grade)
+     ========================================================================= */
+  .premium-search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 9999px;
+      box-shadow: 
+          0 2px 8px -1px rgba(15, 23, 42, 0.05),
+          0 1px 2px 0 rgba(15, 23, 42, 0.03),
+          inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark .premium-search-box {
+      background: rgba(15, 23, 42, 0.85);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 
+          0 4px 20px -2px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .premium-search-box:focus-within {
+      border-color: #0284c7 !important;
+      background: #ffffff !important;
+      box-shadow: 
+          0 0 0 3.5px rgba(2, 132, 199, 0.18),
+          0 8px 24px -4px rgba(2, 132, 199, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  }
+
+  .dark .premium-search-box:focus-within {
+      border-color: #38bdf8 !important;
+      background: #0f172a !important;
+      box-shadow: 
+          0 0 0 3.5px rgba(56, 189, 248, 0.22),
+          0 10px 30px -4px rgba(56, 189, 248, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  }
+
+  .premium-search-input {
+      width: 100%;
+      background: transparent !important;
+      border: none !important;
+      outline: none !important;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+  }
+
+  .dark .premium-search-input {
+      color: #f8fafc;
+  }
+
+  .premium-search-input::placeholder {
+      color: #94a3b8;
+      font-weight: 450;
+  }
+
+  /* High Quality Capsule Search Button */
+  .premium-search-capsule-btn {
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 
+          0 2px 10px rgba(2, 132, 199, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+  }
+
+  .premium-search-capsule-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transition: transform 0.6s ease;
+  }
+
+  .premium-search-capsule-btn:hover {
+      transform: translateY(-50%) scale(1.04);
+      box-shadow: 
+          0 4px 18px rgba(37, 99, 235, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 50%, #4338ca 100%);
+  }
+
+  .premium-search-capsule-btn:hover::before {
+      transform: translateX(200%);
+  }
+
+  .premium-search-capsule-btn:active {
+      transform: translateY(-50%) scale(0.96);
+  }
+
+  /* Clear Button */
+  .premium-search-clear-btn {
+      position: absolute;
+      right: 90px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(148, 163, 184, 0.18);
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.2s ease;
+  }
+
+  .premium-search-clear-btn:hover {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      transform: translateY(-50%) scale(1.1);
+  }
+
+  /* Keyboard Shortcut Kbd Tag */
+  .premium-search-kbd {
+      position: absolute;
+      right: 92px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 1px;
+      padding: 2px 6px;
+      font-size: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 700;
+      color: #94a3b8;
+      background: rgba(15, 23, 42, 0.05);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 6px;
+      pointer-events: none;
+      user-select: none;
+      transition: opacity 0.2s ease;
+  }
+
+  .dark .premium-search-kbd {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #64748b;
+  }
+
   /* Iframe preview styles matching landing-pages.html */
   .iframe-preview-container {
       width: 100%;
@@ -784,14 +956,16 @@
     
     <!-- Right Group: Search + Tabs + Notifications -->
     <div class="flex items-center gap-4 sm:gap-6 ml-auto overflow-x-auto flex-nowrap py-1 pr-2 lg:pr-0 custom-scrollbar">
-        <!-- Search Bar with Capsule Search Button -->
-        <div class="relative w-48 sm:w-72 lg:w-80 flex-shrink-0 hidden md:block">
-            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary font-bold pointer-events-none text-[19px]">search</span>
-            <input id="search-input" class="w-full bg-surface-container dark:bg-slate-800 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-full py-2 sm:py-2.5 pl-10 pr-24 text-body-sm dark:text-slate-200 transition-all outline-none focus:ring-4 focus:ring-primary/10 shadow-xs" placeholder="Search your library..." type="text">
-            <button id="search-clear" type="button" class="absolute right-20 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden p-1">
-                <span class="material-symbols-outlined text-[17px]">close</span>
+        <!-- Ultra High Quality Search Bar with Luxury Capsule Button & Shortcut -->
+        <div class="premium-search-box relative w-56 sm:w-80 lg:w-96 flex-shrink-0 hidden md:flex">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-sky-600 dark:text-sky-400 font-bold pointer-events-none text-[20px] transition-transform duration-300">search</span>
+            <input id="search-input" class="premium-search-input py-2.5 pl-10 pr-28 text-xs sm:text-[13px]" placeholder="Search library, projects, tags..." type="text" autocomplete="off" spellcheck="false">
+            <kbd class="premium-search-kbd hidden xl:inline-flex" id="search-kbd-hint">⌘K</kbd>
+            <button id="search-clear" type="button" class="premium-search-clear-btn hidden" title="Clear search">
+                <span class="material-symbols-outlined text-[15px]">close</span>
             </button>
-            <button id="search-submit-btn" type="button" class="absolute right-1.5 top-1/2 -translate-y-1/2 px-3.5 py-1 rounded-full bg-primary hover:bg-primary/90 text-white text-[11px] font-bold font-mono tracking-wider uppercase flex items-center gap-1 shadow-sm transition-all active:scale-95 cursor-pointer">
+            <button id="search-submit-btn" type="button" class="premium-search-capsule-btn">
+                <span class="text-[12px]">⚡</span>
                 <span>Search</span>
             </button>
         </div>
@@ -871,14 +1045,15 @@
                 <span>Get Started</span>
                 <span class="material-symbols-outlined text-[18px] font-black">arrow_forward</span>
             </button>
-            <!-- Mobile Search Bar (Only visible on mobile/tablet) with Capsule Search Button -->
-            <div class="relative w-full max-w-md md:hidden" id="mobile-search-container">
-                <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary font-bold pointer-events-none text-[19px]">search</span>
-                <input id="mobile-search-input" class="w-full bg-white dark:bg-slate-900 border border-outline-variant/30 dark:border-slate-800 focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-full py-2.5 pl-10 pr-24 text-body-sm dark:text-slate-200 transition-all outline-none shadow-xs" placeholder="Search your library..." type="text">
-                <button id="mobile-search-clear" type="button" class="absolute right-20 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden p-1">
-                    <span class="material-symbols-outlined text-[17px]">close</span>
+            <!-- Mobile Search Bar with Luxury Capsule Button -->
+            <div class="premium-search-box relative w-full max-w-md md:hidden" id="mobile-search-container">
+                <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-sky-600 dark:text-sky-400 font-bold pointer-events-none text-[20px]">search</span>
+                <input id="mobile-search-input" class="premium-search-input py-2.5 pl-10 pr-24 text-xs sm:text-sm" placeholder="Search your library..." type="text" autocomplete="off" spellcheck="false">
+                <button id="mobile-search-clear" type="button" class="premium-search-clear-btn hidden" title="Clear search">
+                    <span class="material-symbols-outlined text-[15px]">close</span>
                 </button>
-                <button id="mobile-search-submit-btn" type="button" class="absolute right-1.5 top-1/2 -translate-y-1/2 px-3.5 py-1.5 rounded-full bg-primary hover:bg-primary/90 text-white text-[11px] font-bold font-mono tracking-wider uppercase flex items-center gap-1 shadow-sm transition-all active:scale-95 cursor-pointer">
+                <button id="mobile-search-submit-btn" type="button" class="premium-search-capsule-btn">
+                    <span class="text-[12px]">⚡</span>
                     <span>Search</span>
                 </button>
             </div>
@@ -1549,16 +1724,18 @@
             </a>
         </div>
         
-        <!-- Search Bar with Inline SVG Search Icon and Capsule Button -->
+        <!-- Search Bar with Inline SVG Search Icon and Luxury Capsule Button -->
         <div class="relative items-center hidden md:flex">
-            <svg class="w-3.5 h-3.5 absolute left-3.5 text-white/60 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input type="text" id="nav-header-search-input" placeholder="Search..." class="bg-white/10 dark:bg-slate-900/60 border border-white/20 rounded-full py-1.5 pl-9 pr-20 text-[11px] text-white placeholder-white/60 outline-none focus:border-white/60 focus:bg-white/15 transition-all w-44 sm:w-56 lg:w-64 font-sans font-medium">
-            <button id="nav-header-search-btn" type="button" class="absolute right-1 top-1/2 -translate-y-1/2 px-2.5 py-0.5 rounded-full bg-white/20 hover:bg-white/30 text-white text-[10px] font-bold font-mono tracking-wider uppercase transition-all active:scale-95 cursor-pointer">
-                Search
-            </button>
+            <div class="relative flex items-center bg-white/10 dark:bg-slate-900/80 border border-white/25 hover:border-white/40 focus-within:border-sky-400 focus-within:bg-white/15 focus-within:ring-2 focus-within:ring-sky-400/30 rounded-full transition-all duration-300 shadow-sm">
+                <svg class="w-3.5 h-3.5 absolute left-3.5 text-white/70 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="nav-header-search-input" placeholder="Search..." class="bg-transparent border-none outline-none py-1.5 pl-9 pr-20 text-[11px] text-white placeholder-white/60 font-sans font-medium w-44 sm:w-56 lg:w-64" autocomplete="off">
+                <button id="nav-header-search-btn" type="button" class="absolute right-1 top-1/2 -translate-y-1/2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-[10px] font-extrabold font-['Plus_Jakarta_Sans',sans-serif] tracking-wider uppercase shadow-sm transition-all active:scale-95 cursor-pointer border border-white/30">
+                    Search
+                </button>
+            </div>
         </div>
 
         <!-- Notification Bell Icon (Inline SVG Vector) -->
@@ -4165,6 +4342,8 @@
         }
     }
 
+    const searchKbdHint = document.getElementById('search-kbd-hint');
+
     function performSearch(queryVal, shouldScroll = true) {
         const query = queryVal.toLowerCase().trim();
         
@@ -4174,17 +4353,33 @@
         if (navHeaderSearchInput && navHeaderSearchInput.value !== queryVal) navHeaderSearchInput.value = queryVal;
         if (mobileSearchInputField && mobileSearchInputField.value !== queryVal) mobileSearchInputField.value = queryVal;
 
-        // Show/hide clear buttons
+        // Show/hide clear buttons and kbd shortcut hint
         if (query.length > 0) {
             if (searchClearBtn) searchClearBtn.classList.remove('hidden');
             if (mobileSearchClearBtn) mobileSearchClearBtn.classList.remove('hidden');
+            if (searchKbdHint) searchKbdHint.classList.add('hidden');
         } else {
             if (searchClearBtn) searchClearBtn.classList.add('hidden');
             if (mobileSearchClearBtn) mobileSearchClearBtn.classList.add('hidden');
+            if (searchKbdHint) searchKbdHint.classList.remove('hidden');
         }
 
         runLiveSearch(query, shouldScroll);
     }
+
+    // Global Keyboard Shortcut (Cmd+K / Ctrl+K or /) to focus Search
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (searchInput) {
+                searchInput.focus();
+                searchInput.select();
+            } else if (navHeaderSearchInput) {
+                navHeaderSearchInput.focus();
+                navHeaderSearchInput.select();
+            }
+        }
+    });
 
     const searchSubmitBtn = document.getElementById('search-submit-btn');
     const mobileSearchSubmitBtn = document.getElementById('mobile-search-submit-btn');
