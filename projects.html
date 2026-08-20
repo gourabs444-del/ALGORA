@@ -2535,9 +2535,9 @@
                 let waterColumns = [];
                 let deepColumns = [];
 
-                const TENSION = 0.024;      // Realistic water surface tension
-                const DAMPENING = 0.012;    // Fluid viscosity decay (smooth continuous ripples)
-                const SPREAD = 0.32;        // Hydrodynamic wave propagation speed
+                const TENSION = 0.015;      // Soft natural water surface tension
+                const DAMPENING = 0.042;    // High liquid viscosity (waves settle smoothly into glassy water)
+                const SPREAD = 0.20;        // Gentle hydrodynamic wave dispersion
 
                 function setupWaterSimulation() {
                     width = canvas.width = container.clientWidth || window.innerWidth;
@@ -2552,14 +2552,14 @@
                         const posX = i * columnSpacing;
                         waterColumns.push({
                             x: posX,
-                            targetHeight: height * 0.58,
-                            height: height * 0.58,
+                            targetHeight: height * 0.60,
+                            height: height * 0.60,
                             velocity: 0
                         });
                         deepColumns.push({
                             x: posX,
-                            targetHeight: height * 0.53,
-                            height: height * 0.53,
+                            targetHeight: height * 0.56,
+                            height: height * 0.56,
                             velocity: 0
                         });
                     }
@@ -2572,30 +2572,27 @@
                 const modes = [
                     {
                         name: 'ROYAL BLUE & VIOLET WATER',
-                        deepGradTop: 'rgba(37, 99, 235, 0.40)',
-                        deepGradBottom: 'rgba(124, 58, 237, 0.08)',
-                        surfGradTop: 'rgba(6, 182, 212, 0.45)',
-                        surfGradBottom: 'rgba(59, 130, 246, 0.12)',
-                        crestColor: 'rgba(255, 255, 255, 0.95)',
-                        causticColor: 'rgba(165, 243, 252, 0.25)'
+                        deepGradTop: 'rgba(37, 99, 235, 0.35)',
+                        deepGradBottom: 'rgba(124, 58, 237, 0.05)',
+                        surfGradTop: 'rgba(6, 182, 212, 0.40)',
+                        surfGradBottom: 'rgba(59, 130, 246, 0.08)',
+                        crestColor: 'rgba(255, 255, 255, 0.95)'
                     },
                     {
                         name: 'CYAN & NEON INDIGO WATER',
-                        deepGradTop: 'rgba(79, 70, 229, 0.42)',
-                        deepGradBottom: 'rgba(6, 182, 212, 0.08)',
-                        surfGradTop: 'rgba(14, 165, 233, 0.48)',
-                        surfGradBottom: 'rgba(147, 51, 234, 0.10)',
-                        crestColor: 'rgba(255, 255, 255, 0.95)',
-                        causticColor: 'rgba(224, 231, 255, 0.30)'
+                        deepGradTop: 'rgba(79, 70, 229, 0.35)',
+                        deepGradBottom: 'rgba(6, 182, 212, 0.05)',
+                        surfGradTop: 'rgba(14, 165, 233, 0.42)',
+                        surfGradBottom: 'rgba(147, 51, 234, 0.06)',
+                        crestColor: 'rgba(255, 255, 255, 0.95)'
                     },
                     {
                         name: 'OPAL SAPPHIRE CRYSTAL STREAM',
-                        deepGradTop: 'rgba(30, 64, 175, 0.42)',
-                        deepGradBottom: 'rgba(243, 232, 255, 0.10)',
-                        surfGradTop: 'rgba(59, 130, 246, 0.45)',
-                        surfGradBottom: 'rgba(219, 234, 254, 0.15)',
-                        crestColor: 'rgba(255, 255, 255, 0.95)',
-                        causticColor: 'rgba(255, 255, 255, 0.35)'
+                        deepGradTop: 'rgba(30, 64, 175, 0.35)',
+                        deepGradBottom: 'rgba(243, 232, 255, 0.08)',
+                        surfGradTop: 'rgba(59, 130, 246, 0.38)',
+                        surfGradBottom: 'rgba(219, 234, 254, 0.10)',
+                        crestColor: 'rgba(255, 255, 255, 0.95)'
                     }
                 ];
 
@@ -2605,23 +2602,23 @@
                     freqBtn.addEventListener('click', () => {
                         modeIndex = (modeIndex + 1) % modes.length;
                         if (freqText) freqText.innerText = modes[modeIndex].name;
-                        splashWater(width * 0.5, 90, 32);
+                        splashWater(width * 0.5, 30, 20);
                     });
                 }
 
-                // Physical Splash Impulse & Hydrodynamic Wave Propagation
-                function splashWater(x, speed, radius = 24) {
+                // Gentle Physical Splash Impulse
+                function splashWater(x, speed, radius = 16) {
                     for (let i = 0; i < waterColumns.length; i++) {
                         const dist = Math.abs(x - waterColumns[i].x);
-                        if (dist < radius * 8) {
-                            const factor = Math.cos((dist / (radius * 8)) * (Math.PI / 2));
+                        if (dist < radius * 6) {
+                            const factor = Math.cos((dist / (radius * 6)) * (Math.PI / 2));
                             waterColumns[i].velocity += speed * factor;
-                            if (deepColumns[i]) deepColumns[i].velocity += speed * factor * 0.6;
+                            if (deepColumns[i]) deepColumns[i].velocity += speed * factor * 0.5;
                         }
                     }
                 }
 
-                // Interactive Mouse Water Dragging & Physical Displacement
+                // Interactive Mouse Water Dragging (Gentle & Smooth)
                 let mouseX = -9999, mouseY = -9999;
                 let prevMouseX = 0, prevMouseY = 0;
                 let isMouseInside = false;
@@ -2642,15 +2639,15 @@
                     const deltaY = mouseY - prevMouseY;
                     const mouseSpeed = Math.hypot(deltaX, deltaY);
 
-                    // Liquid interaction when mouse touches water surface
-                    if (mouseSpeed > 1.0) {
+                    // Liquid interaction ONLY when cursor physically touches the water surface
+                    if (mouseSpeed > 1.2) {
                         const currentWaterY = getWaterHeightAt(mouseX);
                         const distToWater = Math.abs(mouseY - currentWaterY);
 
-                        if (distToWater < 60) {
-                            // Fluid drag force (proportional to mouse movement speed)
-                            const dragForce = Math.max(-45, Math.min(45, (deltaY * 0.85) + (deltaX * 0.35)));
-                            splashWater(mouseX, dragForce, 18);
+                        if (distToWater < 40) {
+                            // Gentle natural water touch impulse (clamped to prevent excessive shaking)
+                            const dragForce = Math.max(-14, Math.min(14, (deltaY * 0.35) + (deltaX * 0.15)));
+                            splashWater(mouseX, dragForce, 14);
                         }
                     }
 
@@ -2658,15 +2655,15 @@
                     prevMouseY = mouseY;
                 });
 
-                // Splash on click
+                // Gentle splash on click
                 container.addEventListener('click', (e) => {
                     const rect = container.getBoundingClientRect();
                     const cx = e.clientX - rect.left;
-                    splashWater(cx, -75, 26);
+                    splashWater(cx, -25, 18);
                 });
 
                 function getWaterHeightAt(x) {
-                    if (waterColumns.length === 0) return height * 0.58;
+                    if (waterColumns.length === 0) return height * 0.60;
                     const colWidth = waterColumns[1].x - waterColumns[0].x;
                     const index = Math.max(0, Math.min(waterColumns.length - 2, Math.floor(x / colWidth)));
                     const nextIndex = index + 1;
@@ -2683,11 +2680,11 @@
                     lastTime = now;
                     time += dt;
 
-                    // 1. UPDATE PRIMARY WATER SURFACE SPRING PHYSICS
+                    // 1. UPDATE PRIMARY WATER SURFACE (CALM SERENE OCEAN SWELL)
                     for (let i = 0; i < waterColumns.length; i++) {
                         const col = waterColumns[i];
-                        // Gentle ambient harmonic tidal swell (smooth natural swell)
-                        const ambientTide = Math.sin(col.x * 0.0016 + time * 0.7) * 22 + Math.cos(col.x * 0.003 - time * 0.4) * 10;
+                        // Very subtle, calm, glassy swell (3.5px amplitude)
+                        const ambientTide = Math.sin(col.x * 0.0012 + time * 0.35) * 3.5 + Math.cos(col.x * 0.0022 - time * 0.25) * 2.0;
                         const target = col.targetHeight + ambientTide;
 
                         const displacement = col.height - target;
@@ -2696,31 +2693,31 @@
                         col.height += col.velocity * 60 * dt;
                     }
 
-                    // 2. UPDATE DEEP BACKGROUND WATER LAYER PHYSICS
+                    // 2. UPDATE DEEP BACKGROUND WATER LAYER
                     for (let i = 0; i < deepColumns.length; i++) {
                         const dCol = deepColumns[i];
-                        const deepTide = Math.sin(dCol.x * 0.0018 + time * 0.55 + 1.2) * 26 + Math.cos(dCol.x * 0.0028 - time * 0.35) * 12;
+                        const deepTide = Math.sin(dCol.x * 0.0014 + time * 0.30 + 1.0) * 4.5 + Math.cos(dCol.x * 0.0020 - time * 0.20) * 2.5;
                         const dTarget = dCol.targetHeight + deepTide;
 
                         const dDisplacement = dCol.height - dTarget;
-                        const dSpringForce = -(TENSION * 0.85) * dDisplacement - (DAMPENING * 1.1) * dCol.velocity;
+                        const dSpringForce = -(TENSION * 0.8) * dDisplacement - (DAMPENING * 1.2) * dCol.velocity;
                         dCol.velocity += dSpringForce * 60 * dt;
                         dCol.height += dCol.velocity * 60 * dt;
                     }
 
-                    // 3. MULTI-PASS HYDRODYNAMIC WAVE SPREAD (Laplacian Wave Propagation)
+                    // 3. SMOOTH HYDRODYNAMIC WAVE DIFFUSION (4 passes for calm glassy waves)
                     const leftDeltas = new Array(waterColumns.length).fill(0);
                     const rightDeltas = new Array(waterColumns.length).fill(0);
 
-                    for (let passes = 0; passes < 7; passes++) {
+                    for (let passes = 0; passes < 4; passes++) {
                         for (let i = 0; i < waterColumns.length; i++) {
                             if (i > 0) {
                                 leftDeltas[i] = SPREAD * (waterColumns[i].height - waterColumns[i - 1].height);
-                                waterColumns[i - 1].velocity += leftDeltas[i] * 60 * dt * 0.3;
+                                waterColumns[i - 1].velocity += leftDeltas[i] * 60 * dt * 0.22;
                             }
                             if (i < waterColumns.length - 1) {
                                 rightDeltas[i] = SPREAD * (waterColumns[i].height - waterColumns[i + 1].height);
-                                waterColumns[i + 1].velocity += rightDeltas[i] * 60 * dt * 0.3;
+                                waterColumns[i + 1].velocity += rightDeltas[i] * 60 * dt * 0.22;
                             }
                         }
                         for (let i = 0; i < waterColumns.length; i++) {
@@ -2730,22 +2727,22 @@
                     }
 
                     // Spread for deep layer
-                    for (let passes = 0; passes < 4; passes++) {
+                    for (let passes = 0; passes < 3; passes++) {
                         for (let i = 0; i < deepColumns.length; i++) {
                             if (i > 0) {
-                                const ld = (SPREAD * 0.7) * (deepColumns[i].height - deepColumns[i - 1].height);
-                                deepColumns[i - 1].velocity += ld * 60 * dt * 0.25;
+                                const ld = (SPREAD * 0.6) * (deepColumns[i].height - deepColumns[i - 1].height);
+                                deepColumns[i - 1].velocity += ld * 60 * dt * 0.2;
                                 deepColumns[i - 1].height += ld * 0.5;
                             }
                             if (i < deepColumns.length - 1) {
-                                const rd = (SPREAD * 0.7) * (deepColumns[i].height - deepColumns[i + 1].height);
-                                deepColumns[i + 1].velocity += rd * 60 * dt * 0.25;
+                                const rd = (SPREAD * 0.6) * (deepColumns[i].height - deepColumns[i + 1].height);
+                                deepColumns[i + 1].velocity += rd * 60 * dt * 0.2;
                                 deepColumns[i + 1].height += rd * 0.5;
                             }
                         }
                     }
 
-                    // 4. RENDER LIQUID WATER LAYERS
+                    // 4. RENDER CALM CRYSTAL WATER LAYERS
                     ctx.fillStyle = '#ffffff';
                     ctx.fillRect(0, 0, width, height);
 
@@ -2765,22 +2762,11 @@
                     ctx.lineTo(width, height);
                     ctx.closePath();
 
-                    const deepGrad = ctx.createLinearGradient(0, height * 0.38, width, height);
+                    const deepGrad = ctx.createLinearGradient(0, height * 0.45, width, height);
                     deepGrad.addColorStop(0, curMode.deepGradTop);
                     deepGrad.addColorStop(1, curMode.deepGradBottom);
                     ctx.fillStyle = deepGrad;
                     ctx.fill();
-
-                    // Render Liquid Caustics Shimmer in the Water Body
-                    ctx.save();
-                    ctx.beginPath();
-                    for (let x = 0; x < width; x += 30) {
-                        const causticY = getWaterHeightAt(x) + 40 + Math.sin(x * 0.015 + time * 1.5) * 12;
-                        ctx.rect(x, causticY, 20, 3 + Math.sin(x * 0.02 + time * 2) * 2);
-                    }
-                    ctx.fillStyle = curMode.causticColor;
-                    ctx.fill();
-                    ctx.restore();
 
                     // Render Primary Master Liquid Water Surface
                     ctx.beginPath();
@@ -2797,13 +2783,13 @@
                     ctx.lineTo(width, height);
                     ctx.closePath();
 
-                    const surfGrad = ctx.createLinearGradient(0, height * 0.42, width, height);
+                    const surfGrad = ctx.createLinearGradient(0, height * 0.50, width, height);
                     surfGrad.addColorStop(0, curMode.surfGradTop);
                     surfGrad.addColorStop(1, curMode.surfGradBottom);
                     ctx.fillStyle = surfGrad;
                     ctx.fill();
 
-                    // Render Specular Meniscus Glow & Light Crest
+                    // Render Specular Meniscus Glow & Clean Crisp Light Crest Line
                     ctx.save();
                     ctx.beginPath();
                     ctx.moveTo(waterColumns[0].x, waterColumns[0].height);
@@ -2813,21 +2799,9 @@
                         ctx.quadraticCurveTo(waterColumns[i].x, waterColumns[i].height, xc, yc);
                     }
                     ctx.strokeStyle = curMode.crestColor;
-                    ctx.lineWidth = 3;
-                    ctx.shadowColor = '#ffffff';
-                    ctx.shadowBlur = 12;
-                    ctx.stroke();
-
-                    // Subtle secondary micro-shimmer line
-                    ctx.beginPath();
-                    ctx.moveTo(waterColumns[0].x, waterColumns[0].height + 3);
-                    for (let i = 1; i < waterColumns.length - 1; i++) {
-                        const xc = (waterColumns[i].x + waterColumns[i + 1].x) / 2;
-                        const yc = (waterColumns[i].height + waterColumns[i + 1].height) / 2 + 3;
-                        ctx.quadraticCurveTo(waterColumns[i].x, waterColumns[i].height + 3, xc, yc);
-                    }
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
-                    ctx.lineWidth = 1.5;
+                    ctx.lineWidth = 2.5;
+                    ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
+                    ctx.shadowBlur = 8;
                     ctx.stroke();
                     ctx.restore();
                 }
