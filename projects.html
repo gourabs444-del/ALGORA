@@ -784,12 +784,15 @@
     
     <!-- Right Group: Search + Tabs + Notifications -->
     <div class="flex items-center gap-4 sm:gap-6 ml-auto overflow-x-auto flex-nowrap py-1 pr-2 lg:pr-0 custom-scrollbar">
-        <!-- Search Bar -->
-        <div class="relative w-40 sm:w-64 flex-shrink-0 hidden md:block">
-            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold">search</span>
-            <input id="search-input" class="w-full bg-surface-container dark:bg-slate-800 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-2xl py-2 sm:py-3 pl-11 pr-10 text-body-sm dark:text-slate-200 transition-all outline-none focus:outline-none focus:ring-4 focus:ring-primary/10" placeholder="Search your library..." type="text">
-            <button id="search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden active-feedback">
-                <span class="material-symbols-outlined text-[18px]">close</span>
+        <!-- Search Bar with Capsule Search Button -->
+        <div class="relative w-48 sm:w-72 lg:w-80 flex-shrink-0 hidden md:block">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary font-bold pointer-events-none text-[19px]">search</span>
+            <input id="search-input" class="w-full bg-surface-container dark:bg-slate-800 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-full py-2 sm:py-2.5 pl-10 pr-24 text-body-sm dark:text-slate-200 transition-all outline-none focus:ring-4 focus:ring-primary/10 shadow-xs" placeholder="Search your library..." type="text">
+            <button id="search-clear" type="button" class="absolute right-20 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden p-1">
+                <span class="material-symbols-outlined text-[17px]">close</span>
+            </button>
+            <button id="search-submit-btn" type="button" class="absolute right-1.5 top-1/2 -translate-y-1/2 px-3.5 py-1 rounded-full bg-primary hover:bg-primary/90 text-white text-[11px] font-bold font-mono tracking-wider uppercase flex items-center gap-1 shadow-sm transition-all active:scale-95 cursor-pointer">
+                <span>Search</span>
             </button>
         </div>
         
@@ -868,12 +871,15 @@
                 <span>Get Started</span>
                 <span class="material-symbols-outlined text-[18px] font-black">arrow_forward</span>
             </button>
-            <!-- Mobile Search Bar (Only visible on mobile/tablet) -->
+            <!-- Mobile Search Bar (Only visible on mobile/tablet) with Capsule Search Button -->
             <div class="relative w-full max-w-md md:hidden" id="mobile-search-container">
-                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold">search</span>
-                <input id="mobile-search-input" class="w-full bg-white dark:bg-slate-900 border border-outline-variant/30 dark:border-slate-800 focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-2xl py-3 pl-11 pr-10 text-body-sm dark:text-slate-200 transition-all outline-none" placeholder="Search your library..." type="text">
-                <button id="mobile-search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden active-feedback">
-                    <span class="material-symbols-outlined text-[18px]">close</span>
+                <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary font-bold pointer-events-none text-[19px]">search</span>
+                <input id="mobile-search-input" class="w-full bg-white dark:bg-slate-900 border border-outline-variant/30 dark:border-slate-800 focus:border-primary focus:bg-white dark:focus:bg-slate-900 rounded-full py-2.5 pl-10 pr-24 text-body-sm dark:text-slate-200 transition-all outline-none shadow-xs" placeholder="Search your library..." type="text">
+                <button id="mobile-search-clear" type="button" class="absolute right-20 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors cursor-pointer hidden p-1">
+                    <span class="material-symbols-outlined text-[17px]">close</span>
+                </button>
+                <button id="mobile-search-submit-btn" type="button" class="absolute right-1.5 top-1/2 -translate-y-1/2 px-3.5 py-1.5 rounded-full bg-primary hover:bg-primary/90 text-white text-[11px] font-bold font-mono tracking-wider uppercase flex items-center gap-1 shadow-sm transition-all active:scale-95 cursor-pointer">
+                    <span>Search</span>
                 </button>
             </div>
         </div>
@@ -1543,13 +1549,16 @@
             </a>
         </div>
         
-        <!-- Search Bar with Inline SVG Search Icon -->
+        <!-- Search Bar with Inline SVG Search Icon and Capsule Button -->
         <div class="relative items-center hidden md:flex">
             <svg class="w-3.5 h-3.5 absolute left-3.5 text-white/60 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input type="text" id="nav-header-search-input" placeholder="Search..." class="bg-white/10 dark:bg-slate-900/60 border border-white/20 rounded-full py-1.5 pl-9 pr-3.5 text-[11px] text-white placeholder-white/60 outline-none focus:border-white/60 focus:bg-white/15 transition-all w-28 sm:w-36 lg:w-44 font-sans font-medium">
+            <input type="text" id="nav-header-search-input" placeholder="Search..." class="bg-white/10 dark:bg-slate-900/60 border border-white/20 rounded-full py-1.5 pl-9 pr-20 text-[11px] text-white placeholder-white/60 outline-none focus:border-white/60 focus:bg-white/15 transition-all w-44 sm:w-56 lg:w-64 font-sans font-medium">
+            <button id="nav-header-search-btn" type="button" class="absolute right-1 top-1/2 -translate-y-1/2 px-2.5 py-0.5 rounded-full bg-white/20 hover:bg-white/30 text-white text-[10px] font-bold font-mono tracking-wider uppercase transition-all active:scale-95 cursor-pointer">
+                Search
+            </button>
         </div>
 
         <!-- Notification Bell Icon (Inline SVG Vector) -->
@@ -4035,12 +4044,23 @@
                         return;
                     }
 
-                    // Get card title and text
-                    const titleEl = card.querySelector('a.truncate, h3, h4, .font-bold, a') || card;
-                    if (titleEl && !titleEl.hasAttribute('data-original-html')) {
-                        titleEl.setAttribute('data-original-html', titleEl.innerHTML);
+                    // Safely find ONLY the text title element (NEVER the image container or img)
+                    let titleEl = card.querySelector('div.pt-2 a.truncate') ||
+                                  card.querySelector('div.pt-2 a') ||
+                                  card.querySelector('.card-title-text') ||
+                                  card.querySelector('h3') ||
+                                  card.querySelector('h4') ||
+                                  card.querySelector('div.p-4 a') ||
+                                  card.querySelector('div.p-6 h4');
+
+                    if (titleEl && (titleEl.querySelector('img') || titleEl.querySelector('iframe') || titleEl.classList.contains('apple-image-container') || titleEl.classList.contains('iframe-preview-container'))) {
+                        titleEl = card.querySelector('div.pt-2 a') || card.querySelector('div.pt-2 span') || null;
                     }
-                    const originalHtml = titleEl ? titleEl.getAttribute('data-original-html') : '';
+
+                    if (titleEl && !titleEl.hasAttribute('data-original-text')) {
+                        titleEl.setAttribute('data-original-text', titleEl.textContent.trim());
+                    }
+                    const originalText = titleEl ? titleEl.getAttribute('data-original-text') : '';
                     const rawText = (card.innerText + ' ' + (card.getAttribute('data-keywords') || '')).toLowerCase();
 
                     if (rawText.includes(query)) {
@@ -4053,15 +4073,19 @@
                             firstMatchedCard = card;
                         }
 
-                        // Highlight matching text in title
-                        if (titleEl && originalHtml) {
-                            titleEl.innerHTML = originalHtml.replace(regex, '<mark class="search-highlight-text">$1</mark>');
+                        // Highlight matching text ONLY in the title text element
+                        if (titleEl && originalText) {
+                            if (originalText.toLowerCase().includes(query)) {
+                                titleEl.innerHTML = originalText.replace(regex, '<mark class="search-highlight-text">$1</mark>');
+                            } else {
+                                titleEl.textContent = originalText;
+                            }
                         }
                     } else {
                         card.style.display = 'none';
                         card.classList.remove('search-matched-card');
-                        if (titleEl && originalHtml) {
-                            titleEl.innerHTML = originalHtml;
+                        if (titleEl && originalText) {
+                            titleEl.textContent = originalText;
                         }
                     }
                 });
@@ -4104,9 +4128,20 @@
                     card.style.display = '';
                     card.classList.remove('search-matched-card');
 
-                    const titleEl = card.querySelector('a.truncate, h3, h4, .font-bold, a') || card;
-                    if (titleEl && titleEl.hasAttribute('data-original-html')) {
-                        titleEl.innerHTML = titleEl.getAttribute('data-original-html');
+                    let titleEl = card.querySelector('div.pt-2 a.truncate') ||
+                                  card.querySelector('div.pt-2 a') ||
+                                  card.querySelector('.card-title-text') ||
+                                  card.querySelector('h3') ||
+                                  card.querySelector('h4') ||
+                                  card.querySelector('div.p-4 a') ||
+                                  card.querySelector('div.p-6 h4');
+
+                    if (titleEl && (titleEl.querySelector('img') || titleEl.querySelector('iframe') || titleEl.classList.contains('apple-image-container') || titleEl.classList.contains('iframe-preview-container'))) {
+                        titleEl = card.querySelector('div.pt-2 a') || card.querySelector('div.pt-2 span') || null;
+                    }
+
+                    if (titleEl && titleEl.hasAttribute('data-original-text')) {
+                        titleEl.textContent = titleEl.getAttribute('data-original-text');
                     }
                 });
             });
@@ -4149,6 +4184,28 @@
         }
 
         runLiveSearch(query, shouldScroll);
+    }
+
+    const searchSubmitBtn = document.getElementById('search-submit-btn');
+    const mobileSearchSubmitBtn = document.getElementById('mobile-search-submit-btn');
+    const navHeaderSearchBtn = document.getElementById('nav-header-search-btn');
+
+    if (searchSubmitBtn && searchInput) {
+        searchSubmitBtn.addEventListener('click', () => {
+            performSearch(searchInput.value, true);
+        });
+    }
+
+    if (mobileSearchSubmitBtn && mobileSearchInput) {
+        mobileSearchSubmitBtn.addEventListener('click', () => {
+            performSearch(mobileSearchInput.value, true);
+        });
+    }
+
+    if (navHeaderSearchBtn && navHeaderSearchInput) {
+        navHeaderSearchBtn.addEventListener('click', () => {
+            performSearch(navHeaderSearchInput.value, true);
+        });
     }
 
     if (navHeaderSearchInput) {
