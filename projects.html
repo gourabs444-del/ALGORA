@@ -436,11 +436,11 @@
   /* 10. Scroll-reveal entrance animation engine for drawer content, cards, headings & banners */
   .reveal-on-scroll {
       opacity: 0 !important;
-      transform: translate3d(0, 50px, 0) scale(0.96) !important;
+      transform: translate3d(0, 45px, 0) scale(0.97) !important;
       filter: blur(4px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
       will-change: opacity, transform, filter;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
@@ -5615,8 +5615,10 @@
                     orientation: 'vertical',
                     gestureOrientation: 'vertical',
                     smoothWheel: true,
-                    wheelMultiplier: 0.9,
-                    touchMultiplier: 1.5,
+                    wheelMultiplier: 1.0,
+                    touchMultiplier: 1.8,
+                    syncTouch: false,
+                    lerp: 0.08,
                     infinite: false
                 });
 
@@ -5626,7 +5628,10 @@
                 }
                 requestAnimationFrame(raf);
 
-                window.lenisInstance.on('scroll', onScrollOptimized);
+                window.lenisInstance.on('scroll', (e) => {
+                    if (typeof onScrollOptimized === 'function') onScrollOptimized();
+                    window.dispatchEvent(new Event('scroll'));
+                });
             }
         }
 
