@@ -3826,40 +3826,132 @@
 <!-- Spacer to create gap between content and footer -->
 <div class="h-16 w-full flex-shrink-0"></div>
 
-<!-- Footer / Copyright Section -->
-<footer class="mt-auto border-t border-outline-variant/30 dark:border-slate-800/80 pt-12 pb-10 flex flex-col lg:flex-row items-center justify-between gap-6 text-body-sm text-secondary dark:text-slate-400 max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
-    <div class="flex items-center gap-1.5 font-medium">
-        <span>© 2026 CogniLens. All rights reserved.</span>
-    </div>
-    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:gap-x-4 md:gap-y-2 font-medium">
-        <a href="#" class="hover:text-primary dark:hover:text-white transition-colors">Privacy Policy</a>
-        <span class="text-outline-variant/60 dark:text-slate-800/60 hidden md:inline">•</span>
-        <a href="#" class="hover:text-primary dark:hover:text-white transition-colors">Terms of Service</a>
-        <span class="text-outline-variant/60 dark:text-slate-800/60 hidden md:inline">•</span>
-        <a href="#" onclick="const contactBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('data-tab') === 'contact'); if(contactBtn) contactBtn.click(); return false;" class="hover:text-primary dark:hover:text-white transition-colors">Contact</a>
-        <span class="text-outline-variant/60 dark:text-slate-800/60 hidden md:inline">•</span>
-        <a href="#" class="hover:text-primary dark:hover:text-white transition-colors">Cookies</a>
-    </div>
-    <div class="flex items-center gap-4 flex-wrap lg:flex-nowrap">
-        <div class="flex items-center gap-3.5 text-secondary dark:text-slate-400">
-            <a href="https://www.facebook.com/profile.php?id=100041839251373" target="_blank" class="hover:text-primary dark:hover:text-white transition-colors" aria-label="Facebook">
-                <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24"><path d="M19 0h-3c-3.81 0-7 3.19-7 7v3H6v4h3v10h5V14h3.62l.54-4H14V7c0-.86.54-1 1-1h3V0z"/></svg>
-            </a>
-            <!-- Instagram Profile -->
-            <a href="https://www.instagram.com/01env" target="_blank" class="hover:text-primary dark:hover:text-white transition-colors" aria-label="Instagram">
-                <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-            </a>
-            <!-- Twitter/X Profile (Always links to your profile even if username changes) -->
-            <a href="https://x.com/i/user/1484960232413732865" target="_blank" class="hover:text-primary dark:hover:text-white transition-colors" aria-label="X (formerly Twitter)">
-                <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <!-- Discord Profile (Always links to your profile even if username changes) -->
-            <a href="https://discord.com/users/901665069719498792" target="_blank" class="hover:text-primary dark:hover:text-white transition-colors" aria-label="Discord">
-                <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0c-.172-.393-.412-.875-.63-1.25a.078.078 0 0 0-.07-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.894.076.076 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>
-            </a>
+<!-- ═══════════════════════════════════════════════════════════════════════
+     PRO LUXURY GREY FOOTER (Multi-Column Architecture & Live Status)
+     ═══════════════════════════════════════════════════════════════════════ -->
+<footer class="w-full bg-[#18191f] text-neutral-300 border-t border-neutral-700/60 pt-16 sm:pt-20 pb-12 transition-colors relative z-20 mt-20">
+    <div class="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16 w-full">
+        
+        <!-- Top Section: Brand + Status + CTA -->
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-14 border-b border-neutral-700/50">
+            <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                    <svg viewBox="0 0 100 100" class="w-7 h-7 flex-shrink-0" fill="none">
+                        <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#8b5cf6" stroke-width="7" stroke-linecap="round"/>
+                        <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#ffffff"/>
+                        <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#8b5cf6"/>
+                    </svg>
+                    <span class="font-serif text-2xl tracking-[0.25em] text-white uppercase font-bold" style="font-family: 'Bodoni Moda', 'Playfair Display', serif;">ALGOR<span class="text-purple-400">A</span></span>
+                </div>
+                <p class="text-xs sm:text-sm font-sans text-neutral-400 max-w-md font-light">
+                    Curating the Web's Finest digital craft, interactive 3D systems, and high-fidelity showcase. Crafted by Gourav.
+                </p>
+            </div>
+
+            <!-- Live Availability Status + Start Project Pill -->
+            <div class="flex flex-wrap items-center gap-4">
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#272830] border border-neutral-600/60 text-neutral-300 text-xs font-mono">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="font-semibold text-emerald-300">AVAILABLE FOR PROJECTS</span>
+                    <span class="text-neutral-500">&bull;</span>
+                    <span class="text-neutral-400">Q3/Q4 2026</span>
+                </div>
+                <a href="start-project.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white hover:bg-neutral-100 text-neutral-950 font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95">
+                    <span>Start a Project</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
         </div>
-        <span class="text-outline-variant/60 dark:text-slate-800/60 hidden lg:inline">|</span>
-        <span class="font-medium">Built with passion &amp; precision.</span>
+
+        <!-- Middle Multi-Column Navigation -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-10 py-14 border-b border-neutral-700/50 text-xs font-sans">
+            
+            <!-- Col 1: Showcase -->
+            <div class="space-y-4">
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-400 block">Showcase</span>
+                <ul class="space-y-2.5 text-neutral-400">
+                    <li><a href="#grid-all-projects" class="hover:text-white transition-colors">All Projects</a></li>
+                    <li><a href="#section-work" class="hover:text-white transition-colors">Creative Work</a></li>
+                    <li><a href="#section-personal" class="hover:text-white transition-colors">Personal Labs</a></li>
+                    <li><a href="#section-collaboration" class="hover:text-white transition-colors">Collaborative</a></li>
+                    <li><a href="landing-pages.html" class="hover:text-white transition-colors">Landing Pages</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 2: Flagship Works -->
+            <div class="space-y-4">
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-400 block">Flagship Works</span>
+                <ul class="space-y-2.5 text-neutral-400">
+                    <li><a href="aesthete.html" class="hover:text-white transition-colors">Aesthete Studio</a></li>
+                    <li><a href="mamaearth.html" class="hover:text-white transition-colors">Mamaearth Store</a></li>
+                    <li><a href="bloomfi.html" class="hover:text-white transition-colors">BloomFi Banking</a></li>
+                    <li><a href="lumina.html" class="hover:text-white transition-colors">Lumina AI Studio</a></li>
+                    <li><a href="jurislexicon-dark.html" class="hover:text-white transition-colors">JurisLexicon Dark</a></li>
+                    <li><a href="valura.html" class="hover:text-white transition-colors">Valura Real Estate</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Capabilities & Engineering -->
+            <div class="space-y-4">
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-400 block">Engineering</span>
+                <ul class="space-y-2.5 text-neutral-400">
+                    <li><a href="#" class="hover:text-white transition-colors">WebGL Three.js 3D</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">120 FPS Lenis Inertia</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Full-Stack Cloud State</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Real-Time Firestore</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Procedural Shaders</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Platform & Resources -->
+            <div class="space-y-4">
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-400 block">Platform</span>
+                <ul class="space-y-2.5 text-neutral-400">
+                    <li><a href="blogs.html" class="hover:text-white transition-colors">Articles &amp; Blog</a></li>
+                    <li><a href="gallery.html" class="hover:text-white transition-colors">Design Gallery</a></li>
+                    <li><a href="profile.html" class="hover:text-white transition-colors">Author Profile</a></li>
+                    <li><a href="login.html" class="hover:text-white transition-colors">Client Portal</a></li>
+                    <li><a href="#contact-section" class="hover:text-white transition-colors">Consultant Booking</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 5: Connect & Direct Contact -->
+            <div class="col-span-2 md:col-span-4 lg:col-span-1 space-y-4">
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-400 block">Direct Channel</span>
+                <p class="text-xs text-neutral-400 font-light leading-relaxed">
+                    Have an ambitious project or want to collaborate? Connect directly:
+                </p>
+                <a href="mailto:gourabs444@gmail.com" class="inline-flex items-center gap-2 text-xs font-mono text-purple-300 hover:text-white transition-colors underline underline-offset-4">
+                    <span>gourabs444@gmail.com</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Bottom Legal & Social Strip -->
+        <div class="pt-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-mono text-neutral-400">
+            <div class="flex flex-wrap items-center gap-4">
+                <span>&copy; 2026 ALGORA STUDIO. Crafted with passion &amp; precision by Gourav.</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Social Icons in clean grey circular capsules -->
+                <a href="https://www.instagram.com/01env" target="_blank" class="w-9 h-9 rounded-full bg-[#272830] hover:bg-neutral-600 border border-neutral-600/50 flex items-center justify-center text-neutral-300 hover:text-white transition-all" aria-label="Instagram">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                </a>
+                <a href="https://x.com/i/user/1484960232413732865" target="_blank" class="w-9 h-9 rounded-full bg-[#272830] hover:bg-neutral-600 border border-neutral-600/50 flex items-center justify-center text-neutral-300 hover:text-white transition-all" aria-label="X (Twitter)">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://discord.com/users/901665069719498792" target="_blank" class="w-9 h-9 rounded-full bg-[#272830] hover:bg-neutral-600 border border-neutral-600/50 flex items-center justify-center text-neutral-300 hover:text-white transition-all" aria-label="Discord">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0c-.172-.393-.412-.875-.63-1.25a.078.078 0 0 0-.07-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.894.076.076 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100041839251373" target="_blank" class="w-9 h-9 rounded-full bg-[#272830] hover:bg-neutral-600 border border-neutral-600/50 flex items-center justify-center text-neutral-300 hover:text-white transition-all" aria-label="Facebook">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-3c-3.81 0-7 3.19-7 7v3H6v4h3v10h5V14h3.62l.54-4H14V7c0-.86.54-1 1-1h3V0z"/></svg>
+                </a>
+            </div>
+        </div>
+
     </div>
 </footer>
 
