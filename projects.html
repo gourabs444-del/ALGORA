@@ -2207,25 +2207,40 @@
 
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
-        <!-- Landing Page Showcase Banner (100% Fullscreen 4K LIVE INTERACTIVE QUANTUM PRISM & CONVERSION SYSTEMS BANNER) -->
-        <div id="quantum-prism-hero-banner" class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[720px] lg:min-h-[840px] bg-slate-950 text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(0,0,0,0.7)] transition-all duration-500 flex items-center justify-center py-6 sm:py-10 select-none border-y border-indigo-500/20">
+        <!-- Landing Page Showcase Banner (100% Fullscreen 4K LIVE OCEAN, LUXURY YACHT, CLEAR SKY, FLYING BIRDS & ANIMATED WAVES BANNER) -->
+        <div id="ocean-yacht-hero-banner" class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[720px] lg:min-h-[840px] bg-sky-950 text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(0,0,0,0.7)] transition-all duration-500 flex items-center justify-center py-6 sm:py-10 select-none border-y border-sky-400/20">
             
-            <!-- BACKGROUND LAYER 1: 4K Ultra-HD Prismatic Crystal Backdrop (Breathing Slow Parallax) -->
+            <!-- SVG FLUID WATER TURBULENCE FILTER FOR LIVE LIQUID WAVE DEFORMATION -->
+            <svg class="ocean-water-filter-def" aria-hidden="true" style="position: absolute; width: 0; height: 0; pointer-events: none;">
+                <filter id="ocean-yacht-water-ripple" x="-10%" y="-10%" width="120%" height="120%">
+                    <feTurbulence id="ocean-yacht-turb-node" type="fractalNoise" baseFrequency="0.012 0.035" numOctaves="2" result="noise" seed="5"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+                </filter>
+            </svg>
+
+            <!-- BACKGROUND LAYER 1: 4K Ultra-HD Panoramic Ocean & Luxury Yacht Master Backdrop -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <img id="quantum-prism-bg-img" src="assets/quantum_prism_banner_4k.jpg" alt="4K Quantum Prism Showcase" class="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.08] saturate-[1.15] scale-[1.02] transition-transform duration-1000 ease-out" />
-                <!-- Vignette & High-Contrast Readability Gradient for Left-Aligned Hero Text -->
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-slate-950/30 pointer-events-none"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/80 pointer-events-none"></div>
-                <!-- Ambient Violet & Cyan Nebula Glows -->
-                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none animate-pulse" style="animation-duration: 8s;"></div>
-                <div class="absolute bottom-1/3 right-1/4 w-[30rem] h-[30rem] bg-indigo-600/15 rounded-full blur-[120px] pointer-events-none animate-pulse" style="animation-duration: 10s;"></div>
+                <!-- Base Sky & Yacht Image -->
+                <img id="ocean-yacht-bg-img" src="assets/aesthetic_serenity_yacht.jpg" alt="4K Luxury Yacht in Clear Ocean" class="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.05] saturate-[1.12] scale-[1.02] transition-transform duration-1000 ease-out" />
+                
+                <!-- Fluid Live Animated Ocean Water Layer (Real-Time Turbulence Ripple Deformation) -->
+                <div class="absolute bottom-0 left-0 w-full h-[52%] overflow-hidden pointer-events-none z-[1]" style="filter: url(#ocean-yacht-water-ripple); -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 15%, black 100%); mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 15%, black 100%);">
+                    <img src="assets/aesthetic_serenity_yacht.jpg" alt="Animated Ocean Waves" class="absolute bottom-0 left-0 w-full h-screen min-h-[720px] lg:min-h-[840px] object-cover object-center filter brightness-[0.98] contrast-[1.06] saturate-[1.14]">
+                </div>
+
+                <!-- High-Contrast Readability Gradient for Left-Aligned Hero Text -->
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/50 to-transparent pointer-events-none z-[2]"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/75 pointer-events-none z-[2]"></div>
+                
+                <!-- Radiant Sun Glow Flare on Clear Sky -->
+                <div class="absolute -top-10 right-[10%] w-[50vw] h-[50vw] max-w-[700px] max-height-[700px] bg-radial from-white/35 via-amber-200/15 to-transparent blur-3xl pointer-events-none z-[2] mix-blend-screen"></div>
             </div>
 
-            <!-- BACKGROUND LAYER 2: INTERACTIVE 4K QUANTUM PRISM, LASER THREADS & PHOTON PARTICLES CANVAS -->
-            <canvas id="quantum-prism-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[2]"></canvas>
+            <!-- BACKGROUND LAYER 2: INTERACTIVE LIVE 240 FPS FLUID OCEAN WAVES & SUN CAUSTICS CANVAS -->
+            <canvas id="ocean-yacht-wave-canvas" class="absolute bottom-0 left-0 w-full h-[55%] pointer-events-none z-[3] mix-blend-screen"></canvas>
 
-            <!-- BACKGROUND LAYER 3: DYNAMIC OPTICAL LENS FLARES & CAUSTIC LIGHT SWEEP CANVAS -->
-            <canvas id="quantum-flare-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[3] mix-blend-screen"></canvas>
+            <!-- BACKGROUND LAYER 3: AUTONOMOUS FLYING WHITE SEAGULLS FLIGHT CANVAS -->
+            <canvas id="ocean-yacht-birds-canvas" class="absolute top-0 left-0 w-full h-[65%] pointer-events-none z-[4]"></canvas>
 
             <!-- MAIN CONTENT CONTAINER (Grid Split: Left Hero Headline + Right Holographic Telemetry HUD) -->
             <div class="relative z-10 w-full max-w-[1720px] px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between h-full pb-36 sm:pb-40 lg:pb-44 pt-12 sm:pt-16 gap-8 lg:gap-12">
@@ -2235,9 +2250,9 @@
                     
                     <!-- Top Brand Header Line -->
                     <div class="flex items-center gap-2">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[10px] sm:text-[11px] font-['Space_Grotesk'] font-bold tracking-[0.25em] text-cyan-300 uppercase shadow-[0_0_15px_rgba(6,182,212,0.2)]">
-                            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-                            ✦ 4K QUANTUM CONVERSION ARCHITECTURE
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-xl border border-white/40 text-[10px] sm:text-[11px] font-['Space_Grotesk'] font-bold tracking-[0.25em] text-white uppercase shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                            <span class="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-ping"></span>
+                            ☀️ AZURE HORIZON • HIGH-CONVERTING LANDING SYSTEMS
                         </span>
                     </div>
 
@@ -2246,33 +2261,33 @@
                         <h3 class="text-4xl sm:text-6xl lg:text-7xl xl:text-[76px] font-extrabold text-white tracking-tight leading-[0.95] drop-shadow-[0_10px_25px_rgba(0,0,0,0.95)]">
                             Landing Page <br class="hidden sm:inline">Showcase &
                         </h3>
-                        <h2 class="text-4xl sm:text-6xl lg:text-7xl xl:text-[78px] font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-200 to-purple-300 tracking-tight leading-[0.95] drop-shadow-[0_10px_28px_rgba(99,102,241,0.5)]">
+                        <h2 class="text-4xl sm:text-6xl lg:text-7xl xl:text-[78px] font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-sky-200 via-cyan-100 to-indigo-200 tracking-tight leading-[0.95] drop-shadow-[0_10px_28px_rgba(56,189,248,0.5)]">
                             Conversion Systems
                         </h2>
                     </div>
 
                     <!-- Subtitle Description Paragraph -->
                     <div class="space-y-3 pt-1">
-                        <p class="text-xs sm:text-sm lg:text-base text-slate-200 font-['Plus_Jakarta_Sans',_sans-serif] font-normal leading-relaxed max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
-                            Curated collection of bespoke high-converting landing pages, SaaS web platforms, and luxury brand digital flagships engineered for <span class="italic font-serif text-cyan-300 text-sm sm:text-base underline decoration-cyan-400/60 decoration-1 underline-offset-2">maximum conversion velocity</span> and zero-latency scale.
+                        <p class="text-xs sm:text-sm lg:text-base text-slate-100 font-['Plus_Jakarta_Sans',_sans-serif] font-normal leading-relaxed max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                            Curated collection of bespoke high-converting landing pages, SaaS web platforms, and luxury brand digital flagships engineered for <span class="italic font-serif text-cyan-200 text-sm sm:text-base underline decoration-cyan-300/60 decoration-1 underline-offset-2">maximum conversion velocity</span> and zero-latency scale.
                         </p>
                         
                         <!-- Clean System Metrics Badges Pill Bar -->
                         <div class="flex flex-wrap items-center gap-2 pt-1 text-[11px] font-['Space_Grotesk'] font-medium text-white">
-                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-cyan-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-cyan-300">
+                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-sky-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-sky-300">
                                 ⚡ SUB-10MS RENDER
                             </span>
-                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-indigo-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-indigo-300">
+                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-cyan-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-cyan-300">
                                 📈 +340% CONVERSION LIFT
                             </span>
-                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-purple-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-purple-300">
+                            <span class="px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-xl border border-indigo-400/30 shadow-lg flex items-center gap-1.5 hover:scale-105 transition-transform text-indigo-300">
                                 🛡️ ZERO CLS • 100 LIGHTHOUSE
                             </span>
                         </div>
 
                         <!-- CTA Actions -->
                         <div class="pt-3 flex items-center gap-3 sm:gap-4 flex-wrap">
-                            <a href="#grid-personal" class="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.22em] font-extrabold hover:from-cyan-400 hover:to-indigo-500 transition-all shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:shadow-cyan-400/60 active:scale-95">
+                            <a href="#grid-personal" class="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-white text-sky-950 font-mono text-[10px] sm:text-[12px] uppercase tracking-[0.22em] font-extrabold hover:bg-sky-50 hover:text-sky-900 transition-all shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:shadow-white/60 active:scale-95">
                                 <span>Explore 12+ Landing Pages</span>
                                 <span class="material-symbols-outlined text-[16px]">south_east</span>
                             </a>
@@ -2283,50 +2298,50 @@
 
                 <!-- RIGHT HOLOGRAPHIC TELEMETRY HUD CARD (Desktop / Tablet) -->
                 <div class="hidden md:flex flex-col gap-4 w-full max-w-sm shrink-0">
-                    <div class="relative p-6 rounded-3xl bg-slate-900/60 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden group hover:border-cyan-400/50 transition-all duration-300">
+                    <div class="relative p-6 rounded-3xl bg-slate-900/60 backdrop-blur-2xl border border-white/25 shadow-[0_20px_50px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] overflow-hidden group hover:border-cyan-300/50 transition-all duration-300">
                         <!-- Ambient gradient accent -->
-                        <div class="absolute -top-12 -right-12 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl group-hover:bg-cyan-500/30 transition-all"></div>
+                        <div class="absolute -top-12 -right-12 w-32 h-32 bg-sky-400/20 rounded-full blur-2xl group-hover:bg-sky-400/30 transition-all"></div>
                         
                         <div class="flex items-center justify-between pb-4 border-b border-white/10">
                             <div class="flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                                <span class="text-[10px] font-['Space_Grotesk'] font-bold tracking-widest text-slate-300 uppercase">SYSTEM STATUS</span>
+                                <span class="text-[10px] font-['Space_Grotesk'] font-bold tracking-widest text-slate-200 uppercase">VOYAGE TELEMETRY</span>
                             </div>
-                            <span class="text-[9px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded-md border border-cyan-800/40">4K OPTIMIZED</span>
+                            <span class="text-[9px] font-mono text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded-md border border-cyan-700/40">4K LIVE OCEAN</span>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4 pt-4">
                             <div class="space-y-1">
-                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-400 uppercase tracking-wider">Conversion Velocity</div>
+                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-300 uppercase tracking-wider">Conversion Velocity</div>
                                 <div class="text-2xl font-extrabold text-white font-['Outfit'] flex items-center gap-1">
                                     <span>+284%</span>
                                     <span class="text-emerald-400 text-xs font-mono font-normal">↑</span>
                                 </div>
                             </div>
                             <div class="space-y-1">
-                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-400 uppercase tracking-wider">Edge Latency</div>
-                                <div class="text-2xl font-extrabold text-cyan-300 font-['Outfit'] flex items-center gap-1">
+                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-300 uppercase tracking-wider">Edge Latency</div>
+                                <div class="text-2xl font-extrabold text-cyan-200 font-['Outfit'] flex items-center gap-1">
                                     <span>8.4ms</span>
                                     <span class="text-cyan-400 text-xs font-mono font-normal">avg</span>
                                 </div>
                             </div>
                             <div class="space-y-1">
-                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-400 uppercase tracking-wider">Core Web Vitals</div>
+                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-300 uppercase tracking-wider">Core Web Vitals</div>
                                 <div class="text-2xl font-extrabold text-emerald-300 font-['Outfit']">
                                     100/100
                                 </div>
                             </div>
                             <div class="space-y-1">
-                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-400 uppercase tracking-wider">A/B Engine</div>
-                                <div class="text-sm font-bold text-indigo-300 font-mono pt-1 flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> ACTIVE
+                                <div class="text-[10px] font-['Space_Grotesk'] text-slate-300 uppercase tracking-wider">Live Dynamics</div>
+                                <div class="text-sm font-bold text-sky-300 font-mono pt-1 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span> 60 FPS WAVES
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-400">
-                            <span>INTERACTIVE MOUSE WARP</span>
-                            <span class="text-cyan-300">240 FPS READY</span>
+                        <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-300">
+                            <span>INTERACTIVE WAKE RIPPLES</span>
+                            <span class="text-cyan-300">ACTIVE</span>
                         </div>
                     </div>
                 </div>
@@ -2335,14 +2350,14 @@
 
             <!-- VALUE PROPOSITION TEXT (Soft Non-Bold, Elegant Subtle Transparency) -->
             <div class="absolute bottom-20 sm:bottom-24 lg:bottom-26 left-1/2 -translate-x-1/2 z-20 w-[94%] max-w-2xl text-center space-y-1 select-none px-4">
-                <div class="inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-['Space_Grotesk'] font-normal tracking-[0.25em] text-cyan-400/90 uppercase drop-shadow-sm">
+                <div class="inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-['Space_Grotesk'] font-normal tracking-[0.25em] text-cyan-300/90 uppercase drop-shadow-sm">
                     <span>✦</span> HIGH-PERFORMANCE DIGITAL SHOWCASE
                 </div>
-                <h4 class="text-[11px] sm:text-xs lg:text-[13px] font-['Outfit',_sans-serif] font-normal tracking-[0.03em] [word-spacing:0.12em] text-white/90 leading-snug drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                <h4 class="text-[11px] sm:text-xs lg:text-[13px] font-['Outfit',_sans-serif] font-normal tracking-[0.03em] [word-spacing:0.12em] text-white/95 leading-snug drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
                     Engineered To Turn Passive Visitors Into High-Value Customers.
                 </h4>
-                <p class="text-[10px] sm:text-[11px] text-slate-300/80 font-['Plus_Jakarta_Sans',_sans-serif] font-normal leading-relaxed [word-spacing:0.15em] tracking-[0.02em] drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
-                    Every pixel, layout flow, and interactive element is designed with behavioral psychology and speed benchmarks — <span class="text-cyan-300 font-normal">delivering world-class aesthetics that elevate brand authority and drive sustainable revenue.</span>
+                <p class="text-[10px] sm:text-[11px] text-slate-200/90 font-['Plus_Jakarta_Sans',_sans-serif] font-normal leading-relaxed [word-spacing:0.15em] tracking-[0.02em] drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                    Every pixel, layout flow, and interactive element is designed with behavioral psychology and speed benchmarks — <span class="text-cyan-200 font-normal">delivering world-class aesthetics that elevate brand authority and drive sustainable revenue.</span>
                 </p>
             </div>
 
@@ -2383,194 +2398,285 @@
                 </a>
             </div>
 
-            <!-- LIVE HTML5 240 FPS QUANTUM PRISM & LASER CAUSTIC ENGINE -->
+            <!-- LIVE HTML5 240 FPS FLUID OCEAN WAVES, SUN CAUSTICS & FLOCKING SEAGULLS ENGINE -->
             <script>
-            (function initQuantumPrismEngine() {
-                // 1. Quantum Prism Particle Mesh Canvas
-                const pCanvas = document.getElementById('quantum-prism-canvas');
-                const fCanvas = document.getElementById('quantum-flare-canvas');
-                if (!pCanvas || !fCanvas) return;
+            (function initLiveOceanYachtEngine() {
+                // 1. Real-Time SVG Water Turbulence Animation
+                const turbNode = document.getElementById('ocean-yacht-turb-node');
+                let turbT = 0;
+                function animTurb() {
+                    turbT += 0.007;
+                    if (turbNode) {
+                        const fx = 0.012 + Math.sin(turbT * 1.8) * 0.004;
+                        const fy = 0.035 + Math.cos(turbT * 2.2) * 0.009;
+                        turbNode.setAttribute('baseFrequency', `${fx.toFixed(4)} ${fy.toFixed(4)}`);
+                    }
+                    requestAnimationFrame(animTurb);
+                }
+                animTurb();
 
-                const pCtx = pCanvas.getContext('2d');
-                const fCtx = fCanvas.getContext('2d');
-                let width = 0, height = 0;
+                // 2. Fluid Ocean Waves & Shimmering Sun Caustics Canvas
+                const wCanvas = document.getElementById('ocean-yacht-wave-canvas');
+                const bCanvas = document.getElementById('ocean-yacht-birds-canvas');
+                if (!wCanvas || !bCanvas) return;
+
+                const wCtx = wCanvas.getContext('2d');
+                const bCtx = bCanvas.getContext('2d');
+                let wWidth = 0, wHeight = 0;
+                let bWidth = 0, bHeight = 0;
+                let waveTime = 0;
                 let mouseX = -2000, mouseY = -2000;
                 let targetMouseX = -2000, targetMouseY = -2000;
-                let animTime = 0;
 
                 function resizeCanvases() {
-                    const rect = pCanvas.getBoundingClientRect();
-                    width = pCanvas.width = fCanvas.width = rect.width || window.innerWidth;
-                    height = pCanvas.height = fCanvas.height = rect.height || window.innerHeight;
+                    const wRect = wCanvas.getBoundingClientRect();
+                    wWidth = wCanvas.width = wRect.width || window.innerWidth;
+                    wHeight = wCanvas.height = wRect.height || (window.innerHeight * 0.55);
+
+                    const bRect = bCanvas.getBoundingClientRect();
+                    bWidth = bCanvas.width = bRect.width || window.innerWidth;
+                    bHeight = bCanvas.height = bRect.height || (window.innerHeight * 0.65);
                 }
                 resizeCanvases();
                 window.addEventListener('resize', resizeCanvases);
 
-                // Track mouse/touch for interactive gravitational warping
-                const heroBanner = document.getElementById('quantum-prism-hero-banner');
-                if (heroBanner) {
-                    heroBanner.addEventListener('mousemove', (e) => {
-                        const rect = heroBanner.getBoundingClientRect();
-                        targetMouseX = e.clientX - rect.left;
-                        targetMouseY = e.clientY - rect.top;
+                const banner = document.getElementById('ocean-yacht-hero-banner');
+                if (banner) {
+                    banner.addEventListener('mousemove', (e) => {
+                        const r = wCanvas.getBoundingClientRect();
+                        targetMouseX = e.clientX - r.left;
+                        targetMouseY = e.clientY - r.top;
                     });
-                    heroBanner.addEventListener('mouseleave', () => {
+                    banner.addEventListener('mouseleave', () => {
                         targetMouseX = -2000;
                         targetMouseY = -2000;
                     });
-                    heroBanner.addEventListener('touchmove', (e) => {
-                        if (e.touches && e.touches[0]) {
-                            const rect = heroBanner.getBoundingClientRect();
-                            targetMouseX = e.touches[0].clientX - rect.left;
-                            targetMouseY = e.touches[0].clientY - rect.top;
-                        }
-                    }, { passive: true });
                 }
 
-                // 140 Floating Chromatic Crystal Nodes & Quantum Photons
-                const isMobile = window.innerWidth < 768;
-                const PARTICLE_COUNT = isMobile ? 65 : 140;
-                const particles = [];
-
-                const colors = [
-                    'rgba(56, 189, 248, ',   // Cyan / Sky
-                    'rgba(129, 140, 248, ',  // Indigo
-                    'rgba(192, 132, 252, ',  // Purple / Violet
-                    'rgba(244, 114, 182, ',  // Pink / Magenta
-                    'rgba(255, 255, 255, '   // Pure White
-                ];
-
-                for (let i = 0; i < PARTICLE_COUNT; i++) {
-                    particles.push({
-                        x: Math.random() * (width || window.innerWidth),
-                        y: Math.random() * (height || window.innerHeight),
-                        vx: (Math.random() - 0.5) * 0.8,
-                        vy: (Math.random() - 0.5) * 0.8,
-                        size: 1.2 + Math.random() * 3.5,
-                        colorBase: colors[Math.floor(Math.random() * colors.length)],
-                        alphaPhase: Math.random() * Math.PI * 2,
-                        alphaSpeed: 0.02 + Math.random() * 0.04,
-                        isCrystalShard: Math.random() > 0.65,
-                        rotation: Math.random() * Math.PI * 2,
-                        rotSpeed: (Math.random() - 0.5) * 0.03
+                // 90 Sun Caustics Glitters on Water Swells
+                const glints = [];
+                const GLINT_COUNT = 90;
+                for (let i = 0; i < GLINT_COUNT; i++) {
+                    glints.push({
+                        xRatio: Math.random(),
+                        yRatio: 0.15 + Math.random() * 0.82,
+                        baseSize: 1.0 + Math.random() * 3.2,
+                        phase: Math.random() * Math.PI * 2,
+                        speed: 0.025 + Math.random() * 0.045,
+                        drift: (Math.random() - 0.5) * 0.2,
+                        starFlare: Math.random() > 0.6
                     });
                 }
 
-                // 3 Anamorphic Sweeping Laser Rays
-                const laserBeams = [
-                    { angle: -0.65, speed: 0.008, color: 'rgba(56, 189, 248, 0.25)', width: 4 },
-                    { angle: 0.75, speed: -0.006, color: 'rgba(168, 85, 247, 0.22)', width: 5 },
-                    { angle: 0.25, speed: 0.010, color: 'rgba(236, 72, 153, 0.18)', width: 3 }
+                // Wave Layers Definition
+                const waveLayers = [
+                    { yRatio: 0.35, amplitude: 8, frequency: 0.005, speed: 1.2, color: 'rgba(56, 189, 248, 0.14)', crestColor: 'rgba(255, 255, 255, 0.32)' },
+                    { yRatio: 0.62, amplitude: 12, frequency: 0.004, speed: 1.6, color: 'rgba(14, 165, 233, 0.18)', crestColor: 'rgba(255, 255, 255, 0.40)' },
+                    { yRatio: 0.86, amplitude: 16, frequency: 0.0035, speed: 2.0, color: 'rgba(2, 132, 199, 0.22)', crestColor: 'rgba(255, 255, 255, 0.50)' }
                 ];
 
-                function renderQuantumEngine() {
-                    pCtx.clearRect(0, 0, width, height);
-                    fCtx.clearRect(0, 0, width, height);
-                    animTime += 0.016;
+                function renderWaveEngine() {
+                    wCtx.clearRect(0, 0, wWidth, wHeight);
+                    waveTime += 0.016;
 
-                    // Smooth mouse easing
                     mouseX += (targetMouseX - mouseX) * 0.08;
                     mouseY += (targetMouseY - mouseY) * 0.08;
 
-                    // 1. Draw Anamorphic Sweeping Laser Rays on Flare Canvas
-                    fCtx.save();
-                    fCtx.translate(width * 0.55, height * 0.5);
-                    laserBeams.forEach((beam) => {
-                        const curAngle = beam.angle + Math.sin(animTime * beam.speed * 40) * 0.15;
-                        fCtx.save();
-                        fCtx.rotate(curAngle);
-                        
-                        const beamGrad = fCtx.createLinearGradient(-width, 0, width, 0);
-                        beamGrad.addColorStop(0, 'rgba(0,0,0,0)');
-                        beamGrad.addColorStop(0.3, beam.color);
-                        beamGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.6)');
-                        beamGrad.addColorStop(0.7, beam.color);
-                        beamGrad.addColorStop(1, 'rgba(0,0,0,0)');
-                        
-                        fCtx.fillStyle = beamGrad;
-                        fCtx.fillRect(-width, -beam.width * 0.5, width * 2, beam.width);
-                        fCtx.restore();
-                    });
-                    fCtx.restore();
+                    // Draw Undulating Wave Swells
+                    waveLayers.forEach((wl, idx) => {
+                        wCtx.beginPath();
+                        const baseY = wHeight * wl.yRatio;
 
-                    // 2. Update & Draw Particles + Interconnecting Laser Mesh Threads
-                    for (let i = 0; i < particles.length; i++) {
-                        const p = particles[i];
+                        for (let x = 0; x <= wWidth; x += 8) {
+                            let y = baseY + 
+                                    Math.sin(x * wl.frequency + waveTime * wl.speed + idx) * wl.amplitude +
+                                    Math.cos(x * (wl.frequency * 1.6) - waveTime * (wl.speed * 0.8)) * (wl.amplitude * 0.4);
 
-                        // Interactive Gravitational Warp around cursor
-                        const dx = mouseX - p.x;
-                        const dy = mouseY - p.y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 220) {
-                            const force = (1 - dist / 220) * 0.9;
-                            p.vx += (dx / dist) * force * 0.25;
-                            p.vy += (dy / dist) * force * 0.25;
-                        }
-
-                        // Apply velocities with soft damping
-                        p.x += p.vx;
-                        p.y += p.vy;
-                        p.vx *= 0.985;
-                        p.vy *= 0.985;
-                        p.rotation += p.rotSpeed;
-                        p.alphaPhase += p.alphaSpeed;
-
-                        // Screen Wrap
-                        if (p.x < -20) p.x = width + 20;
-                        if (p.x > width + 20) p.x = -20;
-                        if (p.y < -20) p.y = height + 20;
-                        if (p.y > height + 20) p.y = -20;
-
-                        const alpha = (Math.sin(p.alphaPhase) + 1) * 0.4 + 0.2;
-
-                        // Draw Particle
-                        pCtx.save();
-                        pCtx.translate(p.x, p.y);
-                        pCtx.rotate(p.rotation);
-
-                        if (p.isCrystalShard) {
-                            // 3D Diamond / Faceted Crystal Shard
-                            pCtx.beginPath();
-                            pCtx.moveTo(0, -p.size * 2);
-                            pCtx.lineTo(p.size * 1.5, 0);
-                            pCtx.lineTo(0, p.size * 2);
-                            pCtx.lineTo(-p.size * 1.5, 0);
-                            pCtx.closePath();
-                            pCtx.fillStyle = p.colorBase + alpha + ')';
-                            pCtx.shadowColor = p.colorBase + '0.9)';
-                            pCtx.shadowBlur = 10;
-                            pCtx.fill();
-                        } else {
-                            // Glowing Quantum Photon Mote
-                            pCtx.beginPath();
-                            pCtx.arc(0, 0, p.size, 0, Math.PI * 2);
-                            pCtx.fillStyle = p.colorBase + alpha + ')';
-                            pCtx.shadowColor = p.colorBase + '0.8)';
-                            pCtx.shadowBlur = 8;
-                            pCtx.fill();
-                        }
-                        pCtx.restore();
-
-                        // Connect nearby particles with laser filaments (Laser Mesh)
-                        for (let j = i + 1; j < particles.length; j++) {
-                            const p2 = particles[j];
-                            const pDist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                            const maxDist = isMobile ? 80 : 120;
-                            if (pDist < maxDist) {
-                                const lineAlpha = (1 - pDist / maxDist) * 0.35;
-                                pCtx.beginPath();
-                                pCtx.moveTo(p.x, p.y);
-                                pCtx.lineTo(p2.x, p2.y);
-                                pCtx.strokeStyle = 'rgba(99, 102, 241, ' + lineAlpha + ')';
-                                pCtx.lineWidth = 0.8;
-                                pCtx.stroke();
+                            const dx = x - mouseX;
+                            const dy = y - mouseY;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 180) {
+                                y += Math.sin(dist * 0.08 - waveTime * 4) * ((1 - dist / 180) * 10);
                             }
+
+                            if (x === 0) wCtx.moveTo(x, y);
+                            else wCtx.lineTo(x, y);
+                        }
+
+                        wCtx.lineTo(wWidth, wHeight);
+                        wCtx.lineTo(0, wHeight);
+                        wCtx.closePath();
+
+                        wCtx.fillStyle = wl.color;
+                        wCtx.fill();
+
+                        wCtx.strokeStyle = wl.crestColor;
+                        wCtx.lineWidth = 1.5;
+                        wCtx.stroke();
+                    });
+
+                    // Draw Sun Caustics
+                    wCtx.globalCompositeOperation = 'screen';
+                    glints.forEach(glint => {
+                        glint.phase += glint.speed;
+                        glint.xRatio += glint.drift / wWidth;
+                        if (glint.xRatio > 1) glint.xRatio = 0;
+                        if (glint.xRatio < 0) glint.xRatio = 1;
+
+                        const gx = glint.xRatio * wWidth;
+                        const gy = wHeight * glint.yRatio + Math.sin(gx * 0.005 + waveTime * 2.0) * 7;
+
+                        const rawIntensity = (Math.sin(glint.phase) + 1) * 0.45;
+                        const alpha = Math.min(1, Math.max(0, rawIntensity));
+
+                        if (alpha > 0.08) {
+                            wCtx.save();
+                            wCtx.translate(gx, gy);
+
+                            const radGrad = wCtx.createRadialGradient(0, 0, 0, 0, 0, glint.baseSize * 3);
+                            radGrad.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.95})`);
+                            radGrad.addColorStop(0.3, `rgba(224, 242, 254, ${alpha * 0.6})`);
+                            radGrad.addColorStop(1, 'rgba(56, 189, 248, 0)');
+
+                            wCtx.fillStyle = radGrad;
+                            wCtx.beginPath();
+                            wCtx.arc(0, 0, glint.baseSize * 3, 0, Math.PI * 2);
+                            wCtx.fill();
+
+                            if (glint.starFlare && alpha > 0.45) {
+                                wCtx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.7})`;
+                                wCtx.lineWidth = 0.8;
+                                wCtx.beginPath();
+                                wCtx.moveTo(-glint.baseSize * 4.5, 0);
+                                wCtx.lineTo(glint.baseSize * 4.5, 0);
+                                wCtx.moveTo(0, -glint.baseSize * 2.5);
+                                wCtx.lineTo(0, glint.baseSize * 2.5);
+                                wCtx.stroke();
+                            }
+
+                            wCtx.restore();
+                        }
+                    });
+                    wCtx.globalCompositeOperation = 'source-over';
+
+                    requestAnimationFrame(renderWaveEngine);
+                }
+                renderWaveEngine();
+
+                // 3. Autonomous Flying White Seagulls Flight Engine
+                class WhiteFlyingSeagull {
+                    constructor(initX = null) {
+                        this.reset(true, initX);
+                    }
+
+                    reset(init = false, customX = null) {
+                        this.scale = 0.40 + Math.random() * 0.60;
+                        this.wingspan = 19 * this.scale;
+                        this.speed = (1.3 + Math.random() * 1.0) * (this.scale * 1.15);
+                        
+                        this.x = customX !== null ? customX : (init ? Math.random() * bWidth : -60);
+                        this.y = (bHeight * 0.08) + Math.random() * (bHeight * 0.50);
+                        this.baseY = this.y;
+
+                        this.flapPhase = Math.random() * Math.PI * 2;
+                        this.flapSpeed = 0.10 + Math.random() * 0.04;
+                        this.glideTimer = 0;
+                        this.isGliding = false;
+                        this.glideDuration = 130 + Math.random() * 180;
+                        this.flapDuration = 70 + Math.random() * 90;
+                        
+                        this.yNoise = Math.random() * 100;
+                    }
+
+                    update() {
+                        this.x += this.speed;
+                        this.yNoise += 0.014;
+                        this.y = this.baseY + Math.sin(this.yNoise) * (14 * this.scale);
+
+                        this.glideTimer++;
+                        if (!this.isGliding && this.glideTimer > this.flapDuration) {
+                            this.isGliding = true;
+                            this.glideTimer = 0;
+                        } else if (this.isGliding && this.glideTimer > this.glideDuration) {
+                            this.isGliding = false;
+                            this.glideTimer = 0;
+                        }
+
+                        if (!this.isGliding) {
+                            this.flapPhase += this.flapSpeed;
+                        }
+
+                        if (this.x > bWidth + 80) {
+                            this.reset(false, -50);
                         }
                     }
 
-                    requestAnimationFrame(renderQuantumEngine);
+                    draw() {
+                        bCtx.save();
+                        bCtx.translate(this.x, this.y);
+
+                        let wingDeflection = this.isGliding 
+                            ? Math.sin(this.yNoise) * 1.2 
+                            : Math.sin(this.flapPhase) * (this.wingspan * 0.70);
+
+                        const w = this.wingspan;
+                        const bodyL = 8 * this.scale;
+
+                        bCtx.shadowColor = 'rgba(15, 23, 42, 0.35)';
+                        bCtx.shadowBlur = 5 * this.scale;
+                        bCtx.shadowOffsetY = 2.5 * this.scale;
+
+                        // Left Wing
+                        bCtx.beginPath();
+                        bCtx.moveTo(0, 0);
+                        bCtx.bezierCurveTo(-w * 0.3, -wingDeflection * 0.9, -w * 0.7, wingDeflection * 0.2, -w, wingDeflection * 0.5);
+                        bCtx.bezierCurveTo(-w * 0.6, wingDeflection * 0.1, -w * 0.25, -wingDeflection * 0.2, 0, bodyL * 0.4);
+                        
+                        // Right Wing
+                        bCtx.beginPath();
+                        bCtx.moveTo(0, 0);
+                        bCtx.bezierCurveTo(w * 0.3, -wingDeflection * 0.9, w * 0.7, wingDeflection * 0.2, w, wingDeflection * 0.5);
+                        bCtx.bezierCurveTo(w * 0.6, wingDeflection * 0.1, w * 0.25, -wingDeflection * 0.2, 0, bodyL * 0.4);
+                        
+                        bCtx.fillStyle = 'rgba(255, 255, 255, 0.96)';
+                        bCtx.fill();
+
+                        // Torso
+                        bCtx.beginPath();
+                        bCtx.ellipse(0, 0, 1.7 * this.scale, bodyL * 0.6, 0, 0, Math.PI * 2);
+                        bCtx.fillStyle = '#ffffff';
+                        bCtx.fill();
+
+                        // Dark Wingtips
+                        bCtx.beginPath();
+                        bCtx.arc(-w, wingDeflection * 0.5, 1.1 * this.scale, 0, Math.PI * 2);
+                        bCtx.arc(w, wingDeflection * 0.5, 1.1 * this.scale, 0, Math.PI * 2);
+                        bCtx.fillStyle = 'rgba(30, 41, 59, 0.75)';
+                        bCtx.fill();
+
+                        bCtx.restore();
+                    }
                 }
-                renderQuantumEngine();
+
+                const seagulls = [];
+                const SEAGULL_COUNT = 6;
+                for (let i = 0; i < SEAGULL_COUNT; i++) {
+                    const posX = (bWidth / SEAGULL_COUNT) * i + (Math.random() * 80 - 40);
+                    seagulls.push(new WhiteFlyingSeagull(posX));
+                }
+
+                function renderBirdsEngine() {
+                    bCtx.clearRect(0, 0, bWidth, bHeight);
+
+                    seagulls.forEach(bird => {
+                        bird.update();
+                        bird.draw();
+                    });
+
+                    requestAnimationFrame(renderBirdsEngine);
+                }
+                renderBirdsEngine();
+
             })();
             </script>
         </div>
