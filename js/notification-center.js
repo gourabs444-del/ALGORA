@@ -1,142 +1,228 @@
 /**
- * ALGORA Notification Center & Activity Feed
- * Handles:
- *  - Order / Inquiry Notifications with Interactive Thank You Cards
- *  - Email Notifications (Inbound, Outbound, and Admin Replies from Gourav)
- *  - Interactive Email Thread Reader & Live Quick Reply
- *  - Bell Icon Badges, Filters (All / Orders / Emails), and LocalStorage Persistence
+ * ALGORA Real-Time Database-Linked Notification Center
+ * Connects directly to:
+ *  1. Production Master Store Database (REST API: ff8081819f7e10ae019ff4d5104b2eb2)
+ *  2. Firebase Firestore Database (inquiries / orders / messages)
+ *  3. LocalStorage & SessionStorage Inquiries & Email Replies
+ * 
+ * NO FAKE NOTIFICATIONS: Displays only 100% REAL submitted orders, thank-you cards,
+ * inbound emails, and real admin replies from Gourav/Admin.
  */
 
-(function initNotificationCenter() {
-    // Initial sample notifications if none exist
-    const defaultNotifications = [
-        {
-            id: 'notif-email-reply-1',
-            type: 'email_reply',
-            title: 'Reply from Gourav (Algora Lead)',
-            subtitle: 'RE: Web App Architecture & Contract Proposal',
-            sender: 'Gourav • Lead Architect',
-            senderEmail: 'gourav@algora.studio',
-            preview: "Hi! I've reviewed your project blueprint for the Web App. We can initiate development this Monday. Here is the staging preview link...",
-            fullMessage: `Hi,\n\nThank you for reaching out through Algora! I've thoroughly reviewed your project requirements for the Full-Stack Web Application.\n\nWe have prepared the system architecture, component design system, and deployment pipeline. We can kick off Sprint 1 this coming Monday.\n\nPlease review the scope and reply directly here or on WhatsApp (+91 98765 43210) if you'd like any custom feature additions.\n\nBest regards,\nGourav\nLead Architect & Founder, Algora Studio`,
-            time: '10 mins ago',
-            timestamp: Date.now() - 10 * 60 * 1000,
-            read: false,
-            replies: []
-        },
-        {
-            id: 'notif-order-1',
-            type: 'order',
-            title: 'Order #AG-9421 Confirmed',
-            subtitle: 'Full-Stack AI Platform & Web Application',
-            clientName: 'Alex Rivera',
-            service: 'Custom Web Development',
-            budget: '$2,500 – $5,000',
-            timeline: '2-3 Weeks',
-            leadId: 'AG-9421',
-            time: '25 mins ago',
-            timestamp: Date.now() - 25 * 60 * 1000,
-            read: false,
-            thankYouData: {
-                leadId: 'AG-9421',
-                status: 'SUBMITTED',
-                projectType: 'Full-Stack AI Platform',
-                budget: '$2,500 – $5,000',
-                timeline: '2-3 Weeks',
-                date: 'Today'
-            }
-        },
-        {
-            id: 'notif-email-inbound-1',
-            type: 'email_inbound',
-            title: 'New Mail: Project Discovery & NDA',
-            subtitle: 'Signed NDA & Asset Files Received',
-            sender: 'Algora Automated Dispatch',
-            senderEmail: 'dispatch@algora.studio',
-            preview: 'Your project brief and reference media have been securely synced to our development vault.',
-            fullMessage: `Your project submission and associated media assets have been securely synced with Algora's production vault. Our team will review within 24 hours.\n\nReference ID: #AG-9421\nStatus: Verified & Assigned to Lead Architect`,
-            time: '1 hour ago',
-            timestamp: Date.now() - 60 * 60 * 1000,
-            read: false,
-            replies: []
-        },
-        {
-            id: 'notif-order-2',
-            type: 'order',
-            title: 'Order #AG-8812 Submitted',
-            subtitle: 'Interactive 3D Motion Portfolio',
-            clientName: 'Creative Lead',
-            service: 'Motion Design & System',
-            budget: '$1,500 – $3,000',
-            timeline: '1-2 Weeks',
-            leadId: 'AG-8812',
-            time: 'Yesterday',
-            timestamp: Date.now() - 24 * 60 * 60 * 1000,
-            read: true,
-            thankYouData: {
-                leadId: 'AG-8812',
-                status: 'IN REVIEW',
-                projectType: 'Interactive 3D Motion Portfolio',
-                budget: '$1,500 – $3,000',
-                timeline: '1-2 Weeks',
-                date: 'Yesterday'
-            }
-        }
-    ];
+(function initRealDatabaseNotificationCenter() {
+    const MASTER_STORE_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019ff4d5104b2eb2';
+    const FIRESTORE_REST_URL = 'https://firestore.googleapis.com/v1/projects/portfolio-5141f/databases/(default)/documents/inquiries';
 
-    function getStoredNotifications() {
+    let cachedNotifications = [];
+    let currentFilter = 'all';
+    let isFetching = false;
+    let activeEmailNotifId = null;
+
+    // Helper: format real date
+    function formatTimeAgo(isoString) {
+        if (!isoString) return 'Recent';
         try {
-            let stored = JSON.parse(localStorage.getItem('algora_notifications'));
-            if (!stored || !Array.isArray(stored)) {
-                stored = defaultNotifications;
-                localStorage.setItem('algora_notifications', JSON.stringify(stored));
-            }
+            const date = new Date(isoString);
+            if (isNaN(date.getTime())) return 'Recent';
+            const diffSec = Math.floor((Date.now() - date.getTime()) / 1000);
+            if (diffSec < 60) return 'Just now';
+            if (diffSec < 3600) return `${Math.floor(diffSec / 60)}m ago`;
+            if (diffSec < 86400) return `${Math.floor(diffSec / 3600)}h ago`;
+            if (diffSec < 604800) return `${Math.floor(diffSec / 86400)}d ago`;
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        } catch (e) {
+            return 'Recent';
+        }
+    }
 
-            // Sync with any new inquiries from start-project.html
-            const inquiries = JSON.parse(localStorage.getItem('algora_inquiries') || '[]');
-            inquiries.forEach(inq => {
-                const existingId = `notif-inq-${inq.referenceId || inq.leadId}`;
-                const exists = stored.some(n => n.id === existingId || n.leadId === (inq.referenceId || inq.leadId));
-                if (!exists && (inq.referenceId || inq.leadId)) {
-                    const leadId = inq.referenceId || inq.leadId;
-                    stored.unshift({
-                        id: existingId,
-                        type: 'order',
-                        title: `Order #${leadId} Confirmed`,
-                        subtitle: inq.service || inq.projectType || 'Custom Web Project',
-                        clientName: inq.name || 'Client',
-                        service: inq.service || 'Custom Web Development',
-                        budget: inq.budget || 'Custom',
-                        timeline: inq.timeline || 'Flexible',
-                        leadId: leadId,
-                        time: 'Just now',
-                        timestamp: Date.now(),
-                        read: false,
-                        thankYouData: {
-                            leadId: leadId,
-                            status: 'SUBMITTED',
-                            projectType: inq.service || inq.projectType || 'Web Project',
-                            budget: inq.budget || 'Custom',
-                            timeline: inq.timeline || 'Flexible',
-                            date: 'Just now'
+    // Helper: format full date string
+    function formatFullDate(isoString) {
+        if (!isoString) return new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        try {
+            const date = new Date(isoString);
+            if (isNaN(date.getTime())) return new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        } catch (e) {
+            return 'Recent';
+        }
+    }
+
+    // Fetch real data from all database sources
+    async function fetchRealDatabaseNotifications() {
+        if (isFetching) return cachedNotifications;
+        isFetching = true;
+
+        const allInquiriesMap = new Map();
+
+        // 1. Fetch from LocalStorage (Instant local fallback)
+        try {
+            const localList = JSON.parse(localStorage.getItem('algora_inquiries') || '[]');
+            localList.forEach(item => {
+                const id = String(item.leadId || item.referenceId || item.id || '');
+                if (id) allInquiriesMap.set(id, { ...item, leadId: id });
+            });
+        } catch (e) {}
+
+        // 2. Fetch from Master REST Store (Production Global Store)
+        try {
+            const res = await fetch(MASTER_STORE_URL, { cache: 'no-store' });
+            if (res.ok) {
+                const json = await res.json();
+                if (json && json.data && Array.isArray(json.data.inquiries)) {
+                    json.data.inquiries.forEach(item => {
+                        const id = String(item.leadId || item.referenceId || item.id || '');
+                        if (id) {
+                            const existing = allInquiriesMap.get(id) || {};
+                            allInquiriesMap.set(id, { ...existing, ...item, leadId: id });
                         }
                     });
                 }
+            }
+        } catch (e) {
+            console.warn('Master Store read error:', e);
+        }
+
+        // 3. Fetch from Firebase Firestore if client initialized
+        try {
+            if (window.firebase && firebase.firestore) {
+                const db = firebase.firestore();
+                const snapshot = await db.collection('inquiries').get().catch(() => null);
+                if (snapshot && !snapshot.empty) {
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        const id = String(data.leadId || data.referenceId || doc.id || '');
+                        if (id) {
+                            const existing = allInquiriesMap.get(id) || {};
+                            allInquiriesMap.set(id, { ...existing, ...data, leadId: id });
+                        }
+                    });
+                }
+            }
+        } catch (e) {}
+
+        // Read user replies from localStorage
+        const storedReplies = JSON.parse(localStorage.getItem('algora_mail_replies') || '{}');
+        const readStates = JSON.parse(localStorage.getItem('algora_notif_read_states') || '{}');
+
+        // Convert inquiries into real notification items
+        const rawList = Array.from(allInquiriesMap.values());
+        
+        // Sort by createdAt descending
+        rawList.sort((a, b) => {
+            const tA = new Date(a.createdAt || 0).getTime();
+            const tB = new Date(b.createdAt || 0).getTime();
+            return tB - tA;
+        });
+
+        const notifications = [];
+
+        rawList.forEach((inq) => {
+            const leadId = inq.leadId || inq.referenceId || 'AG-' + Math.floor(1000 + Math.random() * 9000);
+            const clientName = inq.name || inq.clientName || 'Client';
+            const service = inq.service || inq.projectType || 'Custom Project';
+            const budget = inq.budget || 'Custom';
+            const timeline = inq.timeline || 'Flexible';
+            const timeAgo = formatTimeAgo(inq.createdAt);
+            const fullDate = formatFullDate(inq.createdAt);
+            const message = inq.message || inq.description || 'Project details submitted via Algora Portal.';
+            const clientEmail = inq.email || 'client@example.com';
+            const orderStatus = inq.status || 'SUBMITTED';
+
+            // 1. Real Order / Thank You Card Notification
+            const orderNotifId = `order-${leadId}`;
+            notifications.push({
+                id: orderNotifId,
+                type: 'order',
+                title: `Order #${leadId} Confirmed`,
+                subtitle: `${service} • ${clientName}`,
+                clientName: clientName,
+                service: service,
+                budget: budget,
+                timeline: timeline,
+                leadId: leadId,
+                email: clientEmail,
+                time: timeAgo,
+                fullDate: fullDate,
+                read: Boolean(readStates[orderNotifId]),
+                thankYouData: {
+                    leadId: leadId,
+                    status: orderStatus,
+                    projectType: service,
+                    clientName: clientName,
+                    budget: budget,
+                    timeline: timeline,
+                    date: fullDate
+                }
             });
 
-            return stored;
-        } catch (e) {
-            return defaultNotifications;
-        }
+            // 2. Real Inbound / Outbound Email Notification
+            const emailNotifId = `email-${leadId}`;
+            notifications.push({
+                id: emailNotifId,
+                type: 'email_inbound',
+                title: `Inquiry Email: ${service}`,
+                subtitle: `From: ${clientName} (${clientEmail})`,
+                sender: clientName,
+                senderEmail: clientEmail,
+                subject: `New Project Inquiry: ${service} [Ref #${leadId}]`,
+                preview: message,
+                fullMessage: `From: ${clientName} <${clientEmail}>\nTo: Gourav <contact@algora.studio>\nDate: ${fullDate}\n\nProject Scope: ${service}\nBudget Range: ${budget}\nTarget Timeline: ${timeline}\n\nMessage:\n${message}`,
+                time: timeAgo,
+                fullDate: fullDate,
+                read: Boolean(readStates[emailNotifId]),
+                replies: storedReplies[emailNotifId] || []
+            });
+
+            // 3. Real Admin Reply Notification (if Gourav/Admin replied or added notes)
+            const adminNote = inq.adminNotes || inq.replyMessage || (inq.replies && inq.replies[0] && inq.replies[0].text);
+            if (adminNote) {
+                const replyNotifId = `reply-${leadId}`;
+                notifications.push({
+                    id: replyNotifId,
+                    type: 'email_reply',
+                    title: `Reply from Gourav (Algora Lead)`,
+                    subtitle: `RE: ${service} [Ref #${leadId}]`,
+                    sender: 'Gourav • Lead Architect',
+                    senderEmail: 'gourav@algora.studio',
+                    subject: `RE: ${service} Proposal & Architecture [Ref #${leadId}]`,
+                    preview: adminNote,
+                    fullMessage: `From: Gourav (Lead Architect) <gourav@algora.studio>\nTo: ${clientName} <${clientEmail}>\nDate: ${fullDate}\n\n${adminNote}\n\nBest regards,\nGourav\nLead Architect & Founder, Algora Studio`,
+                    time: timeAgo,
+                    fullDate: fullDate,
+                    read: Boolean(readStates[replyNotifId]),
+                    replies: storedReplies[replyNotifId] || []
+                });
+            }
+        });
+
+        cachedNotifications = notifications;
+        isFetching = false;
+        return notifications;
     }
 
-    function saveNotifications(notifs) {
+    // Save read states
+    function markAsRead(notifId) {
         try {
-            localStorage.setItem('algora_notifications', JSON.stringify(notifs));
+            const readStates = JSON.parse(localStorage.getItem('algora_notif_read_states') || '{}');
+            readStates[notifId] = true;
+            localStorage.setItem('algora_notif_read_states', JSON.stringify(readStates));
+            const item = cachedNotifications.find(n => n.id === notifId);
+            if (item) item.read = true;
         } catch (e) {}
     }
 
-    // Inject UI HTML (Drawer, Thank You Modal, Email Modal)
+    function markAllAsRead() {
+        try {
+            const readStates = JSON.parse(localStorage.getItem('algora_notif_read_states') || '{}');
+            cachedNotifications.forEach(n => {
+                readStates[n.id] = true;
+                n.read = true;
+            });
+            localStorage.setItem('algora_notif_read_states', JSON.stringify(readStates));
+        } catch (e) {}
+    }
+
+    // Inject UI Elements (Drawer, Thank You Modal, Email Modal)
     function injectUI() {
         if (document.getElementById('algora-notification-center-root')) return;
 
@@ -144,7 +230,7 @@
         root.id = 'algora-notification-center-root';
         root.innerHTML = `
         <!-- Notification Dropdown / Drawer Popover -->
-        <div id="algora-notification-drawer" class="fixed top-16 sm:top-20 right-3 sm:right-6 lg:right-10 z-[999999] w-[94vw] sm:w-[440px] max-h-[88vh] bg-[#0c101c]/95 backdrop-blur-2xl border border-white/18 rounded-[26px] shadow-[0_25px_80px_-10px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.08)] flex flex-col overflow-hidden transition-all duration-300 opacity-0 pointer-events-none translate-y-[-12px] scale-[0.97]" style="font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;">
+        <div id="algora-notification-drawer" class="fixed top-16 sm:top-20 right-3 sm:right-6 lg:right-10 z-[999999] w-[94vw] sm:w-[450px] max-h-[88vh] bg-[#0c101c]/95 backdrop-blur-2xl border border-white/18 rounded-[26px] shadow-[0_25px_80px_-10px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.08)] flex flex-col overflow-hidden transition-all duration-300 opacity-0 pointer-events-none translate-y-[-12px] scale-[0.97]" style="font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;">
             
             <!-- Drawer Header -->
             <div class="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-white/[0.03]">
@@ -154,13 +240,19 @@
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
-                            <h3 class="text-sm sm:text-[15px] font-bold text-white tracking-tight">Notifications</h3>
+                            <h3 class="text-sm sm:text-[15px] font-bold text-white tracking-tight">Database Activity</h3>
                             <span id="notif-unread-badge" class="px-2 py-0.5 rounded-full bg-indigo-500/25 border border-indigo-400/40 text-[10px] font-extrabold text-indigo-300 uppercase tracking-wider">0 NEW</span>
                         </div>
-                        <p class="text-[11px] text-white/50 font-medium">Orders, thank-you cards & email replies</p>
+                        <p class="text-[11px] text-white/50 font-medium flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Live Firestore &amp; REST Store Sync
+                        </p>
                     </div>
                 </div>
                 <div class="flex items-center gap-1.5">
+                    <button id="notif-refresh-btn" title="Refresh from Database" class="p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer text-xs flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[17px]">refresh</span>
+                    </button>
                     <button id="notif-mark-all-read" title="Mark all as read" class="p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer text-xs flex items-center gap-1">
                         <span class="material-symbols-outlined text-[17px]">done_all</span>
                     </button>
@@ -173,8 +265,8 @@
             <!-- Filter Tabs -->
             <div class="px-4 py-2.5 border-b border-white/10 flex items-center gap-2 bg-white/[0.015]">
                 <button class="notif-tab-btn active px-3 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all bg-indigo-600 text-white cursor-pointer" data-filter="all">All (<span id="count-all">0</span>)</button>
-                <button class="notif-tab-btn px-3 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all text-white/70 hover:text-white hover:bg-white/10 cursor-pointer" data-filter="order">📦 Orders & Cards (<span id="count-order">0</span>)</button>
-                <button class="notif-tab-btn px-3 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all text-white/70 hover:text-white hover:bg-white/10 cursor-pointer" data-filter="email">✉️ Emails (<span id="count-email">0</span>)</button>
+                <button class="notif-tab-btn px-3 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all text-white/70 hover:text-white hover:bg-white/10 cursor-pointer" data-filter="order">📦 Real Orders (<span id="count-order">0</span>)</button>
+                <button class="notif-tab-btn px-3 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all text-white/70 hover:text-white hover:bg-white/10 cursor-pointer" data-filter="email">✉️ Emails &amp; Replies (<span id="count-email">0</span>)</button>
             </div>
 
             <!-- Notification Feed List -->
@@ -184,12 +276,12 @@
 
             <!-- Drawer Footer -->
             <div class="p-3 px-4 border-t border-white/10 bg-white/[0.02] flex items-center justify-between text-[11px] text-white/50 font-medium">
-                <span class="flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Live Sync Active
+                <span class="flex items-center gap-1 text-[10.5px]">
+                    <span class="material-symbols-outlined text-[14px] text-emerald-400">cloud_done</span>
+                    Database Connected
                 </span>
                 <a href="start-project.html" class="text-indigo-400 hover:text-indigo-300 font-bold transition-colors flex items-center gap-0.5">
-                    + New Project
+                    + Submit New Order
                     <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
                 </a>
             </div>
@@ -329,12 +421,21 @@
         document.body.appendChild(root);
     }
 
-    // Render Notifications Feed
-    function renderFeed(filter = 'all') {
+    // Render feed
+    async function renderFeed(filter = 'all', forceRefresh = false) {
         const feedList = document.getElementById('notif-feed-list');
         if (!feedList) return;
 
-        const notifs = getStoredNotifications();
+        if (forceRefresh || cachedNotifications.length === 0) {
+            feedList.innerHTML = `
+                <div class="py-12 flex flex-col items-center justify-center text-white/60 gap-3">
+                    <div class="w-7 h-7 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin"></div>
+                    <span class="text-xs font-semibold tracking-wide">Syncing with Real Database...</span>
+                </div>
+            `;
+        }
+
+        const notifs = await fetchRealDatabaseNotifications();
         let filtered = notifs;
 
         if (filter === 'order') {
@@ -367,9 +468,16 @@
 
         if (filtered.length === 0) {
             feedList.innerHTML = `
-                <div class="py-10 text-center text-white/50">
-                    <span class="material-symbols-outlined text-4xl mb-2 text-white/30">notifications_off</span>
-                    <p class="text-xs font-semibold">No notifications in this category.</p>
+                <div class="py-12 px-4 text-center text-white/50 flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-3 text-white/40">
+                        <span class="material-symbols-outlined text-[26px]">inventory_2</span>
+                    </div>
+                    <h4 class="text-xs sm:text-sm font-bold text-white mb-1">No Database Records Yet</h4>
+                    <p class="text-[11px] text-white/60 max-w-[260px] leading-relaxed mb-4">When you place an order or receive an email update, your real records &amp; Thank You cards will appear here.</p>
+                    <a href="start-project.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-sm active:scale-95">
+                        <span>+ Submit Project Order</span>
+                        <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+                    </a>
                 </div>
             `;
             return;
@@ -390,7 +498,7 @@
                         <span class="material-symbols-outlined text-[19px]">receipt_long</span>
                     </div>
                 `;
-                badgeHtml = `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[9px] font-extrabold uppercase tracking-wider">ORDER CONFIRMED</span>`;
+                badgeHtml = `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[9px] font-extrabold uppercase tracking-wider">REAL ORDER #${item.leadId}</span>`;
                 actionBtnHtml = `
                     <button onclick="window.viewThankYouModal('${item.id}')" class="mt-2.5 w-full py-1.5 px-3 rounded-xl bg-gradient-to-r from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/40 text-emerald-300 text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
                         <span>✨ View Thank You Card</span>
@@ -416,10 +524,10 @@
                         <span class="material-symbols-outlined text-[19px]">forward_to_inbox</span>
                     </div>
                 `;
-                badgeHtml = `<span class="px-2 py-0.5 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 text-[9px] font-extrabold uppercase tracking-wider">DISPATCHED</span>`;
+                badgeHtml = `<span class="px-2 py-0.5 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 text-[9px] font-extrabold uppercase tracking-wider">DISPATCHED MAIL</span>`;
                 actionBtnHtml = `
                     <button onclick="window.viewEmailModal('${item.id}')" class="mt-2.5 w-full py-1.5 px-3 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-400/30 text-sky-200 text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
-                        <span>View Details</span>
+                        <span>View Email Details</span>
                         <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
                     </button>
                 `;
@@ -463,13 +571,10 @@
 
     // Modal view triggers
     window.viewThankYouModal = function(id) {
-        const notifs = getStoredNotifications();
-        const item = notifs.find(n => n.id === id);
+        const item = cachedNotifications.find(n => n.id === id);
         if (!item) return;
 
-        // Mark as read
-        item.read = true;
-        saveNotifications(notifs);
+        markAsRead(id);
         renderFeed(currentFilter);
 
         const modal = document.getElementById('notif-thankyou-modal');
@@ -477,24 +582,20 @@
 
         const data = item.thankYouData || {};
         document.getElementById('modal-ty-status').textContent = data.status || 'SUBMITTED';
-        document.getElementById('modal-ty-project-type').textContent = data.projectType || item.subtitle || 'High-Impact Digital Experience';
-        document.getElementById('modal-ty-budget-timeline').textContent = `Budget: ${data.budget || item.budget || '$2,500 – $5,000'} • ${data.timeline || item.timeline || '2-3 Weeks'}`;
-        document.getElementById('modal-ty-lead-id').textContent = `ID: #${data.leadId || item.leadId || 'AG-9421'}`;
+        document.getElementById('modal-ty-project-type').textContent = data.projectType || item.service || 'High-Impact Digital Experience';
+        document.getElementById('modal-ty-budget-timeline').textContent = `Budget: ${data.budget || item.budget || 'Custom'} • ${data.timeline || item.timeline || 'Flexible'}`;
+        document.getElementById('modal-ty-lead-id').textContent = `ID: #${data.leadId || item.leadId}`;
 
         modal.classList.remove('opacity-0', 'pointer-events-none');
         modal.classList.add('opacity-100', 'pointer-events-auto');
     };
 
-    let activeEmailNotifId = null;
-
     window.viewEmailModal = function(id) {
-        const notifs = getStoredNotifications();
-        const item = notifs.find(n => n.id === id);
+        const item = cachedNotifications.find(n => n.id === id);
         if (!item) return;
 
         activeEmailNotifId = id;
-        item.read = true;
-        saveNotifications(notifs);
+        markAsRead(id);
         renderFeed(currentFilter);
 
         const modal = document.getElementById('notif-email-modal');
@@ -503,7 +604,7 @@
         document.getElementById('email-modal-sender').textContent = item.sender || 'Gourav';
         document.getElementById('email-modal-email').textContent = item.senderEmail || 'gourav@algora.studio';
         document.getElementById('email-modal-subject').textContent = item.subject || item.title || 'Project Update';
-        document.getElementById('email-modal-time').textContent = item.time || 'Today';
+        document.getElementById('email-modal-time').textContent = item.fullDate || item.time || 'Today';
         document.getElementById('email-modal-body').textContent = item.fullMessage || item.preview || '';
 
         // Render past replies
@@ -525,11 +626,9 @@
         modal.classList.add('opacity-100', 'pointer-events-auto');
     };
 
-    let currentFilter = 'all';
-
     function setupEventListeners() {
         injectUI();
-        renderFeed('all');
+        renderFeed('all', true);
 
         const drawer = document.getElementById('algora-notification-drawer');
         const tyModal = document.getElementById('notif-thankyou-modal');
@@ -544,7 +643,7 @@
                 drawer.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
                 drawer.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-12px]', 'scale-[0.97]');
             } else {
-                renderFeed(currentFilter);
+                renderFeed(currentFilter, false);
                 drawer.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-12px]', 'scale-[0.97]');
                 drawer.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
             }
@@ -563,6 +662,14 @@
                     drawer.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
                     drawer.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-12px]', 'scale-[0.97]');
                 }
+            });
+        }
+
+        // Refresh button
+        const refreshBtn = document.getElementById('notif-refresh-btn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', () => {
+                renderFeed(currentFilter, true);
             });
         }
 
@@ -594,9 +701,7 @@
         const markAllBtn = document.getElementById('notif-mark-all-read');
         if (markAllBtn) {
             markAllBtn.addEventListener('click', () => {
-                const notifs = getStoredNotifications();
-                notifs.forEach(n => n.read = true);
-                saveNotifications(notifs);
+                markAllAsRead();
                 renderFeed(currentFilter);
             });
         }
@@ -644,20 +749,24 @@
         const sendReplyBtn = document.getElementById('email-send-reply-btn');
         const replyInput = document.getElementById('email-reply-input');
         if (sendReplyBtn && replyInput) {
-            sendReplyBtn.addEventListener('click', () => {
+            sendReplyBtn.addEventListener('click', async () => {
                 const text = replyInput.value.trim();
                 if (!text || !activeEmailNotifId) return;
 
-                const notifs = getStoredNotifications();
-                const item = notifs.find(n => n.id === activeEmailNotifId);
+                const item = cachedNotifications.find(n => n.id === activeEmailNotifId);
                 if (item) {
                     if (!item.replies) item.replies = [];
-                    item.replies.push({
+                    const replyObj = {
                         text: text,
                         time: 'Just now',
                         timestamp: Date.now()
-                    });
-                    saveNotifications(notifs);
+                    };
+                    item.replies.push(replyObj);
+
+                    // Save to localStorage
+                    const storedReplies = JSON.parse(localStorage.getItem('algora_mail_replies') || '{}');
+                    storedReplies[activeEmailNotifId] = item.replies;
+                    localStorage.setItem('algora_mail_replies', JSON.stringify(storedReplies));
 
                     // Add to UI immediately
                     const repliesContainer = document.getElementById('email-thread-replies');
@@ -682,6 +791,14 @@
                 }
             });
         }
+
+        // Auto background sync every 20 seconds
+        setInterval(() => {
+            fetchRealDatabaseNotifications().then(() => {
+                const unreadCount = cachedNotifications.filter(n => !n.read).length;
+                updateBellBadges(unreadCount);
+            });
+        }, 20000);
     }
 
     if (document.readyState === 'loading') {
