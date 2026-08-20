@@ -130,6 +130,26 @@
             width: 0 !important;
             height: 0 !important;
         }
+
+        /* Search Result Highlights & Matched Card Glowing Pulse Animation */
+        .search-matched-card {
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 0 3px #06b6d4, 0 12px 35px rgba(6, 182, 212, 0.45) !important;
+            border-color: #06b6d4 !important;
+            animation: searchMatchedPulse 2.2s infinite ease-in-out;
+            transform: scale(1.015);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @keyframes searchMatchedPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 3px #06b6d4, 0 8px 25px rgba(6, 182, 212, 0.35);
+            }
+            50% {
+                box-shadow: 0 0 0 4.5px #38bdf8, 0 15px 40px rgba(56, 189, 248, 0.60);
+            }
+        }
     </style>
 </head>
 <body class="bg-background text-on-background antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
@@ -550,7 +570,7 @@
             }
         });
 
-        // Search logic implementation: Real-time, Enter Key, Button Click, Case-insensitive Substring Highlight
+        // Search logic implementation: Real-time, Enter Key, Button Click, Glowing Card Highlight & Substring Mark
         const searchInput = document.getElementById('landing-search-input');
         const searchBtn = document.getElementById('landing-search-btn');
         const filterCountBtn = document.getElementById('filter-count-btn');
@@ -559,12 +579,15 @@
             return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
 
-        function performSearch() {
+        let landingSearchScrollTimeout = null;
+
+        function performSearch(shouldScroll = true) {
             if (!searchInput) return;
             const query = searchInput.value.trim();
             const queryLower = query.toLowerCase();
             const cards = document.querySelectorAll('.landing-card');
             let matchCount = 0;
+            let firstMatchedCard = null;
 
             cards.forEach(card => {
                 const titleLink = card.querySelector('.card-title-text');
@@ -579,34 +602,55 @@
 
                 if (!query) {
                     card.style.display = '';
+                    card.classList.remove('search-matched-card');
                     titleLink.textContent = originalText;
                     matchCount++;
                 } else if (fullCardText.includes(queryLower)) {
                     card.style.display = '';
+                    card.classList.add('search-matched-card');
                     matchCount++;
+
+                    if (!firstMatchedCard) {
+                        firstMatchedCard = card;
+                    }
 
                     // Case-insensitive substring highlight in card title
                     if (originalText.toLowerCase().includes(queryLower)) {
                         const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
-                        titleLink.innerHTML = originalText.replace(regex, '<mark class="bg-amber-300 text-slate-950 font-extrabold px-1 rounded shadow-sm">$1</mark>');
+                        titleLink.innerHTML = originalText.replace(regex, '<mark class="bg-amber-300 dark:bg-amber-400 text-slate-950 font-extrabold px-1 rounded shadow-xs">$1</mark>');
                     } else {
                         titleLink.textContent = originalText;
                     }
                 } else {
                     card.style.display = 'none';
+                    card.classList.remove('search-matched-card');
                     titleLink.textContent = originalText;
                 }
             });
 
             if (filterCountBtn) {
-                filterCountBtn.textContent = query ? 'Matching Pages' : 'All Landing Pages';
+                filterCountBtn.textContent = query ? `Matching Pages (${matchCount})` : 'All Landing Pages';
+            }
+
+            // Auto-scroll directly to the first matching card
+            if (firstMatchedCard && shouldScroll && query) {
+                clearTimeout(landingSearchScrollTimeout);
+                landingSearchScrollTimeout = setTimeout(() => {
+                    const navHeight = 90;
+                    const cardRect = firstMatchedCard.getBoundingClientRect();
+                    const targetTop = window.scrollY + cardRect.top - navHeight;
+                    window.scrollTo({
+                        top: Math.max(0, targetTop),
+                        behavior: 'smooth'
+                    });
+                }, 120);
             }
         }
 
         function filterByIndustry(industry) {
             if (searchInput) {
                 searchInput.value = industry;
-                performSearch();
+                performSearch(true);
             }
             const exploreSection = document.getElementById('explore');
             if (exploreSection) {
@@ -616,29 +660,21 @@
 
         if (searchInput) {
             // 1. Real-time search as user types
-            searchInput.addEventListener('input', performSearch);
+            searchInput.addEventListener('input', () => performSearch(true));
 
-            // 2. Pressing Enter key triggers search
+            // 2. Pressing Enter key triggers search & scroll
             searchInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    performSearch();
-                    const exploreSection = document.getElementById('explore');
-                    if (exploreSection && searchInput.value.trim()) {
-                        exploreSection.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    performSearch(true);
                 }
             });
         }
 
-        // 3. Search button click triggers search
+        // 3. Search button click triggers search & scroll
         if (searchBtn) {
             searchBtn.addEventListener('click', () => {
-                performSearch();
-                const exploreSection = document.getElementById('explore');
-                if (exploreSection && searchInput.value.trim()) {
-                    exploreSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                performSearch(true);
             });
         }
     </script>

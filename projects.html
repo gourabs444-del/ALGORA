@@ -599,6 +599,35 @@
       color: #ef4444 !important;
   }
 
+  /* Search Result Highlights & Matched Card Glowing Pulse Animation */
+  .search-matched-card {
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 0 0 3px #06b6d4, 0 12px 35px rgba(6, 182, 212, 0.45) !important;
+      border-color: #06b6d4 !important;
+      animation: searchMatchedPulse 2.2s infinite ease-in-out;
+      transform: scale(1.015);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  @keyframes searchMatchedPulse {
+      0%, 100% {
+          box-shadow: 0 0 0 3px #06b6d4, 0 8px 25px rgba(6, 182, 212, 0.35);
+      }
+      50% {
+          box-shadow: 0 0 0 4.5px #38bdf8, 0 15px 40px rgba(56, 189, 248, 0.60);
+      }
+  }
+
+  mark.search-highlight-text {
+      background-color: #fef08a !important;
+      color: #0f172a !important;
+      font-weight: 800 !important;
+      padding: 0.1em 0.35em !important;
+      border-radius: 0.375rem !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
+  }
+
   /* Iframe preview styles matching landing-pages.html */
   .iframe-preview-container {
       width: 100%;
@@ -3950,16 +3979,24 @@
         window.location.href = 'landing-pages.html';
     };
 
-    // Search optimization: Live filter & Clear button
+    // Search optimization: Live filter & Clear button with Auto-Scroll & Glowing Highlights
     const searchInput = document.getElementById('search-input');
     const searchClearBtn = document.getElementById('search-clear');
     const mobileSearchInput = document.getElementById('mobile-search-input');
     const mobileSearchClearBtn = document.getElementById('mobile-search-clear');
+    const navHeaderSearchInput = document.getElementById('nav-header-search-input');
+    const mobileSearchInputField = document.getElementById('mobile-search-input-field');
     const noResultsDiv = document.getElementById('no-results');
     const clearSearchBtn = document.getElementById('clear-search-btn');
 
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    let searchScrollTimeout = null;
+
     // Live search function across all grids
-    function runLiveSearch(query) {
+    function runLiveSearch(query, shouldScroll = true) {
         query = query.toLowerCase().trim();
         
         const sections = [
@@ -3970,43 +4007,120 @@
             { id: 'section-collaboration', gridId: 'grid-collaboration' }
         ];
         
-        let totalVisibleCount = 0;
+        const allBanners = document.querySelectorAll('.category-banner, #ocean-yacht-hero-banner, #monsoon-rain-banner');
         
-        sections.forEach(sec => {
-            const sectionEl = document.getElementById(sec.id);
-            const gridEl = document.getElementById(sec.gridId);
-            if (!sectionEl || !gridEl) return;
-            
-            // If favorites grid is empty and hidden, skip it
-            if (sec.id === 'section-favorites' && sectionEl.classList.contains('hidden') && query.length === 0) {
-                return;
-            }
-            
-            let sectionVisibleCount = 0;
-            const cards = Array.from(gridEl.children);
-            
-            cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                if (text.includes(query)) {
-                    card.style.display = '';
-                    sectionVisibleCount++;
-                    totalVisibleCount++;
+        let totalVisibleCount = 0;
+        let firstMatchedCard = null;
+
+        if (query.length > 0) {
+            // 1. Hide ALL banners when searching so only results are visible ("baaki sab gayeb")
+            allBanners.forEach(banner => {
+                banner.style.display = 'none';
+            });
+
+            const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+
+            sections.forEach(sec => {
+                const sectionEl = document.getElementById(sec.id);
+                const gridEl = document.getElementById(sec.gridId);
+                if (!sectionEl || !gridEl) return;
+
+                let sectionVisibleCount = 0;
+                const cards = Array.from(gridEl.children);
+
+                cards.forEach(card => {
+                    // Skip the static "Show All" card in personal grid unless specifically queried
+                    if (card.innerText.includes('EXPLORE FULL COLLECTION') && !query.includes('explore') && !query.includes('collection')) {
+                        card.style.display = 'none';
+                        return;
+                    }
+
+                    // Get card title and text
+                    const titleEl = card.querySelector('a.truncate, h3, h4, .font-bold, a') || card;
+                    if (titleEl && !titleEl.hasAttribute('data-original-html')) {
+                        titleEl.setAttribute('data-original-html', titleEl.innerHTML);
+                    }
+                    const originalHtml = titleEl ? titleEl.getAttribute('data-original-html') : '';
+                    const rawText = (card.innerText + ' ' + (card.getAttribute('data-keywords') || '')).toLowerCase();
+
+                    if (rawText.includes(query)) {
+                        card.style.display = '';
+                        card.classList.add('search-matched-card');
+                        sectionVisibleCount++;
+                        totalVisibleCount++;
+
+                        if (!firstMatchedCard) {
+                            firstMatchedCard = card;
+                        }
+
+                        // Highlight matching text in title
+                        if (titleEl && originalHtml) {
+                            titleEl.innerHTML = originalHtml.replace(regex, '<mark class="search-highlight-text">$1</mark>');
+                        }
+                    } else {
+                        card.style.display = 'none';
+                        card.classList.remove('search-matched-card');
+                        if (titleEl && originalHtml) {
+                            titleEl.innerHTML = originalHtml;
+                        }
+                    }
+                });
+
+                // Show only section if it has matching cards, otherwise hide section
+                if (sectionVisibleCount === 0) {
+                    sectionEl.style.display = 'none';
                 } else {
-                    card.style.display = 'none';
+                    sectionEl.style.display = 'block';
                 }
             });
-            
-            // Hide section heading if no cards are visible in this section
-            if (sectionVisibleCount === 0) {
-                sectionEl.style.display = 'none';
-            } else {
-                sectionEl.style.display = '';
+
+            // 2. Smoothly scroll directly to the first matching result ("usi jaga pe jake highlight hoga")
+            if (firstMatchedCard && shouldScroll) {
+                clearTimeout(searchScrollTimeout);
+                searchScrollTimeout = setTimeout(() => {
+                    const navHeight = 90;
+                    const cardRect = firstMatchedCard.getBoundingClientRect();
+                    const targetTop = window.scrollY + cardRect.top - navHeight;
+                    window.scrollTo({
+                        top: Math.max(0, targetTop),
+                        behavior: 'smooth'
+                    });
+                }, 120);
             }
-        });
-        
+
+        } else {
+            // Search cleared (query.length === 0): Restore all banners and cards
+            allBanners.forEach(banner => {
+                banner.style.display = '';
+            });
+
+            sections.forEach(sec => {
+                const sectionEl = document.getElementById(sec.id);
+                const gridEl = document.getElementById(sec.gridId);
+                if (!sectionEl || !gridEl) return;
+
+                const cards = Array.from(gridEl.children);
+                cards.forEach(card => {
+                    card.style.display = '';
+                    card.classList.remove('search-matched-card');
+
+                    const titleEl = card.querySelector('a.truncate, h3, h4, .font-bold, a') || card;
+                    if (titleEl && titleEl.hasAttribute('data-original-html')) {
+                        titleEl.innerHTML = titleEl.getAttribute('data-original-html');
+                    }
+                });
+            });
+
+            // Restore active category filter view (All, Work, Personal, etc.)
+            const activeTab = document.querySelector('.tab-btn.active')?.getAttribute('data-tab') || 'all';
+            if (typeof window.applyGridFilter === 'function') {
+                window.applyGridFilter(activeTab);
+            }
+        }
+
         // Show/hide empty state
         if (noResultsDiv) {
-            if (totalVisibleCount === 0) {
+            if (totalVisibleCount === 0 && query.length > 0) {
                 noResultsDiv.classList.remove('hidden');
                 noResultsDiv.classList.add('flex');
             } else {
@@ -4016,15 +4130,14 @@
         }
     }
 
-    const navHeaderSearchInput = document.getElementById('nav-header-search-input');
-
-    function performSearch(queryVal) {
+    function performSearch(queryVal, shouldScroll = true) {
         const query = queryVal.toLowerCase().trim();
         
         // Sync values across all search inputs
-        if (searchInput) searchInput.value = queryVal;
-        if (mobileSearchInput) mobileSearchInput.value = queryVal;
-        if (navHeaderSearchInput) navHeaderSearchInput.value = queryVal;
+        if (searchInput && searchInput.value !== queryVal) searchInput.value = queryVal;
+        if (mobileSearchInput && mobileSearchInput.value !== queryVal) mobileSearchInput.value = queryVal;
+        if (navHeaderSearchInput && navHeaderSearchInput.value !== queryVal) navHeaderSearchInput.value = queryVal;
+        if (mobileSearchInputField && mobileSearchInputField.value !== queryVal) mobileSearchInputField.value = queryVal;
 
         // Show/hide clear buttons
         if (query.length > 0) {
@@ -4035,18 +4148,30 @@
             if (mobileSearchClearBtn) mobileSearchClearBtn.classList.add('hidden');
         }
 
-        runLiveSearch(query);
+        runLiveSearch(query, shouldScroll);
     }
 
     if (navHeaderSearchInput) {
         navHeaderSearchInput.addEventListener('input', (e) => performSearch(e.target.value));
+        navHeaderSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch(e.target.value, true);
+            }
+        });
     }
 
     if (searchInput) {
         searchInput.addEventListener('input', (e) => performSearch(e.target.value));
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch(e.target.value, true);
+            }
+        });
         if (searchClearBtn) {
             searchClearBtn.addEventListener('click', () => {
-                performSearch('');
+                performSearch('', false);
                 searchInput.focus();
             });
         }
@@ -4054,17 +4179,27 @@
 
     if (mobileSearchInput) {
         mobileSearchInput.addEventListener('input', (e) => performSearch(e.target.value));
+        mobileSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch(e.target.value, true);
+            }
+        });
         if (mobileSearchClearBtn) {
             mobileSearchClearBtn.addEventListener('click', () => {
-                performSearch('');
+                performSearch('', false);
                 mobileSearchInput.focus();
             });
         }
     }
 
+    if (mobileSearchInputField) {
+        mobileSearchInputField.addEventListener('input', (e) => performSearch(e.target.value));
+    }
+
     if (clearSearchBtn) {
         clearSearchBtn.addEventListener('click', () => {
-            performSearch('');
+            performSearch('', false);
         });
     }
 
