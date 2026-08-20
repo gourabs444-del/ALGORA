@@ -2210,22 +2210,20 @@
         <!-- Landing Page Showcase Banner (100% PROPRIETARY AI-GENERATED 4K SEAMLESS LIVE OCEAN & LUXURY YACHT BANNER) -->
         <div id="ocean-yacht-hero-banner" class="category-banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-screen min-h-[720px] lg:min-h-[840px] bg-sky-950 text-white overflow-hidden mb-12 sm:mb-16 lg:mb-20 shadow-[0_25px_60px_rgba(0,0,0,0.7)] transition-all duration-500 flex items-center justify-center py-6 sm:py-10 select-none border-y border-sky-400/20">
             
-            <!-- BACKGROUND LAYER 1: 4K BESPOKE AI-GENERATED MASTER ASSET (Buoyancy Breathing Parallax) -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <img id="ocean-yacht-ai-master" src="assets/ai_ocean_yacht_4k.jpg" alt="4K AI Superyacht in Crystal Ocean" class="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.06] saturate-[1.12] scale-[1.03] transition-transform duration-1000 ease-out will-change-transform" />
+            <!-- BACKGROUND LAYER 1: PHOTOREALISTIC WEBGL GPU FLUID REFRACTION & GERSTNER WAVE CANVAS -->
+            <canvas id="ocean-yacht-webgl-canvas" class="absolute inset-0 w-full h-full object-cover z-0"></canvas>
+            
+            <!-- FALLBACK / AMBIENT BACKDROP IMAGE IF WEBGL DISABLED -->
+            <img id="ocean-yacht-ai-master" src="assets/ai_ocean_yacht_4k.jpg" alt="4K AI Superyacht in Crystal Ocean" class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.06] saturate-[1.12] -z-10" />
 
-                <!-- High-Contrast Readability Gradient for Left-Aligned Hero Text -->
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none z-[1]"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/75 pointer-events-none z-[1]"></div>
-                
-                <!-- Radiant Sun Glow Flare on Clear Sky -->
-                <div class="absolute -top-10 right-[10%] w-[50vw] h-[50vw] max-w-[700px] max-height-[700px] bg-radial from-white/30 via-amber-200/10 to-transparent blur-3xl pointer-events-none z-[1] mix-blend-screen"></div>
-            </div>
+            <!-- High-Contrast Readability Gradient for Left-Aligned Hero Text -->
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none z-[1]"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/75 pointer-events-none z-[1]"></div>
+            
+            <!-- Radiant Sun Glow Flare on Clear Sky -->
+            <div class="absolute -top-10 right-[10%] w-[50vw] h-[50vw] max-w-[700px] max-height-[700px] bg-radial from-white/30 via-amber-200/10 to-transparent blur-3xl pointer-events-none z-[1] mix-blend-screen"></div>
 
-            <!-- BACKGROUND LAYER 2: INFINITE SEAMLESS HYDRODYNAMIC WAKE FOAM & SUN CAUSTICS CANVAS -->
-            <canvas id="ocean-yacht-fluid-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-[2] mix-blend-screen"></canvas>
-
-            <!-- BACKGROUND LAYER 3: AUTONOMOUS FLYING WHITE SEAGULLS FLIGHT CANVAS -->
+            <!-- BACKGROUND LAYER 2: AUTONOMOUS FLYING WHITE SEAGULLS FLIGHT CANVAS -->
             <canvas id="ocean-yacht-birds-canvas" class="absolute top-0 left-0 w-full h-[65%] pointer-events-none z-[3]"></canvas>
 
             <!-- MAIN CONTENT CONTAINER (Left-Aligned Clean Hero Content) -->
@@ -2298,58 +2296,159 @@
                 </p>
             </div>
 
-            <!-- LIVE HTML5 240 FPS INFINITE SEAMLESS PROCEDURAL OCEAN & BIRDS ENGINE -->
+            <!-- LIVE GPU WEBGL REAL-LIFE FLUID WATER SHADER & FLOCKING SEAGULLS ENGINE -->
             <script>
-            (function initSeamlessOceanYachtEngine() {
-                const fCanvas = document.getElementById('ocean-yacht-fluid-canvas');
+            (function initRealLifeOceanShaderEngine() {
+                const glCanvas = document.getElementById('ocean-yacht-webgl-canvas');
                 const bCanvas = document.getElementById('ocean-yacht-birds-canvas');
-                const yachtImg = document.getElementById('ocean-yacht-ai-master');
-                if (!fCanvas || !bCanvas) return;
+                const fallbackImg = document.getElementById('ocean-yacht-ai-master');
+                if (!glCanvas || !bCanvas) return;
 
-                const fCtx = fCanvas.getContext('2d');
                 const bCtx = bCanvas.getContext('2d');
                 let width = 0, height = 0;
                 let animTime = 0;
 
+                // 1. Initialize WebGL Context & Shaders for Photorealistic Water Refraction
+                let gl = glCanvas.getContext('webgl', { antialias: true, premultipliedAlpha: false });
+                let shaderProgram = null;
+                let positionBuffer = null;
+                let texture = null;
+                let isTextureLoaded = false;
+                let uTimeLoc, uResLoc;
+
+                const vsSource = `
+                    attribute vec2 a_position;
+                    varying vec2 v_uv;
+                    void main() {
+                        v_uv = (a_position + 1.0) * 0.5;
+                        v_uv.y = 1.0 - v_uv.y;
+                        gl_Position = vec4(a_position, 0.0, 1.0);
+                    }
+                `;
+
+                const fsSource = `
+                    precision highp float;
+                    varying vec2 v_uv;
+                    uniform sampler2D u_image;
+                    uniform float u_time;
+                    uniform vec2 u_resolution;
+
+                    void main() {
+                        vec2 uv = v_uv;
+                        
+                        // Water region mask (begins below the horizon)
+                        float waterMask = smoothstep(0.24, 0.38, uv.y);
+                        
+                        // Realistic multi-harmonic Gerstner waves displacement
+                        float w1 = sin(uv.x * 22.0 + uv.y * 12.0 + u_time * 2.2) * 0.0055;
+                        float w2 = cos(uv.x * 44.0 - uv.y * 22.0 - u_time * 3.0) * 0.0040;
+                        float w3 = sin(uv.x * 88.0 + uv.y * 48.0 + u_time * 4.2) * 0.0022;
+                        float w4 = cos(uv.x * 140.0 - u_time * 5.5) * 0.0014;
+
+                        // Wake turbulence propagation from yacht hull
+                        vec2 wakeOrigin = vec2(0.48, 0.70);
+                        float distWake = length((uv - wakeOrigin) * vec2(1.8, 1.0));
+                        float wakeDisp = exp(-distWake * 3.2) * 0.009 * sin(u_time * 4.8 - distWake * 28.0);
+
+                        float perspective = mix(0.35, 1.35, uv.y);
+                        vec2 displacement = vec2(w1 + w3 + wakeDisp, w2 + w4) * waterMask * perspective;
+
+                        vec2 sampleUV = clamp(uv + displacement, 0.0, 1.0);
+
+                        // Chromatic dispersion during water refraction (RGB splitting)
+                        vec4 color;
+                        color.r = texture2D(u_image, sampleUV + displacement * 0.28).r;
+                        color.g = texture2D(u_image, sampleUV).g;
+                        color.b = texture2D(u_image, sampleUV - displacement * 0.28).b;
+                        color.a = 1.0;
+
+                        // Real sunlight specular glints on water crests
+                        if (waterMask > 0.02) {
+                            float d1 = sin(uv.x * 36.0 + uv.y * 18.0 + u_time * 2.6);
+                            float d2 = cos(uv.x * 72.0 - uv.y * 36.0 - u_time * 3.6);
+                            float crest = pow(max(0.0, d1 * d2), 7.0) * waterMask;
+                            
+                            vec3 sunGlint = vec3(1.0, 0.97, 0.90);
+                            color.rgb += sunGlint * crest * 0.38;
+                        }
+
+                        gl_FragColor = color;
+                    }
+                `;
+
+                function createShader(gl, type, source) {
+                    const shader = gl.createShader(type);
+                    gl.shaderSource(shader, source);
+                    gl.compileShader(shader);
+                    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                        console.warn(gl.getShaderInfoLog(shader));
+                        gl.deleteShader(shader);
+                        return null;
+                    }
+                    return shader;
+                }
+
+                if (gl) {
+                    const vs = createShader(gl, gl.VERTEX_SHADER, vsSource);
+                    const fs = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+                    if (vs && fs) {
+                        shaderProgram = gl.createProgram();
+                        gl.attachShader(shaderProgram, vs);
+                        gl.attachShader(shaderProgram, fs);
+                        gl.linkProgram(shaderProgram);
+
+                        if (gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+                            gl.useProgram(shaderProgram);
+
+                            positionBuffer = gl.createBuffer();
+                            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+                            const positions = new Float32Array([
+                                -1, -1,
+                                 1, -1,
+                                -1,  1,
+                                -1,  1,
+                                 1, -1,
+                                 1,  1
+                            ]);
+                            gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+                            const posAttrib = gl.getAttribLocation(shaderProgram, 'a_position');
+                            gl.enableVertexAttribArray(posAttrib);
+                            gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
+
+                            uTimeLoc = gl.getUniformLocation(shaderProgram, 'u_time');
+                            uResLoc = gl.getUniformLocation(shaderProgram, 'u_resolution');
+
+                            // Load texture from AI 4K master image
+                            const img = new Image();
+                            img.crossOrigin = 'anonymous';
+                            img.src = 'assets/ai_ocean_yacht_4k.jpg';
+                            img.onload = function() {
+                                texture = gl.createTexture();
+                                gl.bindTexture(gl.TEXTURE_2D, texture);
+                                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+                                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+                                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+                                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+                                isTextureLoaded = true;
+                            };
+                        }
+                    }
+                }
+
                 function resizeCanvases() {
-                    const rect = fCanvas.getBoundingClientRect();
-                    width = fCanvas.width = bCanvas.width = rect.width || window.innerWidth;
-                    height = fCanvas.height = bCanvas.height = rect.height || window.innerHeight;
+                    const rect = glCanvas.getBoundingClientRect();
+                    width = glCanvas.width = bCanvas.width = rect.width || window.innerWidth;
+                    height = glCanvas.height = bCanvas.height = rect.height || window.innerHeight;
+                    if (gl) {
+                        gl.viewport(0, 0, width, height);
+                    }
                 }
                 resizeCanvases();
                 window.addEventListener('resize', resizeCanvases);
 
-                // 1. Procedural Wake Foam Bubbles (Continuous Infinite Loop)
-                const foamBubbles = [];
-                const FOAM_COUNT = 140;
-                for (let i = 0; i < FOAM_COUNT; i++) {
-                    foamBubbles.push({
-                        // Wake origins distributed along yacht stern wake vector
-                        x: width * 0.45 + (Math.random() - 0.5) * (width * 0.35),
-                        y: height * 0.65 + Math.random() * (height * 0.30),
-                        vx: -0.8 - Math.random() * 1.2,
-                        vy: 0.6 + Math.random() * 1.0,
-                        size: 1.5 + Math.random() * 4.5,
-                        life: Math.random(),
-                        speed: 0.008 + Math.random() * 0.012,
-                        sparkle: Math.random() > 0.6
-                    });
-                }
-
-                // 2. Continuous Sun Caustics Glints
-                const caustics = [];
-                const CAUSTIC_COUNT = 90;
-                for (let i = 0; i < CAUSTIC_COUNT; i++) {
-                    caustics.push({
-                        xRatio: Math.random(),
-                        yRatio: 0.45 + Math.random() * 0.52,
-                        baseSize: 1.2 + Math.random() * 3.8,
-                        phase: Math.random() * Math.PI * 2,
-                        speed: 0.02 + Math.random() * 0.04
-                    });
-                }
-
-                // 3. Autonomous Flying White Seagulls Flight Engine
+                // 2. Autonomous Flying White Seagulls Flight Engine
                 class WhiteFlyingSeagull {
                     constructor(initX = null) {
                         this.reset(true, initX);
@@ -2452,61 +2551,18 @@
                 }
 
                 function renderLoop() {
-                    fCtx.clearRect(0, 0, width, height);
-                    bCtx.clearRect(0, 0, width, height);
                     animTime += 0.016;
 
-                    // 1. Subtle Yacht Buoyancy Breathing Pitch
-                    if (yachtImg) {
-                        const pitchY = Math.sin(animTime * 1.5) * 4;
-                        const rollRot = Math.cos(animTime * 1.1) * 0.35;
-                        yachtImg.style.transform = `scale(1.03) translate3d(0, ${pitchY.toFixed(2)}px, 0) rotate(${rollRot.toFixed(2)}deg)`;
+                    // 1. Render Photorealistic WebGL Fluid Refraction
+                    if (gl && shaderProgram && isTextureLoaded) {
+                        gl.useProgram(shaderProgram);
+                        gl.uniform1f(uTimeLoc, animTime);
+                        gl.uniform2f(uResLoc, width, height);
+                        gl.drawArrays(gl.TRIANGLES, 0, 6);
                     }
 
-                    // 2. Render Wake Foam Bubbles
-                    foamBubbles.forEach(bubble => {
-                        bubble.life += bubble.speed;
-                        if (bubble.life > 1) {
-                            bubble.life = 0;
-                            bubble.x = width * 0.45 + (Math.random() - 0.5) * (width * 0.35);
-                            bubble.y = height * 0.65 + Math.random() * (height * 0.30);
-                        }
-
-                        bubble.x += bubble.vx;
-                        bubble.y += bubble.vy;
-
-                        const alpha = Math.sin(bubble.life * Math.PI) * 0.45;
-                        if (alpha > 0.01) {
-                            fCtx.beginPath();
-                            fCtx.arc(bubble.x, bubble.y, bubble.size * (1 + bubble.life * 0.8), 0, Math.PI * 2);
-                            fCtx.fillStyle = `rgba(255, 255, 255, ${alpha.toFixed(3)})`;
-                            fCtx.shadowColor = 'rgba(224, 242, 254, 0.6)';
-                            fCtx.shadowBlur = 4;
-                            fCtx.fill();
-                        }
-                    });
-
-                    // 3. Render Shimmering Sun Caustics
-                    caustics.forEach(c => {
-                        c.phase += c.speed;
-                        const alpha = (Math.sin(c.phase) + 1) * 0.35;
-                        if (alpha > 0.05) {
-                            const cx = c.xRatio * width;
-                            const cy = c.yRatio * height + Math.sin(animTime * 2 + cx * 0.01) * 5;
-
-                            const rad = fCtx.createRadialGradient(cx, cy, 0, cx, cy, c.baseSize * 2.5);
-                            rad.addColorStop(0, `rgba(255, 255, 255, ${alpha.toFixed(3)})`);
-                            rad.addColorStop(0.4, `rgba(224, 242, 254, ${(alpha * 0.6).toFixed(3)})`);
-                            rad.addColorStop(1, 'rgba(56, 189, 248, 0)');
-
-                            fCtx.fillStyle = rad;
-                            fCtx.beginPath();
-                            fCtx.arc(cx, cy, c.baseSize * 2.5, 0, Math.PI * 2);
-                            fCtx.fill();
-                        }
-                    });
-
-                    // 4. Render Flying Seagulls
+                    // 2. Render Seagulls
+                    bCtx.clearRect(0, 0, width, height);
                     seagulls.forEach(bird => {
                         bird.update();
                         bird.draw();
