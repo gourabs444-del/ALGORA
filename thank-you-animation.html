@@ -3,184 +3,221 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You! — Preparing Your Pass</title>
+    <title>Thank You! — Algora Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Outfit:wght@800;900&display=swap" rel="stylesheet">
     <style>
         * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: geometricPrecision;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #ffffff;
+            background-color: #ffffff;
             margin: 0;
             overflow: hidden;
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           SNAPPY FLUID EASE-OUT 120FPS GPU VECTOR ANIMATION
-           ═══════════════════════════════════════════════════════════ */
-        .loader {
+            width: 100vw;
+            height: 100vh;
             display: flex;
-            margin: 0.25em 0;
             align-items: center;
             justify-content: center;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            perspective: 1000px;
         }
 
-        .loader .w-2 {
-            width: 0.45em;
-        }
-
-        .dash {
-            will-change: stroke-dasharray, stroke-dashoffset;
-            animation: dashArraySmooth 2.6s ease-out forwards,
-                dashOffsetSmooth 2.6s ease-out forwards;
-            shape-rendering: geometricPrecision;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .spin {
-            will-change: stroke-dasharray, stroke-dashoffset, transform;
-            animation: spinDashArraySmooth 2.6s ease-out forwards,
-                spinSmooth 2.6s ease-out forwards,
-                dashOffsetSmooth 2.6s ease-out forwards;
-            transform-origin: center;
-            shape-rendering: geometricPrecision;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        @keyframes dashArraySmooth {
-            0% {
-                stroke-dasharray: 0 1 359 0;
-            }
-            40% {
-                stroke-dasharray: 0 359 1 0;
-            }
-            80%, 100% {
-                stroke-dasharray: 359 1 0 0;
-            }
-        }
-
-        @keyframes spinDashArraySmooth {
-            0% {
-                stroke-dasharray: 270 90;
-            }
-            40% {
-                stroke-dasharray: 0 360;
-            }
-            80%, 100% {
-                stroke-dasharray: 359 1;
-            }
-        }
-
-        @keyframes dashOffsetSmooth {
-            0% {
-                stroke-dashoffset: 365;
-            }
-            80%, 100% {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        @keyframes spinSmooth {
-            0% {
-                rotate: 0deg;
-            }
-            45% {
-                rotate: 180deg;
-            }
-            80%, 100% {
-                rotate: 360deg;
-            }
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 select-none bg-white">
+<body class="bg-white">
 
-    <!-- FULL SCREEN PURE ANIMATION CONTAINER (CRYSTAL CLEAN) -->
-    <div class="flex flex-col items-center justify-center w-full h-full my-auto text-center scale-[1.4] sm:scale-[1.85] md:scale-[2.3]">
-        
-        <!-- SelfMadeSystem Gradients Definition -->
-        <svg height="0" width="0" viewBox="0 0 64 64" class="absolute pointer-events-none" shape-rendering="geometricPrecision">
-          <defs class="s-xJBuHA073rTt" xmlns="http://www.w3.org/2000/svg">
-            <linearGradient class="s-xJBuHA073rTt" gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="sms-b">
-              <stop class="s-xJBuHA073rTt" stop-color="#973BED"></stop>
-              <stop class="s-xJBuHA073rTt" stop-color="#007CFF" offset="1"></stop>
-            </linearGradient>
-            <linearGradient class="s-xJBuHA073rTt" gradientUnits="userSpaceOnUse" y2="0" x2="0" y1="64" x1="0" id="sms-c">
-              <stop class="s-xJBuHA073rTt" stop-color="#FFC800"></stop>
-              <stop class="s-xJBuHA073rTt" stop-color="#F0F" offset="1"></stop>
-              <animateTransform repeatCount="indefinite" keySplines=".42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1" keyTimes="0; 0.125; 0.25; 0.375; 0.5; 0.625; 0.75; 0.875; 1" dur="8s" values="0 32 32;-270 32 32;-270 32 32;-540 32 32;-540 32 32;-810 32 32;-810 32 32;-1080 32 32;-1080 32 32" type="rotate" attributeName="gradientTransform"></animateTransform>
-            </linearGradient>
-            <linearGradient class="s-xJBuHA073rTt" gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="sms-d">
-              <stop class="s-xJBuHA073rTt" stop-color="#00E0ED"></stop>
-              <stop class="s-xJBuHA073rTt" stop-color="#00DA72" offset="1"></stop>
-            </linearGradient>
-          </defs>
-        </svg>
+    <canvas id="particleCanvas"></canvas>
 
-        <!-- DUAL ROW GRAND SCALE VECTOR GLYPHS -->
-        <div class="flex flex-col items-center justify-center gap-3 sm:gap-4 my-auto">
-          
-          <!-- ROW 1: T - H - A - N - K -->
-          <div class="loader flex items-center justify-center">
-            <!-- T -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b)" d="M 8,10 H 56 V 16 H 36 V 54 H 28 V 16 H 8 Z" class="dash" pathLength="360"></path>
-            </svg>
-            <!-- H -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-c)" d="M 10,10 H 18 V 28 H 46 V 10 H 54 V 54 H 46 V 36 H 18 V 54 H 10 Z" class="dash" pathLength="360"></path>
-            </svg>
-            <!-- A -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-d)" d="M 32,8 L 56,54 H 46 L 39,40 H 25 L 18,54 H 8 Z M 32,22 L 27,33 H 37 Z" class="dash" pathLength="360"></path>
-            </svg>
-            <!-- N -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b)" d="M 10,10 H 18 L 46,46 V 10 H 54 V 54 H 46 L 18,18 V 54 H 10 Z" class="dash" pathLength="360"></path>
-            </svg>
-            <!-- K -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-c)" d="M 12,10 H 20 V 28 L 44,10 H 54 L 28,31 L 54,54 H 44 L 20,34 V 54 H 12 Z" class="dash" pathLength="360"></path>
-            </svg>
-          </div>
-
-          <!-- ROW 2: Y - O - U -->
-          <div class="loader flex items-center justify-center scale-105">
-            <!-- Y -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="50" width="50" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b)" d="M 54.722656,3.9726563 A 2.0002,2.0002 0 0 0 54.941406,4 h 5.007813 C 58.955121,17.046124 49.099667,27.677057 36.121094,29.580078 a 2.0002,2.0002 0 0 0 -1.708985,1.978516 V 60 H 29.587891 V 31.558594 A 2.0002,2.0002 0 0 0 27.878906,29.580078 C 14.900333,27.677057 5.0448787,17.046124 4.0507812,4 H 9.28125 c 1.231666,11.63657 10.984383,20.554048 22.6875,20.734375 a 2.0002,2.0002 0 0 0 0.02344,0 c 11.806958,0.04283 21.70649,-9.003371 22.730469,-20.7617187 z" class="dash" id="y" pathLength="360"></path>
-            </svg>
-            <!-- O -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" style="--rotation-duration:0ms; --rotation-direction:normal;" viewBox="0 0 64 64" height="50" width="50" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="10" stroke="url(#sms-c)" d="M 32 32 m 0 -27 a 27 27 0 1 1 0 54 a 27 27 0 1 1 0 -54" class="spin" id="o" pathLength="360"></path>
-            </svg>
-            <div class="w-2"></div>
-            <!-- U -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" style="--rotation-duration:0ms; --rotation-direction:normal;" viewBox="0 0 64 64" height="50" width="50" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-d)" d="M 4,4 h 4.6230469 v 25.919922 c -0.00276,11.916203 9.8364941,21.550422 21.7500001,21.296875 11.616666,-0.240651 21.014356,-9.63894 21.253906,-21.25586 a 2.0002,2.0002 0 0 0 0,-0.04102 V 4 H 56.25 v 25.919922 c 0,14.33873 -11.581192,25.919922 -25.919922,25.919922 a 2.0002,2.0002 0 0 0 -0.0293,0 C 15.812309,56.052941 3.998433,44.409961 4,29.919922 Z" class="dash" id="u" pathLength="360"></path>
-            </svg>
-          </div>
-
-        </div>
-    </div>
-
-    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (2.6s ease-out draw + 1.4s solid hold) -->
     <script>
-        setTimeout(() => {
-            window.location.replace('thank-you.html');
-        }, 4000);
+    (function() {
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = 0;
+        let height = 0;
+        let dpr = Math.min(window.devicePixelRatio || 1, 2);
+        let particles = [];
+        let startTime = null;
+        const DURATION = 2400; // 2.4s convergence
+        const HOLD_TIME = 1500; // 1.5s hold
+        const TOTAL_TIME = DURATION + HOLD_TIME; // 3.9s total before redirect
+
+        const PALETTE = [
+            '#973BED', '#007CFF', '#00E0ED', '#00DA72', '#FFC800', '#FF2E93', '#7C3AED'
+        ];
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            ctx.scale(dpr, dpr);
+            initParticles();
+        }
+
+        function createOffscreenTargetMap() {
+            const offCanvas = document.createElement('canvas');
+            const offCtx = offCanvas.getContext('2d');
+            offCanvas.width = width;
+            offCanvas.height = height;
+
+            offCtx.fillStyle = '#000000';
+            offCtx.fillRect(0, 0, width, height);
+
+            // Responsive font scaling
+            const baseFontSize = Math.max(Math.min(width * 0.11, 100), 44);
+            offCtx.font = `900 ${baseFontSize}px 'Outfit', 'Plus Jakarta Sans', sans-serif`;
+            offCtx.textAlign = 'center';
+            offCtx.textBaseline = 'middle';
+            offCtx.fillStyle = '#FFFFFF';
+
+            const centerY = height / 2;
+            const lineGap = baseFontSize * 0.58;
+
+            offCtx.fillText('THANK', width / 2, centerY - lineGap);
+            offCtx.fillText('YOU', width / 2, centerY + lineGap);
+
+            const imgData = offCtx.getImageData(0, 0, width, height).data;
+            const targetPoints = [];
+            const step = Math.max(Math.floor(baseFontSize / 12), 4); // Sampling density
+
+            for (let y = 0; y < height; y += step) {
+                for (let x = 0; x < width; x += step) {
+                    const idx = (y * width + x) * 4;
+                    if (imgData[idx] > 140) { // White pixel
+                        targetPoints.push({ x: x, y: y });
+                    }
+                }
+            }
+            return targetPoints;
+        }
+
+        function initParticles() {
+            const targets = createOffscreenTargetMap();
+            particles = [];
+
+            const corners = [
+                { x: -50, y: -50 },                     // Top-Left
+                { x: width + 50, y: -50 },              // Top-Right
+                { x: -50, y: height + 50 },             // Bottom-Left
+                { x: width + 50, y: height + 50 },      // Bottom-Right
+                { x: width / 2, y: -80 },               // Top-Center
+                { x: width / 2, y: height + 80 },       // Bottom-Center
+                { x: -80, y: height / 2 },              // Left-Center
+                { x: width + 80, y: height / 2 }        // Right-Center
+            ];
+
+            for (let i = 0; i < targets.length; i++) {
+                const target = targets[i];
+                // Assign to a random outer corner
+                const corner = corners[Math.floor(Math.random() * corners.length)];
+                
+                // Add random jitter to corner starting point
+                const startX = corner.x + (Math.random() - 0.5) * 160;
+                const startY = corner.y + (Math.random() - 0.5) * 160;
+
+                // Control point for smooth curved trajectories
+                const ctrlX = (startX + target.x) / 2 + (Math.random() - 0.5) * (width * 0.45);
+                const ctrlY = (startY + target.y) / 2 + (Math.random() - 0.5) * (height * 0.45);
+
+                const color = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+                const radius = (Math.random() * 1.8 + 2.2);
+
+                particles.push({
+                    sx: startX,
+                    sy: startY,
+                    cx: ctrlX,
+                    cy: ctrlY,
+                    tx: target.x,
+                    ty: target.y,
+                    x: startX,
+                    y: startY,
+                    color: color,
+                    radius: radius,
+                    delay: Math.random() * 0.22 // Slight wave staggered launch
+                });
+            }
+        }
+
+        // Cubic ease-out curve
+        function easeOutCubic(t) {
+            return (--t) * t * t + 1;
+        }
+
+        // Quadratic Bezier interpolation
+        function getBezierPoint(t, p0, p1, p2) {
+            const oneMinusT = 1 - t;
+            return oneMinusT * oneMinusT * p0 + 2 * oneMinusT * t * p1 + t * t * p2;
+        }
+
+        function render(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+
+            ctx.clearRect(0, 0, width, height);
+
+            let allReached = true;
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                
+                // Normalized progress with individual delay
+                let localProgress = Math.max(0, (elapsed - p.delay * DURATION) / (DURATION * (1 - p.delay)));
+                localProgress = Math.min(localProgress, 1);
+
+                const easedT = easeOutCubic(localProgress);
+
+                if (localProgress < 1) {
+                    allReached = false;
+                    p.x = getBezierPoint(easedT, p.sx, p.cx, p.tx);
+                    p.y = getBezierPoint(easedT, p.sy, p.cy, p.ty);
+                } else {
+                    // Locked at target with subtle micro-breathe
+                    p.x = p.tx;
+                    p.y = p.ty;
+                }
+
+                // Draw glowing particle dot
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowColor = p.color;
+                ctx.shadowBlur = localProgress >= 0.9 ? 6 : 10;
+                ctx.fill();
+            }
+
+            ctx.shadowBlur = 0; // reset
+
+            if (elapsed < TOTAL_TIME) {
+                requestAnimationFrame(render);
+            } else {
+                // Navigate to thank-you ticket card
+                window.location.replace('thank-you.html');
+            }
+        }
+
+        // Ensure fonts are loaded before calculating target text metrics
+        document.fonts.ready.then(() => {
+            resize();
+            window.addEventListener('resize', resize);
+            requestAnimationFrame(render);
+        });
+
+    })();
     </script>
 </body>
 </html>
