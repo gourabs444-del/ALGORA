@@ -130,6 +130,39 @@
             flex-shrink: 0;
             box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.1);
         }
+        /* ═══════════════════════════════════════════════════════════
+           SELFMADESYSTEM STROKE DASH TRACE ANIMATION FOR THANK YOU
+           ═══════════════════════════════════════════════════════════ */
+        .dash-text {
+            animation: dashArray 2.8s ease-in-out infinite,
+                       dashOffset 2.8s linear infinite;
+        }
+
+        .dash-text-delayed {
+            animation: dashArray 2.8s ease-in-out infinite 0.4s,
+                       dashOffset 2.8s linear infinite 0.4s;
+        }
+
+        @keyframes dashArray {
+            0% {
+                stroke-dasharray: 0 1 359 0;
+            }
+            50% {
+                stroke-dasharray: 0 359 1 0;
+            }
+            100% {
+                stroke-dasharray: 359 1 0 0;
+            }
+        }
+
+        @keyframes dashOffset {
+            0% {
+                stroke-dashoffset: 365;
+            }
+            100% {
+                stroke-dashoffset: 5;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-3 overflow-x-hidden">
@@ -172,16 +205,21 @@
                         <img src="assets/logo.png" alt="ALGORA" class="h-5 sm:h-6 w-auto object-contain" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
                     </div>
 
-                    <!-- MAIN HEADLINE & CRAFT STATEMENT -->
+                    <!-- MAIN HEADLINE WITH SELFMADESYSTEM STROKE DASH ANIMATION (OUTFIT FONT) -->
                     <div class="my-auto py-1">
-                        <div class="flex items-baseline gap-2 leading-none">
-                            <h1 class="text-3xl sm:text-4.5xl font-extrabold text-[#111625] tracking-tight font-['Outfit']">
-                                Thank
-                            </h1>
-                            <h1 class="text-3xl sm:text-4.5xl font-extrabold text-[#6366f1] tracking-tight font-['Outfit']">
-                                You!
-                            </h1>
-                            <span class="text-[10px] sm:text-xs font-extrabold tracking-wider text-indigo-600 uppercase ml-2">✦ WE'LL BE IN TOUCH</span>
+                        <div class="flex items-center gap-2">
+                            <!-- High-Fidelity SVG Text with SelfMadeSystem Stroke Tracing -->
+                            <svg viewBox="0 0 240 44" class="h-9 sm:h-11 w-auto overflow-visible select-none">
+                                <!-- "Thank" Base & Stroke Dash -->
+                                <text x="0" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" fill="#111625">Thank</text>
+                                <text x="0" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" fill="none" stroke="#475569" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="dash-text">Thank</text>
+                                
+                                <!-- "You!" Base & Stroke Dash -->
+                                <text x="104" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" fill="#6366f1">You!</text>
+                                <text x="104" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" fill="none" stroke="#a5b4fc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="dash-text-delayed">You!</text>
+                            </svg>
+
+                            <span class="text-[9.5px] sm:text-[11px] font-extrabold tracking-wider text-indigo-600 uppercase ml-1 whitespace-nowrap">✦ WE'LL BE IN TOUCH</span>
                         </div>
 
                         <div class="text-sm sm:text-lg font-semibold text-slate-500 leading-snug mt-2">
