@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You! — Project Boarding Pass</title>
+    <title>Thank You! — Project Confirmed</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #0b0f17;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.25), transparent 70%),
+                radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.28), transparent 70%),
                 radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.20), transparent 50%);
         }
 
@@ -31,24 +31,24 @@
 
         .card-ticket {
             position: relative;
-            min-height: 290px;
+            min-height: 480px;
             width: 100%;
-            max-width: 520px;
+            max-width: 680px;
             display: flex;
-            color: #1e293b;
+            color: #0f172a;
             background: #ffffff;
-            border-radius: 1.5rem;
+            border-radius: 2rem;
             transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.25);
             z-index: 10;
-            box-shadow: 0 32px 96px -16px rgba(99, 102, 241, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.9);
+            box-shadow: 0 32px 100px -16px rgba(99, 102, 241, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.9);
             animation: animation-card 10s infinite ease-in-out;
             overflow: hidden;
         }
 
         .card-ticket:hover {
             animation-play-state: paused;
-            transform: translateY(-16px) rotateY(-2deg) scale(1.02);
-            box-shadow: 0 40px 120px -12px rgba(99, 102, 241, 0.6), 0 0 0 1px rgba(255, 255, 255, 1);
+            transform: translateY(-16px) rotateY(-2deg) scale(1.015);
+            box-shadow: 0 44px 130px -12px rgba(99, 102, 241, 0.65), 0 0 0 1px rgba(255, 255, 255, 1);
         }
 
         .card-ticket:hover .content-ticket::after,
@@ -62,7 +62,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 0.25rem 0.75rem 0.75rem;
+            padding: 1.25rem 0.5rem 1.25rem 1rem;
             flex-shrink: 0;
             background: #f8fafc;
             border-right: 1px dashed #e2e8f0;
@@ -72,8 +72,8 @@
         .separator {
             position: absolute;
             top: 0;
-            left: 58px;
-            width: 16px;
+            left: 68px;
+            width: 18px;
             height: 100%;
             display: flex;
             align-items: center;
@@ -93,27 +93,27 @@
         .separator .span-lines::after {
             content: "";
             position: absolute;
-            top: -10px;
+            top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background-color: #0b0f17;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.5);
         }
 
         .separator .span-lines::before {
             content: "";
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background-color: #0b0f17;
-            box-shadow: inset 0 -2px 4px rgba(0,0,0,0.4);
+            box-shadow: inset 0 -3px 6px rgba(0,0,0,0.5);
         }
 
         /* MAIN TICKET CONTENT */
@@ -123,6 +123,7 @@
             width: 100%;
             display: flex;
             overflow: hidden;
+            background: linear-gradient(165deg, #ffffff 0%, #fbfcfe 45%, #f1f5f9 100%);
         }
 
         .content-ticket::after {
@@ -133,7 +134,7 @@
             background-image: linear-gradient(
                 90deg,
                 rgba(0, 0, 0, 0),
-                rgba(99, 102, 241, 0.15)
+                rgba(99, 102, 241, 0.12)
             );
             transform: translateX(200px) scale(1.5);
             filter: blur(10px);
@@ -147,15 +148,15 @@
             content: "";
             position: absolute;
             top: 0;
-            left: -100px;
+            left: -120px;
             background-image: linear-gradient(
                 90deg,
                 rgba(255, 255, 255, 0),
-                rgba(255, 255, 255, 0.8),
+                rgba(255, 255, 255, 0.85),
                 rgba(255, 255, 255, 0)
             );
-            transform: translateX(-100px) scale(1.5) rotate(20deg);
-            width: 100px;
+            transform: translateX(-120px) scale(1.5) rotate(20deg);
+            width: 120px;
             height: 100%;
             animation: light-card 10s infinite;
             pointer-events: none;
@@ -166,85 +167,14 @@
             flex-direction: column;
             justify-content: space-between;
             width: 100%;
-            padding: 1.1rem 1.25rem 1.1rem 1.5rem;
-            gap: 0.65rem;
-        }
-
-        .destination {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .destination .dest {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .destination .dest .country {
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #64748b;
-        }
-
-        .destination .dest .acronym {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.45rem;
-            line-height: 1.15;
-            color: #0f172a;
-        }
-
-        .destination .dest .hour {
-            font-size: 10.5px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            color: #2563eb;
-        }
-
-        .data-flex-col {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 0.65rem;
-        }
-
-        .data-flex {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            gap: 0.5rem;
-        }
-
-        .data {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .data .title {
-            font-size: 9.5px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: #94a3b8;
-            line-height: 1.2;
-        }
-
-        .data .subtitle {
-            font-size: 12px;
-            font-weight: 700;
-            color: #0f172a;
-            line-height: 1.3;
+            padding: 1.5rem 1.75rem 1.5rem 2rem;
+            gap: 1.25rem;
         }
 
         /* RIGHT ICON COLUMN (THEME GRADIENT) */
         .container-icons {
-            width: 48px;
-            padding: 1rem 0.5rem;
+            width: 54px;
+            padding: 1.25rem 0.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -267,10 +197,10 @@
                 transform: translateZ(0px) rotateY(0deg);
             }
             25% {
-                transform: translateX(-8px) rotateY(-8deg) rotateX(2deg);
+                transform: translateX(-10px) rotateY(-6deg) rotateX(1.5deg);
             }
             75% {
-                transform: translateX(8px) rotateY(8deg) rotateX(-2deg);
+                transform: translateX(10px) rotateY(6deg) rotateX(-1.5deg);
             }
             100% {
                 transform: translateZ(0px) rotateY(0deg);
@@ -282,25 +212,25 @@
                 transform: translateX(-150px) scale(1.5) rotate(25deg);
             }
             45%, 60% {
-                transform: translateX(550px) scale(1.5) rotate(25deg);
+                transform: translateX(750px) scale(1.5) rotate(25deg);
             }
             100% {
-                transform: translateX(550px) scale(1.5) rotate(25deg);
+                transform: translateX(750px) scale(1.5) rotate(25deg);
             }
         }
 
         @keyframes shadow-card {
             0% {
-                transform: translateX(250px) scale(1.5);
+                transform: translateX(350px) scale(1.5);
             }
             35% {
                 transform: translateX(50px) scale(1.5);
             }
             75% {
-                transform: translateX(250px) scale(1.5);
+                transform: translateX(350px) scale(1.5);
             }
             100% {
-                transform: translateX(250px) scale(1.5);
+                transform: translateX(350px) scale(1.5);
             }
         }
 
@@ -323,10 +253,10 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 overflow-x-hidden">
+<body class="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 overflow-x-hidden">
 
     <!-- ═══════════════════════════════════════════════════════════════════
-         TICKET CONTAINER (COBP UIVERSE 3D BOARDING PASS LAYOUT)
+         TICKET CONTAINER (LARGE HIGH-CRAFT 3D BOARDING PASS LAYOUT)
          ═══════════════════════════════════════════════════════════════════ -->
     <div class="container-cards-ticket my-auto">
         <div class="card-ticket">
@@ -335,11 +265,11 @@
             <div class="barcode-section">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="46"
-                    height="180"
+                    width="48"
+                    height="260"
                     viewBox="0 0 64 150"
                     fill="#1e293b"
-                    class="opacity-80"
+                    class="opacity-75"
                 >
                     <path d="M44 138V136.967H20V138H44Z"></path>
                     <path d="M44 13.0328V12H20V13.0328H44Z"></path>
@@ -420,156 +350,96 @@
             <div class="content-ticket">
                 <div class="content-data">
                     
-                    <!-- TOP BRAND & STATUS HEADER -->
-                    <div class="flex items-center justify-between pb-1">
-                        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span class="text-[9px] font-extrabold tracking-widest text-emerald-700 uppercase">CONFIRMED</span>
+                    <!-- TOP BAR: GREEN CAPSULE BADGE + ALGORA BRAND LOGO -->
+                    <div class="relative z-10 flex items-center justify-between">
+                        <!-- GREEN CAPSULE BADGE -->
+                        <div class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/15 backdrop-blur-md border border-emerald-500/30 shadow-xs">
+                            <span class="text-[10px] font-extrabold tracking-[0.18em] text-emerald-800 uppercase">SUBMITTED</span>
                         </div>
-                        <div class="flex items-center gap-1.5 text-[10px] font-bold text-slate-500 tracking-wider font-mono">
-                            <span>ALGORA STUDIO</span>
-                            <span>&bull;</span>
-                            <span class="text-indigo-600 font-extrabold">PASS #01</span>
-                        </div>
-                    </div>
-
-                    <!-- DESTINATION / ROUTE BLOCK -->
-                    <div class="destination bg-slate-50/80 p-2.5 rounded-xl border border-slate-100">
-                        <div class="dest start">
-                            <p class="country">INQUIRY</p>
-                            <p class="acronym text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">REQ</p>
-                            <p class="hour text-slate-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 1024 1024" class="text-emerald-600">
-                                    <path fill="currentColor" d="M768 256H353.6a32 32 0 1 1 0-64H800a32 32 0 0 1 32 32v448a32 32 0 0 1-64 0z"></path>
-                                    <path fill="currentColor" d="M777.344 201.344a32 32 0 0 1 45.312 45.312l-544 544a32 32 0 0 1-45.312-45.312z"></path>
-                                </svg>
-                                <span>ONLINE</span>
-                            </p>
-                        </div>
-                        
-                        <!-- Flight Route Connector -->
-                        <div class="flex flex-col items-center px-2">
-                            <span class="text-[9px] font-mono font-bold text-indigo-500 uppercase tracking-widest">CONNECT</span>
-                            <svg style="flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg" width="32" height="16" viewBox="0 0 24 24">
-                                <path fill="none" stroke="#6366f1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="m18 8l4 4l-4 4M2 12h20"></path>
-                            </svg>
-                        </div>
-
-                        <div class="dest end text-right">
-                            <p class="country">PRODUCTION</p>
-                            <p class="acronym text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">LAUNCH</p>
-                            <p class="hour justify-end text-blue-600 font-bold">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 1024 1024">
-                                    <path fill="currentColor" d="M352 768a32 32 0 1 0 0 64h448a32 32 0 0 0 32-32V352a32 32 0 0 0-64 0v416z"></path>
-                                    <path fill="currentColor" d="M777.344 822.656a32 32 0 0 0 45.312-45.312l-544-544a32 32 0 0 0-45.312 45.312z"></path>
-                                </svg>
-                                <span>&lt; 24 HOURS</span>
-                            </p>
+                        <!-- ALGORA OFFICIAL BRAND LOGO -->
+                        <div>
+                            <img src="assets/logo.png" alt="ALGORA" class="h-5 sm:h-6 w-auto object-contain" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
                         </div>
                     </div>
 
-                    <!-- MAIN HEADLINE & CRAFT STATEMENT -->
-                    <div class="pt-1">
-                        <div class="flex items-baseline gap-2">
-                            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight font-['Outfit'] leading-none">
-                                Thank You!
-                            </h2>
-                            <span class="text-[11px] font-bold text-indigo-600 tracking-wider uppercase font-['Plus_Jakarta_Sans']">✦ We'll be in touch</span>
+                    <!-- MAIN HEADLINE BLOCK (EXACT ORIGINAL WORDS & TYPOGRAPHY) -->
+                    <div class="relative z-10 my-auto py-1">
+                        <!-- Line 1: "Thank" -->
+                        <div class="relative inline-block">
+                            <h1 class="text-5xl sm:text-6xl font-extrabold text-[#111625] tracking-tight font-['Outfit'] leading-none">
+                                Thank
+                            </h1>
+                            <!-- Dual sparkles icon -->
+                            <div class="absolute -top-1 -right-6 sm:-right-8 flex items-start gap-0.5 select-none">
+                                <span class="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#111625] via-[#475569] to-[#94a3b8]">✦</span>
+                                <span class="text-xs sm:text-sm font-bold -mt-0.5 text-transparent bg-clip-text bg-gradient-to-r from-[#111625] via-[#475569] to-[#94a3b8]">✦</span>
+                            </div>
                         </div>
-                        <p class="text-xs font-semibold text-slate-500 mt-1 leading-snug">
-                            Crafting High-Impact Digital Experiences &bull; <span class="text-slate-700 font-bold">Priority Queue Assigned</span>
-                        </p>
+
+                        <!-- Line 2: "You!" and stacked text -->
+                        <div class="flex items-center gap-3 sm:gap-4 mt-1">
+                            <h1 class="text-5xl sm:text-6xl font-extrabold text-[#6366f1] tracking-tight font-['Outfit'] leading-none">
+                                You!
+                            </h1>
+                            <div class="text-[10px] sm:text-[11px] font-extrabold tracking-widest text-[#4f46e5] uppercase leading-tight font-['Plus_Jakarta_Sans']">
+                                <div>WE'LL BE</div>
+                                <div>IN TOUCH</div>
+                            </div>
+                        </div>
+
+                        <!-- MIDDLE HERO TEXT (EXACT ORIGINAL WORDS) -->
+                        <div class="mt-4 sm:mt-5 space-y-0.5">
+                            <p class="text-lg sm:text-2xl font-medium text-slate-600 tracking-tight leading-tight">Crafting</p>
+                            <p class="text-2xl sm:text-3.5xl font-extrabold text-slate-900 tracking-tight leading-tight">High-Impact</p>
+                            <p class="text-2xl sm:text-3.5xl font-bold text-slate-400 tracking-tight leading-tight">Digital Experiences</p>
+                        </div>
+
+                        <!-- CLICKABLE COPYABLE LEAD ID PILL BADGE -->
+                        <button id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Lead ID" class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 hover:bg-slate-900/10 border border-slate-300 shadow-xs text-xs font-semibold text-slate-800 transition-all cursor-pointer group active:scale-95">
+                            <span class="w-4 h-4 rounded-full bg-indigo-600/15 text-indigo-700 flex items-center justify-center text-[10px] font-bold">✦</span>
+                            <span id="lead-id-display">Inquiry Confirmed</span>
+                            <span class="material-symbols-outlined text-[14px] text-slate-500 group-hover:text-slate-900 transition-colors" id="copy-icon">content_copy</span>
+                        </button>
                     </div>
 
-                    <div style="border-bottom: 1.5px dashed #e2e8f0;"></div>
-
-                    <!-- PASSENGER & METADATA GRID -->
-                    <div class="data-flex-col">
-                        <div class="data-flex">
-                            <div class="data">
-                                <p class="title">Lead ID</p>
-                                <button onclick="copyLeadId()" class="subtitle font-mono text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer transition-colors text-left" title="Click to copy">
-                                    <span id="lead-id-display">#AG-762151</span>
-                                    <span class="material-symbols-outlined text-[13px]" id="copy-icon">content_copy</span>
-                                </button>
-                            </div>
-                            <div class="data passenger text-right">
-                                <p class="title">Passenger / Client</p>
-                                <p class="subtitle text-slate-800 font-medium" id="client-name-display">Valued Partner</p>
-                            </div>
+                    <!-- LOWER SECTION & ACTION BAR (EXACT ORIGINAL WORDS) -->
+                    <div class="relative z-10 space-y-3 pt-3 border-t border-slate-200">
+                        <!-- CALLOUT ROW -->
+                        <div class="flex items-center justify-between text-[10px] sm:text-xs font-extrabold text-slate-600 tracking-wider uppercase">
+                            <div>FOR YOUR NEXT PROJECT</div>
+                            <div class="text-indigo-600">WE'LL REACH OUT IN 24H</div>
                         </div>
 
-                        <div class="data-flex pt-0.5">
-                            <div class="data">
-                                <p class="title">Experience</p>
-                                <p class="subtitle text-[11px] text-slate-800">High-Craft Platform</p>
+                        <!-- BOTTOM BAR -->
+                        <div class="flex items-center justify-between pt-1">
+                            <div class="text-[9.5px] sm:text-[10.5px] font-bold text-slate-500 tracking-wider uppercase leading-snug">
+                                <span>ALGORA CREATIVE STUDIO</span>
+                                <span class="block text-slate-400 font-medium">EST. 2025</span>
                             </div>
-                            <div class="data">
-                                <p class="title">Gate</p>
-                                <p class="subtitle text-indigo-600 font-extrabold">A11 &bull; EXEC</p>
-                            </div>
-                            <div class="data text-right">
-                                <p class="title">Response</p>
-                                <p class="subtitle text-emerald-600 font-extrabold">Within 24H</p>
-                            </div>
+                            
+                            <a href="projects.html" class="inline-flex items-center gap-2 bg-[#0f172a] text-white hover:bg-indigo-600 px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs tracking-wide transition-all shadow-md hover:scale-105 active:scale-95 group">
+                                <span>Back to Home</span>
+                                <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                            </a>
                         </div>
-                    </div>
-
-                    <!-- ACTION BUTTON -->
-                    <div class="pt-2 flex items-center justify-between gap-3 border-t border-slate-100">
-                        <div class="text-[9px] font-mono text-slate-400 uppercase tracking-widest">
-                            EST. 2025 &bull; ALGORA HQ
-                        </div>
-                        <a href="projects.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-4 py-2 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-md hover:shadow-indigo-500/25 active:scale-95">
-                            <span>Back to Home</span>
-                            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-                        </a>
                     </div>
 
                 </div>
 
-                <!-- RIGHT SIDE ANIMATED COLOR STRIP WITH ICONS -->
+                <!-- RIGHT SIDE ANIMATED COLOR STRIP (ALGORA BRANDING ONLY - NO FLIGHT LOGO) -->
                 <div class="container-icons">
-                    <div class="icon plane">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="22"
-                            height="22"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                fill="currentColor"
-                                d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89l2.12 9.19l-1.41 1.42l-3.88-7.43L9.6 17l.36 2.47l-1.07 1.06l-1.76-3.18l-3.19-1.77L5 14.5l2.5.37L11.37 11L3.94 7.09l1.42-1.41l9.19 2.12l3.89-3.89c.56-.58 1.56-.58 2.12 0"
-                            ></path>
-                        </svg>
+                    <div class="icon">
+                        <span class="text-base select-none">✦</span>
                     </div>
 
                     <!-- Center Monogram -->
-                    <div class="text-white/90 font-mono font-black text-[10px] tracking-tighter rotate-90 my-auto select-none">
+                    <div class="text-white/95 font-mono font-black text-[11px] tracking-widest rotate-90 my-auto select-none">
                         ALGORA
                     </div>
 
                     <!-- Bottom Badge Icon -->
-                    <div class="icon uiverse">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 100 100"
-                            height="18"
-                            width="18"
-                        >
-                            <path
-                                fill="currentColor"
-                                d="M38.0481 4.82927C38.0481 2.16214 40.018 0 42.4481 0H51.2391C53.6692 0 55.6391 2.16214 55.6391 4.82927V40.1401C55.6391 48.8912 53.2343 55.6657 48.4248 60.4636C43.6153 65.2277 36.7304 67.6098 27.7701 67.6098C18.8099 67.6098 11.925 65.2953 7.11548 60.6663C2.37183 56.0036 3.8147e-06 49.2967 3.8147e-06 40.5456V4.82927C3.8147e-06 2.16213 1.96995 0 4.4 0H13.2405C15.6705 0 17.6405 2.16214 17.6405 4.82927V39.1265C17.6405 43.7892 18.4805 47.2018 20.1605 49.3642C21.8735 51.5267 24.4759 52.6079 27.9678 52.6079C31.4596 52.6079 34.0127 51.5436 35.6268 49.4149C37.241 47.2863 38.0481 43.8399 38.0481 39.0758V4.82927Z"
-                            ></path>
-                            <path
-                                fill="currentColor"
-                                d="M86.9 61.8682C86.9 64.5353 84.9301 66.6975 82.5 66.6975H73.6595C71.2295 66.6975 69.2595 64.5353 69.2595 61.8682V4.82927C69.2595 2.16214 71.2295 0 73.6595 0H82.5C84.9301 0 86.9 2.16214 86.9 4.82927V61.8682Z"
-                            ></path>
-                            <path
-                                fill="currentColor"
-                                d="M2.86102e-06 83.2195C2.86102e-06 80.5524 1.96995 78.3902 4.4 78.3902H83.6C86.0301 78.3902 88 80.5524 88 83.2195V89.1707C88 91.8379 86.0301 94 83.6 94H4.4C1.96995 94 0 91.8379 0 89.1707L2.86102e-06 83.2195Z"
-                            ></path>
-                        </svg>
+                    <div class="icon">
+                        <span class="text-sm select-none">✦</span>
                     </div>
                 </div>
 
@@ -581,16 +451,11 @@
     <script>
         const leadId = sessionStorage.getItem('inquiryLeadId');
         if (leadId) {
-            document.getElementById('lead-id-display').textContent = `#AG-${leadId.replace(/[^0-9A-Za-z]/g, '')}`;
-        }
-        
-        const clientName = sessionStorage.getItem('inquiryClientName');
-        if (clientName) {
-            document.getElementById('client-name-display').textContent = clientName;
+            document.getElementById('lead-id-display').textContent = `ID: #${leadId.replace(/[^0-9A-Za-z]/g, '')}`;
         }
 
         function copyLeadId() {
-            const rawId = sessionStorage.getItem('inquiryLeadId') || document.getElementById('lead-id-display').textContent;
+            const rawId = sessionStorage.getItem('inquiryLeadId') || (document.getElementById('lead-id-display').textContent.replace(/[^0-9]/g, ''));
             navigator.clipboard.writeText(rawId).then(() => {
                 const icon = document.getElementById('copy-icon');
                 if (icon) {

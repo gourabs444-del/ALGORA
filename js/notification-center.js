@@ -289,7 +289,7 @@
 
         <!-- THANK YOU CARD MODAL (Full High-Fidelity Preview matching thank-you.html Ticket Layout) -->
         <div id="notif-thankyou-modal" class="fixed inset-0 z-[9999999] flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
-            <div class="relative w-full max-w-[500px] rounded-3xl overflow-hidden shadow-[0_32px_96px_-16px_rgba(99,102,241,0.5)] border border-white/80 flex bg-white text-slate-800 min-h-[280px] transition-all transform scale-95">
+            <div class="relative w-full max-w-[620px] rounded-3xl overflow-hidden shadow-[0_32px_96px_-16px_rgba(99,102,241,0.5)] border border-white/80 flex bg-white text-slate-800 min-h-[380px] transition-all transform scale-95">
                 
                 <!-- Close Button -->
                 <button id="close-thankyou-modal-btn" class="absolute top-3 right-3 z-30 w-7 h-7 rounded-full bg-slate-900/10 hover:bg-slate-900/20 text-slate-700 flex items-center justify-center transition-all cursor-pointer">
@@ -298,7 +298,7 @@
 
                 <!-- LEFT VERTICAL BARCODE STUB -->
                 <div class="flex items-center justify-center p-3 bg-slate-50 border-r border-dashed border-slate-200 flex-shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="150" viewBox="0 0 64 150" fill="#334155" class="opacity-75">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="220" viewBox="0 0 64 150" fill="#334155" class="opacity-75">
                         <path d="M44 138V136.967H20V138H44Z"></path>
                         <path d="M44 13.0328V12H20V13.0328H44Z"></path>
                         <path d="M44 14.0656V13.5492H20V14.0656H44Z"></path>
@@ -321,64 +321,73 @@
                 </div>
 
                 <!-- MAIN TICKET CONTENT -->
-                <div class="flex flex-col justify-between p-4 sm:p-5 w-full gap-2.5">
-                    <!-- TOP BRAND & STATUS -->
+                <div class="flex flex-col justify-between p-5 sm:p-6 w-full gap-3">
+                    <!-- TOP BAR -->
                     <div class="flex items-center justify-between">
-                        <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span id="modal-ty-status" class="text-[9px] font-extrabold tracking-widest text-emerald-700 uppercase">SUBMITTED</span>
+                        <div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30">
+                            <span id="modal-ty-status" class="text-[9px] font-extrabold tracking-[0.18em] text-emerald-800 uppercase">SUBMITTED</span>
                         </div>
-                        <span class="text-[10px] font-mono font-bold text-slate-400 mr-8">PASS #01</span>
+                        <img src="assets/logo.png" alt="ALGORA" class="h-4.5 w-auto object-contain mr-8" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
                     </div>
 
-                    <!-- ROUTE -->
-                    <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-100 text-xs">
-                        <div>
-                            <p class="text-[9px] font-bold text-slate-400 uppercase">INQUIRY</p>
-                            <p class="font-extrabold text-blue-600 font-['Outfit'] text-sm">REQ</p>
+                    <!-- HEADLINE BLOCK -->
+                    <div class="my-auto">
+                        <div class="flex items-baseline gap-2">
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111625] tracking-tight font-['Outfit'] leading-none">
+                                Thank <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#111625] to-[#64748b]">✦</span>
+                            </h2>
                         </div>
-                        <div class="flex flex-col items-center">
-                            <span class="text-[8px] font-mono text-indigo-500 font-bold">CONNECT</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 24">
-                                <path fill="none" stroke="#6366f1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="m18 8l4 4l-4 4M2 12h20"></path>
-                            </svg>
+                        <div class="flex items-center gap-3 mt-0.5">
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-[#6366f1] tracking-tight font-['Outfit'] leading-none">
+                                You!
+                            </h2>
+                            <div class="text-[9px] font-extrabold tracking-widest text-[#4f46e5] uppercase leading-tight">
+                                <div>WE'LL BE</div>
+                                <div>IN TOUCH</div>
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-[9px] font-bold text-slate-400 uppercase">PRODUCTION</p>
-                            <p class="font-extrabold text-purple-600 font-['Outfit'] text-sm">LAUNCH</p>
-                        </div>
-                    </div>
 
-                    <!-- HEADLINE -->
-                    <div>
-                        <h3 class="text-xl font-black text-slate-900 font-['Outfit'] leading-none">Thank You!</h3>
-                        <p class="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">✦ We'll be in touch within 24h</p>
-                        <p class="text-xs font-semibold text-slate-700 mt-1" id="modal-ty-project-type">High-Impact Digital Experience</p>
-                        <p class="text-[11px] font-medium text-slate-400" id="modal-ty-budget-timeline">Budget: $2,500 – $5,000</p>
+                        <!-- HERO TEXT -->
+                        <div class="mt-3 space-y-0.5">
+                            <p class="text-sm font-medium text-slate-500 leading-tight">Crafting</p>
+                            <p class="text-xl font-extrabold text-slate-900 leading-tight" id="modal-ty-project-type">High-Impact</p>
+                            <p class="text-base font-bold text-slate-400 leading-tight">Digital Experiences</p>
+                            <p class="text-[11px] font-medium text-slate-500 pt-0.5" id="modal-ty-budget-timeline">Budget: $2,500 – $5,000</p>
+                        </div>
+
+                        <!-- LEAD ID PILL -->
+                        <button id="modal-copy-lead-id" class="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300 text-xs font-semibold text-slate-800 transition-all cursor-pointer">
+                            <span class="text-indigo-600 font-bold">✦</span>
+                            <span id="modal-ty-lead-id">Inquiry Confirmed</span>
+                            <span class="material-symbols-outlined text-[13px] text-slate-500" id="modal-copy-icon">content_copy</span>
+                        </button>
                     </div>
 
                     <div style="border-bottom: 1px dashed #e2e8f0;"></div>
 
-                    <!-- DATA ROW & ACTION -->
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider block">Lead ID</span>
-                            <button id="modal-copy-lead-id" class="text-xs font-mono font-extrabold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer">
-                                <span id="modal-ty-lead-id">ID: #AG-9421</span>
-                                <span class="material-symbols-outlined text-[13px]" id="modal-copy-icon">content_copy</span>
+                    <!-- LOWER CALLOUT & ACTIONS -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-[9px] font-extrabold text-slate-500 uppercase tracking-wider">
+                            <div>FOR YOUR NEXT PROJECT</div>
+                            <div class="text-indigo-600">WE'LL REACH OUT IN 24H</div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-0.5">
+                            <div class="text-[9px] font-bold text-slate-400 uppercase">
+                                <span>ALGORA CREATIVE STUDIO</span> &bull; <span>EST. 2025</span>
+                            </div>
+                            <button id="modal-ty-close-btn" class="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-indigo-600 text-white text-xs font-bold transition-all cursor-pointer">
+                                Done
                             </button>
                         </div>
-                        <button id="modal-ty-close-btn" class="px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all cursor-pointer">
-                            Done
-                        </button>
                     </div>
                 </div>
 
                 <!-- RIGHT ICON COLUMN -->
                 <div class="w-10 bg-gradient-to-b from-blue-600 via-indigo-600 to-purple-600 flex flex-col items-center justify-between py-4 text-white flex-shrink-0">
-                    <span class="material-symbols-outlined text-[18px]">flight</span>
-                    <span class="text-[9px] font-mono font-black rotate-90 tracking-widest">ALGORA</span>
-                    <span class="material-symbols-outlined text-[16px]">verified</span>
+                    <span class="text-sm select-none">✦</span>
+                    <span class="text-[9px] font-mono font-black rotate-90 tracking-widest select-none">ALGORA</span>
+                    <span class="text-xs select-none">✦</span>
                 </div>
 
             </div>
