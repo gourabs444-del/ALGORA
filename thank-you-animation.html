@@ -33,14 +33,14 @@
         }
 
         .dash {
-            animation: dashArray 2s ease-in-out infinite,
-                dashOffset 2s linear infinite;
+            animation: dashArray 2.8s ease-in-out infinite,
+                dashOffset 2.8s linear infinite;
         }
 
         .spin {
-            animation: spinDashArray 2s ease-in-out infinite,
-                spin 8s ease-in-out infinite,
-                dashOffset 2s linear infinite;
+            animation: spinDashArray 2.8s ease-in-out infinite,
+                spin 9s ease-in-out infinite,
+                dashOffset 2.8s linear infinite;
             transform-origin: center;
         }
 
@@ -179,11 +179,11 @@
         </div>
     </div>
 
-    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER 1.8 SECONDS -->
+    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER 4.2 SECONDS (Animation cycle + 1.5s visual hold) -->
     <script>
         setTimeout(() => {
             window.location.replace('thank-you.html');
-        }, 1800);
+        }, 4200);
     </script>
 </body>
 </html>
