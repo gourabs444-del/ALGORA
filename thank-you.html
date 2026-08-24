@@ -131,36 +131,83 @@
             box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.1);
         }
         /* ═══════════════════════════════════════════════════════════
-           SELFMADESYSTEM STROKE DASH TRACE ANIMATION FOR THANK YOU
+           BLANK ➔ STROKE DRAW-IN ➔ SOLID TEXT FILL REVEAL ANIMATION
            ═══════════════════════════════════════════════════════════ */
-        .dash-text {
-            animation: dashArray 2.8s ease-in-out infinite,
-                       dashOffset 2.8s linear infinite;
+        .animated-text-thank {
+            stroke-dasharray: 280;
+            stroke-dashoffset: 280;
+            fill: transparent;
+            stroke-width: 1.4px;
+            animation: drawAndFillThank 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
-        .dash-text-delayed {
-            animation: dashArray 2.8s ease-in-out infinite 0.4s,
-                       dashOffset 2.8s linear infinite 0.4s;
+        .animated-text-you {
+            stroke-dasharray: 220;
+            stroke-dashoffset: 220;
+            fill: transparent;
+            stroke-width: 1.6px;
+            animation: drawAndFillYou 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
-        @keyframes dashArray {
-            0% {
-                stroke-dasharray: 0 1 359 0;
+        @keyframes drawAndFillThank {
+            0%, 6% {
+                stroke-dashoffset: 280;
+                stroke: #334155;
+                fill: transparent;
+                opacity: 0;
             }
-            50% {
-                stroke-dasharray: 0 359 1 0;
+            10% {
+                opacity: 1;
+                stroke-dashoffset: 280;
+                stroke: #334155;
+                fill: transparent;
             }
-            100% {
-                stroke-dasharray: 359 1 0 0;
+            48% {
+                stroke-dashoffset: 0;
+                stroke: #334155;
+                fill: transparent;
+            }
+            62%, 88% {
+                stroke-dashoffset: 0;
+                stroke: transparent;
+                fill: #111625;
+                opacity: 1;
+            }
+            96%, 100% {
+                opacity: 0;
+                fill: transparent;
+                stroke-dashoffset: 280;
             }
         }
 
-        @keyframes dashOffset {
-            0% {
-                stroke-dashoffset: 365;
+        @keyframes drawAndFillYou {
+            0%, 14% {
+                stroke-dashoffset: 220;
+                stroke: #6366f1;
+                fill: transparent;
+                opacity: 0;
             }
-            100% {
-                stroke-dashoffset: 5;
+            18% {
+                opacity: 1;
+                stroke-dashoffset: 220;
+                stroke: #6366f1;
+                fill: transparent;
+            }
+            54% {
+                stroke-dashoffset: 0;
+                stroke: #818cf8;
+                fill: transparent;
+            }
+            68%, 88% {
+                stroke-dashoffset: 0;
+                stroke: transparent;
+                fill: #6366f1;
+                opacity: 1;
+            }
+            96%, 100% {
+                opacity: 0;
+                fill: transparent;
+                stroke-dashoffset: 220;
             }
         }
     </style>
@@ -205,18 +252,16 @@
                         <img src="assets/logo.png" alt="ALGORA" class="h-5 sm:h-6 w-auto object-contain" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
                     </div>
 
-                    <!-- MAIN HEADLINE WITH SELFMADESYSTEM STROKE DASH ANIMATION (OUTFIT FONT) -->
+                    <!-- MAIN HEADLINE (BLANK ➔ STROKE DRAW-IN ➔ SOLID TEXT FILL REVEAL) -->
                     <div class="my-auto py-1">
                         <div class="flex items-center gap-2">
-                            <!-- High-Fidelity SVG Text with SelfMadeSystem Stroke Tracing -->
+                            <!-- High-Fidelity SVG Text in Outfit Font -->
                             <svg viewBox="0 0 240 44" class="h-9 sm:h-11 w-auto overflow-visible select-none">
-                                <!-- "Thank" Base & Stroke Dash -->
-                                <text x="0" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" fill="#111625">Thank</text>
-                                <text x="0" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" fill="none" stroke="#475569" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="dash-text">Thank</text>
+                                <!-- "Thank" Animated Draw & Fill -->
+                                <text x="0" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" stroke-linecap="round" stroke-linejoin="round" class="animated-text-thank">Thank</text>
                                 
-                                <!-- "You!" Base & Stroke Dash -->
-                                <text x="104" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" fill="#6366f1">You!</text>
-                                <text x="104" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" fill="none" stroke="#a5b4fc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="dash-text-delayed">You!</text>
+                                <!-- "You!" Animated Draw & Fill -->
+                                <text x="104" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" stroke-linecap="round" stroke-linejoin="round" class="animated-text-you">You!</text>
                             </svg>
 
                             <span class="text-[9.5px] sm:text-[11px] font-extrabold tracking-wider text-indigo-600 uppercase ml-1 whitespace-nowrap">✦ WE'LL BE IN TOUCH</span>
