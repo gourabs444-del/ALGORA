@@ -107,12 +107,29 @@
                 rotate: 360deg;
             }
         }
+        /* Smooth exit transition to boarding pass ticket */
+        .exit-transition {
+            animation: smoothStageExit 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes smoothStageExit {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.92);
+                filter: blur(8px);
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4 select-none bg-white">
 
     <!-- FULL SCREEN PURE ANIMATION CONTAINER (ORIGINAL SIZE) -->
-    <div class="flex flex-col items-center justify-center w-full h-full my-auto text-center">
+    <div id="animationStage" class="flex flex-col items-center justify-center w-full h-full my-auto text-center transition-all duration-500">
         
         <!-- SelfMadeSystem Gradients Definition -->
         <svg height="0" width="0" viewBox="0 0 64 64" class="absolute pointer-events-none" shape-rendering="geometricPrecision">
@@ -180,11 +197,17 @@
         </div>
     </div>
 
-    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (2.6s ease-out draw + 1.4s solid hold) -->
+    <!-- SCRIPT: SMOOTH EXIT AND AUTO-REDIRECT TO TICKET -->
     <script>
+        // Start smooth exit transition at 3.3s, redirect at 3.8s
+        setTimeout(() => {
+            const stage = document.getElementById('animationStage');
+            if (stage) stage.classList.add('exit-transition');
+        }, 3300);
+
         setTimeout(() => {
             window.location.replace('thank-you.html');
-        }, 4000);
+        }, 3800);
     </script>
 </body>
 </html>

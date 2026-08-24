@@ -128,7 +128,44 @@
             position: relative;
             z-index: 5;
             flex-shrink: 0;
-            box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.1);
+        /* ═══════════════════════════════════════════════════════════
+           CINEMATIC SMOOTH ENTRY ANIMATION (TICKET & ACTIONS)
+           ═══════════════════════════════════════════════════════════ */
+        .ticket-smooth-enter {
+            opacity: 0;
+            transform: translateY(35px) scale(0.94);
+            filter: blur(8px);
+            animation: ticketGlideIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+        }
+
+        .actions-smooth-enter {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: actionsGlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
+        }
+
+        @keyframes ticketGlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(35px) scale(0.94);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes actionsGlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -137,7 +174,7 @@
     <!-- ═══════════════════════════════════════════════════════════════════
          TICKET CONTAINER (GRAND LUXURY 3D BOARDING PASS WITH SCANNABLE QR)
          ═══════════════════════════════════════════════════════════════════ -->
-    <div class="container-cards-ticket my-auto px-4">
+    <div class="container-cards-ticket ticket-smooth-enter my-auto px-4">
         <div class="card-ticket">
             
             <!-- LEFT REAL SCANNABLE QR CODE STUB -->
