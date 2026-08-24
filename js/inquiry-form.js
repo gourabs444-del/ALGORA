@@ -125,9 +125,9 @@
       timeline: raw.timeline || '2–4 Weeks'
     }));
 
-    // Immediate smooth redirect to the separate Thank You Page Card
+    // Immediate smooth redirect to the separate Animated Thank You page
     setTimeout(() => {
-      window.location.assign('thank-you.html');
+      window.location.assign('thank-you-animation.html');
     }, 400);
   });
 })();
