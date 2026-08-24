@@ -2837,70 +2837,51 @@
 
                     </div>
 
-                    <!-- ── FLOATING LEFT EXPLODED INFO HUD (PURE LUXURY EDITORIAL TYPOGRAPHY • UNBOXED) ── -->
-                    <div id="explode-hud-left" class="hidden lg:flex flex-col gap-6 absolute left-6 sm:left-12 lg:left-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none transition-all duration-500 max-w-[280px]">
-                        <div class="inline-flex items-center gap-2 text-[10px] font-mono font-bold tracking-[0.22em] text-sky-700 uppercase">
-                            <span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-ping"></span>
-                            <span>ACTIVE COLLECTION</span>
+                    <!-- ── FLOATING LEFT EXPLODED INFO HUD (DYNAMIC REAL-TIME LUXURY TYPOGRAPHY) ── -->
+                    <div id="explode-hud-left" class="hidden lg:flex flex-col gap-3.5 absolute left-6 sm:left-12 lg:left-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none transition-all duration-300 max-w-[340px]">
+                        <!-- Dynamic Category Pill/Tag with pulse dot -->
+                        <div class="inline-flex items-center gap-2">
+                            <span id="dyn-left-dot" class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
+                            <span id="dyn-left-category" class="text-[10.5px] font-mono font-bold tracking-[0.22em] text-sky-700 uppercase transition-colors duration-300">01 / MONOLITH AWAKENING</span>
                         </div>
 
-                        <!-- 01 Aesthete -->
-                        <div class="border-l-2 border-sky-400/70 pl-3.5 space-y-0.5">
-                            <div class="flex items-center justify-between text-slate-900">
-                                <span class="font-['Outfit'] font-bold text-xl tracking-tight">01 / Aesthete</span>
-                                <span class="text-xs font-mono font-bold text-amber-600">★ 4.9</span>
+                        <!-- Main dynamic headline container with luxury font styling -->
+                        <div id="dyn-left-border" class="border-l-[3px] border-sky-400 pl-4 space-y-1.5 transition-all duration-300">
+                            <div id="dyn-left-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-950 tracking-tight leading-tight transition-all duration-300">
+                                Next-Gen Digital Systems
                             </div>
-                            <p class="text-xs text-slate-600 font-sans leading-snug">Quiet Luxury Minimalist Architecture</p>
-                            <div class="text-[10px] font-mono font-semibold text-sky-600 tracking-wider pt-0.5">+180PX Z-AXIS LIFT</div>
-                        </div>
-
-                        <!-- 02 BloomFi -->
-                        <div class="border-l-2 border-blue-400/70 pl-3.5 space-y-0.5">
-                            <div class="flex items-center justify-between text-slate-900">
-                                <span class="font-['Outfit'] font-bold text-xl tracking-tight">02 / BloomFi</span>
-                                <span class="text-xs font-mono font-bold text-amber-600">★ 4.7</span>
+                            <p id="dyn-left-desc" class="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed transition-all duration-300">
+                                High-craft web platforms, AI workspaces, and kinetic 3D experiences engineered with obsessive precision.
+                            </p>
+                            <div class="pt-1.5 flex items-center gap-2">
+                                <span id="dyn-left-tag" class="px-3 py-1 rounded-full bg-sky-100/90 border border-sky-200 text-[10px] font-mono font-bold text-sky-800 tracking-wider shadow-2xs transition-all duration-300">
+                                    ✦ 1400PX FOV MATRIX
+                                </span>
                             </div>
-                            <p class="text-xs text-slate-600 font-sans leading-snug">Fintech & AI Growth Engine</p>
-                            <div class="text-[10px] font-mono font-semibold text-blue-600 tracking-wider pt-0.5">120 FPS GPU WAVE MESH</div>
-                        </div>
-
-                        <!-- 03 Juris Lexicon -->
-                        <div class="border-l-2 border-indigo-400/70 pl-3.5 space-y-0.5">
-                            <div class="flex items-center justify-between text-slate-900">
-                                <span class="font-['Outfit'] font-bold text-xl tracking-tight">03 / Juris Lexicon</span>
-                                <span class="text-xs font-mono font-bold text-amber-600">★ 4.8</span>
-                            </div>
-                            <p class="text-xs text-slate-600 font-sans leading-snug">Institutional Legal Intelligence Core</p>
-                            <div class="text-[10px] font-mono font-semibold text-indigo-600 tracking-wider pt-0.5">&lt; 0.38MS EDGE RUNTIME</div>
                         </div>
                     </div>
 
-                    <!-- ── FLOATING RIGHT EXPLODED INFO HUD (PURE LUXURY METRICS TYPOGRAPHY • UNBOXED) ── -->
-                    <div id="explode-hud-right" class="hidden lg:flex flex-col gap-6 absolute right-6 sm:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none transition-all duration-500 max-w-[260px] text-right">
-                        <div class="inline-flex items-center justify-end gap-2 text-[10px] font-mono font-bold tracking-[0.22em] text-indigo-700 uppercase self-end">
-                            <span>TELEMETRY SPECS</span>
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                    <!-- ── FLOATING RIGHT EXPLODED INFO HUD (DYNAMIC REAL-TIME METRICS TYPOGRAPHY) ── -->
+                    <div id="explode-hud-right" class="hidden lg:flex flex-col gap-3.5 absolute right-6 sm:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none transition-all duration-300 max-w-[320px] text-right">
+                        <!-- Dynamic Category Pill/Tag with pulse dot -->
+                        <div class="inline-flex items-center justify-end gap-2 self-end">
+                            <span id="dyn-right-category" class="text-[10.5px] font-mono font-bold tracking-[0.22em] text-indigo-700 uppercase transition-colors duration-300">DEPTH & HOVER TELEMETRY</span>
+                            <span id="dyn-right-dot" class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
                         </div>
 
-                        <!-- Spec 1 -->
-                        <div class="border-r-2 border-indigo-400/70 pr-3.5 space-y-0.5">
-                            <div class="font-['Outfit'] font-bold text-xl text-slate-900 tracking-tight">&plusmn;180px Depth</div>
-                            <p class="text-xs text-slate-600 font-sans leading-snug">Sub-pixel 3D Z-Decoupling</p>
-                            <div class="text-[10px] font-mono font-bold text-emerald-600 tracking-wider pt-0.5">● ZERO THREAD LOCK</div>
-                        </div>
-
-                        <!-- Spec 2 -->
-                        <div class="border-r-2 border-sky-400/70 pr-3.5 space-y-0.5">
-                            <div class="font-['Outfit'] font-bold text-xl text-slate-900 tracking-tight">120.0 FPS</div>
-                            <p class="text-xs text-slate-600 font-sans leading-snug">Damped Spring Physics Engine</p>
-                            <div class="text-[10px] font-mono font-semibold text-sky-600 tracking-wider pt-0.5">1400PX DEPTH FOV</div>
-                        </div>
-
-                        <!-- Spec 3 -->
-                        <div class="border-r-2 border-purple-400/70 pr-3.5 space-y-0.5">
-                            <div class="font-['Outfit'] font-bold text-xl text-slate-900 tracking-tight">9 Monoliths</div>
-                            <p class="text-xs text-slate-600 font-sans leading-snug">Production Live Web Workspaces</p>
-                            <div class="text-[10px] font-mono font-semibold text-purple-600 tracking-wider pt-0.5">ENTERPRISE DEPLOYED</div>
+                        <!-- Main dynamic spec container with luxury font styling -->
+                        <div id="dyn-right-border" class="border-r-[3px] border-indigo-400 pr-4 space-y-1.5 transition-all duration-300">
+                            <div id="dyn-right-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-950 tracking-tight leading-tight transition-all duration-300">
+                                Zero-G Levitation
+                            </div>
+                            <p id="dyn-right-desc" class="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed transition-all duration-300">
+                                Damped spring orbital physics at locked 120 FPS.
+                            </p>
+                            <div class="pt-1.5 flex items-center justify-end gap-2">
+                                <span id="dyn-right-tag" class="px-3 py-1 rounded-full bg-indigo-100/90 border border-indigo-200 text-[10px] font-mono font-bold text-indigo-800 tracking-wider shadow-2xs transition-all duration-300">
+                                    ● 100% HEALTH • IDLE
+                                </span>
+                            </div>
                         </div>
                     </div>
 
@@ -3383,6 +3364,219 @@
                 const hudLeft = document.getElementById('explode-hud-left');
                 const hudRight = document.getElementById('explode-hud-right');
 
+                // Dynamic HUD Elements
+                const dynLeftCategory = document.getElementById('dyn-left-category');
+                const dynLeftTitle = document.getElementById('dyn-left-title');
+                const dynLeftDesc = document.getElementById('dyn-left-desc');
+                const dynLeftTag = document.getElementById('dyn-left-tag');
+                const dynLeftBorder = document.getElementById('dyn-left-border');
+                const dynLeftDot = document.getElementById('dyn-left-dot');
+
+                const dynRightCategory = document.getElementById('dyn-right-category');
+                const dynRightTitle = document.getElementById('dyn-right-title');
+                const dynRightDesc = document.getElementById('dyn-right-desc');
+                const dynRightTag = document.getElementById('dyn-right-tag');
+                const dynRightBorder = document.getElementById('dyn-right-border');
+                const dynRightDot = document.getElementById('dyn-right-dot');
+
+                // 7 Dynamic Real-Time Typography Phases matching card animation chapters
+                const dynamicPhases = [
+                    {
+                        // Phase 1 (0.00 - 0.22): Monolith Chassis Awaken
+                        leftCat: '01 / MONOLITH AWAKENING',
+                        leftTitle: 'Next-Gen Digital Systems',
+                        leftDesc: 'High-craft web platforms, AI workspaces, and kinetic 3D experiences engineered with obsessive precision.',
+                        leftTag: '✦ 1400PX SPATIAL FOV',
+                        leftBorderClass: 'border-sky-400',
+                        leftCatColor: 'text-sky-700',
+                        leftTagClass: 'bg-sky-100/90 border-sky-200 text-sky-800',
+                        leftDotClass: 'bg-sky-500',
+
+                        rightCat: 'DEPTH & HOVER TELEMETRY',
+                        rightTitle: 'Zero-G Levitation',
+                        rightDesc: 'Damped spring orbital levitation at locked 120 FPS.',
+                        rightTag: '● 100% HEALTH • IDLE',
+                        rightBorderClass: 'border-indigo-400',
+                        rightCatColor: 'text-indigo-700',
+                        rightTagClass: 'bg-indigo-100/90 border-indigo-200 text-indigo-800',
+                        rightDotClass: 'bg-indigo-500'
+                    },
+                    {
+                        // Phase 2 (0.22 - 0.38): Tier Decoupling Initiation
+                        leftCat: '02 / TIER DECOUPLING',
+                        leftTitle: 'Uncoupling The Stack',
+                        leftDesc: 'Front Glass UI, WebGL Canvas, and Kernel runtime separate smoothly along the spatial Z-axis.',
+                        leftTag: '✦ ±80PX Z-AXIS SEPARATION',
+                        leftBorderClass: 'border-blue-500',
+                        leftCatColor: 'text-blue-700',
+                        leftTagClass: 'bg-blue-100/90 border-blue-200 text-blue-800',
+                        leftDotClass: 'bg-blue-500',
+
+                        rightCat: 'SPATIAL COORDINATES',
+                        rightTitle: 'Spatial Disassembly',
+                        rightDesc: 'Multi-layer Z-space coordinate tracking with zero thread lock.',
+                        rightTag: 'GPU THREAD: UNLOCKED',
+                        rightBorderClass: 'border-blue-500',
+                        rightCatColor: 'text-blue-700',
+                        rightTagClass: 'bg-blue-100/90 border-blue-200 text-blue-800',
+                        rightDotClass: 'bg-blue-500'
+                    },
+                    {
+                        // Phase 3 (0.38 - 0.52): Full Exploded Architecture / 01 Aesthete UI
+                        leftCat: '03 / EXPLODED ARCHITECTURE',
+                        leftTitle: '01 • Aesthete Platform',
+                        leftDesc: 'Quiet luxury minimalist architecture with high-craft editorial typography & glass aesthetics.',
+                        leftTag: '★ 4.9 RATING • +180PX LIFT',
+                        leftBorderClass: 'border-sky-400',
+                        leftCatColor: 'text-sky-700',
+                        leftTagClass: 'bg-sky-100/90 border-sky-200 text-sky-800',
+                        leftDotClass: 'bg-sky-500',
+
+                        rightCat: 'TELEMETRY METRICS',
+                        rightTitle: '±180px Explode',
+                        rightDesc: 'Sub-pixel disassembly with zero thread contention across 3 layers.',
+                        rightTag: '● ZERO THREAD LOCK',
+                        rightBorderClass: 'border-indigo-400',
+                        rightCatColor: 'text-indigo-700',
+                        rightTagClass: 'bg-indigo-100/90 border-indigo-200 text-indigo-800',
+                        rightDotClass: 'bg-indigo-500'
+                    },
+                    {
+                        // Phase 4 (0.52 - 0.68): 120 FPS GPU Wave Mesh / 02 BloomFi
+                        leftCat: '04 / COMPUTE ENGINE',
+                        leftTitle: '02 • BloomFi Wave',
+                        leftDesc: 'Fintech AI growth platform with 8,400 compute shader points undulating in real-time spring dynamics.',
+                        leftTag: '★ 4.7 RATING • 120 FPS NATIVE',
+                        leftBorderClass: 'border-cyan-500',
+                        leftCatColor: 'text-cyan-700',
+                        leftTagClass: 'bg-cyan-100/90 border-cyan-200 text-cyan-800',
+                        leftDotClass: 'bg-cyan-500',
+
+                        rightCat: 'HYDRODYNAMIC SPECS',
+                        rightTitle: '120.0 FPS Locked',
+                        rightDesc: 'Hardware WebGL spring wave mesh with zero frame drops.',
+                        rightTag: 'SHADERS: GPU ACCELERATED',
+                        rightBorderClass: 'border-cyan-500',
+                        rightCatColor: 'text-cyan-700',
+                        rightTagClass: 'bg-cyan-100/90 border-cyan-200 text-cyan-800',
+                        rightDotClass: 'bg-cyan-500'
+                    },
+                    {
+                        // Phase 5 (0.68 - 0.82): 360° Matrix Scan / 03 Juris Lexicon
+                        leftCat: '05 / KERNEL RUNTIME',
+                        leftTitle: '03 • Juris Lexicon',
+                        leftDesc: 'Institutional legal intelligence core with holographic syntax verification and edge caching.',
+                        leftTag: '★ 4.8 RATING • < 0.38MS LATENCY',
+                        leftBorderClass: 'border-purple-500',
+                        leftCatColor: 'text-purple-700',
+                        leftTagClass: 'bg-purple-100/90 border-purple-200 text-purple-800',
+                        leftDotClass: 'bg-purple-500',
+
+                        rightCat: 'EDGE TELEMETRY',
+                        rightTitle: '< 0.38ms Latency',
+                        rightDesc: 'Sub-millisecond global CDN edge dispatch with zero memory leaks.',
+                        rightTag: 'GC OVERHEAD: 0.00%',
+                        rightBorderClass: 'border-purple-500',
+                        rightCatColor: 'text-purple-700',
+                        rightTagClass: 'bg-purple-100/90 border-purple-200 text-purple-800',
+                        rightDotClass: 'bg-purple-500'
+                    },
+                    {
+                        // Phase 6 (0.82 - 0.94): Magnetic Convergence & Reassembly
+                        leftCat: '06 / ATOMIC LOCK',
+                        leftTitle: 'Magnetic Snap Convergence',
+                        leftDesc: 'Deconstructed layers accelerate inward with spring damping, fusing into a crystal powerhouse.',
+                        leftTag: '100% ATOMIC FUSION',
+                        leftBorderClass: 'border-fuchsia-500',
+                        leftCatColor: 'text-fuchsia-700',
+                        leftTagClass: 'bg-fuchsia-100/90 border-fuchsia-200 text-fuchsia-800',
+                        leftDotClass: 'bg-fuchsia-500',
+
+                        rightCat: 'SYSTEM INTEGRITY',
+                        rightTitle: 'Monolith Unified',
+                        rightDesc: 'All 3 tiers locked and calibrated for multi-window high-throughput interaction.',
+                        rightTag: 'READY FOR DEPLOYMENT',
+                        rightBorderClass: 'border-fuchsia-500',
+                        rightCatColor: 'text-fuchsia-700',
+                        rightTagClass: 'bg-fuchsia-100/90 border-fuchsia-200 text-fuchsia-800',
+                        rightDotClass: 'bg-fuchsia-500'
+                    },
+                    {
+                        // Phase 7 (0.94 - 1.00): Production Launch & Gallery Grid
+                        leftCat: '07 / LAUNCH COMMISSION',
+                        leftTitle: 'Crafting Digital Monoliths',
+                        leftDesc: 'Commission bespoke platforms, AI workspaces, and 3D web applications for visionary teams.',
+                        leftTag: '9 PRODUCTION MONOLITHS',
+                        leftBorderClass: 'border-violet-500',
+                        leftCatColor: 'text-violet-700',
+                        leftTagClass: 'bg-violet-100/90 border-violet-200 text-violet-800',
+                        leftDotClass: 'bg-violet-500',
+
+                        rightCat: 'PORTFOLIO DECK',
+                        rightTitle: 'Explore Full Gallery',
+                        rightDesc: 'Scroll down to browse all 9 live production platforms and interactive case studies.',
+                        rightTag: 'SCROLL FOR GALLERY ↓',
+                        rightBorderClass: 'border-violet-500',
+                        rightCatColor: 'text-violet-700',
+                        rightTagClass: 'bg-violet-100/90 border-violet-200 text-violet-800',
+                        rightDotClass: 'bg-violet-500'
+                    }
+                ];
+
+                let currentPhaseIdx = -1;
+
+                function updateDynamicHUD(p) {
+                    if (!dynLeftTitle || !dynRightTitle) return;
+
+                    let phaseIdx = 0;
+                    if (p < 0.22) phaseIdx = 0;
+                    else if (p < 0.38) phaseIdx = 1;
+                    else if (p < 0.52) phaseIdx = 2;
+                    else if (p < 0.68) phaseIdx = 3;
+                    else if (p < 0.82) phaseIdx = 4;
+                    else if (p < 0.94) phaseIdx = 5;
+                    else phaseIdx = 6;
+
+                    if (phaseIdx !== currentPhaseIdx) {
+                        currentPhaseIdx = phaseIdx;
+                        const d = dynamicPhases[phaseIdx];
+
+                        if (dynLeftBorder) dynLeftBorder.style.transform = 'translate3d(0, -6px, 0)';
+                        if (dynRightBorder) dynRightBorder.style.transform = 'translate3d(0, -6px, 0)';
+
+                        setTimeout(() => {
+                            if (dynLeftCategory) {
+                                dynLeftCategory.textContent = d.leftCat;
+                                dynLeftCategory.className = `text-[10.5px] font-mono font-bold tracking-[0.22em] ${d.leftCatColor} uppercase transition-colors duration-300`;
+                            }
+                            if (dynLeftTitle) dynLeftTitle.textContent = d.leftTitle;
+                            if (dynLeftDesc) dynLeftDesc.textContent = d.leftDesc;
+                            if (dynLeftTag) {
+                                dynLeftTag.textContent = d.leftTag;
+                                dynLeftTag.className = `px-3 py-1 rounded-full ${d.leftTagClass} text-[10px] font-mono font-bold tracking-wider shadow-2xs transition-all duration-300`;
+                            }
+                            if (dynLeftBorder) dynLeftBorder.className = `border-l-[3px] ${d.leftBorderClass} pl-4 space-y-1.5 transition-all duration-300`;
+                            if (dynLeftDot) dynLeftDot.className = `w-2 h-2 rounded-full ${d.leftDotClass} animate-ping`;
+
+                            if (dynRightCategory) {
+                                dynRightCategory.textContent = d.rightCat;
+                                dynRightCategory.className = `text-[10.5px] font-mono font-bold tracking-[0.22em] ${d.rightCatColor} uppercase transition-colors duration-300`;
+                            }
+                            if (dynRightTitle) dynRightTitle.textContent = d.rightTitle;
+                            if (dynRightDesc) dynRightDesc.textContent = d.rightDesc;
+                            if (dynRightTag) {
+                                dynRightTag.textContent = d.rightTag;
+                                dynRightTag.className = `px-3 py-1 rounded-full ${d.rightTagClass} text-[10px] font-mono font-bold tracking-wider shadow-2xs transition-all duration-300`;
+                            }
+                            if (dynRightBorder) dynRightBorder.className = `border-r-[3px] ${d.rightBorderClass} pr-4 space-y-1.5 transition-all duration-300`;
+                            if (dynRightDot) dynRightDot.className = `w-2 h-2 rounded-full ${d.rightDotClass} animate-pulse`;
+
+                            if (dynLeftBorder) dynLeftBorder.style.transform = 'translate3d(0, 0, 0)';
+                            if (dynRightBorder) dynRightBorder.style.transform = 'translate3d(0, 0, 0)';
+                        }, 70);
+                    }
+                }
+
                 // 3D Presentation Viewport & Exploded Layers
                 const viewportRig = document.getElementById('viewport-rig');
                 const layerFront = document.getElementById('layer-front');
@@ -3420,6 +3614,9 @@
                     // Ultra-buttery 120fps inertia with adaptive dampening
                     currentProgress += (targetProgress - currentProgress) * 0.085;
                     const p = currentProgress;
+
+                    // Update Real-Time Dynamic Typography & Metrics Engine
+                    updateDynamicHUD(p);
 
                     // ═══════════════════════════════════════════════════════════
                     // 🎨 10-STAGE CONTINUOUS COLOR MORPHING (CYAN -> COBALT -> INDIGO -> AMETHYST -> VIOLET)
