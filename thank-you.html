@@ -9,9 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <!-- Dynamic QR Code & Canvas Export Libraries -->
+    <!-- Dynamic QR Code Generator Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -129,9 +128,7 @@
             flex-shrink: 0;
         }
 
-        /* ═══════════════════════════════════════════════════════════
-           PIXEL-PERFECT BADGES & PILLS (100% IMMUNE TO HTML2CANVAS DRIFT)
-           ═══════════════════════════════════════════════════════════ */
+        /* PIXEL-PERFECT BADGES & PILLS */
         .submitted-capsule {
             display: inline-table;
             vertical-align: middle;
@@ -178,9 +175,13 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-3 overflow-x-hidden">
 
+    <!-- ═══════════════════════════════════════════════════════════════════
+         TICKET CONTAINER (GRAND LUXURY 3D BOARDING PASS WITH SCANNABLE QR)
+         ═══════════════════════════════════════════════════════════════════ -->
     <div class="container-cards-ticket ticket-smooth-enter my-auto px-4">
         <div id="ticketCard" class="card-ticket">
             
+            <!-- LEFT REAL SCANNABLE QR CODE STUB -->
             <a href="track.html" id="qr-track-link" title="Scan or Click to Track Project Status" class="qr-section group">
                 <div class="p-1.5 rounded-xl bg-white shadow-xs border border-slate-200/90 group-hover:scale-105 group-hover:border-indigo-400 transition-all duration-200">
                     <canvas id="ticket-qr" class="rounded-lg block"></canvas>
@@ -195,11 +196,14 @@
                 </div>
             </a>
 
+            <!-- NOTCH SEPARATOR -->
             <div id="notchSeparator" class="separator"></div>
 
+            <!-- TICKET BODY CONTENT -->
             <div class="content-ticket">
                 <div class="content-data">
                     
+                    <!-- TOP BAR: SOLID GREEN CAPSULE BADGE + LOGO -->
                     <div class="flex items-center justify-between">
                         <div class="submitted-capsule">
                             <div style="display: table-cell; vertical-align: middle; text-align: center;">
@@ -209,6 +213,7 @@
                         <img src="assets/logo.png" alt="ALGORA" class="h-5 sm:h-6 w-auto object-contain" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
                     </div>
 
+                    <!-- MAIN HEADLINE & CRAFT STATEMENT -->
                     <div class="my-auto py-1">
                         <div class="flex items-baseline gap-2 leading-none">
                             <h1 class="text-3xl sm:text-4.5xl font-extrabold text-[#111625] tracking-tight font-['Outfit']">
@@ -227,7 +232,9 @@
 
                     <div style="border-bottom: 1.5px dashed #e2e8f0;"></div>
 
+                    <!-- BOTTOM METADATA & ACTIONS -->
                     <div class="flex items-center justify-between pt-1 gap-2 min-h-[32px]">
+                        <!-- CLEAN NUMERIC ORDER ID PILL (PERFECTLY CENTERED) -->
                         <div id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Order ID" class="pill-capsule group">
                             <div style="display: table-cell; vertical-align: middle; padding-right: 6px; line-height: 0;">
                                 <svg width="6" height="6" viewBox="0 0 6 6" style="display: block;">
@@ -245,46 +252,33 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center justify-end">
-                            <div id="export-timestamp-badge" class="pill-capsule" style="display: none;">
-                                <div style="display: table-cell; vertical-align: middle; padding-right: 6px; line-height: 0;">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
-                                </div>
-                                <div style="display: table-cell; vertical-align: middle;">
-                                    <span id="export-timestamp-text" style="font-family: 'Plus Jakarta Sans', monospace, sans-serif; font-size: 10.5px; font-weight: 700; color: #475569; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; display: block;">24 AUG 2026 • 10:07 PM</span>
-                                </div>
-                            </div>
-
-                            <div id="user-action-buttons" class="flex items-center gap-1.5 sm:gap-2">
-                                <a href="projects.html" title="Back to Showcase" class="inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-2xs active:scale-95 group">
-                                    <span class="material-symbols-outlined text-[14px]">home</span>
-                                    <span>Home</span>
-                                </a>
-
-                                <button id="download-pass-btn" onclick="downloadProjectPass()" title="Download Project Pass" class="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl transition-all shadow-2xs active:scale-95 cursor-pointer group flex-shrink-0">
-                                    <span class="material-symbols-outlined text-[16px] sm:text-[18px] group-hover:-translate-y-0.5 transition-transform" id="download-icon">download</span>
-                                </button>
-                            </div>
+                        <!-- RIGHT AREA: HOME NAVIGATION BUTTON -->
+                        <div class="flex items-center">
+                            <a href="projects.html" class="inline-flex items-center gap-1.5 bg-[#0f172a] hover:bg-indigo-600 text-white px-4 py-1.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-md active:scale-95 group">
+                                <span class="material-symbols-outlined text-[14px]">home</span>
+                                <span>Home</span>
+                            </a>
                         </div>
                     </div>
 
                 </div>
 
+                <!-- RIGHT SIDE PROJECT PASS TICKET STUB -->
                 <div class="container-icons">
+                    <!-- Top Verified Notch / Icon -->
                     <div class="flex flex-col items-center select-none text-white/90 pt-1">
                         <span class="material-symbols-outlined text-[15px]">verified</span>
                         <span class="text-[6.5px] font-mono font-extrabold tracking-widest text-indigo-200 uppercase mt-0.5">VERIFIED</span>
                     </div>
 
+                    <!-- Center Rotated Clean Small Project Pass Text -->
                     <div class="my-auto py-2">
                         <span class="text-white/90 font-mono font-bold text-[8.5px] tracking-[0.28em] rotate-90 block my-auto select-none uppercase whitespace-nowrap">
                             PROJECT PASS
                         </span>
                     </div>
 
+                    <!-- Bottom Studio Security Details -->
                     <div class="flex flex-col items-center select-none pb-1 text-center">
                         <span class="text-[6.5px] font-mono font-extrabold tracking-widest text-indigo-200 uppercase">SECURED</span>
                         <span class="text-[8px] font-mono font-black text-white tracking-widest mt-0.5">INTAKE</span>
@@ -295,6 +289,7 @@
         </div>
     </div>
 
+    <!-- LOGIC SCRIPT (REAL QR CODE & CLOUD TRACKING SYNC) -->
     <script>
         const now = new Date();
         const yyyy = now.getFullYear();
@@ -347,98 +342,6 @@
                     }, 2000);
                 }
             }).catch(() => {});
-        }
-
-        async function downloadProjectPass() {
-            const btn = document.getElementById('download-pass-btn');
-            const icon = document.getElementById('download-icon');
-            const ticketEl = document.getElementById('ticketCard');
-            const sepEl = document.getElementById('notchSeparator');
-            const userActions = document.getElementById('user-action-buttons');
-            const timestampBadge = document.getElementById('export-timestamp-badge');
-            const timestampText = document.getElementById('export-timestamp-text');
-
-            if (!ticketEl) return;
-
-            btn.disabled = true;
-
-            const downloadDate = new Date();
-            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-            const formattedDate = `${String(downloadDate.getDate()).padStart(2, '0')} ${months[downloadDate.getMonth()]} ${downloadDate.getFullYear()}`;
-            let hours = downloadDate.getHours();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12 || 12;
-            const formattedTime = `${String(hours).padStart(2, '0')}:${String(downloadDate.getMinutes()).padStart(2, '0')} ${ampm}`;
-            const liveTimestampStr = `${formattedDate} • ${formattedTime}`;
-
-            if (timestampText) timestampText.textContent = liveTimestampStr;
-
-            if (userActions) userActions.style.display = 'none';
-            if (timestampBadge) timestampBadge.style.display = 'inline-table';
-
-            if (document.fonts) await document.fonts.ready;
-
-            const scale = 3; 
-
-            html2canvas(ticketEl, {
-                scale: scale,
-                useCORS: true,
-                backgroundColor: null,
-                logging: false
-            }).then(canvas => {
-                if (userActions) userActions.style.display = 'flex';
-                if (timestampBadge) timestampBadge.style.display = 'none';
-
-                const outputCanvas = document.createElement('canvas');
-                outputCanvas.width = canvas.width;
-                outputCanvas.height = canvas.height;
-                const outCtx = outputCanvas.getContext('2d');
-
-                const w = canvas.width;
-                const h = canvas.height;
-                const r = 28 * scale; 
-
-                const cardRect = ticketEl.getBoundingClientRect();
-                const sepRect = sepEl ? sepEl.getBoundingClientRect() : null;
-                const nx = sepRect ? (sepRect.left - cardRect.left) * scale : 132 * scale;
-                const nr = 14.5 * scale; 
-
-                outCtx.beginPath();
-                outCtx.moveTo(r, 0);
-                outCtx.lineTo(nx - nr, 0);
-                outCtx.arc(nx, 0, nr, Math.PI, 0, true);
-                outCtx.lineTo(w - r, 0);
-                outCtx.arcTo(w, 0, w, r, r);
-                outCtx.lineTo(w, h - r);
-                outCtx.arcTo(w, h, w - r, h, r);
-                outCtx.lineTo(nx + nr, h);
-                outCtx.arc(nx, h, nr, 0, Math.PI, true);
-                outCtx.lineTo(r, h);
-                outCtx.arcTo(0, h, 0, h - r, r);
-                outCtx.lineTo(0, r);
-                outCtx.arcTo(0, 0, r, 0, r);
-                outCtx.closePath();
-                outCtx.clip();
-
-                outCtx.drawImage(canvas, 0, 0);
-
-                const link = document.createElement('a');
-                link.download = `Algora-Project-Pass-${cleanNumericId}.png`;
-                link.href = outputCanvas.toDataURL('image/png');
-                link.click();
-
-                if (icon) icon.textContent = 'check';
-                setTimeout(() => {
-                    if (icon) icon.textContent = 'download';
-                    btn.disabled = false;
-                }, 1800);
-            }).catch(err => {
-                console.error('Ticket download error:', err);
-                if (userActions) userActions.style.display = 'flex';
-                if (timestampBadge) timestampBadge.style.display = 'none';
-                if (icon) icon.textContent = 'download';
-                btn.disabled = false;
-            });
         }
     </script>
 </body>
