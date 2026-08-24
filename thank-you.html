@@ -20,20 +20,26 @@
         }
 
         /* ═══════════════════════════════════════════════════════════
-           TICKET CONTAINER & SHADOWS
+           TICKET CONTAINER & GRAND 3D PHYSICAL STUDIO SHADOWS
            ═══════════════════════════════════════════════════════════ */
         .container-cards-ticket {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            filter: drop-shadow(0 25px 60px rgba(15, 23, 42, 0.14)) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.06));
-            transition: filter 0.3s ease, transform 0.3s ease;
+            filter: 
+                drop-shadow(0 30px 60px rgba(15, 23, 42, 0.18))
+                drop-shadow(0 14px 28px rgba(30, 27, 75, 0.12))
+                drop-shadow(0 4px 10px rgba(0, 0, 0, 0.06));
+            transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .container-cards-ticket:hover {
-            transform: translateY(-4px);
-            filter: drop-shadow(0 35px 80px rgba(15, 23, 42, 0.20)) drop-shadow(0 12px 30px rgba(0, 0, 0, 0.08));
+            transform: translateY(-6px) scale(1.005);
+            filter: 
+                drop-shadow(0 45px 85px rgba(15, 23, 42, 0.24))
+                drop-shadow(0 20px 40px rgba(79, 70, 229, 0.20))
+                drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));
         }
 
         /* Real physical punch hole cutout using CSS Mask aligned at 132px */
