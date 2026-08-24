@@ -23,7 +23,7 @@
         }
 
         /* ═══════════════════════════════════════════════════════════
-           BUTTERY SMOOTH LIQUID-FLUID 120FPS GPU VECTOR ANIMATION
+           SUPER-SLOW CINEMATIC BUTTERY SMOOTH 120FPS GPU VECTOR ANIMATION
            ═══════════════════════════════════════════════════════════ */
         .loader {
             display: flex;
@@ -41,8 +41,8 @@
 
         .dash {
             will-change: stroke-dasharray, stroke-dashoffset;
-            animation: dashArraySmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                dashOffsetSmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: dashArraySmooth 6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards,
+                dashOffsetSmooth 6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
             shape-rendering: geometricPrecision;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -50,9 +50,9 @@
 
         .spin {
             will-change: stroke-dasharray, stroke-dashoffset, transform;
-            animation: spinDashArraySmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                spinSmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                dashOffsetSmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: spinDashArraySmooth 6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards,
+                spinSmooth 6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards,
+                dashOffsetSmooth 6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
             transform-origin: center;
             shape-rendering: geometricPrecision;
             stroke-linecap: round;
@@ -63,10 +63,10 @@
             0% {
                 stroke-dasharray: 0 1 359 0;
             }
-            30% {
+            35% {
                 stroke-dasharray: 0 359 1 0;
             }
-            68%, 100% {
+            75%, 100% {
                 stroke-dasharray: 359 1 0 0;
             }
         }
@@ -75,10 +75,10 @@
             0% {
                 stroke-dasharray: 270 90;
             }
-            30% {
+            35% {
                 stroke-dasharray: 0 360;
             }
-            68%, 100% {
+            75%, 100% {
                 stroke-dasharray: 359 1;
             }
         }
@@ -87,7 +87,7 @@
             0% {
                 stroke-dashoffset: 365;
             }
-            68%, 100% {
+            75%, 100% {
                 stroke-dashoffset: 0;
             }
         }
@@ -96,10 +96,10 @@
             0% {
                 rotate: 0deg;
             }
-            35% {
+            40% {
                 rotate: 180deg;
             }
-            68%, 100% {
+            75%, 100% {
                 rotate: 360deg;
             }
         }
@@ -176,11 +176,11 @@
         </div>
     </div>
 
-    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (3.6s draw + 1.2s solid hold) -->
+    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (6s slow draw + 1.8s solid hold) -->
     <script>
         setTimeout(() => {
             window.location.replace('thank-you.html');
-        }, 4800);
+        }, 7800);
     </script>
 </body>
 </html>
