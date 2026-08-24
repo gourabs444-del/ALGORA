@@ -3,184 +3,119 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You! — Preparing Your Pass</title>
+    <title>thank you — Algora Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: geometricPrecision;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #ffffff;
+            background-color: #ffffff;
             margin: 0;
             overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* ═══════════════════════════════════════════════════════════
-           SNAPPY FLUID EASE-OUT 120FPS GPU VECTOR ANIMATION
+           APPLE iPHONE 'HELLO' SIGNATURE CURSIVE WRITE ANIMATION
            ═══════════════════════════════════════════════════════════ */
-        .loader {
-            display: flex;
-            margin: 0.25em 0;
-            align-items: center;
-            justify-content: center;
+        .apple-canvas {
             transform: translateZ(0);
             backface-visibility: hidden;
             perspective: 1000px;
         }
 
-        .loader .w-2 {
-            width: 0.45em;
-        }
-
-        .dash {
-            stroke-dasharray: 0 1 359 0;
-            stroke-dashoffset: 365;
-            will-change: stroke-dasharray, stroke-dashoffset;
-            animation: dashArraySmooth 2.6s ease-out forwards,
-                dashOffsetSmooth 2.6s ease-out forwards;
+        .apple-write-path {
+            stroke-dasharray: 2200;
+            stroke-dashoffset: 2200;
+            will-change: stroke-dashoffset;
+            animation: appleHandwrite 2.5s cubic-bezier(0.45, 0, 0.25, 1) forwards;
             shape-rendering: geometricPrecision;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
-        .spin {
-            stroke-dasharray: 270 90;
-            stroke-dashoffset: 365;
-            will-change: stroke-dasharray, stroke-dashoffset, transform;
-            animation: spinDashArraySmooth 2.6s ease-out forwards,
-                spinSmooth 2.6s ease-out forwards,
-                dashOffsetSmooth 2.6s ease-out forwards;
-            transform-origin: center;
+        .apple-crossbar {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            will-change: stroke-dashoffset;
+            animation: appleCrossbar 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1.6s forwards;
             shape-rendering: geometricPrecision;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
-        @keyframes dashArraySmooth {
+        @keyframes appleHandwrite {
             0% {
-                stroke-dasharray: 0 1 359 0;
+                stroke-dashoffset: 2200;
             }
-            40% {
-                stroke-dasharray: 0 359 1 0;
-            }
-            80%, 100% {
-                stroke-dasharray: 359 1 0 0;
-            }
-        }
-
-        @keyframes spinDashArraySmooth {
-            0% {
-                stroke-dasharray: 270 90;
-            }
-            40% {
-                stroke-dasharray: 0 360;
-            }
-            80%, 100% {
-                stroke-dasharray: 359 1;
-            }
-        }
-
-        @keyframes dashOffsetSmooth {
-            0% {
-                stroke-dashoffset: 365;
-            }
-            80%, 100% {
+            100% {
                 stroke-dashoffset: 0;
             }
         }
 
-        @keyframes spinSmooth {
+        @keyframes appleCrossbar {
             0% {
-                rotate: 0deg;
+                stroke-dashoffset: 200;
             }
-            45% {
-                rotate: 180deg;
-            }
-            80%, 100% {
-                rotate: 360deg;
+            100% {
+                stroke-dashoffset: 0;
             }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 select-none bg-white">
+<body class="bg-white">
 
-    <!-- FULL SCREEN PURE ANIMATION CONTAINER (CRYSTAL CLEAN) -->
-    <div class="flex flex-col items-center justify-center w-full h-full my-auto text-center scale-[1.4] sm:scale-[1.85] md:scale-[2.3]">
+    <!-- APPLE 'HELLO' STYLE SIGNATURE DISPLAY CONTAINER -->
+    <div class="flex flex-col items-center justify-center w-full h-full my-auto text-center apple-canvas max-w-2xl px-6">
         
-        <!-- SelfMadeSystem Gradients Definition -->
-        <svg height="0" width="0" viewBox="0 0 64 64" class="absolute pointer-events-none" shape-rendering="geometricPrecision">
-          <defs class="s-xJBuHA073rTt" xmlns="http://www.w3.org/2000/svg">
-            <linearGradient class="s-xJBuHA073rTt" gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="sms-b">
-              <stop class="s-xJBuHA073rTt" stop-color="#973BED"></stop>
-              <stop class="s-xJBuHA073rTt" stop-color="#007CFF" offset="1"></stop>
+        <svg viewBox="0 0 740 260" class="w-full h-auto max-w-xl mx-auto overflow-visible select-none pointer-events-none" shape-rendering="geometricPrecision">
+          <defs>
+            <!-- Apple Spectrum Gradient (Deep Indigo to Electric Cyan to Vibrant Coral) -->
+            <linearGradient id="apple-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#1d1d1f" />
+              <stop offset="35%" stop-color="#4338ca" />
+              <stop offset="70%" stop-color="#0284c7" />
+              <stop offset="100%" stop-color="#2563eb" />
             </linearGradient>
-            <linearGradient class="s-xJBuHA073rTt" gradientUnits="userSpaceOnUse" y2="0" x2="0" y1="64" x1="0" id="sms-c">
-              <stop class="s-xJBuHA073rTt" stop-color="#FFC800"></stop>
-              <stop class="s-xJBuHA073rTt" stop-color="#F0F" offset="1"></stop>
-              <animateTransform repeatCount="indefinite" keySplines=".42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1" keyTimes="0; 0.125; 0.25; 0.375; 0.5; 0.625; 0.75; 0.875; 1" dur="8s" values="0 32 32;-270 32 32;-270 32 32;-540 32 32;-540 32 32;-810 32 32;-810 32 32;-1080 32 32;-1080 32 32" type="rotate" attributeName="gradientTransform"></animateTransform>
-            </linearGradient>
-            <linearGradient class="s-xJBuHA073rTt" gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="sms-d">
-              <stop class="s-xJBuHA073rTt" stop-color="#00E0ED"></stop>
-              <stop class="s-xJBuHA073rTt" stop-color="#00DA72" offset="1"></stop>
+
+            <linearGradient id="apple-vibrant" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#973BED" />
+              <stop offset="50%" stop-color="#007CFF" />
+              <stop offset="100%" stop-color="#00DA72" />
             </linearGradient>
           </defs>
+
+          <!-- ══════════════════════════════════════════════════════════════
+               ICONIC FLOWING CURSIVE CALLIGRAPHY: "thank you"
+               ══════════════════════════════════════════════════════════════ -->
+          <!-- Continuous main cursive stroke: t-h-a-n-k  y-o-u -->
+          <path d="
+            M 65,130 C 70,85 82,30 88,20 C 90,16 93,22 91,48 L 82,142 C 80,160 92,165 102,158 C 114,148 118,105 125,58 C 128,38 132,32 135,36 C 137,42 133,78 126,128 L 123,162 C 122,170 128,172 134,166 C 146,152 152,118 158,110 C 166,100 178,102 176,122 L 172,162 C 171,170 176,172 184,165 C 196,152 205,130 216,114 C 210,114 198,126 195,142 C 192,160 204,168 216,162 C 226,156 232,138 234,112 L 235,162 C 235,170 242,170 250,162 C 262,150 268,120 274,110 C 282,98 294,102 291,122 L 287,162 C 286,170 294,170 302,162 C 314,148 322,118 328,110 C 336,98 348,102 345,122 L 341,162 C 340,170 348,172 355,165 C 368,150 376,102 384,52 C 388,28 392,26 395,32 C 397,38 390,82 382,132 L 378,162 C 377,170 384,170 392,162 C 404,148 418,128 424,115 C 418,128 406,140 412,154 C 416,164 428,166 438,158 C 452,146 462,132 472,122
+            M 495,116 C 504,110 514,122 510,142 C 504,172 494,228 488,245 C 484,256 476,258 472,250 C 466,238 480,198 496,162 C 508,138 522,114 538,110 C 548,108 556,120 552,142 L 548,162 C 547,170 555,170 562,162 C 576,146 585,124 595,112 C 588,112 576,126 572,142 C 568,160 580,168 592,162 C 604,154 612,134 614,112 M 614,112 C 614,112 612,148 610,162 C 609,170 618,172 626,164 C 638,150 648,122 654,112 C 662,100 674,104 671,124 L 666,162 C 665,170 674,170 684,158 C 696,144 706,132 715,124
+          " class="apple-write-path" fill="none" stroke="url(#apple-vibrant)" stroke-width="7" />
+
+          <!-- High-precision 't' crossbar stroke that swiftly crosses the t -->
+          <path d="M 52,96 Q 88,92 118,88" class="apple-crossbar" fill="none" stroke="url(#apple-vibrant)" stroke-width="6.5" />
         </svg>
 
-        <!-- DUAL ROW GRAND SCALE VECTOR GLYPHS (INITIAL HIDDEN STATE ZERO FLASH) -->
-        <div class="flex flex-col items-center justify-center gap-3 sm:gap-4 my-auto">
-          
-          <!-- ROW 1: T - H - A - N - K -->
-          <div class="loader flex items-center justify-center">
-            <!-- T -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b)" d="M 8,10 H 56 V 16 H 36 V 54 H 28 V 16 H 8 Z" class="dash" style="stroke-dasharray: 0 1 359 0; stroke-dashoffset: 365;" pathLength="360"></path>
-            </svg>
-            <!-- H -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-c)" d="M 10,10 H 18 V 28 H 46 V 10 H 54 V 54 H 46 V 36 H 18 V 54 H 10 Z" class="dash" style="stroke-dasharray: 0 1 359 0; stroke-dashoffset: 365;" pathLength="360"></path>
-            </svg>
-            <!-- A -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-d)" d="M 32,8 L 56,54 H 46 L 39,40 H 25 L 18,54 H 8 Z M 32,22 L 27,33 H 37 Z" class="dash" style="stroke-dasharray: 0 1 359 0; stroke-dashoffset: 365;" pathLength="360"></path>
-            </svg>
-            <!-- N -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b)" d="M 10,10 H 18 L 46,46 V 10 H 54 V 54 H 46 L 18,18 V 54 H 10 Z" class="dash" style="stroke-dasharray: 0 1 359 0; stroke-dashoffset: 365;" pathLength="360"></path>
-            </svg>
-            <!-- K -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-c)" d="M 12,10 H 20 V 28 L 44,10 H 54 L 28,31 L 54,54 H 44 L 20,34 V 54 H 12 Z" class="dash" style="stroke-dasharray: 0 1 359 0; stroke-dashoffset: 365;" pathLength="360"></path>
-            </svg>
-          </div>
-
-          <!-- ROW 2: Y - O - U -->
-          <div class="loader flex items-center justify-center scale-105">
-            <!-- Y -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="50" width="50" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b)" d="M 54.722656,3.9726563 A 2.0002,2.0002 0 0 0 54.941406,4 h 5.007813 C 58.955121,17.046124 49.099667,27.677057 36.121094,29.580078 a 2.0002,2.0002 0 0 0 -1.708985,1.978516 V 60 H 29.587891 V 31.558594 A 2.0002,2.0002 0 0 0 27.878906,29.580078 C 14.900333,27.677057 5.0448787,17.046124 4.0507812,4 H 9.28125 c 1.231666,11.63657 10.984383,20.554048 22.6875,20.734375 a 2.0002,2.0002 0 0 0 0.02344,0 c 11.806958,0.04283 21.70649,-9.003371 22.730469,-20.7617187 z" class="dash" id="y" style="stroke-dasharray: 0 1 359 0; stroke-dashoffset: 365;" pathLength="360"></path>
-            </svg>
-            <!-- O -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" style="--rotation-duration:0ms; --rotation-direction:normal;" viewBox="0 0 64 64" height="50" width="50" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="10" stroke="url(#sms-c)" d="M 32 32 m 0 -27 a 27 27 0 1 1 0 54 a 27 27 0 1 1 0 -54" class="spin" id="o" style="stroke-dasharray: 270 90; stroke-dashoffset: 365;" pathLength="360"></path>
-            </svg>
-            <div class="w-2"></div>
-            <!-- U -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" style="--rotation-duration:0ms; --rotation-direction:normal;" viewBox="0 0 64 64" height="50" width="50" class="inline-block" shape-rendering="geometricPrecision">
-              <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-d)" d="M 4,4 h 4.6230469 v 25.919922 c -0.00276,11.916203 9.8364941,21.550422 21.7500001,21.296875 11.616666,-0.240651 21.014356,-9.63894 21.253906,-21.25586 a 2.0002,2.0002 0 0 0 0,-0.04102 V 4 H 56.25 v 25.919922 c 0,14.33873 -11.581192,25.919922 -25.919922,25.919922 a 2.0002,2.0002 0 0 0 -0.0293,0 C 15.812309,56.052941 3.998433,44.409961 4,29.919922 Z" class="dash" id="u" style="stroke-dasharray: 0 1 359 0; stroke-dashoffset: 365;" pathLength="360"></path>
-            </svg>
-          </div>
-
-        </div>
     </div>
 
-    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (2.6s ease-out draw + 1.4s solid hold) -->
+    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER APPLE ANIMATION COMPLETES (2.5s draw + 1.5s solid hold) -->
     <script>
         setTimeout(() => {
             window.location.replace('thank-you.html');
