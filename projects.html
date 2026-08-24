@@ -2453,11 +2453,11 @@
              PRESENTATION-GRADE 3D EXPLODED ARCHITECTURE VIEWPORT & LAUNCHPAD CSS
              ═══════════════════════════════════════════════════════════════════════ -->
         <style>
-        /* ── 3D CINEMATIC ISOMETRIC STAGE VIEWPORT (LARGE SCALE) ── */
+        /* ── 3D CINEMATIC ISOMETRIC STAGE VIEWPORT (PROPORTIONAL & SLEEK) ── */
         .stage-3d-viewport {
           width: 100%;
-          max-width: 680px;
-          height: 480px;
+          max-width: 540px;
+          height: 380px;
           position: relative;
           perspective: 1400px;
           transform-style: preserve-3d;
@@ -2467,18 +2467,22 @@
         }
 
         .viewport-master-rig {
-          width: 540px;
-          height: 340px;
+          width: 440px;
+          height: 280px;
           position: relative;
           transform-style: preserve-3d;
           transition: transform 0.08s ease-out;
-          transform: rotateX(20deg) rotateY(-18deg) rotateZ(3deg);
+          transform: rotateX(12deg) rotateY(-14deg) rotateZ(2deg);
         }
 
         @media (max-width: 640px) {
+          .stage-3d-viewport {
+            max-width: 100%;
+            height: 280px;
+          }
           .viewport-master-rig {
-            width: 320px;
-            height: 220px;
+            width: 295px;
+            height: 190px;
           }
         }
 
@@ -2599,36 +2603,10 @@
                 <div id="glow-bloom-3" class="absolute top-1/3 right-10 w-[550px] h-[550px] rounded-full bg-cyan-200/30 blur-[140px] pointer-events-none z-[1] transition-all duration-700"></div>
                 <div class="absolute inset-0 bg-gradient-to-b from-sky-50/40 via-transparent to-white/85 pointer-events-none z-[1]"></div>
 
-                <!-- TOP FLOATING SCROLL STEP INDICATOR PILL (10 DISTINCT CHAPTERS) -->
-                <div class="relative z-30 max-w-[1680px] mx-auto px-4 sm:px-10 w-full pt-5 flex items-center justify-between pointer-events-none">
-                    <!-- Left: Studio Badge -->
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-sky-200/90 text-sky-900 text-[10.5px] font-mono font-extrabold uppercase tracking-widest backdrop-blur-xl shadow-xs pointer-events-auto">
-                        <span class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
-                        <span>ALGORA &bull; 3D CINEMATIC REEL</span>
-                    </div>
-
-                    <!-- Center/Right: 10-Stage Progress Nav Timeline Scrubber -->
-                    <div class="hidden md:inline-flex items-center gap-1 p-1 rounded-full bg-white/90 border border-sky-200/80 backdrop-blur-2xl shadow-xs pointer-events-auto text-[9px] font-mono font-bold text-slate-500 overflow-x-auto max-w-full">
-                        <span id="step-pill-1" class="px-2.5 py-1 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white transition-all duration-300 shadow-2xs font-extrabold">01 AWAKEN</span>
-                        <span id="step-pill-2" class="px-2.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300">02 MONOLITH</span>
-                        <span id="step-pill-3" class="px-2.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300">03 HOVER</span>
-                        <span id="step-pill-4" class="px-2.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300">04 SEPARATE</span>
-                        <span id="step-pill-5" class="px-2.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300">05 EXPLODE</span>
-                        <span id="step-pill-6" class="px-2.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300">06 GPU WAVE</span>
-                        <span id="step-pill-7" class="px-2.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300">07 SCAN</span>
-                        <span id="step-pill-8" class="px-2.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300">08 CONVERGE</span>
-                        <span id="step-pill-9" class="px-2.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300">09 IGNITE</span>
-                        <span id="step-pill-10" class="px-2.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300">10 LAUNCH</span>
-                    </div>
-                </div>
-
                 <!-- ═══════════════════════════════════════════════════════════════
                      MASTER CLEAN ULTRA-LUXURY EDITORIAL STAGE (LEFT-RIGHT SPLIT)
                      ═══════════════════════════════════════════════════════════════ -->
-                <!-- ═══════════════════════════════════════════════════════════════
-                     MASTER CLEAN ULTRA-LUXURY EDITORIAL STAGE (ADAPTIVE CENTER EXPLODE)
-                     ═══════════════════════════════════════════════════════════════ -->
-                <div id="hero-main-stage" class="relative z-10 max-w-[1680px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-14 min-h-0">
+                <div id="hero-main-stage" class="relative z-10 max-w-[1680px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-14 min-h-0 pt-10 sm:pt-14">
                     
                     <!-- ── LEFT COLUMN (50%): PURE EDITORIAL TYPOGRAPHY (SLIDES OFF WHEN EXPLODING) ── -->
                     <div id="hero-editorial-column" class="w-full lg:w-[50%] h-[440px] sm:h-[500px] relative flex items-center transition-all duration-500">
@@ -3056,21 +3034,6 @@
 
                     </div>
 
-                </div>
-
-                <!-- BOTTOM ULTRA-TECH TELEMETRY STRIP -->
-                <div class="relative z-10 max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-16 w-full pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500 pointer-events-none select-none">
-                    <div class="flex items-center gap-4 pointer-events-auto">
-                        <span class="flex items-center gap-2 text-sky-700 font-bold">
-                            <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
-                            <span>120.0 FPS &bull; KINETIC FLUID HYDRODYNAMICS</span>
-                        </span>
-                        <span class="hidden md:inline text-sky-300">|</span>
-                        <span class="hidden md:inline text-slate-600 font-medium">STICKY PARALLAX STORYTELLING ENGINE</span>
-                    </div>
-                    <div class="inline-flex items-center gap-3 pointer-events-auto">
-                        <span class="px-4 py-1.5 rounded-full bg-white/90 border border-sky-200 text-sky-800 font-bold shadow-xs">NEXT-GEN SKY-BLUE MATRIX</span>
-                    </div>
                 </div>
 
             </div> <!-- Closes #algora-collection-hero-banner (sticky) -->
@@ -3557,17 +3520,21 @@
                     if (viewportRig && layerFront && layerMid && layerDeep && layerTerminal) {
                         
                         if (p < 0.10) {
-                            // ── CHAPTER 1 (0.00 - 0.10): THE MACRO AWAKENING (CLOSE-UP HERO ZOOM 1.85 -> 1.45) ──
+                            // ── CHAPTER 1 (0.00 - 0.10): THE CLEAN MACRO AWAKENING (CLEAN COMPACT START SCALE 1.0) ──
                             const t = p / 0.10;
-                            const zoom = (isMobile ? 1.15 : 1.85) - t * (isMobile ? 0.20 : 0.40);
-                            const z = (1 - t) * 160;
-                            const rx = 10 + t * 4;
-                            const ry = -8 - t * 4;
+                            const zoom = isMobile ? 0.88 : 1.00;
+                            const rx = 12 + t * 4;
+                            const ry = -14 - t * 2;
+                            const rz = 2 + t * 0.5;
 
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, ${z}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(1deg) scale(${zoom})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
+                            viewportRig.style.opacity = '1';
                             layerFront.style.transform = `translate3d(0, 0, 0px)`;
+                            layerFront.style.opacity = '1';
                             layerMid.style.transform = `translate3d(0, 0, -4px)`;
+                            layerMid.style.opacity = '1';
                             layerDeep.style.transform = `translate3d(0, 0, -8px)`;
+                            layerDeep.style.opacity = '1';
 
                             if (calloutFront) calloutFront.style.opacity = '0';
                             if (calloutMid) calloutMid.style.opacity = '0';
@@ -3575,17 +3542,21 @@
                             layerTerminal.style.opacity = '0';
 
                         } else if (p >= 0.10 && p < 0.20) {
-                            // ── CHAPTER 2 (0.10 - 0.20): THE PHYSICAL MONOLITH PULL-BACK (1.45 -> 1.05) ──
+                            // ── CHAPTER 2 (0.10 - 0.20): THE PHYSICAL MONOLITH HOVER (1.00 -> 1.02) ──
                             const t = (p - 0.10) / 0.10;
-                            const zoom = (isMobile ? 0.95 : 1.45) - t * (isMobile ? 0.15 : 0.40);
-                            const rx = 14 + t * 14;
-                            const ry = -12 - t * 14;
-                            const rz = 1 + t * 2;
+                            const zoom = isMobile ? 0.88 : 1.00;
+                            const rx = 16 + t * 10;
+                            const ry = -16 - t * 8;
+                            const rz = 2.5 + t * 1.5;
 
                             viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
+                            viewportRig.style.opacity = '1';
                             layerFront.style.transform = `translate3d(0, 0, 0px)`;
+                            layerFront.style.opacity = '1';
                             layerMid.style.transform = `translate3d(0, 0, -5px)`;
+                            layerMid.style.opacity = '1';
                             layerDeep.style.transform = `translate3d(0, 0, -10px)`;
+                            layerDeep.style.opacity = '1';
 
                             if (calloutFront) calloutFront.style.opacity = '0';
                             if (calloutMid) calloutMid.style.opacity = '0';
@@ -3593,17 +3564,21 @@
                             layerTerminal.style.opacity = '0';
 
                         } else if (p >= 0.20 && p < 0.30) {
-                            // ── CHAPTER 3 (0.20 - 0.30): ZERO-GRAVITY HOVER PITCH (HOVER SINE WAVE) ──
+                            // ── CHAPTER 3 (0.20 - 0.30): ZERO-GRAVITY HOVER PITCH (SMOOTH WAVE) ──
                             const t = (p - 0.20) / 0.10;
-                            const rx = 28 + t * 14;
-                            const ry = -26 + t * 11;
-                            const rz = 3 + t * 5;
-                            const hoverY = -t * 25 + Math.sin(p * 50) * 4;
+                            const rx = 26 + t * 10;
+                            const ry = -24 + t * 6;
+                            const rz = 4 + t * 2;
+                            const hoverY = Math.sin(p * 35) * 4;
 
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0px, ${hoverY}px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.80 : 1.02})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0px, ${hoverY}px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.85 : 1.00})`;
+                            viewportRig.style.opacity = '1';
                             layerFront.style.transform = `translate3d(0, 0, 0px)`;
+                            layerFront.style.opacity = '1';
                             layerMid.style.transform = `translate3d(0, 0, 0px)`;
+                            layerMid.style.opacity = '1';
                             layerDeep.style.transform = `translate3d(0, 0, 0px)`;
+                            layerDeep.style.opacity = '1';
 
                             if (calloutFront) calloutFront.style.opacity = '0';
                             if (calloutMid) calloutMid.style.opacity = '0';
@@ -3611,18 +3586,22 @@
                             layerTerminal.style.opacity = '0';
 
                         } else if (p >= 0.30 && p < 0.40) {
-                            // ── CHAPTER 4 (0.30 - 0.40): TIER DECOUPLING INITIATION (±90PX Z EXPANSION) ──
+                            // ── CHAPTER 4 (0.30 - 0.40): TIER DECOUPLING INITIATION (±80PX Z EXPANSION) ──
                             const t = (p - 0.30) / 0.10;
-                            const rx = 42 - t * 4;
-                            const ry = -15 - t * 18;
-                            const rz = 8 - t * 2;
+                            const rx = 36 + t * 2;
+                            const ry = -18 - t * 12;
+                            const rz = 6 - t * 1;
 
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0px, -20px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.78 : 0.98})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0px, 0px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.85 : 1.02})`;
+                            viewportRig.style.opacity = '1';
 
-                            // Layers separate along Z
-                            layerFront.style.transform = `translate3d(0, ${-t * 25}px, ${t * 90}px) scale(1.02)`;
+                            // Layers gently separate along Z
+                            layerFront.style.transform = `translate3d(0, ${-t * 20}px, ${t * 80}px) scale(1.02)`;
+                            layerFront.style.opacity = '1';
                             layerMid.style.transform = `translate3d(0, 0, 0px)`;
-                            layerDeep.style.transform = `translate3d(0, ${t * 25}px, ${-t * 90}px) scale(0.98)`;
+                            layerMid.style.opacity = '1';
+                            layerDeep.style.transform = `translate3d(0, ${t * 20}px, ${-t * 80}px) scale(0.98)`;
+                            layerDeep.style.opacity = '1';
 
                             if (calloutFront) calloutFront.style.opacity = '0';
                             if (calloutMid) calloutMid.style.opacity = '0';
@@ -3630,76 +3609,82 @@
                             layerTerminal.style.opacity = '0';
 
                         } else if (p >= 0.40 && p < 0.50) {
-                            // ── CHAPTER 5 (0.40 - 0.50): GIANT 3D EXPLODED ARCHITECTURE (±220PX Z EXPLOSION + HUD PINS) ──
+                            // ── CHAPTER 5 (0.40 - 0.50): GIANT 3D EXPLODED ARCHITECTURE (±180PX Z EXPLOSION + HUD PINS) ──
                             const t = (p - 0.40) / 0.10;
-                            const rx = 38 + t * 8;
-                            const ry = -33 - t * 8;
-                            const rz = 6 + t * 4;
-                            const wideZoom = (isMobile ? 0.74 : 0.94) - t * 0.06;
+                            const rx = 38 + t * 6;
+                            const ry = -30 - t * 6;
+                            const rz = 5 + t * 3;
+                            const wideZoom = isMobile ? 0.82 : 1.04;
 
                             viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${wideZoom})`;
+                            viewportRig.style.opacity = '1';
 
-                            // Massive Z-explosion
-                            const fz = 90 + t * (isMobile ? 80 : 130);
-                            const fy = -25 - t * (isMobile ? 15 : 35);
-                            layerFront.style.transform = `translate3d(0, ${fy}px, ${fz}px) rotateX(${t * 8}deg) scale(1.04)`;
-                            layerFront.style.boxShadow = `0 ${40 + t * 35}px ${90 + t * 45}px rgba(14, 165, 233, 0.45)`;
+                            // Smooth Z-explosion
+                            const fz = 80 + t * (isMobile ? 60 : 100);
+                            const fy = -20 - t * (isMobile ? 12 : 24);
+                            layerFront.style.transform = `translate3d(0, ${fy}px, ${fz}px) scale(1.03)`;
+                            layerFront.style.opacity = '1';
+                            layerFront.style.boxShadow = `0 ${30 + t * 25}px ${70 + t * 35}px rgba(14, 165, 233, 0.35)`;
 
-                            layerMid.style.transform = `translate3d(0, 0, 0px) scale(${1 + t * 0.03})`;
+                            layerMid.style.transform = `translate3d(0, 0, 0px) scale(${1 + t * 0.02})`;
+                            layerMid.style.opacity = '1';
 
-                            const dz = -90 - t * (isMobile ? 80 : 130);
-                            const dy = 25 + t * (isMobile ? 15 : 35);
-                            layerDeep.style.transform = `translate3d(0, ${dy}px, ${dz}px) rotateX(${-t * 8}deg) scale(0.96)`;
+                            const dz = -80 - t * (isMobile ? 60 : 100);
+                            const dy = 20 + t * (isMobile ? 12 : 24);
+                            layerDeep.style.transform = `translate3d(0, ${dy}px, ${dz}px) scale(0.97)`;
+                            layerDeep.style.opacity = '1';
 
                             // Telemetry HUD Pins Illuminate
-                            const pinOpacity = t > 0.25 ? Math.min(1, (t - 0.25) * 3).toString() : '0';
+                            const pinOpacity = t > 0.2 ? Math.min(1, (t - 0.2) * 2.5).toString() : '0';
                             if (calloutFront) calloutFront.style.opacity = pinOpacity;
                             if (calloutMid) calloutMid.style.opacity = pinOpacity;
                             if (calloutDeep) calloutDeep.style.opacity = pinOpacity;
 
                             if (telemetryLatency) {
-                                const lat = (0.32 + Math.sin(Date.now() * 0.008) * 0.06).toFixed(2);
+                                const lat = (0.34 + Math.sin(Date.now() * 0.008) * 0.04).toFixed(2);
                                 telemetryLatency.textContent = `< ${lat} MS`;
                             }
                             layerTerminal.style.opacity = '0';
 
                         } else if (p >= 0.50 && p < 0.60) {
-                            // ── CHAPTER 6 (0.50 - 0.60): 120 FPS GPU WAVE SWOOP (SWOOP DIRECTLY TO MID LAYER) ──
+                            // ── CHAPTER 6 (0.50 - 0.60): 120 FPS GPU WAVE SWOOP ──
                             const t = (p - 0.50) / 0.10;
-                            const rx = 46 - t * 32; // Flattens to pitch 14°
-                            const ry = -41 + t * 48; // Swings to yaw +7°
-                            const rz = 10 - t * 10;
-                            const zoom = (isMobile ? 0.70 : 0.88) + t * (isMobile ? 0.20 : 0.32);
+                            const rx = 44 - t * 24;
+                            const ry = -36 + t * 38;
+                            const rz = 8 - t * 7;
+                            const zoom = isMobile ? 0.82 : 1.04;
 
                             viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
+                            viewportRig.style.opacity = '1';
 
-                            // Highlight middle compute layer
-                            layerFront.style.transform = `translate3d(0, -60px, 180px) scale(1.02)`;
-                            layerFront.style.opacity = (1 - t * 0.3).toString();
-                            layerMid.style.transform = `translate3d(0, 0, 0px) scale(${1.03 + t * 0.05})`;
+                            layerFront.style.transform = `translate3d(0, -44px, 160px) scale(1.02)`;
+                            layerFront.style.opacity = '1';
+                            layerMid.style.transform = `translate3d(0, 0, 0px) scale(1.02)`;
                             layerMid.style.opacity = '1';
-                            layerDeep.style.transform = `translate3d(0, 60px, -180px) scale(0.96)`;
-                            layerDeep.style.opacity = (1 - t * 0.3).toString();
+                            layerDeep.style.transform = `translate3d(0, 44px, -160px) scale(0.97)`;
+                            layerDeep.style.opacity = '1';
 
-                            if (calloutFront) calloutFront.style.opacity = '0.5';
+                            if (calloutFront) calloutFront.style.opacity = '0.7';
                             if (calloutMid) calloutMid.style.opacity = '1';
-                            if (calloutDeep) calloutDeep.style.opacity = '0.5';
+                            if (calloutDeep) calloutDeep.style.opacity = '0.7';
                             layerTerminal.style.opacity = '0';
 
                         } else if (p >= 0.60 && p < 0.70) {
-                            // ── CHAPTER 7 (0.60 - 0.70): 360° HORIZONTAL YAW SCAN (MATRIX SWEEP ROTATION) ──
+                            // ── CHAPTER 7 (0.60 - 0.70): 360° HORIZONTAL YAW SCAN ──
                             const t = (p - 0.60) / 0.10;
-                            const rx = 14 + t * 12;
-                            const ry = 7 - t * 45; // Swings from +7° to -38°
-                            const rz = t * 4;
-                            const zoom = (isMobile ? 0.85 : 1.15) - t * 0.15;
+                            const rx = 20 + t * 8;
+                            const ry = 2 - t * 32;
+                            const rz = 1 + t * 3;
+                            const zoom = isMobile ? 0.82 : 1.04;
 
                             viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
+                            viewportRig.style.opacity = '1';
 
-                            layerFront.style.transform = `translate3d(${-t * 20}px, -45px, 150px) scale(1.02)`;
+                            layerFront.style.transform = `translate3d(${-t * 15}px, -36px, 130px) scale(1.02)`;
                             layerFront.style.opacity = '1';
                             layerMid.style.transform = `translate3d(0, 0, 0px) scale(1.02)`;
-                            layerDeep.style.transform = `translate3d(${t * 20}px, 45px, -150px) scale(0.98)`;
+                            layerMid.style.opacity = '1';
+                            layerDeep.style.transform = `translate3d(${t * 15}px, 36px, -130px) scale(0.98)`;
                             layerDeep.style.opacity = '1';
 
                             if (calloutFront) calloutFront.style.opacity = '1';
@@ -3710,16 +3695,20 @@
                         } else if (p >= 0.70 && p < 0.80) {
                             // ── CHAPTER 8 (0.70 - 0.80): MAGNETIC CONVERGENCE & IMPACT LOCK (REASSEMBLY) ──
                             const t = (p - 0.70) / 0.10;
-                            const snap = Math.max(0, 1 - t * 1.5);
-                            const rx = 26 - t * 16;
-                            const ry = -38 + t * 30;
-                            const rz = 4 - t * 4;
+                            const snap = Math.max(0, 1 - t * 1.4);
+                            const rx = 28 - t * 14;
+                            const ry = -30 + t * 20;
+                            const rz = 4 - t * 3;
 
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.85 : 1.06})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.85 : 1.02})`;
+                            viewportRig.style.opacity = '1';
 
-                            layerFront.style.transform = `translate3d(0, ${-snap * 45}px, ${snap * 150}px)`;
+                            layerFront.style.transform = `translate3d(0, ${-snap * 36}px, ${snap * 130}px)`;
+                            layerFront.style.opacity = '1';
                             layerMid.style.transform = `translate3d(0, 0, 0px)`;
-                            layerDeep.style.transform = `translate3d(0, ${snap * 45}px, ${-snap * 150}px)`;
+                            layerMid.style.opacity = '1';
+                            layerDeep.style.transform = `translate3d(0, ${snap * 36}px, ${-snap * 130}px)`;
+                            layerDeep.style.opacity = '1';
 
                             if (calloutFront) calloutFront.style.opacity = (snap * 0.4).toString();
                             if (calloutMid) calloutMid.style.opacity = (snap * 0.4).toString();
@@ -3727,14 +3716,38 @@
                             layerTerminal.style.opacity = '0';
 
                         } else if (p >= 0.80 && p < 0.90) {
-                            // ── CHAPTER 9 (0.80 - 0.90): HOLOGRAPHIC TERMINAL IGNITION (LAVENDER GLOW) ──
+                            // ── CHAPTER 9 (0.80 - 0.90): UNIFIED MONOLITH AT REST ──
                             const t = (p - 0.80) / 0.10;
-                            const rx = 10 - t * 8;
-                            const ry = -8 + t * 6;
-                            const zoom = (isMobile ? 0.88 : 1.10) + t * (isMobile ? 0.20 : 0.35);
-                            const z = t * 90;
+                            const rx = 14 - t * 8;
+                            const ry = -10 + t * 6;
+                            const zoom = isMobile ? 0.85 : 1.00;
 
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, ${z}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(0deg) scale(${zoom})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(0deg) scale(${zoom})`;
+                            viewportRig.style.opacity = '1';
+
+                            layerFront.style.transform = `translate3d(0, 0, 0px)`;
+                            layerFront.style.opacity = '1';
+                            layerMid.style.transform = `translate3d(0, 0, 0px)`;
+                            layerMid.style.opacity = '1';
+                            layerDeep.style.transform = `translate3d(0, 0, 0px)`;
+                            layerDeep.style.opacity = '1';
+
+                            if (calloutFront) calloutFront.style.opacity = '0';
+                            if (calloutMid) calloutMid.style.opacity = '0';
+                            if (calloutDeep) calloutDeep.style.opacity = '0';
+                            layerTerminal.style.opacity = '0';
+
+                        } else {
+                            // ── CHAPTER 10 (0.90 - 1.00): SEAMLESS OUTRO TRANSITION (SMOOTH LEVEL & DISSOLVE INTO GALLERY GRID) ──
+                            const t = (p - 0.90) / 0.10;
+                            const rx = 6 * (1 - t);
+                            const ry = -4 * (1 - t);
+                            const outroZoom = (isMobile ? 0.85 : 1.00) - t * 0.08;
+                            const outroY = t * 40;
+                            const outroOpacity = Math.max(0, 1 - t * 1.2);
+
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0, ${outroY}px, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(0deg) scale(${outroZoom})`;
+                            viewportRig.style.opacity = outroOpacity.toString();
 
                             layerFront.style.transform = `translate3d(0, 0, 0px)`;
                             layerMid.style.transform = `translate3d(0, 0, 0px)`;
@@ -3743,23 +3756,7 @@
                             if (calloutFront) calloutFront.style.opacity = '0';
                             if (calloutMid) calloutMid.style.opacity = '0';
                             if (calloutDeep) calloutDeep.style.opacity = '0';
-
-                            // Holographic Terminal glows with lavender neon
-                            layerTerminal.style.opacity = Math.min(1, t * 1.8).toString();
-                            layerTerminal.style.transform = `translate3d(0, 0, ${t * 45}px) scale(${0.92 + t * 0.08})`;
-                            layerTerminal.style.pointerEvents = t > 0.6 ? 'auto' : 'none';
-
-                        } else {
-                            // ── CHAPTER 10 (0.90 - 1.00): IMAX HYPER-ZOOM TERMINAL IMMERSION (SCALE 2.10 FLY-THROUGH) ──
-                            const t = (p - 0.90) / 0.10;
-                            const flyZoom = (isMobile ? 1.08 : 1.45) + t * (isMobile ? 0.60 : 0.95);
-                            const flyZ = 90 + t * 240;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, ${flyZ}px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(${flyZoom})`;
-
-                            layerTerminal.style.opacity = '1';
-                            layerTerminal.style.transform = `translate3d(0, 0, ${45 + t * 30}px) scale(1.0)`;
-                            layerTerminal.style.pointerEvents = 'auto';
+                            layerTerminal.style.opacity = '0';
                         }
                     }
 
