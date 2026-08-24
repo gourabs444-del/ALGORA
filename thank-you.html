@@ -37,6 +37,7 @@
             filter: drop-shadow(0 35px 80px rgba(15, 23, 42, 0.20)) drop-shadow(0 12px 30px rgba(0, 0, 0, 0.08));
         }
 
+        /* Real physical punch hole cutout using CSS Mask aligned at 132px */
         .card-ticket {
             position: relative;
             height: auto;
@@ -48,28 +49,14 @@
             background: #ffffff;
             border-radius: 1.75rem;
             z-index: 10;
-            overflow: hidden;
-        }
-
-        /* PHYSICAL PUNCH HOLE NOTCHES (100% ACCURATE IN BROWSER & PNG EXPORT) */
-        .notch {
-            position: absolute;
-            width: 28px;
-            height: 28px;
-            background-color: #f1f5f9;
-            border-radius: 50%;
-            z-index: 30;
-            left: 118px;
-        }
-
-        .notch-top {
-            top: -14px;
-            box-shadow: inset 0 -3px 5px rgba(15, 23, 42, 0.08);
-        }
-
-        .notch-bottom {
-            bottom: -14px;
-            box-shadow: inset 0 3px 5px rgba(15, 23, 42, 0.08);
+            -webkit-mask-image: 
+                radial-gradient(circle 14.5px at 132px 0px, transparent 14px, #000 14.5px),
+                radial-gradient(circle 14.5px at 132px 100%, transparent 14px, #000 14.5px);
+            -webkit-mask-composite: source-in;
+            mask-image: 
+                radial-gradient(circle 14.5px at 132px 0px, transparent 14.5px, #000 15px),
+                radial-gradient(circle 14.5px at 132px 100%, transparent 14.5px, #000 15px);
+            mask-composite: intersect;
         }
 
         /* QR CODE SECTION (LEFT STUB) */
@@ -172,10 +159,6 @@
     <div class="container-cards-ticket ticket-smooth-enter my-auto px-4">
         <div id="ticketCard" class="card-ticket">
             
-            <!-- REAL PHYSICAL PUNCH HOLE NOTCHES -->
-            <div class="notch notch-top"></div>
-            <div class="notch notch-bottom"></div>
-
             <!-- LEFT REAL SCANNABLE QR CODE STUB -->
             <a href="track.html" id="qr-track-link" title="Scan or Click to Track Project Status" class="qr-section group">
                 <div class="p-1.5 rounded-xl bg-white shadow-xs border border-slate-200/90 group-hover:scale-105 group-hover:border-indigo-400 transition-all duration-200">
@@ -192,7 +175,7 @@
             </a>
 
             <!-- NOTCH SEPARATOR -->
-            <div class="separator"></div>
+            <div id="notchSeparator" class="separator"></div>
 
             <!-- TICKET BODY CONTENT -->
             <div class="content-ticket">
@@ -234,13 +217,8 @@
                             <span class="material-symbols-outlined text-[13px] text-slate-400 group-hover:text-slate-700 transition-colors" id="copy-icon">content_copy</span>
                         </button>
 
-                        <!-- DOWNLOAD EXPORT BADGE (APPEARS ONLY IN DOWNLOADED PNG) -->
-                        <div id="download-export-badge" class="hidden items-center gap-1.5 text-[10px] font-mono font-extrabold tracking-widest text-slate-500 uppercase">
-                            <span>✦ OFFICIAL PROJECT PASS</span>
-                        </div>
-
-                        <!-- RIGHT ACTION BUTTONS: HOME & ICON-ONLY DOWNLOAD PASS (WEB UI ONLY) -->
-                        <div id="user-action-buttons" class="flex items-center gap-1.5 sm:gap-2">
+                        <!-- RIGHT ACTION BUTTONS: HOME & ICON-ONLY DOWNLOAD PASS (SAME TO SAME) -->
+                        <div class="flex items-center gap-1.5 sm:gap-2">
                             <!-- HOME BUTTON (SLIDED LEFT) -->
                             <a href="projects.html" title="Back to Showcase" class="inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-2xs active:scale-95 group">
                                 <span class="material-symbols-outlined text-[14px]">home</span>
@@ -341,39 +319,57 @@
             }).catch(() => {});
         }
 
-        // High-Resolution Project Pass PNG Exporter (With Physical Notch & Clean Export)
+        // High-Resolution 1:1 Pixel-Perfect Project Pass PNG Exporter
         function downloadProjectPass() {
             const btn = document.getElementById('download-pass-btn');
             const icon = document.getElementById('download-icon');
             const ticketEl = document.getElementById('ticketCard');
-            const userActions = document.getElementById('user-action-buttons');
-            const exportBadge = document.getElementById('download-export-badge');
+            const sepEl = document.getElementById('notchSeparator');
 
             if (!ticketEl) return;
 
             icon.textContent = 'hourglass_top';
             btn.disabled = true;
 
-            // Hide web buttons, show official pass watermark in exported PNG
-            if (userActions) userActions.style.display = 'none';
-            if (exportBadge) {
-                exportBadge.classList.remove('hidden');
-                exportBadge.classList.add('flex');
-            }
+            const scale = 3; // Ultra-crisp 3x Retina output
 
             html2canvas(ticketEl, {
-                scale: 3, // Retina 3x crystal-clear export
+                scale: scale,
                 useCORS: true,
                 backgroundColor: null,
                 logging: false
             }).then(canvas => {
-                // Restore web action buttons
-                if (userActions) userActions.style.display = 'flex';
-                if (exportBadge) {
-                    exportBadge.classList.remove('flex');
-                    exportBadge.classList.add('hidden');
-                }
+                const ctx = canvas.getContext('2d');
 
+                // 1. Clip outer rounded corners cleanly with alpha transparency
+                const cornerRadius = 28 * scale;
+                ctx.globalCompositeOperation = 'destination-in';
+                ctx.beginPath();
+                if (ctx.roundRect) {
+                    ctx.roundRect(0, 0, canvas.width, canvas.height, cornerRadius);
+                } else {
+                    ctx.rect(0, 0, canvas.width, canvas.height);
+                }
+                ctx.fill();
+
+                // 2. Punch exact transparent circular notches at the separator line
+                const cardRect = ticketEl.getBoundingClientRect();
+                const sepRect = sepEl ? sepEl.getBoundingClientRect() : null;
+                const notchX = sepRect ? (sepRect.left - cardRect.left) * scale : 132 * scale;
+                const notchRadius = 14.5 * scale;
+
+                ctx.globalCompositeOperation = 'destination-out';
+                // Top Notch
+                ctx.beginPath();
+                ctx.arc(notchX, 0, notchRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Bottom Notch
+                ctx.beginPath();
+                ctx.arc(notchX, canvas.height, notchRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // 3. Trigger clean PNG download
                 const link = document.createElement('a');
                 link.download = `Algora-Project-Pass-${cleanNumericId}.png`;
                 link.href = canvas.toDataURL('image/png');
@@ -386,11 +382,6 @@
                 }, 2000);
             }).catch(err => {
                 console.error('Ticket download error:', err);
-                if (userActions) userActions.style.display = 'flex';
-                if (exportBadge) {
-                    exportBadge.classList.remove('flex');
-                    exportBadge.classList.add('hidden');
-                }
                 icon.textContent = 'download';
                 btn.disabled = false;
             });
