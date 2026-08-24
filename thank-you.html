@@ -328,7 +328,6 @@
 
             if (!ticketEl) return;
 
-            icon.textContent = 'hourglass_top';
             btn.disabled = true;
 
             const scale = 3; // Ultra-crisp 3x Retina output
@@ -339,50 +338,68 @@
                 backgroundColor: null,
                 logging: false
             }).then(canvas => {
-                const ctx = canvas.getContext('2d');
+                // Create dedicated output canvas for 100% guaranteed transparent clipping
+                const outputCanvas = document.createElement('canvas');
+                outputCanvas.width = canvas.width;
+                outputCanvas.height = canvas.height;
+                const outCtx = outputCanvas.getContext('2d');
 
-                // 1. Clip outer rounded corners cleanly with alpha transparency
-                const cornerRadius = 28 * scale;
-                ctx.globalCompositeOperation = 'destination-in';
-                ctx.beginPath();
-                if (ctx.roundRect) {
-                    ctx.roundRect(0, 0, canvas.width, canvas.height, cornerRadius);
-                } else {
-                    ctx.rect(0, 0, canvas.width, canvas.height);
-                }
-                ctx.fill();
+                const w = canvas.width;
+                const h = canvas.height;
+                const r = 28 * scale; // 1.75rem rounded corners
 
-                // 2. Punch exact transparent circular notches at the separator line
+                // Calculate exact notch position from DOM separator element
                 const cardRect = ticketEl.getBoundingClientRect();
                 const sepRect = sepEl ? sepEl.getBoundingClientRect() : null;
-                const notchX = sepRect ? (sepRect.left - cardRect.left) * scale : 132 * scale;
-                const notchRadius = 14.5 * scale;
+                const nx = sepRect ? (sepRect.left - cardRect.left) * scale : 132 * scale;
+                const nr = 14.5 * scale; // radius of the punch hole
 
-                ctx.globalCompositeOperation = 'destination-out';
-                // Top Notch
-                ctx.beginPath();
-                ctx.arc(notchX, 0, notchRadius, 0, Math.PI * 2);
-                ctx.fill();
+                // Construct full continuous ticket silhouette path with 4 rounded corners & 2 semi-circular punches
+                outCtx.beginPath();
+                // 1. Top edge from top-left corner to top notch
+                outCtx.moveTo(r, 0);
+                outCtx.lineTo(nx - nr, 0);
+                // 2. Top punch hole (arc curving into the ticket)
+                outCtx.arc(nx, 0, nr, Math.PI, 0, true);
+                // 3. Top edge to top-right corner
+                outCtx.lineTo(w - r, 0);
+                outCtx.arcTo(w, 0, w, r, r);
+                // 4. Right edge to bottom-right corner
+                outCtx.lineTo(w, h - r);
+                outCtx.arcTo(w, h, w - r, h, r);
+                // 5. Bottom edge to bottom notch
+                outCtx.lineTo(nx + nr, h);
+                // 6. Bottom punch hole (arc curving into the ticket)
+                outCtx.arc(nx, h, nr, 0, Math.PI, true);
+                // 7. Bottom edge to bottom-left corner
+                outCtx.lineTo(r, h);
+                outCtx.arcTo(0, h, 0, h - r, r);
+                // 8. Left edge to top-left corner
+                outCtx.lineTo(0, r);
+                outCtx.arcTo(0, 0, r, 0, r);
+                outCtx.closePath();
 
-                // Bottom Notch
-                ctx.beginPath();
-                ctx.arc(notchX, canvas.height, notchRadius, 0, Math.PI * 2);
-                ctx.fill();
+                // Apply clipping mask
+                outCtx.clip();
 
-                // 3. Trigger clean PNG download
+                // Draw captured ticket into the perfectly clipped canvas
+                outCtx.drawImage(canvas, 0, 0);
+
+                // Export to PNG with 100% true transparent corners and punch holes
                 const link = document.createElement('a');
                 link.download = `Algora-Project-Pass-${cleanNumericId}.png`;
-                link.href = canvas.toDataURL('image/png');
+                link.href = outputCanvas.toDataURL('image/png');
                 link.click();
 
-                icon.textContent = 'check';
+                // Show brief success feedback on the UI
+                if (icon) icon.textContent = 'check';
                 setTimeout(() => {
-                    icon.textContent = 'download';
+                    if (icon) icon.textContent = 'download';
                     btn.disabled = false;
-                }, 2000);
+                }, 1800);
             }).catch(err => {
                 console.error('Ticket download error:', err);
-                icon.textContent = 'download';
+                if (icon) icon.textContent = 'download';
                 btn.disabled = false;
             });
         }
