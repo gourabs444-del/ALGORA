@@ -2625,10 +2625,13 @@
                 <!-- ═══════════════════════════════════════════════════════════════
                      MASTER CLEAN ULTRA-LUXURY EDITORIAL STAGE (LEFT-RIGHT SPLIT)
                      ═══════════════════════════════════════════════════════════════ -->
-                <div class="relative z-10 max-w-[1680px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-14 min-h-0">
+                <!-- ═══════════════════════════════════════════════════════════════
+                     MASTER CLEAN ULTRA-LUXURY EDITORIAL STAGE (ADAPTIVE CENTER EXPLODE)
+                     ═══════════════════════════════════════════════════════════════ -->
+                <div id="hero-main-stage" class="relative z-10 max-w-[1680px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-14 min-h-0">
                     
-                    <!-- ── LEFT COLUMN (52%): PURE EDITORIAL TYPOGRAPHY & 10 DISTINCT SCENES ── -->
-                    <div class="w-full lg:w-[52%] h-[440px] sm:h-[500px] relative flex items-center">
+                    <!-- ── LEFT COLUMN (50%): PURE EDITORIAL TYPOGRAPHY (SLIDES OFF WHEN EXPLODING) ── -->
+                    <div id="hero-editorial-column" class="w-full lg:w-[50%] h-[440px] sm:h-[500px] relative flex items-center transition-all duration-500">
                         
                         <!-- SCENE 1: THE MACRO AWAKENING -->
                         <div id="hero-scene-1" class="story-scene active-scene !items-start text-left !p-0">
@@ -2712,10 +2715,10 @@
                             </div>
                         </div>
 
-                        <!-- SCENE 5: GIANT 3D EXPLODED CORE -->
+                        <!-- SCENE 5: FULL EXPLODED ARCHITECTURE -->
                         <div id="hero-scene-5" class="story-scene opacity-0 !items-start text-left !p-0">
                             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-indigo-300 text-indigo-800 text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 05 &bull; FULL EXPLODED ARCHITECTURE</span>
+                                <span>✦ 05 &bull; FULL 3D EXPLODED ARCHITECTURE</span>
                             </div>
 
                             <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
@@ -2723,22 +2726,12 @@
                                 <span class="cinematic-text-gradient">Layer by Layer.</span>
                             </h2>
 
-                            <div class="w-full max-w-xl flex flex-col gap-2 mb-5">
-                                <div class="frosted-glass-monolith px-3.5 py-2 rounded-lg flex items-center justify-between text-xs font-mono">
-                                    <span class="font-bold text-sky-700">01 GLASS HUD</span>
-                                    <span class="text-slate-500">Sub-pixel tactile spring micro-gestures</span>
-                                    <span class="font-bold text-sky-600">+220px Z</span>
-                                </div>
-                                <div class="frosted-glass-monolith px-3.5 py-2 rounded-lg flex items-center justify-between text-xs font-mono">
-                                    <span class="font-bold text-blue-700">02 GPU CANVAS</span>
-                                    <span class="text-slate-500">120 FPS WebGL kinetic wave mesh</span>
-                                    <span class="font-bold text-blue-600">CENTER</span>
-                                </div>
-                                <div class="frosted-glass-monolith px-3.5 py-2 rounded-lg flex items-center justify-between text-xs font-mono">
-                                    <span class="font-bold text-indigo-700">03 NEURAL CORE</span>
-                                    <span class="text-slate-500">&lt; 0.38ms Streaming runtime buffer</span>
-                                    <span class="font-bold text-indigo-600">-220px Z</span>
-                                </div>
+                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-6 font-sans">
+                                The interface fully explodes in 3D center space. Front Glass UI, 120 FPS WebGL Engine, and Kernel runtime float with sub-pixel alignment.
+                            </p>
+
+                            <div class="px-4 py-2 rounded-xl bg-white/90 border border-indigo-200 shadow-2xs font-mono text-xs text-indigo-800">
+                                ⚡ 3D DISASSEMBLY ACTIVE: ±220PX Z-AXIS SEPARATION
                             </div>
                         </div>
 
@@ -2852,8 +2845,8 @@
 
                     </div>
 
-                    <!-- ── RIGHT COLUMN (48%): PRESENTATION-GRADE 3D EXPLODED ARCHITECTURE VIEWPORT ── -->
-                    <div class="w-full lg:w-[48%] h-[360px] sm:h-[460px] relative flex items-center justify-center select-none">
+                    <!-- ── RIGHT / CENTER 3D VIEWPORT COLUMN (SLIDES TO CENTER ON EXPLODE) ── -->
+                    <div id="hero-viewport-column" class="w-full lg:w-[50%] h-[360px] sm:h-[460px] relative flex items-center justify-center select-none transition-all duration-500">
                         
                         <!-- Ambient Atmospheric 3D Lighting Dome (Morphs Dynamically) -->
                         <div id="ambient-stage-glow" class="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-300/35 via-cyan-200/25 to-blue-300/30 blur-3xl pointer-events-none transition-all duration-500"></div>
@@ -3331,6 +3324,10 @@
                     pills.push(document.getElementById(`step-pill-${i}`));
                 }
 
+                // Stage Columns for Dynamic Center Explosion Transition
+                const editorialCol = document.getElementById('hero-editorial-column');
+                const viewportCol = document.getElementById('hero-viewport-column');
+
                 // 3D Presentation Viewport & Exploded Layers
                 const viewportRig = document.getElementById('viewport-rig');
                 const layerFront = document.getElementById('layer-front');
@@ -3418,11 +3415,46 @@
                         }
                     }
 
+                    const isMobile = window.innerWidth < 1024;
+
+                    // ═══════════════════════════════════════════════════════════
+                    // 🎯 ADAPTIVE CENTER EXPLOSION STAGE SHIFT (CARD SLIDES TO CENTER)
+                    // ═══════════════════════════════════════════════════════════
+                    if (editorialCol && viewportCol) {
+                        if (p >= 0.28 && p < 0.78) {
+                            // EXPLODED PHASES (Chapters 4 - 8): Text vanishes, Card moves to DEAD CENTER!
+                            const enterCenterT = Math.min(1, (p - 0.28) / 0.08);
+                            const exitCenterT = Math.max(0, (p - 0.70) / 0.08);
+                            const centerAmount = enterCenterT * (1 - exitCenterT);
+
+                            // Editorial text slides smoothly off-screen to the left
+                            editorialCol.style.opacity = Math.max(0, 1 - centerAmount * 1.5).toString();
+                            editorialCol.style.transform = `translate3d(${-centerAmount * 160}px, 0, 0)`;
+                            editorialCol.style.pointerEvents = centerAmount > 0.5 ? 'none' : 'auto';
+
+                            // 3D Viewport Column glides from right half to horizontal center of screen
+                            const shiftX = centerAmount * (isMobile ? 0 : -25);
+                            const scaleBonus = 1.0 + centerAmount * (isMobile ? 0.05 : 0.20);
+                            viewportCol.style.transform = `translate3d(${shiftX}vw, 0, 0) scale(${scaleBonus})`;
+                        } else if (p < 0.28) {
+                            // CHAPTERS 1 - 3: Normal Left-Right split
+                            editorialCol.style.opacity = '1';
+                            editorialCol.style.transform = 'translate3d(0, 0, 0)';
+                            editorialCol.style.pointerEvents = 'auto';
+                            viewportCol.style.transform = 'translate3d(0, 0, 0) scale(1.0)';
+                        } else {
+                            // CHAPTERS 9 - 10: Re-emerge into split launchpad
+                            const enterLaunchT = Math.min(1, (p - 0.78) / 0.08);
+                            editorialCol.style.opacity = Math.min(1, enterLaunchT * 1.5).toString();
+                            editorialCol.style.transform = `translate3d(${(1 - enterLaunchT) * -120}px, 0, 0)`;
+                            editorialCol.style.pointerEvents = 'auto';
+                            viewportCol.style.transform = 'translate3d(0, 0, 0) scale(1.0)';
+                        }
+                    }
+
                     // ═══════════════════════════════════════════════════════════
                     // 🚀 10 COMPLETELY DISTINCT 3D ANIMATION CHAPTERS
                     // ═══════════════════════════════════════════════════════════
-                    const isMobile = window.innerWidth < 1024;
-
                     if (viewportRig && layerFront && layerMid && layerDeep && layerTerminal) {
                         
                         if (p < 0.10) {
@@ -3468,9 +3500,8 @@
                             const ry = -26 + t * 11;
                             const rz = 3 + t * 5;
                             const hoverY = -t * 25 + Math.sin(p * 50) * 4;
-                            const slideX = t * (isMobile ? 10 : 25);
 
-                            viewportRig.style.transform = `perspective(1400px) translate3d(${slideX}px, ${hoverY}px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.80 : 1.02})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0px, ${hoverY}px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.80 : 1.02})`;
                             layerFront.style.transform = `translate3d(0, 0, 0px)`;
                             layerMid.style.transform = `translate3d(0, 0, 0px)`;
                             layerDeep.style.transform = `translate3d(0, 0, 0px)`;
@@ -3486,9 +3517,8 @@
                             const rx = 42 - t * 4;
                             const ry = -15 - t * 18;
                             const rz = 8 - t * 2;
-                            const slideX = (isMobile ? 10 : 25) + t * (isMobile ? 10 : 20);
 
-                            viewportRig.style.transform = `perspective(1400px) translate3d(${slideX}px, -25px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.78 : 0.98})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0px, -20px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.78 : 0.98})`;
 
                             // Layers separate along Z
                             layerFront.style.transform = `translate3d(0, ${-t * 25}px, ${t * 90}px) scale(1.02)`;
@@ -3506,10 +3536,9 @@
                             const rx = 38 + t * 8;
                             const ry = -33 - t * 8;
                             const rz = 6 + t * 4;
-                            const slideX = (isMobile ? 20 : 45) + t * (isMobile ? 5 : 15);
                             const wideZoom = (isMobile ? 0.74 : 0.94) - t * 0.06;
 
-                            viewportRig.style.transform = `perspective(1400px) translate3d(${slideX}px, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${wideZoom})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${wideZoom})`;
 
                             // Massive Z-explosion
                             const fz = 90 + t * (isMobile ? 80 : 130);
@@ -3542,9 +3571,8 @@
                             const ry = -41 + t * 48; // Swings to yaw +7°
                             const rz = 10 - t * 10;
                             const zoom = (isMobile ? 0.70 : 0.88) + t * (isMobile ? 0.20 : 0.32);
-                            const slideX = (isMobile ? 25 : 60) - t * (isMobile ? 35 : 75);
 
-                            viewportRig.style.transform = `perspective(1400px) translate3d(${slideX}px, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
 
                             // Highlight middle compute layer
                             layerFront.style.transform = `translate3d(0, -60px, 180px) scale(1.02)`;
