@@ -23,7 +23,7 @@
         }
 
         /* ═══════════════════════════════════════════════════════════
-           CRYSTAL-CLEAR 120FPS GPU ACCELERATED VECTOR GLYPHS
+           BUTTERY SMOOTH LIQUID-FLUID 120FPS GPU VECTOR ANIMATION
            ═══════════════════════════════════════════════════════════ */
         .loader {
             display: flex;
@@ -41,61 +41,65 @@
 
         .dash {
             will-change: stroke-dasharray, stroke-dashoffset;
-            animation: dashArray 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
-                dashOffset 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: dashArraySmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                dashOffsetSmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             shape-rendering: geometricPrecision;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .spin {
             will-change: stroke-dasharray, stroke-dashoffset, transform;
-            animation: spinDashArray 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
-                spin 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
-                dashOffset 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: spinDashArraySmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                spinSmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                dashOffsetSmooth 3.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             transform-origin: center;
             shape-rendering: geometricPrecision;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        @keyframes dashArray {
+        @keyframes dashArraySmooth {
             0% {
                 stroke-dasharray: 0 1 359 0;
             }
-            40% {
+            30% {
                 stroke-dasharray: 0 359 1 0;
             }
-            75%, 100% {
+            68%, 100% {
                 stroke-dasharray: 359 1 0 0;
             }
         }
 
-        @keyframes spinDashArray {
+        @keyframes spinDashArraySmooth {
             0% {
                 stroke-dasharray: 270 90;
             }
-            40% {
+            30% {
                 stroke-dasharray: 0 360;
             }
-            75%, 100% {
+            68%, 100% {
                 stroke-dasharray: 359 1;
             }
         }
 
-        @keyframes dashOffset {
+        @keyframes dashOffsetSmooth {
             0% {
                 stroke-dashoffset: 365;
             }
-            75%, 100% {
+            68%, 100% {
                 stroke-dashoffset: 0;
             }
         }
 
-        @keyframes spin {
+        @keyframes spinSmooth {
             0% {
                 rotate: 0deg;
             }
-            45% {
+            35% {
                 rotate: 180deg;
             }
-            75%, 100% {
+            68%, 100% {
                 rotate: 360deg;
             }
         }
@@ -172,11 +176,11 @@
         </div>
     </div>
 
-    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (2.2s draw + 1.5s solid hold) -->
+    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (3.6s draw + 1.2s solid hold) -->
     <script>
         setTimeout(() => {
             window.location.replace('thank-you.html');
-        }, 3700);
+        }, 4800);
     </script>
 </body>
 </html>
