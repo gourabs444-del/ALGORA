@@ -2598,6 +2598,87 @@
             border: 1px solid rgba(255, 255, 255, 0.95);
             box-shadow: 0 20px 50px rgba(14, 165, 233, 0.10), 0 1px 3px rgba(0, 0, 0, 0.04);
         }
+
+        /* ── ULTRA-LUXURY KINETIC HUD TYPOGRAPHY & SPATIAL MOTION ── */
+        .hud-kinetic-container {
+            transition: top 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        left 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        right 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: top, left, right, transform, opacity;
+        }
+
+        .kinetic-title-wrap {
+            overflow: hidden;
+            display: block;
+            position: relative;
+        }
+
+        .kinetic-text-in {
+            animation: kineticSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .kinetic-text-out {
+            animation: kineticSlideOut 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes kineticSlideIn {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 32px, 0) skewY(2deg) scale(0.96);
+                filter: blur(6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) skewY(0deg) scale(1.0);
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes kineticSlideOut {
+            0% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) skewY(0deg);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 0;
+                transform: translate3d(0, -22px, 0) skewY(-2deg);
+                filter: blur(4px);
+            }
+        }
+
+        .kinetic-tag-in {
+            animation: kineticTagIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes kineticTagIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translate3d(0, 8px, 0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translate3d(0, 0, 0);
+            }
+        }
+
+        .kinetic-line-in {
+            animation: kineticLineIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform-origin: top center;
+        }
+
+        @keyframes kineticLineIn {
+            0% {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
         </style>
 
         <!-- ═══════════════════════════════════════════════════════════════════════
@@ -2837,8 +2918,8 @@
 
                     </div>
 
-                    <!-- ── FLOATING LEFT EXPLODED INFO HUD (DYNAMIC REAL-TIME LUXURY TYPOGRAPHY) ── -->
-                    <div id="explode-hud-left" class="hidden lg:flex flex-col gap-3.5 absolute left-6 sm:left-12 lg:left-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none transition-all duration-300 max-w-[340px]">
+                    <!-- ── FLOATING LEFT EXPLODED INFO HUD (DYNAMIC REAL-TIME LUXURY TYPOGRAPHY & KINETIC SPATIAL MOTION) ── -->
+                    <div id="explode-hud-left" class="hidden lg:flex flex-col gap-3 absolute left-6 sm:left-12 lg:left-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none max-w-[340px] hud-kinetic-container">
                         <!-- Dynamic Category Pill/Tag with pulse dot -->
                         <div class="inline-flex items-center gap-2">
                             <span id="dyn-left-dot" class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
@@ -2847,13 +2928,15 @@
 
                         <!-- Main dynamic headline container with luxury font styling -->
                         <div id="dyn-left-border" class="border-l-[3px] border-sky-400 pl-4 space-y-1.5 transition-all duration-300">
-                            <div id="dyn-left-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-950 tracking-tight leading-tight transition-all duration-300">
-                                Next-Gen Digital Systems
+                            <div class="kinetic-title-wrap">
+                                <div id="dyn-left-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-950 tracking-tight leading-tight transition-all duration-300">
+                                    Next-Gen Digital Systems
+                                </div>
                             </div>
                             <p id="dyn-left-desc" class="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed transition-all duration-300">
                                 High-craft web platforms, AI workspaces, and kinetic 3D experiences engineered with obsessive precision.
                             </p>
-                            <div class="pt-1.5 flex items-center gap-2">
+                            <div class="pt-1 flex items-center gap-2">
                                 <span id="dyn-left-tag" class="px-3 py-1 rounded-full bg-sky-100/90 border border-sky-200 text-[10px] font-mono font-bold text-sky-800 tracking-wider shadow-2xs transition-all duration-300">
                                     ✦ 1400PX FOV MATRIX
                                 </span>
@@ -2861,8 +2944,8 @@
                         </div>
                     </div>
 
-                    <!-- ── FLOATING RIGHT EXPLODED INFO HUD (DYNAMIC REAL-TIME METRICS TYPOGRAPHY) ── -->
-                    <div id="explode-hud-right" class="hidden lg:flex flex-col gap-3.5 absolute right-6 sm:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none transition-all duration-300 max-w-[320px] text-right">
+                    <!-- ── FLOATING RIGHT EXPLODED INFO HUD (DYNAMIC REAL-TIME METRICS TYPOGRAPHY & KINETIC SPATIAL MOTION) ── -->
+                    <div id="explode-hud-right" class="hidden lg:flex flex-col gap-3 absolute right-6 sm:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none max-w-[320px] text-right hud-kinetic-container">
                         <!-- Dynamic Category Pill/Tag with pulse dot -->
                         <div class="inline-flex items-center justify-end gap-2 self-end">
                             <span id="dyn-right-category" class="text-[10.5px] font-mono font-bold tracking-[0.22em] text-indigo-700 uppercase transition-colors duration-300">DEPTH & HOVER TELEMETRY</span>
@@ -2871,13 +2954,15 @@
 
                         <!-- Main dynamic spec container with luxury font styling -->
                         <div id="dyn-right-border" class="border-r-[3px] border-indigo-400 pr-4 space-y-1.5 transition-all duration-300">
-                            <div id="dyn-right-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-950 tracking-tight leading-tight transition-all duration-300">
-                                Zero-G Levitation
+                            <div class="kinetic-title-wrap">
+                                <div id="dyn-right-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-950 tracking-tight leading-tight transition-all duration-300">
+                                    Zero-G Levitation
+                                </div>
                             </div>
                             <p id="dyn-right-desc" class="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed transition-all duration-300">
                                 Damped spring orbital physics at locked 120 FPS.
                             </p>
-                            <div class="pt-1.5 flex items-center justify-end gap-2">
+                            <div class="pt-1 flex items-center justify-end gap-2">
                                 <span id="dyn-right-tag" class="px-3 py-1 rounded-full bg-indigo-100/90 border border-indigo-200 text-[10px] font-mono font-bold text-indigo-800 tracking-wider shadow-2xs transition-all duration-300">
                                     ● 100% HEALTH • IDLE
                                 </span>
@@ -3379,10 +3464,13 @@
                 const dynRightBorder = document.getElementById('dyn-right-border');
                 const dynRightDot = document.getElementById('dyn-right-dot');
 
-                // 7 Dynamic Real-Time Typography Phases matching card animation chapters
+                // 7 Dynamic Real-Time Typography Phases matching card animation chapters with custom spatial coords
                 const dynamicPhases = [
                     {
                         // Phase 1 (0.00 - 0.22): Monolith Chassis Awaken
+                        leftPos: { top: '50%', left: '7.5%' },
+                        rightPos: { top: '50%', right: '7.5%' },
+
                         leftCat: '01 / MONOLITH AWAKENING',
                         leftTitle: 'Next-Gen Digital Systems',
                         leftDesc: 'High-craft web platforms, AI workspaces, and kinetic 3D experiences engineered with obsessive precision.',
@@ -3402,7 +3490,10 @@
                         rightDotClass: 'bg-indigo-500'
                     },
                     {
-                        // Phase 2 (0.22 - 0.38): Tier Decoupling Initiation
+                        // Phase 2 (0.22 - 0.38): Tier Decoupling Initiation (Left elevates slightly, Right lowers)
+                        leftPos: { top: '42%', left: '6%' },
+                        rightPos: { top: '58%', right: '6%' },
+
                         leftCat: '02 / TIER DECOUPLING',
                         leftTitle: 'Uncoupling The Stack',
                         leftDesc: 'Front Glass UI, WebGL Canvas, and Kernel runtime separate smoothly along the spatial Z-axis.',
@@ -3422,7 +3513,10 @@
                         rightDotClass: 'bg-blue-500'
                     },
                     {
-                        // Phase 3 (0.38 - 0.52): Full Exploded Architecture / 01 Aesthete UI
+                        // Phase 3 (0.38 - 0.52): Full Exploded Architecture / 01 Aesthete UI (Left tracks Layer 1 height)
+                        leftPos: { top: '36%', left: '6.5%' },
+                        rightPos: { top: '48%', right: '6.5%' },
+
                         leftCat: '03 / EXPLODED ARCHITECTURE',
                         leftTitle: '01 • Aesthete Platform',
                         leftDesc: 'Quiet luxury minimalist architecture with high-craft editorial typography & glass aesthetics.',
@@ -3442,7 +3536,10 @@
                         rightDotClass: 'bg-indigo-500'
                     },
                     {
-                        // Phase 4 (0.52 - 0.68): 120 FPS GPU Wave Mesh / 02 BloomFi
+                        // Phase 4 (0.52 - 0.68): 120 FPS GPU Wave Mesh / 02 BloomFi (Left tracks Middle Layer)
+                        leftPos: { top: '54%', left: '8%' },
+                        rightPos: { top: '40%', right: '6%' },
+
                         leftCat: '04 / COMPUTE ENGINE',
                         leftTitle: '02 • BloomFi Wave',
                         leftDesc: 'Fintech AI growth platform with 8,400 compute shader points undulating in real-time spring dynamics.',
@@ -3462,7 +3559,10 @@
                         rightDotClass: 'bg-cyan-500'
                     },
                     {
-                        // Phase 5 (0.68 - 0.82): 360° Matrix Scan / 03 Juris Lexicon
+                        // Phase 5 (0.68 - 0.82): 360° Matrix Scan / 03 Juris Lexicon (Left tracks Deep Kernel)
+                        leftPos: { top: '62%', left: '6.5%' },
+                        rightPos: { top: '56%', right: '7.5%' },
+
                         leftCat: '05 / KERNEL RUNTIME',
                         leftTitle: '03 • Juris Lexicon',
                         leftDesc: 'Institutional legal intelligence core with holographic syntax verification and edge caching.',
@@ -3482,7 +3582,10 @@
                         rightDotClass: 'bg-purple-500'
                     },
                     {
-                        // Phase 6 (0.82 - 0.94): Magnetic Convergence & Reassembly
+                        // Phase 6 (0.82 - 0.94): Magnetic Convergence & Reassembly (Snap back to center)
+                        leftPos: { top: '50%', left: '7.5%' },
+                        rightPos: { top: '50%', right: '7.5%' },
+
                         leftCat: '06 / ATOMIC LOCK',
                         leftTitle: 'Magnetic Snap Convergence',
                         leftDesc: 'Deconstructed layers accelerate inward with spring damping, fusing into a crystal powerhouse.',
@@ -3503,6 +3606,9 @@
                     },
                     {
                         // Phase 7 (0.94 - 1.00): Production Launch & Gallery Grid
+                        leftPos: { top: '48%', left: '7%' },
+                        rightPos: { top: '52%', right: '7%' },
+
                         leftCat: '07 / LAUNCH COMMISSION',
                         leftTitle: 'Crafting Digital Monoliths',
                         leftDesc: 'Commission bespoke platforms, AI workspaces, and 3D web applications for visionary teams.',
@@ -3524,6 +3630,7 @@
                 ];
 
                 let currentPhaseIdx = -1;
+                let isTransitioningHUD = false;
 
                 function updateDynamicHUD(p) {
                     if (!dynLeftTitle || !dynRightTitle) return;
@@ -3541,39 +3648,78 @@
                         currentPhaseIdx = phaseIdx;
                         const d = dynamicPhases[phaseIdx];
 
-                        if (dynLeftBorder) dynLeftBorder.style.transform = 'translate3d(0, -6px, 0)';
-                        if (dynRightBorder) dynRightBorder.style.transform = 'translate3d(0, -6px, 0)';
+                        // 1. Smooth Spatial Position & Offset Shift
+                        if (hudLeft && d.leftPos) {
+                            hudLeft.style.top = d.leftPos.top;
+                            hudLeft.style.left = d.leftPos.left;
+                        }
+                        if (hudRight && d.rightPos) {
+                            hudRight.style.top = d.rightPos.top;
+                            hudRight.style.right = d.rightPos.right;
+                        }
 
+                        // 2. Ultra-High-Class Kinetic Text Shuffling & Animation
+                        // Step A: Trigger Kinetic Exit Animation
+                        dynLeftTitle.classList.remove('kinetic-text-in');
+                        dynLeftTitle.classList.add('kinetic-text-out');
+                        dynRightTitle.classList.remove('kinetic-text-in');
+                        dynRightTitle.classList.add('kinetic-text-out');
+
+                        if (dynLeftDesc) dynLeftDesc.style.opacity = '0.2';
+                        if (dynRightDesc) dynRightDesc.style.opacity = '0.2';
+                        if (dynLeftTag) dynLeftTag.classList.remove('kinetic-tag-in');
+                        if (dynRightTag) dynRightTag.classList.remove('kinetic-tag-in');
+                        if (dynLeftBorder) dynLeftBorder.classList.remove('kinetic-line-in');
+                        if (dynRightBorder) dynRightBorder.classList.remove('kinetic-line-in');
+
+                        // Step B: Morph Content at Keyframe Apex & Launch Staggered Reveal
                         setTimeout(() => {
+                            // Update Typography & Text Content
                             if (dynLeftCategory) {
                                 dynLeftCategory.textContent = d.leftCat;
                                 dynLeftCategory.className = `text-[10.5px] font-mono font-bold tracking-[0.22em] ${d.leftCatColor} uppercase transition-colors duration-300`;
                             }
-                            if (dynLeftTitle) dynLeftTitle.textContent = d.leftTitle;
-                            if (dynLeftDesc) dynLeftDesc.textContent = d.leftDesc;
+                            if (dynLeftTitle) {
+                                dynLeftTitle.textContent = d.leftTitle;
+                                dynLeftTitle.classList.remove('kinetic-text-out');
+                                dynLeftTitle.classList.add('kinetic-text-in');
+                            }
+                            if (dynLeftDesc) {
+                                dynLeftDesc.textContent = d.leftDesc;
+                                dynLeftDesc.style.opacity = '1';
+                            }
                             if (dynLeftTag) {
                                 dynLeftTag.textContent = d.leftTag;
-                                dynLeftTag.className = `px-3 py-1 rounded-full ${d.leftTagClass} text-[10px] font-mono font-bold tracking-wider shadow-2xs transition-all duration-300`;
+                                dynLeftTag.className = `px-3 py-1 rounded-full ${d.leftTagClass} text-[10px] font-mono font-bold tracking-wider shadow-2xs transition-all duration-300 kinetic-tag-in`;
                             }
-                            if (dynLeftBorder) dynLeftBorder.className = `border-l-[3px] ${d.leftBorderClass} pl-4 space-y-1.5 transition-all duration-300`;
+                            if (dynLeftBorder) {
+                                dynLeftBorder.className = `border-l-[3px] ${d.leftBorderClass} pl-4 space-y-1.5 transition-all duration-300 kinetic-line-in`;
+                            }
                             if (dynLeftDot) dynLeftDot.className = `w-2 h-2 rounded-full ${d.leftDotClass} animate-ping`;
 
                             if (dynRightCategory) {
                                 dynRightCategory.textContent = d.rightCat;
                                 dynRightCategory.className = `text-[10.5px] font-mono font-bold tracking-[0.22em] ${d.rightCatColor} uppercase transition-colors duration-300`;
                             }
-                            if (dynRightTitle) dynRightTitle.textContent = d.rightTitle;
-                            if (dynRightDesc) dynRightDesc.textContent = d.rightDesc;
+                            if (dynRightTitle) {
+                                dynRightTitle.textContent = d.rightTitle;
+                                dynRightTitle.classList.remove('kinetic-text-out');
+                                dynRightTitle.classList.add('kinetic-text-in');
+                            }
+                            if (dynRightDesc) {
+                                dynRightDesc.textContent = d.rightDesc;
+                                dynRightDesc.style.opacity = '1';
+                            }
                             if (dynRightTag) {
                                 dynRightTag.textContent = d.rightTag;
-                                dynRightTag.className = `px-3 py-1 rounded-full ${d.rightTagClass} text-[10px] font-mono font-bold tracking-wider shadow-2xs transition-all duration-300`;
+                                dynRightTag.className = `px-3 py-1 rounded-full ${d.rightTagClass} text-[10px] font-mono font-bold tracking-wider shadow-2xs transition-all duration-300 kinetic-tag-in`;
                             }
-                            if (dynRightBorder) dynRightBorder.className = `border-r-[3px] ${d.rightBorderClass} pr-4 space-y-1.5 transition-all duration-300`;
+                            if (dynRightBorder) {
+                                dynRightBorder.className = `border-r-[3px] ${d.rightBorderClass} pr-4 space-y-1.5 transition-all duration-300 kinetic-line-in`;
+                            }
                             if (dynRightDot) dynRightDot.className = `w-2 h-2 rounded-full ${d.rightDotClass} animate-pulse`;
 
-                            if (dynLeftBorder) dynLeftBorder.style.transform = 'translate3d(0, 0, 0)';
-                            if (dynRightBorder) dynRightBorder.style.transform = 'translate3d(0, 0, 0)';
-                        }, 70);
+                        }, 160);
                     }
                 }
 
