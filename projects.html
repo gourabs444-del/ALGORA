@@ -2450,228 +2450,93 @@
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
         <!-- ═══════════════════════════════════════════════════════════════════════
-             3 DISTINCT 3D KINETIC ANIMATIONS & PERSISTENT SPATIAL DOCKING CSS
+             PRESENTATION-GRADE 3D EXPLODED ARCHITECTURE VIEWPORT & LAUNCHPAD CSS
              ═══════════════════════════════════════════════════════════════════════ -->
         <style>
-        /* ── ANIMATION 1: 3D ISOMETRIC INTERLOCKING CUBES ── */
-        .hero-3d-boxes-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          perspective: 1200px;
-        }
-
-        .hero-3d-boxes-container .boxes {
-          --size: 34px;
-          --duration: 2200ms;
-          height: calc(var(--size) * 2);
-          width: calc(var(--size) * 3);
-          position: relative;
-          transform-style: preserve-3d;
-          transform-origin: 50% 50%;
-          margin-top: calc(var(--size) * 1.5 * -1);
-          transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
-        }
-
-        .hero-3d-boxes-container .boxes .box {
-          width: var(--size);
-          height: var(--size);
-          top: 0;
-          left: 0;
-          position: absolute;
-          transform-style: preserve-3d;
-        }
-
-        .hero-3d-boxes-container .boxes .box:nth-child(1) {
-          transform: translate(100%, 0);
-          -webkit-animation: heroBox1 var(--duration) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-          animation: heroBox1 var(--duration) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-        }
-
-        .hero-3d-boxes-container .boxes .box:nth-child(2) {
-          transform: translate(0, 100%);
-          -webkit-animation: heroBox2 var(--duration) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-          animation: heroBox2 var(--duration) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-        }
-
-        .hero-3d-boxes-container .boxes .box:nth-child(3) {
-          transform: translate(100%, 100%);
-          -webkit-animation: heroBox3 var(--duration) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-          animation: heroBox3 var(--duration) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-        }
-
-        .hero-3d-boxes-container .boxes .box:nth-child(4) {
-          transform: translate(200%, 0);
-          -webkit-animation: heroBox4 var(--duration) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-          animation: heroBox4 var(--duration) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-        }
-
-        .hero-3d-boxes-container .boxes .box > div {
-          --background: #38bdf8;
-          --top: auto;
-          --right: auto;
-          --bottom: auto;
-          --left: auto;
-          --translateZ: calc(var(--size) / 2);
-          --rotateY: 0deg;
-          --rotateX: 0deg;
-          position: absolute;
+        /* ── 3D ISOMETRIC STAGE VIEWPORT ── */
+        .stage-3d-viewport {
           width: 100%;
-          height: 100%;
-          background: var(--background);
-          top: var(--top);
-          right: var(--right);
-          bottom: var(--bottom);
-          left: var(--left);
-          transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
-          box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.5);
+          max-width: 540px;
+          height: 380px;
+          position: relative;
+          perspective: 1200px;
+          transform-style: preserve-3d;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
-        .hero-3d-boxes-container .boxes .box > div:nth-child(1) {
-          --top: 0;
-          --left: 0;
-        }
-
-        .hero-3d-boxes-container .boxes .box > div:nth-child(2) {
-          --background: #0284c7;
-          --right: 0;
-          --rotateY: 90deg;
-        }
-
-        .hero-3d-boxes-container .boxes .box > div:nth-child(3) {
-          --background: #0ea5e9;
-          --rotateX: -90deg;
-        }
-
-        .hero-3d-boxes-container .boxes .box > div:nth-child(4) {
-          --background: #e0f2fe;
-          --top: 0;
-          --left: 0;
-          --translateZ: calc(var(--size) * 3 * -1);
-        }
-
-        @keyframes heroBox1 { 0%, 50% { transform: translate(100%, 0); } 100% { transform: translate(200%, 0); } }
-        @keyframes heroBox2 { 0% { transform: translate(0, 100%); } 50% { transform: translate(0, 0); } 100% { transform: translate(100%, 0); } }
-        @keyframes heroBox3 { 0%, 50% { transform: translate(100%, 100%); } 100% { transform: translate(0, 100%); } }
-        @keyframes heroBox4 { 0% { transform: translate(200%, 0); } 50% { transform: translate(200%, 100%); } 100% { transform: translate(100%, 100%); } }
-
-        /* ── ANIMATION 2: 3D KINETIC ORBITAL GYROSCOPE REACTOR ── */
-        .hero-3d-gyro-container {
-          width: 96px;
-          height: 96px;
+        .viewport-master-rig {
+          width: 440px;
+          height: 280px;
           position: relative;
           transform-style: preserve-3d;
-          perspective: 1000px;
+          transition: transform 0.1s ease-out;
+          transform: rotateX(20deg) rotateY(-18deg) rotateZ(3deg);
         }
 
-        .gyro-ring {
+        /* ── INDIVIDUAL EXPLODED LAYERS (FRONT, MIDDLE, DEEP) ── */
+        .exploded-layer {
           position: absolute;
           inset: 0;
-          border-radius: 50%;
-          border: 3px solid rgba(14, 165, 233, 0.8);
-          box-shadow: 0 0 16px rgba(14, 165, 233, 0.45), inset 0 0 12px rgba(56, 189, 248, 0.35);
+          border-radius: 20px;
           transform-style: preserve-3d;
+          will-change: transform, opacity;
+          transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
         }
 
-        .gyro-ring-1 {
-          border-color: #0284c7;
-          animation: spinRing1 4s linear infinite;
+        /* LAYER 3: DEEP CORE / CODE RUNTIME MATRIX */
+        .layer-deep {
+          background: rgba(15, 23, 42, 0.88);
+          border: 1px solid rgba(56, 189, 248, 0.35);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35), 0 0 30px rgba(14, 165, 233, 0.15);
+          padding: 1.25rem;
+          color: #94a3b8;
+          font-family: ui-monospace, monospace;
+          font-size: 11px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
 
-        .gyro-ring-2 {
-          border-color: #38bdf8;
-          inset: 12px;
-          animation: spinRing2 3s linear infinite reverse;
+        /* LAYER 2: MIDDLE ENGINE / 3D WEBGL SHADER CANVAS */
+        .layer-mid {
+          background: linear-gradient(135deg, rgba(224, 242, 254, 0.45) 0%, rgba(186, 230, 253, 0.20) 100%);
+          border: 1.5px solid rgba(56, 189, 248, 0.65);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          box-shadow: 0 15px 40px rgba(14, 165, 233, 0.20);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
 
-        .gyro-ring-3 {
-          border-color: #2563eb;
-          inset: 24px;
-          animation: spinRing3 2.2s linear infinite;
+        /* LAYER 1: FRONT GLASS UI & MICRO-INTERACTIONS */
+        .layer-front {
+          background: rgba(255, 255, 255, 0.82);
+          border: 1.5px solid rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(24px) saturate(180%);
+          -webkit-backdrop-filter: blur(24px) saturate(180%);
+          box-shadow: 0 30px 70px rgba(14, 165, 233, 0.25), 0 1px 3px rgba(0, 0, 0, 0.05);
+          padding: 1.25rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
 
-        .gyro-core {
+        /* Exploded Depth Connecting Laser Corner Lines */
+        .depth-laser {
           position: absolute;
-          inset: 34px;
-          border-radius: 50%;
-          background: radial-gradient(circle, #93c5fd 0%, #0284c7 100%);
-          box-shadow: 0 0 20px rgba(56, 189, 248, 0.95), 0 0 35px rgba(37, 99, 235, 0.6);
-          animation: corePulse 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes spinRing1 {
-          0% { transform: rotateX(65deg) rotateY(25deg) rotateZ(0deg); }
-          100% { transform: rotateX(65deg) rotateY(25deg) rotateZ(360deg); }
-        }
-
-        @keyframes spinRing2 {
-          0% { transform: rotateX(25deg) rotateY(65deg) rotateZ(0deg); }
-          100% { transform: rotateX(25deg) rotateY(65deg) rotateZ(360deg); }
-        }
-
-        @keyframes spinRing3 {
-          0% { transform: rotateX(45deg) rotateY(45deg) rotateZ(0deg); }
-          100% { transform: rotateX(45deg) rotateY(45deg) rotateZ(360deg); }
-        }
-
-        @keyframes corePulse {
-          0% { transform: scale(0.85); box-shadow: 0 0 15px rgba(56, 189, 248, 0.7); }
-          100% { transform: scale(1.15); box-shadow: 0 0 30px rgba(56, 189, 248, 1), 0 0 45px rgba(37, 99, 235, 0.8); }
-        }
-
-        /* ── ANIMATION 3: 3D HOLOGRAPHIC PRISMATIC DIAMOND MATRIX ── */
-        .hero-3d-prism-container {
-          width: 96px;
-          height: 96px;
-          position: relative;
+          width: 1px;
+          background: linear-gradient(to bottom, rgba(56, 189, 248, 0.8), rgba(37, 99, 235, 0.2));
           transform-style: preserve-3d;
-          perspective: 1000px;
-        }
-
-        .prism-shape {
-          width: 68px;
-          height: 68px;
-          position: absolute;
-          top: 14px;
-          left: 14px;
-          transform-style: preserve-3d;
-          animation: prismRotate 6s linear infinite;
-        }
-
-        .prism-face {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          border: 2px solid rgba(56, 189, 248, 0.85);
-          background: linear-gradient(135deg, rgba(56, 189, 248, 0.35) 0%, rgba(37, 99, 235, 0.20) 100%);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          box-shadow: 0 0 25px rgba(14, 165, 233, 0.45);
-          border-radius: 12px;
-        }
-
-        .prism-face-1 { transform: rotateY(0deg) translateZ(34px) rotate(45deg); }
-        .prism-face-2 { transform: rotateY(90deg) translateZ(34px) rotate(45deg); }
-        .prism-face-3 { transform: rotateY(180deg) translateZ(34px) rotate(45deg); }
-        .prism-face-4 { transform: rotateY(-90deg) translateZ(34px) rotate(45deg); }
-
-        .prism-pulse-ring {
-          position: absolute;
-          inset: -12px;
-          border-radius: 50%;
-          border: 2px dashed rgba(56, 189, 248, 0.6);
-          animation: ringPulse 3s linear infinite;
-        }
-
-        @keyframes prismRotate {
-          0% { transform: rotateX(25deg) rotateY(0deg) rotateZ(15deg); }
-          100% { transform: rotateX(25deg) rotateY(360deg) rotateZ(15deg); }
-        }
-
-        @keyframes ringPulse {
-          0% { transform: scale(0.8) rotate(0deg); opacity: 0.8; }
-          50% { transform: scale(1.2) rotate(180deg); opacity: 0.3; }
-          100% { transform: scale(0.8) rotate(360deg); opacity: 0.8; }
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
         }
 
         /* ═══════════════════════════════════════════════════════════
@@ -2732,32 +2597,32 @@
                     <!-- Left: Studio Badge -->
                     <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 border border-sky-200/90 text-sky-900 text-[11px] font-mono font-extrabold uppercase tracking-widest backdrop-blur-xl shadow-xs pointer-events-auto">
                         <span class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
-                        <span>ALGORA &bull; KINETIC SPATIAL LABS</span>
+                        <span>ALGORA &bull; DIGITAL PRODUCT LABS</span>
                     </div>
 
                     <!-- Center/Right: 3-Stage Progress Nav Pill -->
                     <div class="inline-flex items-center gap-1.5 p-1 rounded-full bg-white/90 border border-sky-200/80 backdrop-blur-2xl shadow-xs pointer-events-auto text-[10px] font-mono font-bold text-slate-500">
-                        <span id="step-pill-1" class="px-3.5 py-1 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white transition-all duration-300 shadow-2xs font-extrabold tracking-wider">01 ARCHITECTURE</span>
-                        <span id="step-pill-2" class="px-3.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300 tracking-wider">02 CAPABILITIES</span>
-                        <span id="step-pill-3" class="px-3.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300 tracking-wider">03 IMPACT</span>
+                        <span id="step-pill-1" class="px-3.5 py-1 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white transition-all duration-300 shadow-2xs font-extrabold tracking-wider">01 PRODUCT CANVAS</span>
+                        <span id="step-pill-2" class="px-3.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300 tracking-wider">02 3D ARCHITECTURE</span>
+                        <span id="step-pill-3" class="px-3.5 py-1 rounded-full hover:text-slate-800 transition-all duration-300 tracking-wider">03 PRODUCTION READY</span>
                     </div>
                 </div>
 
                 <!-- ═══════════════════════════════════════════════════════════════
                      MASTER CLEAN ULTRA-LUXURY EDITORIAL STAGE (LEFT-RIGHT SPLIT)
                      ═══════════════════════════════════════════════════════════════ -->
-                <div class="relative z-10 max-w-[1680px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12 min-h-0">
+                <div class="relative z-10 max-w-[1680px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-14 min-h-0">
                     
-                    <!-- ── LEFT COLUMN (54%): PURE EDITORIAL TYPOGRAPHY & SCENES ── -->
-                    <div class="w-full lg:w-[54%] h-[420px] sm:h-[480px] relative flex items-center">
+                    <!-- ── LEFT COLUMN (52%): PURE EDITORIAL TYPOGRAPHY & SCENES ── -->
+                    <div class="w-full lg:w-[52%] h-[420px] sm:h-[480px] relative flex items-center">
                         
                         <!-- SCENE 1: EXPERIENCE NEXT-GEN -->
                         <div id="hero-scene-1" class="story-scene active-scene !items-start text-left !p-0">
                             <!-- Category Badge Strip -->
                             <div class="inline-flex flex-wrap items-center gap-2 mb-6 pointer-events-auto">
-                                <span class="px-3.5 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">01 ARCHITECTURE</span>
-                                <span class="px-3.5 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">02 GEN-AI LABS</span>
-                                <span class="px-3.5 py-1 rounded-full bg-slate-900 text-white text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">SPATIAL 3D</span>
+                                <span class="px-3.5 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">01 &bull; FINTECH ENGINES</span>
+                                <span class="px-3.5 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">02 &bull; GEN-AI WORKSPACES</span>
+                                <span class="px-3.5 py-1 rounded-full bg-slate-900 text-white text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">3D WEBGL LABS</span>
                             </div>
 
                             <!-- Main Headline -->
@@ -2772,7 +2637,7 @@
 
                             <!-- Scroll Prompt -->
                             <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-sky-100/70 border border-sky-200 text-xs font-mono font-bold text-sky-700 uppercase tracking-widest animate-bounce">
-                                <span>SCROLL TO EXPLORE MOTION</span>
+                                <span>SCROLL TO EXPLODE ARCHITECTURE</span>
                                 <span class="text-sm">&darr;</span>
                             </div>
                         </div>
@@ -2780,45 +2645,45 @@
                         <!-- SCENE 2: OBSESSIVE PRECISION & SPEED ENGINE -->
                         <div id="hero-scene-2" class="story-scene opacity-0 !items-start text-left !p-0">
                             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-sky-300 text-sky-800 text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ PERFORMANCE ARCHITECTURE</span>
+                                <span>✦ 3D DECONSTRUCTED ARCHITECTURE</span>
                             </div>
 
-                            <h2 id="scene2-title" class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-6 font-['Outfit']">
+                            <h2 id="scene2-title" class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
                                 Obsessive Precision. <br>
-                                <span class="cinematic-text-gradient">Mathematical Speed.</span>
+                                <span class="cinematic-text-gradient">Layer by Layer.</span>
                             </h2>
 
                             <!-- Sleek Clean Capability Rows (Uncluttered & Modern) -->
-                            <div id="scene2-cards" class="w-full max-w-xl flex flex-col gap-3 mb-6 pointer-events-auto">
-                                <div class="frosted-glass-monolith px-5 py-3.5 rounded-2xl flex items-center justify-between gap-4 hover:border-sky-400 transition-all duration-300">
+                            <div id="scene2-cards" class="w-full max-w-xl flex flex-col gap-3 mb-5 pointer-events-auto">
+                                <div class="frosted-glass-monolith px-5 py-3 rounded-2xl flex items-center justify-between gap-4 hover:border-sky-400 transition-all duration-300">
                                     <div class="flex items-center gap-3.5">
-                                        <span class="text-lg text-sky-600 font-mono font-bold">⚡</span>
+                                        <span class="w-7 h-7 rounded-lg bg-sky-500/10 text-sky-600 flex items-center justify-center font-mono font-bold text-xs">01</span>
                                         <div>
-                                            <h4 class="font-extrabold text-slate-900 text-sm font-['Outfit']">Fluid Hydrodynamics Engine</h4>
-                                            <p class="text-xs text-slate-500 font-sans">Real-time spring physics with sub-pixel GPU rasterization.</p>
+                                            <h4 class="font-extrabold text-slate-900 text-sm font-['Outfit']">Front Glass UI & Micro-interactions</h4>
+                                            <p class="text-xs text-slate-500 font-sans">Tactile spring physics, sub-pixel typography, and state-driven components.</p>
                                         </div>
                                     </div>
-                                    <span class="px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-700 text-[10px] font-mono font-bold">120.0 FPS</span>
+                                    <span class="px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-700 text-[10px] font-mono font-bold">FRONT</span>
                                 </div>
-                                <div class="frosted-glass-monolith px-5 py-3.5 rounded-2xl flex items-center justify-between gap-4 hover:border-blue-400 transition-all duration-300">
+                                <div class="frosted-glass-monolith px-5 py-3 rounded-2xl flex items-center justify-between gap-4 hover:border-blue-400 transition-all duration-300">
                                     <div class="flex items-center gap-3.5">
-                                        <span class="text-lg text-blue-600 font-mono font-bold">✦</span>
+                                        <span class="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-600 flex items-center justify-center font-mono font-bold text-xs">02</span>
                                         <div>
-                                            <h4 class="font-extrabold text-slate-900 text-sm font-['Outfit']">Reactive AI Workspaces</h4>
-                                            <p class="text-xs text-slate-500 font-sans">Sub-millisecond state orchestration and streaming interfaces.</p>
+                                            <h4 class="font-extrabold text-slate-900 text-sm font-['Outfit']">120 FPS WebGL GPU Shader Canvas</h4>
+                                            <p class="text-xs text-slate-500 font-sans">Real-time hydrodynamics, particle simulations, and 3D spatial canvas.</p>
                                         </div>
                                     </div>
-                                    <span class="px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-700 text-[10px] font-mono font-bold">&lt; 0.4 MS</span>
+                                    <span class="px-2 py-0.5 rounded-md bg-blue-500/10 text-blue-700 text-[10px] font-mono font-bold">ENGINE</span>
                                 </div>
-                                <div class="frosted-glass-monolith px-5 py-3.5 rounded-2xl flex items-center justify-between gap-4 hover:border-indigo-400 transition-all duration-300">
+                                <div class="frosted-glass-monolith px-5 py-3 rounded-2xl flex items-center justify-between gap-4 hover:border-indigo-400 transition-all duration-300">
                                     <div class="flex items-center gap-3.5">
-                                        <span class="text-lg text-indigo-600 font-mono font-bold">⬡</span>
+                                        <span class="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-600 flex items-center justify-center font-mono font-bold text-xs">03</span>
                                         <div>
-                                            <h4 class="font-extrabold text-slate-900 text-sm font-['Outfit']">Spatial Monolith Architecture</h4>
-                                            <p class="text-xs text-slate-500 font-sans">Couture digital platforms built to convert and lead markets.</p>
+                                            <h4 class="font-extrabold text-slate-900 text-sm font-['Outfit']">Neural Kernel & Latency Orchestration</h4>
+                                            <p class="text-xs text-slate-500 font-sans">Sub-millisecond data pipelines, streaming gen-AI, and memory buffers.</p>
                                         </div>
                                     </div>
-                                    <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-700 text-[10px] font-mono font-bold">100% PROD</span>
+                                    <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-700 text-[10px] font-mono font-bold">&lt; 0.4 MS</span>
                                 </div>
                             </div>
                         </div>
@@ -2826,7 +2691,7 @@
                         <!-- SCENE 3: CATEGORY-DEFINING IMPACT & ACTION CENTER -->
                         <div id="hero-scene-3" class="story-scene opacity-0 !items-start text-left !p-0">
                             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ READY FOR LAUNCH</span>
+                                <span>✦ PRODUCTION DEPLOYMENT ACTIVE</span>
                             </div>
 
                             <h2 id="scene3-title" class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
@@ -2835,7 +2700,7 @@
                             </h2>
 
                             <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-8 font-sans">
-                                From conceptual architecture to production-grade deployment for global venture founders and visionary teams.
+                                From conceptual architecture to battle-tested production deployments for global venture founders and visionary teams.
                             </p>
 
                             <!-- Action Buttons -->
@@ -2853,53 +2718,119 @@
 
                     </div>
 
-                    <!-- ── RIGHT COLUMN (46%): DEDICATED 3D SPATIAL KINETIC SHOWCASE STAGE ── -->
-                    <div class="w-full lg:w-[44%] h-[320px] sm:h-[460px] relative flex items-center justify-center pointer-events-none select-none">
+                    <!-- ── RIGHT COLUMN (48%): PRESENTATION-GRADE 3D EXPLODED ARCHITECTURE VIEWPORT ── -->
+                    <div class="w-full lg:w-[48%] h-[360px] sm:h-[460px] relative flex items-center justify-center select-none">
                         
-                        <!-- Ambient 3D Stage Glow Disk -->
-                        <div class="absolute inset-4 rounded-full bg-gradient-to-tr from-sky-200/30 via-cyan-100/20 to-blue-200/30 blur-3xl"></div>
-                        
-                        <!-- SPATIAL OBJECT 1: 3D ISOMETRIC CUBES -->
-                        <div id="spatial-obj-cubes" class="absolute will-change-transform flex flex-col items-center select-none" style="transform: translate3d(0, 0, 0) scale(1.35);">
-                            <div class="hero-3d-boxes-container">
-                                <div class="boxes">
-                                    <div class="box"><div></div><div></div><div></div><div></div></div>
-                                    <div class="box"><div></div><div></div><div></div><div></div></div>
-                                    <div class="box"><div></div><div></div><div></div><div></div></div>
-                                    <div class="box"><div></div><div></div><div></div><div></div></div>
-                                </div>
-                            </div>
-                            <div id="badge-dock-cubes" class="mt-4 px-3 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold uppercase tracking-wider shadow-2xs opacity-0 transition-opacity duration-300">
-                                01 ARCHITECTURE
-                            </div>
-                        </div>
+                        <!-- Ambient Atmospheric 3D Lighting Dome -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-300/35 via-cyan-200/25 to-blue-300/30 blur-3xl pointer-events-none"></div>
 
-                        <!-- SPATIAL OBJECT 2: 3D KINETIC ORBITAL GYROSCOPE REACTOR -->
-                        <div id="spatial-obj-gyro" class="absolute will-change-transform flex flex-col items-center select-none" style="transform: translate3d(140px, -120px, 0) scale(0.65); opacity: 0.35;">
-                            <div class="hero-3d-gyro-container">
-                                <div class="gyro-ring gyro-ring-1"></div>
-                                <div class="gyro-ring gyro-ring-2"></div>
-                                <div class="gyro-ring gyro-ring-3"></div>
-                                <div class="gyro-core"></div>
-                            </div>
-                            <div id="badge-dock-gyro" class="mt-3 px-3 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold uppercase tracking-wider shadow-2xs opacity-0 transition-opacity duration-300">
-                                02 SPEED ENGINE
-                            </div>
-                        </div>
-
-                        <!-- SPATIAL OBJECT 3: 3D HOLOGRAPHIC PRISMATIC DIAMOND MATRIX -->
-                        <div id="spatial-obj-prism" class="absolute will-change-transform flex flex-col items-center select-none" style="transform: translate3d(0, 140px, 0) scale(0.60); opacity: 0.25;">
-                            <div class="hero-3d-prism-container">
-                                <div class="prism-shape">
-                                    <div class="prism-face prism-face-1"></div>
-                                    <div class="prism-face prism-face-2"></div>
-                                    <div class="prism-face prism-face-3"></div>
-                                    <div class="prism-face prism-face-4"></div>
+                        <!-- 3D STAGE VIEWPORT & MASTER RIG -->
+                        <div class="stage-3d-viewport">
+                            <div id="viewport-rig" class="viewport-master-rig">
+                                
+                                <!-- ── LAYER 3: DEEP CORE / SYNTAX RUNTIME MATRIX (-80px Z in explode) ── -->
+                                <div id="layer-deep" class="exploded-layer layer-deep">
+                                    <div class="flex items-center justify-between pb-2 border-b border-sky-900/60 text-[10px] text-sky-400">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                            <span>KERNEL &bull; RUNTIME MATRIX</span>
+                                        </div>
+                                        <span>0.38 MS LATENCY</span>
+                                    </div>
+                                    <div class="space-y-1.5 text-[10.5px] leading-relaxed overflow-hidden">
+                                        <p><span class="text-pink-400">async function</span> <span class="text-sky-300">initSpatialPipeline</span>(cluster) {</p>
+                                        <p class="pl-4 text-slate-400">// Allocating GPU Buffers for 120 FPS</p>
+                                        <p class="pl-4"><span class="text-purple-400">const</span> shader = <span class="text-amber-300">new</span> <span class="text-teal-300">WebGLRuntime</span>({ mode: <span class="text-emerald-300">'NEURAL_MESH'</span> });</p>
+                                        <p class="pl-4"><span class="text-pink-400">await</span> shader.<span class="text-sky-300">compileShaders</span>({ precision: <span class="text-emerald-300">'HIGH_P'</span> });</p>
+                                        <p class="pl-4 text-emerald-400">&gt;&gt; STATUS: PIPELINE DEPLOYED • 100% PRODUCTION</p>
+                                        <p>}</p>
+                                    </div>
+                                    <div class="pt-2 border-t border-sky-900/60 flex items-center justify-between text-[10px] text-slate-500">
+                                        <span>CLUSTER: GLOBAL_EDGE</span>
+                                        <span>FPS: 120.0 LOCKED</span>
+                                    </div>
                                 </div>
-                                <div class="prism-pulse-ring"></div>
-                            </div>
-                            <div id="badge-dock-prism" class="mt-3 px-3 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold uppercase tracking-wider shadow-2xs opacity-0 transition-opacity duration-300">
-                                03 LAUNCH MATRIX
+
+                                <!-- ── LAYER 2: MIDDLE ENGINE / 3D WEBGL SHADER CANVAS (0px Z in explode) ── -->
+                                <div id="layer-mid" class="exploded-layer layer-mid">
+                                    <!-- Animated Wave Geometry Grid -->
+                                    <div class="w-full h-full flex flex-col items-center justify-center relative p-6">
+                                        <div class="w-full h-24 relative flex items-center justify-center">
+                                            <svg class="w-full h-full" viewBox="0 0 360 80" fill="none">
+                                                <path d="M0,40 Q45,5 90,40 T180,40 T270,40 T360,40" stroke="#0284c7" stroke-width="2.5" fill="none" opacity="0.9" />
+                                                <path d="M0,40 Q45,75 90,40 T180,40 T270,40 T360,40" stroke="#38bdf8" stroke-width="2" fill="none" opacity="0.6" />
+                                                <circle cx="180" cy="40" r="6" fill="#0284c7" />
+                                                <circle cx="270" cy="40" r="4" fill="#38bdf8" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 border border-sky-300 text-sky-900 text-[10px] font-mono font-bold uppercase shadow-xs">
+                                            <span class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
+                                            <span>WEBGL SHADER ENGINE &bull; 120 FPS</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ── LAYER 1: FRONT GLASS UI & MICRO-INTERACTIONS (+80px Z in explode) ── -->
+                                <div id="layer-front" class="exploded-layer layer-front">
+                                    <!-- Top Window Traffic Light Bar -->
+                                    <div class="flex items-center justify-between pb-3 border-b border-sky-100">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
+                                            <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                                            <span class="ml-2 text-[10px] font-mono font-bold text-slate-500">ALGORA VIEWPORT v2.4</span>
+                                        </div>
+                                        <div class="px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-700 text-[10px] font-mono font-bold">
+                                            LIVE SYSTEM
+                                        </div>
+                                    </div>
+
+                                    <!-- Interactive UI Cards Preview -->
+                                    <div class="grid grid-cols-2 gap-3 my-2">
+                                        <div class="p-3 rounded-xl bg-white/95 border border-sky-100 shadow-xs flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-600 flex items-center justify-center font-bold text-sm">⚡</div>
+                                            <div>
+                                                <div class="text-[11px] font-bold text-slate-900">Hydrodynamics</div>
+                                                <div class="text-[9px] font-mono text-sky-600 font-bold">120.0 FPS NATIVE</div>
+                                            </div>
+                                        </div>
+                                        <div class="p-3 rounded-xl bg-white/95 border border-sky-100 shadow-xs flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-600 flex items-center justify-center font-bold text-sm">✦</div>
+                                            <div>
+                                                <div class="text-[11px] font-bold text-slate-900">Neural Sync</div>
+                                                <div class="text-[9px] font-mono text-blue-600 font-bold">&lt; 0.4 MS LATENCY</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bottom Interactive Footer -->
+                                    <div class="flex items-center justify-between pt-2 border-t border-sky-100">
+                                        <span class="text-[10px] font-mono text-slate-500 font-medium">STATUS: READY TO DEPLOY</span>
+                                        <span class="text-[10px] font-mono font-bold text-sky-600">EXPLODE VIEW &rarr;</span>
+                                    </div>
+                                </div>
+
+                                <!-- ── HOLOGRAPHIC REASSEMBLED TERMINAL OVERLAY (Activates in Scene 3) ── -->
+                                <div id="layer-terminal" class="exploded-layer opacity-0 pointer-events-none p-5 flex flex-col justify-between" style="background: rgba(15, 23, 42, 0.95); border: 2px solid #38bdf8; box-shadow: 0 0 50px rgba(14, 165, 233, 0.5);">
+                                    <div class="flex items-center justify-between pb-3 border-b border-sky-800 text-xs text-sky-300 font-mono font-bold">
+                                        <span class="flex items-center gap-2">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                            <span>PRODUCTION RUNTIME &bull; DEPLOYED</span>
+                                        </span>
+                                        <span class="text-emerald-400">100% HEALTH</span>
+                                    </div>
+                                    <div class="space-y-2 text-xs font-mono text-slate-300">
+                                        <p class="text-emerald-400">&gt; algora deploy --release --target global</p>
+                                        <p class="text-sky-300">&gt;&gt; [OK] 3D Hydrodynamics Canvas Initialized</p>
+                                        <p class="text-sky-300">&gt;&gt; [OK] Spatial Monolith UI Mounted</p>
+                                        <p class="text-emerald-400 font-bold">&gt;&gt; SUCCESS: Ready to build category-defining experiences.</p>
+                                    </div>
+                                    <div class="pt-3 border-t border-sky-800 flex items-center justify-between text-xs font-mono text-sky-400">
+                                        <span>GLOBAL EDGE NETWORK</span>
+                                        <span class="text-white bg-sky-600 px-3 py-1 rounded-md font-bold">ALL SYSTEMS LIVE</span>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -3244,13 +3175,12 @@
                 const scene1Desc = document.getElementById('scene1-desc');
                 const scene2Cards = document.getElementById('scene2-cards');
 
-                // 3 Distinct Persistent Spatial Objects & Dock Badges
-                const spatialCubes = document.getElementById('spatial-obj-cubes');
-                const spatialGyro = document.getElementById('spatial-obj-gyro');
-                const spatialPrism = document.getElementById('spatial-obj-prism');
-                const badgeCubes = document.getElementById('badge-dock-cubes');
-                const badgeGyro = document.getElementById('badge-dock-gyro');
-                const badgePrism = document.getElementById('badge-dock-prism');
+                // 3D Presentation Viewport & Exploded Layers
+                const viewportRig = document.getElementById('viewport-rig');
+                const layerFront = document.getElementById('layer-front');
+                const layerMid = document.getElementById('layer-mid');
+                const layerDeep = document.getElementById('layer-deep');
+                const layerTerminal = document.getElementById('layer-terminal');
 
                 if (!track || !scene1 || !scene2 || !scene3) return;
 
@@ -3278,74 +3208,72 @@
                     const p = currentProgress;
 
                     // ═══════════════════════════════════════════════════════════
-                    // 🌌 DEDICATED RIGHT STAGE SPATIAL ORBIT DOCKING (ZERO CLUTTER)
+                    // 🚀 3D EXPLODED ARCHITECTURE & SNAP REASSEMBLY PHYSICS
                     // ═══════════════════════════════════════════════════════════
                     const isMobile = window.innerWidth < 1024;
-                    const orbitX = isMobile ? 90 : 150;
-                    const orbitY = isMobile ? -85 : -130;
 
-                    // 1. CUBES DOCKING TRAJECTORY:
-                    let cubeX = 0, cubeY = 0, cubeScale = isMobile ? 1.05 : 1.35, cubeOpacity = 1.0;
-                    if (p > 0.15) {
-                        const t = Math.min(1, (p - 0.15) / 0.22);
-                        cubeX = -t * orbitX;
-                        cubeY = t * orbitY;
-                        cubeScale = (isMobile ? 1.05 : 1.35) - t * ((isMobile ? 1.05 : 1.35) - (isMobile ? 0.60 : 0.70));
-                        cubeOpacity = 1.0 - t * 0.10;
-                        if (badgeCubes) badgeCubes.style.opacity = t > 0.5 ? '1' : '0';
-                    } else {
-                        if (badgeCubes) badgeCubes.style.opacity = '0';
-                    }
-                    if (spatialCubes) {
-                        spatialCubes.style.transform = `translate3d(${cubeX}px, ${cubeY}px, 0) scale(${cubeScale})`;
-                        spatialCubes.style.opacity = cubeOpacity;
-                    }
+                    if (viewportRig && layerFront && layerMid && layerDeep && layerTerminal) {
+                        if (p < 0.25) {
+                            // ── PHASE 1: HOLISTIC 3D APP VIEWPORT ──
+                            const idleTilt = p * 15;
+                            viewportRig.style.transform = `perspective(1200px) rotateX(${18 + idleTilt}deg) rotateY(${-18 - idleTilt * 0.5}deg) rotateZ(3deg) scale(${isMobile ? 0.82 : 1.05})`;
+                            
+                            layerFront.style.transform = `translate3d(0, 0, 0px)`;
+                            layerFront.style.opacity = '1';
+                            layerFront.style.boxShadow = '0 30px 70px rgba(14, 165, 233, 0.25)';
 
-                    // 2. GYROSCOPE DOCKING TRAJECTORY:
-                    let gyroX = orbitX, gyroY = orbitY, gyroScale = isMobile ? 0.55 : 0.65, gyroOpacity = 0.35;
-                    if (p < 0.20) {
-                        gyroX = orbitX;
-                        gyroY = orbitY;
-                        gyroScale = isMobile ? 0.55 : 0.65;
-                        gyroOpacity = 0.30 + p * 0.2;
-                        if (badgeGyro) badgeGyro.style.opacity = '0';
-                    } else if (p >= 0.20 && p < 0.60) {
-                        const enterT = Math.min(1, (p - 0.20) / 0.20);
-                        gyroX = (1 - enterT) * orbitX;
-                        gyroY = (1 - enterT) * orbitY;
-                        gyroScale = (isMobile ? 0.55 : 0.65) + enterT * ((isMobile ? 1.05 : 1.35) - (isMobile ? 0.55 : 0.65));
-                        gyroOpacity = 0.35 + enterT * 0.65;
-                        if (badgeGyro) badgeGyro.style.opacity = '0';
-                    } else {
-                        const exitT = Math.min(1, (p - 0.60) / 0.20);
-                        gyroX = exitT * orbitX;
-                        gyroY = exitT * orbitY;
-                        gyroScale = (isMobile ? 1.05 : 1.35) - exitT * ((isMobile ? 1.05 : 1.35) - (isMobile ? 0.60 : 0.70));
-                        gyroOpacity = 1.0 - exitT * 0.10;
-                        if (badgeGyro) badgeGyro.style.opacity = exitT > 0.5 ? '1' : '0';
-                    }
-                    if (spatialGyro) {
-                        spatialGyro.style.transform = `translate3d(${gyroX}px, ${gyroY}px, 0) scale(${gyroScale})`;
-                        spatialGyro.style.opacity = gyroOpacity;
-                    }
+                            layerMid.style.transform = `translate3d(0, 0, -4px)`;
+                            layerMid.style.opacity = '0.9';
 
-                    // 3. PRISMATIC DIAMOND DOCKING TRAJECTORY:
-                    let prismX = 0, prismY = isMobile ? 90 : 140, prismScale = isMobile ? 0.50 : 0.60, prismOpacity = 0.25;
-                    if (p < 0.55) {
-                        prismY = (isMobile ? 90 : 140) - p * 30;
-                        prismScale = (isMobile ? 0.50 : 0.60) + p * 0.15;
-                        prismOpacity = 0.25 + p * 0.25;
-                        if (badgePrism) badgePrism.style.opacity = '0';
-                    } else {
-                        const enterT = Math.min(1, (p - 0.55) / 0.22);
-                        prismY = (1 - enterT) * (isMobile ? 70 : 110);
-                        prismScale = (isMobile ? 0.58 : 0.70) + enterT * ((isMobile ? 1.05 : 1.40) - (isMobile ? 0.58 : 0.70));
-                        prismOpacity = 0.50 + enterT * 0.50;
-                        if (badgePrism) badgePrism.style.opacity = enterT > 0.5 ? '1' : '0';
-                    }
-                    if (spatialPrism) {
-                        spatialPrism.style.transform = `translate3d(${prismX}px, ${prismY}px, 0) scale(${prismScale})`;
-                        spatialPrism.style.opacity = prismOpacity;
+                            layerDeep.style.transform = `translate3d(0, 0, -8px)`;
+                            layerDeep.style.opacity = '0.8';
+
+                            layerTerminal.style.opacity = '0';
+                            layerTerminal.style.pointerEvents = 'none';
+                        } else if (p >= 0.25 && p < 0.65) {
+                            // ── PHASE 2: 3D EXPLODED LAYER DISASSEMBLY (APPLE KEYNOTE EXPLODE) ──
+                            const explodeT = Math.min(1, Math.max(0, (p - 0.25) / 0.22));
+                            const rotX = 18 + explodeT * 10;
+                            const rotY = -18 - explodeT * 10;
+                            const rotZ = 3 + explodeT * 3;
+
+                            viewportRig.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(${isMobile ? 0.80 : 1.08})`;
+
+                            // Front Layer lifts forward in 3D (+90px Z, -30px Y)
+                            const frontZ = explodeT * (isMobile ? 65 : 95);
+                            const frontY = -explodeT * (isMobile ? 20 : 30);
+                            layerFront.style.transform = `translate3d(0, ${frontY}px, ${frontZ}px) scale(1.02)`;
+                            layerFront.style.opacity = '1';
+                            layerFront.style.boxShadow = `0 ${30 + explodeT * 20}px ${70 + explodeT * 30}px rgba(14, 165, 233, 0.35)`;
+
+                            // Mid Layer stays suspended in center
+                            layerMid.style.transform = `translate3d(0, 0, 0px)`;
+                            layerMid.style.opacity = '1';
+
+                            // Deep Layer sinks back in 3D (-90px Z, +30px Y)
+                            const deepZ = -explodeT * (isMobile ? 65 : 95);
+                            const deepY = explodeT * (isMobile ? 20 : 30);
+                            layerDeep.style.transform = `translate3d(0, ${deepY}px, ${deepZ}px) scale(0.98)`;
+                            layerDeep.style.opacity = '1';
+
+                            layerTerminal.style.opacity = '0';
+                            layerTerminal.style.pointerEvents = 'none';
+                        } else {
+                            // ── PHASE 3: SNAP REASSEMBLY & HOLOGRAPHIC PRODUCTION LAUNCHPAD ──
+                            const reassembleT = Math.min(1, (p - 0.65) / 0.20);
+                            const snapIn = 1 - reassembleT;
+
+                            viewportRig.style.transform = `perspective(1200px) rotateX(${28 - reassembleT * 20}deg) rotateY(${-28 + reassembleT * 20}deg) rotateZ(${6 - reassembleT * 6}deg) scale(${isMobile ? 0.85 : 1.15})`;
+
+                            layerFront.style.transform = `translate3d(0, ${-snapIn * 25}px, ${snapIn * 80}px)`;
+                            layerMid.style.transform = `translate3d(0, 0, 0px)`;
+                            layerDeep.style.transform = `translate3d(0, ${snapIn * 25}px, ${-snapIn * 80}px)`;
+
+                            // Terminal illuminates and crowns center
+                            layerTerminal.style.opacity = Math.min(1, reassembleT * 1.5).toString();
+                            layerTerminal.style.transform = `translate3d(0, 0, ${reassembleT * 20}px) scale(${0.95 + reassembleT * 0.05})`;
+                            layerTerminal.style.pointerEvents = reassembleT > 0.8 ? 'auto' : 'none';
+                        }
                     }
 
                     // ── PHASE 1: SCENE 1 TEXT & CARDS (Progress 0.0 -> 0.33) ──
