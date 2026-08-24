@@ -2679,6 +2679,39 @@
                 opacity: 1;
             }
         }
+
+        /* ── ULTRA-DEEP LUXURY TEXT CONTRAST SHADOWS (NEVER MIX WITH WHITE/LIGHT BACKGROUNDS) ── */
+        .luxury-shadow-title {
+            color: #ffffff !important;
+            text-shadow: 
+                0 1px 3px rgba(0, 0, 0, 0.95),
+                0 4px 12px rgba(15, 23, 42, 0.90),
+                0 10px 28px rgba(0, 0, 0, 0.85),
+                0 20px 50px rgba(0, 0, 0, 0.70) !important;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+        }
+
+        .luxury-shadow-desc {
+            color: rgba(255, 255, 255, 0.95) !important;
+            text-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.95),
+                0 3px 8px rgba(15, 23, 42, 0.90),
+                0 8px 20px rgba(0, 0, 0, 0.80) !important;
+            filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.7));
+        }
+
+        .luxury-shadow-mono {
+            color: #ffffff !important;
+            text-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.95),
+                0 2px 8px rgba(15, 23, 42, 0.90),
+                0 6px 16px rgba(0, 0, 0, 0.80) !important;
+            filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+        }
+
+        .luxury-shadow-line {
+            filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.85)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
+        }
         </style>
 
         <!-- ═══════════════════════════════════════════════════════════════════════
@@ -2918,52 +2951,52 @@
 
                     </div>
 
-                    <!-- ── FLOATING LEFT EXPLODED INFO HUD (PREMIUM PURE WHITE LUXURY TYPOGRAPHY & KINETIC SPATIAL MOTION) ── -->
-                    <div id="explode-hud-left" class="hidden lg:flex flex-col gap-3 absolute left-6 sm:left-12 lg:left-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none max-w-[350px] hud-kinetic-container">
-                        <!-- Dynamic Category Pill/Tag with subtle glow dot -->
+                    <!-- ── FLOATING LEFT EXPLODED INFO HUD (PURE LUXURY TEXT SHADOW & ZERO-CARD CLEAN TYPOGRAPHY) ── -->
+                    <div id="explode-hud-left" class="hidden lg:flex flex-col gap-2.5 absolute left-6 sm:left-12 lg:left-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none max-w-[360px] hud-kinetic-container">
+                        <!-- Dynamic Category with subtle glow dot -->
                         <div class="inline-flex items-center gap-2">
-                            <span id="dyn-left-dot" class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
-                            <span id="dyn-left-category" class="text-[11px] font-mono font-bold tracking-[0.22em] text-white/90 uppercase transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">01 / MONOLITH AWAKENING</span>
+                            <span id="dyn-left-dot" class="w-2 h-2 rounded-full bg-white animate-ping luxury-shadow-line"></span>
+                            <span id="dyn-left-category" class="text-[11.5px] font-mono font-bold tracking-[0.24em] text-white uppercase transition-colors duration-300 luxury-shadow-mono">01 / MONOLITH AWAKENING</span>
                         </div>
 
-                        <!-- Main dynamic headline container with luxury white typography -->
-                        <div id="dyn-left-border" class="border-l-[3px] border-white/80 pl-4 space-y-1.5 transition-all duration-300">
+                        <!-- Main dynamic headline container with ultra-deep text shadow (no card box) -->
+                        <div id="dyn-left-border" class="border-l-[3.5px] border-white pl-4 space-y-1.5 transition-all duration-300 luxury-shadow-line">
                             <div class="kinetic-title-wrap">
-                                <div id="dyn-left-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-tight transition-all duration-300 drop-shadow-[0_3px_16px_rgba(0,0,0,0.45)]">
+                                <div id="dyn-left-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-tight transition-all duration-300 luxury-shadow-title">
                                     Next-Gen Digital Systems
                                 </div>
                             </div>
-                            <p id="dyn-left-desc" class="text-xs sm:text-sm text-white/85 font-sans leading-relaxed transition-all duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
+                            <p id="dyn-left-desc" class="text-xs sm:text-sm text-white/95 font-sans leading-relaxed transition-all duration-300 luxury-shadow-desc">
                                 High-craft web platforms, AI workspaces, and kinetic 3D experiences engineered with obsessive precision.
                             </p>
                             <div class="pt-1 flex items-center gap-2">
-                                <span id="dyn-left-tag" class="px-3.5 py-1 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 text-[10px] font-mono font-bold text-white tracking-wider shadow-sm transition-all duration-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]">
+                                <span id="dyn-left-tag" class="text-[11px] font-mono font-extrabold text-white tracking-wider uppercase transition-all duration-300 luxury-shadow-mono">
                                     1400PX SPATIAL FOV
                                 </span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ── FLOATING RIGHT EXPLODED INFO HUD (PREMIUM PURE WHITE METRICS TYPOGRAPHY & KINETIC SPATIAL MOTION) ── -->
-                    <div id="explode-hud-right" class="hidden lg:flex flex-col gap-3 absolute right-6 sm:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none max-w-[330px] text-right hud-kinetic-container">
-                        <!-- Dynamic Category Pill/Tag with subtle glow dot -->
+                    <!-- ── FLOATING RIGHT EXPLODED INFO HUD (PURE LUXURY TEXT SHADOW & ZERO-CARD CLEAN TYPOGRAPHY) ── -->
+                    <div id="explode-hud-right" class="hidden lg:flex flex-col gap-2.5 absolute right-6 sm:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none max-w-[340px] text-right hud-kinetic-container">
+                        <!-- Dynamic Category with subtle glow dot -->
                         <div class="inline-flex items-center justify-end gap-2 self-end">
-                            <span id="dyn-right-category" class="text-[11px] font-mono font-bold tracking-[0.22em] text-white/90 uppercase transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">DEPTH AND HOVER TELEMETRY</span>
-                            <span id="dyn-right-dot" class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                            <span id="dyn-right-category" class="text-[11.5px] font-mono font-bold tracking-[0.24em] text-white uppercase transition-colors duration-300 luxury-shadow-mono">DEPTH AND HOVER TELEMETRY</span>
+                            <span id="dyn-right-dot" class="w-2 h-2 rounded-full bg-white animate-pulse luxury-shadow-line"></span>
                         </div>
 
-                        <!-- Main dynamic spec container with luxury white typography -->
-                        <div id="dyn-right-border" class="border-r-[3px] border-white/80 pr-4 space-y-1.5 transition-all duration-300">
+                        <!-- Main dynamic spec container with ultra-deep text shadow (no card box) -->
+                        <div id="dyn-right-border" class="border-r-[3.5px] border-white pr-4 space-y-1.5 transition-all duration-300 luxury-shadow-line">
                             <div class="kinetic-title-wrap">
-                                <div id="dyn-right-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-tight transition-all duration-300 drop-shadow-[0_3px_16px_rgba(0,0,0,0.45)]">
+                                <div id="dyn-right-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-tight transition-all duration-300 luxury-shadow-title">
                                     Zero-G Levitation
                                 </div>
                             </div>
-                            <p id="dyn-right-desc" class="text-xs sm:text-sm text-white/85 font-sans leading-relaxed transition-all duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
+                            <p id="dyn-right-desc" class="text-xs sm:text-sm text-white/95 font-sans leading-relaxed transition-all duration-300 luxury-shadow-desc">
                                 Damped spring orbital physics at locked 120 FPS.
                             </p>
                             <div class="pt-1 flex items-center justify-end gap-2">
-                                <span id="dyn-right-tag" class="px-3.5 py-1 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 text-[10px] font-mono font-bold text-white tracking-wider shadow-sm transition-all duration-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]">
+                                <span id="dyn-right-tag" class="text-[11px] font-mono font-extrabold text-white tracking-wider uppercase transition-all duration-300 luxury-shadow-mono">
                                     100% HEALTH IDLE
                                 </span>
                             </div>
@@ -3674,50 +3707,50 @@
 
                         // Step B: Morph Content at Keyframe Apex & Launch Staggered Reveal
                         setTimeout(() => {
-                            // Update Typography & Text Content
+                            // Update Typography & Text Content (Pure Luxury Shadows, 0% Washed Out, No Card Box)
                             if (dynLeftCategory) {
                                 dynLeftCategory.textContent = d.leftCat;
-                                dynLeftCategory.className = `text-[11px] font-mono font-bold tracking-[0.22em] ${d.leftCatColor} uppercase transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]`;
+                                dynLeftCategory.className = `text-[11.5px] font-mono font-bold tracking-[0.24em] text-white uppercase transition-colors duration-300 luxury-shadow-mono`;
                             }
                             if (dynLeftTitle) {
                                 dynLeftTitle.textContent = d.leftTitle;
-                                dynLeftTitle.className = `font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-tight transition-all duration-300 drop-shadow-[0_3px_16px_rgba(0,0,0,0.45)] kinetic-text-in`;
+                                dynLeftTitle.className = `font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-tight transition-all duration-300 luxury-shadow-title kinetic-text-in`;
                             }
                             if (dynLeftDesc) {
                                 dynLeftDesc.textContent = d.leftDesc;
-                                dynLeftDesc.className = `text-xs sm:text-sm text-white/85 font-sans leading-relaxed transition-all duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]`;
+                                dynLeftDesc.className = `text-xs sm:text-sm text-white/95 font-sans leading-relaxed transition-all duration-300 luxury-shadow-desc`;
                                 dynLeftDesc.style.opacity = '1';
                             }
                             if (dynLeftTag) {
                                 dynLeftTag.textContent = d.leftTag;
-                                dynLeftTag.className = `px-3.5 py-1 rounded-full ${d.leftTagClass} border text-[10px] font-mono font-bold tracking-wider shadow-sm transition-all duration-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] kinetic-tag-in`;
+                                dynLeftTag.className = `text-[11px] font-mono font-extrabold text-white tracking-wider uppercase transition-all duration-300 luxury-shadow-mono kinetic-tag-in`;
                             }
                             if (dynLeftBorder) {
-                                dynLeftBorder.className = `border-l-[3px] ${d.leftBorderClass} pl-4 space-y-1.5 transition-all duration-300 kinetic-line-in`;
+                                dynLeftBorder.className = `border-l-[3.5px] border-white pl-4 space-y-1.5 transition-all duration-300 luxury-shadow-line kinetic-line-in`;
                             }
-                            if (dynLeftDot) dynLeftDot.className = `w-1.5 h-1.5 rounded-full ${d.leftDotClass} animate-ping`;
+                            if (dynLeftDot) dynLeftDot.className = `w-2 h-2 rounded-full bg-white animate-ping luxury-shadow-line`;
 
                             if (dynRightCategory) {
                                 dynRightCategory.textContent = d.rightCat;
-                                dynRightCategory.className = `text-[11px] font-mono font-bold tracking-[0.22em] ${d.rightCatColor} uppercase transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]`;
+                                dynRightCategory.className = `text-[11.5px] font-mono font-bold tracking-[0.24em] text-white uppercase transition-colors duration-300 luxury-shadow-mono`;
                             }
                             if (dynRightTitle) {
                                 dynRightTitle.textContent = d.rightTitle;
-                                dynRightTitle.className = `font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-tight transition-all duration-300 drop-shadow-[0_3px_16px_rgba(0,0,0,0.45)] kinetic-text-in`;
+                                dynRightTitle.className = `font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-tight transition-all duration-300 luxury-shadow-title kinetic-text-in`;
                             }
                             if (dynRightDesc) {
                                 dynRightDesc.textContent = d.rightDesc;
-                                dynRightDesc.className = `text-xs sm:text-sm text-white/85 font-sans leading-relaxed transition-all duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]`;
+                                dynRightDesc.className = `text-xs sm:text-sm text-white/95 font-sans leading-relaxed transition-all duration-300 luxury-shadow-desc`;
                                 dynRightDesc.style.opacity = '1';
                             }
                             if (dynRightTag) {
                                 dynRightTag.textContent = d.rightTag;
-                                dynRightTag.className = `px-3.5 py-1 rounded-full ${d.rightTagClass} border text-[10px] font-mono font-bold tracking-wider shadow-sm transition-all duration-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] kinetic-tag-in`;
+                                dynRightTag.className = `text-[11px] font-mono font-extrabold text-white tracking-wider uppercase transition-all duration-300 luxury-shadow-mono kinetic-tag-in`;
                             }
                             if (dynRightBorder) {
-                                dynRightBorder.className = `border-r-[3px] ${d.rightBorderClass} pr-4 space-y-1.5 transition-all duration-300 kinetic-line-in`;
+                                dynRightBorder.className = `border-r-[3.5px] border-white pr-4 space-y-1.5 transition-all duration-300 luxury-shadow-line kinetic-line-in`;
                             }
-                            if (dynRightDot) dynRightDot.className = `w-1.5 h-1.5 rounded-full ${d.rightDotClass} animate-pulse`;
+                            if (dynRightDot) dynRightDot.className = `w-2 h-2 rounded-full bg-white animate-pulse luxury-shadow-line`;
 
                         }, 160);
                     }
