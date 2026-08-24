@@ -82,14 +82,14 @@
       delete raw['project-type'];
     }
 
-    // Visual loading state & THANK YOU Loader Overlay (Pearly White Theme)
+    // Visual loading state & THANK YOU Loader Overlay (Pearly White Fullscreen Theme)
     let overlay = document.getElementById('inquiry-success-loading-modal');
     if (!overlay) {
       overlay = document.createElement('div');
       overlay.id = 'inquiry-success-loading-modal';
-      overlay.className = 'fixed inset-0 z-[9999999] flex flex-col items-center justify-center bg-[#f1f5f9]/94 backdrop-blur-2xl transition-all duration-400';
+      overlay.className = 'fixed inset-0 z-[9999999] flex flex-col items-center justify-center bg-[#f1f5f9]/98 backdrop-blur-3xl transition-all duration-500';
       overlay.innerHTML = `
-        <div class="flex flex-col items-center justify-center p-8 sm:p-10 rounded-3xl text-center max-w-sm w-full mx-4 bg-white/90 border border-slate-200/90 shadow-[0_30px_90px_-15px_rgba(15,23,42,0.18)]">
+        <div class="flex flex-col items-center justify-center p-6 sm:p-12 text-center max-w-2xl w-full mx-auto">
             <svg height="0" width="0" viewBox="0 0 64 64" class="absolute">
               <defs>
                 <linearGradient gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="sms-b-inj">
@@ -99,7 +99,7 @@
                 <linearGradient gradientUnits="userSpaceOnUse" y2="0" x2="0" y1="64" x1="0" id="sms-c-inj">
                   <stop stop-color="#FFC800"></stop>
                   <stop stop-color="#F0F" offset="1"></stop>
-                  <animateTransform repeatCount="indefinite" keySplines=".42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1" keyTimes="0; 0.125; 0.25; 0.375; 0.5; 0.625; 0.75; 0.875; 1" dur="8s" values="0 32 32;-270 32 32;-270 32 32;-540 32 32;-540 32 32;-810 32 32;-810 32 32;-1080 32 32;-1080 32 32" type="rotate" attributeName="gradientTransform"></animateTransform>
+                  <animateTransform repeatCount="indefinite" keySplines=".42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1" keyTimes="0; 0.125; 0.25; 0.375; 0.5; 0.625; 0.75; 0.875; 1" dur="6s" values="0 32 32;-270 32 32;-270 32 32;-540 32 32;-540 32 32;-810 32 32;-810 32 32;-1080 32 32;-1080 32 32" type="rotate" attributeName="gradientTransform"></animateTransform>
                 </linearGradient>
                 <linearGradient gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="sms-d-inj">
                   <stop stop-color="#00E0ED"></stop>
@@ -108,56 +108,56 @@
               </defs>
             </svg>
 
-            <!-- Animated "THANK YOU" SelfMadeSystem Full Vector Glyphs -->
-            <div class="flex flex-col items-center justify-center mb-6 gap-2">
+            <!-- Grand Scale Animated "THANK YOU" Glyphs -->
+            <div class="flex flex-col items-center justify-center mb-8 gap-4 sm:gap-6 scale-100 sm:scale-110 md:scale-125">
               <!-- Row 1: T - H - A - N - K Vector Glyphs -->
-              <div class="loader-you flex items-center justify-center gap-1">
+              <div class="loader-you flex items-center justify-center gap-2 sm:gap-3">
                 <!-- T -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="38" width="38" class="inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" class="w-12 h-12 sm:w-16 sm:h-16 inline-block filter drop-shadow-md">
                   <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b-inj)" d="M 8,12 H 56 M 32,12 V 52" class="dash-uiverse" pathLength="360"></path>
                 </svg>
                 <!-- H -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="38" width="38" class="inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" class="w-12 h-12 sm:w-16 sm:h-16 inline-block filter drop-shadow-md">
                   <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-c-inj)" d="M 12,12 V 52 M 12,32 H 52 M 52,12 V 52" class="dash-uiverse" pathLength="360"></path>
                 </svg>
                 <!-- A -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="38" width="38" class="inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" class="w-12 h-12 sm:w-16 sm:h-16 inline-block filter drop-shadow-md">
                   <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-d-inj)" d="M 10,52 L 32,12 L 54,52 M 18,36 H 46" class="dash-uiverse" pathLength="360"></path>
                 </svg>
                 <!-- N -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="38" width="38" class="inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" class="w-12 h-12 sm:w-16 sm:h-16 inline-block filter drop-shadow-md">
                   <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b-inj)" d="M 14,52 V 12 L 50,52 V 12" class="dash-uiverse" pathLength="360"></path>
                 </svg>
                 <!-- K -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="38" width="38" class="inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" class="w-12 h-12 sm:w-16 sm:h-16 inline-block filter drop-shadow-md">
                   <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-c-inj)" d="M 14,12 V 52 M 48,12 L 14,32 L 48,52" class="dash-uiverse" pathLength="360"></path>
                 </svg>
               </div>
 
               <!-- Row 2: Y - O - U Vector Glyphs -->
-              <div class="loader-you flex items-center justify-center gap-1">
+              <div class="loader-you flex items-center justify-center gap-2 sm:gap-3">
                 <!-- Y -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="42" width="42" class="inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" class="w-14 h-14 sm:w-20 sm:h-20 inline-block filter drop-shadow-md">
                   <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b-inj)" d="M 54.722656,3.9726563 A 2.0002,2.0002 0 0 0 54.941406,4 h 5.007813 C 58.955121,17.046124 49.099667,27.677057 36.121094,29.580078 a 2.0002,2.0002 0 0 0 -1.708985,1.978516 V 60 H 29.587891 V 31.558594 A 2.0002,2.0002 0 0 0 27.878906,29.580078 C 14.900333,27.677057 5.0448787,17.046124 4.0507812,4 H 9.28125 c 1.231666,11.63657 10.984383,20.554048 22.6875,20.734375 a 2.0002,2.0002 0 0 0 0.02344,0 c 11.806958,0.04283 21.70649,-9.003371 22.730469,-20.7617187 z" class="dash-uiverse" id="sms-y-inj" pathLength="360"></path>
                 </svg>
                 <!-- O -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="42" width="42" class="inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" class="w-14 h-14 sm:w-20 sm:h-20 inline-block filter drop-shadow-md">
                   <path stroke-linejoin="round" stroke-linecap="round" stroke-width="10" stroke="url(#sms-c-inj)" d="M 32 32 m 0 -27 a 27 27 0 1 1 0 54 a 27 27 0 1 1 0 -54" class="spin-uiverse" id="sms-o-inj" pathLength="360"></path>
                 </svg>
-                <div class="w-1" style="width:0.25em;"></div>
+                <div class="w-2" style="width:0.5em;"></div>
                 <!-- U -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="42" width="42" class="inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" class="w-14 h-14 sm:w-20 sm:h-20 inline-block filter drop-shadow-md">
                   <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-d-inj)" d="M 4,4 h 4.6230469 v 25.919922 c -0.00276,11.916203 9.8364941,21.550422 21.7500001,21.296875 11.616666,-0.240651 21.014356,-9.63894 21.253906,-21.25586 a 2.0002,2.0002 0 0 0 0,-0.04102 V 4 H 56.25 v 25.919922 c 0,14.33873 -11.581192,25.919922 -25.919922,25.919922 a 2.0002,2.0002 0 0 0 -0.0293,0 C 15.812309,56.052941 3.998433,44.409961 4,29.919922 Z" class="dash-uiverse" id="sms-u-inj" pathLength="360"></path>
                 </svg>
               </div>
             </div>
 
-            <div class="space-y-1.5 text-center">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-extrabold tracking-widest uppercase shadow-xs">
+            <div class="space-y-2 text-center mt-4">
+                <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-600 text-white text-[11px] font-extrabold tracking-widest uppercase shadow-md">
                     <span>SUBMITTED</span>
                 </div>
-                <p class="text-slate-900 font-extrabold text-lg sm:text-xl" style="font-family:'Outfit', sans-serif;">Preparing Your Boarding Pass...</p>
-                <p class="text-slate-500 text-xs font-semibold">Securing cloud intake & lead routing</p>
+                <p class="text-slate-900 font-extrabold text-xl sm:text-2xl" style="font-family:'Outfit', sans-serif;">Preparing Your Boarding Pass...</p>
+                <p class="text-slate-500 text-xs sm:text-sm font-semibold">Securing cloud intake & lead routing</p>
             </div>
         </div>
       `;
@@ -209,9 +209,9 @@
       timeline: raw.timeline || '2–4 Weeks'
     }));
 
-    // Seamless 1.85s transition after SelfMadeSystem YOU animation plays smoothly
+    // Seamless 3.5s transition: full animation draw + 1.8s hold state
     setTimeout(() => {
       window.location.assign('thank-you.html');
-    }, 1850);
+    }, 3500);
   });
 })();
