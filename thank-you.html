@@ -115,43 +115,20 @@
             gap: 0.85rem;
         }
 
-        /* RIGHT ICON COLUMN (THEME GRADIENT) */
+        /* RIGHT ICON COLUMN (LUXURY STUDIO GRADIENT) */
         .container-icons {
-            width: 62px;
-            padding: 1.25rem 0.5rem;
+            width: 58px;
+            padding: 1.4rem 0.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            background-color: #2563eb;
-            animation: color-card 10s infinite;
+            background: linear-gradient(180deg, #1e1b4b 0%, #312e81 40%, #4338ca 75%, #2563eb 100%);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
             z-index: 5;
             flex-shrink: 0;
-        }
-
-        .container-icons .icon {
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @keyframes color-card {
-            0% {
-                background-color: #2563eb;
-            }
-            25% {
-                background-color: #6366f1;
-            }
-            50% {
-                background-color: #9333ea;
-            }
-            75% {
-                background-color: #0284c7;
-            }
-            100% {
-                background-color: #2563eb;
-            }
+            box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
@@ -216,33 +193,40 @@
 
                     <!-- BOTTOM METADATA & ACTIONS -->
                     <div class="flex items-center justify-between pt-1">
-                        <button id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300 text-xs font-mono font-bold text-slate-800 transition-all cursor-pointer">
-                            <span id="lead-id-display">Inquiry Confirmed</span>
-                            <span class="material-symbols-outlined text-[14px] text-slate-500" id="copy-icon">content_copy</span>
+                        <!-- CLEAN MINIMAL LEAD ID PILL -->
+                        <button id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Lead ID" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs font-mono font-bold text-slate-700 transition-all cursor-pointer group shadow-2xs">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                            <span id="lead-id-display">#AG-9421</span>
+                            <span class="material-symbols-outlined text-[13px] text-slate-400 group-hover:text-slate-700 transition-colors" id="copy-icon">content_copy</span>
                         </button>
 
-                        <a href="projects.html" class="inline-flex items-center gap-1.5 bg-[#0f172a] text-white hover:bg-indigo-600 px-4 py-2 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-md active:scale-95">
-                            <span>Back to Home</span>
-                            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        <!-- HOME BUTTON -->
+                        <a href="projects.html" class="inline-flex items-center gap-1.5 bg-[#0f172a] text-white hover:bg-indigo-600 px-4 py-2 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-md active:scale-95 group">
+                            <span>Home</span>
+                            <span class="material-symbols-outlined text-[14px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
                         </a>
                     </div>
 
                 </div>
 
-                <!-- RIGHT SIDE ANIMATED COLOR STRIP (EXACT SCREENSHOT STYLE) -->
+                <!-- RIGHT SIDE LUXURY STUDIO BRAND STRIP -->
                 <div class="container-icons">
-                    <div class="icon">
-                        <span class="text-base select-none">✦</span>
+                    <!-- Top Starburst -->
+                    <div class="w-7 h-7 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-xs select-none shadow-xs">
+                        <span>✦</span>
                     </div>
 
-                    <!-- Center Monogram -->
-                    <div class="text-white/95 font-mono font-black text-xs tracking-widest rotate-90 my-auto select-none">
-                        ALGORA
+                    <!-- Center Rotated Monogram Pill -->
+                    <div class="py-3 px-1 rounded-full bg-white/[0.08] border border-white/10 backdrop-blur-sm">
+                        <span class="text-white font-['Outfit'] font-black text-[11px] tracking-[0.3em] rotate-90 block my-auto select-none">
+                            ALGORA
+                        </span>
                     </div>
 
-                    <!-- Bottom Badge Icon -->
-                    <div class="icon">
-                        <span class="text-sm select-none">✦</span>
+                    <!-- Bottom Studio Tag -->
+                    <div class="flex flex-col items-center gap-0.5 select-none opacity-80">
+                        <span class="text-[7.5px] font-mono font-bold tracking-widest text-indigo-200 uppercase">2025</span>
+                        <span class="text-[9px] text-white">✦</span>
                     </div>
                 </div>
 
@@ -256,7 +240,7 @@
         const cleanLeadId = rawSessionLeadId ? rawSessionLeadId.replace(/[^0-9A-Za-z]/g, '') : 'AG-9421';
         const formattedLeadId = cleanLeadId.startsWith('AG-') ? `#${cleanLeadId}` : `#AG-${cleanLeadId}`;
 
-        document.getElementById('lead-id-display').textContent = `ID: ${formattedLeadId}`;
+        document.getElementById('lead-id-display').textContent = formattedLeadId;
 
         // Construct Cloud Tracking URL for QR code
         let baseUrl = window.location.href.split('?')[0];
