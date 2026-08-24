@@ -2690,7 +2690,7 @@
 
                         <!-- SCENE 3: CATEGORY-DEFINING IMPACT & ACTION CENTER -->
                         <div id="hero-scene-3" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
                                 <span>✦ PRODUCTION DEPLOYMENT ACTIVE</span>
                             </div>
 
@@ -2705,11 +2705,11 @@
 
                             <!-- Action Buttons -->
                             <div class="flex flex-wrap items-center gap-4 pointer-events-auto">
-                                <a href="start-project.html" class="px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-mono font-bold text-xs tracking-wider uppercase transition-all duration-300 shadow-[0_10px_30px_rgba(14,165,233,0.35)] hover:shadow-[0_15px_40px_rgba(14,165,233,0.50)] active:scale-95 flex items-center gap-3">
+                                <a href="start-project.html" class="px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 via-indigo-600 to-sky-500 hover:from-purple-400 hover:to-sky-400 text-white font-mono font-bold text-xs tracking-wider uppercase transition-all duration-300 shadow-[0_10px_30px_rgba(168,85,247,0.35)] hover:shadow-[0_15px_40px_rgba(168,85,247,0.50)] active:scale-95 flex items-center gap-3">
                                     <span>COMMISSION AN EXPERIENCE</span>
                                     <span class="text-sm font-bold">&rarr;</span>
                                 </a>
-                                <button id="aurora-frequency-btn" class="px-6 py-4 rounded-full bg-white/95 hover:bg-white border border-sky-200 hover:border-sky-400 text-slate-900 font-mono font-bold text-xs tracking-wider uppercase transition-all duration-300 shadow-2xs hover:shadow-xs active:scale-95 flex items-center gap-2 cursor-pointer backdrop-blur-2xl">
+                                <button id="aurora-frequency-btn" class="px-6 py-4 rounded-full bg-white/95 hover:bg-white border border-purple-200 hover:border-purple-400 text-slate-900 font-mono font-bold text-xs tracking-wider uppercase transition-all duration-300 shadow-2xs hover:shadow-xs active:scale-95 flex items-center gap-2 cursor-pointer backdrop-blur-2xl">
                                     <span>⚡</span>
                                     <span id="aurora-freq-text">CRYSTAL SKY BLUE</span>
                                 </button>
@@ -2721,21 +2721,27 @@
                     <!-- ── RIGHT COLUMN (48%): PRESENTATION-GRADE 3D EXPLODED ARCHITECTURE VIEWPORT ── -->
                     <div class="w-full lg:w-[48%] h-[360px] sm:h-[460px] relative flex items-center justify-center select-none">
                         
-                        <!-- Ambient Atmospheric 3D Lighting Dome -->
-                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-300/35 via-cyan-200/25 to-blue-300/30 blur-3xl pointer-events-none"></div>
+                        <!-- Ambient Atmospheric 3D Lighting Dome (Morphs Dynamically) -->
+                        <div id="ambient-stage-glow" class="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-300/35 via-cyan-200/25 to-blue-300/30 blur-3xl pointer-events-none transition-all duration-500"></div>
 
                         <!-- 3D STAGE VIEWPORT & MASTER RIG -->
                         <div class="stage-3d-viewport">
                             <div id="viewport-rig" class="viewport-master-rig">
                                 
-                                <!-- ── LAYER 3: DEEP CORE / SYNTAX RUNTIME MATRIX (-80px Z in explode) ── -->
+                                <!-- ── LAYER 3: DEEP CORE / SYNTAX RUNTIME MATRIX (-110px Z in explode) ── -->
                                 <div id="layer-deep" class="exploded-layer layer-deep">
+                                    <!-- Dynamic Infographic Callout Pin -->
+                                    <div id="callout-deep" class="absolute -top-7 -left-4 px-3 py-1 rounded-full bg-slate-900/95 border border-sky-400 text-sky-300 text-[9.5px] font-mono font-bold tracking-wider uppercase shadow-[0_4px_16px_rgba(14,165,233,0.35)] opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+                                        <span>03 &bull; NEURAL KERNEL 0.38MS</span>
+                                    </div>
+
                                     <div class="flex items-center justify-between pb-2 border-b border-sky-900/60 text-[10px] text-sky-400">
                                         <div class="flex items-center gap-2">
                                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                                             <span>KERNEL &bull; RUNTIME MATRIX</span>
                                         </div>
-                                        <span>0.38 MS LATENCY</span>
+                                        <span id="telemetry-latency" class="font-mono text-emerald-400 font-bold">&lt; 0.38 MS</span>
                                     </div>
                                     <div class="space-y-1.5 text-[10.5px] leading-relaxed overflow-hidden">
                                         <p><span class="text-pink-400">async function</span> <span class="text-sky-300">initSpatialPipeline</span>(cluster) {</p>
@@ -2747,12 +2753,18 @@
                                     </div>
                                     <div class="pt-2 border-t border-sky-900/60 flex items-center justify-between text-[10px] text-slate-500">
                                         <span>CLUSTER: GLOBAL_EDGE</span>
-                                        <span>FPS: 120.0 LOCKED</span>
+                                        <span id="telemetry-fps" class="text-sky-400 font-bold">FPS: 120.0 LOCKED</span>
                                     </div>
                                 </div>
 
                                 <!-- ── LAYER 2: MIDDLE ENGINE / 3D WEBGL SHADER CANVAS (0px Z in explode) ── -->
                                 <div id="layer-mid" class="exploded-layer layer-mid">
+                                    <!-- Dynamic Infographic Callout Pin -->
+                                    <div id="callout-mid" class="absolute -bottom-6 -left-3 px-3 py-1 rounded-full bg-blue-900/95 border border-blue-400 text-blue-200 text-[9.5px] font-mono font-bold tracking-wider uppercase shadow-[0_4px_16px_rgba(37,99,235,0.35)] opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping"></span>
+                                        <span>02 &bull; WEBGL SHADER CANVAS 120FPS</span>
+                                    </div>
+
                                     <!-- Animated Wave Geometry Grid -->
                                     <div class="w-full h-full flex flex-col items-center justify-center relative p-6">
                                         <div class="w-full h-24 relative flex items-center justify-center">
@@ -2765,13 +2777,19 @@
                                         </div>
                                         <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 border border-sky-300 text-sky-900 text-[10px] font-mono font-bold uppercase shadow-xs">
                                             <span class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
-                                            <span>WEBGL SHADER ENGINE &bull; 120 FPS</span>
+                                            <span>COMPUTE ENGINE &bull; 8.4K MESH PTS</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- ── LAYER 1: FRONT GLASS UI & MICRO-INTERACTIONS (+80px Z in explode) ── -->
+                                <!-- ── LAYER 1: FRONT GLASS UI & MICRO-INTERACTIONS (+110px Z in explode) ── -->
                                 <div id="layer-front" class="exploded-layer layer-front">
+                                    <!-- Dynamic Infographic Callout Pin -->
+                                    <div id="callout-front" class="absolute -top-7 -right-3 px-3 py-1 rounded-full bg-white/95 border border-sky-400 text-sky-900 text-[9.5px] font-mono font-extrabold tracking-wider uppercase shadow-[0_4px_16px_rgba(14,165,233,0.30)] opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-ping"></span>
+                                        <span>01 &bull; GLASS HUD &bull; SUB-PIXEL</span>
+                                    </div>
+
                                     <!-- Top Window Traffic Light Bar -->
                                     <div class="flex items-center justify-between pb-3 border-b border-sky-100">
                                         <div class="flex items-center gap-2">
@@ -2811,8 +2829,8 @@
                                 </div>
 
                                 <!-- ── HOLOGRAPHIC REASSEMBLED TERMINAL OVERLAY (Activates in Scene 3) ── -->
-                                <div id="layer-terminal" class="exploded-layer opacity-0 pointer-events-none p-5 flex flex-col justify-between" style="background: rgba(15, 23, 42, 0.95); border: 2px solid #38bdf8; box-shadow: 0 0 50px rgba(14, 165, 233, 0.5);">
-                                    <div class="flex items-center justify-between pb-3 border-b border-sky-800 text-xs text-sky-300 font-mono font-bold">
+                                <div id="layer-terminal" class="exploded-layer opacity-0 pointer-events-none p-5 flex flex-col justify-between" style="background: rgba(15, 23, 42, 0.95); border: 2px solid #a855f7; box-shadow: 0 0 50px rgba(168, 85, 247, 0.45);">
+                                    <div class="flex items-center justify-between pb-3 border-b border-purple-800 text-xs text-purple-300 font-mono font-bold">
                                         <span class="flex items-center gap-2">
                                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                                             <span>PRODUCTION RUNTIME &bull; DEPLOYED</span>
@@ -2820,14 +2838,14 @@
                                         <span class="text-emerald-400">100% HEALTH</span>
                                     </div>
                                     <div class="space-y-2 text-xs font-mono text-slate-300">
-                                        <p class="text-emerald-400">&gt; algora deploy --release --target global</p>
+                                        <p class="text-purple-400">&gt; algora deploy --release --target global</p>
                                         <p class="text-sky-300">&gt;&gt; [OK] 3D Hydrodynamics Canvas Initialized</p>
-                                        <p class="text-sky-300">&gt;&gt; [OK] Spatial Monolith UI Mounted</p>
+                                        <p class="text-purple-300">&gt;&gt; [OK] Spatial Monolith UI Mounted</p>
                                         <p class="text-emerald-400 font-bold">&gt;&gt; SUCCESS: Ready to build category-defining experiences.</p>
                                     </div>
-                                    <div class="pt-3 border-t border-sky-800 flex items-center justify-between text-xs font-mono text-sky-400">
+                                    <div class="pt-3 border-t border-purple-800 flex items-center justify-between text-xs font-mono text-purple-400">
                                         <span>GLOBAL EDGE NETWORK</span>
-                                        <span class="text-white bg-sky-600 px-3 py-1 rounded-md font-bold">ALL SYSTEMS LIVE</span>
+                                        <span class="text-white bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-1 rounded-md font-bold shadow-xs">ALL SYSTEMS LIVE</span>
                                     </div>
                                 </div>
 
@@ -3164,6 +3182,8 @@
             // ═══════════════════════════════════════════════════════════════════
             (function initStickyScrollStoryEngine() {
                 const track = document.getElementById('hero-scroll-track');
+                const banner = document.getElementById('algora-collection-hero-banner');
+                const ambientGlow = document.getElementById('ambient-stage-glow');
                 const scene1 = document.getElementById('hero-scene-1');
                 const scene2 = document.getElementById('hero-scene-2');
                 const scene3 = document.getElementById('hero-scene-3');
@@ -3181,6 +3201,13 @@
                 const layerMid = document.getElementById('layer-mid');
                 const layerDeep = document.getElementById('layer-deep');
                 const layerTerminal = document.getElementById('layer-terminal');
+
+                // Infographic Telemetry Pins & Callouts
+                const calloutFront = document.getElementById('callout-front');
+                const calloutMid = document.getElementById('callout-mid');
+                const calloutDeep = document.getElementById('callout-deep');
+                const telemetryFps = document.getElementById('telemetry-fps');
+                const telemetryLatency = document.getElementById('telemetry-latency');
 
                 if (!track || !scene1 || !scene2 || !scene3) return;
 
@@ -3208,15 +3235,49 @@
                     const p = currentProgress;
 
                     // ═══════════════════════════════════════════════════════════
-                    // 🚀 3D EXPLODED ARCHITECTURE & SNAP REASSEMBLY PHYSICS
+                    // 🎨 DYNAMIC AMBIENT COLOR MORPHING (BLUISH -> INDIGO -> VIOLET/LAVENDER)
+                    // ═══════════════════════════════════════════════════════════
+                    if (banner) {
+                        let r, g, b, alpha;
+                        if (p < 0.5) {
+                            // Sky Blue (186, 230, 253) -> Electric Indigo (199, 210, 254)
+                            const t = p / 0.5;
+                            r = Math.round(186 + t * (199 - 186));
+                            g = Math.round(230 + t * (210 - 230));
+                            b = Math.round(253 + t * (254 - 253));
+                            alpha = (0.35 + t * 0.10).toFixed(2);
+                        } else {
+                            // Electric Indigo (199, 210, 254) -> Luxurious Violet Lavender (233, 213, 255)
+                            const t = (p - 0.5) / 0.5;
+                            r = Math.round(199 + t * (233 - 199));
+                            g = Math.round(210 + t * (213 - 210));
+                            b = Math.round(254 + t * (255 - 254));
+                            alpha = (0.45 + t * 0.10).toFixed(2);
+                        }
+                        banner.style.background = `radial-gradient(ellipse 90% 90% at 50% -10%, rgba(${r}, ${g}, ${b}, ${alpha}), rgba(255, 255, 255, 0.96))`;
+                    }
+
+                    if (ambientGlow) {
+                        if (p < 0.45) {
+                            ambientGlow.style.background = `radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(37, 99, 235, 0.15) 70%, transparent 100%)`;
+                        } else if (p < 0.70) {
+                            ambientGlow.style.background = `radial-gradient(circle, rgba(129, 140, 248, 0.40) 0%, rgba(79, 70, 229, 0.20) 70%, transparent 100%)`;
+                        } else {
+                            ambientGlow.style.background = `radial-gradient(circle, rgba(192, 132, 252, 0.45) 0%, rgba(147, 51, 234, 0.25) 70%, transparent 100%)`;
+                        }
+                    }
+
+                    // ═══════════════════════════════════════════════════════════
+                    // 🚀 3D ZOOM IN/OUT, SLIDE & EXPLODED ARCHITECTURE PHYSICS
                     // ═══════════════════════════════════════════════════════════
                     const isMobile = window.innerWidth < 1024;
 
                     if (viewportRig && layerFront && layerMid && layerDeep && layerTerminal) {
-                        if (p < 0.25) {
-                            // ── PHASE 1: HOLISTIC 3D APP VIEWPORT ──
+                        if (p < 0.24) {
+                            // ── PHASE 1: HOLISTIC 3D APP VIEWPORT (SMOOTH TILT & ZOOM) ──
                             const idleTilt = p * 15;
-                            viewportRig.style.transform = `perspective(1200px) rotateX(${18 + idleTilt}deg) rotateY(${-18 - idleTilt * 0.5}deg) rotateZ(3deg) scale(${isMobile ? 0.82 : 1.05})`;
+                            const idleZoom = (isMobile ? 0.85 : 1.05) + p * 0.15;
+                            viewportRig.style.transform = `perspective(1200px) translate3d(0, 0, 0) rotateX(${18 + idleTilt}deg) rotateY(${-18 - idleTilt * 0.5}deg) rotateZ(3deg) scale(${idleZoom})`;
                             
                             layerFront.style.transform = `translate3d(0, 0, 0px)`;
                             layerFront.style.opacity = '1';
@@ -3228,50 +3289,75 @@
                             layerDeep.style.transform = `translate3d(0, 0, -8px)`;
                             layerDeep.style.opacity = '0.8';
 
+                            // Hide callouts and terminal in Phase 1
+                            if (calloutFront) calloutFront.style.opacity = '0';
+                            if (calloutMid) calloutMid.style.opacity = '0';
+                            if (calloutDeep) calloutDeep.style.opacity = '0';
+
                             layerTerminal.style.opacity = '0';
                             layerTerminal.style.pointerEvents = 'none';
-                        } else if (p >= 0.25 && p < 0.65) {
-                            // ── PHASE 2: 3D EXPLODED LAYER DISASSEMBLY (APPLE KEYNOTE EXPLODE) ──
-                            const explodeT = Math.min(1, Math.max(0, (p - 0.25) / 0.22));
-                            const rotX = 18 + explodeT * 10;
-                            const rotY = -18 - explodeT * 10;
-                            const rotZ = 3 + explodeT * 3;
+                        } else if (p >= 0.24 && p < 0.65) {
+                            // ── PHASE 2: 3D EXPLODED LAYER DISASSEMBLY (ZOOM OUT + SLIDE + EXPLODE) ──
+                            const explodeT = Math.min(1, Math.max(0, (p - 0.24) / 0.22));
+                            const rotX = 18 + explodeT * 12;
+                            const rotY = -18 - explodeT * 14;
+                            const rotZ = 3 + explodeT * 4;
+                            const slideX = explodeT * (isMobile ? 10 : 25);
+                            const zoomScale = (isMobile ? 0.80 : 1.02) - explodeT * 0.04;
 
-                            viewportRig.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(${isMobile ? 0.80 : 1.08})`;
+                            viewportRig.style.transform = `perspective(1200px) translate3d(${slideX}px, 0, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(${zoomScale})`;
 
-                            // Front Layer lifts forward in 3D (+90px Z, -30px Y)
-                            const frontZ = explodeT * (isMobile ? 65 : 95);
-                            const frontY = -explodeT * (isMobile ? 20 : 30);
+                            // Front Layer lifts forward in 3D (+110px Z, -35px Y)
+                            const frontZ = explodeT * (isMobile ? 75 : 115);
+                            const frontY = -explodeT * (isMobile ? 22 : 36);
                             layerFront.style.transform = `translate3d(0, ${frontY}px, ${frontZ}px) scale(1.02)`;
                             layerFront.style.opacity = '1';
-                            layerFront.style.boxShadow = `0 ${30 + explodeT * 20}px ${70 + explodeT * 30}px rgba(14, 165, 233, 0.35)`;
+                            layerFront.style.boxShadow = `0 ${30 + explodeT * 25}px ${70 + explodeT * 35}px rgba(14, 165, 233, 0.40)`;
 
                             // Mid Layer stays suspended in center
                             layerMid.style.transform = `translate3d(0, 0, 0px)`;
                             layerMid.style.opacity = '1';
 
-                            // Deep Layer sinks back in 3D (-90px Z, +30px Y)
-                            const deepZ = -explodeT * (isMobile ? 65 : 95);
-                            const deepY = explodeT * (isMobile ? 20 : 30);
+                            // Deep Layer sinks back in 3D (-110px Z, +35px Y)
+                            const deepZ = -explodeT * (isMobile ? 75 : 115);
+                            const deepY = explodeT * (isMobile ? 22 : 36);
                             layerDeep.style.transform = `translate3d(0, ${deepY}px, ${deepZ}px) scale(0.98)`;
                             layerDeep.style.opacity = '1';
+
+                            // Reveal Infographic Telemetry Callout Badges
+                            const pinOpacity = explodeT > 0.45 ? Math.min(1, (explodeT - 0.45) * 2).toString() : '0';
+                            if (calloutFront) calloutFront.style.opacity = pinOpacity;
+                            if (calloutMid) calloutMid.style.opacity = pinOpacity;
+                            if (calloutDeep) calloutDeep.style.opacity = pinOpacity;
+
+                            // Live Infographic Latency Ticker Animation
+                            if (telemetryLatency) {
+                                const lat = (0.35 + Math.sin(Date.now() * 0.005) * 0.05).toFixed(2);
+                                telemetryLatency.textContent = `< ${lat} MS`;
+                            }
 
                             layerTerminal.style.opacity = '0';
                             layerTerminal.style.pointerEvents = 'none';
                         } else {
-                            // ── PHASE 3: SNAP REASSEMBLY & HOLOGRAPHIC PRODUCTION LAUNCHPAD ──
+                            // ── PHASE 3: SNAP REASSEMBLY & HOLOGRAPHIC PRODUCTION LAUNCHPAD (ZOOM IN) ──
                             const reassembleT = Math.min(1, (p - 0.65) / 0.20);
                             const snapIn = 1 - reassembleT;
+                            const zoomIn = (isMobile ? 0.88 : 1.18) * (0.95 + reassembleT * 0.05);
 
-                            viewportRig.style.transform = `perspective(1200px) rotateX(${28 - reassembleT * 20}deg) rotateY(${-28 + reassembleT * 20}deg) rotateZ(${6 - reassembleT * 6}deg) scale(${isMobile ? 0.85 : 1.15})`;
+                            viewportRig.style.transform = `perspective(1200px) translate3d(0, 0, ${reassembleT * 40}px) rotateX(${30 - reassembleT * 24}deg) rotateY(${-32 + reassembleT * 26}deg) rotateZ(${7 - reassembleT * 7}deg) scale(${zoomIn})`;
 
-                            layerFront.style.transform = `translate3d(0, ${-snapIn * 25}px, ${snapIn * 80}px)`;
+                            layerFront.style.transform = `translate3d(0, ${-snapIn * 30}px, ${snapIn * 90}px)`;
                             layerMid.style.transform = `translate3d(0, 0, 0px)`;
-                            layerDeep.style.transform = `translate3d(0, ${snapIn * 25}px, ${-snapIn * 80}px)`;
+                            layerDeep.style.transform = `translate3d(0, ${snapIn * 30}px, ${-snapIn * 90}px)`;
+
+                            // Fade out callouts during snap
+                            if (calloutFront) calloutFront.style.opacity = (snapIn * 0.5).toString();
+                            if (calloutMid) calloutMid.style.opacity = (snapIn * 0.5).toString();
+                            if (calloutDeep) calloutDeep.style.opacity = (snapIn * 0.5).toString();
 
                             // Terminal illuminates and crowns center
                             layerTerminal.style.opacity = Math.min(1, reassembleT * 1.5).toString();
-                            layerTerminal.style.transform = `translate3d(0, 0, ${reassembleT * 20}px) scale(${0.95 + reassembleT * 0.05})`;
+                            layerTerminal.style.transform = `translate3d(0, 0, ${reassembleT * 25}px) scale(${0.95 + reassembleT * 0.05})`;
                             layerTerminal.style.pointerEvents = reassembleT > 0.8 ? 'auto' : 'none';
                         }
                     }
