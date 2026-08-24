@@ -25,24 +25,57 @@
         /* ═══════════════════════════════════════════════════════════
            TICKET CONTAINER & GRAND 3D PHYSICAL STUDIO SHADOWS
            ═══════════════════════════════════════════════════════════ */
+        .ticket-3d-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 740px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+
+        /* 3D Physical Ground / Floor Contact Shadow (True Ambient Depth) */
+        .ticket-floor-shadow {
+            position: absolute;
+            bottom: -20px;
+            left: 6%;
+            width: 88%;
+            height: 45px;
+            background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.50) 0%, rgba(30, 27, 75, 0.30) 45%, transparent 75%);
+            filter: blur(16px);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         .container-cards-ticket {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            z-index: 10;
             filter: 
-                drop-shadow(0 30px 60px rgba(15, 23, 42, 0.18))
-                drop-shadow(0 14px 28px rgba(30, 27, 75, 0.12))
-                drop-shadow(0 4px 10px rgba(0, 0, 0, 0.06));
+                drop-shadow(0 20px 25px rgba(15, 23, 42, 0.22))
+                drop-shadow(0 8px 12px rgba(15, 23, 42, 0.15))
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
             transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .container-cards-ticket:hover {
-            transform: translateY(-6px) scale(1.005);
+        .ticket-3d-wrapper:hover .container-cards-ticket {
+            transform: translateY(-8px) scale(1.008);
             filter: 
-                drop-shadow(0 45px 85px rgba(15, 23, 42, 0.24))
-                drop-shadow(0 20px 40px rgba(79, 70, 229, 0.20))
-                drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));
+                drop-shadow(0 32px 45px rgba(15, 23, 42, 0.28))
+                drop-shadow(0 15px 22px rgba(79, 70, 229, 0.22))
+                drop-shadow(0 4px 8px rgba(0, 0, 0, 0.10));
+        }
+
+        .ticket-3d-wrapper:hover .ticket-floor-shadow {
+            transform: scale(1.06) translateY(6px);
+            opacity: 0.85;
+            filter: blur(20px);
         }
 
         /* Real physical punch hole cutout using CSS Mask aligned at 132px */
@@ -188,8 +221,13 @@
     <!-- ═══════════════════════════════════════════════════════════════════
          TICKET CONTAINER (GRAND LUXURY 3D BOARDING PASS WITH SCANNABLE QR)
          ═══════════════════════════════════════════════════════════════════ -->
-    <div class="container-cards-ticket ticket-smooth-enter my-auto px-4">
-        <div id="ticketCard" class="card-ticket">
+    <div class="ticket-3d-wrapper ticket-smooth-enter my-auto px-4">
+        <!-- 3D Ground Floor Contact Shadow -->
+        <div class="ticket-floor-shadow"></div>
+
+        <!-- 3D Ticket Container -->
+        <div class="container-cards-ticket">
+            <div id="ticketCard" class="card-ticket">
             
             <!-- LEFT REAL SCANNABLE QR CODE STUB -->
             <a href="track.html" id="qr-track-link" title="Scan or Click to Track Project Status" class="qr-section group">
@@ -298,6 +336,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <!-- LOGIC SCRIPT (REAL QR CODE & CLOUD TRACKING SYNC) -->
     <script>
