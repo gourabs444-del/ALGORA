@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- Dynamic QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -39,32 +41,40 @@
             height: auto;
             min-height: 290px;
             width: 100%;
-            max-width: 720px;
+            max-width: 740px;
             display: flex;
             color: #0f172a;
             background: #ffffff;
             border-radius: 1.75rem;
             z-index: 10;
-            /* Real physical punch hole cutout using CSS Mask */
+            /* Real physical punch hole cutout using CSS Mask aligned at 132px */
             -webkit-mask-image: 
-                radial-gradient(circle 15px at 82px 0px, transparent 14.5px, #000 15px),
-                radial-gradient(circle 15px at 82px 100%, transparent 14.5px, #000 15px);
+                radial-gradient(circle 15px at 132px 0px, transparent 14.5px, #000 15px),
+                radial-gradient(circle 15px at 132px 100%, transparent 14.5px, #000 15px);
             -webkit-mask-composite: source-in;
             mask-image: 
-                radial-gradient(circle 15px at 82px 0px, transparent 14.5px, #000 15px),
-                radial-gradient(circle 15px at 82px 100%, transparent 14.5px, #000 15px);
+                radial-gradient(circle 15px at 132px 0px, transparent 14.5px, #000 15px),
+                radial-gradient(circle 15px at 132px 100%, transparent 14.5px, #000 15px);
             mask-composite: intersect;
         }
 
-        /* BARCODE SECTION (LEFT STUB) */
-        .barcode-section {
+        /* QR CODE SECTION (LEFT STUB) */
+        .qr-section {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 82px;
-            padding: 1.25rem 0.5rem 1.25rem 1rem;
+            width: 132px;
+            padding: 1.25rem 0.75rem;
             flex-shrink: 0;
             background: #ffffff;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .qr-section:hover {
+            background: #f8fafc;
         }
 
         /* PERFORATED DASHED LINE (PERFECTLY CONNECTING TOP & BOTTOM CUTOUTS) */
@@ -72,7 +82,7 @@
             position: absolute;
             top: 15px;
             bottom: 15px;
-            left: 82px;
+            left: 132px;
             width: 1px;
             display: flex;
             align-items: center;
@@ -148,90 +158,25 @@
 <body class="min-h-screen flex flex-col items-center justify-center p-3 overflow-x-hidden">
 
     <!-- ═══════════════════════════════════════════════════════════════════
-         TICKET CONTAINER (GRAND LUXURY 3D BOARDING PASS LAYOUT)
+         TICKET CONTAINER (GRAND LUXURY 3D BOARDING PASS WITH SCANNABLE QR)
          ═══════════════════════════════════════════════════════════════════ -->
     <div class="container-cards-ticket my-auto px-4">
         <div class="card-ticket">
             
-            <!-- LEFT VERTICAL BARCODE STUB -->
-            <div class="barcode-section">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="54"
-                    height="210"
-                    viewBox="0 0 64 150"
-                    fill="#1e293b"
-                    class="opacity-75"
-                >
-                    <path d="M44 138V136.967H20V138H44Z"></path>
-                    <path d="M44 13.0328V12H20V13.0328H44Z"></path>
-                    <path d="M44 14.0656V13.5492H20V14.0656H44Z"></path>
-                    <path d="M44 15.6148V15.0984H20V15.6148H44Z"></path>
-                    <path d="M44 18.1967V17.6803H20V18.1967H44Z"></path>
-                    <path d="M44 20.2623V19.2295H20V20.2623H44Z"></path>
-                    <path d="M44 22.8443V22.3279H20V22.8443H44Z"></path>
-                    <path d="M44 23.877V23.3607H20V23.877H44Z"></path>
-                    <path d="M44 26.9754V24.9098H20V26.9754H44Z"></path>
-                    <path d="M44 28.0082V27.4918H20V28.0082H44Z"></path>
-                    <path d="M44 29.5574V29.041H20V29.5574H44Z"></path>
-                    <path d="M44 32.6557V30.5902H20V32.6557H44Z"></path>
-                    <path d="M44 33.6885V33.1721H20V33.6885H44Z"></path>
-                    <path d="M44 35.2376V34.7213H20V35.2376H44Z"></path>
-                    <path d="M44 36.2705V35.7541H20V36.2705H44Z"></path>
-                    <path d="M44 39.3689V37.3033H20V39.3689H44Z"></path>
-                    <path d="M44 40.918V40.4015H20V40.918H44Z"></path>
-                    <path d="M44 43.5001V41.4345H20V43.5001H44Z"></path>
-                    <path d="M44 45.0492V44.5327H20V45.0492H44Z"></path>
-                    <path d="M44 47.631V46.0819H20V47.631H44Z"></path>
-                    <path d="M44 49.1804V48.664H20V49.1804H44Z"></path>
-                    <path d="M44 51.2458V50.2131H20V51.2458H44Z"></path>
-                    <path d="M44 52.2787V51.7622H20V52.2787H44Z"></path>
-                    <path d="M44 54.3443V52.7952H20V54.3443H44Z"></path>
-                    <path d="M44 56.4099V55.377H20V56.4099H44Z"></path>
-                    <path d="M44 57.959V57.4426H20V57.959H44Z"></path>
-                    <path d="M44 60.0247V58.4753H20V60.0247H44Z"></path>
-                    <path d="M44 62.09V61.0573H20V62.09H44Z"></path>
-                    <path d="M44 63.6394V63.123H20V63.6394H44Z"></path>
-                    <path d="M44 66.7377V64.6721H20V66.7377H44Z"></path>
-                    <path d="M44 68.2868V67.7704H20V68.2868H44Z"></path>
-                    <path d="M44 69.3198V68.8033H20V69.3198H44Z"></path>
-                    <path d="M44 72.4181V71.3851H20V72.4181H44Z"></path>
-                    <path d="M44 73.4508V72.9345H20V73.4508H44Z"></path>
-                    <path d="M44 76.5493V74.4837H20V76.5493H44Z"></path>
-                    <path d="M44 77.5819V77.0655H20V77.5819H44Z"></path>
-                    <path d="M44 79.1311V78.6146H20V79.1311H44Z"></path>
-                    <path d="M44 80.6802V80.164H20V80.6802H44Z"></path>
-                    <path d="M44 82.2294V81.1967H20V82.2294H44Z"></path>
-                    <path d="M44 83.7788V83.2623H20V83.7788H44Z"></path>
-                    <path d="M44 86.3606V85.8441H20V86.3606H44Z"></path>
-                    <path d="M44 87.9097V87.3935H20V87.9097H44Z"></path>
-                    <path d="M44 91.0083V88.9427H20V91.0083H44Z"></path>
-                    <path d="M44 92.041V91.5245H20V92.041H44Z"></path>
-                    <path d="M44 94.623V92.5574H20V94.623H44Z"></path>
-                    <path d="M44 96.1722V95.6557H20V96.1722H44Z"></path>
-                    <path d="M44 97.7213V97.2048H20V97.7213H44Z"></path>
-                    <path d="M44 99.2704V98.2378H20V99.2704H44Z"></path>
-                    <path d="M44 100.82V100.303H20V100.82H44Z"></path>
-                    <path d="M44 103.402V102.885H20V103.402H44Z"></path>
-                    <path d="M44 105.467V104.434H20V105.467H44Z"></path>
-                    <path d="M44 108.049V106.5H20V108.049H44Z"></path>
-                    <path d="M44 109.082V108.566H20V109.082H44Z"></path>
-                    <path d="M44 112.18V111.148H20V112.18H44Z"></path>
-                    <path d="M44 113.213V112.697H20V113.213H44Z"></path>
-                    <path d="M44 114.762V114.246H20V114.762H44Z"></path>
-                    <path d="M44 118.377V116.311H20V118.377H44Z"></path>
-                    <path d="M44 119.41V118.893H20V119.41H44Z"></path>
-                    <path d="M44 120.442V119.926H20V120.442H44Z"></path>
-                    <path d="M44 122.508V120.959H20V122.508H44Z"></path>
-                    <path d="M44 124.574V123.541H20V124.574H44Z"></path>
-                    <path d="M44 127.672V125.607H20V127.672H44Z"></path>
-                    <path d="M44 128.705V128.188H20V128.705H44Z"></path>
-                    <path d="M44 130.254V129.738H20V130.254H44Z"></path>
-                    <path d="M44 132.32V131.287H20V132.32H44Z"></path>
-                    <path d="M44 135.418V133.869H20V135.418H44Z"></path>
-                    <path d="M44 136.451V135.934H20V136.451H44Z"></path>
-                </svg>
-            </div>
+            <!-- LEFT REAL SCANNABLE QR CODE STUB -->
+            <a href="track.html" id="qr-track-link" title="Scan or Click to Track Project Status" class="qr-section group">
+                <div class="p-1.5 rounded-xl bg-white shadow-xs border border-slate-200/90 group-hover:scale-105 group-hover:border-indigo-400 transition-all duration-200">
+                    <canvas id="ticket-qr" class="rounded-lg block"></canvas>
+                </div>
+                
+                <div class="mt-2.5 flex flex-col items-center">
+                    <span class="inline-flex items-center gap-1 text-[8.5px] font-extrabold tracking-wider text-indigo-700 uppercase group-hover:text-indigo-900 transition-colors">
+                        <span class="material-symbols-outlined text-[11px]">qr_code_scanner</span>
+                        <span>SCAN TO TRACK</span>
+                    </span>
+                    <span class="text-[8px] font-mono font-bold text-slate-400 mt-0.5">LIVE CLOUD</span>
+                </div>
+            </a>
 
             <!-- NOTCH SEPARATOR -->
             <div class="separator">
@@ -305,15 +250,45 @@
         </div>
     </div>
 
-    <!-- LOGIC SCRIPT -->
+    <!-- LOGIC SCRIPT (REAL QR CODE & CLOUD TRACKING SYNC) -->
     <script>
-        const leadId = sessionStorage.getItem('inquiryLeadId');
-        if (leadId) {
-            document.getElementById('lead-id-display').textContent = `ID: #${leadId.replace(/[^0-9A-Za-z]/g, '')}`;
+        const rawSessionLeadId = sessionStorage.getItem('inquiryLeadId');
+        const cleanLeadId = rawSessionLeadId ? rawSessionLeadId.replace(/[^0-9A-Za-z]/g, '') : 'AG-9421';
+        const formattedLeadId = cleanLeadId.startsWith('AG-') ? `#${cleanLeadId}` : `#AG-${cleanLeadId}`;
+
+        document.getElementById('lead-id-display').textContent = `ID: ${formattedLeadId}`;
+
+        // Construct Cloud Tracking URL for QR code
+        let baseUrl = window.location.href.split('?')[0];
+        if (baseUrl.endsWith('thank-you.html')) {
+            baseUrl = baseUrl.replace('thank-you.html', 'track.html');
+        } else {
+            baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1) + 'track.html';
+        }
+        const trackingUrl = `${baseUrl}?id=${encodeURIComponent(cleanLeadId)}`;
+
+        // Update link
+        const qrLink = document.getElementById('qr-track-link');
+        if (qrLink) {
+            qrLink.href = trackingUrl;
+        }
+
+        // Generate high-resolution scannable QR Code
+        try {
+            new QRious({
+                element: document.getElementById('ticket-qr'),
+                value: trackingUrl,
+                size: 96,
+                level: 'H',
+                foreground: '#0f172a',
+                background: '#ffffff'
+            });
+        } catch(e) {
+            console.error('QR Generator error:', e);
         }
 
         function copyLeadId() {
-            const rawId = sessionStorage.getItem('inquiryLeadId') || (document.getElementById('lead-id-display').textContent.replace(/[^0-9]/g, ''));
+            const rawId = formattedLeadId;
             navigator.clipboard.writeText(rawId).then(() => {
                 const icon = document.getElementById('copy-icon');
                 if (icon) {
