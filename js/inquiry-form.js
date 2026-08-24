@@ -215,9 +215,9 @@
       timeline: raw.timeline || '2–4 Weeks'
     }));
 
-    // Seamless 3.5s transition: full animation draw + 1.8s hold state
+    // Immediate smooth redirect to the separate Thank You Page Card
     setTimeout(() => {
       window.location.assign('thank-you.html');
-    }, 3500);
+    }, 400);
   });
 })();

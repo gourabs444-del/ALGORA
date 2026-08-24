@@ -921,16 +921,14 @@
                         }).catch(() => {});
                     } catch (fErr) {}
 
-                    // Seamless transition after full animation draw + 1.8s hold state (3500ms total)
+                    // Immediate smooth redirect to the separate Thank You Page Card
                     setTimeout(() => {
                         window.location.href = 'thank-you.html';
-                    }, 3500);
+                    }, 400);
 
                 } catch (err) {
                     console.error('Submission Exception:', err);
-                    setTimeout(() => {
-                        window.location.href = 'thank-you.html';
-                    }, 3500);
+                    window.location.href = 'thank-you.html';
                 }
             });
         }
