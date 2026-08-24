@@ -129,6 +129,100 @@
             flex-shrink: 0;
         }
 
+        /* ═══════════════════════════════════════════════════════════
+           PIXEL-PERFECT BADGES & PILLS (EXACT VERTICAL ALIGNMENT IN HTML2CANVAS)
+           ═══════════════════════════════════════════════════════════ */
+        .submitted-capsule {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #059669;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 9.5px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border-radius: 9999px;
+            padding: 0 12px;
+            height: 22px;
+            line-height: 22px;
+            box-sizing: border-box;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .pill-lead-id {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 28px;
+            padding: 0 12px;
+            background-color: #f8fafc;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 9999px;
+            gap: 6px;
+            box-sizing: border-box;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            cursor: pointer;
+        }
+
+        .pill-lead-id .dot {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .pill-lead-id .lead-text {
+            font-family: 'Plus Jakarta Sans', monospace, sans-serif;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #334155;
+            line-height: 1;
+            display: inline-block;
+        }
+
+        .pill-lead-id .copy-ico {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1;
+            display: inline-block;
+        }
+
+        .pill-timestamp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 28px;
+            padding: 0 12px;
+            background-color: #f8fafc;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 9999px;
+            gap: 6px;
+            box-sizing: border-box;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .pill-timestamp .clock-ico {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1;
+            display: inline-block;
+        }
+
+        .pill-timestamp .time-text {
+            font-family: 'Plus Jakarta Sans', monospace, sans-serif;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            line-height: 1;
+            display: inline-block;
+        }
+
         /* CINEMATIC SMOOTH ENTRY ANIMATION */
         .ticket-smooth-enter {
             opacity: 0;
@@ -183,8 +277,8 @@
                     
                     <!-- TOP BAR: SOLID GREEN CAPSULE BADGE + LOGO -->
                     <div class="flex items-center justify-between">
-                        <div class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-emerald-600 shadow-xs h-[24px]">
-                            <span class="text-[9.5px] font-extrabold tracking-widest text-white uppercase" style="font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1; display: inline-block;">SUBMITTED</span>
+                        <div class="submitted-capsule">
+                            <span>SUBMITTED</span>
                         </div>
                         <img src="assets/logo.png" alt="ALGORA" class="h-5 sm:h-6 w-auto object-contain" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
                     </div>
@@ -209,26 +303,35 @@
                     <div style="border-bottom: 1.5px dashed #e2e8f0;"></div>
 
                     <!-- BOTTOM METADATA & ACTIONS -->
-                    <div class="flex items-center justify-between pt-1 gap-2 min-h-[36px]">
+                    <div class="flex items-center justify-between pt-1 gap-2 min-h-[32px]">
                         <!-- CLEAN NUMERIC ORDER ID PILL (PERFECTLY CENTERED) -->
-                        <button id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Order ID" class="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs font-mono font-bold text-slate-700 transition-all cursor-pointer group shadow-2xs h-[30px]" style="font-family: 'Plus Jakarta Sans', monospace;">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 inline-block"></span>
-                            <span id="lead-id-display" class="font-mono font-bold text-slate-700" style="line-height: 1; font-weight: 700;">202508249421</span>
-                            <span class="material-symbols-outlined text-[13px] text-slate-400 group-hover:text-slate-700 transition-colors inline-block" id="copy-icon" style="line-height: 1;">content_copy</span>
-                        </button>
+                        <div id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Order ID" class="pill-lead-id group">
+                            <span class="dot"></span>
+                            <span id="lead-id-display" class="lead-text">202508249421</span>
+                            <span class="material-symbols-outlined copy-ico group-hover:text-slate-700 transition-colors" id="copy-icon">content_copy</span>
+                        </div>
 
-                        <!-- RIGHT ACTION BUTTONS: HOME & ICON-ONLY DOWNLOAD PASS (WEB UI ONLY - HIDDEN IN EXPORTED PNG) -->
-                        <div id="user-action-buttons" class="flex items-center gap-1.5 sm:gap-2">
-                            <!-- HOME BUTTON (SLIDED LEFT) -->
-                            <a href="projects.html" title="Back to Showcase" class="inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-2xs active:scale-95 group">
-                                <span class="material-symbols-outlined text-[14px]">home</span>
-                                <span>Home</span>
-                            </a>
+                        <!-- RIGHT AREA: USER ACTIONS ON WEB UI / LIVE TIMESTAMP IN DOWNLOADED PASS -->
+                        <div class="flex items-center justify-end">
+                            <!-- TIMESTAMP BADGE (APPEARS ONLY IN DOWNLOADED PASS IN PLACE OF BUTTONS) -->
+                            <div id="export-timestamp-badge" class="pill-timestamp hidden">
+                                <span class="material-symbols-outlined clock-ico">schedule</span>
+                                <span id="export-timestamp-text" class="time-text">24 AUG 2026 • 10:07 PM</span>
+                            </div>
 
-                            <!-- ICON-ONLY DOWNLOAD PROJECT PASS BUTTON -->
-                            <button id="download-pass-btn" onclick="downloadProjectPass()" title="Download Project Pass" class="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl transition-all shadow-2xs active:scale-95 cursor-pointer group flex-shrink-0">
-                                <span class="material-symbols-outlined text-[16px] sm:text-[18px] group-hover:-translate-y-0.5 transition-transform" id="download-icon">download</span>
-                            </button>
+                            <!-- WEB UI ACTION BUTTONS: HOME & DOWNLOAD (SHOWN ON BROWSER, REPLACED BY TIMESTAMP IN EXPORT) -->
+                            <div id="user-action-buttons" class="flex items-center gap-1.5 sm:gap-2">
+                                <!-- HOME BUTTON (SLIDED LEFT) -->
+                                <a href="projects.html" title="Back to Showcase" class="inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-2xs active:scale-95 group">
+                                    <span class="material-symbols-outlined text-[14px]">home</span>
+                                    <span>Home</span>
+                                </a>
+
+                                <!-- ICON-ONLY DOWNLOAD PROJECT PASS BUTTON -->
+                                <button id="download-pass-btn" onclick="downloadProjectPass()" title="Download Project Pass" class="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl transition-all shadow-2xs active:scale-95 cursor-pointer group flex-shrink-0">
+                                    <span class="material-symbols-outlined text-[16px] sm:text-[18px] group-hover:-translate-y-0.5 transition-transform" id="download-icon">download</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -326,13 +429,33 @@
             const ticketEl = document.getElementById('ticketCard');
             const sepEl = document.getElementById('notchSeparator');
             const userActions = document.getElementById('user-action-buttons');
+            const timestampBadge = document.getElementById('export-timestamp-badge');
+            const timestampText = document.getElementById('export-timestamp-text');
 
             if (!ticketEl) return;
 
             btn.disabled = true;
 
-            // Hide web buttons during export so they don't appear in the downloaded pass
-            if (userActions) userActions.style.visibility = 'hidden';
+            // Generate live Download Date and Time (e.g., 24 AUG 2026 • 10:07 PM)
+            const downloadDate = new Date();
+            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const formattedDate = `${String(downloadDate.getDate()).padStart(2, '0')} ${months[downloadDate.getMonth()]} ${downloadDate.getFullYear()}`;
+            let hours = downloadDate.getHours();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            const formattedTime = `${String(hours).padStart(2, '0')}:${String(downloadDate.getMinutes()).padStart(2, '0')} ${ampm}`;
+            const liveTimestampStr = `${formattedDate} • ${formattedTime}`;
+
+            if (timestampText) {
+                timestampText.textContent = liveTimestampStr;
+            }
+
+            // Swap web buttons with live timestamp badge during snapshot
+            if (userActions) userActions.style.display = 'none';
+            if (timestampBadge) {
+                timestampBadge.classList.remove('hidden');
+                timestampBadge.style.display = 'inline-flex';
+            }
 
             // Ensure all fonts are 100% loaded before rendering canvas
             if (document.fonts) {
@@ -348,7 +471,11 @@
                 logging: false
             }).then(canvas => {
                 // Restore web action buttons immediately after canvas snapshot
-                if (userActions) userActions.style.visibility = 'visible';
+                if (userActions) userActions.style.display = 'flex';
+                if (timestampBadge) {
+                    timestampBadge.style.display = 'none';
+                    timestampBadge.classList.add('hidden');
+                }
 
                 // Create dedicated output canvas for 100% guaranteed transparent clipping
                 const outputCanvas = document.createElement('canvas');
