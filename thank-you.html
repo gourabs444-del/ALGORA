@@ -9,8 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <!-- Dynamic QR Code Generator Library -->
+    <!-- Dynamic QR Code & Canvas Export Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -229,19 +230,28 @@
                     <div style="border-bottom: 1.5px dashed #e2e8f0;"></div>
 
                     <!-- BOTTOM METADATA & ACTIONS -->
-                    <div class="flex items-center justify-between pt-1">
+                    <div class="flex items-center justify-between pt-1 gap-2">
                         <!-- CLEAN NUMERIC ORDER ID PILL -->
-                        <button id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Order ID" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs font-mono font-bold text-slate-700 transition-all cursor-pointer group shadow-2xs">
+                        <button id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Order ID" class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-[11px] sm:text-xs font-mono font-bold text-slate-700 transition-all cursor-pointer group shadow-2xs">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                             <span id="lead-id-display">202508249421</span>
                             <span class="material-symbols-outlined text-[13px] text-slate-400 group-hover:text-slate-700 transition-colors" id="copy-icon">content_copy</span>
                         </button>
 
-                        <!-- HOME BUTTON -->
-                        <a href="projects.html" class="inline-flex items-center gap-1.5 bg-[#0f172a] text-white hover:bg-indigo-600 px-4 py-2 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-md active:scale-95 group">
-                            <span>Home</span>
-                            <span class="material-symbols-outlined text-[14px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
-                        </a>
+                        <!-- RIGHT ACTION BUTTONS: HOME & DOWNLOAD PASS -->
+                        <div class="flex items-center gap-2">
+                            <!-- HOME BUTTON (SLIDED LEFT) -->
+                            <a href="projects.html" title="Back to Showcase" class="inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-2xs active:scale-95 group">
+                                <span class="material-symbols-outlined text-[14px]">home</span>
+                                <span>Home</span>
+                            </a>
+
+                            <!-- DOWNLOAD PROJECT PASS BUTTON -->
+                            <button id="download-pass-btn" onclick="downloadProjectPass()" title="Download Official Project Pass with QR Code" class="inline-flex items-center gap-1.5 bg-[#0f172a] hover:bg-indigo-600 text-white px-3.5 py-1.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-md active:scale-95 cursor-pointer group">
+                                <span class="material-symbols-outlined text-[14px] group-hover:-translate-y-0.5 transition-transform" id="download-icon">download</span>
+                                <span id="download-text">Download Pass</span>
+                            </button>
+                        </div>
                     </div>
 
                 </div>
@@ -272,7 +282,7 @@
         </div>
     </div>
 
-    <!-- LOGIC SCRIPT (REAL QR CODE & CLOUD TRACKING SYNC) -->
+    <!-- LOGIC SCRIPT (REAL QR CODE & CLOUD TRACKING SYNC & PASS DOWNLOAD) -->
     <script>
         // Generate Date-Encoded Pure Numeric Order ID (YYYYMMDDXXXX)
         const now = new Date();
@@ -330,7 +340,46 @@
                 }
             }).catch(() => {});
         }
+
+        // High-Resolution Project Pass PNG Exporter
+        function downloadProjectPass() {
+            const btn = document.getElementById('download-pass-btn');
+            const icon = document.getElementById('download-icon');
+            const text = document.getElementById('download-text');
+            const ticketEl = document.querySelector('.card-ticket');
+
+            if (!ticketEl) return;
+
+            const originalText = text.textContent;
+            text.textContent = 'Saving...';
+            icon.textContent = 'hourglass_top';
+            btn.disabled = true;
+
+            html2canvas(ticketEl, {
+                scale: 3, // Retina 3x crystal-clear export
+                useCORS: true,
+                backgroundColor: null,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Algora-Project-Pass-${cleanNumericId}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                text.textContent = 'Downloaded!';
+                icon.textContent = 'check';
+                setTimeout(() => {
+                    text.textContent = originalText;
+                    icon.textContent = 'download';
+                    btn.disabled = false;
+                }, 2000);
+            }).catch(err => {
+                console.error('Ticket download error:', err);
+                text.textContent = originalText;
+                icon.textContent = 'download';
+                btn.disabled = false;
+            });
+        }
     </script>
 </body>
 </html>
-
