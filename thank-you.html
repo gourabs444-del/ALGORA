@@ -129,6 +129,7 @@
             position: relative;
             z-index: 5;
             flex-shrink: 0;
+        }
         /* ═══════════════════════════════════════════════════════════
            CINEMATIC SMOOTH ENTRY ANIMATION (TICKET & ACTIONS)
            ═══════════════════════════════════════════════════════════ */
@@ -238,18 +239,17 @@
                             <span class="material-symbols-outlined text-[13px] text-slate-400 group-hover:text-slate-700 transition-colors" id="copy-icon">content_copy</span>
                         </button>
 
-                        <!-- RIGHT ACTION BUTTONS: HOME & DOWNLOAD PASS -->
-                        <div class="flex items-center gap-2">
+                        <!-- RIGHT ACTION BUTTONS: HOME & ICON-ONLY DOWNLOAD PASS -->
+                        <div class="flex items-center gap-1.5 sm:gap-2">
                             <!-- HOME BUTTON (SLIDED LEFT) -->
                             <a href="projects.html" title="Back to Showcase" class="inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-2xs active:scale-95 group">
                                 <span class="material-symbols-outlined text-[14px]">home</span>
                                 <span>Home</span>
                             </a>
 
-                            <!-- DOWNLOAD PROJECT PASS BUTTON -->
-                            <button id="download-pass-btn" onclick="downloadProjectPass()" title="Download Official Project Pass with QR Code" class="inline-flex items-center gap-1.5 bg-[#0f172a] hover:bg-indigo-600 text-white px-3.5 py-1.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all shadow-md active:scale-95 cursor-pointer group">
-                                <span class="material-symbols-outlined text-[14px] group-hover:-translate-y-0.5 transition-transform" id="download-icon">download</span>
-                                <span id="download-text">Download Pass</span>
+                            <!-- ICON-ONLY DOWNLOAD PROJECT PASS BUTTON -->
+                            <button id="download-pass-btn" onclick="downloadProjectPass()" title="Download Project Pass" class="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 bg-[#0f172a] hover:bg-indigo-600 text-white rounded-xl transition-all shadow-md active:scale-95 cursor-pointer group flex-shrink-0">
+                                <span class="material-symbols-outlined text-[16px] sm:text-[18px] group-hover:-translate-y-0.5 transition-transform" id="download-icon">download</span>
                             </button>
                         </div>
                     </div>
@@ -341,17 +341,14 @@
             }).catch(() => {});
         }
 
-        // High-Resolution Project Pass PNG Exporter
+        // High-Resolution Project Pass PNG Exporter (Icon-Only Trigger)
         function downloadProjectPass() {
             const btn = document.getElementById('download-pass-btn');
             const icon = document.getElementById('download-icon');
-            const text = document.getElementById('download-text');
             const ticketEl = document.querySelector('.card-ticket');
 
             if (!ticketEl) return;
 
-            const originalText = text.textContent;
-            text.textContent = 'Saving...';
             icon.textContent = 'hourglass_top';
             btn.disabled = true;
 
@@ -366,16 +363,13 @@
                 link.href = canvas.toDataURL('image/png');
                 link.click();
 
-                text.textContent = 'Downloaded!';
                 icon.textContent = 'check';
                 setTimeout(() => {
-                    text.textContent = originalText;
                     icon.textContent = 'download';
                     btn.disabled = false;
                 }, 2000);
             }).catch(err => {
                 console.error('Ticket download error:', err);
-                text.textContent = originalText;
                 icon.textContent = 'download';
                 btn.disabled = false;
             });
