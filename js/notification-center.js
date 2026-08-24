@@ -287,78 +287,100 @@
             </div>
         </div>
 
-        <!-- THANK YOU CARD MODAL (Full High-Fidelity Preview matching thank-you.html) -->
+        <!-- THANK YOU CARD MODAL (Full High-Fidelity Preview matching thank-you.html Ticket Layout) -->
         <div id="notif-thankyou-modal" class="fixed inset-0 z-[9999999] flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
-            <div class="relative w-full max-w-[420px] sm:max-w-[460px] rounded-[32px] sm:rounded-[36px] overflow-hidden shadow-[0_32px_96px_-16px_rgba(99,102,241,0.5)] border border-white/80 p-5 sm:p-8 flex flex-col justify-between min-h-[520px] sm:min-h-[620px] transition-all transform scale-95" style="background: linear-gradient(165deg, #ffffff 0%, #f8fafc 18%, #e0e7ff 35%, #a855f7 55%, #6366f1 75%, #38bdf8 92%, #0284c7 100%);">
+            <div class="relative w-full max-w-[500px] rounded-3xl overflow-hidden shadow-[0_32px_96px_-16px_rgba(99,102,241,0.5)] border border-white/80 flex bg-white text-slate-800 min-h-[280px] transition-all transform scale-95">
                 
                 <!-- Close Button -->
-                <button id="close-thankyou-modal-btn" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-slate-900/40 hover:bg-slate-900/70 text-white flex items-center justify-center transition-all cursor-pointer">
-                    <span class="material-symbols-outlined text-[18px]">close</span>
+                <button id="close-thankyou-modal-btn" class="absolute top-3 right-3 z-30 w-7 h-7 rounded-full bg-slate-900/10 hover:bg-slate-900/20 text-slate-700 flex items-center justify-center transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-[16px]">close</span>
                 </button>
 
-                <!-- TOP BAR -->
-                <div class="relative z-10 flex items-center justify-between">
-                    <div class="inline-flex items-center px-3 py-0.5 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/40 shadow-xs">
-                        <span id="modal-ty-status" class="text-[9px] sm:text-[10px] font-extrabold tracking-[0.18em] text-emerald-900 uppercase">SUBMITTED</span>
+                <!-- LEFT VERTICAL BARCODE STUB -->
+                <div class="flex items-center justify-center p-3 bg-slate-50 border-r border-dashed border-slate-200 flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="150" viewBox="0 0 64 150" fill="#334155" class="opacity-75">
+                        <path d="M44 138V136.967H20V138H44Z"></path>
+                        <path d="M44 13.0328V12H20V13.0328H44Z"></path>
+                        <path d="M44 14.0656V13.5492H20V14.0656H44Z"></path>
+                        <path d="M44 15.6148V15.0984H20V15.6148H44Z"></path>
+                        <path d="M44 18.1967V17.6803H20V18.1967H44Z"></path>
+                        <path d="M44 20.2623V19.2295H20V20.2623H44Z"></path>
+                        <path d="M44 26.9754V24.9098H20V26.9754H44Z"></path>
+                        <path d="M44 29.5574V29.041H20V29.5574H44Z"></path>
+                        <path d="M44 36.2705V35.7541H20V36.2705H44Z"></path>
+                        <path d="M44 45.0492V44.5327H20V45.0492H44Z"></path>
+                        <path d="M44 54.3443V52.7952H20V54.3443H44Z"></path>
+                        <path d="M44 63.6394V63.123H20V63.6394H44Z"></path>
+                        <path d="M44 76.5493V74.4837H20V76.5493H44Z"></path>
+                        <path d="M44 87.9097V87.3935H20V87.9097H44Z"></path>
+                        <path d="M44 99.2704V98.2378H20V99.2704H44Z"></path>
+                        <path d="M44 112.18V111.148H20V112.18H44Z"></path>
+                        <path d="M44 124.574V123.541H20V124.574H44Z"></path>
+                        <path d="M44 136.451V135.934H20V136.451H44Z"></path>
+                    </svg>
+                </div>
+
+                <!-- MAIN TICKET CONTENT -->
+                <div class="flex flex-col justify-between p-4 sm:p-5 w-full gap-2.5">
+                    <!-- TOP BRAND & STATUS -->
+                    <div class="flex items-center justify-between">
+                        <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span id="modal-ty-status" class="text-[9px] font-extrabold tracking-widest text-emerald-700 uppercase">SUBMITTED</span>
+                        </div>
+                        <span class="text-[10px] font-mono font-bold text-slate-400 mr-8">PASS #01</span>
                     </div>
+
+                    <!-- ROUTE -->
+                    <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-100 text-xs">
+                        <div>
+                            <p class="text-[9px] font-bold text-slate-400 uppercase">INQUIRY</p>
+                            <p class="font-extrabold text-blue-600 font-['Outfit'] text-sm">REQ</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[8px] font-mono text-indigo-500 font-bold">CONNECT</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 24">
+                                <path fill="none" stroke="#6366f1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="m18 8l4 4l-4 4M2 12h20"></path>
+                            </svg>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] font-bold text-slate-400 uppercase">PRODUCTION</p>
+                            <p class="font-extrabold text-purple-600 font-['Outfit'] text-sm">LAUNCH</p>
+                        </div>
+                    </div>
+
+                    <!-- HEADLINE -->
                     <div>
-                        <img src="assets/logo.png" alt="ALGORA" class="h-4.5 sm:h-5 w-auto object-contain mr-8" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
+                        <h3 class="text-xl font-black text-slate-900 font-['Outfit'] leading-none">Thank You!</h3>
+                        <p class="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">✦ We'll be in touch within 24h</p>
+                        <p class="text-xs font-semibold text-slate-700 mt-1" id="modal-ty-project-type">High-Impact Digital Experience</p>
+                        <p class="text-[11px] font-medium text-slate-400" id="modal-ty-budget-timeline">Budget: $2,500 – $5,000</p>
                     </div>
-                </div>
 
-                <!-- MAIN HEADLINE BLOCK -->
-                <div class="relative z-10 my-auto pt-2 pb-2">
-                    <div class="relative inline-block">
-                        <h1 class="text-5xl sm:text-6xl font-extrabold text-[#111625] tracking-tight font-['Outfit'] leading-none">
-                            Thank
-                        </h1>
-                        <div class="absolute -top-1 -right-6 flex items-start gap-0.5 select-none">
-                            <span class="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#111625] via-[#475569] to-[#e2e8f0]">✦</span>
-                            <span class="text-xs font-bold -mt-0.5 text-transparent bg-clip-text bg-gradient-to-r from-[#111625] via-[#475569] to-[#e2e8f0]">✦</span>
+                    <div style="border-bottom: 1px dashed #e2e8f0;"></div>
+
+                    <!-- DATA ROW & ACTION -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider block">Lead ID</span>
+                            <button id="modal-copy-lead-id" class="text-xs font-mono font-extrabold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer">
+                                <span id="modal-ty-lead-id">ID: #AG-9421</span>
+                                <span class="material-symbols-outlined text-[13px]" id="modal-copy-icon">content_copy</span>
+                            </button>
                         </div>
-                    </div>
-
-                    <div class="flex items-center gap-3 mt-0.5">
-                        <h1 class="text-5xl sm:text-6xl font-extrabold text-[#818cf8] tracking-tight font-['Outfit'] leading-none">
-                            You!
-                        </h1>
-                        <div class="text-[9px] font-extrabold tracking-widest text-[#6366f1] uppercase leading-tight">
-                            <div>WE'LL BE</div>
-                            <div>IN TOUCH</div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 sm:mt-6 space-y-0.5">
-                        <p class="text-lg sm:text-2xl font-medium text-white/95 tracking-tight leading-tight">Crafting</p>
-                        <p class="text-xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight" id="modal-ty-project-type">High-Impact Digital Experience</p>
-                        <p class="text-base sm:text-xl font-bold text-white/70 tracking-tight leading-tight" id="modal-ty-budget-timeline">Budget: $2,500 – $5,000</p>
-                    </div>
-
-                    <!-- COPYABLE LEAD ID BADGE -->
-                    <button id="modal-copy-lead-id" class="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 shadow-sm text-xs font-semibold text-white transition-all cursor-pointer group active:scale-95">
-                        <span class="w-4 h-4 rounded-full bg-white/40 flex items-center justify-center text-[10px] text-white">✦</span>
-                        <span id="modal-ty-lead-id">ID: #AG-9421</span>
-                        <span class="material-symbols-outlined text-[14px] text-white/80 group-hover:text-white transition-colors" id="modal-copy-icon">content_copy</span>
-                    </button>
-                </div>
-
-                <!-- LOWER SECTION & ACTION BAR -->
-                <div class="relative z-10 space-y-3 pt-3 border-t border-white/20">
-                    <div class="flex items-center justify-between text-[10px] font-extrabold text-white tracking-wider uppercase">
-                        <div>FOR YOUR NEXT PROJECT</div>
-                        <div>WE'LL REACH OUT IN 24H</div>
-                    </div>
-
-                    <div class="flex items-center justify-between pt-1">
-                        <div class="text-[9px] font-bold text-white/80 tracking-wider uppercase leading-snug">
-                            <span>ALGORA CREATIVE STUDIO</span>
-                            <span class="block text-white/60 font-medium">EST. 2025</span>
-                        </div>
-                        <button id="modal-ty-close-btn" class="inline-flex items-center gap-1.5 bg-white text-[#1e293b] hover:bg-slate-900 hover:text-white px-4 py-2 rounded-xl font-bold text-xs tracking-wide transition-all shadow-md active:scale-95 cursor-pointer">
-                            <span>Done</span>
+                        <button id="modal-ty-close-btn" class="px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all cursor-pointer">
+                            Done
                         </button>
                     </div>
                 </div>
+
+                <!-- RIGHT ICON COLUMN -->
+                <div class="w-10 bg-gradient-to-b from-blue-600 via-indigo-600 to-purple-600 flex flex-col items-center justify-between py-4 text-white flex-shrink-0">
+                    <span class="material-symbols-outlined text-[18px]">flight</span>
+                    <span class="text-[9px] font-mono font-black rotate-90 tracking-widest">ALGORA</span>
+                    <span class="material-symbols-outlined text-[16px]">verified</span>
+                </div>
+
             </div>
         </div>
 
