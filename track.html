@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -218,12 +218,19 @@
     <!-- SCRIPT -->
     <script>
         // Read URL params or sessionStorage
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        const datePrefix = `${yyyy}${mm}${dd}`;
+
         const urlParams = new URLSearchParams(window.location.search);
         const urlLeadId = urlParams.get('id');
         const sessionLeadId = sessionStorage.getItem('inquiryLeadId');
 
-        const activeLeadId = urlLeadId || sessionLeadId || 'AG-9421';
-        const formattedId = activeLeadId.startsWith('#') ? activeLeadId : `#${activeLeadId}`;
+        const activeId = urlLeadId || sessionLeadId || '9421';
+        const numericDigits = activeId.replace(/[^0-9]/g, '');
+        const formattedId = numericDigits.length >= 8 ? numericDigits : `${datePrefix}${numericDigits || '9421'}`;
 
         document.getElementById('tracker-lead-id').textContent = formattedId;
         document.getElementById('whatsapp-link').href = `https://wa.me/919999999999?text=Hi%20Gourav,%20I'm%20tracking%20my%20inquiry%20(${encodeURIComponent(formattedId)})`;

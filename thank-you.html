@@ -164,10 +164,10 @@
             <div class="content-ticket">
                 <div class="content-data">
                     
-                    <!-- TOP BAR: GREEN CAPSULE BADGE + LOGO -->
+                    <!-- TOP BAR: SOLID GREEN CAPSULE BADGE + LOGO -->
                     <div class="flex items-center justify-between">
-                        <div class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30">
-                            <span class="text-[10px] font-extrabold tracking-widest text-emerald-800 uppercase">SUBMITTED</span>
+                        <div class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-600 shadow-xs">
+                            <span class="text-[9.5px] font-extrabold tracking-widest text-white uppercase">SUBMITTED</span>
                         </div>
                         <img src="assets/logo.png" alt="ALGORA" class="h-5 sm:h-6 w-auto object-contain" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
                     </div>
@@ -193,10 +193,10 @@
 
                     <!-- BOTTOM METADATA & ACTIONS -->
                     <div class="flex items-center justify-between pt-1">
-                        <!-- CLEAN MINIMAL LEAD ID PILL -->
-                        <button id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Lead ID" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs font-mono font-bold text-slate-700 transition-all cursor-pointer group shadow-2xs">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                            <span id="lead-id-display">#AG-9421</span>
+                        <!-- CLEAN NUMERIC ORDER ID PILL -->
+                        <button id="copy-lead-id-btn" onclick="copyLeadId()" title="Click to copy Order ID" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs font-mono font-bold text-slate-700 transition-all cursor-pointer group shadow-2xs">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                            <span id="lead-id-display">202508249421</span>
                             <span class="material-symbols-outlined text-[13px] text-slate-400 group-hover:text-slate-700 transition-colors" id="copy-icon">content_copy</span>
                         </button>
 
@@ -236,11 +236,18 @@
 
     <!-- LOGIC SCRIPT (REAL QR CODE & CLOUD TRACKING SYNC) -->
     <script>
-        const rawSessionLeadId = sessionStorage.getItem('inquiryLeadId');
-        const cleanLeadId = rawSessionLeadId ? rawSessionLeadId.replace(/[^0-9A-Za-z]/g, '') : 'AG-9421';
-        const formattedLeadId = cleanLeadId.startsWith('AG-') ? `#${cleanLeadId}` : `#AG-${cleanLeadId}`;
+        // Generate Date-Encoded Pure Numeric Order ID (YYYYMMDDXXXX)
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        const datePrefix = `${yyyy}${mm}${dd}`;
 
-        document.getElementById('lead-id-display').textContent = formattedLeadId;
+        const rawSessionLeadId = sessionStorage.getItem('inquiryLeadId');
+        const numericDigits = rawSessionLeadId ? rawSessionLeadId.replace(/[^0-9]/g, '') : '9421';
+        const cleanNumericId = numericDigits.length >= 8 ? numericDigits : `${datePrefix}${numericDigits || '9421'}`;
+
+        document.getElementById('lead-id-display').textContent = cleanNumericId;
 
         // Construct Cloud Tracking URL for QR code
         let baseUrl = window.location.href.split('?')[0];
@@ -249,7 +256,7 @@
         } else {
             baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1) + 'track.html';
         }
-        const trackingUrl = `${baseUrl}?id=${encodeURIComponent(cleanLeadId)}`;
+        const trackingUrl = `${baseUrl}?id=${encodeURIComponent(cleanNumericId)}`;
 
         // Update link
         const qrLink = document.getElementById('qr-track-link');
@@ -272,7 +279,7 @@
         }
 
         function copyLeadId() {
-            const rawId = formattedLeadId;
+            const rawId = cleanNumericId;
             navigator.clipboard.writeText(rawId).then(() => {
                 const icon = document.getElementById('copy-icon');
                 if (icon) {
