@@ -2450,15 +2450,15 @@
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
         <!-- ═══════════════════════════════════════════════════════════════════════
-             3D KINETIC ISOMETRIC CUBES & STICKY SCROLL STORYTELLING CSS
+             3 DISTINCT 3D KINETIC ANIMATIONS & PERSISTENT SPATIAL DOCKING CSS
              ═══════════════════════════════════════════════════════════════════════ -->
         <style>
+        /* ── ANIMATION 1: 3D ISOMETRIC INTERLOCKING CUBES ── */
         .hero-3d-boxes-container {
           display: flex;
           justify-content: center;
           align-items: center;
           perspective: 1200px;
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
         }
 
         .hero-3d-boxes-container .boxes {
@@ -2550,46 +2550,128 @@
           --translateZ: calc(var(--size) * 3 * -1);
         }
 
-        @keyframes heroBox1 {
-          0%, 50% {
-            transform: translate(100%, 0);
-          }
-          100% {
-            transform: translate(200%, 0);
-          }
+        @keyframes heroBox1 { 0%, 50% { transform: translate(100%, 0); } 100% { transform: translate(200%, 0); } }
+        @keyframes heroBox2 { 0% { transform: translate(0, 100%); } 50% { transform: translate(0, 0); } 100% { transform: translate(100%, 0); } }
+        @keyframes heroBox3 { 0%, 50% { transform: translate(100%, 100%); } 100% { transform: translate(0, 100%); } }
+        @keyframes heroBox4 { 0% { transform: translate(200%, 0); } 50% { transform: translate(200%, 100%); } 100% { transform: translate(100%, 100%); } }
+
+        /* ── ANIMATION 2: 3D KINETIC ORBITAL GYROSCOPE REACTOR ── */
+        .hero-3d-gyro-container {
+          width: 96px;
+          height: 96px;
+          position: relative;
+          transform-style: preserve-3d;
+          perspective: 1000px;
         }
 
-        @keyframes heroBox2 {
-          0% {
-            transform: translate(0, 100%);
-          }
-          50% {
-            transform: translate(0, 0);
-          }
-          100% {
-            transform: translate(100%, 0);
-          }
+        .gyro-ring {
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          border: 3px solid rgba(14, 165, 233, 0.8);
+          box-shadow: 0 0 16px rgba(14, 165, 233, 0.45), inset 0 0 12px rgba(56, 189, 248, 0.35);
+          transform-style: preserve-3d;
         }
 
-        @keyframes heroBox3 {
-          0%, 50% {
-            transform: translate(100%, 100%);
-          }
-          100% {
-            transform: translate(0, 100%);
-          }
+        .gyro-ring-1 {
+          border-color: #0284c7;
+          animation: spinRing1 4s linear infinite;
         }
 
-        @keyframes heroBox4 {
-          0% {
-            transform: translate(200%, 0);
-          }
-          50% {
-            transform: translate(200%, 100%);
-          }
-          100% {
-            transform: translate(100%, 100%);
-          }
+        .gyro-ring-2 {
+          border-color: #38bdf8;
+          inset: 12px;
+          animation: spinRing2 3s linear infinite reverse;
+        }
+
+        .gyro-ring-3 {
+          border-color: #2563eb;
+          inset: 24px;
+          animation: spinRing3 2.2s linear infinite;
+        }
+
+        .gyro-core {
+          position: absolute;
+          inset: 34px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #93c5fd 0%, #0284c7 100%);
+          box-shadow: 0 0 20px rgba(56, 189, 248, 0.95), 0 0 35px rgba(37, 99, 235, 0.6);
+          animation: corePulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes spinRing1 {
+          0% { transform: rotateX(65deg) rotateY(25deg) rotateZ(0deg); }
+          100% { transform: rotateX(65deg) rotateY(25deg) rotateZ(360deg); }
+        }
+
+        @keyframes spinRing2 {
+          0% { transform: rotateX(25deg) rotateY(65deg) rotateZ(0deg); }
+          100% { transform: rotateX(25deg) rotateY(65deg) rotateZ(360deg); }
+        }
+
+        @keyframes spinRing3 {
+          0% { transform: rotateX(45deg) rotateY(45deg) rotateZ(0deg); }
+          100% { transform: rotateX(45deg) rotateY(45deg) rotateZ(360deg); }
+        }
+
+        @keyframes corePulse {
+          0% { transform: scale(0.85); box-shadow: 0 0 15px rgba(56, 189, 248, 0.7); }
+          100% { transform: scale(1.15); box-shadow: 0 0 30px rgba(56, 189, 248, 1), 0 0 45px rgba(37, 99, 235, 0.8); }
+        }
+
+        /* ── ANIMATION 3: 3D HOLOGRAPHIC PRISMATIC DIAMOND MATRIX ── */
+        .hero-3d-prism-container {
+          width: 96px;
+          height: 96px;
+          position: relative;
+          transform-style: preserve-3d;
+          perspective: 1000px;
+        }
+
+        .prism-shape {
+          width: 68px;
+          height: 68px;
+          position: absolute;
+          top: 14px;
+          left: 14px;
+          transform-style: preserve-3d;
+          animation: prismRotate 6s linear infinite;
+        }
+
+        .prism-face {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border: 2px solid rgba(56, 189, 248, 0.85);
+          background: linear-gradient(135deg, rgba(56, 189, 248, 0.35) 0%, rgba(37, 99, 235, 0.20) 100%);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          box-shadow: 0 0 25px rgba(14, 165, 233, 0.45);
+          border-radius: 12px;
+        }
+
+        .prism-face-1 { transform: rotateY(0deg) translateZ(34px) rotate(45deg); }
+        .prism-face-2 { transform: rotateY(90deg) translateZ(34px) rotate(45deg); }
+        .prism-face-3 { transform: rotateY(180deg) translateZ(34px) rotate(45deg); }
+        .prism-face-4 { transform: rotateY(-90deg) translateZ(34px) rotate(45deg); }
+
+        .prism-pulse-ring {
+          position: absolute;
+          inset: -12px;
+          border-radius: 50%;
+          border: 2px dashed rgba(56, 189, 248, 0.6);
+          animation: ringPulse 3s linear infinite;
+        }
+
+        @keyframes prismRotate {
+          0% { transform: rotateX(25deg) rotateY(0deg) rotateZ(15deg); }
+          100% { transform: rotateX(25deg) rotateY(360deg) rotateZ(15deg); }
+        }
+
+        @keyframes ringPulse {
+          0% { transform: scale(0.8) rotate(0deg); opacity: 0.8; }
+          50% { transform: scale(1.2) rotate(180deg); opacity: 0.3; }
+          100% { transform: scale(0.8) rotate(360deg); opacity: 0.8; }
         }
 
         /* ═══════════════════════════════════════════════════════════
@@ -2602,7 +2684,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2.5rem 1.5rem;
+            padding: 3rem 1.5rem 1.5rem;
             will-change: transform, opacity, filter;
             pointer-events: none;
             transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2646,7 +2728,7 @@
                 <div class="absolute inset-0 bg-gradient-to-b from-sky-50/40 via-transparent to-white/85 pointer-events-none z-[1]"></div>
 
                 <!-- TOP FLOATING SCROLL STEP INDICATOR PILL (CLAUDE/APPLE STYLE) -->
-                <div class="relative z-10 max-w-[1520px] mx-auto px-6 sm:px-12 w-full pt-8 flex items-center justify-between pointer-events-none">
+                <div class="relative z-30 max-w-[1520px] mx-auto px-6 sm:px-12 w-full pt-8 flex items-center justify-between pointer-events-none">
                     <!-- Left: Studio Badge -->
                     <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 border border-sky-200/90 text-sky-900 text-[11px] font-mono font-extrabold uppercase tracking-widest backdrop-blur-xl shadow-xs pointer-events-auto">
                         <span class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
@@ -2662,14 +2744,14 @@
                 </div>
 
                 <!-- ═══════════════════════════════════════════════════════════════
-                     CENTER STAGE CONTAINER (CONTAINS THE 3 STORYTELLING SCENES)
+                     PERSISTENT SPATIAL CONSTELLATION LAYER (3 DISTINCT 3D OBJECTS)
+                     THEY DOCK TO SATELLITE STATIONS AS YOU SCROLL (NEVER VANISH!)
                      ═══════════════════════════════════════════════════════════════ -->
-                <div class="relative z-10 max-w-[1520px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 relative flex items-center justify-center">
+                <div id="hero-spatial-constellation" class="absolute inset-0 pointer-events-none z-20 overflow-visible flex items-center justify-center">
                     
-                    <!-- ── SCENE 1: EXPERIENCE NEXT-GEN (DEFAULT INITIAL STATE) ── -->
-                    <div id="hero-scene-1" class="story-scene active-scene text-center">
-                        <!-- 3D Kinetic Isometric Cubes Animation -->
-                        <div id="scene1-cube" class="hero-3d-boxes-container mb-7 pointer-events-auto">
+                    <!-- ── SPATIAL OBJECT 1: 3D ISOMETRIC INTERLOCKING CUBES ── -->
+                    <div id="spatial-obj-cubes" class="absolute will-change-transform pointer-events-auto flex flex-col items-center select-none" style="transform: translate3d(0, -180px, 0) scale(1.05);">
+                        <div class="hero-3d-boxes-container">
                             <div class="boxes">
                                 <div class="box"><div></div><div></div><div></div><div></div></div>
                                 <div class="box"><div></div><div></div><div></div><div></div></div>
@@ -2677,7 +2759,49 @@
                                 <div class="box"><div></div><div></div><div></div><div></div></div>
                             </div>
                         </div>
+                        <div id="badge-dock-cubes" class="mt-2 px-3 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold uppercase tracking-wider shadow-xs opacity-0 transition-opacity duration-300">
+                            01 &bull; ARCHITECTURE
+                        </div>
+                    </div>
 
+                    <!-- ── SPATIAL OBJECT 2: 3D KINETIC MULTI-RING ORBITAL GYROSCOPE REACTOR ── -->
+                    <div id="spatial-obj-gyro" class="absolute will-change-transform pointer-events-auto flex flex-col items-center select-none" style="transform: translate3d(400px, -200px, 0) scale(0.55); opacity: 0.35;">
+                        <div class="hero-3d-gyro-container">
+                            <div class="gyro-ring gyro-ring-1"></div>
+                            <div class="gyro-ring gyro-ring-2"></div>
+                            <div class="gyro-ring gyro-ring-3"></div>
+                            <div class="gyro-core"></div>
+                        </div>
+                        <div id="badge-dock-gyro" class="mt-3 px-3 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold uppercase tracking-wider shadow-xs opacity-0 transition-opacity duration-300">
+                            02 &bull; SPEED ENGINE
+                        </div>
+                    </div>
+
+                    <!-- ── SPATIAL OBJECT 3: 3D HOLOGRAPHIC PRISMATIC DIAMOND MATRIX ── -->
+                    <div id="spatial-obj-prism" class="absolute will-change-transform pointer-events-auto flex flex-col items-center select-none" style="transform: translate3d(0, 260px, 0) scale(0.5); opacity: 0.2;">
+                        <div class="hero-3d-prism-container">
+                            <div class="prism-shape">
+                                <div class="prism-face prism-face-1"></div>
+                                <div class="prism-face prism-face-2"></div>
+                                <div class="prism-face prism-face-3"></div>
+                                <div class="prism-face prism-face-4"></div>
+                            </div>
+                            <div class="prism-pulse-ring"></div>
+                        </div>
+                        <div id="badge-dock-prism" class="mt-3 px-3 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold uppercase tracking-wider shadow-xs opacity-0 transition-opacity duration-300">
+                            03 &bull; LAUNCH MATRIX
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════
+                     CENTER STAGE CONTAINER (CONTAINS THE 3 STORYTELLING SCENES)
+                     ═══════════════════════════════════════════════════════════════ -->
+                <div class="relative z-10 max-w-[1520px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 relative flex items-center justify-center">
+                    
+                    <!-- ── SCENE 1: EXPERIENCE NEXT-GEN (DEFAULT INITIAL STATE) ── -->
+                    <div id="hero-scene-1" class="story-scene active-scene text-center pt-24 sm:pt-28">
                         <!-- Floating Category Ribbon Strip -->
                         <div id="scene1-ribbon" class="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 pointer-events-auto">
                             <span class="px-4 py-1.5 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[11px] font-mono font-bold tracking-wider uppercase backdrop-blur-xl shadow-xs">01 &bull; FINTECH ENGINES</span>
@@ -2698,24 +2822,24 @@
 
                         <!-- Subtle Scroll Prompt with Interactive Aura -->
                         <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-sky-100/70 border border-sky-200 text-xs font-mono font-bold text-sky-700 uppercase tracking-widest animate-bounce">
-                            <span>SCROLL TO EXPLORE MOTION</span>
+                            <span>SCROLL TO EXPLORE DOCKING MOTION</span>
                             <span class="text-sm">&darr;</span>
                         </div>
                     </div>
 
                     <!-- ── SCENE 2: OBSESSIVE PRECISION & CAPABILITY MATRIX ── -->
-                    <div id="hero-scene-2" class="story-scene text-center opacity-0">
-                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-sky-300 text-sky-800 text-xs font-mono font-extrabold tracking-widest uppercase mb-5 shadow-xs">
+                    <div id="hero-scene-2" class="story-scene text-center opacity-0 pt-24 sm:pt-28">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-sky-300 text-sky-800 text-xs font-mono font-extrabold tracking-widest uppercase mb-4 shadow-xs">
                             <span>✦ PERFORMANCE ARCHITECTURE</span>
                         </div>
 
-                        <h2 id="scene2-title" class="text-4xl sm:text-6xl lg:text-[4.8rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.08] mb-6 max-w-4xl font-['Outfit']">
+                        <h2 id="scene2-title" class="text-4xl sm:text-6xl lg:text-[4.6rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.08] mb-5 max-w-4xl font-['Outfit']">
                             Obsessive Precision. <br class="hidden sm:inline">
                             <span class="cinematic-text-gradient">Mathematical Speed.</span>
                         </h2>
 
                         <!-- 3-Card Glass Capsule Matrix with Enhanced Cinematic Depth -->
-                        <div id="scene2-cards" class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-5xl w-full my-6 pointer-events-auto">
+                        <div id="scene2-cards" class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-5xl w-full my-5 pointer-events-auto">
                             <div class="frosted-glass-monolith p-7 rounded-3xl text-left hover:-translate-y-1.5 transition-all duration-300 group">
                                 <div class="w-10 h-10 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-600 text-xl mb-4 font-mono font-bold">⚡</div>
                                 <div class="text-[10px] font-mono font-bold text-sky-700 uppercase tracking-widest mb-1">120.0 FPS NATIVE</div>
@@ -2742,17 +2866,17 @@
                     </div>
 
                     <!-- ── SCENE 3: CATEGORY-DEFINING IMPACT & ACTION CENTER ── -->
-                    <div id="hero-scene-3" class="story-scene text-center opacity-0">
-                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white text-xs font-mono font-extrabold tracking-widest uppercase mb-5 shadow-sm">
+                    <div id="hero-scene-3" class="story-scene text-center opacity-0 pt-24 sm:pt-28">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white text-xs font-mono font-extrabold tracking-widest uppercase mb-4 shadow-sm">
                             <span>✦ READY FOR DEPLOYMENT</span>
                         </div>
 
-                        <h2 id="scene3-title" class="text-4xl sm:text-6xl lg:text-[4.8rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.08] mb-6 max-w-4xl font-['Outfit']">
+                        <h2 id="scene3-title" class="text-4xl sm:text-6xl lg:text-[4.6rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.08] mb-5 max-w-4xl font-['Outfit']">
                             Crafting <span class="cinematic-text-gradient">Category-Defining</span> <br class="hidden sm:inline">
                             Web Monoliths.
                         </h2>
 
-                        <p class="text-base sm:text-xl text-slate-600 max-w-2xl font-normal leading-relaxed mb-9 font-sans">
+                        <p class="text-base sm:text-xl text-slate-600 max-w-2xl font-normal leading-relaxed mb-8 font-sans">
                             From conceptual architecture to production-grade deployment for global venture founders and industry titans.
                         </p>
 
@@ -3108,11 +3232,17 @@
                 const pill2 = document.getElementById('step-pill-2');
                 const pill3 = document.getElementById('step-pill-3');
 
-                const scene1Cube = document.getElementById('scene1-cube');
                 const scene1Title = document.getElementById('scene1-title');
                 const scene1Desc = document.getElementById('scene1-desc');
-
                 const scene2Cards = document.getElementById('scene2-cards');
+
+                // 3 Distinct Persistent Spatial Objects & Dock Badges
+                const spatialCubes = document.getElementById('spatial-obj-cubes');
+                const spatialGyro = document.getElementById('spatial-obj-gyro');
+                const spatialPrism = document.getElementById('spatial-obj-prism');
+                const badgeCubes = document.getElementById('badge-dock-cubes');
+                const badgeGyro = document.getElementById('badge-dock-gyro');
+                const badgePrism = document.getElementById('badge-dock-prism');
 
                 if (!track || !scene1 || !scene2 || !scene3) return;
 
@@ -3139,22 +3269,86 @@
                     currentProgress += (targetProgress - currentProgress) * 0.10;
                     const p = currentProgress;
 
-                    // ── PHASE 1: SCENE 1 (Progress 0.0 -> 0.33) ──
+                    // ═══════════════════════════════════════════════════════════
+                    // 🌌 PERSISTENT SPATIAL CONSTELLATION DOCKING MATHEMATICS
+                    // ═══════════════════════════════════════════════════════════
+                    const isMobile = window.innerWidth < 768;
+                    const dockX = isMobile ? 130 : 380;
+                    const dockY = isMobile ? -140 : -190;
+
+                    // 1. CUBES DOCKING TRAJECTORY:
+                    let cubeX = 0, cubeY = isMobile ? -130 : -180, cubeScale = isMobile ? 0.85 : 1.05, cubeOpacity = 1.0;
+                    if (p > 0.15) {
+                        const t = Math.min(1, (p - 0.15) / 0.25);
+                        cubeX = -t * dockX;
+                        cubeY = (isMobile ? -130 : -180) + t * (dockY - (isMobile ? -130 : -180));
+                        cubeScale = (isMobile ? 0.85 : 1.05) - t * ((isMobile ? 0.85 : 1.05) - 0.58);
+                        cubeOpacity = 1.0 - t * 0.15;
+                        if (badgeCubes) badgeCubes.style.opacity = t > 0.5 ? '1' : '0';
+                    } else {
+                        if (badgeCubes) badgeCubes.style.opacity = '0';
+                    }
+                    if (spatialCubes) {
+                        spatialCubes.style.transform = `translate3d(${cubeX}px, ${cubeY}px, 0) scale(${cubeScale})`;
+                        spatialCubes.style.opacity = cubeOpacity;
+                    }
+
+                    // 2. GYROSCOPE DOCKING TRAJECTORY:
+                    let gyroX = dockX, gyroY = dockY, gyroScale = 0.55, gyroOpacity = 0.40;
+                    if (p < 0.20) {
+                        gyroX = dockX;
+                        gyroY = dockY;
+                        gyroScale = 0.55;
+                        gyroOpacity = 0.35 + p * 0.2;
+                        if (badgeGyro) badgeGyro.style.opacity = '0';
+                    } else if (p >= 0.20 && p < 0.60) {
+                        const enterT = Math.min(1, (p - 0.20) / 0.18);
+                        gyroX = (1 - enterT) * dockX;
+                        gyroY = dockY + enterT * ((isMobile ? -120 : -165) - dockY);
+                        gyroScale = 0.55 + enterT * ((isMobile ? 0.90 : 1.15) - 0.55);
+                        gyroOpacity = 0.45 + enterT * 0.55;
+                        if (badgeGyro) badgeGyro.style.opacity = '0';
+                    } else {
+                        const exitT = Math.min(1, (p - 0.60) / 0.18);
+                        gyroX = exitT * dockX;
+                        gyroY = (isMobile ? -120 : -165) + exitT * (dockY - (isMobile ? -120 : -165));
+                        gyroScale = (isMobile ? 0.90 : 1.15) - exitT * ((isMobile ? 0.90 : 1.15) - 0.58);
+                        gyroOpacity = 1.0 - exitT * 0.12;
+                        if (badgeGyro) badgeGyro.style.opacity = exitT > 0.5 ? '1' : '0';
+                    }
+                    if (spatialGyro) {
+                        spatialGyro.style.transform = `translate3d(${gyroX}px, ${gyroY}px, 0) scale(${gyroScale})`;
+                        spatialGyro.style.opacity = gyroOpacity;
+                    }
+
+                    // 3. PRISMATIC DIAMOND DOCKING TRAJECTORY:
+                    let prismX = 0, prismY = 240, prismScale = 0.50, prismOpacity = 0.25;
+                    if (p < 0.55) {
+                        prismY = 240 - p * 60;
+                        prismScale = 0.50 + p * 0.15;
+                        prismOpacity = 0.25 + p * 0.35;
+                        if (badgePrism) badgePrism.style.opacity = '0';
+                    } else {
+                        const enterT = Math.min(1, (p - 0.55) / 0.22);
+                        prismY = 207 - enterT * (207 - (isMobile ? -120 : -160));
+                        prismScale = 0.60 + enterT * ((isMobile ? 0.95 : 1.20) - 0.60);
+                        prismOpacity = 0.50 + enterT * 0.50;
+                        if (badgePrism) badgePrism.style.opacity = enterT > 0.5 ? '1' : '0';
+                    }
+                    if (spatialPrism) {
+                        spatialPrism.style.transform = `translate3d(${prismX}px, ${prismY}px, 0) scale(${prismScale})`;
+                        spatialPrism.style.opacity = prismOpacity;
+                    }
+
+                    // ── PHASE 1: SCENE 1 TEXT & CARDS (Progress 0.0 -> 0.33) ──
                     if (p < 0.36) {
                         const p1Exit = Math.max(0, (p - 0.08) / 0.24);
                         scene1.style.opacity = Math.max(0, 1 - p1Exit * 1.35);
-                        scene1.style.transform = `perspective(1200px) translate3d(0, ${-p1Exit * 85}px, ${-p1Exit * 120}px) rotateX(${p1Exit * 8}deg) scale(${1 - p1Exit * 0.06})`;
-                        scene1.style.filter = `blur(${p1Exit * 10}px)`;
+                        scene1.style.transform = `perspective(1200px) translate3d(0, ${-p1Exit * 70}px, ${-p1Exit * 100}px) rotateX(${p1Exit * 7}deg) scale(${1 - p1Exit * 0.05})`;
+                        scene1.style.filter = `blur(${p1Exit * 8}px)`;
 
-                        if (scene1Title) {
-                            scene1Title.style.transform = `translate3d(${-p1Exit * 65}px, 0, 0)`;
-                        }
-                        if (scene1Desc) {
-                            scene1Desc.style.transform = `translate3d(${p1Exit * 65}px, 0, 0)`;
-                        }
-                        if (scene1Cube) {
-                            scene1Cube.style.transform = `scale(${1 + p1Exit * 0.40}) translateY(${-p1Exit * 35}px)`;
-                        }
+                        if (scene1Title) scene1Title.style.transform = `translate3d(${-p1Exit * 50}px, 0, 0)`;
+                        if (scene1Desc) scene1Desc.style.transform = `translate3d(${p1Exit * 50}px, 0, 0)`;
 
                         scene1.classList.add('active-scene');
                     } else {
@@ -3162,31 +3356,26 @@
                         scene1.classList.remove('active-scene');
                     }
 
-                    // ── PHASE 2: SCENE 2 (Progress 0.24 -> 0.72) ──
+                    // ── PHASE 2: SCENE 2 TEXT & CARDS (Progress 0.24 -> 0.72) ──
                     if (p >= 0.20 && p < 0.74) {
-                        let s2Opacity = 0;
-                        let s2Y = 0;
-                        let s2Z = 0;
-                        let s2RotX = 0;
-                        let s2Scale = 1;
-                        let s2Blur = 0;
+                        let s2Opacity = 0, s2Y = 0, s2Z = 0, s2RotX = 0, s2Scale = 1, s2Blur = 0;
 
                         if (p < 0.48) {
                             const enterT = (p - 0.20) / 0.20;
                             s2Opacity = Math.min(1, enterT * 1.35);
-                            s2Y = (1 - enterT) * 80;
-                            s2Z = (1 - enterT) * -100;
-                            s2RotX = (1 - enterT) * -8;
-                            s2Scale = 0.90 + enterT * 0.10;
-                            s2Blur = (1 - enterT) * 10;
+                            s2Y = (1 - enterT) * 70;
+                            s2Z = (1 - enterT) * -80;
+                            s2RotX = (1 - enterT) * -7;
+                            s2Scale = 0.92 + enterT * 0.08;
+                            s2Blur = (1 - enterT) * 8;
                         } else {
                             const exitT = (p - 0.52) / 0.20;
                             s2Opacity = Math.max(0, 1 - exitT * 1.35);
-                            s2Y = -exitT * 80;
-                            s2Z = -exitT * 100;
-                            s2RotX = exitT * 8;
+                            s2Y = -exitT * 70;
+                            s2Z = -exitT * 80;
+                            s2RotX = exitT * 7;
                             s2Scale = 1 - exitT * 0.08;
-                            s2Blur = exitT * 10;
+                            s2Blur = exitT * 8;
                         }
 
                         scene2.style.opacity = Math.max(0, Math.min(1, s2Opacity));
@@ -3194,7 +3383,7 @@
                         scene2.style.filter = `blur(${Math.max(0, s2Blur)}px)`;
 
                         if (scene2Cards) {
-                            const cardShift = (p - 0.35) * 35;
+                            const cardShift = (p - 0.35) * 30;
                             scene2Cards.style.transform = `translate3d(0, ${-cardShift}px, 0)`;
                         }
 
@@ -3204,15 +3393,15 @@
                         scene2.classList.remove('active-scene');
                     }
 
-                    // ── PHASE 3: SCENE 3 (Progress 0.60 -> 1.0) ──
+                    // ── PHASE 3: SCENE 3 TEXT & CARDS (Progress 0.60 -> 1.0) ──
                     if (p >= 0.58) {
                         const enterT = Math.min(1, (p - 0.58) / 0.20);
                         const s3Opacity = Math.min(1, enterT * 1.35);
-                        const s3Y = (1 - enterT) * 80;
-                        const s3Z = (1 - enterT) * -100;
-                        const s3RotX = (1 - enterT) * -8;
-                        const s3Scale = 0.90 + enterT * 0.10;
-                        const s3Blur = (1 - enterT) * 10;
+                        const s3Y = (1 - enterT) * 70;
+                        const s3Z = (1 - enterT) * -80;
+                        const s3RotX = (1 - enterT) * -7;
+                        const s3Scale = 0.92 + enterT * 0.08;
+                        const s3Blur = (1 - enterT) * 8;
 
                         scene3.style.opacity = Math.max(0, Math.min(1, s3Opacity));
                         scene3.style.transform = `perspective(1200px) translate3d(0, ${s3Y}px, ${s3Z}px) rotateX(${s3RotX}deg) scale(${s3Scale})`;
