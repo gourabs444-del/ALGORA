@@ -9,46 +9,58 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f1f5f9;
+            background-color: #f8fafc;
             background-image: 
-                radial-gradient(circle at 50% 0%, #ffffff 0%, #edf2f7 65%, #e2e8f0 100%);
+                radial-gradient(circle at 50% 40%, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
             margin: 0;
             overflow: hidden;
         }
 
         /* ═══════════════════════════════════════════════════════════
-           EXACT UIVERSE.IO LOADER BY SELFMADESYSTEM
+           ULTRA-FLUID 120FPS GPU ACCELERATED LOADER
            ═══════════════════════════════════════════════════════════ */
         .loader {
             display: flex;
             margin: 0.25em 0;
             align-items: center;
             justify-content: center;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
         }
 
         .loader .w-2 {
-            width: 0.5em;
+            width: 0.45em;
         }
 
         .dash {
-            animation: dashArray 2.4s ease-in-out forwards,
-                dashOffset 2.4s linear forwards;
+            will-change: stroke-dasharray, stroke-dashoffset;
+            animation: dashArray 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
+                dashOffset 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            filter: drop-shadow(0 4px 14px rgba(99, 102, 241, 0.18));
         }
 
         .spin {
-            animation: spinDashArray 2.4s ease-in-out forwards,
-                spin 2.4s ease-in-out forwards,
-                dashOffset 2.4s linear forwards;
+            will-change: stroke-dasharray, stroke-dashoffset, transform;
+            animation: spinDashArray 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
+                spin 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
+                dashOffset 2.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
             transform-origin: center;
+            filter: drop-shadow(0 4px 14px rgba(244, 63, 94, 0.18));
         }
 
         @keyframes dashArray {
             0% {
                 stroke-dasharray: 0 1 359 0;
             }
-            45% {
+            40% {
                 stroke-dasharray: 0 359 1 0;
             }
             75%, 100% {
@@ -60,7 +72,7 @@
             0% {
                 stroke-dasharray: 270 90;
             }
-            45% {
+            40% {
                 stroke-dasharray: 0 360;
             }
             75%, 100% {
@@ -81,7 +93,7 @@
             0% {
                 rotate: 0deg;
             }
-            50% {
+            45% {
                 rotate: 180deg;
             }
             75%, 100% {
@@ -90,20 +102,13 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4">
+<body class="min-h-screen flex flex-col items-center justify-center p-4 select-none">
 
-    <!-- FULL SCREEN PEARLY WHITE ANIMATED LOADER CONTAINER -->
-    <div class="flex flex-col items-center justify-center p-6 sm:p-12 text-center max-w-xl w-full mx-auto">
+    <!-- FULL SCREEN PURE ANIMATION CONTAINER (NO BADGES, NO TEXT) -->
+    <div class="flex flex-col items-center justify-center w-full h-full my-auto text-center scale-[1.35] sm:scale-[1.8] md:scale-[2.2] transition-transform duration-300">
         
-        <!-- SUBMITTED BADGE -->
-        <div class="mb-4">
-            <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-600 text-white text-[11px] font-extrabold tracking-widest uppercase shadow-md mb-2">
-                <span>SUBMITTED</span>
-            </div>
-        </div>
-
         <!-- SelfMadeSystem Gradients Definition -->
-        <svg height="0" width="0" viewBox="0 0 64 64" class="absolute">
+        <svg height="0" width="0" viewBox="0 0 64 64" class="absolute pointer-events-none">
           <defs class="s-xJBuHA073rTt" xmlns="http://www.w3.org/2000/svg">
             <linearGradient class="s-xJBuHA073rTt" gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="sms-b">
               <stop class="s-xJBuHA073rTt" stop-color="#973BED"></stop>
@@ -121,63 +126,58 @@
           </defs>
         </svg>
 
-        <!-- DUAL ROW SELFMADESYSTEM LOADER: "THANK" + "YOU" -->
-        <div class="flex flex-col items-center justify-center gap-3 sm:gap-4 my-6">
+        <!-- DUAL ROW GRAND SCALE VECTOR GLYPHS -->
+        <div class="flex flex-col items-center justify-center gap-3 sm:gap-4 my-auto">
           
           <!-- ROW 1: T - H - A - N - K -->
-          <div class="loader flex items-center justify-center scale-100 sm:scale-110">
+          <div class="loader flex items-center justify-center">
             <!-- T -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="52" width="52" class="inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block">
               <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b)" d="M 8,10 H 56 V 16 H 36 V 54 H 28 V 16 H 8 Z" class="dash" pathLength="360"></path>
             </svg>
             <!-- H -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="52" width="52" class="inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block">
               <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-c)" d="M 10,10 H 18 V 28 H 46 V 10 H 54 V 54 H 46 V 36 H 18 V 54 H 10 Z" class="dash" pathLength="360"></path>
             </svg>
             <!-- A -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="52" width="52" class="inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block">
               <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-d)" d="M 32,8 L 56,54 H 46 L 39,40 H 25 L 18,54 H 8 Z M 32,22 L 27,33 H 37 Z" class="dash" pathLength="360"></path>
             </svg>
             <!-- N -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="52" width="52" class="inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block">
               <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b)" d="M 10,10 H 18 L 46,46 V 10 H 54 V 54 H 46 L 18,18 V 54 H 10 Z" class="dash" pathLength="360"></path>
             </svg>
             <!-- K -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="52" width="52" class="inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="48" width="48" class="inline-block">
               <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-c)" d="M 12,10 H 20 V 28 L 44,10 H 54 L 28,31 L 54,54 H 44 L 20,34 V 54 H 12 Z" class="dash" pathLength="360"></path>
             </svg>
           </div>
 
           <!-- ROW 2: Y - O - U -->
-          <div class="loader flex items-center justify-center scale-110 sm:scale-125">
+          <div class="loader flex items-center justify-center scale-105">
             <!-- Y -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="54" width="54" class="inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="50" width="50" class="inline-block">
               <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-b)" d="M 54.722656,3.9726563 A 2.0002,2.0002 0 0 0 54.941406,4 h 5.007813 C 58.955121,17.046124 49.099667,27.677057 36.121094,29.580078 a 2.0002,2.0002 0 0 0 -1.708985,1.978516 V 60 H 29.587891 V 31.558594 A 2.0002,2.0002 0 0 0 27.878906,29.580078 C 14.900333,27.677057 5.0448787,17.046124 4.0507812,4 H 9.28125 c 1.231666,11.63657 10.984383,20.554048 22.6875,20.734375 a 2.0002,2.0002 0 0 0 0.02344,0 c 11.806958,0.04283 21.70649,-9.003371 22.730469,-20.7617187 z" class="dash" id="y" pathLength="360"></path>
             </svg>
             <!-- O -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" style="--rotation-duration:0ms; --rotation-direction:normal;" viewBox="0 0 64 64" height="54" width="54" class="inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" style="--rotation-duration:0ms; --rotation-direction:normal;" viewBox="0 0 64 64" height="50" width="50" class="inline-block">
               <path stroke-linejoin="round" stroke-linecap="round" stroke-width="10" stroke="url(#sms-c)" d="M 32 32 m 0 -27 a 27 27 0 1 1 0 54 a 27 27 0 1 1 0 -54" class="spin" id="o" pathLength="360"></path>
             </svg>
-            <div class="w-2" style="width:0.4em;"></div>
+            <div class="w-2"></div>
             <!-- U -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" style="--rotation-duration:0ms; --rotation-direction:normal;" viewBox="0 0 64 64" height="54" width="54" class="inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" style="--rotation-duration:0ms; --rotation-direction:normal;" viewBox="0 0 64 64" height="50" width="50" class="inline-block">
               <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#sms-d)" d="M 4,4 h 4.6230469 v 25.919922 c -0.00276,11.916203 9.8364941,21.550422 21.7500001,21.296875 11.616666,-0.240651 21.014356,-9.63894 21.253906,-21.25586 a 2.0002,2.0002 0 0 0 0,-0.04102 V 4 H 56.25 v 25.919922 c 0,14.33873 -11.581192,25.919922 -25.919922,25.919922 a 2.0002,2.0002 0 0 0 -0.0293,0 C 15.812309,56.052941 3.998433,44.409961 4,29.919922 Z" class="dash" id="u" pathLength="360"></path>
             </svg>
           </div>
 
         </div>
-
-        <div class="space-y-1.5 text-center mt-3">
-            <p class="text-slate-900 font-extrabold text-lg sm:text-xl font-['Outfit']">Preparing Your Boarding Pass...</p>
-            <p class="text-slate-500 text-xs sm:text-sm font-semibold">Securing cloud intake & lead routing</p>
-        </div>
     </div>
 
-    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (2.4s draw + 1.5s solid hold) -->
+    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (2.2s draw + 1.5s solid hold) -->
     <script>
         setTimeout(() => {
             window.location.replace('thank-you.html');
-        }, 3900);
+        }, 3700);
     </script>
 </body>
 </html>
