@@ -2453,13 +2453,13 @@
              PRESENTATION-GRADE 3D EXPLODED ARCHITECTURE VIEWPORT & LAUNCHPAD CSS
              ═══════════════════════════════════════════════════════════════════════ -->
         <style>
-        /* ── 3D ISOMETRIC STAGE VIEWPORT ── */
+        /* ── 3D CINEMATIC ISOMETRIC STAGE VIEWPORT (LARGE SCALE) ── */
         .stage-3d-viewport {
           width: 100%;
-          max-width: 540px;
-          height: 380px;
+          max-width: 680px;
+          height: 480px;
           position: relative;
-          perspective: 1200px;
+          perspective: 1400px;
           transform-style: preserve-3d;
           display: flex;
           align-items: center;
@@ -2467,35 +2467,42 @@
         }
 
         .viewport-master-rig {
-          width: 440px;
-          height: 280px;
+          width: 540px;
+          height: 340px;
           position: relative;
           transform-style: preserve-3d;
-          transition: transform 0.1s ease-out;
+          transition: transform 0.08s ease-out;
           transform: rotateX(20deg) rotateY(-18deg) rotateZ(3deg);
+        }
+
+        @media (max-width: 640px) {
+          .viewport-master-rig {
+            width: 320px;
+            height: 220px;
+          }
         }
 
         /* ── INDIVIDUAL EXPLODED LAYERS (FRONT, MIDDLE, DEEP) ── */
         .exploded-layer {
           position: absolute;
           inset: 0;
-          border-radius: 20px;
+          border-radius: 24px;
           transform-style: preserve-3d;
-          will-change: transform, opacity;
-          transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+          will-change: transform, opacity, filter;
+          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
         }
 
         /* LAYER 3: DEEP CORE / CODE RUNTIME MATRIX */
         .layer-deep {
-          background: rgba(15, 23, 42, 0.88);
-          border: 1px solid rgba(56, 189, 248, 0.35);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35), 0 0 30px rgba(14, 165, 233, 0.15);
-          padding: 1.25rem;
+          background: rgba(15, 23, 42, 0.92);
+          border: 1.5px solid rgba(56, 189, 248, 0.40);
+          backdrop-filter: blur(24px);
+          -webkit-backdrop-filter: blur(24px);
+          box-shadow: 0 35px 80px rgba(15, 23, 42, 0.45), 0 0 40px rgba(14, 165, 233, 0.20);
+          padding: 1.5rem;
           color: #94a3b8;
           font-family: ui-monospace, monospace;
-          font-size: 11px;
+          font-size: 11.5px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -2503,11 +2510,11 @@
 
         /* LAYER 2: MIDDLE ENGINE / 3D WEBGL SHADER CANVAS */
         .layer-mid {
-          background: linear-gradient(135deg, rgba(224, 242, 254, 0.45) 0%, rgba(186, 230, 253, 0.20) 100%);
-          border: 1.5px solid rgba(56, 189, 248, 0.65);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          box-shadow: 0 15px 40px rgba(14, 165, 233, 0.20);
+          background: linear-gradient(135deg, rgba(224, 242, 254, 0.55) 0%, rgba(186, 230, 253, 0.25) 100%);
+          border: 2px solid rgba(56, 189, 248, 0.75);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          box-shadow: 0 25px 60px rgba(14, 165, 233, 0.30);
           overflow: hidden;
           display: flex;
           flex-direction: column;
@@ -2517,12 +2524,12 @@
 
         /* LAYER 1: FRONT GLASS UI & MICRO-INTERACTIONS */
         .layer-front {
-          background: rgba(255, 255, 255, 0.82);
-          border: 1.5px solid rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(24px) saturate(180%);
-          -webkit-backdrop-filter: blur(24px) saturate(180%);
-          box-shadow: 0 30px 70px rgba(14, 165, 233, 0.25), 0 1px 3px rgba(0, 0, 0, 0.05);
-          padding: 1.25rem;
+          background: rgba(255, 255, 255, 0.88);
+          border: 2px solid rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(28px) saturate(200%);
+          -webkit-backdrop-filter: blur(28px) saturate(200%);
+          box-shadow: 0 40px 90px rgba(14, 165, 233, 0.30), 0 1px 4px rgba(0, 0, 0, 0.06);
+          padding: 1.5rem;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -3268,109 +3275,133 @@
                     }
 
                     // ═══════════════════════════════════════════════════════════
-                    // 🚀 3D ZOOM IN/OUT, SLIDE & EXPLODED ARCHITECTURE PHYSICS
+                    // 🚀 CINEMATIC 3D HYPER-ZOOM, GIANT EXPLODE & FLY-THROUGH
                     // ═══════════════════════════════════════════════════════════
                     const isMobile = window.innerWidth < 1024;
 
                     if (viewportRig && layerFront && layerMid && layerDeep && layerTerminal) {
-                        if (p < 0.24) {
-                            // ── PHASE 1: HOLISTIC 3D APP VIEWPORT (SMOOTH TILT & ZOOM) ──
-                            const idleTilt = p * 15;
-                            const idleZoom = (isMobile ? 0.85 : 1.05) + p * 0.15;
-                            viewportRig.style.transform = `perspective(1200px) translate3d(0, 0, 0) rotateX(${18 + idleTilt}deg) rotateY(${-18 - idleTilt * 0.5}deg) rotateZ(3deg) scale(${idleZoom})`;
+                        if (p < 0.25) {
+                            // ── PHASE 1: MACRO CINEMATIC HERO VIEWPORT (ZOOM PULL-BACK 1.45 -> 1.05) ──
+                            const t1 = p / 0.25;
+                            const macroZoom = (isMobile ? 1.0 : 1.40) - t1 * (isMobile ? 0.20 : 0.35);
+                            const macroZ = (1 - t1) * 80;
+                            const rotX = 14 + t1 * 8;
+                            const rotY = -12 - t1 * 8;
+
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, ${macroZ}px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(2deg) scale(${macroZoom})`;
                             
                             layerFront.style.transform = `translate3d(0, 0, 0px)`;
                             layerFront.style.opacity = '1';
-                            layerFront.style.boxShadow = '0 30px 70px rgba(14, 165, 233, 0.25)';
+                            layerFront.style.boxShadow = '0 35px 80px rgba(14, 165, 233, 0.30)';
 
-                            layerMid.style.transform = `translate3d(0, 0, -4px)`;
+                            layerMid.style.transform = `translate3d(0, 0, -6px)`;
                             layerMid.style.opacity = '0.9';
 
-                            layerDeep.style.transform = `translate3d(0, 0, -8px)`;
+                            layerDeep.style.transform = `translate3d(0, 0, -12px)`;
                             layerDeep.style.opacity = '0.8';
 
-                            // Hide callouts and terminal in Phase 1
+                            // Hide callouts & terminal in Phase 1
                             if (calloutFront) calloutFront.style.opacity = '0';
                             if (calloutMid) calloutMid.style.opacity = '0';
                             if (calloutDeep) calloutDeep.style.opacity = '0';
 
                             layerTerminal.style.opacity = '0';
                             layerTerminal.style.pointerEvents = 'none';
-                        } else if (p >= 0.24 && p < 0.65) {
-                            // ── PHASE 2: 3D EXPLODED LAYER DISASSEMBLY (ZOOM OUT + SLIDE + EXPLODE) ──
-                            const explodeT = Math.min(1, Math.max(0, (p - 0.24) / 0.22));
-                            const rotX = 18 + explodeT * 12;
-                            const rotY = -18 - explodeT * 14;
-                            const rotZ = 3 + explodeT * 4;
-                            const slideX = explodeT * (isMobile ? 10 : 25);
-                            const zoomScale = (isMobile ? 0.80 : 1.02) - explodeT * 0.04;
+                        } else if (p >= 0.25 && p < 0.65) {
+                            // ── PHASE 2: GIANT 3D EXPLODED ARCHITECTURE (ZOOM OUT + DRAMATIC TILT + MASSIVE EXPLODE) ──
+                            const explodeT = Math.min(1, Math.max(0, (p - 0.25) / 0.22));
+                            const rotX = 22 + explodeT * 16;
+                            const rotY = -20 - explodeT * 18;
+                            const rotZ = 2 + explodeT * 6;
+                            const slideX = explodeT * (isMobile ? 15 : 45);
+                            const wideZoom = (isMobile ? 0.78 : 0.88) - explodeT * 0.05;
 
-                            viewportRig.style.transform = `perspective(1200px) translate3d(${slideX}px, 0, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(${zoomScale})`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(${slideX}px, 0, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(${wideZoom})`;
 
-                            // Front Layer lifts forward in 3D (+110px Z, -35px Y)
-                            const frontZ = explodeT * (isMobile ? 75 : 115);
-                            const frontY = -explodeT * (isMobile ? 22 : 36);
-                            layerFront.style.transform = `translate3d(0, ${frontY}px, ${frontZ}px) scale(1.02)`;
+                            // Front Layer pops WAY forward in 3D (+180px Z, -55px Y)
+                            const frontZ = explodeT * (isMobile ? 100 : 185);
+                            const frontY = -explodeT * (isMobile ? 30 : 55);
+                            layerFront.style.transform = `translate3d(0, ${frontY}px, ${frontZ}px) rotateX(${explodeT * 6}deg) scale(1.04)`;
                             layerFront.style.opacity = '1';
-                            layerFront.style.boxShadow = `0 ${30 + explodeT * 25}px ${70 + explodeT * 35}px rgba(14, 165, 233, 0.40)`;
+                            layerFront.style.boxShadow = `0 ${40 + explodeT * 35}px ${90 + explodeT * 45}px rgba(14, 165, 233, 0.45)`;
 
-                            // Mid Layer stays suspended in center
-                            layerMid.style.transform = `translate3d(0, 0, 0px)`;
+                            // Mid Layer stays suspended in glowing center
+                            layerMid.style.transform = `translate3d(0, 0, 0px) scale(${1 + explodeT * 0.02})`;
                             layerMid.style.opacity = '1';
 
-                            // Deep Layer sinks back in 3D (-110px Z, +35px Y)
-                            const deepZ = -explodeT * (isMobile ? 75 : 115);
-                            const deepY = explodeT * (isMobile ? 22 : 36);
-                            layerDeep.style.transform = `translate3d(0, ${deepY}px, ${deepZ}px) scale(0.98)`;
+                            // Deep Layer sinks DEEP into background (-180px Z, +55px Y)
+                            const deepZ = -explodeT * (isMobile ? 100 : 185);
+                            const deepY = explodeT * (isMobile ? 30 : 55);
+                            layerDeep.style.transform = `translate3d(0, ${deepY}px, ${deepZ}px) rotateX(${-explodeT * 6}deg) scale(0.96)`;
                             layerDeep.style.opacity = '1';
 
-                            // Reveal Infographic Telemetry Callout Badges
-                            const pinOpacity = explodeT > 0.45 ? Math.min(1, (explodeT - 0.45) * 2).toString() : '0';
-                            if (calloutFront) calloutFront.style.opacity = pinOpacity;
-                            if (calloutMid) calloutMid.style.opacity = pinOpacity;
-                            if (calloutDeep) calloutDeep.style.opacity = pinOpacity;
+                            // Reveal Infographic Telemetry Callouts with high-impact laser glow
+                            const pinOpacity = explodeT > 0.35 ? Math.min(1, (explodeT - 0.35) * 2.5).toString() : '0';
+                            if (calloutFront) {
+                                calloutFront.style.opacity = pinOpacity;
+                                calloutFront.style.transform = `translate3d(0, ${-explodeT * 10}px, 20px)`;
+                            }
+                            if (calloutMid) {
+                                calloutMid.style.opacity = pinOpacity;
+                                calloutMid.style.transform = `translate3d(${-explodeT * 10}px, ${explodeT * 10}px, 20px)`;
+                            }
+                            if (calloutDeep) {
+                                calloutDeep.style.opacity = pinOpacity;
+                                calloutDeep.style.transform = `translate3d(0, ${explodeT * 10}px, 20px)`;
+                            }
 
-                            // Live Infographic Latency Ticker Animation
+                            // Dynamic real-time latency jitter
                             if (telemetryLatency) {
-                                const lat = (0.35 + Math.sin(Date.now() * 0.005) * 0.05).toFixed(2);
+                                const lat = (0.32 + Math.sin(Date.now() * 0.008) * 0.06).toFixed(2);
                                 telemetryLatency.textContent = `< ${lat} MS`;
                             }
 
                             layerTerminal.style.opacity = '0';
                             layerTerminal.style.pointerEvents = 'none';
                         } else {
-                            // ── PHASE 3: SNAP REASSEMBLY & HOLOGRAPHIC PRODUCTION LAUNCHPAD (ZOOM IN) ──
-                            const reassembleT = Math.min(1, (p - 0.65) / 0.20);
+                            // ── PHASE 3: MAGNETIC SNAP & HYPER-ZOOM FLY-THROUGH (SCALE UP TO 1.65!) ──
+                            const reassembleT = Math.min(1, (p - 0.65) / 0.18);
+                            const flyThroughT = Math.max(0, (p - 0.78) / 0.22);
                             const snapIn = 1 - reassembleT;
-                            const zoomIn = (isMobile ? 0.88 : 1.18) * (0.95 + reassembleT * 0.05);
 
-                            viewportRig.style.transform = `perspective(1200px) translate3d(0, 0, ${reassembleT * 40}px) rotateX(${30 - reassembleT * 24}deg) rotateY(${-32 + reassembleT * 26}deg) rotateZ(${7 - reassembleT * 7}deg) scale(${zoomIn})`;
+                            // Camera soars from wide shot to extreme immersive terminal close-up
+                            const hyperZoom = (isMobile ? 0.90 : 1.15) + flyThroughT * (isMobile ? 0.40 : 0.60);
+                            const flyZ = flyThroughT * 160;
+                            const rotX = 38 - reassembleT * 32;
+                            const rotY = -38 + reassembleT * 34;
+                            const rotZ = 8 - reassembleT * 8;
 
-                            layerFront.style.transform = `translate3d(0, ${-snapIn * 30}px, ${snapIn * 90}px)`;
+                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, ${flyZ}px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(${hyperZoom})`;
+
+                            layerFront.style.transform = `translate3d(0, ${-snapIn * 45}px, ${snapIn * 140}px)`;
                             layerMid.style.transform = `translate3d(0, 0, 0px)`;
-                            layerDeep.style.transform = `translate3d(0, ${snapIn * 30}px, ${-snapIn * 90}px)`;
+                            layerDeep.style.transform = `translate3d(0, ${snapIn * 45}px, ${-snapIn * 140}px)`;
 
                             // Fade out callouts during snap
-                            if (calloutFront) calloutFront.style.opacity = (snapIn * 0.5).toString();
-                            if (calloutMid) calloutMid.style.opacity = (snapIn * 0.5).toString();
-                            if (calloutDeep) calloutDeep.style.opacity = (snapIn * 0.5).toString();
+                            if (calloutFront) calloutFront.style.opacity = (snapIn * 0.4).toString();
+                            if (calloutMid) calloutMid.style.opacity = (snapIn * 0.4).toString();
+                            if (calloutDeep) calloutDeep.style.opacity = (snapIn * 0.4).toString();
 
-                            // Terminal illuminates and crowns center
-                            layerTerminal.style.opacity = Math.min(1, reassembleT * 1.5).toString();
-                            layerTerminal.style.transform = `translate3d(0, 0, ${reassembleT * 25}px) scale(${0.95 + reassembleT * 0.05})`;
+                            // Holographic Terminal glows with lavender neon and takes over
+                            layerTerminal.style.opacity = Math.min(1, reassembleT * 1.8).toString();
+                            layerTerminal.style.transform = `translate3d(0, 0, ${reassembleT * 35}px) scale(${0.92 + reassembleT * 0.08})`;
                             layerTerminal.style.pointerEvents = reassembleT > 0.8 ? 'auto' : 'none';
                         }
                     }
 
-                    // ── PHASE 1: SCENE 1 TEXT & CARDS (Progress 0.0 -> 0.33) ──
-                    if (p < 0.36) {
-                        const p1Exit = Math.max(0, (p - 0.08) / 0.24);
-                        scene1.style.opacity = Math.max(0, 1 - p1Exit * 1.35);
-                        scene1.style.transform = `perspective(1200px) translate3d(0, ${-p1Exit * 70}px, ${-p1Exit * 100}px) rotateX(${p1Exit * 7}deg) scale(${1 - p1Exit * 0.05})`;
-                        scene1.style.filter = `blur(${p1Exit * 8}px)`;
+                    // ═══════════════════════════════════════════════════════════
+                    // 🎬 VIDEO REEL KINETIC TEXT MOTION (SWEEPING VECTORS ACROSS SCREEN)
+                    // ═══════════════════════════════════════════════════════════
 
-                        if (scene1Title) scene1Title.style.transform = `translate3d(${-p1Exit * 50}px, 0, 0)`;
-                        if (scene1Desc) scene1Desc.style.transform = `translate3d(${p1Exit * 50}px, 0, 0)`;
+                    // ── SCENE 1: SLIDES IN & SWEEPS ACROSS UP-LEFT (0.0 -> 0.35) ──
+                    if (p < 0.38) {
+                        const p1Exit = Math.max(0, (p - 0.06) / 0.26);
+                        scene1.style.opacity = Math.max(0, 1 - p1Exit * 1.4);
+                        scene1.style.transform = `perspective(1200px) translate3d(${-p1Exit * 140}px, ${-p1Exit * 80}px, ${-p1Exit * 120}px) rotateX(${p1Exit * 8}deg) scale(${1 - p1Exit * 0.08})`;
+                        scene1.style.filter = `blur(${p1Exit * 10}px)`;
+
+                        if (scene1Title) scene1Title.style.transform = `translate3d(${-p1Exit * 110}px, 0, 0)`;
+                        if (scene1Desc) scene1Desc.style.transform = `translate3d(${-p1Exit * 70}px, ${p1Exit * 30}px, 0)`;
 
                         scene1.classList.add('active-scene');
                     } else {
@@ -3378,35 +3409,37 @@
                         scene1.classList.remove('active-scene');
                     }
 
-                    // ── PHASE 2: SCENE 2 TEXT & CARDS (Progress 0.24 -> 0.72) ──
-                    if (p >= 0.20 && p < 0.74) {
-                        let s2Opacity = 0, s2Y = 0, s2Z = 0, s2RotX = 0, s2Scale = 1, s2Blur = 0;
+                    // ── SCENE 2: SWEEPS IN FROM BOTTOM-LEFT & GLIDES ACROSS (0.22 -> 0.74) ──
+                    if (p >= 0.20 && p < 0.76) {
+                        let s2Opacity = 0, s2X = 0, s2Y = 0, s2Z = 0, s2RotX = 0, s2Scale = 1, s2Blur = 0;
 
                         if (p < 0.48) {
-                            const enterT = (p - 0.20) / 0.20;
-                            s2Opacity = Math.min(1, enterT * 1.35);
-                            s2Y = (1 - enterT) * 70;
-                            s2Z = (1 - enterT) * -80;
-                            s2RotX = (1 - enterT) * -7;
-                            s2Scale = 0.92 + enterT * 0.08;
-                            s2Blur = (1 - enterT) * 8;
+                            const enterT = (p - 0.20) / 0.22;
+                            s2Opacity = Math.min(1, enterT * 1.5);
+                            s2X = (1 - enterT) * -150;
+                            s2Y = (1 - enterT) * 90;
+                            s2Z = (1 - enterT) * -100;
+                            s2RotX = (1 - enterT) * -8;
+                            s2Scale = 0.88 + enterT * 0.12;
+                            s2Blur = (1 - enterT) * 10;
                         } else {
-                            const exitT = (p - 0.52) / 0.20;
-                            s2Opacity = Math.max(0, 1 - exitT * 1.35);
-                            s2Y = -exitT * 70;
-                            s2Z = -exitT * 80;
-                            s2RotX = exitT * 7;
-                            s2Scale = 1 - exitT * 0.08;
-                            s2Blur = exitT * 8;
+                            const exitT = (p - 0.52) / 0.22;
+                            s2Opacity = Math.max(0, 1 - exitT * 1.5);
+                            s2X = -exitT * 150;
+                            s2Y = -exitT * 90;
+                            s2Z = -exitT * 100;
+                            s2RotX = exitT * 8;
+                            s2Scale = 1 - exitT * 0.10;
+                            s2Blur = exitT * 10;
                         }
 
                         scene2.style.opacity = Math.max(0, Math.min(1, s2Opacity));
-                        scene2.style.transform = `perspective(1200px) translate3d(0, ${s2Y}px, ${s2Z}px) rotateX(${s2RotX}deg) scale(${s2Scale})`;
+                        scene2.style.transform = `perspective(1200px) translate3d(${s2X}px, ${s2Y}px, ${s2Z}px) rotateX(${s2RotX}deg) scale(${s2Scale})`;
                         scene2.style.filter = `blur(${Math.max(0, s2Blur)}px)`;
 
                         if (scene2Cards) {
-                            const cardShift = (p - 0.35) * 30;
-                            scene2Cards.style.transform = `translate3d(0, ${-cardShift}px, 0)`;
+                            const cardSweep = (p - 0.35) * 60;
+                            scene2Cards.style.transform = `translate3d(${-cardSweep}px, 0, 0)`;
                         }
 
                         scene2.classList.add('active-scene');
@@ -3415,18 +3448,19 @@
                         scene2.classList.remove('active-scene');
                     }
 
-                    // ── PHASE 3: SCENE 3 TEXT & CARDS (Progress 0.60 -> 1.0) ──
+                    // ── SCENE 3: EMERGES WITH GRAND EXPANSION FROM DEPTH (0.58 -> 1.0) ──
                     if (p >= 0.58) {
-                        const enterT = Math.min(1, (p - 0.58) / 0.20);
-                        const s3Opacity = Math.min(1, enterT * 1.35);
-                        const s3Y = (1 - enterT) * 70;
-                        const s3Z = (1 - enterT) * -80;
-                        const s3RotX = (1 - enterT) * -7;
-                        const s3Scale = 0.92 + enterT * 0.08;
-                        const s3Blur = (1 - enterT) * 8;
+                        const enterT = Math.min(1, (p - 0.58) / 0.22);
+                        const s3Opacity = Math.min(1, enterT * 1.5);
+                        const s3X = (1 - enterT) * -120;
+                        const s3Y = (1 - enterT) * 100;
+                        const s3Z = (1 - enterT) * -100;
+                        const s3RotX = (1 - enterT) * -8;
+                        const s3Scale = 0.85 + enterT * 0.15;
+                        const s3Blur = (1 - enterT) * 10;
 
                         scene3.style.opacity = Math.max(0, Math.min(1, s3Opacity));
-                        scene3.style.transform = `perspective(1200px) translate3d(0, ${s3Y}px, ${s3Z}px) rotateX(${s3RotX}deg) scale(${s3Scale})`;
+                        scene3.style.transform = `perspective(1200px) translate3d(${s3X}px, ${s3Y}px, ${s3Z}px) rotateX(${s3RotX}deg) scale(${s3Scale})`;
                         scene3.style.filter = `blur(${Math.max(0, s3Blur)}px)`;
                         scene3.classList.add('active-scene');
                     } else {
