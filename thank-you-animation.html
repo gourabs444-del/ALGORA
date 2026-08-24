@@ -33,14 +33,14 @@
         }
 
         .dash {
-            animation: dashArray 2.8s ease-in-out infinite,
-                dashOffset 2.8s linear infinite;
+            animation: dashArray 2.4s ease-in-out forwards,
+                dashOffset 2.4s linear forwards;
         }
 
         .spin {
-            animation: spinDashArray 2.8s ease-in-out infinite,
-                spin 9s ease-in-out infinite,
-                dashOffset 2.8s linear infinite;
+            animation: spinDashArray 2.4s ease-in-out forwards,
+                spin 2.4s ease-in-out forwards,
+                dashOffset 2.4s linear forwards;
             transform-origin: center;
         }
 
@@ -48,10 +48,10 @@
             0% {
                 stroke-dasharray: 0 1 359 0;
             }
-            50% {
+            45% {
                 stroke-dasharray: 0 359 1 0;
             }
-            100% {
+            75%, 100% {
                 stroke-dasharray: 359 1 0 0;
             }
         }
@@ -60,11 +60,11 @@
             0% {
                 stroke-dasharray: 270 90;
             }
-            50% {
+            45% {
                 stroke-dasharray: 0 360;
             }
-            100% {
-                stroke-dasharray: 270 90;
+            75%, 100% {
+                stroke-dasharray: 359 1;
             }
         }
 
@@ -72,8 +72,8 @@
             0% {
                 stroke-dashoffset: 365;
             }
-            100% {
-                stroke-dashoffset: 5;
+            75%, 100% {
+                stroke-dashoffset: 0;
             }
         }
 
@@ -81,17 +81,11 @@
             0% {
                 rotate: 0deg;
             }
-            12.5%, 25% {
-                rotate: 270deg;
+            50% {
+                rotate: 180deg;
             }
-            37.5%, 50% {
-                rotate: 540deg;
-            }
-            62.5%, 75% {
-                rotate: 810deg;
-            }
-            87.5%, 100% {
-                rotate: 1080deg;
+            75%, 100% {
+                rotate: 360deg;
             }
         }
     </style>
@@ -179,11 +173,11 @@
         </div>
     </div>
 
-    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER 4.2 SECONDS (Animation cycle + 1.5s visual hold) -->
+    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (2.4s draw + 1.5s solid hold) -->
     <script>
         setTimeout(() => {
             window.location.replace('thank-you.html');
-        }, 4200);
+        }, 3900);
     </script>
 </body>
 </html>
