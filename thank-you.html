@@ -130,86 +130,6 @@
             flex-shrink: 0;
             box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.1);
         }
-        /* ═══════════════════════════════════════════════════════════
-           BLANK ➔ STROKE DRAW-IN ➔ SOLID TEXT FILL REVEAL ANIMATION
-           ═══════════════════════════════════════════════════════════ */
-        .animated-text-thank {
-            stroke-dasharray: 280;
-            stroke-dashoffset: 280;
-            fill: transparent;
-            stroke-width: 1.4px;
-            animation: drawAndFillThank 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
-
-        .animated-text-you {
-            stroke-dasharray: 220;
-            stroke-dashoffset: 220;
-            fill: transparent;
-            stroke-width: 1.6px;
-            animation: drawAndFillYou 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
-
-        @keyframes drawAndFillThank {
-            0%, 6% {
-                stroke-dashoffset: 280;
-                stroke: #334155;
-                fill: transparent;
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-                stroke-dashoffset: 280;
-                stroke: #334155;
-                fill: transparent;
-            }
-            48% {
-                stroke-dashoffset: 0;
-                stroke: #334155;
-                fill: transparent;
-            }
-            62%, 88% {
-                stroke-dashoffset: 0;
-                stroke: transparent;
-                fill: #111625;
-                opacity: 1;
-            }
-            96%, 100% {
-                opacity: 0;
-                fill: transparent;
-                stroke-dashoffset: 280;
-            }
-        }
-
-        @keyframes drawAndFillYou {
-            0%, 14% {
-                stroke-dashoffset: 220;
-                stroke: #6366f1;
-                fill: transparent;
-                opacity: 0;
-            }
-            18% {
-                opacity: 1;
-                stroke-dashoffset: 220;
-                stroke: #6366f1;
-                fill: transparent;
-            }
-            54% {
-                stroke-dashoffset: 0;
-                stroke: #818cf8;
-                fill: transparent;
-            }
-            68%, 88% {
-                stroke-dashoffset: 0;
-                stroke: transparent;
-                fill: #6366f1;
-                opacity: 1;
-            }
-            96%, 100% {
-                opacity: 0;
-                fill: transparent;
-                stroke-dashoffset: 220;
-            }
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-3 overflow-x-hidden">
@@ -252,19 +172,16 @@
                         <img src="assets/logo.png" alt="ALGORA" class="h-5 sm:h-6 w-auto object-contain" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
                     </div>
 
-                    <!-- MAIN HEADLINE (BLANK ➔ STROKE DRAW-IN ➔ SOLID TEXT FILL REVEAL) -->
+                    <!-- MAIN HEADLINE & CRAFT STATEMENT -->
                     <div class="my-auto py-1">
-                        <div class="flex items-center gap-2">
-                            <!-- High-Fidelity SVG Text in Outfit Font -->
-                            <svg viewBox="0 0 240 44" class="h-9 sm:h-11 w-auto overflow-visible select-none">
-                                <!-- "Thank" Animated Draw & Fill -->
-                                <text x="0" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" stroke-linecap="round" stroke-linejoin="round" class="animated-text-thank">Thank</text>
-                                
-                                <!-- "You!" Animated Draw & Fill -->
-                                <text x="104" y="34" font-family="'Outfit', sans-serif" font-weight="900" font-size="34" letter-spacing="-0.02em" stroke-linecap="round" stroke-linejoin="round" class="animated-text-you">You!</text>
-                            </svg>
-
-                            <span class="text-[9.5px] sm:text-[11px] font-extrabold tracking-wider text-indigo-600 uppercase ml-1 whitespace-nowrap">✦ WE'LL BE IN TOUCH</span>
+                        <div class="flex items-baseline gap-2 leading-none">
+                            <h1 class="text-3xl sm:text-4.5xl font-extrabold text-[#111625] tracking-tight font-['Outfit']">
+                                Thank
+                            </h1>
+                            <h1 class="text-3xl sm:text-4.5xl font-extrabold text-[#6366f1] tracking-tight font-['Outfit']">
+                                You!
+                            </h1>
+                            <span class="text-[10px] sm:text-xs font-extrabold tracking-wider text-indigo-600 uppercase ml-2">✦ WE'LL BE IN TOUCH</span>
                         </div>
 
                         <div class="text-sm sm:text-lg font-semibold text-slate-500 leading-snug mt-2">
