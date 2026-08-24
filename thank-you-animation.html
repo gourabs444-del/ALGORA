@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>thank you — Algora Studio</title>
+    <title>Thank You — Algora Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Syne:wght@700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -28,98 +28,141 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Syne', 'Outfit', sans-serif;
         }
 
         /* ═══════════════════════════════════════════════════════════
-           APPLE iPHONE 'HELLO' SIGNATURE CURSIVE WRITE ANIMATION
+           AWARD-WINNING HOLOGRAPHIC KINETIC STROKE & FILL BLOOM
            ═══════════════════════════════════════════════════════════ */
-        .apple-canvas {
+        .stage-container {
             transform: translateZ(0);
             backface-visibility: hidden;
             perspective: 1000px;
         }
 
-        .apple-write-path {
-            stroke-dasharray: 2200;
-            stroke-dashoffset: 2200;
-            will-change: stroke-dashoffset;
-            animation: appleHandwrite 2.5s cubic-bezier(0.45, 0, 0.25, 1) forwards;
+        .kinetic-stroke-1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 88px;
+            font-weight: 900;
+            letter-spacing: 0.16em;
+            stroke-dasharray: 1200;
+            stroke-dashoffset: 1200;
+            will-change: stroke-dashoffset, fill-opacity;
+            animation: drawStroke1 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             shape-rendering: geometricPrecision;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
-        .apple-crossbar {
-            stroke-dasharray: 200;
-            stroke-dashoffset: 200;
-            will-change: stroke-dashoffset;
-            animation: appleCrossbar 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1.6s forwards;
+        .kinetic-stroke-2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 92px;
+            font-weight: 900;
+            letter-spacing: 0.22em;
+            stroke-dasharray: 1200;
+            stroke-dashoffset: 1200;
+            will-change: stroke-dashoffset, fill-opacity;
+            animation: drawStroke2 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
             shape-rendering: geometricPrecision;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
-        @keyframes appleHandwrite {
+        @keyframes drawStroke1 {
             0% {
-                stroke-dashoffset: 2200;
+                stroke-dashoffset: 1200;
+                fill-opacity: 0;
+            }
+            65% {
+                stroke-dashoffset: 0;
+                fill-opacity: 0;
             }
             100% {
                 stroke-dashoffset: 0;
+                fill-opacity: 1;
             }
         }
 
-        @keyframes appleCrossbar {
+        @keyframes drawStroke2 {
             0% {
-                stroke-dashoffset: 200;
+                stroke-dashoffset: 1200;
+                fill-opacity: 0;
+            }
+            65% {
+                stroke-dashoffset: 0;
+                fill-opacity: 0;
             }
             100% {
                 stroke-dashoffset: 0;
+                fill-opacity: 1;
             }
+        }
+
+        /* Subtle Ambient Glow Aura */
+        .aura-glow {
+            position: absolute;
+            width: 480px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(244, 63, 94, 0.04) 50%, transparent 70%);
+            filter: blur(40px);
+            pointer-events: none;
+            z-index: 0;
+            animation: pulseAura 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseAura {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            100% { transform: scale(1.15); opacity: 1; }
         }
     </style>
 </head>
 <body class="bg-white">
 
-    <!-- APPLE 'HELLO' STYLE SIGNATURE DISPLAY CONTAINER -->
-    <div class="flex flex-col items-center justify-center w-full h-full my-auto text-center apple-canvas max-w-2xl px-6">
-        
-        <svg viewBox="0 0 740 260" class="w-full h-auto max-w-xl mx-auto overflow-visible select-none pointer-events-none" shape-rendering="geometricPrecision">
-          <defs>
-            <!-- Apple Spectrum Gradient (Deep Indigo to Electric Cyan to Vibrant Coral) -->
-            <linearGradient id="apple-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#1d1d1f" />
-              <stop offset="35%" stop-color="#4338ca" />
-              <stop offset="70%" stop-color="#0284c7" />
-              <stop offset="100%" stop-color="#2563eb" />
-            </linearGradient>
+    <!-- AMBIENT AURA GLOW -->
+    <div class="aura-glow"></div>
 
-            <linearGradient id="apple-vibrant" x1="0%" y1="0%" x2="100%" y2="0%">
+    <!-- HIGH-END LUXURY KINETIC DISPLAY -->
+    <div class="relative z-10 flex flex-col items-center justify-center w-full h-full my-auto text-center stage-container max-w-3xl px-4">
+        
+        <svg viewBox="0 0 760 250" class="w-full h-auto max-w-2xl mx-auto overflow-visible select-none pointer-events-none" shape-rendering="geometricPrecision">
+          <defs>
+            <!-- Iridescent Spectrum Stroke Gradients -->
+            <linearGradient id="laser-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#973BED" />
               <stop offset="50%" stop-color="#007CFF" />
-              <stop offset="100%" stop-color="#00DA72" />
+              <stop offset="100%" stop-color="#00E0ED" />
+            </linearGradient>
+
+            <linearGradient id="laser-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FF2E93" />
+              <stop offset="50%" stop-color="#973BED" />
+              <stop offset="100%" stop-color="#007CFF" />
+            </linearGradient>
+
+            <!-- Luxury Solid Fill Gradient (Blooms into existence) -->
+            <linearGradient id="bloom-fill" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0f172a" />
+              <stop offset="50%" stop-color="#1e1b4b" />
+              <stop offset="100%" stop-color="#0f172a" />
             </linearGradient>
           </defs>
 
-          <!-- ══════════════════════════════════════════════════════════════
-               ICONIC FLOWING CURSIVE CALLIGRAPHY: "thank you"
-               ══════════════════════════════════════════════════════════════ -->
-          <!-- Continuous main cursive stroke: t-h-a-n-k  y-o-u -->
-          <path d="
-            M 65,130 C 70,85 82,30 88,20 C 90,16 93,22 91,48 L 82,142 C 80,160 92,165 102,158 C 114,148 118,105 125,58 C 128,38 132,32 135,36 C 137,42 133,78 126,128 L 123,162 C 122,170 128,172 134,166 C 146,152 152,118 158,110 C 166,100 178,102 176,122 L 172,162 C 171,170 176,172 184,165 C 196,152 205,130 216,114 C 210,114 198,126 195,142 C 192,160 204,168 216,162 C 226,156 232,138 234,112 L 235,162 C 235,170 242,170 250,162 C 262,150 268,120 274,110 C 282,98 294,102 291,122 L 287,162 C 286,170 294,170 302,162 C 314,148 322,118 328,110 C 336,98 348,102 345,122 L 341,162 C 340,170 348,172 355,165 C 368,150 376,102 384,52 C 388,28 392,26 395,32 C 397,38 390,82 382,132 L 378,162 C 377,170 384,170 392,162 C 404,148 418,128 424,115 C 418,128 406,140 412,154 C 416,164 428,166 438,158 C 452,146 462,132 472,122
-            M 495,116 C 504,110 514,122 510,142 C 504,172 494,228 488,245 C 484,256 476,258 472,250 C 466,238 480,198 496,162 C 508,138 522,114 538,110 C 548,108 556,120 552,142 L 548,162 C 547,170 555,170 562,162 C 576,146 585,124 595,112 C 588,112 576,126 572,142 C 568,160 580,168 592,162 C 604,154 612,134 614,112 M 614,112 C 614,112 612,148 610,162 C 609,170 618,172 626,164 C 638,150 648,122 654,112 C 662,100 674,104 671,124 L 666,162 C 665,170 674,170 684,158 C 696,144 706,132 715,124
-          " class="apple-write-path" fill="none" stroke="url(#apple-vibrant)" stroke-width="7" />
+          <!-- ROW 1: T H A N K (Ultra-Modern Syne 900 Extended) -->
+          <text x="390" y="95" text-anchor="middle" class="kinetic-stroke-1" 
+                fill="url(#bloom-fill)" stroke="url(#laser-grad-1)" stroke-width="3.2" pathLength="1200">THANK</text>
 
-          <!-- High-precision 't' crossbar stroke that swiftly crosses the t -->
-          <path d="M 52,96 Q 88,92 118,88" class="apple-crossbar" fill="none" stroke="url(#apple-vibrant)" stroke-width="6.5" />
+          <!-- ROW 2: Y O U (Ultra-Modern Syne 900 Extended) -->
+          <text x="390" y="200" text-anchor="middle" class="kinetic-stroke-2" 
+                fill="url(#bloom-fill)" stroke="url(#laser-grad-2)" stroke-width="3.2" pathLength="1200">YOU</text>
         </svg>
 
     </div>
 
-    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER APPLE ANIMATION COMPLETES (2.5s draw + 1.5s solid hold) -->
+    <!-- SCRIPT: AUTO-REDIRECT TO TICKET AFTER ANIMATION COMPLETES (2.4s draw + 1.4s solid hold) -->
     <script>
         setTimeout(() => {
             window.location.replace('thank-you.html');
-        }, 4000);
+        }, 3900);
     </script>
 </body>
 </html>
