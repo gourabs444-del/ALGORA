@@ -36,6 +36,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Cinzel:wght@600;700;800;900&family=Italiana&family=Syne:wght@700;800;900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=block" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style>
   html, body { background-color: #000000 !important; background: #000000 !important; scrollbar-gutter: stable; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision; }
@@ -3782,8 +3784,23 @@
                     targetProgress = Math.max(0, Math.min(1, scrolled / scrollDistance));
                 }
 
+                // GSAP ScrollTrigger Integration for Ultra-Precise Sub-Pixel Progress Tracking
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.create({
+                        trigger: track,
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        onUpdate: (self) => {
+                            targetProgress = self.progress;
+                        }
+                    });
+                }
+
                 window.addEventListener('scroll', updateScrollProgress, { passive: true });
-                window.addEventListener('resize', updateScrollProgress);
+                window.addEventListener('resize', () => {
+                    updateScrollProgress();
+                    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+                });
                 updateScrollProgress();
 
                 function renderStoryScenes() {
@@ -7111,11 +7128,22 @@
 
     document.body.classList.add('all-projects-showcase');
 
-    // ── Ultra-Smooth Liquid Inertial Momentum Scroll (Lenis Engine) ───────────
+    // ── High-Performance Smooth Scroll (Lenis Engine + GSAP ScrollTrigger Synchronization) ──
     (function initSmoothScrollInertia() {
         function setupLenis() {
+            // 1. Register GSAP ScrollTrigger Plugin
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+            }
+
             const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-            if (isTouchDevice) return; // Native mobile hardware touch scroll
+            if (isTouchDevice) {
+                // Mobile Hardware Scroll: Refresh ScrollTrigger for native touch
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.refresh();
+                }
+                return;
+            }
 
             if (typeof Lenis !== 'undefined') {
                 window.lenisInstance = new Lenis({
@@ -7131,12 +7159,26 @@
                     infinite: false
                 });
 
-                function raf(time) {
-                    window.lenisInstance.raf(time);
+                // 2. Synchronize Lenis scroll event with ScrollTrigger
+                if (typeof ScrollTrigger !== 'undefined') {
+                    window.lenisInstance.on('scroll', ScrollTrigger.update);
+                }
+
+                // 3. Connect GSAP Ticker to drive Lenis RAF at 120 FPS
+                if (typeof gsap !== 'undefined') {
+                    gsap.ticker.add((time) => {
+                        window.lenisInstance.raf(time * 1000);
+                    });
+                    gsap.ticker.lagSmoothing(0);
+                } else {
+                    function raf(time) {
+                        window.lenisInstance.raf(time);
+                        requestAnimationFrame(raf);
+                    }
                     requestAnimationFrame(raf);
                 }
-                requestAnimationFrame(raf);
 
+                // 4. Notify legacy event listeners
                 window.lenisInstance.on('scroll', (e) => {
                     if (typeof onScrollOptimized === 'function') onScrollOptimized();
                     window.dispatchEvent(new Event('scroll'));
