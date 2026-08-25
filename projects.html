@@ -2721,44 +2721,73 @@
         <div id="hero-scroll-track" class="relative w-full h-[800vh]">
             
             <!-- STICKY 100VH HERO BANNER (STAYS PINNED AS USER SCROLLS THROUGH PHASES) -->
-            <div id="algora-collection-hero-banner" class="sticky top-0 w-full h-screen min-h-screen bg-[radial-gradient(ellipse_90%_90%_at_50%_-10%,rgba(186,230,253,0.35),rgba(255,255,255,0.95))] text-slate-900 overflow-hidden shadow-[0_30px_90px_rgba(14,165,233,0.08)] select-none border-y border-sky-200/60 flex flex-col justify-between z-20">
+            <div id="algora-collection-hero-banner" class="sticky top-0 w-full h-screen min-h-screen bg-gradient-to-br from-[#e8ebf0] via-[#f1f3f7] to-[#dce0e8] text-slate-900 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.12)] select-none border-y border-slate-300/80 flex flex-col justify-between z-20">
                 
+                <!-- BACKGROUND LAYER 1: Top Outline Watermark "FS-80P" -->
+                <div class="absolute top-4 sm:top-8 left-6 sm:left-14 text-6xl sm:text-8xl lg:text-[10rem] font-bold tracking-[0.14em] select-none pointer-events-none text-transparent z-[2]" style="-webkit-text-stroke: 2px rgba(100, 116, 139, 0.45); font-family: 'Outfit', 'Space Grotesk', sans-serif;">
+                    FS-80P
+                </div>
+
+                <!-- BACKGROUND LAYER 2: Middle Atmospheric Watermark "THE TIMELESS" -->
+                <div class="absolute top-[32%] -translate-y-1/2 right-4 sm:right-12 text-5xl sm:text-8xl lg:text-[9.5rem] font-black tracking-[0.16em] text-slate-400/40 uppercase select-none pointer-events-none z-[2] text-right" style="font-family: 'Space Grotesk', 'Outfit', sans-serif;">
+                    THE <br class="sm:hidden">TIMELESS
+                </div>
+
+                <!-- BACKGROUND LAYER 3: Bottom Shadow Watermark "WATCH /" -->
+                <div class="absolute bottom-6 sm:bottom-12 left-6 sm:left-14 text-5xl sm:text-7xl lg:text-[7.5rem] font-black tracking-[0.24em] text-slate-300/45 uppercase select-none pointer-events-none z-[2]" style="font-family: 'Space Grotesk', 'Outfit', sans-serif;">
+                    WATCH /
+                </div>
+
+                <!-- Studio Right Diagonal Shading Block (Matching Reference Image Lighting) -->
+                <div class="absolute top-0 right-0 w-full lg:w-[48%] h-full bg-gradient-to-l from-slate-400/20 via-slate-400/10 to-transparent pointer-events-none z-[2]"></div>
+
                 <!-- MASTER INTERACTIVE 120 FPS CRYSTAL SKY BLUE FLUID CANVAS -->
                 <canvas id="algora-aurora-canvas" class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-auto cursor-crosshair"></canvas>
 
                 <!-- Luminous Prismatic Atmospheric Glow Blooms (Dynamic Morphing) -->
-                <div id="glow-bloom-1" class="absolute -top-40 left-1/4 w-[750px] h-[750px] rounded-full bg-sky-300/30 blur-[160px] pointer-events-none z-[1] animate-pulse transition-all duration-700"></div>
-                <div id="glow-bloom-2" class="absolute -bottom-40 right-1/4 w-[800px] h-[800px] rounded-full bg-blue-300/20 blur-[170px] pointer-events-none z-[1] animate-pulse transition-all duration-700"></div>
-                <div id="glow-bloom-3" class="absolute top-1/3 right-10 w-[550px] h-[550px] rounded-full bg-cyan-200/30 blur-[140px] pointer-events-none z-[1] transition-all duration-700"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-sky-50/40 via-transparent to-white/85 pointer-events-none z-[1]"></div>
+                <div id="glow-bloom-1" class="absolute -top-40 left-1/4 w-[750px] h-[750px] rounded-full bg-slate-300/30 blur-[160px] pointer-events-none z-[1] animate-pulse transition-all duration-700"></div>
+                <div id="glow-bloom-2" class="absolute -bottom-40 right-1/4 w-[800px] h-[800px] rounded-full bg-slate-400/20 blur-[170px] pointer-events-none z-[1] animate-pulse transition-all duration-700"></div>
+                <div id="glow-bloom-3" class="absolute top-1/3 right-10 w-[550px] h-[550px] rounded-full bg-slate-200/40 blur-[140px] pointer-events-none z-[1] transition-all duration-700"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-slate-200/40 pointer-events-none z-[1]"></div>
 
                 <!-- ═══════════════════════════════════════════════════════════════
                      MASTER CLEAN ULTRA-LUXURY EDITORIAL STAGE (LEFT-RIGHT SPLIT)
                      ═══════════════════════════════════════════════════════════════ -->
                 <div id="hero-main-stage" class="relative z-10 max-w-[1680px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-14 min-h-0 pt-10 sm:pt-14">
                     
-                    <!-- ── LEFT COLUMN (50%): PURE EDITORIAL TYPOGRAPHY (SLIDES OFF WHEN EXPLODING) ── -->
-                    <div id="hero-editorial-column" class="w-full lg:w-[50%] h-[440px] sm:h-[500px] relative flex items-center transition-all duration-500">
+                    <!-- ── LEFT COLUMN (50%): PURE EDITORIAL TYPOGRAPHY (MATCHING REFERENCE POSTER) ── -->
+                    <div id="hero-editorial-column" class="w-full lg:w-[52%] h-[440px] sm:h-[500px] relative flex items-center transition-all duration-500">
                         
-                        <!-- SCENE 1: THE MACRO AWAKENING -->
-                        <div id="hero-scene-1" class="story-scene active-scene !items-start text-left !p-0">
-                            <div class="inline-flex flex-wrap items-center gap-2 mb-5 pointer-events-auto">
-                                <span class="px-3.5 py-1 rounded-full bg-white/95 border border-sky-200 text-sky-800 text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">01 &bull; THE AWAKENING</span>
-                                <span class="px-3.5 py-1 rounded-full bg-slate-900 text-white text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">MACRO PROJECTION</span>
+                        <!-- SCENE 1: THE MACRO AWAKENING (MATCHING REFERENCE POSTER TYPOGRAPHY) -->
+                        <div id="hero-scene-1" class="story-scene active-scene !items-start text-left !p-0 space-y-2">
+                            
+                            <!-- Category Badge -->
+                            <div class="inline-flex flex-wrap items-center gap-2 mb-2 pointer-events-auto">
+                                <span class="px-3.5 py-1 rounded-full bg-black text-white text-[10px] font-mono font-bold tracking-wider uppercase shadow-sm">FS-80P // TIMELESS</span>
+                                <span class="px-3.5 py-1 rounded-full bg-white/90 border border-slate-300 text-slate-900 text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">AUTOMATIC 60MM</span>
                             </div>
 
-                            <h1 id="scene1-title" class="text-4xl sm:text-6xl lg:text-[4.6rem] font-extrabold tracking-[-0.04em] text-slate-950 leading-[1.04] mb-5 font-['Outfit']">
-                                <span class="cinematic-text-gradient">Experience Next-Gen</span> <br>
-                                <span class="text-slate-900">Digital Systems.</span>
-                            </h1>
+                            <!-- MAIN HERO HEADLINE: BOLD BLACK "AUTOMATIC 60MM" -->
+                            <div class="space-y-0 leading-none">
+                                <h1 id="scene1-title" class="text-5xl sm:text-7xl lg:text-[6.8rem] font-black tracking-[-0.035em] text-[#000000] leading-[0.92] uppercase font-['Outfit'] select-none">
+                                    AUTOMATIC
+                                </h1>
+                                <div class="text-5xl sm:text-7xl lg:text-[6.8rem] font-black tracking-[-0.035em] text-[#000000] leading-[0.92] uppercase font-['Outfit'] select-none">
+                                    60MM
+                                </div>
+                            </div>
 
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-7 font-sans">
-                                High-craft web platforms, AI workspaces, and kinetic 3D experiences engineered with <span class="text-slate-900 font-bold">obsessive precision</span> for global leaders.
+                            <!-- Narrative Description -->
+                            <p class="text-sm sm:text-base lg:text-lg text-slate-700 max-w-lg font-medium leading-relaxed pt-2 font-sans">
+                                High-craft mechanical engineering, monolithic chassis architecture, and kinetic 3D systems built with <span class="text-black font-bold">obsessive precision</span>.
                             </p>
 
-                            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-sky-100/70 border border-sky-200 text-xs font-mono font-bold text-sky-700 uppercase tracking-widest animate-bounce">
-                                <span>SCROLL TO ADVANCE 10-CHAPTER 3D FILM</span>
-                                <span class="text-sm">&darr;</span>
+                            <!-- Interactive Scroll Cue -->
+                            <div class="pt-2">
+                                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-black text-white text-xs font-mono font-bold uppercase tracking-widest shadow-md animate-bounce">
+                                    <span>SCROLL TO EXPLODE 3D ARCHITECTURE</span>
+                                    <span class="text-sm">&darr;</span>
+                                </div>
                             </div>
                         </div>
 
