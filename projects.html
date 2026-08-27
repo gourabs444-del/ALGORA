@@ -33,8 +33,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Cinzel:wght@600;700;800;900&family=Italiana&family=Syne:wght@700;800;900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cinzel:wght@400;500;600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Syne:wght@500;600;700;800&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=block" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
+<link rel="stylesheet" href="css/animations.css">
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -2452,1830 +2453,753 @@
     <!-- Section: Personal -->
     <div id="section-personal" class="scroll-mt-28 w-full">
         <!-- ═══════════════════════════════════════════════════════════════════════
-             PRESENTATION-GRADE 3D EXPLODED ARCHITECTURE VIEWPORT & LAUNCHPAD CSS
+             ✦ ABYSS // BIOLUMINESCENT FLUID & SPATIAL GLASS HERO UI ✦
+             (Inspired by Award-Winning Oceanic & 3D Glassmorphic Dribbble/Pinterest Designs)
              ═══════════════════════════════════════════════════════════════════════ -->
         <style>
-        /* ── 3D CINEMATIC ISOMETRIC STAGE VIEWPORT (HIGH RESOLUTION & CRISP) ── */
-        .stage-3d-viewport {
-          width: 100%;
-          max-width: 580px;
-          height: 400px;
-          position: relative;
-          perspective: 1400px;
-          transform-style: preserve-3d;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        /* ── HDR BIOLUMINESCENT ORGANISM & HYDRODYNAMIC JET PROPULSION ── */
+        .hdr-jelly-creature {
+            animation: jellyHydrodynamicSwim 8.5s ease-in-out infinite;
+            transform-origin: 50% 25%;
+            filter: drop-shadow(0 15px 35px rgba(56, 189, 248, 0.35)) drop-shadow(0 25px 50px rgba(168, 85, 247, 0.3));
+            will-change: transform;
         }
 
-        .viewport-master-rig {
-          width: 480px;
-          height: 305px;
-          position: relative;
-          transform-style: preserve-3d;
-          transition: transform 0.08s ease-out;
-          transform: rotateX(12deg) rotateY(-14deg) rotateZ(2deg);
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          text-rendering: optimizeLegibility;
+        .hdr-jelly-bell {
+            animation: jellyBellContraction 8.5s ease-in-out infinite;
+            transform-origin: 50% 25%;
+            will-change: transform;
+        }
+        .hdr-jelly-core-glow {
+            animation: jellyHdrCoreFlash 8.5s ease-in-out infinite;
+            transform-origin: 50% 30%;
         }
 
-        @media (max-width: 640px) {
-          .stage-3d-viewport {
-            max-width: 100%;
-            height: 290px;
-          }
-          .viewport-master-rig {
-            width: 310px;
-            height: 200px;
-          }
+        /* ── CLEAN 7 LEGS & 2 ORAL ARMS PHYSICS (Dynamic procedural wave deformation) ── */
+        .hdr-oral-arm-l, .hdr-oral-arm-r,
+        .hdr-tentacles g {
+            transform-origin: center top;
+            will-change: transform;
         }
 
-        /* ── INDIVIDUAL EXPLODED LAYERS (FRONT, MIDDLE, DEEP) ── */
-        .exploded-layer {
-          position: absolute;
-          inset: 0;
-          border-radius: 24px;
-          transform-style: preserve-3d;
-          will-change: transform, opacity, filter;
-          -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-          transform: translateZ(0);
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+        .hdr-floating-spark {
+            animation: sparkDrift 6s ease-in-out infinite alternate;
         }
 
-        .exploded-layer img {
-          image-rendering: -webkit-optimize-contrast;
-          transform: translateZ(0);
-          filter: contrast(1.05) saturate(1.05);
+        /* 1. Realistic Pulse-Jet Translation - Silk Harmonic Oceanic Drift */
+        @keyframes jellyHydrodynamicSwim {
+            0% { transform: translateY(0px) rotate(0deg); }
+            20% { transform: translateY(6px) rotate(-0.6deg) scale(0.99, 1.01); }
+            45% { transform: translateY(-26px) rotate(1.2deg) scale(1.01, 0.99); }
+            70% { transform: translateY(-15px) rotate(-0.7deg) scale(1, 1); }
+            88% { transform: translateY(-4px) rotate(0.4deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        /* LAYER 3: DEEP CORE / CODE RUNTIME MATRIX */
-        .layer-deep {
-          background: rgba(15, 23, 42, 0.92);
-          border: 1.5px solid rgba(56, 189, 248, 0.40);
-          backdrop-filter: blur(24px);
-          -webkit-backdrop-filter: blur(24px);
-          box-shadow: 0 35px 80px rgba(15, 23, 42, 0.45), 0 0 40px rgba(14, 165, 233, 0.20);
-          padding: 1.5rem;
-          color: #94a3b8;
-          font-family: ui-monospace, monospace;
-          font-size: 11.5px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+        /* 2. Bell Expansion & Power Jet Contraction - Organic Deep-Sea Breathing */
+        @keyframes jellyBellContraction {
+            0% { transform: scale(1, 1); }
+            20% { transform: scale(1.04, 0.96); }
+            45% { transform: scale(0.93, 1.07); }
+            70% { transform: scale(1.04, 0.96); }
+            88% { transform: scale(0.98, 1.02); }
+            100% { transform: scale(1, 1); }
         }
 
-        /* LAYER 2: MIDDLE ENGINE / 3D WEBGL SHADER CANVAS */
-        .layer-mid {
-          background: linear-gradient(135deg, rgba(224, 242, 254, 0.55) 0%, rgba(186, 230, 253, 0.25) 100%);
-          border: 2px solid rgba(56, 189, 248, 0.75);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          box-shadow: 0 25px 60px rgba(14, 165, 233, 0.30);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+        /* 3. HDR Bioluminescent Flash in Nucleus */
+        @keyframes jellyHdrCoreFlash {
+            0% { opacity: 0.75; filter: brightness(1) drop-shadow(0 0 10px rgba(56, 189, 248, 0.6)); }
+            35% { opacity: 1; filter: brightness(1.35) drop-shadow(0 0 22px rgba(232, 121, 249, 0.85)) drop-shadow(0 0 38px rgba(56, 189, 248, 0.75)); }
+            65% { opacity: 0.85; filter: brightness(1.1) drop-shadow(0 0 16px rgba(168, 85, 247, 0.6)); }
+            100% { opacity: 0.75; filter: brightness(1) drop-shadow(0 0 10px rgba(56, 189, 248, 0.6)); }
         }
 
-        /* LAYER 1: FRONT GLASS UI & MICRO-INTERACTIONS */
-        .layer-front {
-          background: rgba(255, 255, 255, 0.88);
-          border: 2px solid rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(28px) saturate(200%);
-          -webkit-backdrop-filter: blur(28px) saturate(200%);
-          box-shadow: 0 40px 90px rgba(14, 165, 233, 0.30), 0 1px 4px rgba(0, 0, 0, 0.06);
-          padding: 1.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+        /* 4. Fluid Tentacle Inertial Drag */
+        @keyframes tentacleDragL {
+            0% { transform: scaleX(1) rotate(0deg); }
+            30% { transform: scaleX(0.7) rotate(6deg) translateY(8px); }
+            55% { transform: scaleX(1.2) rotate(-8deg) translateY(-4px); }
+            100% { transform: scaleX(1) rotate(0deg); }
         }
 
-        /* Exploded Depth Connecting Laser Corner Lines */
-        .depth-laser {
-          position: absolute;
-          width: 1px;
-          background: linear-gradient(to bottom, rgba(56, 189, 248, 0.8), rgba(37, 99, 235, 0.2));
-          transform-style: preserve-3d;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          pointer-events: none;
+        @keyframes tentacleDragR {
+            0% { transform: scaleX(1) rotate(0deg); }
+            30% { transform: scaleX(0.7) rotate(-6deg) translateY(8px); }
+            55% { transform: scaleX(1.2) rotate(8deg) translateY(-4px); }
+            100% { transform: scaleX(1) rotate(0deg); }
         }
 
-        /* ═══════════════════════════════════════════════════════════
-           CLAUDE/APPLE STYLE STICKY SCROLL STORYTELLING SCENES
-           ═══════════════════════════════════════════════════════════ */
-        .story-scene {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 3rem 1.5rem 1.5rem;
-            will-change: transform, opacity, filter;
-            pointer-events: none;
-            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        @keyframes tentacleDragC {
+            0% { transform: scaleY(1); }
+            30% { transform: scaleY(1.2) scaleX(0.85); }
+            55% { transform: scaleY(0.9) scaleX(1.15); }
+            100% { transform: scaleY(1); }
         }
 
-        .story-scene.active-scene {
-            pointer-events: auto;
+        /* 5. Continuous Sinusoidal Wave Undulation */
+        @keyframes tentacleWaveSine1 {
+            0% { transform: skewX(0deg) rotate(0deg); }
+            50% { transform: skewX(7deg) rotate(3deg); }
+            100% { transform: skewX(-6deg) rotate(-3deg); }
         }
 
-        .cinematic-text-gradient {
-            background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 14px rgba(14, 165, 233, 0.25));
+        @keyframes tentacleWaveSine2 {
+            0% { transform: skewX(0deg) rotate(0deg); }
+            50% { transform: skewX(-8deg) rotate(-4deg); }
+            100% { transform: skewX(6deg) rotate(3.5deg); }
         }
 
-        .frosted-glass-monolith {
-            background: rgba(255, 255, 255, 0.82);
-            backdrop-filter: blur(28px) saturate(180%);
-            -webkit-backdrop-filter: blur(28px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.95);
-            box-shadow: 0 20px 50px rgba(14, 165, 233, 0.10), 0 1px 3px rgba(0, 0, 0, 0.04);
+        @keyframes tentacleWaveSine3 {
+            0% { transform: rotate(0deg) scaleX(1); }
+            50% { transform: rotate(4deg) scaleX(1.08); }
+            100% { transform: rotate(-4deg) scaleX(0.94); }
         }
 
-        /* ── ULTRA-LUXURY KINETIC HUD TYPOGRAPHY & SPATIAL MOTION ── */
-        .hud-kinetic-container {
-            transition: top 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-                        left 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-                        right 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-                        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: top, left, right, transform, opacity;
+        @keyframes oralArmFlutter1 {
+            0% { transform: skewX(0deg) scale(1, 1); }
+            50% { transform: skewX(5deg) scale(1.05, 0.96) rotate(3deg); }
+            100% { transform: skewX(-4deg) scale(0.95, 1.04) rotate(-3deg); }
         }
 
-        .kinetic-title-wrap {
-            overflow: hidden;
-            display: block;
-            position: relative;
+        @keyframes oralArmFlutter2 {
+            0% { transform: skewX(0deg) scale(1, 1); }
+            50% { transform: skewX(-6deg) scale(0.96, 1.05) rotate(-3.5deg); }
+            100% { transform: skewX(5deg) scale(1.04, 0.97) rotate(2.5deg); }
         }
 
-        .kinetic-text-in {
-            animation: kineticSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        @keyframes sparkDrift {
+            0% { transform: translate(0, 0) scale(0.8); opacity: 0.3; }
+            50% { transform: translate(6px, -12px) scale(1.2); opacity: 0.9; }
+            100% { transform: translate(-4px, -20px) scale(0.7); opacity: 0.2; }
         }
 
-        .kinetic-text-out {
-            animation: kineticSlideOut 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        #hdr-jelly-stage:hover #hdr-jelly-organism-wrapper {
+            filter: drop-shadow(0 20px 40px rgba(56, 189, 248, 0.45));
         }
-
-        @keyframes kineticSlideIn {
-            0% {
-                opacity: 0;
-                transform: translate3d(0, 32px, 0) skewY(2deg) scale(0.96);
-                filter: blur(6px);
-            }
-            100% {
-                opacity: 1;
-                transform: translate3d(0, 0, 0) skewY(0deg) scale(1.0);
-                filter: blur(0px);
-            }
-        }
-
-        @keyframes kineticSlideOut {
-            0% {
-                opacity: 1;
-                transform: translate3d(0, 0, 0) skewY(0deg);
-                filter: blur(0px);
-            }
-            100% {
-                opacity: 0;
-                transform: translate3d(0, -22px, 0) skewY(-2deg);
-                filter: blur(4px);
-            }
-        }
-
-        .kinetic-tag-in {
-            animation: kineticTagIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        @keyframes kineticTagIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translate3d(0, 8px, 0);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translate3d(0, 0, 0);
-            }
-        }
-
-        .kinetic-line-in {
-            animation: kineticLineIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            transform-origin: top center;
-        }
-
-        @keyframes kineticLineIn {
-            0% {
-                transform: scaleY(0);
-                opacity: 0;
-            }
-            100% {
-                transform: scaleY(1);
-                opacity: 1;
-            }
-        }
-
-        /* ── PRO SLATE/GREYISH MINIMALIST TYPOGRAPHY (ZERO BOX, 100% CRYSTAL LEGIBLE) ── */
-        .pro-grey-title {
-            color: #0f172a !important; /* Deep obsidian slate for perfect contrast */
-            font-weight: 800;
-            letter-spacing: -0.025em;
-        }
-
-        .pro-grey-desc {
-            color: #334155 !important; /* Rich graphite slate grey */
-            line-height: 1.6;
-        }
-
-        .pro-grey-mono {
-            color: #64748b !important; /* Technical slate monospace */
-            font-weight: 700;
-            letter-spacing: 0.22em;
-        }
-
-        .pro-grey-tag {
-            color: #1e293b !important;
-            font-weight: 800;
-            letter-spacing: 0.16em;
-        }
-
-        .pro-line-left {
-            border-left: 3px solid #1e293b !important;
-        }
-
-        .pro-line-right {
-            border-right: 3px solid #1e293b !important;
+        #hdr-jelly-stage:active #hdr-jelly-organism-wrapper {
+            filter: drop-shadow(0 25px 60px rgba(232, 121, 249, 0.6)) brightness(1.2);
         }
         </style>
 
-        <!-- ═══════════════════════════════════════════════════════════════════════
-             STICKY SCROLL-JACKED HERO STORYTELLING TRACK (800VH - 10 SCROLL DURATION)
-             ═══════════════════════════════════════════════════════════════════════ -->
-        <div id="hero-scroll-track" class="relative w-full h-[800vh]">
+        <div id="abyss-hero-section" class="relative w-full min-h-screen flex flex-col justify-between items-center px-6 sm:px-12 pt-6 sm:pt-8 pb-10 sm:pb-12 select-none">
             
-            <!-- STICKY 100VH HERO BANNER (STAYS PINNED AS USER SCROLLS THROUGH PHASES) -->
-            <div id="algora-collection-hero-banner" class="sticky top-0 w-full h-screen min-h-screen bg-gradient-to-br from-[#e8ebf0] via-[#f1f3f7] to-[#dce0e8] text-slate-900 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.12)] select-none border-y border-slate-300/80 flex flex-col justify-between z-20">
-                
-                <!-- BACKGROUND LAYER 1: Top Outline Watermark "FS-80P" -->
-                <div class="absolute top-4 sm:top-8 left-6 sm:left-14 text-6xl sm:text-8xl lg:text-[10rem] font-bold tracking-[0.14em] select-none pointer-events-none text-transparent z-[2]" style="-webkit-text-stroke: 2px rgba(100, 116, 139, 0.45); font-family: 'Outfit', 'Space Grotesk', sans-serif;">
-                    FS-80P
-                </div>
+            <!-- Top Statement Paragraph (Fully Justified Edge-to-Edge Block) -->
+            <div class="relative z-10 w-full max-w-4xl sm:max-w-5xl mx-auto px-4 mt-28 sm:mt-44 mb-6 sm:mb-8">
+                <p class="text-[7.5px] sm:text-[8px] md:text-[8.5px] text-slate-500 font-normal leading-[1.75] tracking-[0.025em] opacity-80" style="font-family: 'Plus Jakarta Sans', sans-serif; text-align: justify; text-justify: inter-word; text-align-last: justify;">
+                    A comprehensive monograph and technical index exploring the synthesis of high-performance full-stack architectures, generative spatial interfaces, and decentralized computing paradigms. Across thirty-plus production deployments, research prototypes, and open-source contributions, this compendium documents deterministic state management, sub-millisecond distributed streaming pipelines, WebGL-driven procedural physics, and reactive interface frameworks. Bridging the gap between organic biological kinetics and rigorous mathematical systems, every project serves as an empirical exploration of memory-safe runtime mechanics, algorithmic optimization, telemetry-driven microservices, and luxury digital craftsmanship engineered for fault-tolerant global scalability and perpetual aesthetic fluidity.
+                </p>
+            </div>
 
-                <!-- BACKGROUND LAYER 2: Middle Atmospheric Watermark "THE TIMELESS" -->
-                <div class="absolute top-[32%] -translate-y-1/2 right-4 sm:right-12 text-5xl sm:text-8xl lg:text-[9.5rem] font-black tracking-[0.16em] text-slate-400/40 uppercase select-none pointer-events-none z-[2] text-right" style="font-family: 'Space Grotesk', 'Outfit', sans-serif;">
-                    THE <br class="sm:hidden">TIMELESS
-                </div>
-
-                <!-- BACKGROUND LAYER 3: Bottom Shadow Watermark "WATCH /" -->
-                <div class="absolute bottom-6 sm:bottom-12 left-6 sm:left-14 text-5xl sm:text-7xl lg:text-[7.5rem] font-black tracking-[0.24em] text-slate-300/45 uppercase select-none pointer-events-none z-[2]" style="font-family: 'Space Grotesk', 'Outfit', sans-serif;">
-                    WATCH /
-                </div>
-
-                <!-- Studio Right Diagonal Shading Block (Matching Reference Image Lighting) -->
-                <div class="absolute top-0 right-0 w-full lg:w-[48%] h-full bg-gradient-to-l from-slate-400/20 via-slate-400/10 to-transparent pointer-events-none z-[2]"></div>
-
-                <!-- MASTER INTERACTIVE 120 FPS CRYSTAL SKY BLUE FLUID CANVAS -->
-                <canvas id="algora-aurora-canvas" class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-auto cursor-crosshair"></canvas>
-
-                <!-- Luminous Prismatic Atmospheric Glow Blooms (Dynamic Morphing) -->
-                <div id="glow-bloom-1" class="absolute -top-40 left-1/4 w-[750px] h-[750px] rounded-full bg-slate-300/30 blur-[160px] pointer-events-none z-[1] animate-pulse transition-all duration-700"></div>
-                <div id="glow-bloom-2" class="absolute -bottom-40 right-1/4 w-[800px] h-[800px] rounded-full bg-slate-400/20 blur-[170px] pointer-events-none z-[1] animate-pulse transition-all duration-700"></div>
-                <div id="glow-bloom-3" class="absolute top-1/3 right-10 w-[550px] h-[550px] rounded-full bg-slate-200/40 blur-[140px] pointer-events-none z-[1] transition-all duration-700"></div>
-                <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-slate-200/40 pointer-events-none z-[1]"></div>
-
-                <!-- ═══════════════════════════════════════════════════════════════
-                     MASTER CLEAN ULTRA-LUXURY EDITORIAL STAGE (LEFT-RIGHT SPLIT)
-                     ═══════════════════════════════════════════════════════════════ -->
-                <div id="hero-main-stage" class="relative z-10 max-w-[1680px] mx-auto px-6 sm:px-12 lg:px-16 w-full flex-1 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-14 min-h-0 pt-10 sm:pt-14">
+            <!-- ── CENTER HERO STAGE: 3D BIOLUMINESCENT JELLYFISH & LUXURY TYPOGRAPHY ── -->
+            <div class="relative z-10 w-full max-w-6xl mx-auto my-auto flex flex-col items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center w-full">
                     
-                    <!-- ── LEFT COLUMN (50%): PURE EDITORIAL TYPOGRAPHY (MATCHING REFERENCE POSTER) ── -->
-                    <div id="hero-editorial-column" class="w-full lg:w-[52%] h-[440px] sm:h-[500px] relative flex items-center transition-all duration-500">
+                    <!-- Left Column: Luxury Haute-Couture Typography & Action -->
+                    <div class="lg:col-span-7 space-y-6 text-left">
+
+                        <!-- Main Headline with Luxury Haute-Couture Font Pairing -->
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4.4rem] font-normal tracking-[-0.01em] text-[#B8B8B8] leading-[1.06]" style="font-family: 'Italiana', 'Cormorant Garamond', Georgia, serif;">
+                            Designing the <span class="italic font-normal text-[#B8B8B8]" style="font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: -0.01em;">Fluidity</span> of <br/>
+                            <span class="font-extrabold tracking-tight text-slate-950 block mt-1" style="font-family: 'Syne', 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em;">
+                                Spatial & Living Code.
+                            </span>
+                        </h1>
+
+                        <!-- Subtitle (Ultra Minimal & Sleek Micro-Type) -->
+                        <p class="text-[8px] sm:text-[8.5px] text-slate-500 font-normal leading-relaxed max-w-sm tracking-wider opacity-80" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                            An ethereal showcase of reactive user experiences, sub-millisecond distributed backends, and bio-inspired kinetic animations built for high-performance scale.
+                        </p>
+
+                        <!-- CTA Row with Luxury Styling -->
+                        <div class="flex flex-wrap items-center gap-4 pt-2">
+                            <a href="#grid-personal" class="px-7 py-3.5 rounded-full bg-slate-950 hover:bg-slate-900 text-white font-semibold text-xs tracking-[0.14em] uppercase shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.25)] hover:scale-[1.02] transition-all flex items-center gap-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                                <span>Dive Into Projects</span>
+                                <span class="text-xs text-sky-400">&rarr;</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column: Lifelike 3D Glassmorphic HDR Bioluminescent Jellyfish -->
+                    <div id="hdr-jelly-stage" class="lg:col-span-5 relative flex items-center justify-center py-6 cursor-pointer touch-none">
                         
-                        <!-- SCENE 1: THE MACRO AWAKENING (MATCHING REFERENCE POSTER TYPOGRAPHY) -->
-                        <div id="hero-scene-1" class="story-scene active-scene !items-start text-left !p-0 space-y-2">
-                            
-                            <!-- Category Badge -->
-                            <div class="inline-flex flex-wrap items-center gap-2 mb-2 pointer-events-auto">
-                                <span class="px-3.5 py-1 rounded-full bg-black text-white text-[10px] font-mono font-bold tracking-wider uppercase shadow-sm">FS-80P // TIMELESS</span>
-                                <span class="px-3.5 py-1 rounded-full bg-white/90 border border-slate-300 text-slate-900 text-[10px] font-mono font-bold tracking-wider uppercase shadow-2xs">AUTOMATIC 60MM</span>
-                            </div>
+                        <!-- HDR Ambient Bioluminescent Backlight Glow -->
+                        <div class="absolute w-[440px] h-[440px] rounded-full bg-gradient-to-tr from-sky-400/30 via-fuchsia-500/25 to-indigo-500/30 blur-[115px] pointer-events-none transition-all duration-700" id="jelly-ambient-glow"></div>
+                        <div class="absolute w-72 h-72 rounded-full bg-sky-300/35 blur-[75px] pointer-events-none"></div>
 
-                            <!-- MAIN HERO HEADLINE: BOLD BLACK "AUTOMATIC 60MM" -->
-                            <div class="space-y-0 leading-none">
-                                <h1 id="scene1-title" class="text-5xl sm:text-7xl lg:text-[6.8rem] font-black tracking-[-0.035em] text-[#000000] leading-[0.92] uppercase font-['Outfit'] select-none">
-                                    AUTOMATIC
-                                </h1>
-                                <div class="text-5xl sm:text-7xl lg:text-[6.8rem] font-black tracking-[-0.035em] text-[#000000] leading-[0.92] uppercase font-['Outfit'] select-none">
-                                    60MM
-                                </div>
-                            </div>
+                        <!-- Reactive Touch Ripple Ring -->
+                        <div id="jelly-touch-ripple" class="absolute w-24 h-24 rounded-full border-2 border-sky-400/80 pointer-events-none opacity-0 scale-50 transition-all"></div>
 
-                            <!-- Narrative Description -->
-                            <p class="text-sm sm:text-base lg:text-lg text-slate-700 max-w-lg font-medium leading-relaxed pt-2 font-sans">
-                                High-craft mechanical engineering, monolithic chassis architecture, and kinetic 3D systems built with <span class="text-black font-bold">obsessive precision</span>.
-                            </p>
+                        <!-- Particle Burst Emitter Container -->
+                        <div id="jelly-particle-container" class="absolute inset-0 pointer-events-none overflow-visible z-20"></div>
 
-                            <!-- Interactive Scroll Cue -->
-                            <div class="pt-2">
-                                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-black text-white text-xs font-mono font-bold uppercase tracking-widest shadow-md animate-bounce">
-                                    <span>SCROLL TO EXPLODE 3D ARCHITECTURE</span>
-                                    <span class="text-sm">&darr;</span>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Master Organism Container with Jet Propulsion Swimming Physics & Spring Transform -->
+                        <div id="hdr-jelly-organism-wrapper" class="relative z-10 w-[350px] h-[480px] flex items-center justify-center transition-transform duration-75 ease-out">
+                            <div id="hdr-jelly-organism" class="w-full h-full hdr-jelly-creature flex items-center justify-center">
+                                <svg id="hdr-jelly-svg" class="w-full h-full overflow-visible" viewBox="0 0 320 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <!-- 1. HDR Translucent Outer Glass Bell Shading -->
+                                        <linearGradient id="hdrBellGlassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.95" />
+                                            <stop offset="25%" stop-color="#60a5fa" stop-opacity="0.85" />
+                                            <stop offset="55%" stop-color="#818cf8" stop-opacity="0.88" />
+                                            <stop offset="85%" stop-color="#c084fc" stop-opacity="0.92" />
+                                            <stop offset="100%" stop-color="#e879f9" stop-opacity="0.95" />
+                                        </linearGradient>
 
-                        <!-- SCENE 2: THE PHYSICAL MONOLITH PULL-BACK -->
-                        <div id="hero-scene-2" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-sky-300 text-sky-800 text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 02 &bull; PHYSICAL MONOLITH</span>
-                            </div>
+                                        <!-- 2. Specular High-Gloss Caustic Light Arc -->
+                                        <linearGradient id="hdrSpecularRim" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1" />
+                                            <stop offset="15%" stop-color="#ffffff" stop-opacity="0.95" />
+                                            <stop offset="50%" stop-color="#e0f2fe" stop-opacity="1" />
+                                            <stop offset="85%" stop-color="#ffffff" stop-opacity="0.9" />
+                                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1" />
+                                        </linearGradient>
 
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
-                                High-Craft <br>
-                                <span class="cinematic-text-gradient">Chassis Architecture.</span>
-                            </h2>
+                                        <!-- 3. Inner Mantle Sub-Bell Depth Gradient -->
+                                        <radialGradient id="hdrInnerMantle" cx="50%" cy="35%" r="50%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+                                            <stop offset="30%" stop-color="#f472b6" stop-opacity="0.85" />
+                                            <stop offset="65%" stop-color="#818cf8" stop-opacity="0.65" />
+                                            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.15" />
+                                        </radialGradient>
 
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-6 font-sans">
-                                Pulling back the camera reveals a unified three-tier monolithic glass enclosure designed for high-throughput interaction.
-                            </p>
+                                        <!-- 4. Hyper-Radiant Bioluminescent Core Nucleus (HDR) -->
+                                        <radialGradient id="hdrHyperCore" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                                            <stop offset="20%" stop-color="#e0f2fe" stop-opacity="0.95" />
+                                            <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.9" />
+                                            <stop offset="75%" stop-color="#c084fc" stop-opacity="0.75" />
+                                            <stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
+                                        </radialGradient>
 
-                            <div class="px-4 py-2 rounded-xl bg-white/90 border border-sky-200 shadow-2xs font-mono text-xs text-sky-800">
-                                ✦ CALIBRATED FOR MULTI-WINDOW RESPONSIVE RESOLUTION
-                            </div>
-                        </div>
+                                        <!-- 5. Gastric Horseshoe Gonad Ring Gradient -->
+                                        <linearGradient id="hdrGonadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#f472b6" stop-opacity="0.95" />
+                                            <stop offset="50%" stop-color="#fb7185" stop-opacity="0.85" />
+                                            <stop offset="100%" stop-color="#c084fc" stop-opacity="0.95" />
+                                        </linearGradient>
 
-                        <!-- SCENE 3: ZERO-GRAVITY HOVER PITCH -->
-                        <div id="hero-scene-3" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-sky-300 text-sky-800 text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 03 &bull; ZERO-G SPATIAL HOVER</span>
-                            </div>
+                                        <!-- 6. Oral Silk Arms Soft Shimmer Gradients -->
+                                        <linearGradient id="oralArmGradA" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#e879f9" stop-opacity="0.92" />
+                                            <stop offset="35%" stop-color="#818cf8" stop-opacity="0.8" />
+                                            <stop offset="75%" stop-color="#38bdf8" stop-opacity="0.88" />
+                                            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05" />
+                                        </linearGradient>
 
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
-                                Floating in <br>
-                                <span class="cinematic-text-gradient">1400px Depth Space.</span>
-                            </h2>
+                                        <linearGradient id="oralArmGradB" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.92" />
+                                            <stop offset="45%" stop-color="#c084fc" stop-opacity="0.82" />
+                                            <stop offset="80%" stop-color="#f472b6" stop-opacity="0.78" />
+                                            <stop offset="100%" stop-color="#c084fc" stop-opacity="0.05" />
+                                        </linearGradient>
 
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-6 font-sans">
-                                The viewport pitches into a steep isometric plane, floating with dynamic zero-gravity levitation physics.
-                            </p>
+                                        <linearGradient id="oralArmFrillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+                                            <stop offset="50%" stop-color="#e879f9" stop-opacity="0.7" />
+                                            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.6" />
+                                        </linearGradient>
 
-                            <div class="px-4 py-2 rounded-xl bg-white/90 border border-sky-200 shadow-2xs font-mono text-xs text-sky-800">
-                                ⚡ ORBITAL FIELD: PITCH 42° &bull; YAW -15° ACTIVE
-                            </div>
-                        </div>
+                                        <!-- 7. Marginal Hair Tentacle Gradients -->
+                                        <linearGradient id="tentacleGlowCyan" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                                            <stop offset="15%" stop-color="#38bdf8" stop-opacity="0.95" />
+                                            <stop offset="55%" stop-color="#60a5fa" stop-opacity="0.85" />
+                                            <stop offset="85%" stop-color="#818cf8" stop-opacity="0.6" />
+                                            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
+                                        </linearGradient>
 
-                        <!-- SCENE 4: TIER DECOUPLING INITIATION -->
-                        <div id="hero-scene-4" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-blue-300 text-blue-800 text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 04 &bull; TIER DECOUPLING</span>
-                            </div>
+                                        <linearGradient id="tentacleGlowPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                                            <stop offset="15%" stop-color="#c084fc" stop-opacity="0.95" />
+                                            <stop offset="55%" stop-color="#a855f7" stop-opacity="0.85" />
+                                            <stop offset="85%" stop-color="#6366f1" stop-opacity="0.5" />
+                                            <stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
+                                        </linearGradient>
 
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
-                                Uncoupling <br>
-                                <span class="cinematic-text-gradient">Interface & Core.</span>
-                            </h2>
+                                        <linearGradient id="tentacleGlowMagenta" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                                            <stop offset="15%" stop-color="#f472b6" stop-opacity="0.95" />
+                                            <stop offset="55%" stop-color="#c084fc" stop-opacity="0.85" />
+                                            <stop offset="85%" stop-color="#38bdf8" stop-opacity="0.65" />
+                                            <stop offset="100%" stop-color="#f472b6" stop-opacity="0" />
+                                        </linearGradient>
 
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-6 font-sans">
-                                Breaking down monolithic dependencies. Front UI, WebGL Engine, and Kernel runtime separate along the Z-axis.
-                            </p>
+                                        <!-- 8. Radial Canal Vascular Network Gradient -->
+                                        <linearGradient id="radialCanalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+                                            <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.6" />
+                                            <stop offset="100%" stop-color="#c084fc" stop-opacity="0.2" />
+                                        </linearGradient>
 
-                            <div class="px-4 py-2 rounded-xl bg-white/90 border border-blue-200 shadow-2xs font-mono text-xs text-blue-800">
-                                ✦ Z-AXIS SEPARATION: ±100PX EXPANSION
-                            </div>
-                        </div>
+                                        <!-- Multi-stage Bloom Filter for pure HDR Optics -->
+                                        <filter id="hdrBloom" x="-50%" y="-50%" width="200%" height="200%">
+                                            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1" />
+                                            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2" />
+                                            <feMerge>
+                                                <feMergeNode in="blur2" />
+                                                <feMergeNode in="blur1" />
+                                                <feMergeNode in="SourceGraphic" />
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
 
-                        <!-- SCENE 5: FULL EXPLODED ARCHITECTURE -->
-                        <div id="hero-scene-5" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-indigo-300 text-indigo-800 text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 05 &bull; FULL 3D EXPLODED ARCHITECTURE</span>
-                            </div>
+                                    <!-- ══════════════════════════════════════════════
+                                         LAYER 1: TRANSLUCENT ORAL SILK DRAPES (Clean 2 Center Veils)
+                                         ══════════════════════════════════════════════ -->
+                                    <g class="hdr-oral-arms" opacity="0.88">
+                                        <!-- Left Silk Drape -->
+                                        <g id="jelly-oral-group-l">
+                                            <path id="jelly-oral-l-fill" d="M135,148 C118,195 106,242 126,290 C138,322 122,362 134,402 C138,375 150,332 136,298 C124,260 136,210 144,152 Z" fill="url(#oralArmGradA)" opacity="0.75" />
+                                            <path id="jelly-oral-l-edge" d="M135,148 Q115,210 124,260 T134,402" stroke="url(#oralArmFrillGrad)" stroke-width="1.2" fill="none" stroke-opacity="0.8" />
+                                        </g>
+                                        <!-- Right Silk Drape -->
+                                        <g id="jelly-oral-group-r">
+                                            <path id="jelly-oral-r-fill" d="M185,148 C202,195 214,242 194,290 C182,322 198,362 186,402 C182,375 170,332 184,298 C196,260 184,210 176,152 Z" fill="url(#oralArmGradB)" opacity="0.75" />
+                                            <path id="jelly-oral-r-edge" d="M185,148 Q205,210 196,260 T186,402" stroke="url(#oralArmFrillGrad)" stroke-width="1.2" fill="none" stroke-opacity="0.8" />
+                                        </g>
+                                    </g>
 
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
-                                Obsessive Precision. <br>
-                                <span class="cinematic-text-gradient">Layer by Layer.</span>
-                            </h2>
+                                    <!-- ══════════════════════════════════════════════
+                                         LAYER 2: EXACTLY 7 CLEAN, SILKY WAVING LEGS (All matching Leg 2 structure)
+                                         ══════════════════════════════════════════════ -->
+                                    <g class="hdr-tentacles">
+                                        <!-- Leg 1: Far Left -->
+                                        <g id="jelly-leg-1">
+                                            <path id="jelly-path-1" d="M72,138 Q42,202 92,268 T60,386" stroke="url(#tentacleGlowCyan)" stroke-width="2.6" stroke-linecap="round" fill="none" />
+                                            <circle id="jelly-bulb-1-a" cx="60" cy="386" r="2.8" fill="#38bdf8" filter="url(#hdrBloom)" />
+                                            <circle id="jelly-bulb-1-b" cx="60" cy="386" r="1.3" fill="#ffffff" />
+                                        </g>
+                                        <!-- Leg 2: Mid Left (Original Perfect Model) -->
+                                        <g id="jelly-leg-2">
+                                            <path id="jelly-path-2" d="M104,148 Q134,218 98,288 T122,402" stroke="url(#tentacleGlowPurple)" stroke-width="2.8" stroke-linecap="round" fill="none" />
+                                            <circle id="jelly-bulb-2-a" cx="122" cy="402" r="2.8" fill="#c084fc" filter="url(#hdrBloom)" />
+                                            <circle id="jelly-bulb-2-b" cx="122" cy="402" r="1.3" fill="#ffffff" />
+                                        </g>
+                                        <!-- Leg 3: Inner Left -->
+                                        <g id="jelly-leg-3">
+                                            <path id="jelly-path-3" d="M136,155 Q115,225 152,298 T138,418" stroke="url(#tentacleGlowCyan)" stroke-width="2.6" stroke-linecap="round" fill="none" />
+                                            <circle id="jelly-bulb-3-a" cx="138" cy="418" r="2.8" fill="#38bdf8" filter="url(#hdrBloom)" />
+                                            <circle id="jelly-bulb-3-b" cx="138" cy="418" r="1.3" fill="#ffffff" />
+                                        </g>
+                                        <!-- Leg 4: Center King Leg (Single Sleek Glowing Filament) -->
+                                        <g id="jelly-leg-4">
+                                            <path id="jelly-path-4" d="M160,158 Q142,234 174,310 T156,428" stroke="url(#tentacleGlowMagenta)" stroke-width="2.8" stroke-linecap="round" fill="none" />
+                                            <circle id="jelly-bulb-4-a" cx="156" cy="428" r="3.2" fill="#f472b6" filter="url(#hdrBloom)" />
+                                            <circle id="jelly-bulb-4-b" cx="156" cy="428" r="1.4" fill="#ffffff" />
+                                        </g>
+                                        <!-- Leg 5: Inner Right -->
+                                        <g id="jelly-leg-5">
+                                            <path id="jelly-path-5" d="M184,155 Q205,225 168,298 T182,418" stroke="url(#tentacleGlowMagenta)" stroke-width="2.6" stroke-linecap="round" fill="none" />
+                                            <circle id="jelly-bulb-5-a" cx="182" cy="418" r="2.8" fill="#f472b6" filter="url(#hdrBloom)" />
+                                            <circle id="jelly-bulb-5-b" cx="182" cy="418" r="1.3" fill="#ffffff" />
+                                        </g>
+                                        <!-- Leg 6: Mid Right -->
+                                        <g id="jelly-leg-6">
+                                            <path id="jelly-path-6" d="M216,148 Q186,218 222,288 T198,402" stroke="url(#tentacleGlowCyan)" stroke-width="2.8" stroke-linecap="round" fill="none" />
+                                            <circle id="jelly-bulb-6-a" cx="198" cy="402" r="2.8" fill="#38bdf8" filter="url(#hdrBloom)" />
+                                            <circle id="jelly-bulb-6-b" cx="198" cy="402" r="1.3" fill="#ffffff" />
+                                        </g>
+                                        <!-- Leg 7: Far Right -->
+                                        <g id="jelly-leg-7">
+                                            <path id="jelly-path-7" d="M248,138 Q278,202 228,268 T260,386" stroke="url(#tentacleGlowPurple)" stroke-width="2.6" stroke-linecap="round" fill="none" />
+                                            <circle id="jelly-bulb-7-a" cx="260" cy="386" r="2.8" fill="#c084fc" filter="url(#hdrBloom)" />
+                                            <circle id="jelly-bulb-7-b" cx="260" cy="386" r="1.3" fill="#ffffff" />
+                                        </g>
+                                    </g>
 
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-6 font-sans">
-                                The interface fully explodes in 3D center space. Front Glass UI, 120 FPS WebGL Engine, and Kernel runtime float with sub-pixel alignment.
-                            </p>
+                                    <!-- ══════════════════════════════════════════════
+                                         LAYER 3: 3D GLASS DOME BELL (Anatomical Micro-Engineering)
+                                         ══════════════════════════════════════════════ -->
+                                    <g id="hdr-bell-group" class="hdr-jelly-bell">
+                                        
+                                        <!-- 3A. Translucent Outer Glass Umbrella Body -->
+                                        <path d="M30,120 C30,30 290,30 290,120 C290,148 258,160 230,152 C202,144 182,164 160,164 C138,164 118,144 90,152 C62,160 30,148 30,120 Z" 
+                                              fill="url(#hdrBellGlassGrad)" 
+                                              stroke="url(#hdrSpecularRim)" 
+                                              stroke-width="2.2" 
+                                              filter="drop-shadow(0 12px 30px rgba(56,189,248,0.5))" />
 
-                            <div class="px-4 py-2 rounded-xl bg-white/90 border border-indigo-200 shadow-2xs font-mono text-xs text-indigo-800">
-                                ⚡ 3D DISASSEMBLY ACTIVE: ±220PX Z-AXIS SEPARATION
-                            </div>
-                        </div>
+                                        <!-- 3B. Internal Mantle Depth & Coronal Muscle Ring -->
+                                        <path d="M52,116 C52,50 268,50 268,116 C268,140 242,148 220,142 C198,136 180,154 160,154 C140,154 122,136 100,142 C78,148 52,140 52,116 Z" 
+                                              fill="url(#hdrInnerMantle)" />
 
-                        <!-- SCENE 6: 120 FPS GPU HYDRODYNAMICS -->
-                        <div id="hero-scene-6" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-purple-300 text-purple-800 text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 06 &bull; 120 FPS GPU HYDRODYNAMICS</span>
-                            </div>
+                                        <!-- 3C. Bioluminescent Gastrovascular Radial Canals (Vein Network) -->
+                                        <g opacity="0.75">
+                                            <path d="M160,95 Q110,95 72,126" stroke="url(#radialCanalGrad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                                            <path d="M160,95 Q125,75 105,134" stroke="url(#radialCanalGrad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                                            <path d="M160,95 Q145,70 135,145" stroke="url(#radialCanalGrad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                                            <path d="M160,95 Q160,65 160,154" stroke="url(#radialCanalGrad)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+                                            <path d="M160,95 Q175,70 185,145" stroke="url(#radialCanalGrad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                                            <path d="M160,95 Q195,75 215,134" stroke="url(#radialCanalGrad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                                            <path d="M160,95 Q210,95 248,126" stroke="url(#radialCanalGrad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                                        </g>
 
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
-                                Real-Time <br>
-                                <span class="cinematic-text-gradient">Fluid Simulation.</span>
-                            </h2>
+                                        <!-- 3D. Scalloped Marginal Lappets (16 Micro-Fluted Rim Details) -->
+                                        <path d="M30,120 Q45,130 60,126 Q75,138 90,132 Q105,145 120,138 Q135,152 150,146 Q165,152 180,138 Q195,145 210,132 Q225,138 240,126 Q255,130 290,120" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.75" fill="none" />
 
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-6 font-sans">
-                                Camera aligns directly with the Compute Shader canvas. Over 8,400 mesh points undulating with true spring wave propagation.
-                            </p>
+                                        <!-- 3E. Marginal Rhopalia (Sensory Crystal Light Bulbs with Cilia) -->
+                                        <circle cx="36" cy="125" r="2.8" fill="#ffffff" filter="url(#hdrBloom)" />
+                                        <circle cx="70" cy="145" r="2.8" fill="#38bdf8" filter="url(#hdrBloom)" />
+                                        <circle cx="112" cy="150" r="2.8" fill="#c084fc" filter="url(#hdrBloom)" />
+                                        <circle cx="160" cy="164" r="4" fill="#ffffff" filter="url(#hdrBloom)" />
+                                        <circle cx="160" cy="164" r="2" fill="#38bdf8" />
+                                        <circle cx="208" cy="150" r="2.8" fill="#c084fc" filter="url(#hdrBloom)" />
+                                        <circle cx="250" cy="145" r="2.8" fill="#38bdf8" filter="url(#hdrBloom)" />
+                                        <circle cx="284" cy="125" r="2.8" fill="#ffffff" filter="url(#hdrBloom)" />
 
-                            <div class="px-4 py-2 rounded-xl bg-purple-100/90 border border-purple-300 text-purple-900 font-mono text-xs font-bold">
-                                ⚡ HARDWARE WEBGL RUNTIME &bull; 120.0 FPS LOCKED
-                            </div>
-                        </div>
+                                        <!-- 3F. 4 Gastric Horseshoe Gonad Rings (Aurelia Biology) -->
+                                        <g opacity="0.9">
+                                            <!-- Top Left Gonad -->
+                                            <path d="M132,82 C126,68 144,58 152,70 C160,82 144,94 132,82" stroke="url(#hdrGonadGrad)" stroke-width="3.5" stroke-linecap="round" fill="none" filter="drop-shadow(0 0 6px rgba(244,114,182,0.6))" />
+                                            <circle cx="140" cy="74" r="2" fill="#ffffff" />
+                                            <!-- Top Right Gonad -->
+                                            <path d="M188,82 C194,68 176,58 168,70 C160,82 176,94 188,82" stroke="url(#hdrGonadGrad)" stroke-width="3.5" stroke-linecap="round" fill="none" filter="drop-shadow(0 0 6px rgba(244,114,182,0.6))" />
+                                            <circle cx="180" cy="74" r="2" fill="#ffffff" />
+                                            <!-- Bottom Left Gonad -->
+                                            <path d="M132,110 C126,124 144,134 152,122 C160,110 144,98 132,110" stroke="url(#hdrGonadGrad)" stroke-width="3.5" stroke-linecap="round" fill="none" filter="drop-shadow(0 0 6px rgba(244,114,182,0.6))" />
+                                            <circle cx="140" cy="118" r="2" fill="#ffffff" />
+                                            <!-- Bottom Right Gonad -->
+                                            <path d="M188,110 C194,124 176,134 168,122 C160,110 176,98 188,110" stroke="url(#hdrGonadGrad)" stroke-width="3.5" stroke-linecap="round" fill="none" filter="drop-shadow(0 0 6px rgba(244,114,182,0.6))" />
+                                            <circle cx="180" cy="118" r="2" fill="#ffffff" />
+                                        </g>
 
-                        <!-- SCENE 7: 360° YAW SCAN -->
-                        <div id="hero-scene-7" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-purple-300 text-purple-800 text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 07 &bull; 360° YAW MATRIX SCAN</span>
-                            </div>
+                                        <!-- 3G. HDR Luminous Core Nucleus (Dynamic Bioluminescence Flash) -->
+                                        <g id="hdr-core-nucleus" class="hdr-jelly-core-glow transition-all duration-300">
+                                            <!-- Outer Radiant Corona -->
+                                            <circle cx="160" cy="96" r="46" fill="url(#hdrHyperCore)" />
+                                            <!-- Intense Inner Core -->
+                                            <circle cx="160" cy="96" r="24" fill="#ffffff" fill-opacity="0.98" filter="url(#hdrBloom)" />
+                                            <!-- Core Iris -->
+                                            <circle cx="160" cy="96" r="12" fill="#38bdf8" filter="url(#hdrBloom)" />
+                                            <circle cx="160" cy="96" r="5" fill="#ffffff" />
+                                        </g>
 
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
-                                Holographic <br>
-                                <span class="cinematic-text-gradient">Matrix Scanning.</span>
-                            </h2>
+                                        <!-- 3H. High-Gloss Specular Caustic Reflections (Multi-Arc 3D Glass Shine) -->
+                                        <!-- Primary Top Crown Arc -->
+                                        <path d="M65,96 C82,46 238,46 255,96" stroke="url(#hdrSpecularRim)" stroke-width="3" stroke-linecap="round" fill="none" />
+                                        <!-- Secondary Apex Glint -->
+                                        <path d="M95,74 C112,54 208,54 225,74" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.9" fill="none" />
+                                        <!-- Tertiary Left Shoulder Highlight -->
+                                        <path d="M42,118 C46,90 65,65 90,52" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.65" fill="none" />
+                                        <!-- Tertiary Right Shoulder Highlight -->
+                                        <path d="M278,118 C274,90 255,65 230,52" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.65" fill="none" />
 
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-6 font-sans">
-                                The viewport sweeps across its horizontal axis, scanning the syntax buffer for thread contention and memory leaks.
-                            </p>
-
-                            <div class="px-4 py-2 rounded-xl bg-white/90 border border-purple-200 shadow-2xs font-mono text-xs text-purple-800">
-                                ✦ SCAN STATUS: ZERO GC CYCLES &bull; 0.38MS LATENCY
-                            </div>
-                        </div>
-
-                        <!-- SCENE 8: MAGNETIC CONVERGENCE -->
-                        <div id="hero-scene-8" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-purple-400 text-purple-900 text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 08 &bull; MAGNETIC CONVERGENCE</span>
-                            </div>
-
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
-                                Magnetic <br>
-                                <span class="cinematic-text-gradient">Snap Reassembly.</span>
-                            </h2>
-
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-6 font-sans">
-                                The deconstructed layers accelerate inward with spring damping, fusing back into a monolithic crystal powerhouse.
-                            </p>
-
-                            <div class="px-4 py-2 rounded-xl bg-purple-100 border border-purple-300 font-mono text-xs font-bold text-purple-900">
-                                ⚡ REASSEMBLY: 100% ATOMIC STRUCTURAL LOCK
-                            </div>
-                        </div>
-
-                        <!-- SCENE 9: HOLOGRAPHIC TERMINAL IGNITION -->
-                        <div id="hero-scene-9" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 09 &bull; PRODUCTION RUNTIME ACTIVE</span>
-                            </div>
-
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
-                                Live Edge <br>
-                                <span class="cinematic-text-gradient">Deployment Active.</span>
-                            </h2>
-
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-6 font-sans">
-                                The Holographic Production Terminal ignites with amethyst violet neon, linking global edge nodes in real time.
-                            </p>
-
-                            <div class="px-4 py-2 rounded-xl bg-slate-900 text-emerald-400 border border-purple-500 font-mono text-xs font-bold flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                                <span>TERMINAL STATUS: GLOBAL CLUSTER READY</span>
-                            </div>
-                        </div>
-
-                        <!-- SCENE 10: IMAX HYPER-ZOOM LAUNCHPAD -->
-                        <div id="hero-scene-10" class="story-scene opacity-0 !items-start text-left !p-0">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-sky-500 text-white text-[10px] font-mono font-extrabold tracking-widest uppercase mb-4 shadow-2xs">
-                                <span>✦ 10 &bull; LAUNCH COMMISSION</span>
-                            </div>
-
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-extrabold tracking-[-0.035em] text-slate-950 leading-[1.06] mb-5 font-['Outfit']">
-                                Crafting <span class="cinematic-text-gradient">Category-Defining</span> <br>
-                                Web Monoliths.
-                            </h2>
-
-                            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl font-normal leading-relaxed mb-7 font-sans">
-                                Commission bespoke platforms, AI workspaces, and 3D web applications for global visionary teams.
-                            </p>
-
-                            <div class="flex flex-wrap items-center gap-4 pointer-events-auto">
-                                <a href="start-project.html" class="px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 via-indigo-600 to-sky-500 hover:from-purple-400 hover:to-sky-400 text-white font-mono font-bold text-xs tracking-wider uppercase transition-all duration-300 shadow-[0_10px_30px_rgba(168,85,247,0.35)] hover:shadow-[0_15px_40px_rgba(168,85,247,0.50)] active:scale-95 flex items-center gap-3">
-                                    <span>COMMISSION AN EXPERIENCE</span>
-                                    <span class="text-sm font-bold">&rarr;</span>
-                                </a>
-                                <button id="aurora-frequency-btn" class="px-6 py-4 rounded-full bg-white/95 hover:bg-white border border-purple-200 hover:border-purple-400 text-slate-900 font-mono font-bold text-xs tracking-wider uppercase transition-all duration-300 shadow-2xs hover:shadow-xs active:scale-95 flex items-center gap-2 cursor-pointer backdrop-blur-2xl">
-                                    <span>⚡</span>
-                                    <span id="aurora-freq-text">CRYSTAL SKY BLUE</span>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- ── FLOATING LEFT EXPLODED INFO HUD (ZERO BOX, PRO GREYISH TONE TYPOGRAPHY) ── -->
-                    <div id="explode-hud-left" class="hidden lg:flex flex-col gap-2.5 absolute left-6 sm:left-12 lg:left-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none max-w-[360px] hud-kinetic-container">
-                        <!-- Dynamic Category with subtle slate dot -->
-                        <div class="inline-flex items-center gap-2">
-                            <span id="dyn-left-dot" class="w-2 h-2 rounded-full bg-slate-700 animate-ping"></span>
-                            <span id="dyn-left-category" class="text-[11px] font-mono font-bold tracking-[0.22em] text-slate-500 uppercase transition-colors duration-300 pro-grey-mono">01 / MONOLITH AWAKENING</span>
-                        </div>
-
-                        <!-- Main dynamic headline container without box -->
-                        <div id="dyn-left-border" class="border-l-[3px] border-slate-800 pl-4 space-y-1.5 transition-all duration-300 pro-line-left">
-                            <div class="kinetic-title-wrap">
-                                <div id="dyn-left-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight leading-tight transition-all duration-300 pro-grey-title">
-                                    Next-Gen Digital Systems
-                                </div>
-                            </div>
-                            <p id="dyn-left-desc" class="text-xs sm:text-sm text-slate-700 font-sans leading-relaxed transition-all duration-300 pro-grey-desc">
-                                High-craft web platforms, AI workspaces, and kinetic 3D experiences engineered with obsessive precision.
-                            </p>
-                            <div class="pt-1 flex items-center gap-2">
-                                <span id="dyn-left-tag" class="text-[10.5px] font-mono font-extrabold text-slate-800 tracking-wider uppercase transition-all duration-300 pro-grey-tag">
-                                    1400PX SPATIAL FOV
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ── FLOATING RIGHT EXPLODED INFO HUD (ZERO BOX, PRO GREYISH TONE TYPOGRAPHY) ── -->
-                    <div id="explode-hud-right" class="hidden lg:flex flex-col gap-2.5 absolute right-6 sm:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none max-w-[340px] text-right hud-kinetic-container">
-                        <!-- Dynamic Category with subtle slate dot -->
-                        <div class="inline-flex items-center justify-end gap-2 self-end">
-                            <span id="dyn-right-category" class="text-[11px] font-mono font-bold tracking-[0.22em] text-slate-500 uppercase transition-colors duration-300 pro-grey-mono">DEPTH AND HOVER TELEMETRY</span>
-                            <span id="dyn-right-dot" class="w-2 h-2 rounded-full bg-slate-700 animate-pulse"></span>
-                        </div>
-
-                        <!-- Main dynamic spec container without box -->
-                        <div id="dyn-right-border" class="border-r-[3px] border-slate-800 pr-4 space-y-1.5 transition-all duration-300 pro-line-right">
-                            <div class="kinetic-title-wrap">
-                                <div id="dyn-right-title" class="font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight leading-tight transition-all duration-300 pro-grey-title">
-                                    Zero-G Levitation
-                                </div>
-                            </div>
-                            <p id="dyn-right-desc" class="text-xs sm:text-sm text-slate-700 font-sans leading-relaxed transition-all duration-300 pro-grey-desc">
-                                Damped spring orbital physics at locked 120 FPS.
-                            </p>
-                            <div class="pt-1 flex items-center justify-end gap-2">
-                                <span id="dyn-right-tag" class="text-[10.5px] font-mono font-extrabold text-slate-800 tracking-wider uppercase transition-all duration-300 pro-grey-tag">
-                                    100% HEALTH IDLE
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ── RIGHT / CENTER 3D VIEWPORT COLUMN (SLIDES TO CENTER ON EXPLODE) ── -->
-                    <div id="hero-viewport-column" class="w-full lg:w-[50%] h-[360px] sm:h-[460px] relative flex items-center justify-center select-none transition-all duration-500">
-                        
-                        <!-- Ambient Atmospheric 3D Lighting Dome (Morphs Dynamically) -->
-                        <div id="ambient-stage-glow" class="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-300/35 via-cyan-200/25 to-blue-300/30 blur-3xl pointer-events-none transition-all duration-500"></div>
-
-                        <!-- 3D STAGE VIEWPORT & MASTER RIG -->
-                        <div class="stage-3d-viewport">
-                            <div id="viewport-rig" class="viewport-master-rig">
-                                
-                                <!-- ── LAYER 3: DEEP CORE / REAL PORTFOLIO CARD (Juris Lexicon — Dark) ── -->
-                                <div id="layer-deep" class="exploded-layer layer-deep overflow-hidden !p-0 flex flex-col justify-between border-2 border-indigo-500/50 shadow-[0_35px_80px_rgba(15,23,42,0.50)] bg-slate-950">
-                                    <!-- Dynamic Infographic Callout Pin -->
-                                    <div id="callout-deep" class="absolute -top-7 -left-4 px-3 py-1 rounded-full bg-slate-900/95 border border-sky-400 text-sky-300 text-[9.5px] font-mono font-bold tracking-wider uppercase shadow-[0_4px_16px_rgba(14,165,233,0.35)] opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5 z-20">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
-                                        <span>03 &bull; JURIS LEXICON &bull; 4.8 ★</span>
-                                    </div>
-
-                                    <!-- Top Browser Chrome -->
-                                    <div class="px-4 py-2 bg-white/5 border-b border-white/10 flex items-center justify-between z-10">
-                                        <div class="flex items-center gap-1.5">
-                                            <div class="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
-                                            <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-                                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
-                                            <span class="ml-2 text-[10px] font-mono font-bold text-slate-300">jurislexicon.com &bull; Enterprise</span>
-                                        </div>
-                                        <div class="flex items-center gap-1 bg-amber-400/20 border border-amber-400/40 px-2 py-0.5 rounded-full text-amber-300 text-[9.5px] font-mono font-bold">
-                                            <span>★</span>
-                                            <span>4.8</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Real Portfolio Card Hero Image -->
-                                    <div class="relative flex-1 w-full overflow-hidden bg-slate-950">
-                                        <img src="assets/previews/jurisdark.jpg" alt="Juris Lexicon Dark" class="w-full h-full object-cover object-top opacity-90" />
-                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
-                                        <div class="absolute bottom-2.5 left-4 right-4 flex items-end justify-between">
-                                            <div>
-                                                <div class="text-white font-extrabold text-xs tracking-tight drop-shadow-md">Juris Lexicon — Dark</div>
-                                                <div class="text-white/70 font-mono text-[9px]">Institutional Advisory System</div>
-                                            </div>
-                                            <span class="px-2 py-0.5 rounded-full bg-indigo-950/90 border border-indigo-500/50 text-indigo-300 text-[9px] font-mono font-bold shadow-2xs">&lt; 0.38MS LATENCY</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- ── LAYER 2: MIDDLE ENGINE / REAL PORTFOLIO CARD (BloomFi) ── -->
-                                <div id="layer-mid" class="exploded-layer layer-mid overflow-hidden !p-0 flex flex-col justify-between border-2 border-sky-400/80 shadow-[0_25px_60px_rgba(37,99,235,0.30)] bg-white/95">
-                                    <!-- Dynamic Infographic Callout Pin -->
-                                    <div id="callout-mid" class="absolute -bottom-6 -left-3 px-3 py-1 rounded-full bg-blue-900/95 border border-blue-400 text-blue-200 text-[9.5px] font-mono font-bold tracking-wider uppercase shadow-[0_4px_16px_rgba(37,99,235,0.35)] opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5 z-20">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping"></span>
-                                        <span>02 &bull; BLOOMFI &bull; 4.7 ★</span>
-                                    </div>
-
-                                    <!-- Top Browser Chrome -->
-                                    <div class="px-4 py-2 bg-slate-900/5 border-b border-slate-900/10 flex items-center justify-between z-10">
-                                        <div class="flex items-center gap-1.5">
-                                            <div class="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
-                                            <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-                                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
-                                            <span class="ml-2 text-[10px] font-mono font-bold text-slate-700">bloomfi.io &bull; Growth Platform</span>
-                                        </div>
-                                        <div class="flex items-center gap-1 bg-amber-400/15 border border-amber-400/30 px-2 py-0.5 rounded-full text-amber-700 text-[9.5px] font-mono font-bold">
-                                            <span>★</span>
-                                            <span>4.7</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Real Portfolio Card Hero Image -->
-                                    <div class="relative flex-1 w-full overflow-hidden bg-slate-100">
-                                        <img src="assets/previews/bloomfi.jpg" alt="BloomFi" class="w-full h-full object-cover object-top opacity-95" />
-                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent"></div>
-                                        <div class="absolute bottom-2.5 left-4 right-4 flex items-end justify-between">
-                                            <div>
-                                                <div class="text-white font-extrabold text-xs tracking-tight drop-shadow-md">BloomFi</div>
-                                                <div class="text-white/80 font-mono text-[9px]">Fintech & AI Growth Engine</div>
-                                            </div>
-                                            <span class="px-2 py-0.5 rounded-full bg-blue-600 text-white text-[9px] font-mono font-bold shadow-2xs">120 FPS NATIVE</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- ── LAYER 1: FRONT GLASS UI / REAL PORTFOLIO CARD (AESTHETE) ── -->
-                                <div id="layer-front" class="exploded-layer layer-front overflow-hidden !p-0 flex flex-col justify-between border-2 border-white/95 shadow-[0_35px_80px_rgba(14,165,233,0.30)] bg-white">
-                                    <!-- Dynamic Infographic Callout Pin -->
-                                    <div id="callout-front" class="absolute -top-7 -right-3 px-3 py-1 rounded-full bg-white/95 border border-sky-400 text-sky-900 text-[9.5px] font-mono font-extrabold tracking-wider uppercase shadow-[0_4px_16px_rgba(14,165,233,0.30)] opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5 z-20">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-ping"></span>
-                                        <span>01 &bull; AESTHETE &bull; 4.9 ★</span>
-                                    </div>
-
-                                    <!-- Top Window Traffic Light Bar -->
-                                    <div class="px-4 py-2 bg-slate-900/5 border-b border-slate-900/10 flex items-center justify-between z-10">
-                                        <div class="flex items-center gap-1.5">
-                                            <div class="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
-                                            <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-                                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
-                                            <span class="ml-2 text-[10px] font-mono font-bold text-slate-700">aesthete.design &bull; Quiet Luxury</span>
-                                        </div>
-                                        <div class="flex items-center gap-1 bg-amber-400/15 border border-amber-400/30 px-2 py-0.5 rounded-full text-amber-700 text-[9.5px] font-mono font-bold">
-                                            <span>★</span>
-                                            <span>4.9</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Real Portfolio Card Hero Image -->
-                                    <div class="relative flex-1 w-full overflow-hidden bg-slate-100">
-                                        <img src="assets/previews/aesthete.jpg" alt="AESTHETE" class="w-full h-full object-cover object-top" />
-                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent"></div>
-                                        <div class="absolute bottom-2.5 left-4 right-4 flex items-end justify-between">
-                                            <div>
-                                                <div class="text-white font-extrabold text-xs tracking-tight drop-shadow-md">AESTHETE</div>
-                                                <div class="text-white/80 font-mono text-[9px]">Form & Essence Architecture</div>
-                                            </div>
-                                            <span class="px-2 py-0.5 rounded-full bg-white/95 text-sky-900 text-[9px] font-mono font-extrabold shadow-2xs">EXPLODE VIEW &rarr;</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- ── HOLOGRAPHIC REASSEMBLED TERMINAL OVERLAY (Activates in Scene 3) ── -->
-                                <div id="layer-terminal" class="exploded-layer opacity-0 pointer-events-none p-5 flex flex-col justify-between" style="background: rgba(15, 23, 42, 0.95); border: 2px solid #a855f7; box-shadow: 0 0 50px rgba(168, 85, 247, 0.45);">
-                                    <div class="flex items-center justify-between pb-3 border-b border-purple-800 text-xs text-purple-300 font-mono font-bold">
-                                        <span class="flex items-center gap-2">
-                                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                            <span>PRODUCTION RUNTIME &bull; DEPLOYED</span>
-                                        </span>
-                                        <span class="text-emerald-400">100% HEALTH</span>
-                                    </div>
-                                    <div class="space-y-2 text-xs font-mono text-slate-300">
-                                        <p class="text-purple-400">&gt; algora deploy --release --target global</p>
-                                        <p class="text-sky-300">&gt;&gt; [OK] 3D Hydrodynamics Canvas Initialized</p>
-                                        <p class="text-purple-300">&gt;&gt; [OK] Spatial Monolith UI Mounted</p>
-                                        <p class="text-emerald-400 font-bold">&gt;&gt; SUCCESS: Ready to build category-defining experiences.</p>
-                                    </div>
-                                    <div class="pt-3 border-t border-purple-800 flex items-center justify-between text-xs font-mono text-purple-400">
-                                        <span>GLOBAL EDGE NETWORK</span>
-                                        <span class="text-white bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-1 rounded-md font-bold shadow-xs">ALL SYSTEMS LIVE</span>
-                                    </div>
-                                </div>
-
+                                        <!-- Floating Micro Nano-Sparks & Crystalline Nodes -->
+                                        <circle class="hdr-floating-spark" cx="138" cy="118" r="1.8" fill="#ffffff" />
+                                        <circle class="hdr-floating-spark" cx="182" cy="122" r="2.2" fill="#38bdf8" />
+                                        <circle class="hdr-floating-spark" cx="154" cy="68" r="1.5" fill="#f472b6" />
+                                        <circle class="hdr-floating-spark" cx="118" cy="95" r="1.4" fill="#c084fc" />
+                                        <circle class="hdr-floating-spark" cx="202" cy="95" r="1.4" fill="#38bdf8" />
+                                    </g>
+                                </svg>
                             </div>
                         </div>
 
                     </div>
 
                 </div>
+            </div>
 
-            </div> <!-- Closes #algora-collection-hero-banner (sticky) -->
-        </div> <!-- Closes #hero-scroll-track (380vh) -->
-
-            <!-- ═══════════════════════════════════════════════════════════════════
-                 REAL-LIFE WATER HYDRODYNAMICS (PURE & CLEAN • NO BUBBLES/DOTS)
-                 ═══════════════════════════════════════════════════════════════════ -->
+            <!-- ── INTERACTIVE JELLYFISH SCRIPT ENGINE ── -->
             <script>
-            (function initRealLifeWaterAndMorphDotsEngine() {
-                const canvas = document.getElementById('algora-aurora-canvas');
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                const container = document.getElementById('algora-collection-hero-banner');
+            (function() {
+                const stage = document.getElementById('hdr-jelly-stage');
+                const wrapper = document.getElementById('hdr-jelly-organism-wrapper');
+                const organism = document.getElementById('hdr-jelly-organism');
+                const core = document.getElementById('hdr-core-nucleus');
+                const ambientGlow = document.getElementById('jelly-ambient-glow');
+                const ripple = document.getElementById('jelly-touch-ripple');
+                const particleContainer = document.getElementById('jelly-particle-container');
 
-                let width, height;
+                if (!stage || !wrapper || !organism) return;
 
-                // REAL-LIFE WATER SIMULATION PARAMETERS (HYDRODYNAMIC SPRINGS)
-                let waterColumns = [];
-                let deepColumns = [];
-                const TENSION = 0.010;     // Silky soft surface tension
-                const DAMPENING = 0.048;   // High viscosity smooth dissipation
-                const SPREAD = 0.16;       // Hydrodynamic wave propagation velocity
+                // Physics state & Velocity tracking
+                let targetX = 0, targetY = 0, targetRot = 0;
+                let currentX = 0, currentY = 0, currentRot = 0;
+                let prevX = 0, prevY = 0;
+                let velX = 0, velY = 0;
+                let isDashing = false;
+                let dashTimeout = null;
 
-                let modeIndex = 0;
-                const palettes = [
+                // Grab Tentacle & Oral Arm DOM references
+                // Grab Tentacle & Oral Arm DOM references (All 7 formatted identical to Leg 2)
+                const legs = [
                     {
-                        name: 'CRYSTAL SKY BLUE & AZURE WATER',
-                        deepGradTop: 'rgba(56, 189, 248, 0.22)',
-                        deepGradBottom: 'rgba(14, 165, 233, 0.04)',
-                        surfGradTop: 'rgba(56, 189, 248, 0.32)',
-                        surfGradBottom: 'rgba(186, 230, 253, 0.06)',
-                        ambientTop: 'rgba(240, 249, 255, 0.85)',
-                        crestColor: 'rgba(255, 255, 255, 0.95)'
+                        rootX: 72, rootY: 138, length: 248, spread: -14, phase: 0.0, speed: 1.05, amp: 1.0,
+                        path: document.getElementById('jelly-path-1'),
+                        bulbs: [document.getElementById('jelly-bulb-1-a'), document.getElementById('jelly-bulb-1-b')]
                     },
                     {
-                        name: 'ICED CYAN & PURE CERULEAN',
-                        deepGradTop: 'rgba(6, 182, 212, 0.22)',
-                        deepGradBottom: 'rgba(2, 132, 199, 0.04)',
-                        surfGradTop: 'rgba(14, 165, 233, 0.32)',
-                        surfGradBottom: 'rgba(125, 211, 252, 0.06)',
-                        ambientTop: 'rgba(236, 254, 255, 0.85)',
-                        crestColor: 'rgba(255, 255, 255, 0.95)'
+                        rootX: 104, rootY: 148, length: 254, spread: -6, phase: 1.2, speed: 0.95, amp: 1.0,
+                        path: document.getElementById('jelly-path-2'),
+                        bulbs: [document.getElementById('jelly-bulb-2-a'), document.getElementById('jelly-bulb-2-b')]
+                    },
+                    {
+                        rootX: 136, rootY: 155, length: 263, spread: -2, phase: 2.4, speed: 1.02, amp: 1.0,
+                        path: document.getElementById('jelly-path-3'),
+                        bulbs: [document.getElementById('jelly-bulb-3-a'), document.getElementById('jelly-bulb-3-b')]
+                    },
+                    {
+                        rootX: 160, rootY: 158, length: 270, spread: 0, phase: 3.6, speed: 0.98, amp: 1.05,
+                        path: document.getElementById('jelly-path-4'),
+                        bulbs: [document.getElementById('jelly-bulb-4-a'), document.getElementById('jelly-bulb-4-b')]
+                    },
+                    {
+                        rootX: 184, rootY: 155, length: 263, spread: 2, phase: 4.8, speed: 1.02, amp: 1.0,
+                        path: document.getElementById('jelly-path-5'),
+                        bulbs: [document.getElementById('jelly-bulb-5-a'), document.getElementById('jelly-bulb-5-b')]
+                    },
+                    {
+                        rootX: 216, rootY: 148, length: 254, spread: 6, phase: 6.0, speed: 0.96, amp: 1.0,
+                        path: document.getElementById('jelly-path-6'),
+                        bulbs: [document.getElementById('jelly-bulb-6-a'), document.getElementById('jelly-bulb-6-b')]
+                    },
+                    {
+                        rootX: 248, rootY: 138, length: 248, spread: 14, phase: 7.2, speed: 1.08, amp: 1.0,
+                        path: document.getElementById('jelly-path-7'),
+                        bulbs: [document.getElementById('jelly-bulb-7-a'), document.getElementById('jelly-bulb-7-b')]
                     }
                 ];
 
-                const freqBtn = document.getElementById('aurora-frequency-btn');
-                const freqText = document.getElementById('aurora-freq-text');
-                if (freqBtn) {
-                    freqBtn.addEventListener('click', () => {
-                        modeIndex = (modeIndex + 1) % palettes.length;
-                        if (freqText) freqText.innerText = palettes[modeIndex].name;
-                        splashWater(width * 0.5, 24, 22);
-                        triggerShockwave(width * 0.5, height * 0.42, 35);
-                    });
-                }
+                // Oral silk drape references
+                const oralLFill = document.getElementById('jelly-oral-l-fill');
+                const oralLEdge = document.getElementById('jelly-oral-l-edge');
+                const oralRFill = document.getElementById('jelly-oral-r-fill');
+                const oralREdge = document.getElementById('jelly-oral-r-edge');
 
-                function setupSimulation() {
-                    width = canvas.width = container.clientWidth || window.innerWidth;
-                    height = canvas.height = container.clientHeight || window.innerHeight;
+                // Smooth Animation & Procedural Fluid Wave Loop (Silky S-Waves & Gentle Inertial Drag)
+                function physicsLoop(timestamp) {
+                    const t = timestamp || performance.now();
 
-                    // 1. REAL WATER SPRING COLUMNS (High Density 300+ columns)
-                    const columnSpacing = Math.max(3, Math.floor(width / 300));
-                    const numColumns = Math.ceil(width / columnSpacing) + 2;
-                    waterColumns = [];
-                    deepColumns = [];
+                    if (!isDashing) {
+                        currentX += (targetX - currentX) * 0.045;
+                        currentY += (targetY - currentY) * 0.045;
+                        currentRot += (targetRot - currentRot) * 0.045;
 
-                    for (let i = 0; i < numColumns; i++) {
-                        const posX = i * columnSpacing;
-                        waterColumns.push({
-                            x: posX,
-                            targetHeight: height * 0.44, // Calm water surface level
-                            height: height * 0.44,
-                            velocity: 0
-                        });
-                        deepColumns.push({
-                            x: posX,
-                            targetHeight: height * 0.39,
-                            height: height * 0.39,
-                            velocity: 0
-                        });
-                    }
-                }
-                setupSimulation();
-                window.addEventListener('resize', setupSimulation);
-
-                function getWaterHeightAt(x) {
-                    if (waterColumns.length === 0) return height * 0.44;
-                    const colWidth = waterColumns[1].x - waterColumns[0].x;
-                    const index = Math.max(0, Math.min(waterColumns.length - 2, Math.floor(x / colWidth)));
-                    const nextIndex = index + 1;
-                    const t = Math.max(0, Math.min(1, (x - waterColumns[index].x) / colWidth));
-                    return waterColumns[index].height * (1 - t) + waterColumns[nextIndex].height * t;
-                }
-
-                function splashWater(x, speed, radius = 20) {
-                    for (let i = 0; i < waterColumns.length; i++) {
-                        const dist = Math.abs(x - waterColumns[i].x);
-                        if (dist < radius * 6) {
-                            const factor = Math.cos((dist / (radius * 6)) * (Math.PI / 2));
-                            waterColumns[i].velocity += speed * factor;
-                            if (deepColumns[i]) deepColumns[i].velocity += speed * factor * 0.5;
-                        }
-                    }
-                }
-
-                function triggerShockwave(cx, cy, power = 25) {
-                    splashWater(cx, -power * 0.7, 24);
-                }
-
-                let mouseX = -9999, mouseY = -9999;
-                let prevMouseX = 0, prevMouseY = 0;
-
-                let lastScrollY = window.scrollY;
-                let scrollVelocity = 0;
-                let sloshMomentum = 0;
-                let sloshPhase = 0;
-                let targetTilt = 0;
-                let currentTilt = 0;
-
-                window.addEventListener('scroll', () => {
-                    const currentScrollY = window.scrollY;
-                    const deltaScroll = currentScrollY - lastScrollY;
-                    lastScrollY = currentScrollY;
-
-                    if (Math.abs(deltaScroll) < 180) {
-                        scrollVelocity += deltaScroll * 0.35;
-                        sloshMomentum += deltaScroll * 0.25;
-                        targetTilt = Math.max(-18, Math.min(18, deltaScroll * 0.18));
-                    }
-                }, { passive: true });
-
-                container.addEventListener('mouseleave', () => {
-                    mouseX = -9999;
-                    mouseY = -9999;
-                });
-
-                container.addEventListener('mousemove', (e) => {
-                    const rect = container.getBoundingClientRect();
-                    mouseX = e.clientX - rect.left;
-                    mouseY = e.clientY - rect.top;
-
-                    const deltaX = mouseX - prevMouseX;
-                    const deltaY = mouseY - prevMouseY;
-                    const speed = Math.hypot(deltaX, deltaY);
-
-                    // Gentle Water Hydrodynamic Splash
-                    if (speed > 0.6) {
-                        const currentWaterY = getWaterHeightAt(mouseX);
-                        const distToWater = Math.abs(mouseY - currentWaterY);
-
-                        if (distToWater < 55) {
-                            const dragForce = Math.max(-10, Math.min(10, (deltaY * 0.22) + (deltaX * 0.08)));
-                            splashWater(mouseX, dragForce, 15);
-                        }
+                        wrapper.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0) rotate(${currentRot.toFixed(2)}deg)`;
                     }
 
-                    prevMouseX = mouseX;
-                    prevMouseY = mouseY;
-                });
-
-                container.addEventListener('click', (e) => {
-                    const rect = container.getBoundingClientRect();
-                    const cx = e.clientX - rect.left;
-                    const cy = e.clientY - rect.top;
-                    triggerShockwave(cx, cy, 28);
-                });
-
-                let time = 0;
-                let lastTime = performance.now();
-
-                function animateEngine(now) {
-                    requestAnimationFrame(animateEngine);
-                    const dt = Math.min((now - lastTime) / 1000, 0.05);
-                    lastTime = now;
-                    time += dt;
-
-                    // 1. REAL-LIFE WATER HYDRODYNAMICS (SILKY CALM SPEED)
-                    scrollVelocity *= Math.pow(0.88, 60 * dt);
-                    sloshMomentum *= Math.pow(0.93, 60 * dt);
-                    currentTilt += (targetTilt - currentTilt) * (1 - Math.pow(0.88, 60 * dt));
-                    targetTilt *= Math.pow(0.90, 60 * dt);
-
-                    if (Math.abs(sloshMomentum) > 0.05) {
-                        sloshPhase += dt * (1.8 + Math.abs(sloshMomentum) * 0.04);
-                    }
-
-                    for (let i = 0; i < waterColumns.length; i++) {
-                        const col = waterColumns[i];
-                        const normX = (col.x / width) - 0.5;
-                        const travelingSurge = Math.sin((col.x / width) * Math.PI * 2 - sloshPhase) * (sloshMomentum * 0.22);
-                        const tiltOffset = normX * currentTilt;
-                        const gForceOffset = Math.max(-12, Math.min(12, scrollVelocity * 0.16));
-
-                        const ambientTide = Math.sin(col.x * 0.0010 + time * 0.18) * 2.2 + Math.cos(col.x * 0.0016 - time * 0.12) * 1.2;
-                        const target = col.targetHeight + ambientTide + travelingSurge + tiltOffset + gForceOffset;
-
-                        const displacement = col.height - target;
-                        const springForce = -TENSION * displacement - DAMPENING * col.velocity;
-                        col.velocity += springForce * 60 * dt;
-                        col.height += col.velocity * 60 * dt;
-                    }
-
-                    for (let i = 0; i < deepColumns.length; i++) {
-                        const dCol = deepColumns[i];
-                        const normX = (dCol.x / width) - 0.5;
-                        const deepTravelingSurge = Math.sin((dCol.x / width) * Math.PI * 2 - sloshPhase + 0.6) * (sloshMomentum * 0.16);
-                        const deepTiltOffset = normX * (currentTilt * 0.75);
-                        const deepGForceOffset = Math.max(-10, Math.min(10, scrollVelocity * 0.12));
-
-                        const deepTide = Math.sin(dCol.x * 0.0012 + time * 0.15 + 1.0) * 2.8 + Math.cos(dCol.x * 0.0015 - time * 0.10) * 1.5;
-                        const dTarget = dCol.targetHeight + deepTide + deepTravelingSurge + deepTiltOffset + deepGForceOffset;
-
-                        const dDisplacement = dCol.height - dTarget;
-                        const dSpringForce = -(TENSION * 0.8) * dDisplacement - (DAMPENING * 1.2) * dCol.velocity;
-                        dCol.velocity += dSpringForce * 60 * dt;
-                        dCol.height += dCol.velocity * 60 * dt;
-                    }
-
-                    // Hydrodynamic dispersion
-                    const leftDeltas = new Array(waterColumns.length).fill(0);
-                    const rightDeltas = new Array(waterColumns.length).fill(0);
-                    for (let passes = 0; passes < 4; passes++) {
-                        for (let i = 0; i < waterColumns.length; i++) {
-                            if (i > 0) { leftDeltas[i] = SPREAD * (waterColumns[i].height - waterColumns[i - 1].height); waterColumns[i - 1].velocity += leftDeltas[i] * 60 * dt * 0.16; }
-                            if (i < waterColumns.length - 1) { rightDeltas[i] = SPREAD * (waterColumns[i].height - waterColumns[i + 1].height); waterColumns[i + 1].velocity += rightDeltas[i] * 60 * dt * 0.16; }
-                        }
-                        for (let i = 0; i < waterColumns.length; i++) {
-                            if (i > 0) waterColumns[i - 1].height += leftDeltas[i] * 0.5;
-                            if (i < waterColumns.length - 1) waterColumns[i + 1].height += rightDeltas[i] * 0.5;
-                        }
-                    }
-
-                    for (let passes = 0; passes < 3; passes++) {
-                        for (let i = 0; i < deepColumns.length; i++) {
-                            if (i > 0) { const ld = (SPREAD * 0.6) * (deepColumns[i].height - deepColumns[i - 1].height); deepColumns[i - 1].velocity += ld * 60 * dt * 0.16; deepColumns[i - 1].height += ld * 0.5; }
-                            if (i < deepColumns.length - 1) { const rd = (SPREAD * 0.6) * (deepColumns[i].height - deepColumns[i + 1].height); deepColumns[i + 1].velocity += rd * 60 * dt * 0.16; deepColumns[i + 1].height += rd * 0.5; }
-                        }
-                    }
-
-                    // 2. RENDER REAL-LIFE WATER FLUID CANVAS
-                    ctx.clearRect(0, 0, width, height);
-
-                    const curPal = palettes[modeIndex];
-
-                    // Ambient water atmospheric luminescence
-                    const ambientGrad = ctx.createLinearGradient(0, 0, 0, height);
-                    ambientGrad.addColorStop(0, curPal.ambientTop);
-                    ambientGrad.addColorStop(1, 'rgba(240, 249, 255, 0.20)');
-                    ctx.fillStyle = ambientGrad;
-                    ctx.fillRect(0, 0, width, height);
-
-                    // Deep Water Layer
-                    ctx.beginPath();
-                    ctx.moveTo(0, height);
-                    ctx.lineTo(deepColumns[0].x, deepColumns[0].height);
-                    for (let i = 1; i < deepColumns.length - 1; i++) {
-                        const xc = (deepColumns[i].x + deepColumns[i + 1].x) / 2;
-                        const yc = (deepColumns[i].height + deepColumns[i + 1].height) / 2;
-                        ctx.quadraticCurveTo(deepColumns[i].x, deepColumns[i].height, xc, yc);
-                    }
-                    ctx.lineTo(deepColumns[deepColumns.length - 1].x, deepColumns[deepColumns.length - 1].height);
-                    ctx.lineTo(width, height);
-                    ctx.closePath();
-                    const deepGrad = ctx.createLinearGradient(0, height * 0.25, width, height);
-                    deepGrad.addColorStop(0, curPal.deepGradTop);
-                    deepGrad.addColorStop(1, curPal.deepGradBottom);
-                    ctx.fillStyle = deepGrad;
-                    ctx.fill();
-
-                    // Primary Master Water Layer
-                    ctx.beginPath();
-                    ctx.moveTo(0, height);
-                    ctx.lineTo(waterColumns[0].x, waterColumns[0].height);
-                    for (let i = 1; i < waterColumns.length - 1; i++) {
-                        const xc = (waterColumns[i].x + waterColumns[i + 1].x) / 2;
-                        const yc = (waterColumns[i].height + waterColumns[i + 1].height) / 2;
-                        ctx.quadraticCurveTo(waterColumns[i].x, waterColumns[i].height, xc, yc);
-                    }
-                    ctx.lineTo(waterColumns[waterColumns.length - 1].x, waterColumns[waterColumns.length - 1].height);
-                    ctx.lineTo(width, height);
-                    ctx.closePath();
-                    const surfGrad = ctx.createLinearGradient(0, height * 0.28, width, height);
-                    surfGrad.addColorStop(0, curPal.surfGradTop);
-                    surfGrad.addColorStop(1, curPal.surfGradBottom);
-                    ctx.fillStyle = surfGrad;
-                    ctx.fill();
-
-                    // Specular Meniscus Glow Line
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.moveTo(waterColumns[0].x, waterColumns[0].height);
-                    for (let i = 1; i < waterColumns.length - 1; i++) {
-                        const xc = (waterColumns[i].x + waterColumns[i + 1].x) / 2;
-                        const yc = (waterColumns[i].height + waterColumns[i + 1].height) / 2;
-                        ctx.quadraticCurveTo(waterColumns[i].x, waterColumns[i].height, xc, yc);
-                    }
-                    ctx.strokeStyle = curPal.crestColor;
-                    ctx.lineWidth = 2.5;
-                    ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
-                    ctx.shadowBlur = 8;
-                    ctx.stroke();
-                    ctx.restore();
-                }
-                requestAnimationFrame(animateEngine);
-
-            })();
-
-            // ═══════════════════════════════════════════════════════════════════
-            // CLAUDE/APPLE 800VH 10-CHAPTER MULTI-PHASE 3D STORY ENGINE (120 FPS)
-            // ═══════════════════════════════════════════════════════════════════
-            (function initStickyScrollStoryEngine() {
-                const track = document.getElementById('hero-scroll-track');
-                const banner = document.getElementById('algora-collection-hero-banner');
-                const ambientGlow = document.getElementById('ambient-stage-glow');
-
-                // 10 Distinct Scenes
-                const scenes = [];
-                for (let i = 1; i <= 10; i++) {
-                    scenes.push(document.getElementById(`hero-scene-${i}`));
-                }
-
-                // 10 Distinct Scrubber Timeline Pills
-                const pills = [];
-                for (let i = 1; i <= 10; i++) {
-                    pills.push(document.getElementById(`step-pill-${i}`));
-                }
-
-                // Stage Columns & Floating Info HUDs for Pixel-Perfect Center Explosion
-                const mainStage = document.getElementById('hero-main-stage');
-                const editorialCol = document.getElementById('hero-editorial-column');
-                const viewportCol = document.getElementById('hero-viewport-column');
-                const hudLeft = document.getElementById('explode-hud-left');
-                const hudRight = document.getElementById('explode-hud-right');
-
-                // Dynamic HUD Elements
-                const dynLeftCategory = document.getElementById('dyn-left-category');
-                const dynLeftTitle = document.getElementById('dyn-left-title');
-                const dynLeftDesc = document.getElementById('dyn-left-desc');
-                const dynLeftTag = document.getElementById('dyn-left-tag');
-                const dynLeftBorder = document.getElementById('dyn-left-border');
-                const dynLeftDot = document.getElementById('dyn-left-dot');
-
-                const dynRightCategory = document.getElementById('dyn-right-category');
-                const dynRightTitle = document.getElementById('dyn-right-title');
-                const dynRightDesc = document.getElementById('dyn-right-desc');
-                const dynRightTag = document.getElementById('dyn-right-tag');
-                const dynRightBorder = document.getElementById('dyn-right-border');
-                const dynRightDot = document.getElementById('dyn-right-dot');
-
-                // 7 Dynamic Real-Time Typography Phases matching card animation chapters with custom spatial coords
-                const dynamicPhases = [
-                    {
-                        // Phase 1 (0.00 - 0.22): Monolith Chassis Awaken
-                        leftPos: { top: '50%', left: '7.5%' },
-                        rightPos: { top: '50%', right: '7.5%' },
-
-                        leftCat: '01 / MONOLITH AWAKENING',
-                        leftTitle: 'Next-Gen Digital Systems',
-                        leftDesc: 'High-craft web platforms, AI workspaces, and kinetic 3D experiences engineered with obsessive precision.',
-                        leftTag: '1400PX SPATIAL FOV',
-                        leftBorderClass: 'border-white/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]',
-                        leftCatColor: 'text-white/90',
-                        leftTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-white/40 text-white',
-                        leftDotClass: 'bg-white shadow-[0_0_10px_#fff]',
-
-                        rightCat: 'DEPTH AND HOVER TELEMETRY',
-                        rightTitle: 'Zero-G Levitation',
-                        rightDesc: 'Damped spring orbital levitation at locked 120 FPS.',
-                        rightTag: '100% HEALTH IDLE',
-                        rightBorderClass: 'border-white/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]',
-                        rightCatColor: 'text-white/90',
-                        rightTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-white/40 text-white',
-                        rightDotClass: 'bg-white shadow-[0_0_10px_#fff]'
-                    },
-                    {
-                        // Phase 2 (0.22 - 0.38): Tier Decoupling Initiation
-                        leftPos: { top: '42%', left: '6%' },
-                        rightPos: { top: '58%', right: '6%' },
-
-                        leftCat: '02 / TIER DECOUPLING',
-                        leftTitle: 'Uncoupling The Stack',
-                        leftDesc: 'Front Glass UI, WebGL Canvas, and Kernel runtime separate smoothly along the spatial Z-axis.',
-                        leftTag: '80PX Z-AXIS SEPARATION',
-                        leftBorderClass: 'border-sky-300 shadow-[0_0_15px_rgba(56,189,248,0.4)]',
-                        leftCatColor: 'text-sky-100',
-                        leftTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-sky-300/60 text-white',
-                        leftDotClass: 'bg-sky-200 shadow-[0_0_10px_#38bdf8]',
-
-                        rightCat: 'SPATIAL COORDINATES',
-                        rightTitle: 'Spatial Disassembly',
-                        rightDesc: 'Multi-layer Z-space coordinate tracking with zero thread lock.',
-                        rightTag: 'GPU THREAD UNLOCKED',
-                        rightBorderClass: 'border-sky-300 shadow-[0_0_15px_rgba(56,189,248,0.4)]',
-                        rightCatColor: 'text-sky-100',
-                        rightTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-sky-300/60 text-white',
-                        rightDotClass: 'bg-sky-200 shadow-[0_0_10px_#38bdf8]'
-                    },
-                    {
-                        // Phase 3 (0.38 - 0.52): Full Exploded Architecture / 01 Aesthete UI
-                        leftPos: { top: '36%', left: '6.5%' },
-                        rightPos: { top: '48%', right: '6.5%' },
-
-                        leftCat: '03 / EXPLODED ARCHITECTURE',
-                        leftTitle: '01 Aesthete Platform',
-                        leftDesc: 'Quiet luxury minimalist architecture with high-craft editorial typography and glass aesthetics.',
-                        leftTag: '4.9 RATING 180PX LIFT',
-                        leftBorderClass: 'border-white/90 shadow-[0_0_15px_rgba(255,255,255,0.45)]',
-                        leftCatColor: 'text-white',
-                        leftTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-white/40 text-white',
-                        leftDotClass: 'bg-white shadow-[0_0_10px_#fff]',
-
-                        rightCat: 'TELEMETRY METRICS',
-                        rightTitle: '180px Explode Depth',
-                        rightDesc: 'Sub-pixel disassembly with zero thread contention across 3 layers.',
-                        rightTag: 'ZERO THREAD LOCK',
-                        rightBorderClass: 'border-indigo-300 shadow-[0_0_15px_rgba(165,180,252,0.4)]',
-                        rightCatColor: 'text-indigo-100',
-                        rightTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-indigo-300/60 text-white',
-                        rightDotClass: 'bg-indigo-200 shadow-[0_0_10px_#818cf8]'
-                    },
-                    {
-                        // Phase 4 (0.52 - 0.68): 120 FPS GPU Wave Mesh / 02 BloomFi
-                        leftPos: { top: '54%', left: '8%' },
-                        rightPos: { top: '40%', right: '6%' },
-
-                        leftCat: '04 / COMPUTE ENGINE',
-                        leftTitle: '02 BloomFi Wave',
-                        leftDesc: 'Fintech AI growth platform with 8400 compute shader points undulating in real-time spring dynamics.',
-                        leftTag: '4.7 RATING 120 FPS NATIVE',
-                        leftBorderClass: 'border-cyan-300 shadow-[0_0_15px_rgba(103,232,249,0.45)]',
-                        leftCatColor: 'text-cyan-100',
-                        leftTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-cyan-300/60 text-white',
-                        leftDotClass: 'bg-cyan-200 shadow-[0_0_10px_#22d3ee]',
-
-                        rightCat: 'HYDRODYNAMIC SPECS',
-                        rightTitle: '120.0 FPS Locked',
-                        rightDesc: 'Hardware WebGL spring wave mesh with zero frame drops.',
-                        rightTag: 'GPU ACCELERATED SHADERS',
-                        rightBorderClass: 'border-cyan-300 shadow-[0_0_15px_rgba(103,232,249,0.45)]',
-                        rightCatColor: 'text-cyan-100',
-                        rightTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-cyan-300/60 text-white',
-                        rightDotClass: 'bg-cyan-200 shadow-[0_0_10px_#22d3ee]'
-                    },
-                    {
-                        // Phase 5 (0.68 - 0.82): 360° Matrix Scan / 03 Juris Lexicon
-                        leftPos: { top: '62%', left: '6.5%' },
-                        rightPos: { top: '56%', right: '7.5%' },
-
-                        leftCat: '05 / KERNEL RUNTIME',
-                        leftTitle: '03 Juris Lexicon',
-                        leftDesc: 'Institutional legal intelligence core with holographic syntax verification and edge caching.',
-                        leftTag: '4.8 RATING 0.38MS LATENCY',
-                        leftBorderClass: 'border-purple-300 shadow-[0_0_15px_rgba(216,180,254,0.45)]',
-                        leftCatColor: 'text-purple-100',
-                        leftTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-purple-300/60 text-white',
-                        leftDotClass: 'bg-purple-200 shadow-[0_0_10px_#c084fc]',
-
-                        rightCat: 'EDGE TELEMETRY',
-                        rightTitle: '0.38ms Latency',
-                        rightDesc: 'Sub-millisecond global CDN edge dispatch with zero memory leaks.',
-                        rightTag: 'OPTIMAL ZERO GC OVERHEAD',
-                        rightBorderClass: 'border-purple-300 shadow-[0_0_15px_rgba(216,180,254,0.45)]',
-                        rightCatColor: 'text-purple-100',
-                        rightTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-purple-300/60 text-white',
-                        rightDotClass: 'bg-purple-200 shadow-[0_0_10px_#c084fc]'
-                    },
-                    {
-                        // Phase 6 (0.82 - 0.94): Magnetic Convergence & Reassembly
-                        leftPos: { top: '50%', left: '7.5%' },
-                        rightPos: { top: '50%', right: '7.5%' },
-
-                        leftCat: '06 / ATOMIC LOCK',
-                        leftTitle: 'Magnetic Snap Convergence',
-                        leftDesc: 'Deconstructed layers accelerate inward with spring damping, fusing into a crystal powerhouse.',
-                        leftTag: '100% ATOMIC FUSION',
-                        leftBorderClass: 'border-fuchsia-300 shadow-[0_0_15px_rgba(240,171,252,0.45)]',
-                        leftCatColor: 'text-fuchsia-100',
-                        leftTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-fuchsia-300/60 text-white',
-                        leftDotClass: 'bg-fuchsia-200 shadow-[0_0_10px_#e879f9]',
-
-                        rightCat: 'SYSTEM INTEGRITY',
-                        rightTitle: 'Monolith Unified',
-                        rightDesc: 'All 3 tiers locked and calibrated for multi-window high-throughput interaction.',
-                        rightTag: 'READY FOR DEPLOYMENT',
-                        rightBorderClass: 'border-fuchsia-300 shadow-[0_0_15px_rgba(240,171,252,0.45)]',
-                        rightCatColor: 'text-fuchsia-100',
-                        rightTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-fuchsia-300/60 text-white',
-                        rightDotClass: 'bg-fuchsia-200 shadow-[0_0_10px_#e879f9]'
-                    },
-                    {
-                        // Phase 7 (0.94 - 1.00): Production Launch & Gallery Grid
-                        leftPos: { top: '48%', left: '7%' },
-                        rightPos: { top: '52%', right: '7%' },
-
-                        leftCat: '07 / LAUNCH COMMISSION',
-                        leftTitle: 'Crafting Digital Monoliths',
-                        leftDesc: 'Commission bespoke platforms, AI workspaces, and 3D web applications for visionary teams.',
-                        leftTag: '9 PRODUCTION MONOLITHS',
-                        leftBorderClass: 'border-violet-300 shadow-[0_0_15px_rgba(196,181,253,0.45)]',
-                        leftCatColor: 'text-violet-100',
-                        leftTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-violet-300/60 text-white',
-                        leftDotClass: 'bg-violet-200 shadow-[0_0_10px_#a78bfa]',
-
-                        rightCat: 'PORTFOLIO DECK',
-                        rightTitle: 'Explore Full Gallery',
-                        rightDesc: 'Scroll down to browse all 9 live production platforms and interactive case studies.',
-                        rightTag: 'SCROLL FOR GALLERY',
-                        rightBorderClass: 'border-violet-300 shadow-[0_0_15px_rgba(196,181,253,0.45)]',
-                        rightCatColor: 'text-violet-100',
-                        rightTagClass: 'bg-white/20 hover:bg-white/30 backdrop-blur-md border-violet-300/60 text-white',
-                        rightDotClass: 'bg-violet-200 shadow-[0_0_10px_#a78bfa]'
-                    }
-                ];
-
-                let currentPhaseIdx = -1;
-                let isTransitioningHUD = false;
-
-                function updateDynamicHUD(p) {
-                    if (!dynLeftTitle || !dynRightTitle) return;
-
-                    let phaseIdx = 0;
-                    if (p < 0.22) phaseIdx = 0;
-                    else if (p < 0.38) phaseIdx = 1;
-                    else if (p < 0.52) phaseIdx = 2;
-                    else if (p < 0.68) phaseIdx = 3;
-                    else if (p < 0.82) phaseIdx = 4;
-                    else if (p < 0.94) phaseIdx = 5;
-                    else phaseIdx = 6;
-
-                    if (phaseIdx !== currentPhaseIdx) {
-                        currentPhaseIdx = phaseIdx;
-                        const d = dynamicPhases[phaseIdx];
-
-                        // 1. Smooth Spatial Position & Offset Shift
-                        if (hudLeft && d.leftPos) {
-                            hudLeft.style.top = d.leftPos.top;
-                            hudLeft.style.left = d.leftPos.left;
-                        }
-                        if (hudRight && d.rightPos) {
-                            hudRight.style.top = d.rightPos.top;
-                            hudRight.style.right = d.rightPos.right;
-                        }
-
-                        // 2. Ultra-High-Class Kinetic Text Shuffling & Animation
-                        // Step A: Trigger Kinetic Exit Animation
-                        dynLeftTitle.classList.remove('kinetic-text-in');
-                        dynLeftTitle.classList.add('kinetic-text-out');
-                        dynRightTitle.classList.remove('kinetic-text-in');
-                        dynRightTitle.classList.add('kinetic-text-out');
-
-                        if (dynLeftDesc) dynLeftDesc.style.opacity = '0.2';
-                        if (dynRightDesc) dynRightDesc.style.opacity = '0.2';
-                        if (dynLeftTag) dynLeftTag.classList.remove('kinetic-tag-in');
-                        if (dynRightTag) dynRightTag.classList.remove('kinetic-tag-in');
-                        if (dynLeftBorder) dynLeftBorder.classList.remove('kinetic-line-in');
-                        if (dynRightBorder) dynRightBorder.classList.remove('kinetic-line-in');
-
-                        // Step B: Morph Content at Keyframe Apex & Launch Staggered Reveal
-                        setTimeout(() => {
-                            // Update Typography & Text Content (Zero Box, Pro Slate/Greyish Contrast)
-                            if (dynLeftCategory) {
-                                dynLeftCategory.textContent = d.leftCat;
-                                dynLeftCategory.className = `text-[11px] font-mono font-bold tracking-[0.22em] text-slate-500 uppercase transition-colors duration-300 pro-grey-mono`;
-                            }
-                            if (dynLeftTitle) {
-                                dynLeftTitle.textContent = d.leftTitle;
-                                dynLeftTitle.className = `font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight leading-tight transition-all duration-300 pro-grey-title kinetic-text-in`;
-                            }
-                            if (dynLeftDesc) {
-                                dynLeftDesc.textContent = d.leftDesc;
-                                dynLeftDesc.className = `text-xs sm:text-sm text-slate-700 font-sans leading-relaxed transition-all duration-300 pro-grey-desc`;
-                                dynLeftDesc.style.opacity = '1';
-                            }
-                            if (dynLeftTag) {
-                                dynLeftTag.textContent = d.leftTag;
-                                dynLeftTag.className = `text-[10.5px] font-mono font-extrabold text-slate-800 tracking-wider uppercase transition-all duration-300 pro-grey-tag kinetic-tag-in`;
-                            }
-                            if (dynLeftBorder) {
-                                dynLeftBorder.className = `border-l-[3px] border-slate-800 pl-4 space-y-1.5 transition-all duration-300 pro-line-left kinetic-line-in`;
-                            }
-                            if (dynLeftDot) dynLeftDot.className = `w-2 h-2 rounded-full bg-slate-700 animate-ping`;
-
-                            if (dynRightCategory) {
-                                dynRightCategory.textContent = d.rightCat;
-                                dynRightCategory.className = `text-[11px] font-mono font-bold tracking-[0.22em] text-slate-500 uppercase transition-colors duration-300 pro-grey-mono`;
-                            }
-                            if (dynRightTitle) {
-                                dynRightTitle.textContent = d.rightTitle;
-                                dynRightTitle.className = `font-['Outfit'] font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight leading-tight transition-all duration-300 pro-grey-title kinetic-text-in`;
-                            }
-                            if (dynRightDesc) {
-                                dynRightDesc.textContent = d.rightDesc;
-                                dynRightDesc.className = `text-xs sm:text-sm text-slate-700 font-sans leading-relaxed transition-all duration-300 pro-grey-desc`;
-                                dynRightDesc.style.opacity = '1';
-                            }
-                            if (dynRightTag) {
-                                dynRightTag.textContent = d.rightTag;
-                                dynRightTag.className = `text-[10.5px] font-mono font-extrabold text-slate-800 tracking-wider uppercase transition-all duration-300 pro-grey-tag kinetic-tag-in`;
-                            }
-                            if (dynRightBorder) {
-                                dynRightBorder.className = `border-r-[3px] border-slate-800 pr-4 space-y-1.5 transition-all duration-300 pro-line-right kinetic-line-in`;
-                            }
-                            if (dynRightDot) dynRightDot.className = `w-2 h-2 rounded-full bg-slate-700 animate-pulse`;
-
-                        }, 160);
-                    }
-                }
-
-                // 3D Presentation Viewport & Exploded Layers
-                const viewportRig = document.getElementById('viewport-rig');
-                const layerFront = document.getElementById('layer-front');
-                const layerMid = document.getElementById('layer-mid');
-                const layerDeep = document.getElementById('layer-deep');
-                const layerTerminal = document.getElementById('layer-terminal');
-
-                // Infographic Telemetry Pins & Callouts
-                const calloutFront = document.getElementById('callout-front');
-                const calloutMid = document.getElementById('callout-mid');
-                const calloutDeep = document.getElementById('callout-deep');
-                const telemetryLatency = document.getElementById('telemetry-latency');
-
-                if (!track || !scenes[0] || !viewportRig) return;
-
-                let targetProgress = 0;
-                let currentProgress = 0;
-
-                function updateScrollProgress() {
-                    const rect = track.getBoundingClientRect();
-                    const scrollDistance = track.offsetHeight - window.innerHeight;
-                    if (scrollDistance <= 0) return;
-
-                    const scrolled = -rect.top;
-                    targetProgress = Math.max(0, Math.min(1, scrolled / scrollDistance));
-                }
-
-                // GSAP ScrollTrigger Integration for Ultra-Precise Sub-Pixel Progress Tracking
-                if (typeof ScrollTrigger !== 'undefined') {
-                    ScrollTrigger.create({
-                        trigger: track,
-                        start: 'top top',
-                        end: 'bottom bottom',
-                        onUpdate: (self) => {
-                            targetProgress = self.progress;
-                        }
-                    });
-                }
-
-                window.addEventListener('scroll', updateScrollProgress, { passive: true });
-                window.addEventListener('resize', () => {
-                    updateScrollProgress();
-                    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-                });
-                updateScrollProgress();
-
-                function renderStoryScenes() {
-                    requestAnimationFrame(renderStoryScenes);
-
-                    // Ultra-buttery 120fps inertia with adaptive dampening
-                    currentProgress += (targetProgress - currentProgress) * 0.085;
-                    const p = currentProgress;
-
-                    // Update Real-Time Dynamic Typography & Metrics Engine
-                    updateDynamicHUD(p);
-
-                    // ═══════════════════════════════════════════════════════════
-                    // 🎨 10-STAGE CONTINUOUS COLOR MORPHING (CYAN -> COBALT -> INDIGO -> AMETHYST -> VIOLET)
-                    // ═══════════════════════════════════════════════════════════
-                    if (banner) {
-                        let r, g, b, alpha;
-                        if (p < 0.30) {
-                            // Sky Cyan (186, 230, 253) -> Vivid Cobalt (147, 197, 253)
-                            const t = p / 0.30;
-                            r = Math.round(186 + t * (147 - 186));
-                            g = Math.round(230 + t * (197 - 230));
-                            b = Math.round(253 + t * (253 - 253));
-                            alpha = (0.35 + t * 0.08).toFixed(2);
-                        } else if (p < 0.60) {
-                            // Vivid Cobalt (147, 197, 253) -> Electric Indigo (199, 210, 254)
-                            const t = (p - 0.30) / 0.30;
-                            r = Math.round(147 + t * (199 - 147));
-                            g = Math.round(197 + t * (210 - 197));
-                            b = Math.round(253 + t * (254 - 253));
-                            alpha = (0.43 + t * 0.07).toFixed(2);
-                        } else if (p < 0.85) {
-                            // Electric Indigo (199, 210, 254) -> Radiant Amethyst (216, 180, 254)
-                            const t = (p - 0.60) / 0.25;
-                            r = Math.round(199 + t * (216 - 199));
-                            g = Math.round(210 + t * (180 - 210));
-                            b = Math.round(254 + t * (254 - 254));
-                            alpha = (0.50 + t * 0.06).toFixed(2);
-                        } else {
-                            // Radiant Amethyst (216, 180, 254) -> Luxurious Violet Orchid (233, 213, 255)
-                            const t = (p - 0.85) / 0.15;
-                            r = Math.round(216 + t * (233 - 216));
-                            g = Math.round(180 + t * (213 - 180));
-                            b = Math.round(254 + t * (255 - 254));
-                            alpha = (0.56 + t * 0.08).toFixed(2);
-                        }
-                        banner.style.background = `radial-gradient(ellipse 90% 90% at 50% -10%, rgba(${r}, ${g}, ${b}, ${alpha}), rgba(255, 255, 255, 0.96))`;
-                    }
-
-                    if (ambientGlow) {
-                        if (p < 0.25) {
-                            ambientGlow.style.background = `radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(37, 99, 235, 0.15) 70%, transparent 100%)`;
-                        } else if (p < 0.50) {
-                            ambientGlow.style.background = `radial-gradient(circle, rgba(99, 102, 241, 0.40) 0%, rgba(37, 99, 235, 0.20) 70%, transparent 100%)`;
-                        } else if (p < 0.75) {
-                            ambientGlow.style.background = `radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, rgba(99, 102, 241, 0.25) 70%, transparent 100%)`;
-                        } else {
-                            ambientGlow.style.background = `radial-gradient(circle, rgba(217, 70, 239, 0.45) 0%, rgba(147, 51, 234, 0.30) 70%, transparent 100%)`;
-                        }
-                    }
-
-                    const isMobile = window.innerWidth < 1024;
-
-                    // ═══════════════════════════════════════════════════════════
-                    // 🎯 TRUE MATHEMATICAL SCREEN CENTERING & SIDE HUD DYNAMICS
-                    // ═══════════════════════════════════════════════════════════
-                    if (editorialCol && viewportCol) {
-                        if (p >= 0.28 && p < 0.78) {
-                            // EXPLODED PHASES (Chapters 4 - 8): Text vanishes, Card moves to 100% DEAD CENTER!
-                            const enterCenterT = Math.min(1, (p - 0.28) / 0.08);
-                            const exitCenterT = Math.max(0, (p - 0.70) / 0.08);
-                            const centerAmount = enterCenterT * (1 - exitCenterT);
-
-                            // Editorial text slides smoothly off-screen to the left
-                            editorialCol.style.opacity = Math.max(0, 1 - centerAmount * 1.5).toString();
-                            editorialCol.style.transform = `translate3d(${-centerAmount * 160}px, 0, 0)`;
-                            editorialCol.style.pointerEvents = centerAmount > 0.5 ? 'none' : 'auto';
-
-                            // Compute exact center shift in pixels to place the card in TRUE SCREEN CENTER
-                            const stageWidth = mainStage ? mainStage.offsetWidth : window.innerWidth;
-                            const colLeft = viewportCol.offsetLeft;
-                            const colWidth = viewportCol.offsetWidth;
-                            const exactCenterShiftPx = (stageWidth / 2) - (colLeft + colWidth / 2);
-                            const scaleBonus = 1.0 + centerAmount * (isMobile ? 0.04 : 0.18);
-
-                            viewportCol.style.transform = isMobile 
-                                ? 'translate3d(0, 0, 0) scale(1.0)' 
-                                : `translate3d(${exactCenterShiftPx * centerAmount}px, 0, 0) scale(${scaleBonus})`;
-
-                            // Reveal sleek floating side telemetry & project HUD cards
-                            if (hudLeft && hudRight) {
-                                const hudOpacity = isMobile ? 0 : Math.max(0, Math.min(1, (centerAmount - 0.15) / 0.85));
-                                hudLeft.style.opacity = hudOpacity.toString();
-                                hudLeft.style.transform = `translate3d(${(1 - centerAmount) * -40}px, -50%, 0)`;
-                                hudRight.style.opacity = hudOpacity.toString();
-                                hudRight.style.transform = `translate3d(${(1 - centerAmount) * 40}px, -50%, 0)`;
-                            }
-                        } else if (p < 0.28) {
-                            // CHAPTERS 1 - 3: Normal Left-Right split
-                            editorialCol.style.opacity = '1';
-                            editorialCol.style.transform = 'translate3d(0, 0, 0)';
-                            editorialCol.style.pointerEvents = 'auto';
-                            viewportCol.style.transform = 'translate3d(0, 0, 0) scale(1.0)';
-
-                            if (hudLeft) hudLeft.style.opacity = '0';
-                            if (hudRight) hudRight.style.opacity = '0';
-                        } else {
-                            // CHAPTERS 9 - 10: Re-emerge into split launchpad
-                            const enterLaunchT = Math.min(1, (p - 0.78) / 0.08);
-                            editorialCol.style.opacity = Math.min(1, enterLaunchT * 1.5).toString();
-                            editorialCol.style.transform = `translate3d(${(1 - enterLaunchT) * -120}px, 0, 0)`;
-                            editorialCol.style.pointerEvents = 'auto';
-                            viewportCol.style.transform = 'translate3d(0, 0, 0) scale(1.0)';
-
-                            if (hudLeft) hudLeft.style.opacity = '0';
-                            if (hudRight) hudRight.style.opacity = '0';
-                        }
-                    }
-
-                    // ═══════════════════════════════════════════════════════════
-                    // 🚀 10 COMPLETELY DISTINCT 3D ANIMATION CHAPTERS
-                    // ═══════════════════════════════════════════════════════════
-                    if (viewportRig && layerFront && layerMid && layerDeep && layerTerminal) {
-                        
-                        if (p < 0.10) {
-                            // ── CHAPTER 1 (0.00 - 0.10): THE CLEAN MACRO AWAKENING (CLEAN COMPACT START SCALE 1.0) ──
-                            const t = p / 0.10;
-                            const zoom = isMobile ? 0.88 : 1.00;
-                            const rx = 12 + t * 4;
-                            const ry = -14 - t * 2;
-                            const rz = 2 + t * 0.5;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
-                            viewportRig.style.opacity = '1';
-                            layerFront.style.transform = `translate3d(0, 0, 0px)`;
-                            layerFront.style.opacity = '1';
-                            layerMid.style.transform = `translate3d(0, 0, -4px)`;
-                            layerMid.style.opacity = '1';
-                            layerDeep.style.transform = `translate3d(0, 0, -8px)`;
-                            layerDeep.style.opacity = '1';
-
-                            if (calloutFront) calloutFront.style.opacity = '0';
-                            if (calloutMid) calloutMid.style.opacity = '0';
-                            if (calloutDeep) calloutDeep.style.opacity = '0';
-                            layerTerminal.style.opacity = '0';
-
-                        } else if (p >= 0.10 && p < 0.20) {
-                            // ── CHAPTER 2 (0.10 - 0.20): THE PHYSICAL MONOLITH HOVER (1.00 -> 1.02) ──
-                            const t = (p - 0.10) / 0.10;
-                            const zoom = isMobile ? 0.88 : 1.00;
-                            const rx = 16 + t * 10;
-                            const ry = -16 - t * 8;
-                            const rz = 2.5 + t * 1.5;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
-                            viewportRig.style.opacity = '1';
-                            layerFront.style.transform = `translate3d(0, 0, 0px)`;
-                            layerFront.style.opacity = '1';
-                            layerMid.style.transform = `translate3d(0, 0, -5px)`;
-                            layerMid.style.opacity = '1';
-                            layerDeep.style.transform = `translate3d(0, 0, -10px)`;
-                            layerDeep.style.opacity = '1';
-
-                            if (calloutFront) calloutFront.style.opacity = '0';
-                            if (calloutMid) calloutMid.style.opacity = '0';
-                            if (calloutDeep) calloutDeep.style.opacity = '0';
-                            layerTerminal.style.opacity = '0';
-
-                        } else if (p >= 0.20 && p < 0.30) {
-                            // ── CHAPTER 3 (0.20 - 0.30): ZERO-GRAVITY HOVER PITCH (SMOOTH WAVE) ──
-                            const t = (p - 0.20) / 0.10;
-                            const rx = 26 + t * 10;
-                            const ry = -24 + t * 6;
-                            const rz = 4 + t * 2;
-                            const hoverY = Math.sin(p * 35) * 4;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0px, ${hoverY}px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.85 : 1.00})`;
-                            viewportRig.style.opacity = '1';
-                            layerFront.style.transform = `translate3d(0, 0, 0px)`;
-                            layerFront.style.opacity = '1';
-                            layerMid.style.transform = `translate3d(0, 0, 0px)`;
-                            layerMid.style.opacity = '1';
-                            layerDeep.style.transform = `translate3d(0, 0, 0px)`;
-                            layerDeep.style.opacity = '1';
-
-                            if (calloutFront) calloutFront.style.opacity = '0';
-                            if (calloutMid) calloutMid.style.opacity = '0';
-                            if (calloutDeep) calloutDeep.style.opacity = '0';
-                            layerTerminal.style.opacity = '0';
-
-                        } else if (p >= 0.30 && p < 0.40) {
-                            // ── CHAPTER 4 (0.30 - 0.40): TIER DECOUPLING INITIATION (±80PX Z EXPANSION) ──
-                            const t = (p - 0.30) / 0.10;
-                            const rx = 36 + t * 2;
-                            const ry = -18 - t * 12;
-                            const rz = 6 - t * 1;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0px, 0px, 0px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.85 : 1.02})`;
-                            viewportRig.style.opacity = '1';
-
-                            // Layers gently separate along Z
-                            layerFront.style.transform = `translate3d(0, ${-t * 20}px, ${t * 80}px) scale(1.02)`;
-                            layerFront.style.opacity = '1';
-                            layerMid.style.transform = `translate3d(0, 0, 0px)`;
-                            layerMid.style.opacity = '1';
-                            layerDeep.style.transform = `translate3d(0, ${t * 20}px, ${-t * 80}px) scale(0.98)`;
-                            layerDeep.style.opacity = '1';
-
-                            if (calloutFront) calloutFront.style.opacity = '0';
-                            if (calloutMid) calloutMid.style.opacity = '0';
-                            if (calloutDeep) calloutDeep.style.opacity = '0';
-                            layerTerminal.style.opacity = '0';
-
-                        } else if (p >= 0.40 && p < 0.50) {
-                            // ── CHAPTER 5 (0.40 - 0.50): GIANT 3D EXPLODED ARCHITECTURE (±180PX Z EXPLOSION + HUD PINS) ──
-                            const t = (p - 0.40) / 0.10;
-                            const rx = 38 + t * 6;
-                            const ry = -30 - t * 6;
-                            const rz = 5 + t * 3;
-                            const wideZoom = isMobile ? 0.82 : 1.04;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${wideZoom})`;
-                            viewportRig.style.opacity = '1';
-
-                            // Smooth Z-explosion
-                            const fz = 80 + t * (isMobile ? 60 : 100);
-                            const fy = -20 - t * (isMobile ? 12 : 24);
-                            layerFront.style.transform = `translate3d(0, ${fy}px, ${fz}px) scale(1.03)`;
-                            layerFront.style.opacity = '1';
-                            layerFront.style.boxShadow = `0 ${30 + t * 25}px ${70 + t * 35}px rgba(14, 165, 233, 0.35)`;
-
-                            layerMid.style.transform = `translate3d(0, 0, 0px) scale(${1 + t * 0.02})`;
-                            layerMid.style.opacity = '1';
-
-                            const dz = -80 - t * (isMobile ? 60 : 100);
-                            const dy = 20 + t * (isMobile ? 12 : 24);
-                            layerDeep.style.transform = `translate3d(0, ${dy}px, ${dz}px) scale(0.97)`;
-                            layerDeep.style.opacity = '1';
-
-                            // Telemetry HUD Pins Illuminate
-                            const pinOpacity = t > 0.2 ? Math.min(1, (t - 0.2) * 2.5).toString() : '0';
-                            if (calloutFront) calloutFront.style.opacity = pinOpacity;
-                            if (calloutMid) calloutMid.style.opacity = pinOpacity;
-                            if (calloutDeep) calloutDeep.style.opacity = pinOpacity;
-
-                            if (telemetryLatency) {
-                                const lat = (0.34 + Math.sin(Date.now() * 0.008) * 0.04).toFixed(2);
-                                telemetryLatency.textContent = `< ${lat} MS`;
-                            }
-                            layerTerminal.style.opacity = '0';
-
-                        } else if (p >= 0.50 && p < 0.60) {
-                            // ── CHAPTER 6 (0.50 - 0.60): 120 FPS GPU WAVE SWOOP ──
-                            const t = (p - 0.50) / 0.10;
-                            const rx = 44 - t * 24;
-                            const ry = -36 + t * 38;
-                            const rz = 8 - t * 7;
-                            const zoom = isMobile ? 0.82 : 1.04;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
-                            viewportRig.style.opacity = '1';
-
-                            layerFront.style.transform = `translate3d(0, -44px, 160px) scale(1.02)`;
-                            layerFront.style.opacity = '1';
-                            layerMid.style.transform = `translate3d(0, 0, 0px) scale(1.02)`;
-                            layerMid.style.opacity = '1';
-                            layerDeep.style.transform = `translate3d(0, 44px, -160px) scale(0.97)`;
-                            layerDeep.style.opacity = '1';
-
-                            if (calloutFront) calloutFront.style.opacity = '0.7';
-                            if (calloutMid) calloutMid.style.opacity = '1';
-                            if (calloutDeep) calloutDeep.style.opacity = '0.7';
-                            layerTerminal.style.opacity = '0';
-
-                        } else if (p >= 0.60 && p < 0.70) {
-                            // ── CHAPTER 7 (0.60 - 0.70): 360° HORIZONTAL YAW SCAN ──
-                            const t = (p - 0.60) / 0.10;
-                            const rx = 20 + t * 8;
-                            const ry = 2 - t * 32;
-                            const rz = 1 + t * 3;
-                            const zoom = isMobile ? 0.82 : 1.04;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${zoom})`;
-                            viewportRig.style.opacity = '1';
-
-                            layerFront.style.transform = `translate3d(${-t * 15}px, -36px, 130px) scale(1.02)`;
-                            layerFront.style.opacity = '1';
-                            layerMid.style.transform = `translate3d(0, 0, 0px) scale(1.02)`;
-                            layerMid.style.opacity = '1';
-                            layerDeep.style.transform = `translate3d(${t * 15}px, 36px, -130px) scale(0.98)`;
-                            layerDeep.style.opacity = '1';
-
-                            if (calloutFront) calloutFront.style.opacity = '1';
-                            if (calloutMid) calloutMid.style.opacity = '1';
-                            if (calloutDeep) calloutDeep.style.opacity = '1';
-                            layerTerminal.style.opacity = '0';
-
-                        } else if (p >= 0.70 && p < 0.80) {
-                            // ── CHAPTER 8 (0.70 - 0.80): MAGNETIC CONVERGENCE & IMPACT LOCK (REASSEMBLY) ──
-                            const t = (p - 0.70) / 0.10;
-                            const snap = Math.max(0, 1 - t * 1.4);
-                            const rx = 28 - t * 14;
-                            const ry = -30 + t * 20;
-                            const rz = 4 - t * 3;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${isMobile ? 0.85 : 1.02})`;
-                            viewportRig.style.opacity = '1';
-
-                            layerFront.style.transform = `translate3d(0, ${-snap * 36}px, ${snap * 130}px)`;
-                            layerFront.style.opacity = '1';
-                            layerMid.style.transform = `translate3d(0, 0, 0px)`;
-                            layerMid.style.opacity = '1';
-                            layerDeep.style.transform = `translate3d(0, ${snap * 36}px, ${-snap * 130}px)`;
-                            layerDeep.style.opacity = '1';
-
-                            if (calloutFront) calloutFront.style.opacity = (snap * 0.4).toString();
-                            if (calloutMid) calloutMid.style.opacity = (snap * 0.4).toString();
-                            if (calloutDeep) calloutDeep.style.opacity = (snap * 0.4).toString();
-                            layerTerminal.style.opacity = '0';
-
-                        } else if (p >= 0.80 && p < 0.90) {
-                            // ── CHAPTER 9 (0.80 - 0.90): UNIFIED MONOLITH AT REST ──
-                            const t = (p - 0.80) / 0.10;
-                            const rx = 14 - t * 8;
-                            const ry = -10 + t * 6;
-                            const zoom = isMobile ? 0.85 : 1.00;
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, 0, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(0deg) scale(${zoom})`;
-                            viewportRig.style.opacity = '1';
-
-                            layerFront.style.transform = `translate3d(0, 0, 0px)`;
-                            layerFront.style.opacity = '1';
-                            layerMid.style.transform = `translate3d(0, 0, 0px)`;
-                            layerMid.style.opacity = '1';
-                            layerDeep.style.transform = `translate3d(0, 0, 0px)`;
-                            layerDeep.style.opacity = '1';
-
-                            if (calloutFront) calloutFront.style.opacity = '0';
-                            if (calloutMid) calloutMid.style.opacity = '0';
-                            if (calloutDeep) calloutDeep.style.opacity = '0';
-                            layerTerminal.style.opacity = '0';
-
-                        } else {
-                            // ── CHAPTER 10 (0.90 - 1.00): SEAMLESS OUTRO TRANSITION (SMOOTH LEVEL & DISSOLVE INTO GALLERY GRID) ──
-                            const t = (p - 0.90) / 0.10;
-                            const rx = 6 * (1 - t);
-                            const ry = -4 * (1 - t);
-                            const outroZoom = (isMobile ? 0.85 : 1.00) - t * 0.08;
-                            const outroY = t * 40;
-                            const outroOpacity = Math.max(0, 1 - t * 1.2);
-
-                            viewportRig.style.transform = `perspective(1400px) translate3d(0, ${outroY}px, 0) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(0deg) scale(${outroZoom})`;
-                            viewportRig.style.opacity = outroOpacity.toString();
-
-                            layerFront.style.transform = `translate3d(0, 0, 0px)`;
-                            layerMid.style.transform = `translate3d(0, 0, 0px)`;
-                            layerDeep.style.transform = `translate3d(0, 0, 0px)`;
-
-                            if (calloutFront) calloutFront.style.opacity = '0';
-                            if (calloutMid) calloutMid.style.opacity = '0';
-                            if (calloutDeep) calloutDeep.style.opacity = '0';
-                            layerTerminal.style.opacity = '0';
-                        }
-                    }
-
-                    // ═══════════════════════════════════════════════════════════
-                    // 🎬 10-SCENE KINETIC TEXT CHOREOGRAPHY (SWEEPING VIDEO REEL VECTORS)
-                    // ═══════════════════════════════════════════════════════════
-                    const sceneRanges = [
-                        [0.00, 0.10], // Scene 1
-                        [0.10, 0.20], // Scene 2
-                        [0.20, 0.30], // Scene 3
-                        [0.30, 0.40], // Scene 4
-                        [0.40, 0.50], // Scene 5
-                        [0.50, 0.60], // Scene 6
-                        [0.60, 0.70], // Scene 7
-                        [0.70, 0.80], // Scene 8
-                        [0.80, 0.90], // Scene 9
-                        [0.90, 1.00]  // Scene 10
-                    ];
-
-                    scenes.forEach((sc, idx) => {
-                        if (!sc) return;
-                        const [start, end] = sceneRanges[idx];
-                        const center = (start + end) / 2;
-                        const half = (end - start) / 2;
-
-                        if (p >= start - 0.02 && p <= end + 0.02) {
-                            let op = 0, x = 0, y = 0, scale = 1, blur = 0;
-
-                            if (idx === 0) {
-                                // Scene 1 exits up-left
-                                const exitT = Math.max(0, (p - 0.03) / 0.07);
-                                op = Math.max(0, 1 - exitT * 1.5);
-                                x = -exitT * 150;
-                                y = -exitT * 70;
-                                blur = exitT * 10;
-                            } else if (idx === 9) {
-                                // Scene 10 enters and stays active
-                                const enterT = Math.min(1, (p - 0.88) / 0.08);
-                                op = Math.min(1, enterT * 1.5);
-                                x = (1 - enterT) * -120;
-                                y = (1 - enterT) * 70;
-                                scale = 0.88 + enterT * 0.12;
-                            } else {
-                                // Mid Scenes enter from bottom-left, exit up-left
-                                if (p < center) {
-                                    const enterT = Math.min(1, (p - start) / half);
-                                    op = Math.min(1, enterT * 1.5);
-                                    x = (1 - enterT) * -140;
-                                    y = (1 - enterT) * 70;
-                                    blur = (1 - enterT) * 8;
-                                } else {
-                                    const exitT = Math.min(1, (p - center) / half);
-                                    op = Math.max(0, 1 - exitT * 1.5);
-                                    x = -exitT * 140;
-                                    y = -exitT * 70;
-                                    blur = exitT * 8;
+                    // Compute smooth low-pass filtered velocity for hydro-drag
+                    const rawVelX = (currentX - prevX);
+                    velX += (rawVelX - velX) * 0.15;
+                    prevX = currentX;
+                    prevY = currentY;
+
+                    // Clamped subtle inertial fluid drag
+                    const dragX = Math.max(-14, Math.min(14, -velX * 5));
+                    const dragRot = Math.max(-10, Math.min(10, -currentRot * 0.8));
+
+                    // 1. UPDATE ALL 7 LEGS WITH SILKY QUADRATIC S-CURVE HARMONICS
+                    for (let i = 0; i < legs.length; i++) {
+                        const leg = legs[i];
+                        if (!leg.path) continue;
+
+                        // Silk oceanic sway harmonics (gentle & slow)
+                        const wave1 = Math.sin(t * 0.0016 * leg.speed + leg.phase) * 14 * leg.amp;
+                        const wave2 = Math.cos(t * 0.0024 * leg.speed + leg.phase * 1.3) * 4.5 * leg.amp;
+
+                        // Control Point 1 (upper curve swell)
+                        const cx = leg.rootX + (leg.spread * 0.4) + (wave1 * 0.9) + (dragX * 0.4) + (dragRot * 0.4);
+                        const cy = leg.rootY + (leg.length * 0.35);
+
+                        // Midpoint inflection (S-curve flip)
+                        const mx = leg.rootX + (leg.spread * 0.7) - (wave1 * 0.45) + (dragX * 0.7) + (dragRot * 0.7);
+                        const my = leg.rootY + (leg.length * 0.65);
+
+                        // Tip coordinate
+                        const tipX = leg.rootX + leg.spread + wave1 + wave2 + dragX + dragRot;
+                        const tipY = leg.rootY + leg.length + Math.cos(t * 0.0018 + leg.phase) * 3;
+
+                        // Generate pure C1-continuous Quadratic S-curve
+                        const dStr = `M ${leg.rootX.toFixed(1)},${leg.rootY.toFixed(1)} Q ${cx.toFixed(1)},${cy.toFixed(1)} ${mx.toFixed(1)},${my.toFixed(1)} T ${tipX.toFixed(1)},${tipY.toFixed(1)}`;
+                        leg.path.setAttribute('d', dStr);
+
+                        // Update double crystal glowing bulbs at the tip
+                        if (leg.bulbs && leg.bulbs.length > 0) {
+                            for (let b = 0; b < leg.bulbs.length; b++) {
+                                const bulb = leg.bulbs[b];
+                                if (bulb) {
+                                    bulb.setAttribute('cx', tipX.toFixed(1));
+                                    bulb.setAttribute('cy', tipY.toFixed(1));
                                 }
                             }
-
-                            sc.style.opacity = Math.max(0, Math.min(1, op));
-                            sc.style.transform = `perspective(1200px) translate3d(${x}px, ${y}px, 0) scale(${scale})`;
-                            sc.style.filter = `blur(${Math.max(0, blur)}px)`;
-                            sc.classList.add('active-scene');
-                        } else {
-                            sc.style.opacity = 0;
-                            sc.classList.remove('active-scene');
                         }
-                    });
+                    }
 
-                    // ── 10-STAGE TOP NAV TIMELINE SCRUBBER HIGHLIGHT ──
-                    const activePill = Math.min(9, Math.floor(p * 10));
-                    pills.forEach((pill, idx) => {
-                        if (!pill) return;
-                        if (idx === activePill) {
-                            pill.className = 'px-2.5 py-1 rounded-full bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 text-white transition-all duration-300 shadow-2xs font-extrabold';
-                        } else {
-                            pill.className = 'px-2.5 py-1 rounded-full text-slate-500 hover:text-slate-800 transition-all duration-300 font-medium';
-                        }
-                    });
+                    // 2. UPDATE 2 CENTRAL TRANSLUCENT ORAL SILK DRAPES
+                    if (oralLFill && oralRFill) {
+                        const oWaveL = Math.sin(t * 0.0016) * 10;
+                        const oWaveR = Math.sin(t * 0.0016 + 2.5) * 10;
+                        const oDrag = Math.max(-10, Math.min(10, -velX * 4));
+
+                        const lMidX = 126 + oWaveL + oDrag;
+                        const lTipX = 134 + oWaveL * 1.3 + oDrag;
+                        const rMidX = 194 + oWaveR + oDrag;
+                        const rTipX = 186 + oWaveR * 1.3 + oDrag;
+
+                        const dOralL = `M135,148 C${118 + oWaveL * 0.5},195 ${106 + oWaveL * 0.6},242 ${lMidX.toFixed(1)},290 C${138 + oWaveL * 0.7},322 ${122 + oWaveL},362 ${lTipX.toFixed(1)},402 C${138 + oWaveL * 0.7},375 ${150 + oWaveL * 0.5},332 ${136 + oWaveL * 0.3},298 C124,260 136,210 144,152 Z`;
+                        const dOralLEdge = `M135,148 Q${115 + oWaveL * 0.5},210 ${lMidX.toFixed(1)},260 T${lTipX.toFixed(1)},402`;
+
+                        const dOralR = `M185,148 C${202 + oWaveR * 0.5},195 ${214 + oWaveR * 0.6},242 ${rMidX.toFixed(1)},290 C${182 + oWaveR * 0.7},322 ${198 + oWaveR},362 ${rTipX.toFixed(1)},402 C${182 + oWaveR * 0.7},375 ${170 + oWaveR * 0.5},332 ${184 + oWaveR * 0.3},298 C196,260 184,210 176,152 Z`;
+                        const dOralREdge = `M185,148 Q${205 + oWaveR * 0.5},210 ${rMidX.toFixed(1)},260 T${rTipX.toFixed(1)},402`;
+
+                        oralLFill.setAttribute('d', dOralL);
+                        if (oralLEdge) oralLEdge.setAttribute('d', dOralLEdge);
+
+                        oralRFill.setAttribute('d', dOralR);
+                        if (oralREdge) oralREdge.setAttribute('d', dOralREdge);
+                    }
+
+                    requestAnimationFrame(physicsLoop);
+                }
+                requestAnimationFrame(physicsLoop);
+
+                // Pointer / Mouse / Touch Move Interactive Follow
+                function handlePointerMove(e) {
+                    const rect = stage.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                    const relX = (clientX - (rect.left + rect.width / 2));
+                    const relY = (clientY - (rect.top + rect.height / 2));
+
+                    // Soft bounded magnetic attraction
+                    targetX = Math.max(-60, Math.min(60, relX * 0.25));
+                    targetY = Math.max(-50, Math.min(50, relY * 0.25));
+                    targetRot = Math.max(-12, Math.min(12, relX * 0.08));
+
+                    // Boost ambient glow brightness during interaction
+                    if (ambientGlow) {
+                        ambientGlow.style.opacity = '1';
+                        ambientGlow.style.transform = `scale(1.15) translate3d(${targetX * 0.5}px, ${targetY * 0.5}px, 0)`;
+                    }
                 }
 
-                requestAnimationFrame(renderStoryScenes);
+                function handlePointerLeave() {
+                    targetX = 0;
+                    targetY = 0;
+                    targetRot = 0;
+                    if (ambientGlow) {
+                        ambientGlow.style.opacity = '0.85';
+                        ambientGlow.style.transform = `scale(1) translate3d(0,0,0)`;
+                    }
+                }
+
+                // REACTIVE TOUCH / CLICK BURST: Super Realistic Escape Jet Impulse
+                function triggerTouchReaction(e) {
+                    if (dashTimeout) clearTimeout(dashTimeout);
+                    isDashing = true;
+
+                    const rect = stage.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    const rippleX = clientX - rect.left;
+                    const rippleY = clientY - rect.top;
+
+                    // 1. Trigger Shockwave Ripple Effect
+                    if (ripple) {
+                        ripple.style.transition = 'none';
+                        ripple.style.left = `${rippleX}px`;
+                        ripple.style.top = `${rippleY}px`;
+                        ripple.style.transform = 'translate(-50%, -50%) scale(0.2)';
+                        ripple.style.opacity = '0.9';
+
+                        requestAnimationFrame(() => {
+                            ripple.style.transition = 'all 0.65s cubic-bezier(0.15, 1, 0.3, 1)';
+                            ripple.style.transform = 'translate(-50%, -50%) scale(2.8)';
+                            ripple.style.opacity = '0';
+                        });
+                    }
+
+                    // 2. Spawn Bioluminescent Micro Energy Sparks
+                    spawnBioluminescentSparks(rippleX, rippleY);
+
+                    // 3. Jet Impulse: Bell contracts tightly, core flashes hyper-bright
+                    if (core) {
+                        core.style.filter = 'brightness(2.4) drop-shadow(0 0 35px #38bdf8) drop-shadow(0 0 50px #e879f9)';
+                    }
+
+                    wrapper.style.transition = 'transform 0.22s cubic-bezier(0.12, 0.9, 0.3, 1.2)';
+                    wrapper.style.transform = `translate3d(${currentX}px, ${currentY - 65}px, 0) scale(0.82, 1.28) rotate(${currentRot * 1.5}deg)`;
+
+                    // 4. Recovery Flare & Coasting Bounce
+                    setTimeout(() => {
+                        wrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+                        wrapper.style.transform = `translate3d(${currentX}px, ${currentY - 15}px, 0) scale(1.16, 0.88) rotate(0deg)`;
+
+                        if (core) {
+                            core.style.filter = '';
+                        }
+                    }, 240);
+
+                    // 5. Return smoothly to natural buoyancy
+                    dashTimeout = setTimeout(() => {
+                        wrapper.style.transition = 'transform 0.8s cubic-bezier(0.3, 1.2, 0.4, 1)';
+                        wrapper.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) scale(1, 1) rotate(${targetRot}deg)`;
+
+                        setTimeout(() => {
+                            wrapper.style.transition = 'none';
+                            currentX = targetX;
+                            currentY = targetY;
+                            currentRot = targetRot;
+                            isDashing = false;
+                        }, 800);
+                    }, 850);
+                }
+
+                // Spawn floating glowing sparks on touch
+                function spawnBioluminescentSparks(originX, originY) {
+                    if (!particleContainer) return;
+
+                    for (let i = 0; i < 9; i++) {
+                        const spark = document.createElement('div');
+                        const size = Math.random() * 5 + 3;
+                        const angle = Math.random() * Math.PI * 2;
+                        const velocity = Math.random() * 50 + 20;
+                        const vx = Math.cos(angle) * velocity;
+                        const vy = Math.sin(angle) * velocity - 25; // Drift upwards
+
+                        spark.style.position = 'absolute';
+                        spark.style.left = `${originX}px`;
+                        spark.style.top = `${originY}px`;
+                        spark.style.width = `${size}px`;
+                        spark.style.height = `${size}px`;
+                        spark.style.borderRadius = '50%';
+                        spark.style.backgroundColor = i % 2 === 0 ? '#38bdf8' : '#e879f9';
+                        spark.style.boxShadow = `0 0 12px ${i % 2 === 0 ? '#38bdf8' : '#e879f9'}`;
+                        spark.style.pointerEvents = 'none';
+                        spark.style.transition = 'all 0.9s cubic-bezier(0.1, 0.8, 0.3, 1)';
+                        spark.style.transform = 'translate(-50%, -50%) scale(1)';
+                        spark.style.opacity = '1';
+
+                        particleContainer.appendChild(spark);
+
+                        requestAnimationFrame(() => {
+                            spark.style.transform = `translate(calc(-50% + ${vx}px), calc(-50% + ${vy}px)) scale(0)`;
+                            spark.style.opacity = '0';
+                        });
+
+                        setTimeout(() => {
+                            if (spark.parentNode) spark.parentNode.removeChild(spark);
+                        }, 1000);
+                    }
+                }
+
+                // Attach Event Listeners (Pointer & Touch)
+                stage.addEventListener('pointermove', handlePointerMove);
+                stage.addEventListener('pointerleave', handlePointerLeave);
+                stage.addEventListener('pointerdown', triggerTouchReaction);
+
+                stage.addEventListener('touchmove', handlePointerMove, { passive: true });
+                stage.addEventListener('touchend', handlePointerLeave);
+                stage.addEventListener('touchstart', triggerTouchReaction, { passive: true });
             })();
             </script>
+
+            <!-- Bottom strip removed per request -->
+
         </div>
         
         <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
@@ -5303,31 +4227,35 @@
 <div class="h-16 w-full flex-shrink-0"></div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════
-     BRUSHED FADED STEEL METALLIC FOOTER (HIGH-CONTRAST BLACK TYPOGRAPHY)
+     ALGORA STUDIO // LUXURY OBSIDIAN FOOTER (PRESERVED ORIGINAL CONTENT)
      ═══════════════════════════════════════════════════════════════════════ -->
-<footer class="w-full bg-gradient-to-b from-[#e3e6ec] to-[#d7dbe3] text-[#111827] border-t border-[#b8becb] pt-16 sm:pt-20 pb-12 relative z-20 mt-20 transition-colors shadow-lg">
-    <div class="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16 w-full">
+<footer id="portfolio-main-footer" class="w-full bg-[#050508] text-slate-300 border-t border-white/[0.08] pt-16 sm:pt-20 pb-12 relative z-20 mt-20 transition-colors">
+    <!-- Subtle Ambient Top Glow -->
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-purple-600/[0.04] blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 w-full relative z-10">
         
         <!-- Top Executive Header: Studio Crest + Global Operational Badges + CTA -->
-        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-[#c2c7d4]">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-white/[0.08]">
             <div class="space-y-2.5">
                 <div class="flex items-center gap-3">
                     <svg viewBox="0 0 100 100" class="w-8 h-8 flex-shrink-0" fill="none">
-                        <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#7c3aed" stroke-width="7" stroke-linecap="round"/>
-                        <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#000000"/>
-                        <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#7c3aed"/>
+                        <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#a855f7" stroke-width="7" stroke-linecap="round"/>
+                        <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#ffffff"/>
+                        <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#a855f7"/>
                     </svg>
-                    <span class="font-serif text-2xl tracking-[0.25em] text-[#000000] uppercase font-bold" style="font-family: 'Bodoni Moda', 'Playfair Display', serif;">ALGOR<span class="text-[#7c3aed]">A</span></span>
-                    <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-md bg-[#cbd1dc] text-[#0f172a] border border-[#aeb5c4] uppercase font-bold">STUDIO</span>
+                    <span class="font-serif text-2xl tracking-[0.25em] text-white uppercase font-bold" style="font-family: 'Bodoni Moda', 'Playfair Display', serif;">ALGOR<span class="text-[#a855f7]">A</span></span>
+                    <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.06] text-slate-400 border border-white/[0.08] uppercase font-semibold">STUDIO</span>
                 </div>
-                <p class="text-xs sm:text-sm font-sans text-[#374151] max-w-lg font-medium leading-relaxed">
+                <p class="text-xs sm:text-sm font-sans text-slate-400 max-w-lg font-normal leading-relaxed">
                     Curating the Web's Finest digital craft, interactive 3D systems, and high-fidelity enterprise web applications. Designed &amp; engineered by Gourav.
                 </p>
             </div>
 
             <!-- Action Button -->
             <div class="flex items-center">
-                <a href="start-project.html" class="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-[#000000] hover:bg-[#1f2937] text-white font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:scale-[1.02] active:scale-95">
+                <a href="start-project.html" class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white hover:bg-slate-200 text-black font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:scale-[1.02] active:scale-95">
                     <span>Start Project</span>
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
@@ -5335,81 +4263,81 @@
         </div>
 
         <!-- Middle Multi-Column Enterprise Grid (4 Relevant Portfolio Columns) -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 py-12 border-b border-[#c2c7d4] text-xs font-sans">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 py-12 border-b border-white/[0.08] text-xs font-sans">
             
             <!-- Col 1: Showcase & Categories -->
             <div class="space-y-3.5">
-                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#4b5563] block">Showcase</span>
-                <ul class="space-y-2.5 font-medium text-[#1f2937]">
-                    <li><a href="projects.html#grid-all-projects" class="hover:text-[#000000] hover:underline transition-colors">All Projects</a></li>
-                    <li><a href="projects.html#section-work" class="hover:text-[#000000] hover:underline transition-colors">Creative Work</a></li>
-                    <li><a href="projects.html#section-personal" class="hover:text-[#000000] hover:underline transition-colors">Personal Labs</a></li>
-                    <li><a href="projects.html#section-collaboration" class="hover:text-[#000000] hover:underline transition-colors">Collaborative</a></li>
-                    <li><a href="projects.html#section-favorites" class="hover:text-[#000000] hover:underline transition-colors">Favorite Works</a></li>
-                    <li><a href="landing-pages.html" class="hover:text-[#000000] hover:underline transition-colors">Landing Pages</a></li>
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 block">Showcase</span>
+                <ul class="space-y-2.5 font-normal text-slate-400">
+                    <li><a href="projects.html#grid-all-projects" class="hover:text-white transition-colors">All Projects</a></li>
+                    <li><a href="projects.html#section-work" class="hover:text-white transition-colors">Creative Work</a></li>
+                    <li><a href="projects.html#section-personal" class="hover:text-white transition-colors">Personal Labs</a></li>
+                    <li><a href="projects.html#section-collaboration" class="hover:text-white transition-colors">Collaborative</a></li>
+                    <li><a href="projects.html#section-favorites" class="hover:text-white transition-colors">Favorite Works</a></li>
+                    <li><a href="landing-pages.html" class="hover:text-white transition-colors">Landing Pages</a></li>
                 </ul>
             </div>
 
             <!-- Col 2: Live Project Case Studies -->
             <div class="space-y-3.5">
-                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#4b5563] block">Case Studies</span>
-                <ul class="space-y-2.5 font-medium text-[#1f2937]">
-                    <li><a href="aesthete.html" class="hover:text-[#000000] hover:underline transition-colors">Aesthete Studio</a></li>
-                    <li><a href="mamaearth.html" class="hover:text-[#000000] hover:underline transition-colors">Mamaearth Store</a></li>
-                    <li><a href="bloomfi.html" class="hover:text-[#000000] hover:underline transition-colors">BloomFi Banking</a></li>
-                    <li><a href="lumina.html" class="hover:text-[#000000] hover:underline transition-colors">Lumina AI Studio</a></li>
-                    <li><a href="jurislexicon-dark.html" class="hover:text-[#000000] hover:underline transition-colors">JurisLexicon Dark</a></li>
-                    <li><a href="valura.html" class="hover:text-[#000000] hover:underline transition-colors">Valura Real Estate</a></li>
-                    <li><a href="vanya-lodge.html" class="hover:text-[#000000] hover:underline transition-colors">Vanya Safari Lodge</a></li>
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 block">Case Studies</span>
+                <ul class="space-y-2.5 font-normal text-slate-400">
+                    <li><a href="aesthete.html" class="hover:text-white transition-colors">Aesthete Studio</a></li>
+                    <li><a href="mamaearth.html" class="hover:text-white transition-colors">Mamaearth Store</a></li>
+                    <li><a href="bloomfi.html" class="hover:text-white transition-colors">BloomFi Banking</a></li>
+                    <li><a href="lumina.html" class="hover:text-white transition-colors">Lumina AI Studio</a></li>
+                    <li><a href="jurislexicon-dark.html" class="hover:text-white transition-colors">JurisLexicon Dark</a></li>
+                    <li><a href="valura.html" class="hover:text-white transition-colors">Valura Real Estate</a></li>
+                    <li><a href="vanya-lodge.html" class="hover:text-white transition-colors">Vanya Safari Lodge</a></li>
                 </ul>
             </div>
 
             <!-- Col 3: Services & Capabilities -->
             <div class="space-y-3.5">
-                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#4b5563] block">Services &amp; Stack</span>
-                <ul class="space-y-2.5 font-medium text-[#1f2937]">
-                    <li><a href="start-project.html" class="hover:text-[#000000] hover:underline transition-colors">Editorial Web Design</a></li>
-                    <li><a href="start-project.html" class="hover:text-[#000000] hover:underline transition-colors">Full-Stack Web Apps</a></li>
-                    <li><a href="start-project.html" class="hover:text-[#000000] hover:underline transition-colors">E-Commerce Engines</a></li>
-                    <li><a href="start-project.html" class="hover:text-[#000000] hover:underline transition-colors">120 FPS Motion Physics</a></li>
-                    <li><a href="start-project.html" class="hover:text-[#000000] hover:underline transition-colors">WebGL &amp; 3D Systems</a></li>
-                    <li><a href="start-project.html" class="hover:text-[#000000] hover:underline transition-colors">Performance &amp; SEO</a></li>
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 block">Services &amp; Stack</span>
+                <ul class="space-y-2.5 font-normal text-slate-400">
+                    <li><a href="start-project.html" class="hover:text-white transition-colors">Editorial Web Design</a></li>
+                    <li><a href="start-project.html" class="hover:text-white transition-colors">Full-Stack Web Apps</a></li>
+                    <li><a href="start-project.html" class="hover:text-white transition-colors">E-Commerce Engines</a></li>
+                    <li><a href="start-project.html" class="hover:text-white transition-colors">120 FPS Motion Physics</a></li>
+                    <li><a href="start-project.html" class="hover:text-white transition-colors">WebGL &amp; 3D Systems</a></li>
+                    <li><a href="start-project.html" class="hover:text-white transition-colors">Performance &amp; SEO</a></li>
                 </ul>
             </div>
 
             <!-- Col 4: Platform & Direct Inquiries -->
             <div class="space-y-3.5">
-                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#4b5563] block">Platform &amp; Contact</span>
-                <ul class="space-y-2.5 font-medium text-[#1f2937]">
-                    <li><a href="start-project.html" class="hover:text-[#000000] hover:underline transition-colors font-bold text-[#7c3aed]">✦ Start a Project</a></li>
-                    <li><a href="blogs.html" class="hover:text-[#000000] hover:underline transition-colors">Editorial Articles</a></li>
-                    <li><a href="gallery.html" class="hover:text-[#000000] hover:underline transition-colors">Design Gallery</a></li>
-                    <li><a href="profile.html" class="hover:text-[#000000] hover:underline transition-colors">Author Profile</a></li>
-                    <li><a href="start-project.html#project-inquiry-form-section" class="hover:text-[#000000] hover:underline transition-colors">Inquiry &amp; Discovery</a></li>
-                    <li><a href="mailto:gourabs444@gmail.com" class="hover:text-[#000000] hover:underline transition-colors font-mono">gourabs444@gmail.com</a></li>
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 block">Platform &amp; Contact</span>
+                <ul class="space-y-2.5 font-normal text-slate-400">
+                    <li><a href="start-project.html" class="hover:text-purple-300 font-semibold text-purple-400 transition-colors">✦ Start a Project</a></li>
+                    <li><a href="blogs.html" class="hover:text-white transition-colors">Editorial Articles</a></li>
+                    <li><a href="gallery.html" class="hover:text-white transition-colors">Design Gallery</a></li>
+                    <li><a href="profile.html" class="hover:text-white transition-colors">Author Profile</a></li>
+                    <li><a href="start-project.html#project-inquiry-form-section" class="hover:text-white transition-colors">Inquiry &amp; Discovery</a></li>
+                    <li><a href="mailto:gourabs444@gmail.com" class="hover:text-white transition-colors font-mono">gourabs444@gmail.com</a></li>
                 </ul>
             </div>
 
         </div>
 
         <!-- Bottom Legal & Social Strip -->
-        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-mono text-[#374151] font-medium">
+        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-mono text-slate-500 font-medium">
             <div class="flex flex-wrap items-center gap-2">
                 <span>&copy; 2026 ALGORA STUDIO. Crafted with precision by Gourav. All rights reserved.</span>
             </div>
 
             <div class="flex items-center gap-3">
-                <!-- Social Icons in refined steel capsules with solid black icons -->
-                <a href="https://www.instagram.com/01env" target="_blank" class="w-9 h-9 rounded-lg bg-[#d3d8e2] hover:bg-[#c2c8d4] border border-[#b4bac8] flex items-center justify-center text-[#000000] hover:scale-105 transition-all shadow-xs" aria-label="Instagram">
+                <!-- Social Icons -->
+                <a href="https://www.instagram.com/01env" target="_blank" class="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-slate-400 hover:text-white hover:scale-105 transition-all shadow-xs" aria-label="Instagram">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
                 </a>
-                <a href="https://x.com/i/user/1484960232413732865" target="_blank" class="w-9 h-9 rounded-lg bg-[#d3d8e2] hover:bg-[#c2c8d4] border border-[#b4bac8] flex items-center justify-center text-[#000000] hover:scale-105 transition-all shadow-xs" aria-label="X (Twitter)">
+                <a href="https://x.com/i/user/1484960232413732865" target="_blank" class="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-slate-400 hover:text-white hover:scale-105 transition-all shadow-xs" aria-label="X (Twitter)">
                     <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="https://discord.com/users/901665069719498792" target="_blank" class="w-9 h-9 rounded-lg bg-[#d3d8e2] hover:bg-[#c2c8d4] border border-[#b4bac8] flex items-center justify-center text-[#000000] hover:scale-105 transition-all shadow-xs" aria-label="Discord">
+                <a href="https://discord.com/users/901665069719498792" target="_blank" class="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-slate-400 hover:text-white hover:scale-105 transition-all shadow-xs" aria-label="Discord">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0c-.172-.393-.412-.875-.63-1.25a.078.078 0 0 0-.07-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.894.076.076 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>
                 </a>
-                <a href="https://www.facebook.com/profile.php?id=100041839251373" target="_blank" class="w-9 h-9 rounded-lg bg-[#d3d8e2] hover:bg-[#c2c8d4] border border-[#b4bac8] flex items-center justify-center text-[#000000] hover:scale-105 transition-all shadow-xs" aria-label="Facebook">
+                <a href="https://www.facebook.com/profile.php?id=100041839251373" target="_blank" class="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-slate-400 hover:text-white hover:scale-105 transition-all shadow-xs" aria-label="Facebook">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-3c-3.81 0-7 3.19-7 7v3H6v4h3v10h5V14h3.62l.54-4H14V7c0-.86.54-1 1-1h3V0z"/></svg>
                 </a>
             </div>
@@ -8082,7 +7010,7 @@
         const originalBtnHTML = submitBtn ? submitBtn.innerHTML : 'Send Message';
         if (submitBtn) {
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `Sending... <span class="material-symbols-outlined text-[16px] animate-spin">sync</span>`;
+            submitBtn.innerHTML = `Sending... <svg class="pl pl--sm inline align-middle ml-1" viewBox="0 0 240 240"><circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle><circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle><circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle><circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle></svg>`;
         }
 
         // Dispatch email notification via Formspree Endpoint

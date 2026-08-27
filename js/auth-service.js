@@ -274,6 +274,78 @@
     return storage;
   }
 
+  /* ── JWT Session Bridge ──────────────────────────────────────────────────
+   * When the user authenticates via the Fastify backend (/api/auth/login or
+   * /api/auth/register), a JWT is stored under `portfolio_jwt_token` and the
+   * raw user object under `portfolio_auth_user`.  These helpers let the rest
+   * of the frontend treat that session identically to a Firebase session.
+   * ──────────────────────────────────────────────────────────────────────── */
+
+  function getJwtToken() {
+    return localStorage.getItem('portfolio_jwt_token') || null;
+  }
+
+  function getJwtUser() {
+    try {
+      const raw = localStorage.getItem('portfolio_auth_user');
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Hydrate `currentState` from a stored JWT session so that widgets that
+   * subscribe via `onAuthState()` see a logged-in user even when Firebase
+   * is not configured.
+   */
+  function initFromJwtSession() {
+    const token = getJwtToken();
+    const jwtUser = getJwtUser();
+
+    if (!token || !jwtUser) return false; // no backend session stored
+
+    // Build a lightweight profile object compatible with the Firebase profile shape
+    const profile = {
+      uid: jwtUser.id,
+      displayName: jwtUser.name || (jwtUser.email ? jwtUser.email.split('@')[0] : 'User'),
+      email: jwtUser.email || '',
+      phone: '',
+      bio: '',
+      profilePhoto: localStorage.getItem('userPicture') || '',
+      provider: 'password',
+      links: {},
+      createdAt: jwtUser.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    // Synthetic user object that matches the shape widgets expect
+    const syntheticUser = {
+      uid: jwtUser.id,
+      displayName: profile.displayName,
+      email: jwtUser.email,
+      photoURL: profile.profilePhoto,
+      providerData: [{ providerId: 'password' }],
+    };
+
+    saveLocalSession(syntheticUser, profile);
+    currentState = { user: syntheticUser, profile, loading: false };
+    emit();
+    return true;
+  }
+
+  /**
+   * Clear the backend JWT session from localStorage and emit a signed-out
+   * state to all listeners.
+   */
+  function signOutJwt() {
+    localStorage.removeItem('portfolio_jwt_token');
+    localStorage.removeItem('portfolio_auth_user');
+    clearLocalSession();
+    currentState = { user: null, profile: null, loading: false };
+    emit();
+  }
+
   window.PortfolioAuth = {
     DEFAULT_AVATAR,
     initFirebase,
@@ -285,9 +357,26 @@
     getAuth,
     getFirestore,
     getStorage,
-    signOut
+    signOut,
+    // JWT session helpers
+    getJwtToken,
+    getJwtUser,
+    initFromJwtSession,
+    signOutJwt,
   };
 
-  initFirebase();
-  window.addEventListener('firebase-config-ready', initFirebase, { once: true });
+  // Initialise: try Firebase first, then fall back to a stored JWT session
+  // so the session persists across page reloads without Firebase being active.
+  const firebaseStarted = initFirebase();
+  if (!firebaseStarted) {
+    initFromJwtSession();
+  }
+
+  window.addEventListener('firebase-config-ready', () => {
+    initFirebase();
+    // If Firebase took over, drop the synthetic JWT state so we don't double-emit
+    if (appReady && currentState.user && !getJwtToken()) return;
+    // Otherwise keep JWT session alive alongside Firebase
+  }, { once: true });
 })();
+

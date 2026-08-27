@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/animations.css">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Firebase App and Auth SDK (Compat) -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -572,7 +573,7 @@
 
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-70', 'cursor-wait');
-        submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> Processing...`;
+        submitBtn.innerHTML = `<svg class="pl pl--sm inline align-middle mr-1" viewBox="0 0 240 240"><circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle><circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle><circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle><circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle></svg> Processing...`;
 
         try {
             // ── Primary Backend Fastify API Endpoint Call ──────────────────────────
@@ -742,7 +743,6 @@
         }
 
         const provider = getSocialProvider(providerName);
-        // OAuth redirects are substantially more reliable in mobile browsers.
         const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
         if (isMobile) {
@@ -752,7 +752,19 @@
 
         auth.signInWithPopup(provider)
             .then((result) => finishSocialAuth(result, providerName))
-            .catch((error) => showSocialAuthError(providerName, error));
+            .catch((error) => {
+                console.warn(`Popup authentication issue (${error.code}), attempting redirect fallback...`, error);
+                if (error.code === 'auth/operation-not-allowed' || error.code === 'auth/configuration-not-found') {
+                    alert(`Firebase Console mein ${providerName} Sign-In Provider ENABLED nahi hai.\n\nPlease go to Firebase Console -> Authentication -> Sign-in method -> Enable ${providerName}.`);
+                    return;
+                }
+                if (error.code === 'auth/unauthorized-domain') {
+                    alert(`Yeh domain (${window.location.hostname}) Firebase Authorized Domains mein added nahi hai.\n\nGo to Firebase Console -> Authentication -> Settings -> Authorized domains -> Add domain.`);
+                    return;
+                }
+                // Auto fallback to redirect if popup fails/blocked
+                auth.signInWithRedirect(provider).catch((redirectErr) => showSocialAuthError(providerName, redirectErr));
+            });
     }
 
     // Finish a mobile redirect sign-in after the identity provider returns here.
