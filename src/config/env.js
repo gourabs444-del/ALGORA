@@ -13,6 +13,7 @@ const schema = z.object({
 
   // Security
   ADMIN_API_KEY:           z.string().default('default-admin-api-key-secret-minimum-24-chars'),
+  JWT_SECRET:              z.string().default('super-secret-jwt-key-change-in-production-12345'),
   FRONTEND_ORIGIN:         z.string().default('*'),
 
   // Server

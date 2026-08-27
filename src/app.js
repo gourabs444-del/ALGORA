@@ -44,7 +44,7 @@ export function buildApp() {
 
   /* ── JWT Authentication Plugin ────────────────────────────────────── */
   app.register(fastifyJwt, {
-    secret: process.env.JWT_SECRET || 'super-secret-jwt-key-change-in-production-12345',
+    secret: env.JWT_SECRET,
   });
 
   /* ── Health check ─────────────────────────────────────────────────── */

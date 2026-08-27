@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>UI Component Detail | Algora</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f172a",
+                        "primary-accent": "#0284c7",
+                        "surface": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Hanken Grotesk", "sans-serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        *, *::before, *::after {
+            -webkit-tap-highlight-color: transparent !important;
+        }
+        a, button, [tabindex] {
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Skeleton shimmer (needed for Loading components) */
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .animate-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .animate-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(90deg, rgba(255,255,255,0) 0, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.25) 60%, rgba(255,255,255,0));
+            animation: shimmer 2s infinite;
+        }
+
+        /* Code block styling */
+        .code-block {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 1rem;
+            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.7;
+            position: relative;
+        }
+        .code-block pre {
+            padding: 1.5rem;
+            overflow-x: auto;
+            white-space: pre;
+            tab-size: 2;
+        }
+        .code-block::-webkit-scrollbar { width: 6px; height: 6px; }
+        .code-block::-webkit-scrollbar-track { background: transparent; }
+        .code-block::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+
+        /* Syntax highlighting */
+        .hl-tag { color: #f472b6; }
+        .hl-attr { color: #7dd3fc; }
+        .hl-value { color: #86efac; }
+        .hl-comment { color: #64748b; font-style: italic; }
+
+        /* Copy button animation */
+        .copy-btn.copied {
+            background: #10b981 !important;
+            color: white !important;
+        }
+
+        /* Preview container */
+        .preview-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(56,189,248,0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(168,85,247,0.04) 0%, transparent 50%),
+                repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(148,163,184,0.05) 24px, rgba(148,163,184,0.05) 25px),
+                repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(148,163,184,0.05) 24px, rgba(148,163,184,0.05) 25px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+        }
+
+        /* Reset the preview card styles for detail view */
+        #live-preview .ui-preview-card {
+            max-width: 380px;
+            width: 100%;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 20px 50px -12px rgba(15,23,42,0.25);
+        }
+    </style>
+</head>
+<body class="bg-[#fafbff] text-slate-900 font-body antialiased selection:bg-slate-900 selection:text-white min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="glass-nav sticky top-0 z-50 w-full shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)]">
+        <div class="flex items-center px-4 sm:px-8 lg:px-10 h-16 sm:h-20 w-full gap-4">
+            <!-- Back to UI Gallery -->
+            <a href="ui.html" class="w-9 h-9 rounded-full bg-white hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] focus:outline-none shrink-0" title="Back to UI Gallery">
+                <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            </a>
+            <div class="flex items-center gap-2">
+                <span class="font-headline text-base sm:text-lg font-bold text-slate-900 truncate" id="page-title">UI Component</span>
+                <span class="text-[10px] font-mono text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full" id="component-id-badge"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content: Preview + Code -->
+    <main class="px-4 sm:px-8 lg:px-10 py-8 w-full max-w-7xl mx-auto">
+        
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <!-- Left: Live Preview -->
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sky-500 text-lg">visibility</span>
+                        <h2 class="font-headline font-bold text-sm text-slate-700 uppercase tracking-wider">Live Preview</h2>
+                    </div>
+                    <span class="text-[10px] font-mono text-slate-400">Interactive Component</span>
+                </div>
+                <div class="preview-container" id="live-preview">
+                    <!-- Component renders here -->
+                </div>
+            </div>
+
+            <!-- Right: Source Code -->
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-purple-500 text-lg">code</span>
+                        <h2 class="font-headline font-bold text-sm text-slate-700 uppercase tracking-wider">Source Code</h2>
+                    </div>
+                    <button type="button" id="copy-btn" onclick="copyCode()" class="copy-btn flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-lg hover:shadow-xl transition-all cursor-pointer focus:outline-none">
+                        <span class="material-symbols-outlined text-[14px]" id="copy-icon">content_copy</span>
+                        <span id="copy-text">Copy Code</span>
+                    </button>
+                </div>
+                <div class="code-block shadow-2xl" id="code-container">
+                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/10 bg-white/[0.03]">
+                        <div class="flex items-center gap-2">
+                            <div class="flex gap-1.5">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-500 font-mono ml-2">component.html</span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-mono">HTML</span>
+                    </div>
+                    <pre id="code-output" class="max-h-[600px] overflow-y-auto"></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-8 w-full mt-10 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+        <div class="px-4 sm:px-8 lg:px-10 w-full flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <div class="flex items-center gap-2.5">
+                <span class="font-headline text-lg font-bold tracking-tight text-slate-900">ALGORA.</span>
+                <span class="text-xs text-slate-400 font-mono">UI Component Detail</span>
+            </div>
+            <p class="text-xs text-slate-400 font-mono">© 2026 Algora Portfolio.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Read component data from sessionStorage
+        const rawHTML = sessionStorage.getItem('algora_ui_detail_html') || '';
+        const title = sessionStorage.getItem('algora_ui_detail_title') || 'UI Component';
+        const compId = sessionStorage.getItem('algora_ui_detail_id') || '';
+
+        // Set page title
+        document.getElementById('page-title').textContent = title;
+        document.title = title + ' | Algora UI';
+        if (compId) {
+            document.getElementById('component-id-badge').textContent = compId;
+        }
+
+        // If no data, show fallback
+        if (!rawHTML) {
+            document.getElementById('live-preview').innerHTML = `
+                <div class="text-center py-16">
+                    <span class="material-symbols-outlined text-5xl text-slate-300 mb-4 block">error_outline</span>
+                    <h3 class="font-headline font-bold text-lg text-slate-500">No component selected</h3>
+                    <p class="text-sm text-slate-400 mt-1">Go back to the <a href="ui.html" class="text-sky-500 hover:underline">UI Gallery</a> and tap a component.</p>
+                </div>
+            `;
+            document.getElementById('code-output').textContent = '<!-- No component selected -->';
+        } else {
+            // Render live preview
+            document.getElementById('live-preview').innerHTML = rawHTML;
+
+            // Clean up the HTML for display: format and indent
+            const cleanHTML = formatHTML(rawHTML);
+
+            // Render syntax-highlighted code
+            document.getElementById('code-output').innerHTML = highlightHTML(cleanHTML);
+        }
+
+        // Store raw code for copy
+        let rawCodeForCopy = '';
+
+        function formatHTML(html) {
+            // Basic HTML formatter
+            let formatted = '';
+            let indent = 0;
+            const tab = '  ';
+
+            // Split by tags
+            const tokens = html.replace(/></g, '>\n<').split('\n');
+
+            tokens.forEach(token => {
+                token = token.trim();
+                if (!token) return;
+
+                // Decrease indent for closing tags
+                if (token.match(/^<\/\w/)) {
+                    indent = Math.max(0, indent - 1);
+                }
+
+                formatted += tab.repeat(indent) + token + '\n';
+
+                // Increase indent for opening tags (not self-closing, not closing)
+                if (token.match(/^<\w[^>]*[^\/]>$/) && !token.match(/^<(br|hr|img|input|meta|link)/i)) {
+                    indent++;
+                }
+            });
+
+            rawCodeForCopy = formatted.trim();
+            return formatted.trim();
+        }
+
+        function highlightHTML(code) {
+            // Escape HTML entities first
+            let escaped = code
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+
+            // Apply syntax highlighting
+            escaped = escaped
+                // Comments
+                .replace(/(&lt;!--.*?--&gt;)/g, '<span class="hl-comment">$1</span>')
+                // Tags
+                .replace(/(&lt;\/?)([\w-]+)/g, '$1<span class="hl-tag">$2</span>')
+                // Attributes with values
+                .replace(/([\w-]+)(=)(&quot;|")(.*?)(\3)/g, '<span class="hl-attr">$1</span>$2<span class="hl-value">$3$4$5</span>')
+                // Standalone attributes
+                .replace(/\s([\w-]+)(?=\s|&gt;|\/&gt;)/g, ' <span class="hl-attr">$1</span>');
+
+            return escaped;
+        }
+
+        function copyCode() {
+            const btn = document.getElementById('copy-btn');
+            const icon = document.getElementById('copy-icon');
+            const text = document.getElementById('copy-text');
+
+            navigator.clipboard.writeText(rawCodeForCopy).then(() => {
+                btn.classList.add('copied');
+                icon.textContent = 'check_circle';
+                text.textContent = 'Copied!';
+
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    icon.textContent = 'content_copy';
+                    text.textContent = 'Copy Code';
+                }, 2000);
+            }).catch(() => {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = rawCodeForCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+
+                btn.classList.add('copied');
+                icon.textContent = 'check_circle';
+                text.textContent = 'Copied!';
+
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    icon.textContent = 'content_copy';
+                    text.textContent = 'Copy Code';
+                }, 2000);
+            });
+        }
+
+        // Keyboard shortcut: Ctrl/Cmd+C when not focused on input
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'c') {
+                e.preventDefault();
+                copyCode();
+            }
+        });
+    </script>
+</body>
+</html>
