@@ -63,7 +63,6 @@
   .logo {
       display: flex;
       align-items: center;
-      padding-left: 14px;
       isolation: isolate !important;
       position: relative !important;
       z-index: 9999 !important;
@@ -83,7 +82,8 @@
       position: relative !important;
       z-index: 9999 !important;
       display: block !important;
-      height: 40px !important;
+      height: 13px !important;
+      max-height: 13px !important;
       width: auto !important;
       object-fit: contain !important;
       flex-shrink: 0 !important;
@@ -1718,7 +1718,7 @@
 <!-- Fixed Frosted Glassmorphic Header Ribbon (Pinned z-9999 above drawer) -->
 <nav class="obscura-showcase-nav fixed top-0 left-0 w-full flex items-center justify-between pl-3.5 pr-4 sm:pl-[16rem] sm:pr-6 md:pl-[21rem] md:pr-8 lg:pl-[28rem] lg:pr-10 xl:pl-[34rem] py-3.5 sm:py-5 select-none z-[9999] transition-all">
     <a href="index.html" class="navbar-logo -ml-1 sm:ml-0 select-none transition-transform hover:scale-105 flex-shrink-0" style="text-decoration: none; isolation: isolate;">
-        <img src="assets/logo.png?v=25.0" alt="ALGORA" class="h-3.5 sm:h-4 lg:h-5 w-auto object-contain" style="opacity: 1 !important; filter: brightness(1.25) contrast(1.25) drop-shadow(0 2px 8px rgba(0,0,0,0.85)) !important; background: transparent !important;">
+        <img src="assets/algora-logo.svg" alt="ALGORA" class="h-2.5 sm:h-[11px] lg:h-[13px] w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1) !important;">
     </a>
     
     <!-- PC Middle Cluster (Shifted Left): CATEGORY, CONSULTANT, Search Bar, Bell Icon -->
@@ -2610,9 +2610,9 @@
                     <div class="lg:col-span-7 space-y-6 text-left">
 
                         <!-- Main Headline with Luxury Haute-Couture Font Pairing -->
-                        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4.4rem] font-normal tracking-[-0.01em] text-[#B8B8B8] leading-[1.06]" style="font-family: 'Italiana', 'Cormorant Garamond', Georgia, serif;">
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4.4rem] font-normal tracking-[-0.01em] text-[#B8B8B8] leading-[1.1]" style="font-family: 'Italiana', 'Cormorant Garamond', Georgia, serif;">
                             Designing the <span class="italic font-normal text-[#B8B8B8]" style="font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: -0.01em;">Fluidity</span> of <br/>
-                            <span class="font-extrabold tracking-tight text-slate-950 block mt-1" style="font-family: 'Syne', 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em;">
+                            <span class="font-extrabold tracking-tight text-slate-950 block mt-1.5" style="font-family: 'Plus Jakarta Sans', 'Outfit', -apple-system, sans-serif; letter-spacing: -0.025em; line-height: 1.15;">
                                 Spatial & Living Code.
                             </span>
                         </h1>
@@ -4252,12 +4252,7 @@
         <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-white/[0.08]">
             <div class="space-y-2.5">
                 <div class="flex items-center gap-3">
-                    <svg viewBox="0 0 100 100" class="w-8 h-8 flex-shrink-0" fill="none">
-                        <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#a855f7" stroke-width="7" stroke-linecap="round"/>
-                        <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#ffffff"/>
-                        <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#a855f7"/>
-                    </svg>
-                    <span class="font-serif text-2xl tracking-[0.25em] text-white uppercase font-bold" style="font-family: 'Bodoni Moda', 'Playfair Display', serif;">ALGOR<span class="text-[#a855f7]">A</span></span>
+                    <img src="assets/algora-logo.svg" alt="ALGORA" class="h-4.5 sm:h-5 w-auto object-contain brightness-0 invert" style="filter: brightness(0) invert(1);">
                     <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.06] text-slate-400 border border-white/[0.08] uppercase font-semibold">STUDIO</span>
                 </div>
                 <p class="text-xs sm:text-sm font-sans text-slate-400 max-w-lg font-normal leading-relaxed">

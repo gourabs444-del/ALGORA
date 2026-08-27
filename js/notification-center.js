@@ -327,7 +327,7 @@
                         <div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30">
                             <span id="modal-ty-status" class="text-[9px] font-extrabold tracking-[0.18em] text-emerald-800 uppercase">SUBMITTED</span>
                         </div>
-                        <img src="assets/logo.png" alt="ALGORA" class="h-4.5 w-auto object-contain mr-8" style="filter: brightness(0.12) contrast(1.4) opacity(0.9) !important;" />
+                        <img src="assets/algora-logo.svg" alt="ALGORA" class="h-3.5 w-auto object-contain mr-8" />
                     </div>
 
                     <!-- HEADLINE BLOCK -->
