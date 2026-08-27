@@ -445,22 +445,26 @@
 </section>
 
 <!-- Section 3: Featured Collection -->
+<!-- Section 3: Featured Collection -->
 <section class="px-4 sm:px-margin-page py-8 sm:py-section-gap max-w-[1440px] mx-auto" id="featured">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-gutter-grid items-center bg-surface-bright border border-outline-variant/20 rounded-xl overflow-hidden p-4 sm:p-6 lg:p-12">
-<div class="order-2 lg:order-1 relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-lg overflow-hidden border border-outline-variant/20 iframe-preview-container">
-    <iframe src="bloomfi.html" scrolling="no" class="iframe-preview-frame" title="BloomFi Live Preview"></iframe>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-gutter-grid items-center bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden p-4 sm:p-6 lg:p-12 shadow-2xl">
+<div class="order-2 lg:order-1 relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-xl overflow-hidden border border-slate-800 group shadow-lg">
+    <a href="bloomfi.html" target="_blank" class="block w-full h-full relative overflow-hidden bg-slate-950">
+        <img src="assets/previews/bloomfi.jpg" alt="BloomFi Live Preview" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
+    </a>
 </div>
 <div class="order-1 lg:order-2 flex flex-col gap-3 sm:gap-4 items-start pl-0 lg:pl-12">
-<span class="font-label-caps text-xs sm:text-label-caps text-on-surface-variant tracking-widest uppercase">Featured Showcase</span>
-<h2 class="font-headline-lg text-2xl sm:text-headline-lg text-on-surface">BloomFi Marketing</h2>
-<p class="font-body-md text-sm sm:text-body-md text-on-surface-variant max-w-md">
+<span class="font-label-caps text-xs sm:text-label-caps text-sky-400 tracking-widest uppercase font-semibold">Featured Showcase</span>
+<h2 class="font-headline-lg text-2xl sm:text-headline-lg text-white">BloomFi Marketing</h2>
+<p class="font-body-md text-sm sm:text-body-md text-slate-300 max-w-md">
                         Where Brands Flourish — Next-generation marketing engine built for high-scale digital ecosystems.
                     </p>
 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-4 sm:mt-6 w-full sm:w-auto">
-    <a class="inline-flex items-center justify-center border border-primary text-primary bg-transparent font-button text-xs sm:text-button uppercase px-6 py-3 rounded hover:bg-primary hover:text-on-primary transition-colors duration-300 text-center font-bold" href="bloomfi.html" target="_blank">
+    <a class="inline-flex items-center justify-center border border-sky-500/50 text-sky-400 bg-sky-500/10 font-button text-xs sm:text-button uppercase px-6 py-3 rounded-xl hover:bg-sky-500 hover:text-white transition-all duration-300 text-center font-bold" href="bloomfi.html" target="_blank">
         View BloomFi Live
     </a>
-    <a class="inline-flex items-center justify-center bg-primary text-on-primary font-button text-xs sm:text-button uppercase px-6 py-3 rounded hover:bg-slate-800 transition-colors duration-300 text-center font-bold" href="start-project.html">
+    <a class="inline-flex items-center justify-center bg-white text-slate-950 font-button text-xs sm:text-button uppercase px-6 py-3 rounded-xl hover:bg-slate-200 transition-colors duration-300 text-center font-bold" href="start-project.html">
         Start a Project
     </a>
 </div>
@@ -469,174 +473,219 @@
 </section>
 
 <!-- Section 4: Filter & Sort Bar -->
-<section class="px-4 sm:px-margin-page max-w-[1440px] mx-auto pt-6 sm:pt-12 pb-4 sm:pb-6 sticky top-16 sm:top-20 z-40 bg-background/95 backdrop-blur-sm border-b border-outline-variant/20" id="explore">
+<section class="px-4 sm:px-margin-page max-w-[1440px] mx-auto pt-6 sm:pt-12 pb-4 sm:pb-6 sticky top-16 sm:top-20 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/60" id="explore">
 
 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
 <div class="flex flex-wrap items-center gap-3">
-<button id="filter-count-btn" onclick="filterByIndustry('')" class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-6 py-2.5 rounded transition-all cursor-pointer">
+<button id="filter-count-btn" onclick="filterByIndustry('')" class="bg-sky-500 text-white font-label-caps text-label-caps uppercase px-6 py-2.5 rounded-xl transition-all cursor-pointer shadow-md hover:bg-sky-400 font-semibold">
                         All Landing Pages
                     </button>
 </div>
-<div class="font-body-md text-sm text-on-surface-variant font-medium">
-    Click any card to open live website
+<div class="font-body-md text-xs sm:text-sm text-slate-400 font-medium flex items-center gap-1.5">
+    <span class="material-symbols-outlined text-[16px] text-sky-400">touch_app</span> Click any card to open live website
 </div>
 </div>
 </section>
 
-<!-- Section 5: Main Grid (Curated 9 Landing Pages) -->
-<section class="px-margin-page max-w-[1440px] mx-auto py-12">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Section 5: Main Grid (Curated 9 Landing Pages - MotionSites Edge-to-Edge Style) -->
+<section class="px-4 sm:px-margin-page max-w-[1440px] mx-auto py-8 sm:py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
 
 <!-- Card 1: BloomFi -->
-<div class="group landing-card flex flex-col gap-3" data-keywords="bloomfi saas marketing engine growth flourish digital">
-    <a href="bloomfi.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-900 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
-        <iframe src="bloomfi.html" scrolling="no" class="iframe-preview-frame" title="BloomFi Live Preview"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+<div class="group landing-card relative rounded-2xl border border-slate-800/80 overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-sky-500/10 hover:border-sky-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-keywords="bloomfi saas marketing engine growth flourish digital">
+    <a href="bloomfi.html" target="_blank" class="block w-full aspect-[16/10] overflow-hidden relative bg-slate-950 group-hover:brightness-105 transition-all">
+        <img src="assets/previews/bloomfi.jpg" alt="BloomFi Landing Page" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
     </a>
-    <div class="flex justify-between items-start pt-1">
-        <div>
-            <a href="bloomfi.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">BloomFi</a>
-            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Marketing Engine • SaaS</p>
+    <div class="p-4 bg-slate-900/95 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+        <div class="min-w-0 flex-1 pr-2">
+            <a href="bloomfi.html" target="_blank" class="card-title-text font-bold text-base text-white hover:text-sky-400 transition-colors truncate block">BloomFi</a>
+            <p class="font-label-caps text-xs text-slate-400 truncate mt-0.5 font-medium">Marketing Engine • SaaS</p>
         </div>
-        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer" aria-label="Favorite">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+            </button>
+            <a href="bloomfi.html" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-sky-500 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer" title="Open Live Site">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            </a>
+        </div>
     </div>
 </div>
 
 <!-- Card 2: Mamaearth -->
-<div class="group landing-card flex flex-col gap-3" data-keywords="mamaearth skincare active naturalism vitamin c organic natural beauty">
-    <a href="mamaearth.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-[#faf7f2] relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
-        <iframe src="mamaearth.html" scrolling="no" class="iframe-preview-frame" title="Mamaearth Live Preview"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+<div class="group landing-card relative rounded-2xl border border-slate-800/80 overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/10 hover:border-emerald-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-keywords="mamaearth skincare active naturalism vitamin c organic natural beauty">
+    <a href="mamaearth.html" target="_blank" class="block w-full aspect-[16/10] overflow-hidden relative bg-slate-950 group-hover:brightness-105 transition-all">
+        <img src="assets/previews/mamaearth.jpg" alt="Mamaearth Landing Page" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
     </a>
-    <div class="flex justify-between items-start pt-1">
-        <div>
-            <a href="mamaearth.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Mamaearth</a>
-            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Active Naturalism • Skincare</p>
+    <div class="p-4 bg-slate-900/95 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+        <div class="min-w-0 flex-1 pr-2">
+            <a href="mamaearth.html" target="_blank" class="card-title-text font-bold text-base text-white hover:text-emerald-400 transition-colors truncate block">Mamaearth</a>
+            <p class="font-label-caps text-xs text-slate-400 truncate mt-0.5 font-medium">Active Naturalism • Skincare</p>
         </div>
-        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer" aria-label="Favorite">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+            </button>
+            <a href="mamaearth.html" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-emerald-500 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer" title="Open Live Site">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            </a>
+        </div>
     </div>
 </div>
 
 <!-- Card 3: VALURA LIVING -->
-<div class="group landing-card flex flex-col gap-3" data-keywords="valura living organic interior furniture architectural tactile rooted earth">
-    <a href="valura.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-[#f0ede6] relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
-        <iframe src="valura.html" scrolling="no" class="iframe-preview-frame" title="VALURA LIVING Live Preview"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+<div class="group landing-card relative rounded-2xl border border-slate-800/80 overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-amber-500/10 hover:border-amber-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-keywords="valura living organic interior furniture architectural tactile rooted earth">
+    <a href="valura.html" target="_blank" class="block w-full aspect-[16/10] overflow-hidden relative bg-slate-950 group-hover:brightness-105 transition-all">
+        <img src="assets/previews/valura.jpg" alt="VALURA LIVING Landing Page" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
     </a>
-    <div class="flex justify-between items-start pt-1">
-        <div>
-            <a href="valura.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">VALURA LIVING</a>
-            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Organic Interiors • Furniture</p>
+    <div class="p-4 bg-slate-900/95 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+        <div class="min-w-0 flex-1 pr-2">
+            <a href="valura.html" target="_blank" class="card-title-text font-bold text-base text-white hover:text-amber-400 transition-colors truncate block">VALURA LIVING</a>
+            <p class="font-label-caps text-xs text-slate-400 truncate mt-0.5 font-medium">Organic Interiors • Furniture</p>
         </div>
-        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer" aria-label="Favorite">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+            </button>
+            <a href="valura.html" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-amber-500 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer" title="Open Live Site">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            </a>
+        </div>
     </div>
 </div>
 
 <!-- Card 4: Lumina Artisanal -->
-<div class="group landing-card flex flex-col gap-3" data-keywords="lumina artisanal coffee gourmet bakery roastery cafe symphony senses">
-    <a href="lumina.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-[#241a15] relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
-        <iframe src="lumina.html" scrolling="no" class="iframe-preview-frame" title="Lumina Artisanal Live Preview"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+<div class="group landing-card relative rounded-2xl border border-slate-800/80 overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-amber-600/10 hover:border-amber-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-keywords="lumina artisanal coffee gourmet bakery roastery cafe symphony senses">
+    <a href="lumina.html" target="_blank" class="block w-full aspect-[16/10] overflow-hidden relative bg-slate-950 group-hover:brightness-105 transition-all">
+        <img src="assets/previews/lumina.jpg" alt="Lumina Artisanal Landing Page" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
     </a>
-    <div class="flex justify-between items-start pt-1">
-        <div>
-            <a href="lumina.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Lumina Artisanal</a>
-            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Artisanal Coffee & Gourmet</p>
+    <div class="p-4 bg-slate-900/95 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+        <div class="min-w-0 flex-1 pr-2">
+            <a href="lumina.html" target="_blank" class="card-title-text font-bold text-base text-white hover:text-amber-400 transition-colors truncate block">Lumina Artisanal</a>
+            <p class="font-label-caps text-xs text-slate-400 truncate mt-0.5 font-medium">Artisanal Coffee & Gourmet</p>
         </div>
-        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer" aria-label="Favorite">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+            </button>
+            <a href="lumina.html" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-amber-600 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer" title="Open Live Site">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            </a>
+        </div>
     </div>
 </div>
 
 <!-- Card 5: Juris Lexicon Dark -->
-<div class="group landing-card flex flex-col gap-3" data-keywords="juris lexicon dark legal counsel law firm institutional attorney justice reimagined">
-    <a href="jurislexicon-dark.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-950 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
-        <iframe src="jurislexicon-dark.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Dark Live Preview"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+<div class="group landing-card relative rounded-2xl border border-slate-800/80 overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-keywords="juris lexicon dark legal counsel law firm institutional attorney justice reimagined">
+    <a href="jurislexicon-dark.html" target="_blank" class="block w-full aspect-[16/10] overflow-hidden relative bg-slate-950 group-hover:brightness-105 transition-all">
+        <img src="assets/previews/jurisdark.jpg" alt="Juris Lexicon Dark Landing Page" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
     </a>
-    <div class="flex justify-between items-start pt-1">
-        <div>
-            <a href="jurislexicon-dark.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Juris Lexicon — Dark</a>
-            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Legal Counsel • Institutional</p>
+    <div class="p-4 bg-slate-900/95 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+        <div class="min-w-0 flex-1 pr-2">
+            <a href="jurislexicon-dark.html" target="_blank" class="card-title-text font-bold text-base text-white hover:text-cyan-400 transition-colors truncate block">Juris Lexicon — Dark</a>
+            <p class="font-label-caps text-xs text-slate-400 truncate mt-0.5 font-medium">Legal Counsel • Institutional</p>
         </div>
-        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer" aria-label="Favorite">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+            </button>
+            <a href="jurislexicon-dark.html" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-cyan-500 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer" title="Open Live Site">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            </a>
+        </div>
     </div>
 </div>
 
 <!-- Card 6: Juris Lexicon -->
-<div class="group landing-card flex flex-col gap-3" data-keywords="juris lexicon legal law firm institutional attorney global reach">
-    <a href="jurislexicon.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-900 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
-        <iframe src="jurislexicon.html" scrolling="no" class="iframe-preview-frame" title="Juris Lexicon Live Preview"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+<div class="group landing-card relative rounded-2xl border border-slate-800/80 overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-keywords="juris lexicon legal law firm institutional attorney global reach">
+    <a href="jurislexicon.html" target="_blank" class="block w-full aspect-[16/10] overflow-hidden relative bg-slate-950 group-hover:brightness-105 transition-all">
+        <img src="assets/previews/juris.jpg" alt="Juris Lexicon Landing Page" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
     </a>
-    <div class="flex justify-between items-start pt-1">
-        <div>
-            <a href="jurislexicon.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Juris Lexicon</a>
-            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Global Legal Firm</p>
+    <div class="p-4 bg-slate-900/95 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+        <div class="min-w-0 flex-1 pr-2">
+            <a href="jurislexicon.html" target="_blank" class="card-title-text font-bold text-base text-white hover:text-blue-400 transition-colors truncate block">Juris Lexicon</a>
+            <p class="font-label-caps text-xs text-slate-400 truncate mt-0.5 font-medium">Global Legal Firm</p>
         </div>
-        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer" aria-label="Favorite">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+            </button>
+            <a href="jurislexicon.html" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-blue-500 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer" title="Open Live Site">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            </a>
+        </div>
     </div>
 </div>
 
 <!-- Card 7: Vantage Point Advisory -->
-<div class="group landing-card flex flex-col gap-3" data-keywords="vantage point advisory strategy consulting strategic executive performance">
-    <a href="vantagepoint.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-900 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
-        <iframe src="vantagepoint.html" scrolling="no" class="iframe-preview-frame" title="Vantage Point Live Preview"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+<div class="group landing-card relative rounded-2xl border border-slate-800/80 overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-sky-500/10 hover:border-sky-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-keywords="vantage point advisory strategy consulting strategic executive performance">
+    <a href="vantagepoint.html" target="_blank" class="block w-full aspect-[16/10] overflow-hidden relative bg-slate-950 group-hover:brightness-105 transition-all">
+        <img src="assets/previews/vantagepoint.jpg" alt="Vantage Point Advisory Landing Page" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
     </a>
-    <div class="flex justify-between items-start pt-1">
-        <div>
-            <a href="vantagepoint.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Vantage Point Advisory</a>
-            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Strategic Consulting</p>
+    <div class="p-4 bg-slate-900/95 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+        <div class="min-w-0 flex-1 pr-2">
+            <a href="vantagepoint.html" target="_blank" class="card-title-text font-bold text-base text-white hover:text-sky-400 transition-colors truncate block">Vantage Point Advisory</a>
+            <p class="font-label-caps text-xs text-slate-400 truncate mt-0.5 font-medium">Strategic Consulting</p>
         </div>
-        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer" aria-label="Favorite">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+            </button>
+            <a href="vantagepoint.html" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-sky-500 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer" title="Open Live Site">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            </a>
+        </div>
     </div>
 </div>
 
 <!-- Card 8: Vanya Lodge -->
-<div class="group landing-card flex flex-col gap-3" data-keywords="vanyalodge vanya lodge forest sanctuary eco resort corbett wilderness retreat hospitality">
-    <a href="vanyalodge.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-emerald-950 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
-        <iframe src="vanyalodge.html" scrolling="no" class="iframe-preview-frame" title="Vanya Lodge Live Preview"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+<div class="group landing-card relative rounded-2xl border border-slate-800/80 overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-emerald-600/10 hover:border-emerald-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-keywords="vanyalodge vanya lodge forest sanctuary eco resort corbett wilderness retreat hospitality">
+    <a href="vanyalodge.html" target="_blank" class="block w-full aspect-[16/10] overflow-hidden relative bg-slate-950 group-hover:brightness-105 transition-all">
+        <img src="assets/previews/vanyalodge.jpg" alt="Vanya Lodge Landing Page" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
     </a>
-    <div class="flex justify-between items-start pt-1">
-        <div>
-            <a href="vanyalodge.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">Vanya Lodge</a>
-            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Forest Sanctuary • Eco Resort</p>
+    <div class="p-4 bg-slate-900/95 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+        <div class="min-w-0 flex-1 pr-2">
+            <a href="vanyalodge.html" target="_blank" class="card-title-text font-bold text-base text-white hover:text-emerald-400 transition-colors truncate block">Vanya Lodge</a>
+            <p class="font-label-caps text-xs text-slate-400 truncate mt-0.5 font-medium">Forest Sanctuary • Eco Resort</p>
         </div>
-        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer" aria-label="Favorite">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+            </button>
+            <a href="vanyalodge.html" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-emerald-600 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer" title="Open Live Site">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            </a>
+        </div>
     </div>
 </div>
 
 <!-- Card 9: AESTHETE -->
-<div class="group landing-card flex flex-col gap-3" data-keywords="aesthete fashion luxury haute couture lookbook editorial form essence">
-    <a href="aesthete.html" target="_blank" class="block w-full aspect-[16/10] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-neutral-900 relative shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 iframe-preview-container">
-        <iframe src="aesthete.html" scrolling="no" class="iframe-preview-frame" title="AESTHETE Live Preview"></iframe>
-        <div class="absolute inset-0 bg-transparent"></div>
+<div class="group landing-card relative rounded-2xl border border-slate-800/80 overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-purple-500/10 hover:border-purple-500/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-keywords="aesthete fashion luxury haute couture lookbook editorial form essence">
+    <a href="aesthete.html" target="_blank" class="block w-full aspect-[16/10] overflow-hidden relative bg-slate-950 group-hover:brightness-105 transition-all">
+        <img src="assets/previews/aesthete.jpg" alt="AESTHETE Landing Page" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
     </a>
-    <div class="flex justify-between items-start pt-1">
-        <div>
-            <a href="aesthete.html" target="_blank" class="card-title-text font-headline-md text-lg text-on-surface hover:text-secondary transition-colors font-bold block">AESTHETE</a>
-            <p class="font-label-caps text-xs text-on-surface-variant uppercase mt-0.5">Form & Essence • Fashion</p>
+    <div class="p-4 bg-slate-900/95 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+        <div class="min-w-0 flex-1 pr-2">
+            <a href="aesthete.html" target="_blank" class="card-title-text font-bold text-base text-white hover:text-purple-400 transition-colors truncate block">AESTHETE</a>
+            <p class="font-label-caps text-xs text-slate-400 truncate mt-0.5 font-medium">Form & Essence • Fashion</p>
         </div>
-        <button class="text-outline hover:text-error transition-colors p-1" aria-label="Favorite">
-            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <button class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer" aria-label="Favorite">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+            </button>
+            <a href="aesthete.html" target="_blank" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-purple-500 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer" title="Open Live Site">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            </a>
+        </div>
     </div>
 </div>
 
