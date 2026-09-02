@@ -36,9 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cinzel:wght@400;500;600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Syne:wght@500;600;700;800&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=block" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
 <link rel="stylesheet" href="css/animations.css">
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style>
   html, body { background-color: #000000 !important; background: #000000 !important; scrollbar-gutter: stable; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: geometricPrecision; }
@@ -200,6 +198,20 @@
       -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
       box-shadow: 0 12px 48px rgba(0, 0, 0, 0.75), inset 0 -1px 0 rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Keep the mobile drawer on its own composited layer so opening it never
+     competes with the page scroll or the showcase animations. */
+  #sidebar {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+  }
+
+  @media (max-width: 1023px) {
+      #sidebar {
+          will-change: transform;
+          transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+      }
   }
   .obscura-showcase-nav a,
   .obscura-showcase-nav span {
@@ -2599,33 +2611,60 @@
 
                     let pos1 = 0;
                     let pos2 = 0;
-                    let lastTimestamp = performance.now();
+                    let lastTimestamp = 0;
+                    let marqueeFrame = null;
+                    let isMarqueeVisible = false;
+                    let setWidth1 = 0;
+                    let setWidth2 = 0;
 
-                    function run120FPSMarquee(timestamp) {
-                        const dt = Math.min((timestamp - lastTimestamp) / 1000, 0.05);
-                        lastTimestamp = timestamp;
-
-                        // Pleasant slow speed: 45 pixels per second (silky smooth on 120Hz displays)
-                        const moveStep = 45 * dt;
-
-                        pos1 -= moveStep;
-                        const setWidth1 = row1Container.scrollWidth / 6;
-                        if (Math.abs(pos1) >= setWidth1) {
-                            pos1 += setWidth1;
-                        }
-                        row1Container.style.transform = `translate3d(${pos1.toFixed(2)}px, 0, 0)`;
-
-                        pos2 += moveStep;
-                        const setWidth2 = row2Container.scrollWidth / 6;
-                        if (pos2 >= 0) {
-                            pos2 -= setWidth2;
-                        }
-                        row2Container.style.transform = `translate3d(${pos2.toFixed(2)}px, 0, 0)`;
-
-                        requestAnimationFrame(run120FPSMarquee);
+                    // Reading scrollWidth during every animation frame forces layout. Measure only
+                    // after the marquee is built or resized, then keep every frame transform-only.
+                    function measureMarquee() {
+                        setWidth1 = row1Container.scrollWidth / 6;
+                        setWidth2 = row2Container.scrollWidth / 6;
                     }
 
-                    requestAnimationFrame(run120FPSMarquee);
+                    function run120FPSMarquee(timestamp) {
+                        if (!isMarqueeVisible || document.hidden) {
+                            marqueeFrame = null;
+                            return;
+                        }
+
+                        if (!lastTimestamp) lastTimestamp = timestamp;
+                        const dt = Math.min((timestamp - lastTimestamp) / 1000, 0.05);
+                        lastTimestamp = timestamp;
+                        const moveStep = 45 * dt;
+
+                        if (setWidth1 > 0) {
+                            pos1 -= moveStep;
+                            if (Math.abs(pos1) >= setWidth1) pos1 += setWidth1;
+                            row1Container.style.transform = `translate3d(${pos1.toFixed(2)}px, 0, 0)`;
+                        }
+
+                        if (setWidth2 > 0) {
+                            pos2 += moveStep;
+                            if (pos2 >= 0) pos2 -= setWidth2;
+                            row2Container.style.transform = `translate3d(${pos2.toFixed(2)}px, 0, 0)`;
+                        }
+
+                        marqueeFrame = requestAnimationFrame(run120FPSMarquee);
+                    }
+
+                    function startMarquee() {
+                        if (marqueeFrame !== null || !isMarqueeVisible || document.hidden) return;
+                        lastTimestamp = 0;
+                        marqueeFrame = requestAnimationFrame(run120FPSMarquee);
+                    }
+
+                    measureMarquee();
+                    new ResizeObserver(measureMarquee).observe(row1Container);
+                    new IntersectionObserver((entries) => {
+                        isMarqueeVisible = entries[0].isIntersecting;
+                        if (isMarqueeVisible) startMarquee();
+                    }, { rootMargin: '160px 0px' }).observe(row1Container);
+                    document.addEventListener('visibilitychange', () => {
+                        if (!document.hidden) startMarquee();
+                    });
                 }
             });
             </script>
@@ -3104,6 +3143,8 @@
                 let velX = 0, velY = 0;
                 let isDashing = false;
                 let dashTimeout = null;
+                let physicsFrame = null;
+                let isStageVisible = false;
 
                 // Grab Tentacle & Oral Arm DOM references
                 // Grab Tentacle & Oral Arm DOM references (All 7 formatted identical to Leg 2)
@@ -3234,29 +3275,54 @@
                         if (oralREdge) oralREdge.setAttribute('d', dOralREdge);
                     }
 
-                    requestAnimationFrame(physicsLoop);
-                }
-                requestAnimationFrame(physicsLoop);
-
-                // Pointer / Mouse / Touch Move Interactive Follow
-                function handlePointerMove(e) {
-                    const rect = stage.getBoundingClientRect();
-                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
-                    const relX = (clientX - (rect.left + rect.width / 2));
-                    const relY = (clientY - (rect.top + rect.height / 2));
-
-                    // Soft bounded magnetic attraction
-                    targetX = Math.max(-60, Math.min(60, relX * 0.25));
-                    targetY = Math.max(-50, Math.min(50, relY * 0.25));
-                    targetRot = Math.max(-12, Math.min(12, relX * 0.08));
-
-                    // Boost ambient glow brightness during interaction
-                    if (ambientGlow) {
-                        ambientGlow.style.opacity = '1';
-                        ambientGlow.style.transform = `scale(1.15) translate3d(${targetX * 0.5}px, ${targetY * 0.5}px, 0)`;
+                    if (isStageVisible && !document.hidden) {
+                        physicsFrame = requestAnimationFrame(physicsLoop);
+                    } else {
+                        physicsFrame = null;
                     }
+                }
+
+                function startPhysics() {
+                    if (physicsFrame !== null || !isStageVisible || document.hidden) return;
+                    physicsFrame = requestAnimationFrame(physicsLoop);
+                }
+
+                new IntersectionObserver((entries) => {
+                    isStageVisible = entries[0].isIntersecting;
+                    if (isStageVisible) startPhysics();
+                }, { rootMargin: '180px 0px' }).observe(stage);
+
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden) startPhysics();
+                });
+
+                // Pointer events can arrive far faster than the screen can paint. Coalesce them
+                // into one transform-only update per frame to keep drag and touch response fluid.
+                let pointerFrame = null;
+                let pointerX = 0;
+                let pointerY = 0;
+                function handlePointerMove(e) {
+                    const point = e.touches ? e.touches[0] : e;
+                    if (!point) return;
+                    pointerX = point.clientX;
+                    pointerY = point.clientY;
+                    if (pointerFrame !== null) return;
+
+                    pointerFrame = requestAnimationFrame(() => {
+                        pointerFrame = null;
+                        const rect = stage.getBoundingClientRect();
+                        const relX = pointerX - (rect.left + rect.width / 2);
+                        const relY = pointerY - (rect.top + rect.height / 2);
+
+                        targetX = Math.max(-60, Math.min(60, relX * 0.25));
+                        targetY = Math.max(-50, Math.min(50, relY * 0.25));
+                        targetRot = Math.max(-12, Math.min(12, relX * 0.08));
+
+                        if (ambientGlow) {
+                            ambientGlow.style.opacity = '1';
+                            ambientGlow.style.transform = `scale(1.15) translate3d(${targetX * 0.5}px, ${targetY * 0.5}px, 0)`;
+                        }
+                    });
                 }
 
                 function handlePointerLeave() {
@@ -3673,6 +3739,8 @@
                 const ctx = canvas.getContext('2d');
                 let width = 0, height = 0;
                 let drops = [];
+                let rainFrame = null;
+                let isRainVisible = false;
 
                 // Responsive Drop Count: 1150 on PC/Desktop, calibrated 190 on Mobile for full scenery visibility
                 function getTargetDropCount() {
@@ -3756,6 +3824,10 @@
                 window.addEventListener('resize', resize);
 
                 function animate() {
+                    if (!isRainVisible || document.hidden) {
+                        rainFrame = null;
+                        return;
+                    }
                     ctx.clearRect(0, 0, width, height);
 
                     // Draw Rain Streaks
@@ -3764,18 +3836,43 @@
                         drops[i].draw();
                     }
 
-                    requestAnimationFrame(animate);
+                    rainFrame = requestAnimationFrame(animate);
                 }
-                requestAnimationFrame(animate);
+
+                function startRain() {
+                    if (rainFrame !== null || !isRainVisible || document.hidden) return;
+                    rainFrame = requestAnimationFrame(animate);
+                }
+
+                new IntersectionObserver((entries) => {
+                    isRainVisible = entries[0].isIntersecting;
+                    if (isRainVisible) startRain();
+                }, { rootMargin: '180px 0px' }).observe(canvas);
+
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden) startRain();
+                });
             })();
 
             // Multi-Stage Thunder Lightning Flash Engine
             (function initMonsoonThunderEngine() {
                 const lightningEl = document.getElementById('monsoon-lightning');
                 const bgImg = document.getElementById('monsoon-bg-img');
+                const banner = lightningEl?.closest('.category-banner');
+                let isBannerVisible = false;
+
+                if (banner) {
+                    new IntersectionObserver((entries) => {
+                        isBannerVisible = entries[0].isIntersecting;
+                    }, { rootMargin: '180px 0px' }).observe(banner);
+                }
 
                 function triggerThunderFlash() {
                     if (!lightningEl) return;
+                    if (!isBannerVisible || document.hidden) {
+                        setTimeout(triggerThunderFlash, 1500);
+                        return;
+                    }
                     
                     lightningEl.style.backgroundColor = 'rgba(230, 245, 255, 0.45)';
                     if (bgImg) bgImg.style.filter = 'brightness(1.45) contrast(1.1) saturate(1.2)';
@@ -4701,13 +4798,21 @@
         // Interactive Spotlight Mouse Movement
         document.querySelectorAll('.category-banner').forEach(banner => {
             const spotlight = banner.querySelector('.banner-spotlight');
+            let spotlightFrame = null;
+            let pointerX = 0;
+            let pointerY = 0;
             banner.addEventListener('mousemove', (e) => {
-                const rect = banner.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                if (spotlight) {
+                if (!spotlight) return;
+                pointerX = e.clientX;
+                pointerY = e.clientY;
+                if (spotlightFrame !== null) return;
+                spotlightFrame = requestAnimationFrame(() => {
+                    spotlightFrame = null;
+                    const rect = banner.getBoundingClientRect();
+                    const x = pointerX - rect.left;
+                    const y = pointerY - rect.top;
                     spotlight.style.background = `radial-gradient(650px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.08), transparent 60%)`;
-                }
+                });
             });
         });
 
@@ -4722,7 +4827,8 @@
             if (!canvas) return;
 
             const ctx = canvas.getContext('2d');
-            let animationFrameId;
+            let animationFrameId = null;
+            let isCanvasVisible = false;
             let particles = [];
 
             function resize() {
@@ -4771,6 +4877,10 @@
             }
 
             function animate() {
+                if (!isCanvasVisible || document.hidden) {
+                    animationFrameId = null;
+                    return;
+                }
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 updateCenter();
 
@@ -4806,7 +4916,19 @@
                 animationFrameId = requestAnimationFrame(animate);
             }
 
-            animate();
+            function startAnimation() {
+                if (animationFrameId !== null || !isCanvasVisible || document.hidden) return;
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            new IntersectionObserver((entries) => {
+                isCanvasVisible = entries[0].isIntersecting;
+                if (isCanvasVisible) startAnimation();
+            }, { rootMargin: '160px 0px' }).observe(canvas);
+
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) startAnimation();
+            });
         });
     }
 
@@ -6151,6 +6273,7 @@
     const showcaseNav = document.querySelector('.obscura-showcase-nav');
     let isScrollTicking = false;
     let cachedSectionPositions = [];
+    let lastScrollSpyTab = null;
 
     function updateCachedSectionPositions() {
         const sections = [
@@ -6203,11 +6326,15 @@
                                 }
                             }
                         }
-                        sidebarItems.forEach(item => {
-                            if (item.getAttribute('data-target-tab') === activeTab) {
-                                highlightSidebarItem(item);
-                            }
-                        });
+                        // Highlighting mutates several classes and reads layout for the indicator.
+                        // Only do that work when the active section actually changes.
+                        if (activeTab !== lastScrollSpyTab) {
+                            const nextActiveItem = Array.from(sidebarItems).find(
+                                item => item.getAttribute('data-target-tab') === activeTab
+                            );
+                            if (nextActiveItem) highlightSidebarItem(nextActiveItem);
+                            lastScrollSpyTab = activeTab;
+                        }
                     }
                 }
 
@@ -6311,61 +6438,36 @@
         }
 
         window.addEventListener('scroll', schedule, { passive: true });
-        window.addEventListener('touchmove', schedule, { passive: true });
         tick(); // paint immediately on load
     })();
 
     // ── High-Performance Smooth Scroll (Lenis Engine on Desktop + Native Momentum on Mobile) ──
     (function initSmoothScrollInertia() {
         function setupLenis() {
-            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                gsap.registerPlugin(ScrollTrigger);
-            }
-
             const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-            if (isTouchDevice) {
-                if (typeof ScrollTrigger !== 'undefined') {
-                    ScrollTrigger.refresh();
-                }
-                return;
+            if (isTouchDevice || typeof Lenis === 'undefined') return;
+
+            window.lenisInstance = new Lenis({
+                duration: 1.15,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: 'vertical',
+                gestureOrientation: 'vertical',
+                smoothWheel: true,
+                wheelMultiplier: 1.0,
+                touchMultiplier: 1.5,
+                syncTouch: false,
+                lerp: 0.08,
+                infinite: false
+            });
+
+            // Lenis writes to the native window scroller, so the existing passive scroll
+            // listeners receive the real event. A single RAF avoids GSAP/ScrollTrigger and
+            // the duplicate synthetic scroll event previously sent on every Lenis frame.
+            function raf(time) {
+                window.lenisInstance.raf(time);
+                requestAnimationFrame(raf);
             }
-
-            if (typeof Lenis !== 'undefined') {
-                window.lenisInstance = new Lenis({
-                    duration: 1.15,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    orientation: 'vertical',
-                    gestureOrientation: 'vertical',
-                    smoothWheel: true,
-                    wheelMultiplier: 1.0,
-                    touchMultiplier: 1.5,
-                    syncTouch: false,
-                    lerp: 0.08,
-                    infinite: false
-                });
-
-                if (typeof ScrollTrigger !== 'undefined') {
-                    window.lenisInstance.on('scroll', ScrollTrigger.update);
-                }
-
-                if (typeof gsap !== 'undefined') {
-                    gsap.ticker.add((time) => {
-                        window.lenisInstance.raf(time * 1000);
-                    });
-                    gsap.ticker.lagSmoothing(0);
-                } else {
-                    function raf(time) {
-                        window.lenisInstance.raf(time);
-                        requestAnimationFrame(raf);
-                    }
-                    requestAnimationFrame(raf);
-                }
-
-                window.lenisInstance.on('scroll', () => {
-                    if (typeof onScrollOptimized === 'function') onScrollOptimized();
-                    window.dispatchEvent(new Event('scroll'));
-                });
-            }
+            requestAnimationFrame(raf);
         }
 
         if (document.readyState === 'loading') {
@@ -6458,8 +6560,15 @@
 
         // Auto-observe newly added cards
         const container = document.getElementById('categorized-sections-container') || document.body;
+        let revealRefreshFrame = null;
         const mutationObserver = new MutationObserver(() => {
-            window.refreshScrollReveal();
+            // Dynamic card batches can create many nodes at once. Coalesce them into a
+            // single selector pass on the next paint instead of re-scanning the page per node.
+            if (revealRefreshFrame !== null) return;
+            revealRefreshFrame = requestAnimationFrame(() => {
+                revealRefreshFrame = null;
+                window.refreshScrollReveal();
+            });
         });
         mutationObserver.observe(container, { childList: true, subtree: true });
     })();

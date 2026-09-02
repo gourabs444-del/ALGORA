@@ -17,6 +17,7 @@
     let currentFilter = 'all';
     let isFetching = false;
     let activeEmailNotifId = null;
+    let firestoreRetryAt = 0;
 
     // Helper: format real date
     function formatTimeAgo(isoString) {
@@ -82,23 +83,30 @@
             console.warn('Master Store read error:', e);
         }
 
-        // 3. Fetch from Firebase Firestore if client initialized
-        try {
-            if (window.firebase && firebase.firestore) {
-                const db = firebase.firestore();
-                const snapshot = await db.collection('inquiries').get().catch(() => null);
-                if (snapshot && !snapshot.empty) {
-                    snapshot.forEach(doc => {
-                        const data = doc.data();
-                        const id = String(data.leadId || data.referenceId || doc.id || '');
-                        if (id) {
-                            const existing = allInquiriesMap.get(id) || {};
-                            allInquiriesMap.set(id, { ...existing, ...data, leadId: id });
-                        }
-                    });
+        // 3. Fetch from Firebase Firestore if client initialized. A disabled or
+        // unavailable project should not be retried on every background sync.
+        if (Date.now() >= firestoreRetryAt) {
+            try {
+                if (window.firebase && firebase.firestore) {
+                    const db = firebase.firestore();
+                    const snapshot = await db.collection('inquiries').get();
+                    if (snapshot && !snapshot.empty) {
+                        snapshot.forEach(doc => {
+                            const data = doc.data();
+                            const id = String(data.leadId || data.referenceId || doc.id || '');
+                            if (id) {
+                                const existing = allInquiriesMap.get(id) || {};
+                                allInquiriesMap.set(id, { ...existing, ...data, leadId: id });
+                            }
+                        });
+                    }
                 }
+            } catch (e) {
+                // Keep the REST/local sources active while avoiding repeated failed
+                // Firestore work for five minutes.
+                firestoreRetryAt = Date.now() + (5 * 60 * 1000);
             }
-        } catch (e) {}
+        }
 
         // Read user replies from localStorage
         const storedReplies = JSON.parse(localStorage.getItem('algora_mail_replies') || '{}');
@@ -230,7 +238,7 @@
         root.id = 'algora-notification-center-root';
         root.innerHTML = `
         <!-- Notification Dropdown / Drawer Popover -->
-        <div id="algora-notification-drawer" class="fixed top-16 sm:top-20 right-3 sm:right-6 lg:right-10 z-[999999] w-[94vw] sm:w-[450px] max-h-[88vh] bg-[#0c101c]/95 backdrop-blur-2xl border border-white/18 rounded-[26px] shadow-[0_25px_80px_-10px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.08)] flex flex-col overflow-hidden transition-all duration-300 opacity-0 pointer-events-none translate-y-[-12px] scale-[0.97]" style="font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;">
+        <div id="algora-notification-drawer" class="fixed top-16 sm:top-20 right-3 sm:right-6 lg:right-10 z-[999999] w-[94vw] sm:w-[450px] max-h-[88vh] bg-[#0c101c]/95 backdrop-blur-2xl border border-white/18 rounded-[26px] shadow-[0_25px_80px_-10px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.08)] flex flex-col overflow-hidden transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform opacity-0 pointer-events-none translate-y-[-12px] scale-[0.97]" style="font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;">
             
             <!-- Drawer Header -->
             <div class="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-white/[0.03]">
@@ -823,8 +831,10 @@
             });
         }
 
-        // Auto background sync every 20 seconds
+        // Auto background sync every 20 seconds. Hidden tabs do not need network
+        // work or badge updates, which keeps the active browsing tab responsive.
         setInterval(() => {
+            if (document.hidden) return;
             fetchRealDatabaseNotifications().then(() => {
                 const unreadCount = cachedNotifications.filter(n => !n.read).length;
                 updateBellBadges(unreadCount);
