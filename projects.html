@@ -3139,8 +3139,8 @@
                 // Physics state & Velocity tracking
                 let targetX = 0, targetY = 0, targetRot = 0;
                 let currentX = 0, currentY = 0, currentRot = 0;
-                let prevX = 0, prevY = 0;
-                let velX = 0, velY = 0;
+                let prevX = 0;
+                let velX = 0;
                 let isDashing = false;
                 let dashTimeout = null;
                 let physicsFrame = null;
@@ -3208,8 +3208,6 @@
                     const rawVelX = (currentX - prevX);
                     velX += (rawVelX - velX) * 0.15;
                     prevX = currentX;
-                    prevY = currentY;
-
                     // Clamped subtle inertial fluid drag
                     const dragX = Math.max(-14, Math.min(14, -velX * 5));
                     const dragRot = Math.max(-10, Math.min(10, -currentRot * 0.8));
@@ -4718,10 +4716,6 @@
         SafeStorage.setSession('welcomeDismissed', 'true');
     };
 
-    function handleGetStarted() {
-        window.location.href = 'start-project.html';
-    }
-
     // Initialize display state of welcome screen vs main content dashboard
     (function initWelcomeState() {
         const welcome = document.getElementById('welcome-landing-screen');
@@ -5805,20 +5799,6 @@
     const landingDeck = document.getElementById('landing-pages-deck');
     const categorizedContainer = document.getElementById('categorized-sections-container');
 
-    function showLandingPagesDeck() {
-        window.location.href = 'landing-pages.html'; return;
-        // Hide main grid
-        categorizedContainer.style.display = 'none';
-        // Show deck
-        landingDeck.classList.remove('hidden');
-        // Re-trigger animation
-        landingDeck.classList.remove('animate-fadeIn');
-        void landingDeck.offsetWidth;
-        landingDeck.classList.add('animate-fadeIn');
-        // Scroll to deck
-        landingDeck.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
     function hideLandingPagesDeck() {
         if (!landingDeck || !categorizedContainer) return;
         landingDeck.classList.add('hidden');
@@ -5828,17 +5808,6 @@
         allCards.forEach(c => c.style.display = '');
         const templateCards = document.querySelectorAll('#portfolio-grid-template > .group');
         templateCards.forEach(c => c.style.display = '');
-    }
-
-    // Deck Back Button
-    const deckBackBtn = document.getElementById('deck-back-btn');
-    if (deckBackBtn) {
-        deckBackBtn.addEventListener('click', () => {
-            hideLandingPagesDeck();
-            if (categorizedContainer) {
-                categorizedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
     }
 
     // HEADER CATEGORY Dropdown Toggle + Filtering
@@ -6358,7 +6327,6 @@
 
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         let raf = null;
-        let targetP = 0;
         let currentP = 0;
 
         let cachedVh = window.innerHeight;
@@ -6401,8 +6369,7 @@
             }
 
             const scrolled = Math.max(0, sy - cachedIntroTop);
-            targetP = cachedTravel > 0 ? Math.min(1, Math.max(0, scrolled / cachedTravel)) : 0;
-            currentP = targetP;
+            currentP = cachedTravel > 0 ? Math.min(1, Math.max(0, scrolled / cachedTravel)) : 0;
 
             if (content) {
                 let opacity = 1;

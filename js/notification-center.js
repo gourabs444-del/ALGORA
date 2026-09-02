@@ -2,8 +2,7 @@
  * ALGORA Real-Time Database-Linked Notification Center
  * Connects directly to:
  *  1. Production Master Store Database (REST API: ff8081819f7e10ae019ff4d5104b2eb2)
- *  2. Firebase Firestore Database (inquiries / orders / messages)
- *  3. LocalStorage & SessionStorage Inquiries & Email Replies
+ *  2. LocalStorage inquiries and email replies
  * 
  * NO FAKE NOTIFICATIONS: Displays only 100% REAL submitted orders, thank-you cards,
  * inbound emails, and real admin replies from Gourav/Admin.
@@ -11,13 +10,22 @@
 
 (function initRealDatabaseNotificationCenter() {
     const MASTER_STORE_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019ff4d5104b2eb2';
-    const FIRESTORE_REST_URL = 'https://firestore.googleapis.com/v1/projects/portfolio-5141f/databases/(default)/documents/inquiries';
+    const SYNC_TTL_MS = 20_000;
 
     let cachedNotifications = [];
     let currentFilter = 'all';
     let isFetching = false;
     let activeEmailNotifId = null;
-    let firestoreRetryAt = 0;
+    let lastSyncAt = 0;
+
+    function readStoredJson(key, fallback) {
+        try {
+            const value = localStorage.getItem(key);
+            return value ? JSON.parse(value) : fallback;
+        } catch (error) {
+            return fallback;
+        }
+    }
 
     // Helper: format real date
     function formatTimeAgo(isoString) {
@@ -48,170 +56,143 @@
         }
     }
 
-    // Fetch real data from all database sources
-    async function fetchRealDatabaseNotifications() {
+    // Fetch real data once per sync window. The refresh button can bypass the cache.
+    async function fetchRealDatabaseNotifications(forceRefresh = false) {
         if (isFetching) return cachedNotifications;
-        isFetching = true;
-
-        const allInquiriesMap = new Map();
-
-        // 1. Fetch from LocalStorage (Instant local fallback)
-        try {
-            const localList = JSON.parse(localStorage.getItem('algora_inquiries') || '[]');
-            localList.forEach(item => {
-                const id = String(item.leadId || item.referenceId || item.id || '');
-                if (id) allInquiriesMap.set(id, { ...item, leadId: id });
-            });
-        } catch (e) {}
-
-        // 2. Fetch from Master REST Store (Production Global Store)
-        try {
-            const res = await fetch(MASTER_STORE_URL, { cache: 'no-store' });
-            if (res.ok) {
-                const json = await res.json();
-                if (json && json.data && Array.isArray(json.data.inquiries)) {
-                    json.data.inquiries.forEach(item => {
-                        const id = String(item.leadId || item.referenceId || item.id || '');
-                        if (id) {
-                            const existing = allInquiriesMap.get(id) || {};
-                            allInquiriesMap.set(id, { ...existing, ...item, leadId: id });
-                        }
-                    });
-                }
-            }
-        } catch (e) {
-            console.warn('Master Store read error:', e);
+        if (!forceRefresh && lastSyncAt && Date.now() - lastSyncAt < SYNC_TTL_MS) {
+            return cachedNotifications;
         }
 
-        // 3. Fetch from Firebase Firestore if client initialized. A disabled or
-        // unavailable project should not be retried on every background sync.
-        if (Date.now() >= firestoreRetryAt) {
+        isFetching = true;
+
+        try {
+            const allInquiriesMap = new Map();
+            const localList = readStoredJson('algora_inquiries', []);
+            if (Array.isArray(localList)) {
+                localList.forEach(item => {
+                    const id = String(item.leadId || item.referenceId || item.id || '');
+                    if (id) allInquiriesMap.set(id, { ...item, leadId: id });
+                });
+            }
+
             try {
-                if (window.firebase && firebase.firestore) {
-                    const db = firebase.firestore();
-                    const snapshot = await db.collection('inquiries').get();
-                    if (snapshot && !snapshot.empty) {
-                        snapshot.forEach(doc => {
-                            const data = doc.data();
-                            const id = String(data.leadId || data.referenceId || doc.id || '');
+                const res = await fetch(MASTER_STORE_URL, { cache: 'no-store' });
+                if (res.ok) {
+                    const json = await res.json();
+                    if (json?.data && Array.isArray(json.data.inquiries)) {
+                        json.data.inquiries.forEach(item => {
+                            const id = String(item.leadId || item.referenceId || item.id || '');
                             if (id) {
                                 const existing = allInquiriesMap.get(id) || {};
-                                allInquiriesMap.set(id, { ...existing, ...data, leadId: id });
+                                allInquiriesMap.set(id, { ...existing, ...item, leadId: id });
                             }
                         });
                     }
                 }
-            } catch (e) {
-                // Keep the REST/local sources active while avoiding repeated failed
-                // Firestore work for five minutes.
-                firestoreRetryAt = Date.now() + (5 * 60 * 1000);
+            } catch (error) {
+                console.warn('Master Store read error:', error);
             }
-        }
 
-        // Read user replies from localStorage
-        const storedReplies = JSON.parse(localStorage.getItem('algora_mail_replies') || '{}');
-        const readStates = JSON.parse(localStorage.getItem('algora_notif_read_states') || '{}');
+            const storedReplies = readStoredJson('algora_mail_replies', {});
+            const readStates = readStoredJson('algora_notif_read_states', {});
+            const rawList = Array.from(allInquiriesMap.values());
 
-        // Convert inquiries into real notification items
-        const rawList = Array.from(allInquiriesMap.values());
-        
-        // Sort by createdAt descending
-        rawList.sort((a, b) => {
-            const tA = new Date(a.createdAt || 0).getTime();
-            const tB = new Date(b.createdAt || 0).getTime();
-            return tB - tA;
-        });
+            rawList.sort((a, b) => {
+                const tA = new Date(a.createdAt || 0).getTime();
+                const tB = new Date(b.createdAt || 0).getTime();
+                return tB - tA;
+            });
 
-        const notifications = [];
+            const notifications = [];
 
-        rawList.forEach((inq) => {
-            const leadId = inq.leadId || inq.referenceId || 'AG-' + Math.floor(1000 + Math.random() * 9000);
-            const clientName = inq.name || inq.clientName || 'Client';
-            const service = inq.service || inq.projectType || 'Custom Project';
-            const budget = inq.budget || 'Custom';
-            const timeline = inq.timeline || 'Flexible';
-            const timeAgo = formatTimeAgo(inq.createdAt);
-            const fullDate = formatFullDate(inq.createdAt);
-            const message = inq.message || inq.description || 'Project details submitted via Algora Portal.';
-            const clientEmail = inq.email || 'client@example.com';
-            const orderStatus = inq.status || 'SUBMITTED';
+            rawList.forEach((inq) => {
+                const leadId = inq.leadId;
+                const clientName = inq.name || inq.clientName || 'Client';
+                const service = inq.service || inq.projectType || 'Custom Project';
+                const budget = inq.budget || 'Custom';
+                const timeline = inq.timeline || 'Flexible';
+                const timeAgo = formatTimeAgo(inq.createdAt);
+                const fullDate = formatFullDate(inq.createdAt);
+                const message = inq.message || inq.description || 'Project details submitted via Algora Portal.';
+                const clientEmail = inq.email || 'client@example.com';
+                const orderStatus = inq.status || 'SUBMITTED';
 
-            // 1. Real Order / Thank You Card Notification
-            const orderNotifId = `order-${leadId}`;
-            notifications.push({
-                id: orderNotifId,
-                type: 'order',
-                title: `Order #${leadId} Confirmed`,
-                subtitle: `${service} • ${clientName}`,
-                clientName: clientName,
-                service: service,
-                budget: budget,
-                timeline: timeline,
-                leadId: leadId,
-                email: clientEmail,
-                time: timeAgo,
-                fullDate: fullDate,
-                read: Boolean(readStates[orderNotifId]),
-                thankYouData: {
-                    leadId: leadId,
-                    status: orderStatus,
-                    projectType: service,
-                    clientName: clientName,
-                    budget: budget,
-                    timeline: timeline,
-                    date: fullDate
+                const orderNotifId = `order-${leadId}`;
+                notifications.push({
+                    id: orderNotifId,
+                    type: 'order',
+                    title: `Order #${leadId} Confirmed`,
+                    subtitle: `${service} • ${clientName}`,
+                    clientName,
+                    service,
+                    budget,
+                    timeline,
+                    leadId,
+                    email: clientEmail,
+                    time: timeAgo,
+                    fullDate,
+                    read: Boolean(readStates[orderNotifId]),
+                    thankYouData: {
+                        leadId,
+                        status: orderStatus,
+                        projectType: service,
+                        clientName,
+                        budget,
+                        timeline,
+                        date: fullDate
+                    }
+                });
+
+                const emailNotifId = `email-${leadId}`;
+                notifications.push({
+                    id: emailNotifId,
+                    type: 'email_inbound',
+                    title: `Inquiry Email: ${service}`,
+                    subtitle: `From: ${clientName} (${clientEmail})`,
+                    sender: clientName,
+                    senderEmail: clientEmail,
+                    subject: `New Project Inquiry: ${service} [Ref #${leadId}]`,
+                    preview: message,
+                    fullMessage: `From: ${clientName} <${clientEmail}>\nTo: Gourav <contact@algora.studio>\nDate: ${fullDate}\n\nProject Scope: ${service}\nBudget Range: ${budget}\nTarget Timeline: ${timeline}\n\nMessage:\n${message}`,
+                    time: timeAgo,
+                    fullDate,
+                    read: Boolean(readStates[emailNotifId]),
+                    replies: storedReplies[emailNotifId] || []
+                });
+
+                const adminNote = inq.adminNotes || inq.replyMessage || (inq.replies && inq.replies[0] && inq.replies[0].text);
+                if (adminNote) {
+                    const replyNotifId = `reply-${leadId}`;
+                    notifications.push({
+                        id: replyNotifId,
+                        type: 'email_reply',
+                        title: 'Reply from Gourav (Algora Lead)',
+                        subtitle: `RE: ${service} [Ref #${leadId}]`,
+                        sender: 'Gourav • Lead Architect',
+                        senderEmail: 'gourav@algora.studio',
+                        subject: `RE: ${service} Proposal & Architecture [Ref #${leadId}]`,
+                        preview: adminNote,
+                        fullMessage: `From: Gourav (Lead Architect) <gourav@algora.studio>\nTo: ${clientName} <${clientEmail}>\nDate: ${fullDate}\n\n${adminNote}\n\nBest regards,\nGourav\nLead Architect & Founder, Algora Studio`,
+                        time: timeAgo,
+                        fullDate,
+                        read: Boolean(readStates[replyNotifId]),
+                        replies: storedReplies[replyNotifId] || []
+                    });
                 }
             });
 
-            // 2. Real Inbound / Outbound Email Notification
-            const emailNotifId = `email-${leadId}`;
-            notifications.push({
-                id: emailNotifId,
-                type: 'email_inbound',
-                title: `Inquiry Email: ${service}`,
-                subtitle: `From: ${clientName} (${clientEmail})`,
-                sender: clientName,
-                senderEmail: clientEmail,
-                subject: `New Project Inquiry: ${service} [Ref #${leadId}]`,
-                preview: message,
-                fullMessage: `From: ${clientName} <${clientEmail}>\nTo: Gourav <contact@algora.studio>\nDate: ${fullDate}\n\nProject Scope: ${service}\nBudget Range: ${budget}\nTarget Timeline: ${timeline}\n\nMessage:\n${message}`,
-                time: timeAgo,
-                fullDate: fullDate,
-                read: Boolean(readStates[emailNotifId]),
-                replies: storedReplies[emailNotifId] || []
-            });
-
-            // 3. Real Admin Reply Notification (if Gourav/Admin replied or added notes)
-            const adminNote = inq.adminNotes || inq.replyMessage || (inq.replies && inq.replies[0] && inq.replies[0].text);
-            if (adminNote) {
-                const replyNotifId = `reply-${leadId}`;
-                notifications.push({
-                    id: replyNotifId,
-                    type: 'email_reply',
-                    title: `Reply from Gourav (Algora Lead)`,
-                    subtitle: `RE: ${service} [Ref #${leadId}]`,
-                    sender: 'Gourav • Lead Architect',
-                    senderEmail: 'gourav@algora.studio',
-                    subject: `RE: ${service} Proposal & Architecture [Ref #${leadId}]`,
-                    preview: adminNote,
-                    fullMessage: `From: Gourav (Lead Architect) <gourav@algora.studio>\nTo: ${clientName} <${clientEmail}>\nDate: ${fullDate}\n\n${adminNote}\n\nBest regards,\nGourav\nLead Architect & Founder, Algora Studio`,
-                    time: timeAgo,
-                    fullDate: fullDate,
-                    read: Boolean(readStates[replyNotifId]),
-                    replies: storedReplies[replyNotifId] || []
-                });
-            }
-        });
-
-        cachedNotifications = notifications;
-        isFetching = false;
-        return notifications;
+            cachedNotifications = notifications;
+            lastSyncAt = Date.now();
+            return notifications;
+        } finally {
+            isFetching = false;
+        }
     }
 
     // Save read states
     function markAsRead(notifId) {
         try {
-            const readStates = JSON.parse(localStorage.getItem('algora_notif_read_states') || '{}');
+            const readStates = readStoredJson('algora_notif_read_states', {});
             readStates[notifId] = true;
             localStorage.setItem('algora_notif_read_states', JSON.stringify(readStates));
             const item = cachedNotifications.find(n => n.id === notifId);
@@ -221,7 +202,7 @@
 
     function markAllAsRead() {
         try {
-            const readStates = JSON.parse(localStorage.getItem('algora_notif_read_states') || '{}');
+            const readStates = readStoredJson('algora_notif_read_states', {});
             cachedNotifications.forEach(n => {
                 readStates[n.id] = true;
                 n.read = true;
@@ -253,7 +234,7 @@
                         </div>
                         <p class="text-[11px] text-white/50 font-medium flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                            Live Firestore &amp; REST Store Sync
+                            Live Store Sync
                         </p>
                     </div>
                 </div>
@@ -474,7 +455,7 @@
             `;
         }
 
-        const notifs = await fetchRealDatabaseNotifications();
+        const notifs = await fetchRealDatabaseNotifications(forceRefresh);
         let filtered = notifs;
 
         if (filter === 'order') {
@@ -803,7 +784,7 @@
                     item.replies.push(replyObj);
 
                     // Save to localStorage
-                    const storedReplies = JSON.parse(localStorage.getItem('algora_mail_replies') || '{}');
+                    const storedReplies = readStoredJson('algora_mail_replies', {});
                     storedReplies[activeEmailNotifId] = item.replies;
                     localStorage.setItem('algora_mail_replies', JSON.stringify(storedReplies));
 
