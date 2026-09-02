@@ -99,13 +99,33 @@
             background: #f1f5f9;
             padding: 3.5px;
             border-radius: 9999px;
-            display: flex;
-            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            width: 170px;
             position: relative;
+            overflow: hidden;
+        }
+
+        .auth-segmented-indicator {
+            position: absolute;
+            top: 3.5px;
+            bottom: 3.5px;
+            left: 3.5px;
+            width: calc(50% - 3.5px);
+            border-radius: 9999px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        .auth-segmented-pill.is-signin .auth-segmented-indicator {
+            transform: translateX(100%);
         }
 
         .auth-segmented-btn {
-            flex: 1;
+            position: relative;
+            z-index: 1;
             padding: 7px 14px;
             text-align: center;
             font-size: 0.825rem;
@@ -118,9 +138,7 @@
         }
 
         .auth-segmented-btn.active {
-            background: #ffffff;
             color: #0f172a;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
         }
 
         /* Subtle Floating Animation */
@@ -135,6 +153,100 @@
 
         .animate-float-card-1 { animation: subtleFloat1 6s ease-in-out infinite; }
         .animate-float-card-2 { animation: subtleFloat2 7s ease-in-out infinite; }
+
+        /* Decorative studio telemetry — visual only, no footer copy */
+        .graphic-telemetry {
+            height: 42px;
+            border-top: 1px solid rgba(255, 255, 255, 0.10);
+            position: relative;
+            overflow: hidden;
+            opacity: 0.9;
+        }
+
+        .graphic-telemetry::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(90deg, rgba(99, 102, 241, 0.18) 1px, transparent 1px);
+            background-size: 34px 100%;
+            mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+        }
+
+        .telemetry-line {
+            position: absolute;
+            top: 19px;
+            left: 8%;
+            right: 8%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.9) 18%, rgba(52, 211, 153, 0.9) 52%, rgba(168, 85, 247, 0.85) 82%, transparent);
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.7);
+        }
+
+        .telemetry-node {
+            position: absolute;
+            top: 15px;
+            width: 9px;
+            height: 9px;
+            border-radius: 9999px;
+            border: 2px solid #07080d;
+            box-shadow: 0 0 12px currentColor;
+        }
+
+        .telemetry-node.one { left: 20%; color: #818cf8; background: currentColor; }
+        .telemetry-node.two { left: 51%; color: #34d399; background: currentColor; }
+        .telemetry-node.three { left: 79%; color: #c084fc; background: currentColor; }
+
+        .telemetry-bars {
+            position: absolute;
+            right: 8%;
+            bottom: 4px;
+            display: flex;
+            align-items: end;
+            gap: 3px;
+            height: 12px;
+        }
+
+        .telemetry-bars span {
+            width: 2px;
+            border-radius: 9999px;
+            background: linear-gradient(to top, #6366f1, #a78bfa);
+        }
+        .telemetry-bars span:nth-child(1) { height: 4px; }
+        .telemetry-bars span:nth-child(2) { height: 9px; }
+        .telemetry-bars span:nth-child(3) { height: 6px; }
+        .telemetry-bars span:nth-child(4) { height: 12px; }
+        .telemetry-bars span:nth-child(5) { height: 8px; }
+
+        /* Interactive cartoon companion */
+        .avatar-stage {
+            width: min(100%, 360px);
+            height: 330px;
+            margin: 0 auto;
+            display: grid;
+            place-items: center;
+            filter: drop-shadow(0 24px 24px rgba(12, 10, 50, 0.35));
+        }
+        .avatar-stage svg { width: 100%; height: 100%; overflow: visible; }
+        .avatar-head, .avatar-pupils, .avatar-eyes-open, .avatar-eyelids { transform-box: fill-box; transform-origin: center; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease; }
+        .avatar-pupils { transform: translate(var(--eye-x, 0px), var(--eye-y, 0px)); }
+        /* Password mode: turn away from the form and deliberately look aside. */
+        .avatar-stage.avatar--password .avatar-head { transform: rotate(-10deg) translate(-16px, 3px); }
+        .avatar-stage.avatar--password .avatar-pupils { transform: translate(-8px, -2px); }
+        /* Once the pointer leaves the password field, a small, playful peek back. */
+        .avatar-stage.avatar--peek .avatar-head { transform: rotate(7deg) translate(10px, 5px); }
+        .avatar-stage.avatar--peek .avatar-pupils { transform: translate(8px, 5px); }
+        /* Revealing a password makes the companion cover its eyes with both hands. */
+        .avatar-stage.avatar--cover-eyes .avatar-eyes-open { opacity: 0.22; }
+        .avatar-stage.avatar--cover-eyes .avatar-pupils { opacity: 0; }
+        .avatar-stage.avatar--cover-eyes .avatar-eyelids { opacity: 1; }
+        .avatar-stage.avatar--cover-eyes .avatar-hands { opacity: 1; transform: translateY(0) scale(1); }
+        .avatar-eyelids { opacity: 0; }
+        .avatar-hands { opacity: 0; transform: translateY(28px) scale(0.82); transform-box: fill-box; transform-origin: center; transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease; }
+        .avatar-body { animation: avatarBreathe 4.5s ease-in-out infinite; transform-origin: center; }
+        .avatar-shadow { animation: shadowBreathe 4.5s ease-in-out infinite; transform-origin: center; }
+        @keyframes avatarBreathe { 50% { transform: translateY(-4px); } }
+        @keyframes shadowBreathe { 50% { transform: scaleX(0.86); opacity: 0.62; } }
+        @media (prefers-reduced-motion: reduce) { .avatar-body, .avatar-shadow { animation: none; } }
     </style>
 </head>
 <body class="bg-[#050608] min-h-screen md:min-h-screen flex items-center justify-center p-0 sm:p-4 md:p-8 selection:bg-indigo-600 selection:text-white">
@@ -163,76 +275,49 @@
                 <a href="index.html" class="inline-flex items-center gap-2 select-none" style="text-decoration:none;">
                     <img src="assets/algora-logo.svg" alt="ALGORA" class="h-4 w-auto object-contain brightness-0 invert opacity-95">
                 </a>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] font-mono tracking-wider uppercase text-indigo-200/90 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
-                    v2.5 System
-                </span>
             </div>
 
-            <!-- Graphics Composition Layer -->
-            <div class="relative z-30 my-auto py-2 flex flex-col gap-4">
-                
-                <!-- Main Glass Card -->
-                <div class="glass-graphic-card rounded-2xl p-5 w-full max-w-[360px] mx-auto animate-float-card-1">
-                    <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
-                        <div class="flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
-                            <span class="font-mono text-[11px] font-semibold tracking-wide text-white/90">DesignMatrix.tsx</span>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <span class="text-[#00e054] font-mono text-xs tracking-tighter">★★★★★</span>
-                            <span class="text-[11px] font-bold text-white/80 ml-1">5.0</span>
-                        </div>
-                    </div>
-
-                    <!-- Mockup Controls -->
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between bg-white/[0.04] p-2.5 rounded-xl border border-white/5">
-                            <div class="flex items-center gap-2.5">
-                                <div class="w-7 h-7 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-300">
-                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a4.5 4.5 0 0 0 0 9 4.5 4.5 0 0 1 0 9 1 1 0 0 0 0-2 2.5 2.5 0 0 0 0-5 6.5 6.5 0 0 0 0-13 1 1 0 0 0 0 2z"></path></svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-semibold text-white">Ultra Dark Obsidian</p>
-                                    <p class="text-[10px] text-white/50 font-mono">#07080d &middot; 120 FPS</p>
-                                </div>
-                            </div>
-                            <div class="w-8 h-4.5 bg-indigo-600 rounded-full p-0.5 flex items-center justify-end shadow-inner">
-                                <div class="w-3.5 h-3.5 bg-white rounded-full shadow-xs"></div>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-2 pt-1">
-                            <span class="px-2.5 py-1 rounded-lg bg-purple-500/15 border border-purple-500/25 text-[10px] font-mono text-purple-200">React + GSAP</span>
-                            <span class="px-2.5 py-1 rounded-lg bg-sky-500/15 border border-sky-500/25 text-[10px] font-mono text-sky-200">Tailwind v4</span>
-                            <span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/25 text-[10px] font-mono text-emerald-200 ml-auto">99.8% Perf</span>
-                        </div>
-                    </div>
+            <!-- Interactive cartoon companion -->
+            <div class="relative z-30 my-auto py-2">
+                <div id="login-avatar" class="avatar-stage" aria-hidden="true">
+                    <svg viewBox="0 0 360 330" role="img" aria-label="Friendly login companion">
+                        <defs>
+                            <linearGradient id="avatar-suit" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#818cf8"/><stop offset="1" stop-color="#5b21b6"/></linearGradient>
+                            <linearGradient id="avatar-face" x1="0" y1="0" x2="0.9" y2="1"><stop stop-color="#fde9d7"/><stop offset="1" stop-color="#f3bd9a"/></linearGradient>
+                            <linearGradient id="avatar-hair" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#312e81"/><stop offset="1" stop-color="#1e1b4b"/></linearGradient>
+                        </defs>
+                        <ellipse class="avatar-shadow" cx="180" cy="284" rx="92" ry="15" fill="#020617" opacity=".46"/>
+                        <g class="avatar-body">
+                            <path d="M112 276c8-55 34-82 68-82s61 27 68 82" fill="url(#avatar-suit)" stroke="#c4b5fd" stroke-opacity=".52" stroke-width="2"/>
+                            <path d="M145 204l35 31 35-31 15 72h-100z" fill="#eef2ff" opacity=".92"/><path d="M158 208l22 27 22-27-9-15h-26z" fill="#7c3aed"/>
+                            <circle cx="123" cy="244" r="11" fill="#6366f1" opacity=".65"/><circle cx="237" cy="244" r="11" fill="#6366f1" opacity=".65"/>
+                        </g>
+                        <g class="avatar-head">
+                            <ellipse cx="111" cy="151" rx="17" ry="23" fill="url(#avatar-face)"/><ellipse cx="249" cy="151" rx="17" ry="23" fill="url(#avatar-face)"/>
+                            <path d="M112 105c0-43 29-66 68-66s68 23 68 66v55c0 43-29 68-68 68s-68-25-68-68z" fill="url(#avatar-face)" stroke="#f9d4bc" stroke-width="2"/>
+                            <path d="M111 119c-7-55 24-86 70-86 40 0 69 27 68 75-12-13-27-18-42-18-19 0-35-9-44-22-11 21-31 38-52 43z" fill="url(#avatar-hair)"/><path d="M116 97c13-37 42-50 72-45 25 4 42 19 52 42-25-15-45-15-62-11-17 4-36 13-62 14z" fill="#4338ca" opacity=".65"/>
+                            <g class="avatar-eyes-open"><ellipse cx="151" cy="145" rx="15" ry="13" fill="#fff"/><ellipse cx="209" cy="145" rx="15" ry="13" fill="#fff"/><g class="avatar-pupils"><circle cx="153" cy="147" r="7" fill="#1e1b4b"/><circle cx="211" cy="147" r="7" fill="#1e1b4b"/><circle cx="155" cy="144" r="2.2" fill="#fff"/><circle cx="213" cy="144" r="2.2" fill="#fff"/></g></g>
+                            <g class="avatar-eyelids"><path d="M136 146q15 9 30 0" fill="none" stroke="#5b3a35" stroke-width="3" stroke-linecap="round"/><path d="M194 146q15 9 30 0" fill="none" stroke="#5b3a35" stroke-width="3" stroke-linecap="round"/></g>
+                            <path d="M170 174q10 8 20 0" fill="none" stroke="#a8555f" stroke-width="3" stroke-linecap="round"/><circle cx="132" cy="169" r="7" fill="#f59eaa" opacity=".34"/><circle cx="228" cy="169" r="7" fill="#f59eaa" opacity=".34"/>
+                        </g>
+                        <g class="avatar-hands">
+                            <path d="M134 238c-21-10-31-35-22-57l18-43 18 8-13 42c-3 10 3 19 13 23z" fill="url(#avatar-suit)" stroke="#c4b5fd" stroke-opacity=".55" stroke-width="2"/>
+                            <path d="M145 143c4-11 14-15 23-10l11 7c4 3 3 9-2 10l-8 1 8 5c5 3 3 10-3 10l-17-4c-10-3-15-10-12-19z" fill="url(#avatar-face)" stroke="#e8aa87" stroke-width="1.5"/>
+                            <path d="M226 238c21-10 31-35 22-57l-18-43-18 8 13 42c3 10-3 19-13 23z" fill="url(#avatar-suit)" stroke="#c4b5fd" stroke-opacity=".55" stroke-width="2"/>
+                            <path d="M215 143c-4-11-14-15-23-10l-11 7c-4 3-3 9 2 10l8 1-8 5c-5 3-3 10 3 10l17-4c10-3 15-10 12-19z" fill="url(#avatar-face)" stroke="#e8aa87" stroke-width="1.5"/>
+                        </g>
+                        <g opacity=".7"><circle cx="80" cy="92" r="4" fill="#a5b4fc"/><circle cx="285" cy="110" r="3" fill="#6ee7b7"/><circle cx="270" cy="220" r="5" fill="#c4b5fd"/></g>
+                    </svg>
                 </div>
-
-                <!-- Secondary Floating Badge -->
-                <div class="glass-graphic-card rounded-2xl px-4 py-3 w-full max-w-[320px] ml-auto -mt-2 animate-float-card-2 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-7 h-7 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-md">
-                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-white">Curated Collection</p>
-                            <p class="text-[10px] text-white/60 font-mono">10,000+ Assets Unlocked</p>
-                        </div>
-                    </div>
-                    <span class="text-xs font-mono font-bold text-indigo-300">ACCESS &rarr;</span>
-                </div>
-
             </div>
 
-            <!-- Left Footer Trust Metrics -->
-            <div class="relative z-30 text-xs text-white/60 flex items-center justify-between border-t border-white/10 pt-4">
-                <span class="font-mono text-[11px] text-white/50">&copy; 2026 ALGORA STUDIO</span>
-                <span class="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    256-Bit SSL Encrypted
-                </span>
+            <!-- Visual-only studio telemetry -->
+            <div class="graphic-telemetry relative z-30" aria-hidden="true">
+                <span class="telemetry-line"></span>
+                <span class="telemetry-node one"></span>
+                <span class="telemetry-node two"></span>
+                <span class="telemetry-node three"></span>
+                <span class="telemetry-bars"><span></span><span></span><span></span><span></span><span></span></span>
             </div>
         </section>
         <!-- END: Left Side -->
@@ -268,8 +353,9 @@
                 </div>
 
                 <!-- Segmented Capsule Switcher -->
-                <div class="mb-3 sm:mb-3.5">
+                <div class="mb-3 sm:mb-3.5 text-center sm:text-left">
                     <div class="auth-segmented-pill">
+                        <span class="auth-segmented-indicator" aria-hidden="true"></span>
                         <button type="button" id="tab-signup" onclick="switchMode('signup')" class="auth-segmented-btn active">
                             Sign Up
                         </button>
@@ -332,7 +418,7 @@
                     </div>
 
                     <!-- Primary Submit Button (Capsule) -->
-                    <button id="btn-submit" class="w-full bg-slate-900 hover:bg-slate-800 active:scale-[0.98] text-white font-bold py-2.5 sm:py-3 rounded-full shadow-md shadow-slate-900/15 transition-all mt-1.5 cursor-pointer flex items-center justify-center gap-2 text-[12.5px] sm:text-xs uppercase tracking-wider" type="submit">
+                    <button id="btn-submit" class="inline-flex w-fit mx-auto bg-slate-900 hover:bg-slate-800 active:scale-[0.98] text-white font-bold px-5 py-2.5 sm:py-3 rounded-full shadow-md shadow-slate-900/15 transition-all mt-1.5 cursor-pointer items-center justify-center gap-2 text-[12.5px] sm:text-xs uppercase tracking-wider" type="submit">
                         <span id="btn-submit-text">Create Account</span>
                         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </button>
@@ -349,7 +435,7 @@
                 </div>
 
                 <!-- Social SSO Capsule Buttons (Google & Facebook) -->
-                <div class="grid grid-cols-2 gap-2">
+                <div class="flex flex-wrap justify-center gap-2">
                     <!-- Google SSO -->
                     <button type="button" onclick="handleSocialAuth('google')" class="sso-capsule-btn flex items-center justify-center gap-2 text-slate-700 hover:text-slate-900 text-xs font-semibold select-none cursor-pointer">
                         <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24">
@@ -408,7 +494,9 @@
             const mainSubtitle = document.getElementById('auth-main-subtitle');
             const btnSubmitText = document.getElementById('btn-submit-text');
             const alertBox = document.getElementById('auth-alert');
+            const segmentedPill = document.querySelector('.auth-segmented-pill');
             if (alertBox) alertBox.classList.add('hidden');
+            if (segmentedPill) segmentedPill.classList.toggle('is-signin', mode === 'signin');
 
             if (mode === 'signup') {
                 tabSignup.classList.add('active');
@@ -432,13 +520,64 @@
         function togglePasswordVisibility() {
             const pwdInput = document.getElementById('input-password');
             const eyeIcon = document.getElementById('eye-icon');
+            const avatar = document.getElementById('login-avatar');
             if (pwdInput.type === 'password') {
                 pwdInput.type = 'text';
+                if (avatar) {
+                    avatar.classList.remove('avatar--password', 'avatar--peek');
+                    avatar.classList.add('avatar--cover-eyes');
+                }
                 eyeIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
             } else {
                 pwdInput.type = 'password';
+                if (avatar) {
+                    avatar.classList.remove('avatar--cover-eyes', 'avatar--peek');
+                    avatar.classList.add('avatar--password');
+                }
                 eyeIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
             }
+        }
+
+        function initAvatarInteractions() {
+            const avatar = document.getElementById('login-avatar');
+            const password = document.getElementById('input-password');
+            const otherInputs = document.querySelectorAll('#input-email, #input-fullname');
+            if (!avatar || !password) return;
+
+            const resetFace = () => avatar.classList.remove('avatar--password', 'avatar--peek', 'avatar--cover-eyes');
+            password.addEventListener('focus', () => {
+                avatar.classList.remove('avatar--peek', 'avatar--cover-eyes');
+                avatar.classList.add('avatar--password');
+            });
+            password.addEventListener('blur', () => {
+                avatar.classList.remove('avatar--password', 'avatar--cover-eyes');
+                avatar.classList.add('avatar--peek');
+            });
+            password.addEventListener('pointerleave', () => {
+                if (document.activeElement !== password || password.type !== 'password') return;
+                avatar.classList.remove('avatar--password', 'avatar--cover-eyes');
+                avatar.classList.add('avatar--peek');
+            });
+            password.addEventListener('pointerenter', () => {
+                if (document.activeElement !== password || password.type !== 'password') return;
+                avatar.classList.remove('avatar--peek', 'avatar--cover-eyes');
+                avatar.classList.add('avatar--password');
+            });
+            otherInputs.forEach((input) => input.addEventListener('focus', resetFace));
+
+            let pendingPointerFrame = 0;
+            document.addEventListener('pointermove', (event) => {
+                if (avatar.classList.contains('avatar--password') || avatar.classList.contains('avatar--peek') || avatar.classList.contains('avatar--cover-eyes')) return;
+                if (pendingPointerFrame) return;
+                pendingPointerFrame = requestAnimationFrame(() => {
+                    const rect = avatar.getBoundingClientRect();
+                    const x = Math.max(-5, Math.min(5, (event.clientX - (rect.left + rect.width / 2)) / 32));
+                    const y = Math.max(-3, Math.min(3, (event.clientY - (rect.top + rect.height / 2)) / 42));
+                    avatar.style.setProperty('--eye-x', `${x}px`);
+                    avatar.style.setProperty('--eye-y', `${y}px`);
+                    pendingPointerFrame = 0;
+                });
+            }, { passive: true });
         }
 
         function showAlert(msg, isSuccess = false) {
@@ -530,6 +669,8 @@
                 showAlert(err.message || `Failed to sign in with ${providerName}.`);
             }
         }
+
+        initAvatarInteractions();
     </script>
 </body>
 </html>

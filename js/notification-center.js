@@ -11,6 +11,7 @@
 (function initRealDatabaseNotificationCenter() {
     const MASTER_STORE_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019ff4d5104b2eb2';
     const SYNC_TTL_MS = 20_000;
+    const useLowCostDrawer = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
 
     let cachedNotifications = [];
     let currentFilter = 'all';
@@ -219,7 +220,7 @@
         root.id = 'algora-notification-center-root';
         root.innerHTML = `
         <!-- Notification Dropdown / Drawer Popover -->
-        <div id="algora-notification-drawer" class="fixed top-16 sm:top-20 right-3 sm:right-6 lg:right-10 z-[999999] w-[94vw] sm:w-[450px] max-h-[88vh] bg-[#0c101c]/95 backdrop-blur-2xl border border-white/18 rounded-[26px] shadow-[0_25px_80px_-10px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.08)] flex flex-col overflow-hidden transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform opacity-0 pointer-events-none translate-y-[-12px] scale-[0.97]" style="font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;">
+        <div id="algora-notification-drawer" class="fixed top-16 sm:top-20 right-3 sm:right-6 lg:right-10 z-[999999] w-[94vw] sm:w-[450px] max-h-[88vh] bg-[#0c101c]/95 backdrop-blur-2xl border border-white/18 rounded-[26px] shadow-[0_25px_80px_-10px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.08)] flex flex-col overflow-hidden transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform opacity-0 pointer-events-none translate-y-[-12px] scale-[0.97]" style="font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; contain: layout paint;">
             
             <!-- Drawer Header -->
             <div class="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-white/[0.03]">
@@ -648,7 +649,9 @@
 
     function setupEventListeners() {
         injectUI();
-        renderFeed('all', true);
+
+        // Avoid a network request and a full feed render during first paint.
+        // The drawer populates on its first open; background sync keeps it warm later.
 
         const drawer = document.getElementById('algora-notification-drawer');
         const tyModal = document.getElementById('notif-thankyou-modal');
@@ -821,6 +824,14 @@
                 updateBellBadges(unreadCount);
             });
         }, 20000);
+
+        // Blur requires repainting everything behind the drawer on touch GPUs.
+        // Preserve its desktop glass look but use an opaque composited surface on phones.
+        if (useLowCostDrawer && drawer) {
+            drawer.style.backdropFilter = 'none';
+            drawer.style.webkitBackdropFilter = 'none';
+            drawer.style.backgroundColor = 'rgba(12, 16, 28, 0.98)';
+        }
     }
 
     if (document.readyState === 'loading') {

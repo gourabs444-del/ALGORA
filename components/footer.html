@@ -1,3 +1,19 @@
+<style>
+  #portfolio-main-footer { background: #f3f4f6 !important; color: #475569 !important; border-color: #dbe1e8 !important; }
+  #portfolio-main-footer .border-white\/\[0\.08\] { border-color: #dbe1e8 !important; }
+  #portfolio-main-footer .text-slate-300, #portfolio-main-footer .text-slate-400, #portfolio-main-footer .text-slate-500 { color: #64748b !important; }
+  #portfolio-main-footer a { color: #475569 !important; }
+  #portfolio-main-footer a:hover { color: #111827 !important; }
+  #portfolio-main-footer img[alt="Algora Studio"] { filter: none !important; }
+  #portfolio-main-footer .footer-social-link, #portfolio-main-footer a[aria-label="Instagram"], #portfolio-main-footer a[aria-label="X (Twitter)"], #portfolio-main-footer a[aria-label="Discord"], #portfolio-main-footer a[aria-label="Facebook"] { width: auto !important; height: auto !important; padding: 0 !important; background: transparent !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; margin-inline: 5px; }
+  #portfolio-main-footer .footer-social-icon { width: 20px; height: 20px; object-fit: contain; display: block; }
+  #portfolio-main-footer a[aria-label="Instagram"] > svg, #portfolio-main-footer a[aria-label="X (Twitter)"] > svg, #portfolio-main-footer a[aria-label="Discord"] > svg, #portfolio-main-footer a[aria-label="Facebook"] > svg { display: none; }
+  #portfolio-main-footer a[aria-label="Instagram"]::after, #portfolio-main-footer a[aria-label="X (Twitter)"]::after, #portfolio-main-footer a[aria-label="Discord"]::after, #portfolio-main-footer a[aria-label="Facebook"]::after { content: ""; width: 20px; height: 20px; background: center / contain no-repeat; }
+  #portfolio-main-footer a[aria-label="Instagram"]::after { background-image: url('assets/social/instagram.png'); }
+  #portfolio-main-footer a[aria-label="X (Twitter)"]::after { background-image: url('assets/social/twitter.png'); }
+  #portfolio-main-footer a[aria-label="Discord"]::after { background-image: url('assets/social/discord.png'); }
+  #portfolio-main-footer a[aria-label="Facebook"]::after { background-image: url('assets/social/facebook.png'); }
+</style>
 <!-- ═══════════════════════════════════════════════════════════════════════
      ALGORA STUDIO // LUXURY OBSIDIAN FOOTER (PRESERVED ORIGINAL CONTENT)
      ═══════════════════════════════════════════════════════════════════════ -->
@@ -9,19 +25,19 @@
     <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 w-full relative z-10">
         
         <!-- Top Executive Header: Studio Crest + Global Operational Badges + CTA -->
-        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-white/[0.08]">
+        <div class="footer-header flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-white/[0.08]">
             <div class="space-y-2.5">
                 <div class="flex items-center gap-3">
-                    <img src="assets/algora-logo.svg" alt="Algora Studio" class="h-4.5 sm:h-5 w-auto object-contain brightness-0 invert" style="filter: brightness(0) invert(1);">
-                    <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.06] text-slate-400 border border-white/[0.08] uppercase font-semibold">STUDIO</span>
+                    <img src="assets/algora-logo.svg" alt="Algora Studio" class="h-4.5 sm:h-5 w-auto object-contain">
+                    <span class="footer-copy text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.06] text-slate-400 border border-white/[0.08] uppercase font-semibold">STUDIO</span>
                 </div>
-                <p class="text-xs sm:text-sm font-sans text-slate-400 max-w-lg font-normal leading-relaxed">
+                <p class="footer-copy text-xs sm:text-sm font-sans text-slate-400 max-w-lg font-normal leading-relaxed">
                     Curating the Web's Finest digital craft, interactive 3D systems, and high-fidelity enterprise web applications. Designed &amp; engineered by Gourav.
                 </p>
             </div>
 
             <!-- Action Button -->
-            <div class="flex items-center">
+            <div class="footer-cta flex items-center">
                 <a href="start-project.html" class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white hover:bg-slate-200 text-black font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:scale-[1.02] active:scale-95">
                     <span>Start Project</span>
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -30,7 +46,7 @@
         </div>
 
         <!-- Middle Multi-Column Enterprise Grid (4 Relevant Portfolio Columns) -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 py-12 border-b border-white/[0.08] text-xs font-sans">
+        <div class="footer-navigation grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 py-12 border-b border-white/[0.08] text-xs font-sans">
             
             <!-- Col 1: Showcase & Categories -->
             <div class="space-y-3.5">
@@ -88,13 +104,15 @@
         </div>
 
         <!-- Bottom Legal & Social Strip -->
-        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-mono text-slate-500 font-medium">
-            <div class="flex flex-wrap items-center gap-2">
+        <div class="footer-bottom pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-mono text-slate-500 font-medium">
+            <div class="footer-legal flex flex-wrap items-center gap-2">
                 <span>&copy; 2026 ALGORA STUDIO. Crafted with precision by Gourav. All rights reserved.</span>
             </div>
 
             <div class="flex items-center gap-3">
                 <!-- Social Icons -->
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-link w-9 h-9 rounded-full border flex items-center justify-center hover:scale-105 transition-all shadow-xs" aria-label="GitHub"><img src="assets/social/github.png" alt="" class="footer-social-icon"></a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-link w-9 h-9 rounded-full border flex items-center justify-center hover:scale-105 transition-all shadow-xs" aria-label="LinkedIn"><img src="assets/social/linkedin.png" alt="" class="footer-social-icon"></a>
                 <a href="https://www.instagram.com/01env" target="_blank" class="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-slate-400 hover:text-white hover:scale-105 transition-all shadow-xs" aria-label="Instagram">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
                 </a>

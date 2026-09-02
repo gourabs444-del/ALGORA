@@ -43,7 +43,13 @@ body {
     overflow-x:   hidden;
     min-height:   100dvh;          /* dynamic viewport for mobile */
     line-height:  1.6;
+    overscroll-behavior-x: none;
 }
+
+/* Keep taps on the compositor path and make primary controls comfortably tappable. */
+a, button, input, select, textarea { touch-action: manipulation; }
+button, .btn, a[href] { -webkit-tap-highlight-color: transparent; }
+.btn:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
 
 /* ── SVG Background Layer ───────────────────────────────── */
 /*
@@ -284,6 +290,7 @@ section {
 
     html, body {
         -webkit-overflow-scrolling: touch;
+        scroll-behavior: auto;
     }
 
     .hero {
@@ -318,10 +325,30 @@ section {
     .btn {
         width: 100%;
         justify-content: center;
+        min-height: 48px;
+        transition-duration: 120ms;
     }
+
+    .btn:active { transform: scale(0.975); opacity: 0.92; }
+
+    /* SVG filters and perpetual painting are expensive on budget GPUs. */
+    #background svg line, .svg-curve-line, .svg-float-1, .svg-float-2,
+    .svg-float-3, .svg-glow-pulse, .svg-drift, .hero-badge-dot {
+        animation: none !important;
+    }
+    #background svg filter, #background .svg-glow-pulse { display: none; }
+    .hero-badge, .bg-card { -webkit-backdrop-filter: none; backdrop-filter: none; }
 
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
 
 
 
