@@ -48,8 +48,8 @@ The system dynamically resolves the Measurement ID across environments using the
 ### Environment Variables (`.env`):
 ```bash
 # Production GA4 Measurement ID
-NEXT_PUBLIC_GA_MEASUREMENT_ID="G-7X9B4Y5Z6W"
-GA_MEASUREMENT_ID="G-7X9B4Y5Z6W"
+NEXT_PUBLIC_GA_MEASUREMENT_ID="G-NX74FS2FBG"
+GA_MEASUREMENT_ID="G-NX74FS2FBG"
 ```
 
 ---

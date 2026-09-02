@@ -507,16 +507,17 @@
 
       /* Container padding on mobile */
       #obscura-main-sheet .px-6,
-      .max-w-\[1400px\].px-6,
-      .max-w-\[1560px\].px-6,
-      .max-w-\[1680px\].px-6 {
+      .max-w-\[1400px\],
+      .max-w-\[1560px\],
+      .max-w-\[1680px\],
+      .max-w-\[1920px\] {
           padding-left: 1rem !important;
           padding-right: 1rem !important;
       }
   }
 
   /* ═══════════════════════════════════════════════════════════════════════
-     MotionSites.ai Inspired Dark Luxury Showcase Cards
+     Pinterest Style Borderless Showcase Cards & Clean Pin Shadows
      ═══════════════════════════════════════════════════════════════════════ */
   .motionsites-card,
   .apple-elevated-card,
@@ -526,14 +527,14 @@
   #grid-personal .group,
   #grid-collaboration .group,
   #grid-favorites .group {
-      background-color: #0c0d11 !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      border-radius: 1.25rem !important;
-      padding: 0.65rem 0.65rem 0.75rem 0.65rem !important;
-      box-shadow: 
-          0 4px 20px rgba(0, 0, 0, 0.5),
-          0 1px 3px rgba(0, 0, 0, 0.3) !important;
-      transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1), border-color 280ms ease !important;
+      background-color: transparent !important;
+      background: transparent !important;
+      border: none !important;
+      outline: none !important;
+      border-radius: 1rem !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
       color: #ffffff !important;
   }
   
@@ -545,28 +546,30 @@
   #grid-personal .group:hover,
   #grid-collaboration .group:hover,
   #grid-favorites .group:hover {
-      transform: translateY(-6px) !important;
-      border-color: rgba(255, 255, 255, 0.22) !important;
-      box-shadow: 
-          0 20px 45px -12px rgba(0, 0, 0, 0.75),
-          0 0 30px rgba(139, 92, 246, 0.14) !important;
+      transform: translateY(-4px) !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
   }
   
   .apple-image-container {
-      border: 1px solid rgba(255, 255, 255, 0.07) !important;
-      border-radius: 1rem !important;
+      border: none !important;
+      border-radius: 16px !important;
       outline: none !important;
-      background-color: #060709 !important;
+      background-color: #111216 !important;
       overflow: hidden !important;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
-      transition: border-color 250ms ease, box-shadow 250ms ease !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+      transition: box-shadow 260ms ease, filter 260ms ease, transform 260ms ease !important;
   }
   
   .apple-elevated-card:hover .apple-image-container,
   .dynamic-gallery-card:hover .apple-image-container,
+  .motionsites-card:hover .apple-image-container,
   .group:hover .apple-image-container {
-      border-color: rgba(255, 255, 255, 0.18) !important;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6) !important;
+      border: none !important;
+      outline: none !important;
+      filter: brightness(0.94) !important;
+      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25) !important;
   }
   
   .apple-image-container img {
@@ -574,7 +577,7 @@
       outline: none !important;
   }
 
-  /* Website Name & Subtitle inside Cards */
+  /* Website Name & Subtitle inside Pinterest Cards */
   .apple-elevated-card a,
   .dynamic-gallery-card a,
   .motionsites-card a,
@@ -585,14 +588,14 @@
   
   .apple-elevated-card .card-subtitle,
   .dynamic-gallery-card .card-subtitle {
-      color: rgba(255, 255, 255, 0.45) !important;
+      color: rgba(255, 255, 255, 0.5) !important;
   }
 
   /* Rating Badges inside Cards */
   .apple-elevated-card .project-rating-badge,
   .dynamic-gallery-card .project-rating-badge {
-      background-color: rgba(255, 255, 255, 0.05) !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      border: none !important;
       color: #fbbf24 !important;
   }
   .apple-elevated-card .project-rating-badge .rating-val,
@@ -600,26 +603,24 @@
       color: #ffffff !important;
   }
   
-  /* Fav & Action buttons inside Cards */
+  /* Fav & Action buttons inside Cards (Clean Pinterest style) */
   .apple-elevated-card .fav-toggle-btn,
   .dynamic-gallery-card .fav-toggle-btn,
   .apple-elevated-card .card-action-btn,
   .dynamic-gallery-card .card-action-btn {
-      background-color: rgba(255, 255, 255, 0.04) !important;
-      border: 1px solid rgba(255, 255, 255, 0.07) !important;
-      color: rgba(255, 255, 255, 0.5) !important;
+      background-color: rgba(255, 255, 255, 0.06) !important;
+      border: none !important;
+      color: rgba(255, 255, 255, 0.55) !important;
       transition: all 0.2s ease !important;
   }
   .apple-elevated-card .fav-toggle-btn:hover,
   .dynamic-gallery-card .fav-toggle-btn:hover {
-      background-color: rgba(239, 68, 68, 0.12) !important;
-      border-color: rgba(239, 68, 68, 0.3) !important;
+      background-color: rgba(239, 68, 68, 0.15) !important;
       color: #ef4444 !important;
   }
   .apple-elevated-card .card-action-btn:hover,
   .dynamic-gallery-card .card-action-btn:hover {
-      background-color: rgba(255, 255, 255, 0.1) !important;
-      border-color: rgba(255, 255, 255, 0.2) !important;
+      background-color: rgba(255, 255, 255, 0.15) !important;
       color: #ffffff !important;
   }
 
@@ -2254,15 +2255,15 @@
             </div>
 
             <!-- ── Project grid ──────────────────────────────────────────────────── -->
-            <div class="max-w-[1560px] mx-auto px-5 sm:px-10 lg:px-12 w-full pt-16 pb-32">
-                <div class="mb-10 border-b border-white/10 pb-6 flex items-end justify-between gap-5">
+            <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pt-12 pb-32">
+                <div class="mb-8 border-b border-white/10 pb-5 flex items-end justify-between gap-5">
                     <div>
-                        <span class="text-[9px] font-bold uppercase tracking-[.28em] text-white/40 block mb-2">The Collection</span>
-                        <h2 class="showcase-heading text-4xl sm:text-5xl text-white">Selected Works</h2>
+                        <span class="text-[9px] font-bold uppercase tracking-[.28em] text-white/40 block mb-1.5">The Collection</span>
+                        <h2 class="showcase-heading text-3xl sm:text-4xl lg:text-5xl text-white">Selected Works</h2>
                     </div>
-                    <span class="rounded-full border border-white/15 px-4 py-2 text-[9px] font-bold uppercase tracking-[.2em] text-white/50">All &darr;</span>
+                    <span class="rounded-full border border-white/15 px-4 py-1.5 text-[9px] font-bold uppercase tracking-[.2em] text-white/50">All &darr;</span>
                 </div>
-                <div id="grid-all-projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-9">
+                <div id="grid-all-projects" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
                     <!-- Dynamically populated -->
                 </div>
             </div>
@@ -3322,14 +3323,14 @@
 
         </div>
         
-        <div class="max-w-[1680px] mx-auto px-5 sm:px-10 lg:px-12 w-full">
+        <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
                 <span class="material-symbols-outlined text-primary text-[28px]">web</span> Featured Landing Pages
             </h2>
-            <div id="grid-personal" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-9">
+            <div id="grid-personal" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
                 <!-- Dynamically populated -->
             </div>
-        </div> <!-- Closes max-w-[1680px] -->
+        </div> <!-- Closes full width container -->
 
         <!-- Beautiful Section transition separator (Skills Circular Rings Widget) -->
         <div class="max-w-[1680px] mx-auto w-full py-16 sm:py-24">
@@ -4199,11 +4200,11 @@
             </div>
         </div>
 
-        <div class="max-w-[1680px] mx-auto px-5 sm:px-10 lg:px-12 w-full pt-12 pb-16">
+        <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pt-12 pb-16">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
                 <span class="material-symbols-outlined text-primary text-[28px]">handshake</span> Collaboration &amp; SaaS Systems
             </h2>
-            <div id="grid-collaboration" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-9">
+            <div id="grid-collaboration" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
                 <!-- Dynamically populated -->
             </div>
         </div>

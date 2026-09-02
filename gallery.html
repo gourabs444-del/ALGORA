@@ -79,7 +79,7 @@ try {
     </a></header>
 
 <!-- Main Container -->
-<main class="pt-32 px-6 sm:px-12 max-w-[1700px] mx-auto flex-grow w-full">
+<main class="pt-32 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-[1920px] mx-auto flex-grow w-full">
     <div class="mb-12 text-center sm:text-left">
         <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-white tracking-tight mb-2">Lightroom Color Gradings</h2>
         <p class="text-secondary dark:text-slate-400 font-medium text-body-md sm:text-body-lg max-w-2xl">
@@ -88,7 +88,7 @@ try {
     </div>
 
     <!-- Sliders List -->
-    <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
         <!-- Loading State -->
         <div id="gallery-loading" class="col-span-full flex flex-col items-center justify-center py-20 text-secondary">
             <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
@@ -476,7 +476,7 @@ try {
 
                 data.forEach(item => {
                     const card = document.createElement("div");
-                    card.className = "bg-white dark:bg-slate-900 border border-outline-variant/10 dark:border-slate-800 rounded-3xl p-5 shadow-bold-static flex flex-col gap-6 justify-between";
+                    card.className = "bg-transparent border-none rounded-2xl p-0 flex flex-col gap-3 justify-between transition-transform duration-200 hover:-translate-y-1";
                     
                     const isFav = currentFavs[item.id] ? 1 : 0;
                     const favColor = currentFavs[item.id] ? 'text-amber-500' : 'text-slate-300 dark:text-slate-600';
@@ -535,7 +535,7 @@ try {
                             </div>
                             
                             <!-- Same layout as Main Library Cards -->
-                            <div class="flex items-center justify-between pt-4 border-t border-outline-variant/10 dark:border-slate-800 gap-2 flex-wrap sm:flex-nowrap">
+                            <div class="flex items-center justify-between pt-2 gap-2 flex-wrap sm:flex-nowrap">
                                 <!-- Small Tag-like Buttons -->
                                 <div class="flex gap-2">
                                     <a href="${item.preset}" download="${item.id}_preset.xmp" class="px-3 py-1.5 rounded-xl bg-primary/10 text-primary font-bold text-[13px] hover:bg-primary/15 transition-colors cursor-pointer active-feedback flex items-center gap-1.5">

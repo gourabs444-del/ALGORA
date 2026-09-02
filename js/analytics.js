@@ -391,27 +391,29 @@
 
   function initSpaRouteListener() {
     // Listen for History API navigations (if SPA routing is introduced)
-    const originalPushState = history.pushState;
-    if (originalPushState) {
-      history.pushState = function () {
+    if (typeof window !== 'undefined' && window.history && typeof window.history.pushState === 'function') {
+      const originalPushState = window.history.pushState;
+      window.history.pushState = function () {
         originalPushState.apply(this, arguments);
         setTimeout(() => trackPageView(), 50);
       };
     }
 
-    window.addEventListener('popstate', () => {
-      setTimeout(() => trackPageView(), 50);
-    });
+    if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+      window.addEventListener('popstate', () => {
+        setTimeout(() => trackPageView(), 50);
+      });
 
-    // Hash change tracker for tab / in-page sections
-    window.addEventListener('hashchange', () => {
-      if (window.location.hash) {
-        trackEvent('navigation_click', {
-          nav_type: 'hash_anchor',
-          destination_hash: window.location.hash
-        });
-      }
-    });
+      // Hash change tracker for tab / in-page sections
+      window.addEventListener('hashchange', () => {
+        if (window.location.hash) {
+          trackEvent('navigation_click', {
+            nav_type: 'hash_anchor',
+            destination_hash: window.location.hash
+          });
+        }
+      });
+    }
   }
 
   /* ── 8. INITIALIZATION RUNNER ──────────────────────────────────────── */

@@ -14,7 +14,7 @@
   'use strict';
 
   // Fallback / Production Measurement ID (or placeholder ready for injection)
-  const DEFAULT_MEASUREMENT_ID = 'G-7X9B4Y5Z6W';
+  const DEFAULT_MEASUREMENT_ID = 'G-NX74FS2FBG';
 
   /**
    * Resolves the active Google Analytics 4 Measurement ID from available sources.
