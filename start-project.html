@@ -1114,6 +1114,25 @@
                         }).catch(() => {});
                     } catch (fErr) {}
 
+                    // ── GA4 Conversion & Submit Tracking ──
+                    if (window.Analytics) {
+                        window.Analytics.trackFormSubmit('project_wizard_inquiry', {
+                            service_type: clientProjectType || clientService,
+                            budget_range: clientBudget,
+                            timeline: clientTimeline,
+                            lead_reference_id: referenceId
+                        });
+
+                        window.Analytics.trackConversion('lead_submitted', {
+                            service_type: clientProjectType || clientService,
+                            budget_range: clientBudget,
+                            timeline: clientTimeline,
+                            lead_reference_id: referenceId,
+                            value: clientBudget.includes('10,000') ? 10000 : clientBudget.includes('5,000') ? 5000 : 2500,
+                            currency: 'USD'
+                        });
+                    }
+
                     // Immediate smooth redirect to the separate Animated Thank You page
                     setTimeout(() => {
                         window.location.href = 'thank-you-animation.html';
@@ -1134,5 +1153,9 @@
         }
     });
 </script>
+
+<!-- Google Analytics 4 (GA4) -->
+<script src="js/analytics-config.js" defer></script>
+<script src="js/analytics.js"        defer></script>
 
 </body></html>

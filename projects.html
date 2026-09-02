@@ -485,7 +485,7 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════════════
-     Mobile 2-3 Column Compact Multi-Card Grid Styling
+     Mobile Single Column Grid & Responsive Card Layout
      ═══════════════════════════════════════════════════════════════════════ */
   @media (max-width: 640px) {
       #grid-all-projects,
@@ -494,120 +494,133 @@
       #grid-collaboration,
       #grid-favorites {
           display: grid !important;
-          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          gap: 0.65rem !important;
+          grid-template-columns: 1fr !important;
+          gap: 1.25rem !important;
       }
       
       .group.card-floating,
-      .dynamic-gallery-card {
+      .dynamic-gallery-card,
+      .motionsites-card,
+      .apple-elevated-card {
           border-radius: 1.25rem !important;
       }
 
-      /* Compact padding for mobile screen container */
+      /* Container padding on mobile */
       #obscura-main-sheet .px-6,
       .max-w-\[1400px\].px-6,
+      .max-w-\[1560px\].px-6,
       .max-w-\[1680px\].px-6 {
-          padding-left: 0.75rem !important;
-          padding-right: 0.75rem !important;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
       }
   }
 
-      /* ═══════════════════════════════════════════════════════════════════════
-         Apple / Linear / Framer Luxury Layered Shadow Portfolio Cards
-         ═══════════════════════════════════════════════════════════════════════ */
-      .apple-elevated-card,
-      .dynamic-gallery-card,
-      #grid-all-projects .group,
-      #grid-work .group,
-      #grid-personal .group,
-      #grid-collaboration .group {
-          border: none !important;
-          border-width: 0 !important;
-          outline: none !important;
-          box-shadow: 
-              0 2px 8px rgba(15, 23, 42, 0.04),
-              0 10px 30px rgba(15, 23, 42, 0.06),
-              0 24px 60px rgba(15, 23, 42, 0.08) !important;
-          transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-      }
-      
-      .apple-elevated-card:hover,
-      .dynamic-gallery-card:hover,
-      #grid-all-projects .group:hover,
-      #grid-work .group:hover,
-      #grid-personal .group:hover,
-      #grid-collaboration .group:hover {
-          border: none !important;
-          border-width: 0 !important;
-          outline: none !important;
-          transform: translateY(-5px) !important;
-          box-shadow: 
-              0 4px 12px rgba(15, 23, 42, 0.06),
-              0 16px 40px rgba(15, 23, 42, 0.09),
-              0 32px 75px rgba(15, 23, 42, 0.12) !important;
-      }
-      
-      .apple-image-container {
-          border: none !important;
-          border-width: 0 !important;
-          outline: none !important;
-          box-shadow: 
-              0 4px 16px rgba(15, 23, 42, 0.08), 
-              0 1px 3px rgba(15, 23, 42, 0.04) !important;
-          transition: box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-      }
-      
-      .apple-elevated-card:hover .apple-image-container,
-      .dynamic-gallery-card:hover .apple-image-container,
-      .group:hover .apple-image-container {
-          box-shadow: 
-              0 8px 24px rgba(15, 23, 42, 0.12), 
-              0 2px 6px rgba(15, 23, 42, 0.06) !important;
-      }
-      
-      .apple-image-container img {
-          border: none !important;
-          border-width: 0 !important;
-          outline: none !important;
-      }
-
-  /* Clean White Luxury Portfolio Cards globally */
+  /* ═══════════════════════════════════════════════════════════════════════
+     MotionSites.ai Inspired Dark Luxury Showcase Cards
+     ═══════════════════════════════════════════════════════════════════════ */
+  .motionsites-card,
   .apple-elevated-card,
   .dynamic-gallery-card,
   #grid-all-projects .group,
+  #grid-work .group,
   #grid-personal .group,
-  #grid-collaboration .group {
-      background-color: #ffffff !important;
-      color: #0f172a !important;
+  #grid-collaboration .group,
+  #grid-favorites .group {
+      background-color: #0c0d11 !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 1.25rem !important;
+      padding: 0.65rem 0.65rem 0.75rem 0.65rem !important;
+      box-shadow: 
+          0 4px 20px rgba(0, 0, 0, 0.5),
+          0 1px 3px rgba(0, 0, 0, 0.3) !important;
+      transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1), border-color 280ms ease !important;
+      color: #ffffff !important;
   }
   
-  /* Website Name inside White Cards */
+  .motionsites-card:hover,
+  .apple-elevated-card:hover,
+  .dynamic-gallery-card:hover,
+  #grid-all-projects .group:hover,
+  #grid-work .group:hover,
+  #grid-personal .group:hover,
+  #grid-collaboration .group:hover,
+  #grid-favorites .group:hover {
+      transform: translateY(-6px) !important;
+      border-color: rgba(255, 255, 255, 0.22) !important;
+      box-shadow: 
+          0 20px 45px -12px rgba(0, 0, 0, 0.75),
+          0 0 30px rgba(139, 92, 246, 0.14) !important;
+  }
+  
+  .apple-image-container {
+      border: 1px solid rgba(255, 255, 255, 0.07) !important;
+      border-radius: 1rem !important;
+      outline: none !important;
+      background-color: #060709 !important;
+      overflow: hidden !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+      transition: border-color 250ms ease, box-shadow 250ms ease !important;
+  }
+  
+  .apple-elevated-card:hover .apple-image-container,
+  .dynamic-gallery-card:hover .apple-image-container,
+  .group:hover .apple-image-container {
+      border-color: rgba(255, 255, 255, 0.18) !important;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6) !important;
+  }
+  
+  .apple-image-container img {
+      border: none !important;
+      outline: none !important;
+  }
+
+  /* Website Name & Subtitle inside Cards */
   .apple-elevated-card a,
   .dynamic-gallery-card a,
-  .apple-elevated-card .text-slate-950,
-  .dynamic-gallery-card .text-slate-950 {
-      color: #0f172a !important;
+  .motionsites-card a,
+  .apple-elevated-card .card-title,
+  .dynamic-gallery-card .card-title {
+      color: #ffffff !important;
   }
   
-  /* Rating Badges inside White Cards */
+  .apple-elevated-card .card-subtitle,
+  .dynamic-gallery-card .card-subtitle {
+      color: rgba(255, 255, 255, 0.45) !important;
+  }
+
+  /* Rating Badges inside Cards */
   .apple-elevated-card .project-rating-badge,
   .dynamic-gallery-card .project-rating-badge {
-      background-color: rgba(15, 23, 42, 0.05) !important;
-      border-color: rgba(15, 23, 42, 0.1) !important;
+      background-color: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #fbbf24 !important;
   }
   .apple-elevated-card .project-rating-badge .rating-val,
   .dynamic-gallery-card .project-rating-badge .rating-val {
-      color: #0f172a !important;
+      color: #ffffff !important;
   }
   
-  /* Fav buttons inside White Cards */
+  /* Fav & Action buttons inside Cards */
   .apple-elevated-card .fav-toggle-btn,
-  .dynamic-gallery-card .fav-toggle-btn {
-      color: #94a3b8 !important;
+  .dynamic-gallery-card .fav-toggle-btn,
+  .apple-elevated-card .card-action-btn,
+  .dynamic-gallery-card .card-action-btn {
+      background-color: rgba(255, 255, 255, 0.04) !important;
+      border: 1px solid rgba(255, 255, 255, 0.07) !important;
+      color: rgba(255, 255, 255, 0.5) !important;
+      transition: all 0.2s ease !important;
   }
   .apple-elevated-card .fav-toggle-btn:hover,
   .dynamic-gallery-card .fav-toggle-btn:hover {
+      background-color: rgba(239, 68, 68, 0.12) !important;
+      border-color: rgba(239, 68, 68, 0.3) !important;
       color: #ef4444 !important;
+  }
+  .apple-elevated-card .card-action-btn:hover,
+  .dynamic-gallery-card .card-action-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      color: #ffffff !important;
   }
 
   /* Search Result Highlights & Matched Card Glowing Pulse Animation */
@@ -1096,434 +1109,529 @@
 <!-- Hidden original grid template used to dynamically populate categorized sections -->
 <div id="portfolio-grid-template" class="hidden">
 <!-- Card: CogniLens -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="websites">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="websites">
+    <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
         <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out cognilens-slider" style="width: 300%; transform: translateX(0%);"><img alt="CogniLens - Home" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/cognilens_home.png?v=1.5"><img alt="CogniLens - Insights" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/cognilens_insights.png?v=1.5"><img alt="CogniLens - Dashboard" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/cognilens_dashboard_real.png?v=1.5"></div>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <!-- Carousel 3 Dots Pill in White Part -->
-        <div class="flex justify-center items-center mb-1.5">
-            <div class="cognilens-dots flex items-center gap-1 py-0.5 px-1.5 rounded-full bg-[#f0f2f5] dark:bg-[#e9ecef] border border-[#e2e8f0] dark:border-[#d0d5dd] shadow-2xs">
-                <span data-slide="0" class="cursor-pointer w-2 h-1 rounded-full bg-[#525866] dark:bg-[#374151] transition-all duration-500 ease-out hover:opacity-75"></span>
-                <span data-slide="1" class="cursor-pointer w-1 h-1 rounded-full bg-[#c4c8d0] dark:bg-[#9ca3af] transition-all duration-500 ease-out hover:opacity-75"></span>
-                <span data-slide="2" class="cursor-pointer w-1 h-1 rounded-full bg-[#c4c8d0] dark:bg-[#9ca3af] transition-all duration-500 ease-out hover:opacity-75"></span>
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <!-- Carousel 3 Dots Pill -->
+        <div class="flex justify-start items-center mb-2">
+            <div class="cognilens-dots flex items-center gap-1 py-0.5 px-2 rounded-full bg-white/10 border border-white/10 shadow-2xs">
+                <span data-slide="0" class="cursor-pointer w-2 h-1 rounded-full bg-white transition-all duration-500 ease-out hover:opacity-75"></span>
+                <span data-slide="1" class="cursor-pointer w-1 h-1 rounded-full bg-white/30 transition-all duration-500 ease-out hover:opacity-75"></span>
+                <span data-slide="2" class="cursor-pointer w-1 h-1 rounded-full bg-white/30 transition-all duration-500 ease-out hover:opacity-75"></span>
             </div>
         </div>
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
-            <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                CogniLens
-            </a>
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    CogniLens
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    AI & Multi-Screen Workspace
+                </span>
+            </div>
 
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="cognilens" data-rating="4.9" data-rating-count="48">
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="cognilens" data-rating="4.9" data-rating-count="48">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
+                    <span class="rating-val text-white font-bold">4.9</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="cognilens" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="cognilens" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="https://cogni-lens-g15z.vercel.app/" target="_blank" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Visit website">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: GitHub -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="websites">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="https://github.com" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="websites">
+    <a href="https://github.com" target="_blank" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
         <img alt="GitHub" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1618401471353-b98aedd04e11?auto=format&fit=crop&w=1200&q=80">
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
-            <a href="https://github.com" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                GitHub
-            </a>
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="https://github.com" target="_blank" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    GitHub
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Code Platform & Dev Tools
+                </span>
+            </div>
 
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="github" data-rating="4.8" data-rating-count="124">
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="github" data-rating="4.8" data-rating-count="124">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
+                    <span class="rating-val text-white font-bold">4.8</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="github" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="github" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="https://github.com" target="_blank" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Visit website">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Medium -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="articles">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="https://medium.com" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="articles">
+    <a href="https://medium.com" target="_blank" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
         <img alt="Medium" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80">
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
-            <a href="https://medium.com" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Medium
-            </a>
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="https://medium.com" target="_blank" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Medium
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Editorial Publishing & Stories
+                </span>
+            </div>
 
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="medium" data-rating="4.5" data-rating-count="62">
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="medium" data-rating="4.5" data-rating-count="62">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.5</span>
+                    <span class="rating-val text-white font-bold">4.5</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="medium" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="medium" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="https://medium.com" target="_blank" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Visit website">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Figma UI & Design Systems -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="ui">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="https://figma.com" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="ui">
+    <a href="https://figma.com" target="_blank" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
         <img alt="Figma" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1200&q=80">
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
-            <a href="https://figma.com" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Figma
-            </a>
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="https://figma.com" target="_blank" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Figma
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Design Systems & UI Tokens
+                </span>
+            </div>
 
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="figma" data-rating="4.9" data-rating-count="186">
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="figma" data-rating="4.9" data-rating-count="186">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
+                    <span class="rating-val text-white font-bold">4.9</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="figma" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="figma" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="https://figma.com" target="_blank" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Visit website">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Notion -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="websites">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="https://notion.so" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="websites">
+    <a href="https://notion.so" target="_blank" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
         <img alt="Notion" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=1200&q=80">
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
-            <a href="https://notion.so" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Notion
-            </a>
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="https://notion.so" target="_blank" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Notion
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Workspace & Knowledge Base
+                </span>
+            </div>
 
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="notion" data-rating="4.7" data-rating-count="93">
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="notion" data-rating="4.7" data-rating-count="93">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.7</span>
+                    <span class="rating-val text-white font-bold">4.7</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="notion" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="notion" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="https://notion.so" target="_blank" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Visit website">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Behance Photo Gallery -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="presets">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="presets">
+    <a href="gallery.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
         <img alt="Photo Gallery Slider" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1200&q=80">
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
-            <a href="gallery.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Behance Photo Gallery
-            </a>
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="gallery.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Behance Photo Gallery
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Curated Photography & Color
+                </span>
+            </div>
 
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="behance" data-rating="4.6" data-rating-count="75">
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="behance" data-rating="4.6" data-rating-count="75">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.6</span>
+                    <span class="rating-val text-white font-bold">4.6</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="behance" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="behance" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="gallery.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Visit gallery">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: GuildRank Arena -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="websites">
-    <!-- Ultra-Thin Side Margin Web Face Container (Matching Notebook Diagram ✔️) -->
-    <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="websites">
+    <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
         <div class="absolute inset-0 flex transition-transform duration-1000 ease-in-out guildrank-slider" style="width: 300%; transform: translateX(0%);"><img alt="GuildRank - Home" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/guildrank_home.png?v=1.0"><img alt="GuildRank - Leaderboard" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/guildrank_leaderboard.png?v=1.0"><img alt="GuildRank - Profile" class="w-1/3 h-full object-cover object-top scale-[1.01]" src="assets/thumbnails/guildrank_profile.png?v=1.0"></div>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <!-- Carousel 3 Dots Pill in White Part -->
-        <div class="flex justify-center items-center mb-1.5">
-            <div class="guildrank-dots flex items-center gap-1 py-0.5 px-1.5 rounded-full bg-[#f0f2f5] dark:bg-[#e9ecef] border border-[#e2e8f0] dark:border-[#d0d5dd] shadow-2xs">
-                <span data-slide="0" class="cursor-pointer w-2 h-1 rounded-full bg-[#525866] dark:bg-[#374151] transition-all duration-500 ease-out hover:opacity-75"></span>
-                <span data-slide="1" class="cursor-pointer w-1 h-1 rounded-full bg-[#c4c8d0] dark:bg-[#9ca3af] transition-all duration-500 ease-out hover:opacity-75"></span>
-                <span data-slide="2" class="cursor-pointer w-1 h-1 rounded-full bg-[#c4c8d0] dark:bg-[#9ca3af] transition-all duration-500 ease-out hover:opacity-75"></span>
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <!-- Carousel 3 Dots Pill -->
+        <div class="flex justify-start items-center mb-2">
+            <div class="guildrank-dots flex items-center gap-1 py-0.5 px-2 rounded-full bg-white/10 border border-white/10 shadow-2xs">
+                <span data-slide="0" class="cursor-pointer w-2 h-1 rounded-full bg-white transition-all duration-500 ease-out hover:opacity-75"></span>
+                <span data-slide="1" class="cursor-pointer w-1 h-1 rounded-full bg-white/30 transition-all duration-500 ease-out hover:opacity-75"></span>
+                <span data-slide="2" class="cursor-pointer w-1 h-1 rounded-full bg-white/30 transition-all duration-500 ease-out hover:opacity-75"></span>
             </div>
         </div>
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <!-- Website Name -->
-            <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                GuildRank Arena
-            </a>
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    GuildRank Arena
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Esports & Player Leaderboard
+                </span>
+            </div>
 
-            <!-- Rating & Favorite Symbol (Unticked Default) -->
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="guildrank" data-rating="4.8" data-rating-count="56">
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="guildrank" data-rating="4.8" data-rating-count="56">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
+                    <span class="rating-val text-white font-bold">4.8</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="guildrank" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="guildrank" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="https://guild-v2.vercel.app/profile/11111111" target="_blank" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Visit website">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: AESTHETE -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="projects/aesthete/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/aesthete.jpg" alt="AESTHETE" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="landing">
+    <a href="projects/aesthete/index.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+        <img src="assets/previews/aesthete.jpg" alt="AESTHETE" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block"/>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="projects/aesthete/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                AESTHETE
-            </a>
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="aesthete" data-rating="4.9" data-rating-count="72">
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="projects/aesthete/index.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    AESTHETE
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Luxury Fashion & Editorial
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="aesthete" data-rating="4.9" data-rating-count="72">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
+                    <span class="rating-val text-white font-bold">4.9</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="aesthete" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="aesthete" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="projects/aesthete/index.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open project">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Vanya Lodge -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="projects/vanyalodge/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/vanyalodge.jpg" alt="Vanya Lodge" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="landing">
+    <a href="projects/vanyalodge/index.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+        <img src="assets/previews/vanyalodge.jpg" alt="Vanya Lodge" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block"/>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="projects/vanyalodge/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Vanya Lodge
-            </a>
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vanyalodge" data-rating="4.8" data-rating-count="35">
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="projects/vanyalodge/index.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Vanya Lodge
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Eco-Resort & Hospitality
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vanyalodge" data-rating="4.8" data-rating-count="35">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
+                    <span class="rating-val text-white font-bold">4.8</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="vanyalodge" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="vanyalodge" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="projects/vanyalodge/index.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open project">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Vantage Point -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="projects/vantagepoint/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/vantagepoint.jpg" alt="Vantage Point" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="landing">
+    <a href="projects/vantagepoint/index.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+        <img src="assets/previews/vantagepoint.jpg" alt="Vantage Point" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block"/>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="projects/vantagepoint/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Vantage Point
-            </a>
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vantagepoint" data-rating="4.7" data-rating-count="48">
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="projects/vantagepoint/index.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Vantage Point
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Strategic Advisory & Consulting
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vantagepoint" data-rating="4.7" data-rating-count="48">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.7</span>
+                    <span class="rating-val text-white font-bold">4.7</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="vantagepoint" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="vantagepoint" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="projects/vantagepoint/index.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open project">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Juris Lexicon -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="projects/jurislexicon/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/juris.jpg" alt="Juris Lexicon" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="landing">
+    <a href="projects/jurislexicon/index.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+        <img src="assets/previews/juris.jpg" alt="Juris Lexicon" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block"/>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="projects/jurislexicon/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Juris Lexicon
-            </a>
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon" data-rating="4.9" data-rating-count="61">
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="projects/jurislexicon/index.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Juris Lexicon
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Legal & Institutional Architecture
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon" data-rating="4.9" data-rating-count="61">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
+                    <span class="rating-val text-white font-bold">4.9</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="jurislexicon" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="jurislexicon" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="projects/jurislexicon/index.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open project">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Juris Lexicon — Dark -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="projects/jurislexicon-dark/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/jurisdark.jpg" alt="Juris Lexicon Dark" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="landing">
+    <a href="projects/jurislexicon-dark/index.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+        <img src="assets/previews/jurisdark.jpg" alt="Juris Lexicon Dark" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block"/>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="projects/jurislexicon-dark/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Juris Lexicon — Dark
-            </a>
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon-dark" data-rating="4.8" data-rating-count="52">
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="projects/jurislexicon-dark/index.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Juris Lexicon — Dark
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Corporate Legal Dark Theme
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon-dark" data-rating="4.8" data-rating-count="52">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
+                    <span class="rating-val text-white font-bold">4.8</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="jurislexicon-dark" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="jurislexicon-dark" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="projects/jurislexicon-dark/index.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open project">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: BloomFi -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="projects/bloomfi/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/bloomfi.jpg" alt="BloomFi" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="landing">
+    <a href="projects/bloomfi/index.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+        <img src="assets/previews/bloomfi.jpg" alt="BloomFi" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block"/>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="projects/bloomfi/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                BloomFi
-            </a>
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="bloomfi" data-rating="4.7" data-rating-count="42">
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="projects/bloomfi/index.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    BloomFi
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Fintech & Smart Liquidity
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="bloomfi" data-rating="4.7" data-rating-count="42">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.7</span>
+                    <span class="rating-val text-white font-bold">4.7</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="bloomfi" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="bloomfi" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="projects/bloomfi/index.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open project">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Lumina Artisanal -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="projects/lumina/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/lumina.jpg" alt="Lumina Artisanal" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="landing">
+    <a href="projects/lumina/index.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+        <img src="assets/previews/lumina.jpg" alt="Lumina Artisanal" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block"/>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="projects/lumina/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Lumina Artisanal
-            </a>
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="lumina" data-rating="4.9" data-rating-count="38">
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="projects/lumina/index.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Lumina Artisanal
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Artisanal Studio & Lighting
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="lumina" data-rating="4.9" data-rating-count="38">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
+                    <span class="rating-val text-white font-bold">4.9</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="lumina" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="lumina" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="projects/lumina/index.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open project">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: VALURA LIVING -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="projects/valura/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/valura.jpg" alt="VALURA LIVING" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="landing">
+    <a href="projects/valura/index.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+        <img src="assets/previews/valura.jpg" alt="VALURA LIVING" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block"/>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="projects/valura/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                VALURA LIVING
-            </a>
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="valura" data-rating="4.8" data-rating-count="31">
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="projects/valura/index.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    VALURA LIVING
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Architectural Interiors & Living
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="valura" data-rating="4.8" data-rating-count="31">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.8</span>
+                    <span class="rating-val text-white font-bold">4.8</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="valura" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="valura" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="projects/valura/index.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open project">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 <!-- Card: Mamaearth -->
-<div class="group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between" data-cat-type="landing">
-    <a href="projects/mamaearth/index.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-slate-100 dark:bg-slate-800">
-        <img src="assets/previews/mamaearth.jpg" alt="Mamaearth" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"/>
+<div class="group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between" data-cat-type="landing">
+    <a href="projects/mamaearth/index.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+        <img src="assets/previews/mamaearth.jpg" alt="Mamaearth" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block"/>
     </a>
 
-    <!-- White Body Area -->
-    <div class="pt-2 px-1 pb-0.5 w-full">
-        <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-            <a href="projects/mamaearth/index.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                Mamaearth
-            </a>
-            <div class="flex items-center gap-2 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="mamaearth" data-rating="4.9" data-rating-count="56">
+    <div class="pt-3 px-1 pb-0.5 w-full">
+        <div class="flex items-center justify-between gap-3 w-full min-w-0">
+            <div class="min-w-0 flex-1">
+                <a href="projects/mamaearth/index.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                    Mamaearth
+                </a>
+                <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                    Clean Wellness & Organic Care
+                </span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="mamaearth" data-rating="4.9" data-rating-count="56">
                     <span>★</span>
-                    <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">4.9</span>
+                    <span class="rating-val text-white font-bold">4.9</span>
                 </div>
-                <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="mamaearth" aria-label="Toggle Favorite">
-                    <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="mamaearth" aria-label="Toggle Favorite">
+                    <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                 </button>
+                <a href="projects/mamaearth/index.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open project">
+                    <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                </a>
             </div>
         </div>
     </div>
@@ -1788,7 +1896,7 @@
 
     <!-- Right Group: Start a Project + Sign In Button on PC, Bell + Hamburger on Mobile -->
     <div class="flex items-center gap-2.5 ml-auto sm:ml-0">
-        <a href="start-project.html" class="hidden sm:inline-flex items-center justify-center rounded-full bg-white text-neutral-950 font-semibold px-4.5 py-1.5 sm:px-5 sm:py-2 text-[11.5px] sm:text-[12px] tracking-[-0.01em] hover:bg-neutral-100 transition-all shadow-sm flex-shrink-0" style="text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;">Start a Project</a>
+        <a href="start-project.html" data-analytics-cta="Start a Project" data-analytics-section="navbar" class="hidden sm:inline-flex items-center justify-center rounded-full bg-white text-neutral-950 font-semibold px-4.5 py-1.5 sm:px-5 sm:py-2 text-[11.5px] sm:text-[12px] tracking-[-0.01em] hover:bg-neutral-100 transition-all shadow-sm flex-shrink-0" style="text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;">Start a Project</a>
         <a href="login.html" id="nav-header-auth-btn" class="hidden sm:inline-flex items-center gap-2.5 rounded-full bg-[#f3f4f6] hover:bg-white text-[#4b5563] hover:text-[#111827] font-bold pl-4 pr-1.5 py-1 sm:pl-4.5 sm:pr-1.5 sm:py-1.5 text-[11px] sm:text-[11.5px] tracking-wider uppercase transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.18),inset_0_1px_0_rgba(255,255,255,0.9)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.25)] hover:scale-[1.03] active:scale-95 flex-shrink-0" style="text-decoration: none; font-family: 'Inter', -apple-system, sans-serif;">
             <span>LOG IN</span>
             <span class="w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full bg-[#f59e0b] flex items-center justify-center text-white shadow-xs flex-shrink-0">
@@ -2146,7 +2254,7 @@
             </div>
 
             <!-- ── Project grid ──────────────────────────────────────────────────── -->
-            <div class="max-w-[1400px] mx-auto px-6 sm:px-14 w-full pt-16 pb-32">
+            <div class="max-w-[1560px] mx-auto px-5 sm:px-10 lg:px-12 w-full pt-16 pb-32">
                 <div class="mb-10 border-b border-white/10 pb-6 flex items-end justify-between gap-5">
                     <div>
                         <span class="text-[9px] font-bold uppercase tracking-[.28em] text-white/40 block mb-2">The Collection</span>
@@ -2154,7 +2262,7 @@
                     </div>
                     <span class="rounded-full border border-white/15 px-4 py-2 text-[9px] font-bold uppercase tracking-[.2em] text-white/50">All &darr;</span>
                 </div>
-                <div id="grid-all-projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-7">
+                <div id="grid-all-projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-9">
                     <!-- Dynamically populated -->
                 </div>
             </div>
@@ -3214,11 +3322,11 @@
 
         </div>
         
-        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full">
+        <div class="max-w-[1680px] mx-auto px-5 sm:px-10 lg:px-12 w-full">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
                 <span class="material-symbols-outlined text-primary text-[28px]">web</span> Featured Landing Pages
             </h2>
-            <div id="grid-personal" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+            <div id="grid-personal" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-9">
                 <!-- Dynamically populated -->
             </div>
         </div> <!-- Closes max-w-[1680px] -->
@@ -4091,11 +4199,11 @@
             </div>
         </div>
 
-        <div class="max-w-[1680px] mx-auto px-6 sm:px-10 w-full pt-12 pb-16">
+        <div class="max-w-[1680px] mx-auto px-5 sm:px-10 lg:px-12 w-full pt-12 pb-16">
             <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
                 <span class="material-symbols-outlined text-primary text-[28px]">handshake</span> Collaboration &amp; SaaS Systems
             </h2>
-            <div id="grid-collaboration" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+            <div id="grid-collaboration" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-9">
                 <!-- Dynamically populated -->
             </div>
         </div>
@@ -7139,4 +7247,7 @@
 <script src="js/auth-service.js"></script>
 <script src="js/account-widget.js"></script>
 <script src="js/notification-center.js"></script>
+<!-- Google Analytics 4 (GA4) -->
+<script src="js/analytics-config.js" defer></script>
+<script src="js/analytics.js"        defer></script>
 </body></html>

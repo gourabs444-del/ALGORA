@@ -164,4 +164,7 @@ body{background-color:#121414;color:#e3e2e2;scroll-behavior:smooth}
 document.querySelectorAll('details').forEach(el=>{el.addEventListener('toggle',()=>{if(el.open)document.querySelectorAll('details').forEach(o=>{if(o!==el)o.removeAttribute('open')})})});
 window.addEventListener('scroll',()=>{const s=window.pageYOffset;const h=document.querySelector('header img');if(h)h.style.transform=`translateY(${s*0.1}px)`});
 </script>
+<!-- Google Analytics 4 (GA4) -->
+<script src="js/analytics-config.js" defer></script>
+<script src="js/analytics.js"        defer></script>
 </body></html>

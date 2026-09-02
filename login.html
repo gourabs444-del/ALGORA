@@ -567,8 +567,15 @@
         const originalButton = submitBtn.innerHTML;
 
         if (mode === 'signup' && password !== confirmPassword) {
+            if (window.Analytics) {
+                window.Analytics.trackEvent('auth_error', { mode: 'signup', error_type: 'password_mismatch' });
+            }
             alert('Passwords do not match.');
             return;
+        }
+
+        if (window.Analytics) {
+            window.Analytics.trackEvent(mode === 'signup' ? 'signup_start' : 'login_start', { auth_method: 'email' });
         }
 
         submitBtn.disabled = true;
@@ -603,6 +610,10 @@
                 localStorage.setItem('userPicture', 'assets/algora_logo.png');
             }
 
+            if (window.Analytics) {
+                window.Analytics.trackAuth(mode === 'signup' ? 'signup' : 'login', 'email');
+            }
+
             showSuccessAndRedirect();
         } catch (backendError) {
             console.warn('Backend API submission error, trying session fallback:', backendError.message);
@@ -619,12 +630,24 @@
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('userName', name || credential.user.displayName || 'User');
                     localStorage.setItem('userEmail', email);
+
+                    if (window.Analytics) {
+                        window.Analytics.trackAuth(mode === 'signup' ? 'signup' : 'login', 'firebase');
+                    }
+
                     showSuccessAndRedirect();
                     return;
                 } catch (fbErr) {
+                    if (window.Analytics) {
+                        window.Analytics.trackEvent('auth_error', { mode, error_type: 'firebase_auth_error' });
+                    }
                     alert(fbErr.message);
                     return;
                 }
+            }
+
+            if (window.Analytics) {
+                window.Analytics.trackEvent('auth_error', { mode, error_type: 'backend_error' });
             }
             alert(backendError.message);
         } finally {
@@ -803,5 +826,8 @@
             });
     }
 </script>
+<!-- Google Analytics 4 (GA4) -->
+<script src="js/analytics-config.js" defer></script>
+<script src="js/analytics.js"        defer></script>
 </body>
 </html>

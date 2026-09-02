@@ -289,6 +289,10 @@
             const icon = document.getElementById('copy-icon');
             const text = document.getElementById('copy-text');
 
+            if (window.Analytics) {
+                window.Analytics.trackCodeCopy(compId || 'unknown_component', title, 'html');
+            }
+
             navigator.clipboard.writeText(rawCodeForCopy).then(() => {
                 btn.classList.add('copied');
                 icon.textContent = 'check_circle';
@@ -328,5 +332,8 @@
             }
         });
     </script>
+    <!-- Google Analytics 4 (GA4) -->
+    <script src="js/analytics-config.js" defer></script>
+    <script src="js/analytics.js"        defer></script>
 </body>
 </html>

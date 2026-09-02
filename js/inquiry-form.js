@@ -42,11 +42,25 @@
     });
   };
 
+  // Track form_start when user first interacts with any form element
+  let formStartTracked = false;
+  form.addEventListener('focusin', () => {
+    if (!formStartTracked && window.Analytics) {
+      formStartTracked = true;
+      window.Analytics.trackFormStart('project_inquiry');
+    }
+  }, { once: true });
+
   const showFieldError = (fieldName, message) => {
     // Find the field by name (handle project-type / projectType mismatch)
     const htmlName = fieldName === 'projectType' ? 'project-type' : fieldName;
     const field = form.querySelector(`[name="${htmlName}"]`);
     if (!field) return;
+
+    // Track form error event
+    if (window.Analytics) {
+      window.Analytics.trackFormError('project_inquiry', 'field_validation', htmlName);
+    }
 
     // Add red border
     field.classList.add('border-red-500');
@@ -72,7 +86,12 @@
     clearErrors();
 
     // HTML5 native validation pass
-    if (!form.reportValidity()) return;
+    if (!form.reportValidity()) {
+      if (window.Analytics) {
+        window.Analytics.trackFormError('project_inquiry', 'html5_validation_failed');
+      }
+      return;
+    }
 
     // Collect all form fields
     const raw = Object.fromEntries(new FormData(form).entries());
@@ -95,6 +114,29 @@
     const rawTimestamp = Date.now().toString();
     const referenceId = `${datePrefix}${rawTimestamp.slice(-4)}`;
 
+    const projectCategory = raw.projectType || raw['project-type'] || raw.service || 'High-Impact Digital Experience';
+    const budgetSelected = raw.budget || '$2,500 – $5,000';
+    const timelineSelected = raw.timeline || '2–4 Weeks';
+
+    // ── GA4 Conversion & Submit Tracking ──
+    if (window.Analytics) {
+      window.Analytics.trackFormSubmit('project_inquiry', {
+        service_type: projectCategory,
+        budget_range: budgetSelected,
+        timeline: timelineSelected,
+        lead_reference_id: referenceId
+      });
+
+      window.Analytics.trackConversion('lead_submitted', {
+        service_type: projectCategory,
+        budget_range: budgetSelected,
+        timeline: timelineSelected,
+        lead_reference_id: referenceId,
+        value: budgetSelected.includes('10,000') ? 10000 : budgetSelected.includes('5,000') ? 5000 : 2500,
+        currency: 'USD'
+      });
+    }
+
     const WEB3FORMS_ACCESS_KEY = '16495d1e-9bb0-4dd7-b453-c9e487e99c15';
 
     // Build FormData payload for Web3Forms email notification
@@ -106,9 +148,9 @@
     formData.append('email', raw.email || '');
     formData.append('company', raw.company || 'N/A');
     formData.append('service', raw.service || 'General Inquiry');
-    formData.append('project_type', raw.projectType || raw['project-type'] || 'N/A');
-    formData.append('budget', raw.budget || 'Not Specified');
-    formData.append('timeline', raw.timeline || 'Flexible');
+    formData.append('project_type', projectCategory);
+    formData.append('budget', budgetSelected);
+    formData.append('timeline', timelineSelected);
     formData.append('message', raw.description || raw.message || 'No additional details');
 
     // Asynchronous background dispatch — non-blocking!
@@ -120,9 +162,9 @@
 
     sessionStorage.setItem('inquiryLeadId', referenceId);
     sessionStorage.setItem('inquiryProject', JSON.stringify({
-      type: raw.projectType || raw['project-type'] || raw.service || 'High-Impact Digital Experience',
-      budget: raw.budget || '$2,500 – $5,000',
-      timeline: raw.timeline || '2–4 Weeks'
+      type: projectCategory,
+      budget: budgetSelected,
+      timeline: timelineSelected
     }));
 
     // Immediate smooth redirect to the separate Animated Thank You page
@@ -131,3 +173,4 @@
     }, 400);
   });
 })();
+

@@ -2270,6 +2270,11 @@
 
             if (badgeTotalEl) badgeTotalEl.textContent = filteredItems.length;
 
+            // GA4 Search Tracking (debounced on enter / submit)
+            if (query && shouldScroll && window.Analytics) {
+                window.Analytics.trackSearch(query, filteredItems.length, 'ui_components');
+            }
+
             // Reset to page 1 on new search
             currentPage = 1;
             applyPagination();
@@ -2281,6 +2286,11 @@
                 catDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
                 catDropdown.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
                 if (catArrow) catArrow.style.transform = 'rotate(0deg)';
+            }
+
+            // GA4 Filter Tracking
+            if (window.Analytics) {
+                window.Analytics.trackFilter('ui_category', industry || 'all');
             }
 
             // Update active states
@@ -2305,6 +2315,11 @@
         function showSavedOnly() {
             const savedBtn = document.getElementById('saved-filter-btn');
             isSavedMode = !isSavedMode;
+
+            // GA4 Filter Tracking
+            if (window.Analytics) {
+                window.Analytics.trackFilter('ui_bookmarks', isSavedMode ? 'saved_only' : 'all');
+            }
 
             document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
 
@@ -2392,6 +2407,14 @@
                     sessionStorage.setItem('algora_ui_detail_title', title);
                     sessionStorage.setItem('algora_ui_detail_id', itemId);
 
+                    if (window.Analytics) {
+                        window.Analytics.trackEvent('select_content', {
+                            content_type: 'ui_component',
+                            item_id: itemId,
+                            item_name: title
+                        });
+                    }
+
                     window.location.href = 'ui-detail.html';
                 });
             }
@@ -2402,5 +2425,8 @@
         applyPagination();
     </script>
     <script src="js/notification-center.js"></script>
+    <!-- Google Analytics 4 (GA4) -->
+    <script src="js/analytics-config.js" defer></script>
+    <script src="js/analytics.js"        defer></script>
 </body>
 </html>

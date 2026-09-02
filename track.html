@@ -247,6 +247,9 @@
         }
 
         function copyTrackId() {
+            if (window.Analytics) {
+                window.Analytics.trackEvent('copy_tracker_id', { tracker_id: formattedId });
+            }
             navigator.clipboard.writeText(formattedId).then(() => {
                 const icon = document.getElementById('track-copy-icon');
                 if (icon) {
@@ -260,5 +263,8 @@
             });
         }
     </script>
+    <!-- Google Analytics 4 (GA4) -->
+    <script src="js/analytics-config.js" defer></script>
+    <script src="js/analytics.js"        defer></script>
 </body>
 </html>

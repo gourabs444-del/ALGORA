@@ -380,6 +380,9 @@
 
         function copyLeadId() {
             const rawId = cleanNumericId;
+            if (window.Analytics) {
+                window.Analytics.trackEvent('copy_lead_reference', { lead_id: rawId });
+            }
             navigator.clipboard.writeText(rawId).then(() => {
                 const iconSvg = document.getElementById('copy-svg-icon');
                 if (iconSvg) {
@@ -392,6 +395,20 @@
                 }
             }).catch(() => {});
         }
+
+        // GA4 Primary Conversion Confirmation
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.Analytics) {
+                window.Analytics.trackConversion('conversion_complete', {
+                    lead_reference_id: cleanNumericId,
+                    destination: 'thank_you_ticket'
+                });
+            }
+        });
     </script>
+
+    <!-- Google Analytics 4 (GA4) -->
+    <script src="js/analytics-config.js" defer></script>
+    <script src="js/analytics.js"        defer></script>
 </body>
 </html>
