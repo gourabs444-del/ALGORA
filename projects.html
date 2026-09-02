@@ -4847,7 +4847,9 @@
                     }
 
                     // Safely find ONLY the text title element (NEVER the image container or img)
-                    let titleEl = card.querySelector('div.pt-2 a.truncate') ||
+                    let titleEl = card.querySelector('.card-title') ||
+                                  card.querySelector('div.pt-3 a') ||
+                                  card.querySelector('div.pt-2 a.truncate') ||
                                   card.querySelector('div.pt-2 a') ||
                                   card.querySelector('.card-title-text') ||
                                   card.querySelector('h3') ||
@@ -4856,7 +4858,7 @@
                                   card.querySelector('div.p-6 h4');
 
                     if (titleEl && (titleEl.querySelector('img') || titleEl.querySelector('iframe') || titleEl.classList.contains('apple-image-container') || titleEl.classList.contains('iframe-preview-container'))) {
-                        titleEl = card.querySelector('div.pt-2 a') || card.querySelector('div.pt-2 span') || null;
+                        titleEl = card.querySelector('.card-title') || card.querySelector('div.pt-3 a') || card.querySelector('div.pt-2 a') || card.querySelector('div.pt-2 span') || null;
                     }
 
                     if (titleEl && !titleEl.hasAttribute('data-original-text')) {
@@ -4930,7 +4932,9 @@
                     card.style.display = '';
                     card.classList.remove('search-matched-card');
 
-                    let titleEl = card.querySelector('div.pt-2 a.truncate') ||
+                    let titleEl = card.querySelector('.card-title') ||
+                                  card.querySelector('div.pt-3 a') ||
+                                  card.querySelector('div.pt-2 a.truncate') ||
                                   card.querySelector('div.pt-2 a') ||
                                   card.querySelector('.card-title-text') ||
                                   card.querySelector('h3') ||
@@ -4939,7 +4943,7 @@
                                   card.querySelector('div.p-6 h4');
 
                     if (titleEl && (titleEl.querySelector('img') || titleEl.querySelector('iframe') || titleEl.classList.contains('apple-image-container') || titleEl.classList.contains('iframe-preview-container'))) {
-                        titleEl = card.querySelector('div.pt-2 a') || card.querySelector('div.pt-2 span') || null;
+                        titleEl = card.querySelector('.card-title') || card.querySelector('div.pt-3 a') || card.querySelector('div.pt-2 a') || card.querySelector('div.pt-2 span') || null;
                     }
 
                     if (titleEl && titleEl.hasAttribute('data-original-text')) {
@@ -5179,25 +5183,45 @@
                                 }
                             } catch(e) {}
 
+                            const subtitleMap = {
+                                'cyberpunk': 'Night Photography & Grading',
+                                'portrait': 'Editorial Portrait Retouch',
+                                'landscape': 'Alpine Sunlight & Details',
+                                'street_night': 'Street Photography & Neon',
+                                'product': 'Commercial Studio Retouch',
+                                'wedding': 'Cinematic Wedding Grading',
+                                'wildlife': 'Wildlife & Nature Tones',
+                                'architecture': 'Architectural Symmetry'
+                            };
+                            const photoSubtitle = subtitleMap[photo.id] || 'Color Grading & Retouch';
+
                             const card = document.createElement('div');
-                            card.className = "dynamic-gallery-card group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between";
+                            card.className = "dynamic-gallery-card group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between";
                             card.innerHTML = `
-                                <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+                                <a href="gallery.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
                                     <img alt="${photo.title}" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="${photo.src}">
                                 </a>
-                                <div class="pt-2 px-1 pb-0.5 w-full">
-                                    <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-                                        <a href="gallery.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                                            ${photo.title}
-                                        </a>
-                                        <div class="flex items-center gap-2 shrink-0">
-                                            <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
+                                <div class="pt-3 px-1 pb-0.5 w-full">
+                                    <div class="flex items-center justify-between gap-3 w-full min-w-0">
+                                        <div class="min-w-0 flex-1">
+                                            <a href="gallery.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                                                ${photo.title}
+                                            </a>
+                                            <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                                                ${photoSubtitle}
+                                            </span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 shrink-0">
+                                            <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
                                                 <span>★</span>
-                                                <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">${displayRating}</span>
+                                                <span class="rating-val text-white font-bold">${displayRating}</span>
                                             </div>
-                                            <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="${photo.id}" aria-label="Toggle Favorite">
-                                                <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                                            <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="${photo.id}" aria-label="Toggle Favorite">
+                                                <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                                             </button>
+                                            <a href="gallery.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open gallery">
+                                                <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -5281,17 +5305,17 @@
         // Append "Show All" card dynamically to gridPersonal (at the side of other cards)
         if (gridPersonal) {
             const showAllCard = document.createElement('div');
-            showAllCard.className = "group apple-elevated-card bg-white border border-slate-200/80 rounded-[22px] p-6 flex flex-col justify-between items-center text-center cursor-pointer min-h-[300px] transition-all hover:shadow-md hover:border-slate-300/80 shadow-sm";
+            showAllCard.className = "group motionsites-card bg-[#0c0d11] border border-white/10 rounded-[22px] p-6 flex flex-col justify-between items-center text-center cursor-pointer min-h-[300px] transition-all hover:border-white/25 hover:shadow-xl shadow-md";
             showAllCard.onclick = window.showLandingCollection;
             showAllCard.innerHTML = `
                 <div class="my-auto flex flex-col items-center gap-4">
-                    <div class="w-14 h-14 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center text-2xl font-bold shadow-xs">
+                    <div class="w-14 h-14 rounded-full bg-white/5 border border-white/10 text-purple-400 flex items-center justify-center text-2xl font-bold shadow-xs">
                         ✨
                     </div>
-                    <h4 class="text-xl sm:text-2xl font-black text-slate-900 font-['Outfit'] tracking-tight max-w-[200px] leading-tight">EXPLORE FULL COLLECTION</h4>
-                    <p class="text-xs text-slate-500 max-w-[180px] font-sans">Click to show ONLY high-converting landing pages</p>
+                    <h4 class="text-xl sm:text-2xl font-black text-white font-['Outfit'] tracking-tight max-w-[200px] leading-tight">EXPLORE FULL COLLECTION</h4>
+                    <p class="text-xs text-white/50 max-w-[180px] font-sans">Click to show ONLY high-converting landing pages</p>
                 </div>
-                <span class="text-xs font-mono font-bold uppercase tracking-widest text-sky-600 flex items-center gap-1.5 hover:text-sky-700">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-purple-400 flex items-center gap-1.5 hover:text-purple-300">
                     Show Landing Pages ➔
                 </span>
             `;
@@ -5305,6 +5329,17 @@
                 return res.json();
             })
             .then(photos => {
+                const subtitleMap = {
+                    'cyberpunk': 'Night Photography & Grading',
+                    'portrait': 'Editorial Portrait Retouch',
+                    'landscape': 'Alpine Sunlight & Details',
+                    'street_night': 'Street Photography & Neon',
+                    'product': 'Commercial Studio Retouch',
+                    'wedding': 'Cinematic Wedding Grading',
+                    'wildlife': 'Wildlife & Nature Tones',
+                    'architecture': 'Architectural Symmetry'
+                };
+
                 photos.forEach(photo => {
                     let displayRating = "4.8";
                     let displayCount = "32";
@@ -5316,29 +5351,39 @@
                         }
                     } catch(e) {}
 
+                    const photoSubtitle = subtitleMap[photo.id] || 'Color Grading & Retouch';
+
                     const card = document.createElement('div');
-                    card.className = "dynamic-gallery-card group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between";
-                            card.innerHTML = `
-                                <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
-                                    <img alt="${photo.title}" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="${photo.after}">
-                                </a>
-                                <div class="pt-2 px-1 pb-0.5 w-full">
-                                    <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-                                        <a href="gallery.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                                            ${photo.title}
-                                        </a>
-                                        <div class="flex items-center gap-2 shrink-0">
-                                            <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
-                                                <span>★</span>
-                                                <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">${displayRating}</span>
-                                            </div>
-                                            <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="${photo.id}" aria-label="Toggle Favorite">
-                                                <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
-                                            </button>
-                                        </div>
-                                    </div>
+                    card.className = "dynamic-gallery-card group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between";
+                    card.innerHTML = `
+                        <a href="gallery.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
+                            <img alt="${photo.title}" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="${photo.after}">
+                        </a>
+                        <div class="pt-3 px-1 pb-0.5 w-full">
+                            <div class="flex items-center justify-between gap-3 w-full min-w-0">
+                                <div class="min-w-0 flex-1">
+                                    <a href="gallery.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                                        ${photo.title}
+                                    </a>
+                                    <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                                        ${photoSubtitle}
+                                    </span>
                                 </div>
-                            `;
+                                <div class="flex items-center gap-1.5 shrink-0">
+                                    <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
+                                        <span>★</span>
+                                        <span class="rating-val text-white font-bold">${displayRating}</span>
+                                    </div>
+                                    <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="${photo.id}" aria-label="Toggle Favorite">
+                                        <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                                    </button>
+                                    <a href="gallery.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open gallery">
+                                        <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
                     
                     // Bind rating badge click event
                     card.querySelector('.project-rating-badge').addEventListener('click', (e) => {
@@ -6759,25 +6804,45 @@
                                 }
                             } catch(e) {}
 
+                            const subtitleMap = {
+                                'cyberpunk': 'Night Photography & Grading',
+                                'portrait': 'Editorial Portrait Retouch',
+                                'landscape': 'Alpine Sunlight & Details',
+                                'street_night': 'Street Photography & Neon',
+                                'product': 'Commercial Studio Retouch',
+                                'wedding': 'Cinematic Wedding Grading',
+                                'wildlife': 'Wildlife & Nature Tones',
+                                'architecture': 'Architectural Symmetry'
+                            };
+                            const photoSubtitle = subtitleMap[photo.id] || 'Color Grading & Retouch';
+
                             const card = document.createElement('div');
-                            card.className = "dynamic-gallery-card group apple-elevated-card bg-white dark:bg-slate-900 rounded-[22px] p-2 sm:p-2.5 flex flex-col justify-between";
+                            card.className = "dynamic-gallery-card group apple-elevated-card motionsites-card bg-[#0c0d11] rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between";
                             card.innerHTML = `
-                                <a href="gallery.html" class="block aspect-[16/10] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-transparent">
+                                <a href="gallery.html" class="block aspect-[16/10.5] w-full rounded-[16px] overflow-hidden apple-image-container relative cursor-pointer group/img bg-[#08090b]">
                                     <img alt="${photo.title}" class="w-full h-full object-cover object-top scale-[1.01] group-hover:scale-[1.05] transition-transform duration-700 block" src="${photo.after}">
                                 </a>
-                                <div class="pt-2 px-1 pb-0.5 w-full">
-                                    <div class="flex items-center justify-between gap-2 mt-0.5 w-full min-w-0">
-                                        <a href="gallery.html" class="flex-1 min-w-0 text-xs sm:text-sm font-bold text-slate-950 dark:text-slate-950 hover:text-primary transition-colors truncate block">
-                                            ${photo.title}
-                                        </a>
-                                        <div class="flex items-center gap-2 shrink-0">
-                                            <div class="project-rating-badge flex items-center gap-1 text-xs font-bold text-amber-500 bg-amber-50/80 dark:bg-amber-950/30 px-2 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-800/40 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
+                                <div class="pt-3 px-1 pb-0.5 w-full">
+                                    <div class="flex items-center justify-between gap-3 w-full min-w-0">
+                                        <div class="min-w-0 flex-1">
+                                            <a href="gallery.html" class="card-title text-[14px] sm:text-[15px] font-semibold text-white group-hover:text-purple-300 transition-colors truncate block leading-snug">
+                                                ${photo.title}
+                                            </a>
+                                            <span class="card-subtitle text-[11px] sm:text-[12px] font-medium text-white/45 tracking-wide truncate block mt-0.5">
+                                                ${photoSubtitle}
+                                            </span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 shrink-0">
+                                            <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
                                                 <span>★</span>
-                                                <span class="rating-val text-slate-950 dark:text-slate-950 font-bold">${displayRating}</span>
+                                                <span class="rating-val text-white font-bold">${displayRating}</span>
                                             </div>
-                                            <button class="fav-toggle-btn text-slate-400 dark:text-slate-500 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center shrink-0" data-project-id="${photo.id}" aria-label="Toggle Favorite">
-                                                <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                                            <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="${photo.id}" aria-label="Toggle Favorite">
+                                                <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                                             </button>
+                                            <a href="gallery.html" class="card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all flex items-center justify-center border border-white/10" title="Open gallery">
+                                                <span class="material-symbols-outlined text-[15px] sm:text-[16px]">arrow_outward</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
