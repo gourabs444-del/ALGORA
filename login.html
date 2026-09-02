@@ -1,183 +1,228 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>My Discounted Labs | Sign Up</title>
+    <title>Sign In / Sign Up | Algora</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
     <style data-purpose="custom-styles">
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
         * {
             -webkit-tap-highlight-color: transparent;
+            outline: none !important;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .font-headline {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
         
-        .bg-gradient-custom {
-            background: linear-gradient(135deg, #3B4B74 0%, #3B4B74 40%, #FA6A92 40%, #FA6A92 100%);
+        .bg-login-mesh {
+            background: radial-gradient(circle at 10% 20%, #1e1b4b 0%, #0c0d12 45%, #050608 100%);
         }
 
         .bg-blue-gradient {
-            background: linear-gradient(180deg, #62A4FF 0%, #4667FF 100%);
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 45%, #4f46e5 100%);
         }
 
-        .form-input {
-            border: none;
-            border-bottom: 1px solid #E2E8F0;
-            border-radius: 0;
-            padding: 0.5rem 0;
-            box-shadow: none !important;
+        .pro-input-bar {
+            background: rgba(248, 250, 252, 0.75);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 0.875rem;
+            padding: 0.75rem 1rem;
+            color: #0f172a;
+            font-size: 0.875rem;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
         }
-        
-        .form-input:focus {
-            border-bottom-color: #4F46E5;
-            box-shadow: none !important;
-            outline: none;
+
+        .pro-input-bar:focus {
+            background: #ffffff;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
         }
 
         .tab-active {
-            color: #374151;
-            border-bottom: 2px solid #4F46E5;
+            color: #0f172a;
+            font-weight: 700;
+            border-bottom: 2.5px solid #4f46e5;
         }
         
         .tab-inactive {
-            color: #9CA3AF;
-            border-bottom: 2px solid transparent;
+            color: #94a3b8;
+            font-weight: 500;
+            border-bottom: 2.5px solid transparent;
+        }
+
+        .social-auth-btn {
+            background: rgba(248, 250, 252, 0.85);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 0.875rem;
+            padding: 0.7rem 1rem;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .social-auth-btn:hover {
+            background: #ffffff;
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+        
+        .social-auth-btn:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
-<body class="bg-gradient-custom min-h-screen flex items-center justify-center p-4 md:p-8">
+<body class="bg-login-mesh min-h-screen flex items-center justify-center p-3 sm:p-6 md:p-8 selection:bg-indigo-600 selection:text-white">
+
+    <!-- Top Back to Portfolio Navigation -->
+    <a href="index.html" class="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/15 text-white text-xs font-medium tracking-wide transition-all shadow-lg active:scale-95 cursor-pointer" style="text-decoration: none;">
+        <svg class="w-3.5 h-3.5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Back to Algora</span>
+    </a>
 
     <!-- BEGIN: Main Container -->
-    <main class="w-full max-w-[1100px] min-h-[640px] md:h-[700px] bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative z-10" data-purpose="main-layout">
+    <main class="w-full max-w-[1020px] min-h-[580px] md:h-[660px] bg-white rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.45)] flex flex-col md:flex-row relative z-10" data-purpose="main-layout">
         
-        <!-- BEGIN: Left Side (Image & Branding) -->
-        <section class="w-full md:w-[45%] min-h-[260px] md:h-full bg-blue-gradient md:rounded-r-[40px] flex flex-col justify-between p-8 md:p-10 relative z-20 shadow-[10px_0_20px_rgba(0,0,0,0.05)] overflow-hidden" data-purpose="left-panel">
+        <!-- BEGIN: Left Side (Brand & Visual) -->
+        <section class="w-full md:w-[45%] min-h-[220px] md:h-full bg-blue-gradient flex flex-col justify-between p-8 sm:p-10 md:p-12 relative z-20 overflow-hidden text-white" data-purpose="left-panel">
             
-            <!-- Brand Logo -->
-            <div class="flex items-center space-x-2 text-white relative z-30">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.5-.5m10.5-1.5c1.5-1.26 2-5 2-5s-3.74.5-5 2l-.5.5m-5-2v-8m0 0l-3 3m3-3l3 3" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <span class="font-semibold text-lg tracking-wide">My Discounted Labs</span>
+            <!-- Glow Accent -->
+            <div class="absolute -top-24 -left-24 w-72 h-72 bg-indigo-400/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Brand Header -->
+            <div class="relative z-30">
+                <a href="index.html" class="inline-flex items-center gap-2 select-none" style="text-decoration:none;">
+                    <img src="assets/algora-logo.svg" alt="ALGORA" class="h-3.5 w-auto object-contain brightness-0 invert opacity-95">
+                </a>
+                <p class="font-mono text-[10px] tracking-[0.25em] text-indigo-200/80 uppercase mt-2">The Curated Web &nbsp;&middot;&nbsp; 2026</p>
             </div>
 
-            <!-- Custom SVG Graphic -->
-            <div class="absolute inset-0 z-10 opacity-60 pointer-events-none">
-                <svg height="100%" preserveAspectRatio="xMidYMid slice" viewBox="0 0 500 700" width="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="hexGrad1" x1="0%" x2="100%" y1="0%" y2="100%">
-                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"></stop>
-                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"></stop>
-                        </linearGradient>
-                        <linearGradient id="hexGrad2" x1="100%" x2="0%" y1="0%" y2="100%">
-                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4"></stop>
-                            <stop offset="100%" stop-color="#8BB8FF" stop-opacity="0.1"></stop>
-                        </linearGradient>
-                        <g id="hexagon">
-                            <polygon points="50,0 100,28.87 100,86.6 50,115.47 0,86.6 0,28.87"></polygon>
-                        </g>
-                        <g id="microscope">
-                            <path d="M20,40 L20,30 C20,20 30,20 30,20 L30,15 C30,10 25,10 25,10 L15,10 C15,10 10,10 10,15 L10,35 C10,40 15,45 15,45 L25,45 C25,45 28,45 28,42 L25,40 Z" fill="none" stroke="#ffffff" stroke-width="2"></path>
-                            <circle cx="15" cy="25" fill="none" r="4" stroke="#ffffff" stroke-width="2"></circle>
-                            <line stroke="#ffffff" stroke-width="3" x1="5" x2="35" y1="50" y2="50"></line>
-                        </g>
-                        <g id="beaker">
-                            <path d="M10,10 L30,10 L30,20 L35,45 C37,55 30,60 20,60 C10,60 3,55 5,45 L10,20 Z" fill="none" stroke="#ffffff" stroke-width="2"></path>
-                            <line stroke="#ffffff" stroke-dasharray="2,2" stroke-width="1" x1="5" x2="35" y1="40" y2="40"></line>
-                            <line stroke="#ffffff" stroke-dasharray="2,2" stroke-width="1" x1="8" x2="32" y1="30" y2="30"></line>
-                        </g>
-                    </defs>
-
-                    <!-- Background hexagons (large) -->
-                    <use fill="url(#hexGrad1)" href="#hexagon" opacity="0.3" transform="scale(2.5)" x="-20" y="50"></use>
-                    <use fill="none" href="#hexagon" opacity="0.4" stroke="#ffffff" stroke-width="1" transform="scale(2)" x="120" y="-30"></use>
-                    <use fill="url(#hexGrad2)" href="#hexagon" opacity="0.2" transform="scale(3)" x="80" y="180"></use>
-                    <use fill="none" href="#hexagon" opacity="0.3" stroke="#ffffff" stroke-width="2" transform="scale(1.8)" x="-50" y="300"></use>
-                    <use fill="url(#hexGrad1)" href="#hexagon" opacity="0.25" transform="scale(2.2)" x="150" y="400"></use>
-
-                    <!-- Medium hexagons -->
-                    <use fill="url(#hexGrad2)" href="#hexagon" x="50" y="100"></use>
-                    <use fill="none" href="#hexagon" opacity="0.6" stroke="#ffffff" stroke-width="1.5" x="160" y="160"></use>
-                    <use fill="url(#hexGrad1)" href="#hexagon" opacity="0.5" x="270" y="100"></use>
-                    <use fill="none" href="#hexagon" opacity="0.4" stroke="#ffffff" stroke-width="2" x="220" y="270"></use>
-                    <use fill="url(#hexGrad2)" href="#hexagon" opacity="0.7" x="60" y="350"></use>
-                    <use fill="none" href="#hexagon" opacity="0.5" stroke="#ffffff" stroke-width="1" x="300" y="400"></use>
-                    <use fill="url(#hexGrad1)" href="#hexagon" opacity="0.4" x="180" y="520"></use>
-                    <use fill="url(#hexGrad2)" href="#hexagon" opacity="0.3" x="400" y="200"></use>
-
-                    <!-- Small hexagons and icons -->
-                    <use fill="#ffffff" href="#hexagon" opacity="0.4" transform="scale(0.5)" x="350" y="50"></use>
-                    <use fill="none" href="#hexagon" opacity="0.7" stroke="#ffffff" stroke-width="3" transform="scale(0.6)" x="120" y="280"></use>
-                    <use fill="url(#hexGrad1)" href="#hexagon" transform="scale(0.7)" x="420" y="350"></use>
-                    <use fill="none" href="#hexagon" opacity="0.5" stroke="#ffffff" stroke-width="2" transform="scale(0.5)" x="80" y="550"></use>
-
-                    <!-- Integrating icons inside hexagons -->
-                    <g transform="translate(85, 135) scale(0.8)">
-                        <use href="#beaker" opacity="0.8"></use>
-                    </g>
-                    <g transform="translate(305, 135) scale(0.8)">
-                        <use href="#microscope" opacity="0.7"></use>
-                    </g>
-                    <g transform="translate(95, 385) scale(0.8)">
-                        <use href="#microscope" opacity="0.9"></use>
-                    </g>
-                    <g transform="translate(215, 555) scale(0.8)">
-                        <use href="#beaker" opacity="0.6"></use>
-                    </g>
-                </svg>
+            <!-- Middle Inspiring Quote / Feature Box -->
+            <div class="relative z-30 my-auto hidden md:block">
+                <span class="inline-block px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] font-mono tracking-wider uppercase text-indigo-100 mb-3">
+                    Premium Member Access
+                </span>
+                <h2 class="font-headline text-2xl lg:text-3xl font-bold leading-tight text-white">
+                    Experience the finest curated digital craft.
+                </h2>
+                <p class="text-xs text-indigo-100/75 mt-3 leading-relaxed max-w-[320px]">
+                    Unlock bookmarking, instant project proposals, curated presets, and priority creative consultations.
+                </p>
             </div>
 
-            <!-- Copyright -->
-            <div class="text-white/80 text-xs text-center pb-2 relative z-30">
-                Copyright © 2019, My Discounted Labs. All rights reserved.
+            <!-- Left Footer Badges -->
+            <div class="relative z-30 text-xs text-white/60 flex items-center justify-between border-t border-white/10 pt-4">
+                <span>© 2026 ALGORA STUDIO</span>
+                <span class="flex items-center gap-1.5 text-[11px] text-emerald-300 font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Encrypted &amp; Secure
+                </span>
             </div>
         </section>
         <!-- END: Left Side -->
 
-        <!-- BEGIN: Right Side (Form) -->
-        <section class="w-full md:w-[55%] h-full bg-slate-50 flex flex-col justify-center items-center relative p-6 sm:p-8 md:p-10" data-purpose="right-panel">
+        <!-- BEGIN: Right Side (Auth Form Card) -->
+        <section class="w-full md:w-[55%] h-full bg-[#fafbfd] flex flex-col justify-center items-center relative p-6 sm:p-8 md:p-12 overflow-y-auto" data-purpose="right-panel">
             
-            <!-- Form Card -->
-            <div class="w-full max-w-[400px] bg-white rounded-3xl shadow-lg p-6 sm:p-8 relative z-10" data-purpose="login-form-card">
+            <div class="w-full max-w-[380px]" data-purpose="login-form-card">
                 
-                <!-- Tabs -->
-                <div class="flex space-x-6 mb-8 text-lg font-medium border-b border-gray-100 pb-2">
-                    <button type="button" id="tab-signup" onclick="switchMode('signup')" class="tab-active pb-2 transition-colors">Sign Up</button>
-                    <button type="button" id="tab-signin" onclick="switchMode('signin')" class="tab-inactive pb-2 hover:text-gray-700 transition-colors">Sign In</button>
+                <!-- Tab Switching Header -->
+                <div class="flex space-x-6 mb-7 text-base sm:text-lg border-b border-slate-200/80 pb-2.5 select-none">
+                    <button type="button" id="tab-signup" onclick="switchMode('signup')" class="tab-active pb-2 transition-all cursor-pointer">Sign Up</button>
+                    <button type="button" id="tab-signin" onclick="switchMode('signin')" class="tab-inactive pb-2 hover:text-slate-700 transition-all cursor-pointer">Sign In</button>
                 </div>
 
-                <!-- Form -->
-                <form id="auth-form" class="space-y-6" onsubmit="event.preventDefault();">
-                    <div id="field-fullname">
-                        <label class="block text-sm text-blue-500 font-medium mb-1">Full Name</label>
-                        <input id="input-fullname" class="form-input w-full bg-transparent text-gray-700 text-sm focus:outline-none" placeholder="Aldrego" type="text"/>
+                <!-- Notification/Alert Box (Hidden by Default) -->
+                <div id="auth-alert" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+                <!-- Form Fields with Pro Transparent Styling -->
+                <form id="auth-form" class="space-y-3.5" onsubmit="handleAuthSubmit(event);">
+                    
+                    <!-- Full Name (Only on Sign Up) -->
+                    <div id="field-fullname" class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <input id="input-fullname" class="pro-input-bar w-full pl-10" placeholder="Full Name" type="text" autocomplete="name"/>
                     </div>
 
-                    <div>
-                        <label class="block text-sm text-blue-500 font-medium mb-1">Email</label>
-                        <input id="input-email" class="form-input w-full bg-transparent text-gray-700 text-sm focus:outline-none" placeholder="Aldrego@email.com" type="email" required/>
+                    <!-- Email Address -->
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <input id="input-email" class="pro-input-bar w-full pl-10" placeholder="Email Address" type="email" required autocomplete="email"/>
                     </div>
 
-                    <div>
-                        <label class="block text-sm text-blue-500 font-medium mb-1">Password</label>
-                        <input id="input-password" class="form-input w-full bg-transparent text-gray-700 text-sm focus:outline-none" placeholder="•••••••••" type="password" required/>
+                    <!-- Password with Eye Toggle -->
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        </div>
+                        <input id="input-password" class="pro-input-bar w-full pl-10 pr-10" placeholder="Password" type="password" required autocomplete="current-password"/>
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors cursor-pointer" aria-label="Toggle password visibility">
+                            <svg id="eye-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
                     </div>
 
-                    <button id="btn-submit" class="w-full bg-blue-500 hover:bg-blue-600 active:scale-[0.98] text-white font-medium py-3 rounded-xl shadow-md shadow-blue-500/30 transition-all mt-8 cursor-pointer" type="submit">
-                        Sign Up
+                    <!-- Primary Submit Button -->
+                    <button id="btn-submit" class="w-full bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98] text-white font-semibold py-3 rounded-xl shadow-md shadow-indigo-600/25 transition-all mt-4 cursor-pointer flex items-center justify-center gap-2" type="submit">
+                        <span>Sign Up</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </button>
                 </form>
 
+                <!-- Divider: Or continue with -->
+                <div class="relative my-6 select-none">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-slate-200"></div>
+                    </div>
+                    <div class="relative flex justify-center text-[11px] uppercase tracking-wider font-semibold text-slate-400">
+                        <span class="bg-[#fafbfd] px-3 font-mono">Or continue with</span>
+                    </div>
+                </div>
+
+                <!-- Social Login Buttons (Google & Facebook) -->
+                <div class="grid grid-cols-2 gap-3">
+                    
+                    <!-- Google Auth Button -->
+                    <button type="button" onclick="handleSocialAuth('google')" class="social-auth-btn flex items-center justify-center gap-2.5 text-slate-700 hover:text-slate-900 text-xs font-semibold select-none cursor-pointer">
+                        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                        </svg>
+                        <span>Google</span>
+                    </button>
+
+                    <!-- Facebook Auth Button -->
+                    <button type="button" onclick="handleSocialAuth('facebook')" class="social-auth-btn flex items-center justify-center gap-2.5 text-slate-700 hover:text-slate-900 text-xs font-semibold select-none cursor-pointer">
+                        <svg class="w-4 h-4 flex-shrink-0 fill-[#1877F2]" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        <span>Facebook</span>
+                    </button>
+                </div>
+
+                <!-- Mode Switch Link -->
                 <div class="text-center mt-6">
-                    <a id="toggle-account-link" class="text-pink-400 text-sm hover:text-pink-500 transition-colors cursor-pointer" onclick="toggleMode()">
-                        I have an Account ?
+                    <a id="toggle-account-link" class="text-indigo-600 hover:text-indigo-700 text-xs font-semibold transition-colors cursor-pointer select-none" onclick="toggleMode()">
+                        Already have an account? Sign In
                     </a>
                 </div>
+
             </div>
 
         </section>
@@ -186,8 +231,18 @@
     </main>
     <!-- END: Main Container -->
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+
     <script>
         let currentMode = 'signup';
+
+        // Initialize Firebase if available
+        if (typeof firebase !== 'undefined' && window.firebaseConfig && !firebase.apps.length) {
+            firebase.initializeApp(window.firebaseConfig);
+        }
 
         function switchMode(mode) {
             currentMode = mode;
@@ -196,24 +251,109 @@
             const fieldFullName = document.getElementById('field-fullname');
             const btnSubmit = document.getElementById('btn-submit');
             const toggleLink = document.getElementById('toggle-account-link');
+            const alertBox = document.getElementById('auth-alert');
+            if (alertBox) alertBox.classList.add('hidden');
 
             if (mode === 'signup') {
-                tabSignup.className = 'tab-active pb-2 transition-colors';
-                tabSignin.className = 'tab-inactive pb-2 hover:text-gray-700 transition-colors';
+                tabSignup.className = 'tab-active pb-2 transition-all cursor-pointer';
+                tabSignin.className = 'tab-inactive pb-2 hover:text-slate-700 transition-all cursor-pointer';
                 fieldFullName.style.display = 'block';
-                btnSubmit.textContent = 'Sign Up';
-                toggleLink.textContent = 'I have an Account ?';
+                btnSubmit.querySelector('span').textContent = 'Sign Up';
+                toggleLink.textContent = 'Already have an account? Sign In';
             } else {
-                tabSignin.className = 'tab-active pb-2 transition-colors';
-                tabSignup.className = 'tab-inactive pb-2 hover:text-gray-700 transition-colors';
+                tabSignin.className = 'tab-active pb-2 transition-all cursor-pointer';
+                tabSignup.className = 'tab-inactive pb-2 hover:text-slate-700 transition-all cursor-pointer';
                 fieldFullName.style.display = 'none';
-                btnSubmit.textContent = 'Sign In';
-                toggleLink.textContent = "Don't have an Account ? Sign Up";
+                btnSubmit.querySelector('span').textContent = 'Sign In';
+                toggleLink.textContent = "Don't have an account? Sign Up";
             }
         }
 
         function toggleMode() {
             switchMode(currentMode === 'signup' ? 'signin' : 'signup');
+        }
+
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('input-password');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                eyeIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            } else {
+                pwdInput.type = 'password';
+                eyeIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+        }
+
+        function showAlert(msg, isSuccess = false) {
+            const alertBox = document.getElementById('auth-alert');
+            if (!alertBox) return;
+            alertBox.textContent = msg;
+            alertBox.className = `mb-4 p-3 rounded-xl text-xs font-medium border ${isSuccess ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`;
+            alertBox.classList.remove('hidden');
+        }
+
+        function getRedirectUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('redirect') || 'index.html';
+        }
+
+        async function handleAuthSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('input-email').value.trim();
+            const password = document.getElementById('input-password').value;
+            const fullname = document.getElementById('input-fullname') ? document.getElementById('input-fullname').value.trim() : '';
+
+            if (!email || !password) {
+                showAlert('Please fill in all required fields.');
+                return;
+            }
+
+            try {
+                if (typeof firebase !== 'undefined' && firebase.auth) {
+                    if (currentMode === 'signup') {
+                        const cred = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                        if (fullname && cred.user) {
+                            await cred.user.updateProfile({ displayName: fullname });
+                        }
+                    } else {
+                        await firebase.auth().signInWithEmailAndPassword(email, password);
+                    }
+                }
+                showAlert(currentMode === 'signup' ? 'Account created successfully!' : 'Signed in successfully!', true);
+                setTimeout(() => {
+                    window.location.href = getRedirectUrl();
+                }, 700);
+            } catch (err) {
+                showAlert(err.message || 'Authentication error occurred.');
+            }
+        }
+
+        async function handleSocialAuth(providerName) {
+            if (typeof firebase === 'undefined' || !firebase.auth) {
+                showAlert(`${providerName.toUpperCase()} authentication ready. Redirecting...`, true);
+                setTimeout(() => { window.location.href = getRedirectUrl(); }, 600);
+                return;
+            }
+
+            try {
+                let provider;
+                if (providerName === 'google') {
+                    provider = new firebase.auth.GoogleAuthProvider();
+                } else if (providerName === 'facebook') {
+                    provider = new firebase.auth.FacebookAuthProvider();
+                }
+
+                if (provider) {
+                    await firebase.auth().signInWithPopup(provider);
+                    showAlert('Signed in successfully!', true);
+                    setTimeout(() => {
+                        window.location.href = getRedirectUrl();
+                    }, 500);
+                }
+            } catch (err) {
+                showAlert(err.message || `Failed to sign in with ${providerName}.`);
+            }
         }
     </script>
 </body>

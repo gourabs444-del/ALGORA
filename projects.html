@@ -6192,105 +6192,156 @@
 
     document.body.classList.add('all-projects-showcase');
 
-    // ── High-Performance Smooth Scroll (Lenis Engine + GSAP ScrollTrigger Hero Synchronization) ──
-    (function initSmoothHeroAndScroll() {
-        function setup() {
-            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-            gsap.registerPlugin(ScrollTrigger);
+    // ── Obscura-style scroll-driven hero animation (100% synchronized across PC & Mobile) ──
+    (function initObscuraHero() {
+        const intro   = document.getElementById('all-projects-intro');
+        const hero    = document.getElementById('obscura-hero-section');
+        const content = document.getElementById('obscura-hero-content');
+        if (!intro || !hero) return;
 
-            // Prevent mobile URL-bar expand/collapse from causing stutter/recalc
-            ScrollTrigger.config({ 
-                ignoreMobileResize: true,
-                autoRefreshEvents: "visibilitychange,DOMContentLoaded,load,resize"
-            });
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let raf = null;
+        let targetP = 0;
+        let currentP = 0;
+
+        let cachedVh = window.innerHeight;
+        let cachedIntroTop = 0;
+        let cachedTravel = 0;
+
+        let lastWidth = window.innerWidth;
+        function updateMetrics() {
+            cachedVh = window.innerHeight;
+            const sy = Math.max(0, window.scrollY || window.pageYOffset || 0);
+            cachedIntroTop = intro.getBoundingClientRect().top + sy;
+            cachedTravel = intro.offsetHeight - cachedVh;
+        }
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth !== lastWidth) {
+                lastWidth = window.innerWidth;
+                updateMetrics();
+            }
+        }, { passive: true });
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updateMetrics, 120);
+        }, { passive: true });
+
+        updateMetrics();
+
+        let lastOpacity = -1;
+        let lastTy = -9999;
+        let lastDim = -1;
+
+        function tick() {
+            raf = null;
+            if (reduceMotion) return;
+
+            const sy = Math.max(0, window.scrollY || window.pageYOffset || 0);
+
+            // Skip work if user has already scrolled past the hero section
+            if (cachedTravel > 0 && sy > cachedIntroTop + cachedTravel + 80 && currentP === 1) {
+                return;
+            }
+
+            const scrolled = Math.max(0, sy - cachedIntroTop);
+            targetP = cachedTravel > 0 ? Math.min(1, Math.max(0, scrolled / cachedTravel)) : 0;
+            currentP = targetP;
+
+            if (content) {
+                let opacity = 1;
+                let translateY = 0;
+
+                if (currentP > 0 && sy > 0) {
+                    const fadeProgress = currentP < 0.35 ? 0 : Math.min(1, (currentP - 0.35) / 0.5);
+                    opacity = Math.max(0, 1 - fadeProgress);
+                    translateY = -(currentP * cachedVh * 0.45);
+                }
+
+                if (Math.abs(opacity - lastOpacity) > 0.004) {
+                    content.style.opacity = opacity.toFixed(3);
+                    lastOpacity = opacity;
+                }
+                if (Math.abs(translateY - lastTy) > 0.4) {
+                    content.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
+                    lastTy = translateY;
+                }
+            }
+
+            if (hero) {
+                const dim = Math.min(0.8, currentP * 0.9);
+                if (Math.abs(dim - lastDim) > 0.01) {
+                    hero.style.setProperty('--obs-dim', dim.toFixed(3));
+                    lastDim = dim;
+                }
+            }
+        }
+
+        function schedule() {
+            if (raf === null) raf = requestAnimationFrame(tick);
+        }
+
+        window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('touchmove', schedule, { passive: true });
+        tick(); // paint immediately on load
+    })();
+
+    // ── High-Performance Smooth Scroll (Lenis Engine on Desktop + Native Momentum on Mobile) ──
+    (function initSmoothScrollInertia() {
+        function setupLenis() {
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+            }
 
             const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+            if (isTouchDevice) {
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.refresh();
+                }
+                return;
+            }
 
-            // 1. Initialize Lenis Smooth Scroll Engine
             if (typeof Lenis !== 'undefined') {
                 window.lenisInstance = new Lenis({
-                    duration: isTouchDevice ? 0.9 : 1.15,
+                    duration: 1.15,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                     orientation: 'vertical',
                     gestureOrientation: 'vertical',
                     smoothWheel: true,
                     wheelMultiplier: 1.0,
-                    touchMultiplier: 1.2,
-                    lerp: isTouchDevice ? 0.12 : 0.09,
+                    touchMultiplier: 1.5,
+                    syncTouch: false,
+                    lerp: 0.08,
                     infinite: false
                 });
 
-                // Synchronize Lenis with ScrollTrigger
-                window.lenisInstance.on('scroll', ScrollTrigger.update);
+                if (typeof ScrollTrigger !== 'undefined') {
+                    window.lenisInstance.on('scroll', ScrollTrigger.update);
+                }
 
-                // Drive Lenis RAF from GSAP high-precision ticker at 120 FPS
-                gsap.ticker.add((time) => {
-                    window.lenisInstance.raf(time * 1000);
-                });
-                gsap.ticker.lagSmoothing(0);
+                if (typeof gsap !== 'undefined') {
+                    gsap.ticker.add((time) => {
+                        window.lenisInstance.raf(time * 1000);
+                    });
+                    gsap.ticker.lagSmoothing(0);
+                } else {
+                    function raf(time) {
+                        window.lenisInstance.raf(time);
+                        requestAnimationFrame(raf);
+                    }
+                    requestAnimationFrame(raf);
+                }
 
                 window.lenisInstance.on('scroll', () => {
                     if (typeof onScrollOptimized === 'function') onScrollOptimized();
+                    window.dispatchEvent(new Event('scroll'));
                 });
-            } else {
-                window.addEventListener('scroll', () => {
-                    ScrollTrigger.update();
-                    if (typeof onScrollOptimized === 'function') onScrollOptimized();
-                }, { passive: true });
             }
-
-            // 2. Silky-Smooth GPU Scrub for "Curating the Web's Finest" Hero & Drawer
-            const intro       = document.getElementById('all-projects-intro');
-            const heroContent = document.getElementById('obscura-hero-content');
-            const heroDim     = document.getElementById('obscura-hero-dim-layer');
-
-            if (intro && heroContent) {
-                gsap.set(heroContent, { yPercent: 0, opacity: 1, force3D: true });
-                if (heroDim) gsap.set(heroDim, { opacity: 0, force3D: true });
-
-                const heroTL = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: intro,
-                        start: 'top top',
-                        end: 'bottom bottom',
-                        scrub: true, // 1:1 hardware-accelerated sync with drawer
-                        invalidateOnRefresh: true
-                    }
-                });
-
-                // Pure GPU transform using yPercent (zero layout recalculations, butter-smooth 120 FPS)
-                heroTL.to(heroContent, {
-                    yPercent: -45,
-                    ease: 'none',
-                    duration: 1,
-                    force3D: true
-                }, 0);
-
-                // Smooth GPU opacity fade starting at 35% through scroll
-                heroTL.fromTo(heroContent, 
-                    { opacity: 1 },
-                    { opacity: 0, ease: 'power1.out', duration: 0.6, force3D: true },
-                    0.35
-                );
-
-                // GPU Dimming overlay opacity
-                if (heroDim) {
-                    heroTL.to(heroDim, {
-                        opacity: 0.8,
-                        ease: 'none',
-                        duration: 1,
-                        force3D: true
-                    }, 0);
-                }
-            }
-
-            ScrollTrigger.refresh();
         }
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', setup);
+            document.addEventListener('DOMContentLoaded', setupLenis);
         } else {
-            setup();
+            setupLenis();
         }
     })();
 
