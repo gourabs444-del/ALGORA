@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Sign In / Sign Up | Algora</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <style data-purpose="custom-styles">
         * {
             -webkit-tap-highlight-color: transparent;
@@ -21,183 +21,271 @@
             font-family: 'Outfit', sans-serif;
         }
 
+        .font-serif-luxury {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
         .font-mono {
             font-family: 'JetBrains Mono', monospace;
         }
-        
-        .bg-login-mesh {
-            background: radial-gradient(circle at 10% 20%, #1e1b4b 0%, #0c0d12 45%, #050608 100%);
+
+        /* Dynamic Studio Graphic Background */
+        .graphic-canvas {
+            background-color: #07080d;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.28) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.12) 0%, transparent 55%),
+                radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px;
         }
 
-        .bg-blue-gradient {
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 45%, #4f46e5 100%);
+        /* Glassmorphic 3D Cards */
+        .glass-graphic-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
-        .pro-input-bar {
-            background: rgba(248, 250, 252, 0.75);
-            border: 1px solid rgba(226, 232, 240, 0.9);
-            border-radius: 0.875rem;
-            padding: 0.75rem 1rem;
+        /* Modern Floating Input Style */
+        .auth-input-field {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 0.85rem 1rem 0.85rem 2.85rem;
             color: #0f172a;
             font-size: 0.875rem;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-        }
-
-        .pro-input-bar:focus {
-            background: #ffffff;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-        }
-
-        .tab-active {
-            color: #0f172a;
-            font-weight: 700;
-            border-bottom: 2.5px solid #4f46e5;
-        }
-        
-        .tab-inactive {
-            color: #94a3b8;
             font-weight: 500;
-            border-bottom: 2.5px solid transparent;
+            width: 100%;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         }
 
-        .social-auth-btn {
-            background: rgba(248, 250, 252, 0.85);
-            border: 1px solid rgba(226, 232, 240, 0.9);
-            border-radius: 0.875rem;
-            padding: 0.7rem 1rem;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        .auth-input-field::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
         }
 
-        .social-auth-btn:hover {
+        .auth-input-field:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12), 0 2px 4px rgba(0, 0, 0, 0.04);
             background: #ffffff;
-            border-color: #cbd5e1;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transform: translateY(-1px);
         }
-        
-        .social-auth-btn:active {
+
+        /* Social SSO Buttons */
+        .sso-btn {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 0.75rem 1rem;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+
+        .sso-btn:hover {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+            transform: translateY(-1.5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .sso-btn:active {
             transform: scale(0.98);
+        }
+
+        /* Segmented Switcher Capsule */
+        .auth-segmented-pill {
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 9999px;
+            display: inline-flex;
+            width: 100%;
+            position: relative;
+        }
+
+        .auth-segmented-btn {
+            flex: 1;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 0.825rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: none;
+            color: #64748b;
+        }
+
+        .auth-segmented-btn.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Subtle Floating Animation */
+        @keyframes subtleFloat1 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+
+        @keyframes subtleFloat2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(7px) rotate(-0.5deg); }
+        }
+
+        .animate-float-card-1 {
+            animation: subtleFloat1 6s ease-in-out infinite;
+        }
+
+        .animate-float-card-2 {
+            animation: subtleFloat2 7s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="bg-login-mesh min-h-screen flex items-center justify-center p-3 sm:p-6 md:p-8 selection:bg-indigo-600 selection:text-white">
+<body class="bg-[#050608] min-h-screen flex items-center justify-center p-3 sm:p-6 md:p-8 selection:bg-indigo-600 selection:text-white">
 
     <!-- Top Back to Portfolio Navigation -->
-    <a href="index.html" class="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/15 text-white text-xs font-medium tracking-wide transition-all shadow-lg active:scale-95 cursor-pointer" style="text-decoration: none;">
-        <svg class="w-3.5 h-3.5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    <a href="index.html" class="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/15 text-white text-xs font-medium tracking-wide transition-all shadow-lg active:scale-95 cursor-pointer" style="text-decoration: none;">
+        <svg class="w-3.5 h-3.5 text-white/90" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         <span>Back to Algora</span>
     </a>
 
     <!-- BEGIN: Main Container -->
-    <main class="w-full max-w-[1020px] min-h-[580px] md:h-[660px] bg-white rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.45)] flex flex-col md:flex-row relative z-10" data-purpose="main-layout">
+    <main class="w-full max-w-[1080px] min-h-[620px] md:h-[680px] bg-white rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.6)] flex flex-col md:flex-row relative z-10 border border-white/10" data-purpose="main-layout">
         
-        <!-- BEGIN: Left Side (Brand & Visual) -->
-        <section class="w-full md:w-[45%] min-h-[220px] md:h-full bg-blue-gradient flex flex-col justify-between p-8 sm:p-10 md:p-12 relative z-20 overflow-hidden text-white" data-purpose="left-panel">
+        <!-- ═══════════════════════════════════════════════════════════════════
+             BEGIN: Left Side (Dynamic 3D Studio Graphics & Creative Canvas)
+             ═══════════════════════════════════════════════════════════════════ -->
+        <section class="w-full md:w-[48%] min-h-[300px] md:h-full graphic-canvas flex flex-col justify-between p-6 sm:p-8 md:p-10 relative z-20 overflow-hidden text-white border-b md:border-b-0 md:border-r border-white/10" data-purpose="left-graphics-panel">
             
-            <!-- Glow Accent -->
-            <div class="absolute -top-24 -left-24 w-72 h-72 bg-indigo-400/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <!-- Ambient Light Spheres -->
+            <div class="absolute -top-16 -left-16 w-80 h-80 bg-indigo-500/25 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-1/2 -right-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-16 left-1/3 w-80 h-80 bg-sky-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
             <!-- Brand Header -->
-            <div class="relative z-30">
+            <div class="relative z-30 flex items-center justify-between">
                 <a href="index.html" class="inline-flex items-center gap-2 select-none" style="text-decoration:none;">
-                    <img src="assets/algora-logo.svg" alt="ALGORA" class="h-3.5 w-auto object-contain brightness-0 invert opacity-95">
+                    <img src="assets/algora-logo.svg" alt="ALGORA" class="h-3.5 sm:h-4 w-auto object-contain brightness-0 invert opacity-95">
                 </a>
-                <p class="font-mono text-[10px] tracking-[0.25em] text-indigo-200/80 uppercase mt-2">The Curated Web &nbsp;&middot;&nbsp; 2026</p>
-            </div>
-
-            <!-- Middle Inspiring Quote / Feature Box -->
-            <div class="relative z-30 my-auto hidden md:block">
-                <span class="inline-block px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] font-mono tracking-wider uppercase text-indigo-100 mb-3">
-                    Premium Member Access
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] font-mono tracking-wider uppercase text-indigo-200/90 backdrop-blur-md">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                    v2.5 System
                 </span>
-                <h2 class="font-headline text-2xl lg:text-3xl font-bold leading-tight text-white">
-                    Experience the finest curated digital craft.
-                </h2>
-                <p class="text-xs text-indigo-100/75 mt-3 leading-relaxed max-w-[320px]">
-                    Unlock bookmarking, instant project proposals, curated presets, and priority creative consultations.
-                </p>
             </div>
 
-            <!-- Left Footer Badges -->
+            <!-- ── Graphics Composition Layer (3D Floating UI Elements) ── -->
+            <div class="relative z-30 my-auto py-4 hidden md:flex flex-col gap-4">
+                
+                <!-- Main Glass Card: Live Component Matrix -->
+                <div class="glass-graphic-card rounded-2xl p-4.5 sm:p-5 w-full max-w-[370px] mx-auto animate-float-card-1">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+                            <span class="font-mono text-[11px] font-semibold tracking-wide text-white/90">DesignMatrix.tsx</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span class="text-[#00e054] font-mono text-xs tracking-tighter">★★★★★</span>
+                            <span class="text-[11px] font-bold text-white/80 ml-1">5.0</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual UI Mockup Controls -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between bg-white/[0.04] p-2.5 rounded-xl border border-white/5">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-7 h-7 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-300">
+                                    <span class="material-symbols-outlined text-[16px]">palette</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-white">Ultra Dark Obsidian</p>
+                                    <p class="text-[10px] text-white/50 font-mono">#07080d &middot; 120 FPS</p>
+                                </div>
+                            </div>
+                            <!-- Live Toggle Pill -->
+                            <div class="w-8 h-4.5 bg-indigo-600 rounded-full p-0.5 flex items-center justify-end shadow-inner">
+                                <div class="w-3.5 h-3.5 bg-white rounded-full shadow-xs"></div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Interactive Asset Tags -->
+                        <div class="flex items-center gap-2 pt-1">
+                            <span class="px-2.5 py-1 rounded-lg bg-purple-500/15 border border-purple-500/25 text-[10px] font-mono text-purple-200">
+                                React + GSAP
+                            </span>
+                            <span class="px-2.5 py-1 rounded-lg bg-sky-500/15 border border-sky-500/25 text-[10px] font-mono text-sky-200">
+                                Tailwind v4
+                            </span>
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/25 text-[10px] font-mono text-emerald-200 ml-auto">
+                                99.8% Perf
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Floating Metric Badge -->
+                <div class="glass-graphic-card rounded-2xl px-4 py-3 w-full max-w-[330px] ml-auto -mt-2 animate-float-card-2 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-md">
+                            <span class="material-symbols-outlined text-[18px]">verified</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white">Curated Collection</p>
+                            <p class="text-[10px] text-white/60 font-mono">10,000+ Assets Unlocked</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-indigo-300">ACCESS &rarr;</span>
+                </div>
+
+            </div>
+
+            <!-- Left Footer Trust Metrics -->
             <div class="relative z-30 text-xs text-white/60 flex items-center justify-between border-t border-white/10 pt-4">
-                <span>© 2026 ALGORA STUDIO</span>
-                <span class="flex items-center gap-1.5 text-[11px] text-emerald-300 font-medium">
+                <span class="font-mono text-[11px] text-white/50">&copy; 2026 ALGORA STUDIO</span>
+                <span class="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Encrypted &amp; Secure
+                    256-Bit SSL Encrypted
                 </span>
             </div>
         </section>
         <!-- END: Left Side -->
 
-        <!-- BEGIN: Right Side (Auth Form Card) -->
-        <section class="w-full md:w-[55%] h-full bg-[#fafbfd] flex flex-col justify-center items-center relative p-6 sm:p-8 md:p-12 overflow-y-auto" data-purpose="right-panel">
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             BEGIN: Right Side (Clean, Modern Authentication Form)
+             ═══════════════════════════════════════════════════════════════════ -->
+        <section class="w-full md:w-[52%] h-full bg-[#ffffff] flex flex-col justify-center items-center relative p-6 sm:p-10 md:p-12 overflow-y-auto" data-purpose="right-auth-panel">
             
-            <div class="w-full max-w-[380px]" data-purpose="login-form-card">
+            <div class="w-full max-w-[360px]" data-purpose="auth-form-card">
                 
-                <!-- Tab Switching Header -->
-                <div class="flex space-x-6 mb-7 text-base sm:text-lg border-b border-slate-200/80 pb-2.5 select-none">
-                    <button type="button" id="tab-signup" onclick="switchMode('signup')" class="tab-active pb-2 transition-all cursor-pointer">Sign Up</button>
-                    <button type="button" id="tab-signin" onclick="switchMode('signin')" class="tab-inactive pb-2 hover:text-slate-700 transition-all cursor-pointer">Sign In</button>
+                <!-- Header Title & Subtitle -->
+                <div class="mb-6 text-center sm:text-left">
+                    <h1 id="auth-main-title" class="text-2xl sm:text-3xl font-bold font-headline text-slate-900 tracking-tight">
+                        Create an account
+                    </h1>
+                    <p id="auth-main-subtitle" class="text-xs sm:text-sm text-slate-500 mt-1 font-normal">
+                        Join Algora to bookmark, curate, and deploy world-class digital craft.
+                    </p>
                 </div>
 
-                <!-- Notification/Alert Box (Hidden by Default) -->
-                <div id="auth-alert" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
-
-                <!-- Form Fields with Pro Transparent Styling -->
-                <form id="auth-form" class="space-y-3.5" onsubmit="handleAuthSubmit(event);">
-                    
-                    <!-- Full Name (Only on Sign Up) -->
-                    <div id="field-fullname" class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        </div>
-                        <input id="input-fullname" class="pro-input-bar w-full pl-10" placeholder="Full Name" type="text" autocomplete="name"/>
-                    </div>
-
-                    <!-- Email Address -->
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        </div>
-                        <input id="input-email" class="pro-input-bar w-full pl-10" placeholder="Email Address" type="email" required autocomplete="email"/>
-                    </div>
-
-                    <!-- Password with Eye Toggle -->
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        </div>
-                        <input id="input-password" class="pro-input-bar w-full pl-10 pr-10" placeholder="Password" type="password" required autocomplete="current-password"/>
-                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors cursor-pointer" aria-label="Toggle password visibility">
-                            <svg id="eye-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <!-- Modern Segmented Pill Switcher -->
+                <div class="mb-5">
+                    <div class="auth-segmented-pill">
+                        <button type="button" id="tab-signup" onclick="switchMode('signup')" class="auth-segmented-btn active">
+                            Sign Up
+                        </button>
+                        <button type="button" id="tab-signin" onclick="switchMode('signin')" class="auth-segmented-btn">
+                            Sign In
                         </button>
                     </div>
-
-                    <!-- Primary Submit Button -->
-                    <button id="btn-submit" class="w-full bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98] text-white font-semibold py-3 rounded-xl shadow-md shadow-indigo-600/25 transition-all mt-4 cursor-pointer flex items-center justify-center gap-2" type="submit">
-                        <span>Sign Up</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </button>
-                </form>
-
-                <!-- Divider: Or continue with -->
-                <div class="relative my-6 select-none">
-                    <div class="absolute inset-0 flex items-center">
-                        <div class="w-full border-t border-slate-200"></div>
-                    </div>
-                    <div class="relative flex justify-center text-[11px] uppercase tracking-wider font-semibold text-slate-400">
-                        <span class="bg-[#fafbfd] px-3 font-mono">Or continue with</span>
-                    </div>
                 </div>
 
-                <!-- Social Login Buttons (Google & Facebook) -->
-                <div class="grid grid-cols-2 gap-3">
-                    
-                    <!-- Google Auth Button -->
-                    <button type="button" onclick="handleSocialAuth('google')" class="social-auth-btn flex items-center justify-center gap-2.5 text-slate-700 hover:text-slate-900 text-xs font-semibold select-none cursor-pointer">
+                <!-- Social SSO Auth Buttons (Google & GitHub) -->
+                <div class="grid grid-cols-2 gap-2.5 mb-5">
+                    <!-- Google SSO -->
+                    <button type="button" onclick="handleSocialAuth('google')" class="sso-btn flex items-center justify-center gap-2 text-slate-700 hover:text-slate-900 text-xs font-semibold select-none cursor-pointer">
                         <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -207,20 +295,77 @@
                         <span>Google</span>
                     </button>
 
-                    <!-- Facebook Auth Button -->
-                    <button type="button" onclick="handleSocialAuth('facebook')" class="social-auth-btn flex items-center justify-center gap-2.5 text-slate-700 hover:text-slate-900 text-xs font-semibold select-none cursor-pointer">
-                        <svg class="w-4 h-4 flex-shrink-0 fill-[#1877F2]" viewBox="0 0 24 24">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    <!-- GitHub SSO -->
+                    <button type="button" onclick="handleSocialAuth('github')" class="sso-btn flex items-center justify-center gap-2 text-slate-700 hover:text-slate-900 text-xs font-semibold select-none cursor-pointer">
+                        <svg class="w-4 h-4 flex-shrink-0 fill-slate-900" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                         </svg>
-                        <span>Facebook</span>
+                        <span>GitHub</span>
                     </button>
                 </div>
 
-                <!-- Mode Switch Link -->
-                <div class="text-center mt-6">
-                    <a id="toggle-account-link" class="text-indigo-600 hover:text-indigo-700 text-xs font-semibold transition-colors cursor-pointer select-none" onclick="toggleMode()">
-                        Already have an account? Sign In
-                    </a>
+                <!-- Divider -->
+                <div class="relative my-4 select-none">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-slate-200"></div>
+                    </div>
+                    <div class="relative flex justify-center text-[10.5px] uppercase tracking-wider font-semibold text-slate-400">
+                        <span class="bg-white px-3 font-mono">or continue with email</span>
+                    </div>
+                </div>
+
+                <!-- Notification / Feedback Box -->
+                <div id="auth-alert" class="hidden mb-3 p-3 rounded-xl text-xs font-medium border"></div>
+
+                <!-- Form Fields -->
+                <form id="auth-form" class="space-y-3" onsubmit="handleAuthSubmit(event);">
+                    
+                    <!-- Full Name (Only on Sign Up) -->
+                    <div id="field-fullname" class="relative">
+                        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px] pointer-events-none">
+                            person
+                        </span>
+                        <input id="input-fullname" class="auth-input-field" placeholder="Full Name" type="text" autocomplete="name"/>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px] pointer-events-none">
+                            mail
+                        </span>
+                        <input id="input-email" class="auth-input-field" placeholder="name@example.com" type="email" required autocomplete="email"/>
+                    </div>
+
+                    <!-- Password with Eye Toggle -->
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px] pointer-events-none">
+                            lock
+                        </span>
+                        <input id="input-password" class="auth-input-field pr-10" placeholder="••••••••" type="password" required autocomplete="current-password"/>
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer flex items-center" aria-label="Toggle password visibility">
+                            <span id="eye-icon" class="material-symbols-outlined text-[18px]">visibility</span>
+                        </button>
+                    </div>
+
+                    <!-- Forgot Password (Only on Sign In) -->
+                    <div id="field-forgot-password" class="hidden text-right pt-0.5">
+                        <a href="#" onclick="handleForgotPassword(event)" class="text-xs font-medium text-indigo-600 hover:text-indigo-700 transition-colors">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <!-- Primary Submit Button -->
+                    <button id="btn-submit" class="w-full bg-slate-900 hover:bg-slate-800 active:scale-[0.98] text-white font-semibold py-3.5 rounded-2xl shadow-lg shadow-slate-900/20 transition-all mt-3 cursor-pointer flex items-center justify-center gap-2" type="submit">
+                        <span id="btn-submit-text">Create Account</span>
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </button>
+                </form>
+
+                <!-- Footer Terms & Switch Mode Link -->
+                <div class="text-center mt-5">
+                    <p class="text-[11px] text-slate-400 leading-relaxed">
+                        By continuing, you agree to Algora's <a href="#" class="underline hover:text-slate-600">Terms of Service</a> and <a href="#" class="underline hover:text-slate-600">Privacy Policy</a>.
+                    </p>
                 </div>
 
             </div>
@@ -249,28 +394,30 @@
             const tabSignup = document.getElementById('tab-signup');
             const tabSignin = document.getElementById('tab-signin');
             const fieldFullName = document.getElementById('field-fullname');
-            const btnSubmit = document.getElementById('btn-submit');
-            const toggleLink = document.getElementById('toggle-account-link');
+            const fieldForgot = document.getElementById('field-forgot-password');
+            const mainTitle = document.getElementById('auth-main-title');
+            const mainSubtitle = document.getElementById('auth-main-subtitle');
+            const btnSubmitText = document.getElementById('btn-submit-text');
             const alertBox = document.getElementById('auth-alert');
             if (alertBox) alertBox.classList.add('hidden');
 
             if (mode === 'signup') {
-                tabSignup.className = 'tab-active pb-2 transition-all cursor-pointer';
-                tabSignin.className = 'tab-inactive pb-2 hover:text-slate-700 transition-all cursor-pointer';
+                tabSignup.classList.add('active');
+                tabSignin.classList.remove('active');
                 fieldFullName.style.display = 'block';
-                btnSubmit.querySelector('span').textContent = 'Sign Up';
-                toggleLink.textContent = 'Already have an account? Sign In';
+                if (fieldForgot) fieldForgot.classList.add('hidden');
+                mainTitle.textContent = 'Create an account';
+                mainSubtitle.textContent = 'Join Algora to bookmark, curate, and deploy world-class digital craft.';
+                btnSubmitText.textContent = 'Create Account';
             } else {
-                tabSignin.className = 'tab-active pb-2 transition-all cursor-pointer';
-                tabSignup.className = 'tab-inactive pb-2 hover:text-slate-700 transition-all cursor-pointer';
+                tabSignin.classList.add('active');
+                tabSignup.classList.remove('active');
                 fieldFullName.style.display = 'none';
-                btnSubmit.querySelector('span').textContent = 'Sign In';
-                toggleLink.textContent = "Don't have an account? Sign Up";
+                if (fieldForgot) fieldForgot.classList.remove('hidden');
+                mainTitle.textContent = 'Welcome back';
+                mainSubtitle.textContent = 'Sign in to access your saved inspiration, presets, and private library.';
+                btnSubmitText.textContent = 'Sign In';
             }
-        }
-
-        function toggleMode() {
-            switchMode(currentMode === 'signup' ? 'signin' : 'signup');
         }
 
         function togglePasswordVisibility() {
@@ -278,10 +425,10 @@
             const eyeIcon = document.getElementById('eye-icon');
             if (pwdInput.type === 'password') {
                 pwdInput.type = 'text';
-                eyeIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+                eyeIcon.textContent = 'visibility_off';
             } else {
                 pwdInput.type = 'password';
-                eyeIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+                eyeIcon.textContent = 'visibility';
             }
         }
 
@@ -289,13 +436,32 @@
             const alertBox = document.getElementById('auth-alert');
             if (!alertBox) return;
             alertBox.textContent = msg;
-            alertBox.className = `mb-4 p-3 rounded-xl text-xs font-medium border ${isSuccess ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`;
+            alertBox.className = `mb-3 p-3 rounded-xl text-xs font-medium border ${isSuccess ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`;
             alertBox.classList.remove('hidden');
         }
 
         function getRedirectUrl() {
             const params = new URLSearchParams(window.location.search);
             return params.get('redirect') || 'index.html';
+        }
+
+        async function handleForgotPassword(e) {
+            e.preventDefault();
+            const email = document.getElementById('input-email').value.trim();
+            if (!email) {
+                showAlert('Please enter your email address to reset password.');
+                return;
+            }
+            try {
+                if (typeof firebase !== 'undefined' && firebase.auth) {
+                    await firebase.auth().sendPasswordResetEmail(email);
+                    showAlert('Password reset link sent to your email!', true);
+                } else {
+                    showAlert('Password reset simulation sent to ' + email, true);
+                }
+            } catch (err) {
+                showAlert(err.message || 'Error sending password reset email.');
+            }
         }
 
         async function handleAuthSubmit(e) {
@@ -340,8 +506,8 @@
                 let provider;
                 if (providerName === 'google') {
                     provider = new firebase.auth.GoogleAuthProvider();
-                } else if (providerName === 'facebook') {
-                    provider = new firebase.auth.FacebookAuthProvider();
+                } else if (providerName === 'github') {
+                    provider = new firebase.auth.GithubAuthProvider();
                 }
 
                 if (provider) {
