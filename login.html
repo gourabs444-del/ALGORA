@@ -1,730 +1,220 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  }
-  .email-panel,
-  .oauth-panel {
-      transition: border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
-  }
-  .email-mode-fields {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(-6px);
-      transition: max-height 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease, transform 260ms ease;
-  }
-  .email-mode-fields.is-open {
-      max-height: 120px;
-      opacity: 1;
-      transform: translateY(0);
-  }
-  .auth-tabs {
-      --tab-padding: 6px;
-      --tab-gap: 6px;
-  }
-  .auth-tabs .tab-pill {
-      left: var(--tab-padding);
-      width: calc(50% - 9px);
-      will-change: transform;
-      transform: translate3d(0, 0, 0);
-      transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease;
-  }
-  .auth-tabs[data-mode="signup"] .tab-pill {
-      transform: translate3d(calc(100% + var(--tab-gap)), 0, 0);
-  }
-  
-  /* Abstract Spotlight Grid Pattern Background */
-  .bg-grid-pattern {
-      position: relative;
-  }
-  .bg-grid-pattern::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: 
-          linear-gradient(to right, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
-      background-size: 38px 38px;
-      mask-image: radial-gradient(ellipse 65% 55% at 50% 50%, #000 50%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 65% 55% at 50% 50%, #000 50%, transparent 100%);
-      pointer-events: none;
-      z-index: 1;
-  }
-  .dark .bg-grid-pattern::before {
-      background-image: 
-          linear-gradient(to right, rgba(99, 102, 241, 0.06) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
-  }
-
-  /* Morphing organic background blobs */
-  .artistic-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      mix-blend-mode: multiply;
-      opacity: 0.55;
-      animation: morph 20s infinite alternate ease-in-out;
-      pointer-events: none;
-      z-index: 0;
-  }
-  .dark .artistic-blob {
-      mix-blend-mode: screen;
-      opacity: 0.35;
-      filter: blur(100px);
-  }
-  .blob-indigo {
-      background: radial-gradient(circle, rgba(99,102,241,0.4) 0%, rgba(168,85,247,0.05) 70%);
-      animation-duration: 25s;
-  }
-  .blob-rose {
-      background: radial-gradient(circle, rgba(244,63,94,0.35) 0%, rgba(236,72,153,0.05) 70%);
-      animation-duration: 30s;
-  }
-  .blob-cyan {
-      background: radial-gradient(circle, rgba(6,182,212,0.3) 0%, rgba(59,130,246,0.05) 70%);
-      animation-duration: 22s;
-  }
-  .blob-emerald {
-      background: radial-gradient(circle, rgba(16,185,129,0.25) 0%, rgba(52,211,153,0.05) 70%);
-      animation-duration: 28s;
-  }
-  .blob-violet {
-      background: radial-gradient(circle, rgba(139,92,246,0.3) 0%, rgba(167,139,250,0.05) 70%);
-      animation-duration: 32s;
-  }
-
-  /* Disabled Background Animations (100% Static Layout) */
-  .artistic-blob,
-  .animate-float-disk-1,
-  .animate-float-disk-2,
-  .animate-float-cube-1,
-  .animate-float-cube-2,
-  .animate-hover-tag,
-  .animate-spin,
-  .animate-pulse,
-  .animate-ping {
-      animation: none !important;
-  }
-
-  @keyframes morph {
-      0% {
-          border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-          transform: translate(0px, 0px) rotate(0deg) scale(1);
-      }
-      33% {
-          border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
-          transform: translate(40px, -60px) rotate(120deg) scale(1.15);
-      }
-      66% {
-          border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%;
-          transform: translate(-30px, 30px) rotate(240deg) scale(0.9);
-      }
-      100% {
-          border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-          transform: translate(0px, 0px) rotate(360deg) scale(1);
-      }
-  }
-
-</style>
-</head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 h-screen h-[100dvh] max-h-[100dvh] flex flex-col justify-center items-center relative overflow-hidden p-3 sm:p-4 bg-grid-pattern select-none">
-
-<!-- Morphing Watercolor Blobs (Artistic Background) -->
-<div class="artistic-blob blob-indigo w-[600px] h-[600px] lg:w-[800px] lg:h-[800px] -top-32 -left-32"></div>
-<div class="artistic-blob blob-rose w-[650px] h-[650px] lg:w-[900px] lg:h-[900px] -bottom-48 -right-48"></div>
-<div class="artistic-blob blob-cyan w-[500px] h-[500px] lg:w-[700px] lg:h-[700px] top-1/4 left-1/4"></div>
-<div class="artistic-blob blob-emerald w-[450px] h-[450px] lg:w-[600px] lg:h-[600px] top-10 right-20"></div>
-<div class="artistic-blob blob-violet w-[400px] h-[400px] lg:w-[550px] lg:h-[550px] bottom-20 left-20"></div>
-
-<!-- Flowing Bezier Ribbon Lines (Artistic Digital Waves) -->
-<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-20 select-none">
-    <svg class="w-full h-full min-w-[1200px]" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M-100,300 C250,150 450,550 900,250 C1250,50 1350,450 1650,350" stroke="url(#paint0_linear)" stroke-width="2.5" />
-        <path d="M-50,350 C300,200 500,600 850,300 C1200,100 1300,500 1600,400" stroke="url(#paint1_linear)" stroke-width="1.5" stroke-dasharray="6 6" />
-        <path d="M-150,500 C150,650 600,250 1000,550 C1300,750 1400,250 1650,450" stroke="url(#paint2_linear)" stroke-width="1" />
-        <defs>
-            <linearGradient id="paint0_linear" x1="0" y1="0" x2="1440" y2="900" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#6366f1" stop-opacity="0.4"/>
-                <stop offset="0.5" stop-color="#ec4899" stop-opacity="0.3"/>
-                <stop offset="1" stop-color="#06b6d4" stop-opacity="0"/>
-            </linearGradient>
-            <linearGradient id="paint1_linear" x1="0" y1="0" x2="1440" y2="900" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#06b6d4" stop-opacity="0.3"/>
-                <stop offset="0.5" stop-color="#8b5cf6" stop-opacity="0.25"/>
-                <stop offset="1" stop-color="#f43f5e" stop-opacity="0"/>
-            </linearGradient>
-            <linearGradient id="paint2_linear" x1="0" y1="0" x2="1440" y2="900" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#10b981" stop-opacity="0.25"/>
-                <stop offset="0.5" stop-color="#6366f1" stop-opacity="0.2"/>
-                <stop offset="1" stop-color="#d946ef" stop-opacity="0"/>
-            </linearGradient>
-        </defs>
-    </svg>
-</div>
-
-<!-- Generative Line Vortex 1 (Left Side background) -->
-<div class="absolute left-[-100px] top-[15%] w-[450px] h-[450px] text-indigo-500/10 dark:text-blue-500/15 pointer-events-none z-0 transform rotate-12 hidden xl:block select-none animate-spin" style="animation-duration: 70s;">
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.15">
-        <rect x="10" y="10" width="80" height="80" transform="rotate(0 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(5 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(10 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(15 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(20 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(25 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(30 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(35 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(40 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(45 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(50 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(55 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(60 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(65 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(70 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(75 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(80 50 50)" />
-        <rect x="10" y="10" width="80" height="80" transform="rotate(85 50 50)" />
-    </svg>
-</div>
-
-<!-- Generative Line Vortex 2 (Right Side background) -->
-<div class="absolute right-[-120px] bottom-[15%] w-[500px] h-[500px] text-pink-500/10 dark:text-purple-500/15 pointer-events-none z-0 transform -rotate-12 hidden xl:block select-none animate-spin" style="animation-duration: 90s; animation-direction: reverse;">
-    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.12">
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(0 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(10 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(20 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(30 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(40 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(50 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(60 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(70 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(80 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(90 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(100 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(110 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(120 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(130 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(140 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(150 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(160 50 50)" />
-        <ellipse cx="50" cy="50" rx="45" ry="15" transform="rotate(170 50 50)" />
-    </svg>
-</div>
-
-<!-- Floating Sparkling Nodes (Particle Glows) -->
-<div class="absolute top-[25%] right-[20%] w-3 h-3 bg-indigo-400 rounded-full animate-ping opacity-35" style="animation-duration: 4s;"></div>
-<div class="absolute bottom-[30%] left-[18%] w-2 h-2 bg-pink-400 rounded-full animate-ping opacity-30" style="animation-duration: 5s;"></div>
-<div class="absolute top-[60%] left-[10%] w-2.5 h-2.5 bg-cyan-400 rounded-full animate-ping opacity-25" style="animation-duration: 6s;"></div>
-<div class="absolute bottom-[75%] right-[12%] w-3 h-3 bg-purple-400 rounded-full animate-ping opacity-30" style="animation-duration: 7s;"></div>
-
-<!-- Main Login Card Container -->
-<div class="auth-card w-full max-w-[410px] glass-card border border-white/15 dark:border-slate-800/80 bg-slate-950/80 dark:bg-slate-950/85 rounded-[28px] p-4 sm:p-5 relative z-10 my-auto shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
-    
-    <!-- Back button inside card -->
-    <div class="absolute top-4 left-4 z-20">
-        <button onclick="history.back()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white font-['Inter'] font-medium text-xs transition-all active-feedback cursor-pointer">
-            <span class="material-symbols-outlined text-[15px]">arrow_back</span> Back
-        </button>
-    </div>
-
-    <!-- Header Logo & Title -->
-    <div class="text-center px-3 pt-2 pb-3">
-        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400 mx-auto mb-2 shadow-[0_0_25px_rgba(59,130,246,0.35)]">
-            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">vpn_key</span>
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white font-['Outfit'] leading-tight">Account Access</h2>
-    </div>
-
-    <div class="space-y-3">
-        <!-- Active Device Session Card (Show when user is already logged in on this device) -->
-        <div id="active-device-session" class="hidden rounded-2xl bg-gradient-to-br from-blue-950/80 via-slate-900/90 to-indigo-950/80 border border-blue-500/40 p-3.5 shadow-xl text-center">
-            <div class="flex items-center gap-3 text-left mb-3">
-                <img id="device-session-avatar" class="w-11 h-11 rounded-full border-2 border-blue-400 object-cover shadow-md shrink-0" src="" alt="Active Account">
-                <div class="min-w-0 flex-1">
-                    <div class="flex items-center gap-1.5">
-                        <p id="device-session-name" class="text-xs font-extrabold text-white truncate font-['Outfit']"></p>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" title="Active Device Session"></span>
-                    </div>
-                    <p id="device-session-email" class="text-[11px] font-medium text-blue-300 truncate font-['Inter']"></p>
-                </div>
-            </div>
-            <p class="text-[11px] text-slate-300 mb-3 font-['Inter']">Active account logged in on this device.</p>
-            <div class="grid grid-cols-2 gap-2">
-                <button type="button" onclick="showSuccessAndRedirect()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-xl text-xs transition-all cursor-pointer shadow-lg active:scale-95">
-                    Continue &rarr;
-                </button>
-                <button type="button" onclick="switchDeviceAccount()" class="w-full bg-white/10 hover:bg-red-500/20 text-slate-300 hover:text-red-400 font-semibold py-2 rounded-xl text-xs transition-all cursor-pointer active:scale-95">
-                    Sign Out
-                </button>
-            </div>
-        </div>
-
-        <!-- Email Authentication Section -->
-        <section id="email-auth-section" class="email-panel rounded-2xl border border-white/10 dark:border-slate-800/90 bg-slate-900/60 p-3 sm:p-4 shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
-
-            <!-- Mode Toggles (Crisp Pill Tab Switcher) -->
-            <div id="auth-tabs" data-mode="signin" class="grid grid-cols-2 gap-1 bg-slate-950/80 border border-white/10 p-1 rounded-xl mb-3">
-                <button id="tab-signin" type="button" class="w-full text-center py-2 rounded-lg font-['Inter'] font-bold text-xs transition-all text-white bg-blue-600 shadow-md cursor-pointer" onclick="toggleMode('signin')">
-                    Sign In
-                </button>
-                <button id="tab-signup" type="button" class="w-full text-center py-2 rounded-lg font-['Inter'] font-semibold text-xs transition-all text-slate-400 hover:text-white cursor-pointer" onclick="toggleMode('signup')">
-                    Sign Up
-                </button>
-            </div>
-
-            <form class="space-y-2.5" id="auth-form" onsubmit="handleAuthSubmit(event)">
-                <div id="signup-fields" class="email-mode-fields">
-                    <div class="space-y-2">
-                        <div>
-                            <label class="block text-[11px] font-['Inter'] font-semibold text-slate-300 mb-1" for="auth-name">Full Name</label>
-                            <div class="relative focus-glow border border-white/10 rounded-xl bg-slate-950/70 transition-all focus-within:border-blue-500">
-                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">person</span>
-                                <input id="auth-name" type="text" class="w-full bg-transparent border-0 focus:ring-0 rounded-xl py-2 pl-9 pr-3 text-xs outline-none text-white font-['Inter'] placeholder-slate-500" placeholder="Enter your full name">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-[11px] font-['Inter'] font-semibold text-slate-300 mb-1" for="auth-email">Email Address</label>
-                    <div class="relative focus-glow border border-white/10 rounded-xl bg-slate-950/70 transition-all focus-within:border-blue-500">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">mail</span>
-                        <input id="auth-email" type="email" required class="w-full bg-transparent border-0 focus:ring-0 rounded-xl py-2 pl-9 pr-3 text-xs outline-none text-white font-['Inter'] placeholder-slate-500" placeholder="Enter your email">
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex justify-between items-center mb-1">
-                        <label class="block text-[11px] font-['Inter'] font-semibold text-slate-300" for="auth-password">Password</label>
-                        <a href="#" id="forgot-password-link" onclick="handleForgotPassword(event)" class="text-[10px] font-['Inter'] font-medium text-blue-400 hover:text-blue-300 hover:underline">Forgot Password?</a>
-                    </div>
-                    <div class="relative focus-glow border border-white/10 rounded-xl bg-slate-950/70 transition-all focus-within:border-blue-500">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">lock</span>
-                        <input id="auth-password" type="password" required class="w-full bg-transparent border-0 focus:ring-0 rounded-xl py-2 pl-9 pr-10 text-xs outline-none text-white font-['Inter'] placeholder-slate-500" placeholder="Enter your password">
-                        <button type="button" id="password-toggle" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-center" aria-label="Toggle Password Visibility">
-                            <span class="material-symbols-outlined text-[18px]" id="eye-icon">visibility</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="confirm-password-wrap" class="email-mode-fields">
-                    <div>
-                        <label class="block text-[11px] font-['Inter'] font-semibold text-slate-300 mb-1" for="auth-confirm-password">Confirm Password</label>
-                        <div class="relative focus-glow border border-white/10 rounded-xl bg-slate-950/70 transition-all focus-within:border-blue-500">
-                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">verified_user</span>
-                            <input id="auth-confirm-password" type="password" class="w-full bg-transparent border-0 focus:ring-0 rounded-xl py-2 pl-9 pr-3 text-xs outline-none text-white font-['Inter'] placeholder-slate-500" placeholder="Confirm your password">
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:from-blue-500 hover:to-indigo-500 text-white font-['Inter'] font-bold py-2.5 px-4 rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer mt-2 text-xs sm:text-sm" id="submit-btn">
-                    Sign In <span class="material-symbols-outlined text-[16px] font-bold">arrow_forward</span>
-                </button>
-            </form>
-        </section>
-
-        <!-- Plain Text Divider Stack -->
-        <div class="text-center my-1 select-none">
-            <span class="text-[9px] font-['Inter'] font-bold uppercase tracking-widest text-slate-400 leading-none">or continue with</span>
-        </div>
-
-        <!-- OAuth Authentication -->
-        <section class="oauth-panel rounded-2xl border border-white/10 dark:border-slate-800/80 bg-slate-900/60 p-2.5">
-            <div class="grid grid-cols-2 gap-2">
-                <button type="button" onclick="handleSocialAuth('Google')" class="social-button flex items-center justify-center gap-2 py-2 px-2 border border-white/10 rounded-xl bg-slate-950/80 hover:bg-slate-800 hover:border-white/20 transition-all cursor-pointer active-feedback text-xs font-['Inter'] font-semibold text-white" aria-label="Continue with Google">
-                    <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.58 15.02 1 12 1 7.35 1 3.4 3.65 1.5 7.5l3.86 3C6.27 7.74 8.89 5.04 12 5.04z"/><path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.42 3.58l3.76 2.92c2.2-2.03 3.69-5.02 3.69-8.65z"/><path fill="#FBBC05" d="M5.36 14.5c-.24-.72-.38-1.49-.38-2.3s.14-1.58.38-2.3L1.5 6.9C.54 8.82 0 10.97 0 13.2s.54 4.38 1.5 6.3l3.86-3z"/><path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.92l-3.76-2.92c-1.1.74-2.52 1.18-4.2 1.18-3.11 0-5.73-2.7-6.64-5.46L1.5 15.88C3.4 19.73 7.35 23 12 23z"/></svg>
-                    Google
-                </button>
-                <button type="button" onclick="handleSocialAuth('Facebook')" class="social-button flex items-center justify-center gap-2 py-2 px-2 border border-white/10 rounded-xl bg-slate-950/80 hover:bg-slate-800 hover:border-white/20 transition-all cursor-pointer active-feedback text-xs font-['Inter'] font-semibold text-white" aria-label="Continue with Facebook">
-                    <svg class="w-4 h-4 shrink-0 fill-current text-[#1877F2]" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    Facebook
-                </button>
-            </div>
-        </section>
-    </div>
-</div>
-
-<!-- Custom Success Modal -->
-<div id="success-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-    <div class="w-full max-w-sm rounded-[30px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-6 text-center shadow-2xl scale-95 transition-all">
-        <!-- Success Icon -->
-        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-500">
-            <span class="material-symbols-outlined text-[36px] font-bold">check_circle</span>
-        </div>
-        <!-- Heading -->
-        <h3 class="text-xl font-black text-slate-800 dark:text-white mb-2">Login Successful</h3>
-        <!-- Subtext -->
-        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
-            Welcome back! You have logged in successfully.
-        </p>
-        <!-- Action Button -->
-        <button id="success-btn" class="w-full bg-primary hover:bg-primary/95 text-white py-3 rounded-2xl font-extrabold text-sm shadow-lg shadow-blue-500/20 hover:-translate-y-0.5 transition-all active:scale-98 cursor-pointer">
-            Continue to Dashboard
-        </button>
-    </div>
-</div>
-
-<script>
-    let mode = 'signin';
-
-    // Parse redirects
-    const urlParams = new URLSearchParams(window.location.search);
-    const redirectUrl = urlParams.get('redirect') || 'projects.html';
-
-    function showSuccessAndRedirect() {
-        let targetUrl = redirectUrl;
-        if (targetUrl.includes('profile.html')) {
-            targetUrl = 'projects.html';
-        }
-
-        const modal = document.getElementById('success-modal');
-        const btn = document.getElementById('success-btn');
-        if (modal && btn) {
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            
-            btn.addEventListener('click', () => {
-                window.location.replace(targetUrl);
-            });
-            
-            setTimeout(() => {
-                window.location.replace(targetUrl);
-            }, 1800);
-        } else {
-            window.location.replace(targetUrl);
-        }
-    }
-
-    // Password toggle wire-up
-    const passwordToggle = document.getElementById('password-toggle');
-    const passwordInput = document.getElementById('auth-password');
-    const eyeIcon = document.getElementById('eye-icon');
-    if (passwordToggle && passwordInput && eyeIcon) {
-        passwordToggle.addEventListener('click', () => {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.innerText = 'visibility_off';
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.innerText = 'visibility';
-            }
-        });
-    }
-
-    function toggleMode(targetMode) {
-        if (mode === targetMode) return;
-        mode = targetMode;
-
-        const submitBtn = document.getElementById('submit-btn');
-        const signupFields = document.getElementById('signup-fields');
-        const confirmPasswordWrap = document.getElementById('confirm-password-wrap');
-        const nameInput = document.getElementById('auth-name');
-        const confirmPasswordInput = document.getElementById('auth-confirm-password');
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>My Discounted Labs | Sign Up</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <style data-purpose="custom-styles">
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
-        const tabSignin = document.getElementById('tab-signin');
-        const tabSignup = document.getElementById('tab-signup');
-        const authTabs = document.getElementById('auth-tabs');
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        if (mode === 'signin') {
-            submitBtn.innerHTML = `Sign In <span class="material-symbols-outlined text-[16px] font-bold">arrow_forward</span>`;
-            signupFields.classList.remove('is-open');
-            confirmPasswordWrap.classList.remove('is-open');
-            nameInput.removeAttribute('required');
-            confirmPasswordInput.removeAttribute('required');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, #3B4B74 0%, #3B4B74 40%, #FA6A92 40%, #FA6A92 100%);
+        }
+
+        .bg-blue-gradient {
+            background: linear-gradient(180deg, #62A4FF 0%, #4667FF 100%);
+        }
+
+        .form-input {
+            border: none;
+            border-bottom: 1px solid #E2E8F0;
+            border-radius: 0;
+            padding: 0.5rem 0;
+            box-shadow: none !important;
+        }
+        
+        .form-input:focus {
+            border-bottom-color: #4F46E5;
+            box-shadow: none !important;
+            outline: none;
+        }
+
+        .tab-active {
+            color: #374151;
+            border-bottom: 2px solid #4F46E5;
+        }
+        
+        .tab-inactive {
+            color: #9CA3AF;
+            border-bottom: 2px solid transparent;
+        }
+    </style>
+</head>
+<body class="bg-gradient-custom min-h-screen flex items-center justify-center p-4 md:p-8">
+
+    <!-- BEGIN: Main Container -->
+    <main class="w-full max-w-[1100px] min-h-[640px] md:h-[700px] bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative z-10" data-purpose="main-layout">
+        
+        <!-- BEGIN: Left Side (Image & Branding) -->
+        <section class="w-full md:w-[45%] min-h-[260px] md:h-full bg-blue-gradient md:rounded-r-[40px] flex flex-col justify-between p-8 md:p-10 relative z-20 shadow-[10px_0_20px_rgba(0,0,0,0.05)] overflow-hidden" data-purpose="left-panel">
             
-            authTabs.dataset.mode = 'signin';
-            tabSignin.className = "w-full text-center py-2 rounded-lg font-['Inter'] font-bold text-xs transition-all text-white bg-blue-600 shadow-md cursor-pointer";
-            tabSignup.className = "w-full text-center py-2 rounded-lg font-['Inter'] font-semibold text-xs transition-all text-slate-400 hover:text-white cursor-pointer";
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-2 text-white relative z-30">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.5-.5m10.5-1.5c1.5-1.26 2-5 2-5s-3.74.5-5 2l-.5.5m-5-2v-8m0 0l-3 3m3-3l3 3" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <span class="font-semibold text-lg tracking-wide">My Discounted Labs</span>
+            </div>
+
+            <!-- Custom SVG Graphic -->
+            <div class="absolute inset-0 z-10 opacity-60 pointer-events-none">
+                <svg height="100%" preserveAspectRatio="xMidYMid slice" viewBox="0 0 500 700" width="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="hexGrad1" x1="0%" x2="100%" y1="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"></stop>
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"></stop>
+                        </linearGradient>
+                        <linearGradient id="hexGrad2" x1="100%" x2="0%" y1="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4"></stop>
+                            <stop offset="100%" stop-color="#8BB8FF" stop-opacity="0.1"></stop>
+                        </linearGradient>
+                        <g id="hexagon">
+                            <polygon points="50,0 100,28.87 100,86.6 50,115.47 0,86.6 0,28.87"></polygon>
+                        </g>
+                        <g id="microscope">
+                            <path d="M20,40 L20,30 C20,20 30,20 30,20 L30,15 C30,10 25,10 25,10 L15,10 C15,10 10,10 10,15 L10,35 C10,40 15,45 15,45 L25,45 C25,45 28,45 28,42 L25,40 Z" fill="none" stroke="#ffffff" stroke-width="2"></path>
+                            <circle cx="15" cy="25" fill="none" r="4" stroke="#ffffff" stroke-width="2"></circle>
+                            <line stroke="#ffffff" stroke-width="3" x1="5" x2="35" y1="50" y2="50"></line>
+                        </g>
+                        <g id="beaker">
+                            <path d="M10,10 L30,10 L30,20 L35,45 C37,55 30,60 20,60 C10,60 3,55 5,45 L10,20 Z" fill="none" stroke="#ffffff" stroke-width="2"></path>
+                            <line stroke="#ffffff" stroke-dasharray="2,2" stroke-width="1" x1="5" x2="35" y1="40" y2="40"></line>
+                            <line stroke="#ffffff" stroke-dasharray="2,2" stroke-width="1" x1="8" x2="32" y1="30" y2="30"></line>
+                        </g>
+                    </defs>
+
+                    <!-- Background hexagons (large) -->
+                    <use fill="url(#hexGrad1)" href="#hexagon" opacity="0.3" transform="scale(2.5)" x="-20" y="50"></use>
+                    <use fill="none" href="#hexagon" opacity="0.4" stroke="#ffffff" stroke-width="1" transform="scale(2)" x="120" y="-30"></use>
+                    <use fill="url(#hexGrad2)" href="#hexagon" opacity="0.2" transform="scale(3)" x="80" y="180"></use>
+                    <use fill="none" href="#hexagon" opacity="0.3" stroke="#ffffff" stroke-width="2" transform="scale(1.8)" x="-50" y="300"></use>
+                    <use fill="url(#hexGrad1)" href="#hexagon" opacity="0.25" transform="scale(2.2)" x="150" y="400"></use>
+
+                    <!-- Medium hexagons -->
+                    <use fill="url(#hexGrad2)" href="#hexagon" x="50" y="100"></use>
+                    <use fill="none" href="#hexagon" opacity="0.6" stroke="#ffffff" stroke-width="1.5" x="160" y="160"></use>
+                    <use fill="url(#hexGrad1)" href="#hexagon" opacity="0.5" x="270" y="100"></use>
+                    <use fill="none" href="#hexagon" opacity="0.4" stroke="#ffffff" stroke-width="2" x="220" y="270"></use>
+                    <use fill="url(#hexGrad2)" href="#hexagon" opacity="0.7" x="60" y="350"></use>
+                    <use fill="none" href="#hexagon" opacity="0.5" stroke="#ffffff" stroke-width="1" x="300" y="400"></use>
+                    <use fill="url(#hexGrad1)" href="#hexagon" opacity="0.4" x="180" y="520"></use>
+                    <use fill="url(#hexGrad2)" href="#hexagon" opacity="0.3" x="400" y="200"></use>
+
+                    <!-- Small hexagons and icons -->
+                    <use fill="#ffffff" href="#hexagon" opacity="0.4" transform="scale(0.5)" x="350" y="50"></use>
+                    <use fill="none" href="#hexagon" opacity="0.7" stroke="#ffffff" stroke-width="3" transform="scale(0.6)" x="120" y="280"></use>
+                    <use fill="url(#hexGrad1)" href="#hexagon" transform="scale(0.7)" x="420" y="350"></use>
+                    <use fill="none" href="#hexagon" opacity="0.5" stroke="#ffffff" stroke-width="2" transform="scale(0.5)" x="80" y="550"></use>
+
+                    <!-- Integrating icons inside hexagons -->
+                    <g transform="translate(85, 135) scale(0.8)">
+                        <use href="#beaker" opacity="0.8"></use>
+                    </g>
+                    <g transform="translate(305, 135) scale(0.8)">
+                        <use href="#microscope" opacity="0.7"></use>
+                    </g>
+                    <g transform="translate(95, 385) scale(0.8)">
+                        <use href="#microscope" opacity="0.9"></use>
+                    </g>
+                    <g transform="translate(215, 555) scale(0.8)">
+                        <use href="#beaker" opacity="0.6"></use>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-white/80 text-xs text-center pb-2 relative z-30">
+                Copyright © 2019, My Discounted Labs. All rights reserved.
+            </div>
+        </section>
+        <!-- END: Left Side -->
+
+        <!-- BEGIN: Right Side (Form) -->
+        <section class="w-full md:w-[55%] h-full bg-slate-50 flex flex-col justify-center items-center relative p-6 sm:p-8 md:p-10" data-purpose="right-panel">
             
-            const forgotLink = document.getElementById('forgot-password-link');
-            if (forgotLink) forgotLink.classList.remove('hidden');
-        } else {
-            submitBtn.innerHTML = `Create Account <span class="material-symbols-outlined text-[16px] font-bold">person_add</span>`;
-            signupFields.classList.add('is-open');
-            confirmPasswordWrap.classList.add('is-open');
-            nameInput.setAttribute('required', 'required');
-            confirmPasswordInput.setAttribute('required', 'required');
-            
-            authTabs.dataset.mode = 'signup';
-            tabSignup.className = "w-full text-center py-2 rounded-lg font-['Inter'] font-bold text-xs transition-all text-white bg-blue-600 shadow-md cursor-pointer";
-            tabSignin.className = "w-full text-center py-2 rounded-lg font-['Inter'] font-semibold text-xs transition-all text-slate-400 hover:text-white cursor-pointer";
-            
-            const forgotLink = document.getElementById('forgot-password-link');
-            if (forgotLink) forgotLink.classList.add('hidden');
-        }
-    }
+            <!-- Form Card -->
+            <div class="w-full max-w-[400px] bg-white rounded-3xl shadow-lg p-6 sm:p-8 relative z-10" data-purpose="login-form-card">
+                
+                <!-- Tabs -->
+                <div class="flex space-x-6 mb-8 text-lg font-medium border-b border-gray-100 pb-2">
+                    <button type="button" id="tab-signup" onclick="switchMode('signup')" class="tab-active pb-2 transition-colors">Sign Up</button>
+                    <button type="button" id="tab-signin" onclick="switchMode('signin')" class="tab-inactive pb-2 hover:text-gray-700 transition-colors">Sign In</button>
+                </div>
 
-    async function handleAuthSubmit(e) {
-        e.preventDefault();
+                <!-- Form -->
+                <form id="auth-form" class="space-y-6" onsubmit="event.preventDefault();">
+                    <div id="field-fullname">
+                        <label class="block text-sm text-blue-500 font-medium mb-1">Full Name</label>
+                        <input id="input-fullname" class="form-input w-full bg-transparent text-gray-700 text-sm focus:outline-none" placeholder="Aldrego" type="text"/>
+                    </div>
 
-        const email = document.getElementById('auth-email').value.trim();
-        const password = document.getElementById('auth-password').value;
-        const confirmPassword = document.getElementById('auth-confirm-password').value;
-        const name = document.getElementById('auth-name').value.trim();
-        const submitBtn = document.getElementById('submit-btn');
-        const originalButton = submitBtn.innerHTML;
+                    <div>
+                        <label class="block text-sm text-blue-500 font-medium mb-1">Email</label>
+                        <input id="input-email" class="form-input w-full bg-transparent text-gray-700 text-sm focus:outline-none" placeholder="Aldrego@email.com" type="email" required/>
+                    </div>
 
-        if (mode === 'signup' && password !== confirmPassword) {
-            if (window.Analytics) {
-                window.Analytics.trackEvent('auth_error', { mode: 'signup', error_type: 'password_mismatch' });
-            }
-            alert('Passwords do not match.');
-            return;
-        }
+                    <div>
+                        <label class="block text-sm text-blue-500 font-medium mb-1">Password</label>
+                        <input id="input-password" class="form-input w-full bg-transparent text-gray-700 text-sm focus:outline-none" placeholder="•••••••••" type="password" required/>
+                    </div>
 
-        if (window.Analytics) {
-            window.Analytics.trackEvent(mode === 'signup' ? 'signup_start' : 'login_start', { auth_method: 'email' });
-        }
+                    <button id="btn-submit" class="w-full bg-blue-500 hover:bg-blue-600 active:scale-[0.98] text-white font-medium py-3 rounded-xl shadow-md shadow-blue-500/30 transition-all mt-8 cursor-pointer" type="submit">
+                        Sign Up
+                    </button>
+                </form>
 
-        submitBtn.disabled = true;
-        submitBtn.classList.add('opacity-70', 'cursor-wait');
-        submitBtn.innerHTML = `<svg class="pl pl--sm inline align-middle mr-1" viewBox="0 0 240 240"><circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle><circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle><circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle><circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle></svg> Processing...`;
+                <div class="text-center mt-6">
+                    <a id="toggle-account-link" class="text-pink-400 text-sm hover:text-pink-500 transition-colors cursor-pointer" onclick="toggleMode()">
+                        I have an Account ?
+                    </a>
+                </div>
+            </div>
 
-        try {
-            // ── Primary Backend Fastify API Endpoint Call ──────────────────────────
-            const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
-            const payload = mode === 'signup' ? { email, password, name } : { email, password };
+        </section>
+        <!-- END: Right Side -->
 
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            });
+    </main>
+    <!-- END: Main Container -->
 
-            const result = await response.json();
+    <script>
+        let currentMode = 'signup';
 
-            if (!response.ok) {
-                throw new Error(result.error || result.message || 'Authentication failed');
-            }
+        function switchMode(mode) {
+            currentMode = mode;
+            const tabSignup = document.getElementById('tab-signup');
+            const tabSignin = document.getElementById('tab-signin');
+            const fieldFullName = document.getElementById('field-fullname');
+            const btnSubmit = document.getElementById('btn-submit');
+            const toggleLink = document.getElementById('toggle-account-link');
 
-            if (result.token) {
-                localStorage.setItem('portfolio_jwt_token', result.token);
-            }
-            if (result.user) {
-                localStorage.setItem('portfolio_auth_user', JSON.stringify(result.user));
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userName', result.user.name || 'User');
-                localStorage.setItem('userEmail', result.user.email || '');
-                localStorage.setItem('userPicture', 'assets/algora_logo.png');
-            }
-
-            if (window.Analytics) {
-                window.Analytics.trackAuth(mode === 'signup' ? 'signup' : 'login', 'email');
-            }
-
-            showSuccessAndRedirect();
-        } catch (backendError) {
-            console.warn('Backend API submission error, trying session fallback:', backendError.message);
-            // If Firebase is configured, try Firebase fallback
-            if (typeof auth !== 'undefined' && auth) {
-                try {
-                    let credential;
-                    if (mode === 'signup') {
-                        credential = await auth.createUserWithEmailAndPassword(email, password);
-                        await credential.user.updateProfile({ displayName: name });
-                    } else {
-                        credential = await auth.signInWithEmailAndPassword(email, password);
-                    }
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userName', name || credential.user.displayName || 'User');
-                    localStorage.setItem('userEmail', email);
-
-                    if (window.Analytics) {
-                        window.Analytics.trackAuth(mode === 'signup' ? 'signup' : 'login', 'firebase');
-                    }
-
-                    showSuccessAndRedirect();
-                    return;
-                } catch (fbErr) {
-                    if (window.Analytics) {
-                        window.Analytics.trackEvent('auth_error', { mode, error_type: 'firebase_auth_error' });
-                    }
-                    alert(fbErr.message);
-                    return;
-                }
-            }
-
-            if (window.Analytics) {
-                window.Analytics.trackEvent('auth_error', { mode, error_type: 'backend_error' });
-            }
-            alert(backendError.message);
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('opacity-70', 'cursor-wait');
-            submitBtn.innerHTML = originalButton;
-        }
-    }
-
-    // ── Active Device Session Detection ─────────────────────────────────
-    function checkActiveDeviceSession() {
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        const userEmail = localStorage.getItem('userEmail');
-        const userName = localStorage.getItem('userName');
-        const userPicture = localStorage.getItem('userPicture') || 'assets/algora_logo.png';
-
-        const activeCard = document.getElementById('active-device-session');
-        const emailSection = document.getElementById('email-auth-section');
-
-        if (isLoggedIn && userEmail && activeCard && emailSection) {
-            const avatarEl = document.getElementById('device-session-avatar');
-            const nameEl = document.getElementById('device-session-name');
-            const emailEl = document.getElementById('device-session-email');
-
-            if (nameEl) nameEl.innerText = userName || 'Logged In Account';
-            if (emailEl) emailEl.innerText = userEmail;
-            if (avatarEl) avatarEl.src = userPicture;
-
-            activeCard.classList.remove('hidden');
-            emailSection.classList.add('hidden');
-        }
-    }
-
-    function switchDeviceAccount() {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userEmail');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('userPicture');
-        localStorage.removeItem('portfolio_jwt_token');
-        localStorage.removeItem('portfolio_auth_user');
-
-        const activeCard = document.getElementById('active-device-session');
-        const emailSection = document.getElementById('email-auth-section');
-        if (activeCard) activeCard.classList.add('hidden');
-        if (emailSection) emailSection.classList.remove('hidden');
-    }
-
-    document.addEventListener('DOMContentLoaded', checkActiveDeviceSession);
-
-    // ── FIREBASE AUTHENTICATION CONFIGURATION ──────────────────
-    // Replace these placeholder details with your actual Firebase project config credentials.
-    let isFirebaseConfigured = false;
-    let auth;
-    function initializeFirebaseAuth(config) {
-        if (!config || !config.apiKey || isFirebaseConfigured) return;
-        try {
-            if (!firebase.apps.length) firebase.initializeApp(config);
-            auth = firebase.auth();
-            isFirebaseConfigured = true;
-        } catch (error) {
-            console.error("Firebase Initialization Failed:", error);
-        }
-    }
-
-    // firebase-config.js dispatches this event once the project configuration is ready.
-    initializeFirebaseAuth(window.firebaseConfig);
-    window.addEventListener('firebase-config-ready', () => {
-        initializeFirebaseAuth(window.firebaseConfig);
-        handlePendingRedirectResult();
-    }, { once: true });
-
-    async function saveAuthenticatedUser(user, providerName) {
-        let profile = null;
-        if (window.PortfolioAuth) {
-            try {
-                profile = await window.PortfolioAuth.ensureUserProfile(user);
-            } catch (profileError) {
-                console.warn('Profile sync skipped after authentication:', profileError);
+            if (mode === 'signup') {
+                tabSignup.className = 'tab-active pb-2 transition-colors';
+                tabSignin.className = 'tab-inactive pb-2 hover:text-gray-700 transition-colors';
+                fieldFullName.style.display = 'block';
+                btnSubmit.textContent = 'Sign Up';
+                toggleLink.textContent = 'I have an Account ?';
+            } else {
+                tabSignin.className = 'tab-active pb-2 transition-colors';
+                tabSignup.className = 'tab-inactive pb-2 hover:text-gray-700 transition-colors';
+                fieldFullName.style.display = 'none';
+                btnSubmit.textContent = 'Sign In';
+                toggleLink.textContent = "Don't have an Account ? Sign Up";
             }
         }
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userName', (profile && profile.displayName) || user.displayName || `${providerName} User`);
-        localStorage.setItem('userEmail', user.email || '');
-        const avatar = window.PortfolioAuth ? window.PortfolioAuth.getAvatar(profile, user) : user.photoURL;
-        if (avatar) localStorage.setItem('userPicture', avatar);
-        else localStorage.removeItem('userPicture');
-    }
 
-    function getSocialProvider(providerName) {
-        if (providerName === 'Google') {
-            return new firebase.auth.GoogleAuthProvider();
+        function toggleMode() {
+            switchMode(currentMode === 'signup' ? 'signin' : 'signup');
         }
-        if (providerName === 'Facebook') {
-            return new firebase.auth.FacebookAuthProvider();
-        }
-        throw new Error('Unsupported sign-in provider.');
-    }
-
-    function showSocialAuthError(providerName, error) {
-        console.error(`Firebase ${providerName} Sign-In Error:`, error);
-        if (error.code === 'auth/popup-closed-by-user') return;
-        alert(`${providerName} login failed: ${error.message}`);
-    }
-
-    async function finishSocialAuth(result, providerName) {
-        if (!result || !result.user) return;
-
-        await saveAuthenticatedUser(result.user, providerName);
-        showSuccessAndRedirect();
-    }
-
-    function handleSocialAuth(providerName) {
-        if (!isFirebaseConfigured) {
-            alert('Real social login ke liye Firebase configuration add karein aur Firebase Console mein provider enable karein.');
-            return;
-        }
-
-        const provider = getSocialProvider(providerName);
-        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-        if (isMobile) {
-            auth.signInWithRedirect(provider).catch((error) => showSocialAuthError(providerName, error));
-            return;
-        }
-
-        auth.signInWithPopup(provider)
-            .then((result) => finishSocialAuth(result, providerName))
-            .catch((error) => {
-                console.warn(`Popup authentication issue (${error.code}), attempting redirect fallback...`, error);
-                if (error.code === 'auth/operation-not-allowed' || error.code === 'auth/configuration-not-found') {
-                    alert(`Firebase Console mein ${providerName} Sign-In Provider ENABLED nahi hai.\n\nPlease go to Firebase Console -> Authentication -> Sign-in method -> Enable ${providerName}.`);
-                    return;
-                }
-                if (error.code === 'auth/unauthorized-domain') {
-                    alert(`Yeh domain (${window.location.hostname}) Firebase Authorized Domains mein added nahi hai.\n\nGo to Firebase Console -> Authentication -> Settings -> Authorized domains -> Add domain.`);
-                    return;
-                }
-                // Auto fallback to redirect if popup fails/blocked
-                auth.signInWithRedirect(provider).catch((redirectErr) => showSocialAuthError(providerName, redirectErr));
-            });
-    }
-
-    // Finish a mobile redirect sign-in after the identity provider returns here.
-    function handlePendingRedirectResult() {
-        if (!isFirebaseConfigured || !auth) return;
-        auth.getRedirectResult()
-            .then((result) => {
-                if (!result || !result.user) return;
-                const providerName = result.credential && result.credential.providerId === 'facebook.com'
-                        ? 'Facebook'
-                        : 'Google';
-                return finishSocialAuth(result, providerName);
-            })
-            .catch((error) => showSocialAuthError('Social', error));
-    }
-    handlePendingRedirectResult();
-
-    function handleForgotPassword(e) {
-        e.preventDefault();
-        const emailInput = document.getElementById('auth-email').value;
-        if (!emailInput) {
-            alert("Please enter your email address first so we can send you a password reset link!");
-            return;
-        }
-
-        if (!isFirebaseConfigured) {
-            alert('Firebase configuration is still loading. Please try again in a moment.');
-            return;
-        }
-
-        auth.sendPasswordResetEmail(emailInput)
-            .then(() => alert(`A password reset link has been sent to: ${emailInput}`))
-            .catch((error) => {
-                console.error('Firebase password reset error:', error);
-                alert(error.code === 'auth/user-not-found' ? 'No account was found with this email.' : error.message);
-            });
-    }
-</script>
-<!-- Google Analytics 4 (GA4) -->
-<script src="js/analytics-config.js" defer></script>
-<script src="js/analytics.js"        defer></script>
+    </script>
 </body>
 </html>
