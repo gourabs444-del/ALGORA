@@ -170,8 +170,6 @@
       transition: none;
   }
 
-
-
   /* 3. Hero text wrapper — GPU accelerated layer promotion */
   #obscura-hero-content {
       will-change: opacity, transform;
@@ -416,9 +414,9 @@
 
   /* 9. Responsive */
   @media (max-width: 768px) {
-      #all-projects-intro  { height: 200vh !important; height: 200svh !important; }
+      #all-projects-intro   { height: 200vh !important; height: 200svh !important; }
       #obscura-hero-section { height: 100vh !important; height: 100svh !important; min-height: 0 !important; min-height: 100svh !important; position: -webkit-sticky !important; position: sticky !important; top: 0 !important; transform: translateZ(0); }
-      #obscura-main-sheet { margin-top: -100vh !important; margin-top: -100svh !important; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.05) !important; transform: translateZ(0); }
+      #obscura-main-sheet   { position: relative !important; z-index: 30 !important; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.05) !important; transform: translateZ(0); }
   }
   /* 10. Lightweight GPU-friendly Scroll-reveal entrance animation engine */
   .reveal-on-scroll {
@@ -6167,164 +6165,104 @@
     window.addEventListener('scroll', onScrollOptimized, { passive: true });
     onScrollOptimized();
 
-    // ── Obscura-style scroll-driven hero animation ─────────────────────────
-    (function initObscuraHero() {
-        const intro   = document.getElementById('all-projects-intro');
-        const hero    = document.getElementById('obscura-hero-section');
-        const content = document.getElementById('obscura-hero-content');
-        if (!intro || !hero) return;
-
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let raf = null;
-        let targetP = 0;
-        let currentP = 0;
-
-        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-
-        let cachedVh = window.innerHeight;
-        let cachedIntroTop = 0;
-        let cachedTravel = 0;
-
-        let lastWidth = window.innerWidth;
-        function updateMetrics() {
-            cachedVh = window.innerHeight;
-            const sy = Math.max(0, window.scrollY || window.pageYOffset || 0);
-            cachedIntroTop = intro.getBoundingClientRect().top + sy;
-            cachedTravel = intro.offsetHeight - cachedVh;
-        }
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth !== lastWidth) {
-                lastWidth = window.innerWidth;
-                updateMetrics();
-            }
-        }, { passive: true });
-        window.addEventListener('orientationchange', () => {
-            setTimeout(updateMetrics, 120);
-        }, { passive: true });
-
-        updateMetrics();
-
-        let lastOpacity = -1;
-        let lastTy = -9999;
-        let lastDim = -1;
-
-        function tick() {
-            raf = null;
-            if (reduceMotion) return;
-
-            const sy = Math.max(0, window.scrollY || window.pageYOffset || 0);
-
-            // Skip work if user has already scrolled past the hero section
-            if (cachedTravel > 0 && sy > cachedIntroTop + cachedTravel + 80 && currentP === 1) {
-                return;
-            }
-
-            const scrolled = Math.max(0, sy - cachedIntroTop);
-            targetP = cachedTravel > 0 ? Math.min(1, Math.max(0, scrolled / cachedTravel)) : 0;
-            currentP = targetP;
-
-            if (content) {
-                let opacity = 1;
-                let translateY = 0;
-
-                if (currentP > 0 && sy > 0) {
-                    const fadeProgress = currentP < 0.4 ? 0 : Math.min(1, (currentP - 0.4) / 0.45);
-                    opacity = Math.max(0, 1 - fadeProgress);
-                    translateY = -(currentP * cachedVh * 0.5);
-                }
-
-                if (Math.abs(opacity - lastOpacity) > 0.004) {
-                    content.style.opacity = opacity.toFixed(3);
-                    lastOpacity = opacity;
-                }
-                if (Math.abs(translateY - lastTy) > 0.4) {
-                    content.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
-                    lastTy = translateY;
-                }
-            }
-
-            if (hero) {
-                const dim = Math.min(0.8, currentP * 0.9);
-                if (Math.abs(dim - lastDim) > 0.01) {
-                    hero.style.setProperty('--obs-dim', dim.toFixed(3));
-                    lastDim = dim;
-                }
-            }
-        }
-
-        function schedule() {
-            if (raf === null) raf = requestAnimationFrame(tick);
-        }
-
-        window.addEventListener('scroll', schedule, { passive: true });
-        tick(); // paint immediately on load
-    })();
-
     document.body.classList.add('all-projects-showcase');
 
-    // ── High-Performance Smooth Scroll (Lenis Engine + GSAP ScrollTrigger Synchronization) ──
-    (function initSmoothScrollInertia() {
-        function setupLenis() {
-            // 1. Register GSAP ScrollTrigger Plugin
-            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                gsap.registerPlugin(ScrollTrigger);
-            }
+    // ── High-Performance Smooth Scroll (Lenis Engine + GSAP ScrollTrigger Hero Synchronization) ──
+    (function initSmoothHeroAndScroll() {
+        function setup() {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Prevent mobile URL-bar expand/collapse from causing stutter/recalc
+            ScrollTrigger.config({ 
+                ignoreMobileResize: true,
+                autoRefreshEvents: "visibilitychange,DOMContentLoaded,load,resize"
+            });
 
             const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-            if (isTouchDevice) {
-                // Mobile Hardware Scroll: Refresh ScrollTrigger for native touch
-                if (typeof ScrollTrigger !== 'undefined') {
-                    ScrollTrigger.refresh();
-                }
-                return;
-            }
 
+            // 1. Initialize Lenis Smooth Scroll Engine
             if (typeof Lenis !== 'undefined') {
                 window.lenisInstance = new Lenis({
-                    duration: 1.2,
+                    duration: isTouchDevice ? 0.9 : 1.15,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                     orientation: 'vertical',
                     gestureOrientation: 'vertical',
                     smoothWheel: true,
                     wheelMultiplier: 1.0,
-                    touchMultiplier: 1.8,
-                    syncTouch: false,
-                    lerp: 0.08,
+                    touchMultiplier: 1.2,
+                    lerp: isTouchDevice ? 0.12 : 0.09,
                     infinite: false
                 });
 
-                // 2. Synchronize Lenis scroll event with ScrollTrigger
-                if (typeof ScrollTrigger !== 'undefined') {
-                    window.lenisInstance.on('scroll', ScrollTrigger.update);
-                }
+                // Synchronize Lenis with ScrollTrigger
+                window.lenisInstance.on('scroll', ScrollTrigger.update);
 
-                // 3. Connect GSAP Ticker to drive Lenis RAF at 120 FPS
-                if (typeof gsap !== 'undefined') {
-                    gsap.ticker.add((time) => {
-                        window.lenisInstance.raf(time * 1000);
-                    });
-                    gsap.ticker.lagSmoothing(0);
-                } else {
-                    function raf(time) {
-                        window.lenisInstance.raf(time);
-                        requestAnimationFrame(raf);
-                    }
-                    requestAnimationFrame(raf);
-                }
-
-                // 4. Notify legacy event listeners
-                window.lenisInstance.on('scroll', (e) => {
-                    if (typeof onScrollOptimized === 'function') onScrollOptimized();
-                    window.dispatchEvent(new Event('scroll'));
+                // Drive Lenis RAF from GSAP high-precision ticker at 120 FPS
+                gsap.ticker.add((time) => {
+                    window.lenisInstance.raf(time * 1000);
                 });
+                gsap.ticker.lagSmoothing(0);
+
+                window.lenisInstance.on('scroll', () => {
+                    if (typeof onScrollOptimized === 'function') onScrollOptimized();
+                });
+            } else {
+                window.addEventListener('scroll', () => {
+                    ScrollTrigger.update();
+                    if (typeof onScrollOptimized === 'function') onScrollOptimized();
+                }, { passive: true });
             }
+
+            // 2. Silky-Smooth GPU Scrub for "Curating the Web's Finest" Hero & Drawer
+            const intro       = document.getElementById('all-projects-intro');
+            const heroContent = document.getElementById('obscura-hero-content');
+            const heroSection = document.getElementById('obscura-hero-section');
+
+            if (intro && heroContent && heroSection) {
+                gsap.set(heroContent, { y: 0, opacity: 1, force3D: true });
+                gsap.set(heroSection, { '--obs-dim': 0 });
+
+                const heroTL = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: intro,
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: true, // 1:1 direct sub-pixel sync with scroll
+                        invalidateOnRefresh: true
+                    }
+                });
+
+                // Full upward translation (-50% of viewport) perfectly matching drawer slide
+                heroTL.to(heroContent, {
+                    y: () => -window.innerHeight * 0.5,
+                    ease: 'none',
+                    duration: 1,
+                    force3D: true
+                }, 0);
+
+                // Smooth fade starting at 35% through the scroll
+                heroTL.fromTo(heroContent, 
+                    { opacity: 1 },
+                    { opacity: 0, ease: 'power1.out', duration: 0.6 },
+                    0.35
+                );
+
+                // Background dimming
+                heroTL.to(heroSection, {
+                    '--obs-dim': 0.8,
+                    ease: 'none',
+                    duration: 1
+                }, 0);
+            }
+
+            ScrollTrigger.refresh();
         }
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', setupLenis);
+            document.addEventListener('DOMContentLoaded', setup);
         } else {
-            setupLenis();
+            setup();
         }
     })();
 
