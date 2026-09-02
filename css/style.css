@@ -58,6 +58,9 @@ body {
     z-index:        var(--z-bg);
     pointer-events: none;
     overflow:       hidden;
+    transform:      translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 #background svg {
@@ -279,6 +282,10 @@ section {
 
 @media (max-width: 640px) {
 
+    html, body {
+        -webkit-overflow-scrolling: touch;
+    }
+
     .hero {
         padding:         12vh 2rem 0 2rem;  /* reset to full-width on mobile */
         justify-content: flex-start;
@@ -289,6 +296,10 @@ section {
         font-size:  3.25rem;       /* cleaner size for mobile screens */
         line-height: 1.05;         /* balanced display stacking */
         letter-spacing: -0.04em;
+    }
+
+    .hero-line {
+        filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.2));
     }
 
     .hero p {

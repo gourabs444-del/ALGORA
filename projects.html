@@ -231,47 +231,31 @@
       z-index: 30;
       margin-top: -100vh;
       margin-top: -100svh;
-      background-color: #ffffff !important; /* Pure White Background */
-      border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
-      box-shadow: 0 -20px 80px rgba(0, 0, 0, 0.06) !important;
+      background-color: #0c0d12 !important; /* Dark MotionSites Background */
+      border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 -20px 80px rgba(0, 0, 0, 0.7) !important;
       will-change: transform;
       transform: translate3d(0, 0, 0);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
   }
 
-  /* Override inner elements for light drawer theme */
-  #obscura-main-sheet #obscura-ticker {
-      border-color: rgba(0, 0, 0, 0.08) !important;
-      border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-  }
+  /* Elements inside obscura main sheet (light theme) */
   #obscura-main-sheet h2.showcase-heading {
-      color: #000000 !important;
+      color: #090d16 !important;
   }
   #obscura-main-sheet span.text-white\/40 {
-      color: rgba(0, 0, 0, 0.45) !important;
+      color: #64748b !important;
   }
   #obscura-main-sheet span.text-white\/20 {
-      color: rgba(0, 0, 0, 0.15) !important;
+      color: #94a3b8 !important;
   }
   #obscura-main-sheet span.text-white\/50 {
-      color: rgba(0, 0, 0, 0.6) !important;
-      border-color: rgba(0, 0, 0, 0.15) !important;
+      color: #475569 !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
   }
   #obscura-main-sheet div.border-white\/10 {
       border-color: rgba(0, 0, 0, 0.08) !important;
-  }
-
-  /* Card Light Mode Overrides inside White Drawer & Showcase Sections */
-  body.all-projects-showcase #categorized-sections-container .grid .group {
-      background-color: #ffffff !important;
-      border: none !important;
-      outline: none !important;
-  }
-  body.all-projects-showcase #categorized-sections-container .grid .group:hover {
-      border: none !important;
-      outline: none !important;
   }
   .hero-cta-link:hover .cta-text { border-color: #ffffff !important; }
   .hero-cta-link svg {
@@ -436,31 +420,27 @@
       #obscura-hero-section { height: 100vh !important; height: 100svh !important; min-height: 0 !important; min-height: 100svh !important; position: -webkit-sticky !important; position: sticky !important; top: 0 !important; transform: translateZ(0); }
       #obscura-main-sheet { margin-top: -100vh !important; margin-top: -100svh !important; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.05) !important; transform: translateZ(0); }
   }
-  /* 10. Scroll-reveal entrance animation engine for drawer content, cards, headings & banners */
+  /* 10. Lightweight GPU-friendly Scroll-reveal entrance animation engine */
   .reveal-on-scroll {
       opacity: 0 !important;
-      transform: translate3d(0, 45px, 0) scale(0.97) !important;
-      filter: blur(4px);
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      will-change: opacity, transform, filter;
+      transform: translate3d(0, 20px, 0) !important;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
   }
 
   .reveal-on-scroll.is-revealed {
       opacity: 1 !important;
-      transform: translate3d(0, 0, 0) scale(1) !important;
-      filter: blur(0px) !important;
+      transform: translate3d(0, 0, 0) !important;
   }
 
-  .reveal-stagger-1 { transition-delay: 0.06s !important; }
-  .reveal-stagger-2 { transition-delay: 0.12s !important; }
-  .reveal-stagger-3 { transition-delay: 0.18s !important; }
-  .reveal-stagger-4 { transition-delay: 0.24s !important; }
-  .reveal-stagger-5 { transition-delay: 0.30s !important; }
-  .reveal-stagger-6 { transition-delay: 0.36s !important; }
+  .reveal-stagger-1 { transition-delay: 0.04s !important; }
+  .reveal-stagger-2 { transition-delay: 0.08s !important; }
+  .reveal-stagger-3 { transition-delay: 0.12s !important; }
+  .reveal-stagger-4 { transition-delay: 0.16s !important; }
+  .reveal-stagger-5 { transition-delay: 0.20s !important; }
+  .reveal-stagger-6 { transition-delay: 0.24s !important; }
 
   /* Mobile Phone Touch Scroll Performance Optimization */
   @media (max-width: 768px) {
@@ -473,8 +453,11 @@
           background: rgba(10, 12, 18, 0.96) !important;
       }
       .reveal-on-scroll {
-          transition-duration: 0.35s !important;
-          will-change: opacity, transform;
+          transition: opacity 0.25s ease-out, transform 0.25s ease-out !important;
+          transform: translate3d(0, 10px, 0) !important;
+      }
+      .reveal-on-scroll.is-revealed {
+          transform: translate3d(0, 0, 0) !important;
       }
   }
 
@@ -535,7 +518,7 @@
       padding: 0 !important;
       box-shadow: none !important;
       transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-      color: #ffffff !important;
+      color: #0f172a !important;
   }
   
   .motionsites-card:hover,
@@ -577,51 +560,92 @@
       outline: none !important;
   }
 
-  /* Website Name & Subtitle inside Pinterest Cards */
-  .apple-elevated-card a,
-  .dynamic-gallery-card a,
-  .motionsites-card a,
-  .apple-elevated-card .card-title,
-  .dynamic-gallery-card .card-title {
-      color: #ffffff !important;
+  /* Website Name & Subtitle inside Pinterest Cards (High contrast in White Showcase) */
+  .apple-elevated-card a.card-title,
+  .dynamic-gallery-card a.card-title,
+  .motionsites-card a.card-title,
+  .card-title,
+  html.dark .apple-elevated-card a.card-title,
+  html.dark .dynamic-gallery-card a.card-title,
+  html.dark .motionsites-card a.card-title,
+  html.dark .card-title,
+  .dark .card-title {
+      color: #0f172a !important;
+      font-weight: 700 !important;
+  }
+
+  .apple-elevated-card a.card-title:hover,
+  .dynamic-gallery-card a.card-title:hover,
+  .motionsites-card a.card-title:hover,
+  .card-title:hover,
+  html.dark .apple-elevated-card a.card-title:hover,
+  html.dark .dynamic-gallery-card a.card-title:hover,
+  html.dark .motionsites-card a.card-title:hover,
+  html.dark .card-title:hover,
+  .dark .card-title:hover {
+      color: #7c3aed !important;
   }
   
   .apple-elevated-card .card-subtitle,
-  .dynamic-gallery-card .card-subtitle {
-      color: rgba(255, 255, 255, 0.5) !important;
+  .dynamic-gallery-card .card-subtitle,
+  .card-subtitle,
+  html.dark .apple-elevated-card .card-subtitle,
+  html.dark .dynamic-gallery-card .card-subtitle,
+  html.dark .card-subtitle,
+  .dark .card-subtitle {
+      color: #64748b !important;
+      font-weight: 500 !important;
   }
 
-  /* Rating Badges inside Cards */
-  .apple-elevated-card .project-rating-badge,
-  .dynamic-gallery-card .project-rating-badge {
-      background-color: rgba(255, 255, 255, 0.08) !important;
+  /* Letterboxd-style Green Star Ratings */
+  .project-rating-badge {
+      background: transparent !important;
+      background-color: transparent !important;
       border: none !important;
-      color: #fbbf24 !important;
+      color: #00e054 !important;
+      padding: 0 !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
   }
-  .apple-elevated-card .project-rating-badge .rating-val,
-  .dynamic-gallery-card .project-rating-badge .rating-val {
-      color: #ffffff !important;
+  .project-rating-badge .letterboxd-stars {
+      color: #00e054 !important;
+      font-weight: 800 !important;
+      font-size: 13.5px !important;
+      letter-spacing: -0.5px !important;
+      display: inline-block !important;
+      line-height: 1 !important;
+      text-shadow: 0 0 6px rgba(0, 224, 84, 0.35) !important;
   }
   
   /* Fav & Action buttons inside Cards (Clean Pinterest style) */
   .apple-elevated-card .fav-toggle-btn,
   .dynamic-gallery-card .fav-toggle-btn,
-  .apple-elevated-card .card-action-btn,
-  .dynamic-gallery-card .card-action-btn {
-      background-color: rgba(255, 255, 255, 0.06) !important;
+  .fav-toggle-btn,
+  html.dark .fav-toggle-btn {
+      background-color: transparent !important;
       border: none !important;
-      color: rgba(255, 255, 255, 0.55) !important;
+      color: #94a3b8 !important;
       transition: all 0.2s ease !important;
   }
-  .apple-elevated-card .fav-toggle-btn:hover,
-  .dynamic-gallery-card .fav-toggle-btn:hover {
-      background-color: rgba(239, 68, 68, 0.15) !important;
+  .fav-toggle-btn:hover,
+  html.dark .fav-toggle-btn:hover {
       color: #ef4444 !important;
+      background-color: rgba(239, 68, 68, 0.1) !important;
   }
-  .apple-elevated-card .card-action-btn:hover,
-  .dynamic-gallery-card .card-action-btn:hover {
-      background-color: rgba(255, 255, 255, 0.15) !important;
-      color: #ffffff !important;
+  .apple-elevated-card .card-action-btn,
+  .dynamic-gallery-card .card-action-btn,
+  .card-action-btn,
+  html.dark .card-action-btn {
+      background-color: transparent !important;
+      border: none !important;
+      color: #94a3b8 !important;
+      transition: all 0.2s ease !important;
+  }
+  .card-action-btn:hover,
+  html.dark .card-action-btn:hover {
+      color: #0f172a !important;
+      background-color: rgba(0, 0, 0, 0.06) !important;
   }
 
   /* Search Result Highlights & Matched Card Glowing Pulse Animation */
@@ -1135,9 +1159,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="cognilens" data-rating="4.9" data-rating-count="48">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.9</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="cognilens" data-rating="4.9" data-rating-count="48" title="Rating: 4.9 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="cognilens" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1167,9 +1190,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="github" data-rating="4.8" data-rating-count="124">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.8</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="github" data-rating="4.8" data-rating-count="124" title="Rating: 4.8 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="github" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1199,9 +1221,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="medium" data-rating="4.5" data-rating-count="62">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.5</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="medium" data-rating="4.5" data-rating-count="62" title="Rating: 4.5 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="medium" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1231,9 +1252,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="figma" data-rating="4.9" data-rating-count="186">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.9</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="figma" data-rating="4.9" data-rating-count="186" title="Rating: 4.9 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="figma" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1263,9 +1283,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="notion" data-rating="4.7" data-rating-count="93">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.7</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="notion" data-rating="4.7" data-rating-count="93" title="Rating: 4.7 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="notion" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1295,9 +1314,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="behance" data-rating="4.6" data-rating-count="75">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.6</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="behance" data-rating="4.6" data-rating-count="75" title="Rating: 4.6 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="behance" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1335,9 +1353,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="guildrank" data-rating="4.8" data-rating-count="56">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.8</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="guildrank" data-rating="4.8" data-rating-count="56" title="Rating: 4.8 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="guildrank" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1367,9 +1384,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="aesthete" data-rating="4.9" data-rating-count="72">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.9</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="aesthete" data-rating="4.9" data-rating-count="72" title="Rating: 4.9 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="aesthete" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1399,9 +1415,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vanyalodge" data-rating="4.8" data-rating-count="35">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.8</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="vanyalodge" data-rating="4.8" data-rating-count="35" title="Rating: 4.8 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="vanyalodge" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1431,9 +1446,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="vantagepoint" data-rating="4.7" data-rating-count="48">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.7</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="vantagepoint" data-rating="4.7" data-rating-count="48" title="Rating: 4.7 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="vantagepoint" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1463,9 +1477,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon" data-rating="4.9" data-rating-count="61">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.9</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="jurislexicon" data-rating="4.9" data-rating-count="61" title="Rating: 4.9 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="jurislexicon" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1495,9 +1508,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="jurislexicon-dark" data-rating="4.8" data-rating-count="52">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.8</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="jurislexicon-dark" data-rating="4.8" data-rating-count="52" title="Rating: 4.8 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="jurislexicon-dark" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1527,9 +1539,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="bloomfi" data-rating="4.7" data-rating-count="42">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.7</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="bloomfi" data-rating="4.7" data-rating-count="42" title="Rating: 4.7 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="bloomfi" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1559,9 +1570,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="lumina" data-rating="4.9" data-rating-count="38">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.9</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="lumina" data-rating="4.9" data-rating-count="38" title="Rating: 4.9 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="lumina" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1591,9 +1601,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="valura" data-rating="4.8" data-rating-count="31">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.8</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="valura" data-rating="4.8" data-rating-count="31" title="Rating: 4.8 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="valura" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -1623,9 +1632,8 @@
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
-                <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="mamaearth" data-rating="4.9" data-rating-count="56">
-                    <span>★</span>
-                    <span class="rating-val text-white font-bold">4.9</span>
+                <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="mamaearth" data-rating="4.9" data-rating-count="56" title="Rating: 4.9 ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
                 </div>
                 <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="mamaearth" aria-label="Toggle Favorite">
                     <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
@@ -2031,9 +2039,9 @@
         </div><!-- /#all-projects-intro -->
 
         <!-- ── Main Overlapping Content Card (Drawer sliding UP over fixed hero) ────── -->
-        <div id="obscura-main-sheet" class="relative z-30 bg-[#ffffff] rounded-t-[2.5rem] sm:rounded-t-[3.5rem] border-t border-black/10 shadow-[0_-30px_100px_rgba(0,0,0,0.08)] overflow-hidden pt-4">
-            <!-- ── Ticker bar ────────────────────────────────────────────────────── -->
-            <div id="obscura-ticker" class="w-full py-4 overflow-hidden select-none border-y border-black/10 bg-white">
+        <div id="obscura-main-sheet" class="relative z-30 bg-[#0c0d12] rounded-t-[2.5rem] sm:rounded-t-[3.5rem] border-t border-white/10 shadow-[0_-30px_100px_rgba(0,0,0,0.7)] overflow-hidden pt-4">
+            <!-- ── Ticker bar (White Ribbon with Elegant Grayish Typography) ──────── -->
+            <div id="obscura-ticker" class="w-full py-3.5 sm:py-4 overflow-hidden select-none border-y border-neutral-200/80 bg-white text-neutral-500 shadow-2xs">
                 <div class="animate-marquee-left flex items-center gap-0 whitespace-nowrap">
                     <!-- Group 1 -->
                     <div class="inline-flex items-center gap-28 sm:gap-36 pr-28 sm:pr-36 flex-shrink-0">
@@ -2041,7 +2049,7 @@
                             <div class="inline-flex items-center gap-2 select-none">
                                 <svg viewBox="0 0 100 100" class="w-4 h-4 flex-shrink-0" fill="none">
                                     <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" fill="none"/>
-                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#525252"/>
+                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#64748b"/>
                                     <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#8b5cf6"/>
                                 </svg>
                                 <span class="font-serif text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span style="color:#8b5cf6">A</span></span>
@@ -2095,7 +2103,7 @@
                             <div class="inline-flex items-center gap-2 select-none">
                                 <svg viewBox="0 0 100 100" class="w-4 h-4 flex-shrink-0" fill="none">
                                     <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" fill="none"/>
-                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#525252"/>
+                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#64748b"/>
                                     <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#8b5cf6"/>
                                 </svg>
                                 <span class="font-serif text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span style="color:#8b5cf6">A</span></span>
@@ -2149,7 +2157,7 @@
                             <div class="inline-flex items-center gap-2 select-none">
                                 <svg viewBox="0 0 100 100" class="w-4 h-4 flex-shrink-0" fill="none">
                                     <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" fill="none"/>
-                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#525252"/>
+                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#64748b"/>
                                     <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#8b5cf6"/>
                                 </svg>
                                 <span class="font-serif text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span style="color:#8b5cf6">A</span></span>
@@ -2203,7 +2211,7 @@
                             <div class="inline-flex items-center gap-2 select-none">
                                 <svg viewBox="0 0 100 100" class="w-4 h-4 flex-shrink-0" fill="none">
                                     <path d="M 18 64 A 38 38 0 1 1 82 64" stroke="#8b5cf6" stroke-width="6" stroke-linecap="round" fill="none"/>
-                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#525252"/>
+                                    <path d="M 50 10 C 44 26 34 46 22 72 C 35 58 45 44 50 34 C 55 44 65 58 78 72 C 66 46 56 26 50 10 Z" fill="#64748b"/>
                                     <path d="M 50 68 C 50 74 46 78 40 78 C 46 78 50 82 50 88 C 50 82 54 78 60 78 C 54 78 50 74 50 68 Z" fill="#8b5cf6"/>
                                 </svg>
                                 <span class="font-serif text-sm tracking-[0.2em] text-neutral-600 uppercase" style="font-weight: 500 !important; font-family: 'Bodoni Moda', serif !important;">ALGOR<span style="color:#8b5cf6">A</span></span>
@@ -2263,7 +2271,7 @@
                     </div>
                     <span class="rounded-full border border-white/15 px-4 py-1.5 text-[9px] font-bold uppercase tracking-[.2em] text-white/50">All &darr;</span>
                 </div>
-                <div id="grid-all-projects" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
+                <div id="grid-all-projects" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-5 sm:gap-6 lg:gap-7">
                     <!-- Dynamically populated -->
                 </div>
             </div>
@@ -3327,7 +3335,7 @@
             <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
                 <span class="material-symbols-outlined text-primary text-[28px]">web</span> Featured Landing Pages
             </h2>
-            <div id="grid-personal" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
+            <div id="grid-personal" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-5 sm:gap-6 lg:gap-7">
                 <!-- Dynamically populated -->
             </div>
         </div> <!-- Closes full width container -->
@@ -4204,7 +4212,7 @@
             <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface dark:text-white mb-6 flex items-center gap-2.5">
                 <span class="material-symbols-outlined text-primary text-[28px]">handshake</span> Collaboration &amp; SaaS Systems
             </h2>
-            <div id="grid-collaboration" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3.5 sm:gap-4 lg:gap-5">
+            <div id="grid-collaboration" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-5 sm:gap-6 lg:gap-7">
                 <!-- Dynamically populated -->
             </div>
         </div>
@@ -5213,10 +5221,9 @@
                                             </span>
                                         </div>
                                         <div class="flex items-center gap-1.5 shrink-0">
-                                            <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
-                                                <span>★</span>
-                                                <span class="rating-val text-white font-bold">${displayRating}</span>
-                                            </div>
+                                            <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}" title="Rating: ${displayRating} ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
+                </div>
                                             <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="${photo.id}" aria-label="Toggle Favorite">
                                                 <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                                             </button>
@@ -5371,10 +5378,9 @@
                                     </span>
                                 </div>
                                 <div class="flex items-center gap-1.5 shrink-0">
-                                    <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
-                                        <span>★</span>
-                                        <span class="rating-val text-white font-bold">${displayRating}</span>
-                                    </div>
+                                    <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}" title="Rating: ${displayRating} ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
+                </div>
                                     <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="${photo.id}" aria-label="Toggle Favorite">
                                         <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                                     </button>
@@ -6252,7 +6258,6 @@
         }
 
         window.addEventListener('scroll', schedule, { passive: true });
-        window.addEventListener('touchmove', schedule, { passive: true });
         tick(); // paint immediately on load
     })();
 
@@ -6327,8 +6332,8 @@
     (function initScrollRevealEngine() {
         const observerOptions = {
             root: null,
-            rootMargin: '0px 0px -60px 0px',
-            threshold: 0.05
+            rootMargin: '0px 0px -40px 0px',
+            threshold: 0.02
         };
 
         const revealObserver = new IntersectionObserver((entries, obs) => {
@@ -6361,24 +6366,15 @@
             const selectors = [
                 '#obscura-ticker',
                 '.category-banner',
-                'h1.showcase-heading',
-                'h2.showcase-heading',
-                'h3.showcase-heading',
-                '#section-all-projects .mb-10',
                 '#section-all-projects h2',
-                '#categorized-sections-container h2',
-                '#categorized-sections-container h3',
-                '#categorized-sections-container p',
                 '#grid-all-projects > *',
                 '#grid-work > *',
                 '#grid-personal > *',
                 '#grid-collaboration > *',
                 '#grid-favorites > *',
                 '#categorized-sections-container .grid > *',
-                '#categorized-sections-container .group',
                 '#categorized-sections-container .dynamic-gallery-card',
-                '#categorized-sections-container .apple-elevated-card',
-                '.module-container'
+                '#categorized-sections-container .apple-elevated-card'
             ];
 
             const elements = document.querySelectorAll(selectors.join(','));
@@ -6394,7 +6390,7 @@
                         const siblings = Array.from(parent.children);
                         const idx = siblings.indexOf(el);
                         if (idx >= 0) {
-                            const staggerDelay = ((idx % 4) * 0.08).toFixed(2);
+                            const staggerDelay = ((idx % 4) * 0.05).toFixed(2);
                             el.style.transitionDelay = `${staggerDelay}s`;
                         }
                     }
@@ -6406,16 +6402,12 @@
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 window.refreshScrollReveal();
-                setTimeout(window.refreshScrollReveal, 150);
             });
         } else {
             window.refreshScrollReveal();
-            setTimeout(window.refreshScrollReveal, 150);
         }
 
-        setTimeout(window.refreshScrollReveal, 400);
-        setTimeout(window.refreshScrollReveal, 900);
-        setTimeout(window.refreshScrollReveal, 1800);
+        setTimeout(window.refreshScrollReveal, 300);
 
         // Auto-observe newly added cards
         const container = document.getElementById('categorized-sections-container') || document.body;
@@ -6657,19 +6649,31 @@
             activeRatingBadge.setAttribute('data-rating', formattedRating);
             activeRatingBadge.setAttribute('data-rating-count', newCount.toString());
             
-            // Update UI Value
+            function getLetterboxdStarsStr(val) {
+                const num = parseFloat(val);
+                if (isNaN(num)) return '★★★★★';
+                if (num >= 4.85) return '★★★★★';
+                if (num >= 4.3) return '★★★★★';
+                if (num >= 3.8) return '★★★★';
+                if (num >= 3.3) return '★★★★';
+                if (num >= 2.8) return '★★★';
+                if (num >= 2.3) return '★★★';
+                if (num >= 1.8) return '★★';
+                return '★★★★★';
+            }
+
+            const starSpan = activeRatingBadge.querySelector('.letterboxd-stars');
+            if (starSpan) starSpan.innerText = getLetterboxdStarsStr(formattedRating);
+            activeRatingBadge.setAttribute('title', `Rating: ${formattedRating} ★`);
+
             const ratingValueSpan = activeRatingBadge.querySelector('.rating-val');
             if (ratingValueSpan) ratingValueSpan.innerText = formattedRating;
             
-            // Show inline success state
-            activeRatingBadge.classList.remove('text-amber-500', 'bg-amber-500/10');
-            activeRatingBadge.classList.add('text-emerald-600', 'bg-emerald-500/10');
-            
-            // Revert color back after 2 seconds
+            // Show inline success glow
+            activeRatingBadge.classList.add('scale-110');
             setTimeout(() => {
-                activeRatingBadge.classList.remove('text-emerald-600', 'bg-emerald-500/10');
-                activeRatingBadge.classList.add('text-amber-500', 'bg-amber-500/10');
-            }, 2000);
+                activeRatingBadge.classList.remove('scale-110');
+            }, 1000);
             
             // Close the modal
             closeRatingModal();
@@ -6834,10 +6838,9 @@
                                             </span>
                                         </div>
                                         <div class="flex items-center gap-1.5 shrink-0">
-                                            <div class="project-rating-badge flex items-center gap-1 text-[11px] font-bold text-amber-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 select-none cursor-pointer hover:scale-105 transition-transform" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}">
-                                                <span>★</span>
-                                                <span class="rating-val text-white font-bold">${displayRating}</span>
-                                            </div>
+                                            <div class="project-rating-badge flex items-center text-[#00e054] text-[12px] sm:text-[13px] font-bold select-none cursor-pointer tracking-tight hover:brightness-125 transition-all" data-project-id="${photo.id}" data-rating="${displayRating}" data-rating-count="${displayCount}" title="Rating: ${displayRating} ★">
+                    <span class="letterboxd-stars text-[#00e054] font-mono tracking-tighter">★★★★★</span>
+                </div>
                                             <button class="fav-toggle-btn card-action-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-red-500 active:scale-90 transition-all cursor-pointer flex items-center justify-center border border-white/10" data-project-id="${photo.id}" aria-label="Toggle Favorite">
                                                 <span class="material-symbols-outlined text-[16px] sm:text-[17px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
                                             </button>
