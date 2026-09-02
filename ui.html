@@ -70,11 +70,68 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* Hero Container (Normal Balanced Height) */
+        /* Hero Container with Rich Color Theory Gradients & Depth */
         #obscura-hero-section {
-            background: radial-gradient(circle at 50% 30%, #1e1b4b 0%, #0c0d12 65%, #050608 100%);
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.28) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 50% 10%, rgba(244, 63, 94, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, #111424 0%, #090b12 65%, #040508 100%);
             min-height: auto;
             position: relative;
+        }
+
+        .hero-grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 60%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 60%, transparent 100%);
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-9px) rotate(0.6deg); }
+        }
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(9px) rotate(-0.6deg); }
+        }
+        @keyframes border-beam {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes eq-wave-1 {
+            0%, 100% { height: 8px; }
+            50% { height: 26px; }
+        }
+        @keyframes eq-wave-2 {
+            0%, 100% { height: 22px; }
+            50% { height: 10px; }
+        }
+        @keyframes eq-wave-3 {
+            0%, 100% { height: 14px; }
+            50% { height: 30px; }
+        }
+        @keyframes holo-shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .widget-float-1 { animation: float-slow 7s ease-in-out infinite; }
+        .widget-float-2 { animation: float-reverse 9s ease-in-out infinite 0.8s; }
+        .widget-float-3 { animation: float-slow 11s ease-in-out infinite 1.5s; }
+
+        .eq-bar-1 { animation: eq-wave-1 1.2s ease-in-out infinite; }
+        .eq-bar-2 { animation: eq-wave-2 0.9s ease-in-out infinite 0.2s; }
+        .eq-bar-3 { animation: eq-wave-3 1.4s ease-in-out infinite 0.4s; }
+
+        .holographic-glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(139, 92, 246, 0.15) 35%, rgba(6, 182, 212, 0.12) 70%, rgba(244, 63, 94, 0.1) 100%);
+            background-size: 200% 200%;
+            animation: holo-shimmer 8s ease infinite;
         }
 
         /* Overlapping Main White Sheet (Zero Border Radius) */
@@ -294,32 +351,184 @@
         </div>
     </div>
 
-    <!-- Editorial Hero Section (Normal Balanced Proportions) -->
-    <section id="obscura-hero-section" class="w-full text-white flex flex-col justify-center pt-24 sm:pt-28 pb-8 sm:pb-12 px-4 sm:px-8 lg:px-12 overflow-hidden">
+    <!-- UI Collection Hero Section with Rich UI Graphics -->
+    <section id="obscura-hero-section" class="w-full text-white flex flex-col justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-8 lg:px-12 overflow-hidden relative">
+        <!-- Background Dot Grid Overlay -->
+        <div class="absolute inset-0 hero-grid-pattern opacity-70 pointer-events-none"></div>
+
+        <!-- Ambient Color Theory Glow Orbs -->
+        <div class="absolute top-1/4 -right-20 w-96 h-96 rounded-full bg-purple-600/20 blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 left-1/3 w-80 h-80 rounded-full bg-cyan-500/15 blur-[100px] pointer-events-none"></div>
+        <div class="absolute -top-10 left-10 w-72 h-72 rounded-full bg-rose-500/10 blur-[90px] pointer-events-none"></div>
+
         <div class="max-w-[1920px] mx-auto w-full relative z-10">
-            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
-                <!-- Left: Clean Normal Heading -->
-                <div class="max-w-2xl">
-                    <p class="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.25em] text-white/65 mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
-                        <span class="inline-block w-6 sm:w-8 h-[1.5px] bg-white/40"></span>
-                        THE CURATED WEB &nbsp;&middot;&nbsp; EST. 2025
-                    </p>
-                    <h1 class="showcase-heading leading-[1.02] text-white font-normal" style="font-size: clamp(2rem, 4vw, 3.4rem);">
-                        Curated UI &amp;
-                        <span class="italic text-purple-300 font-serif">Component Systems</span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Left Column: Concise, High-Impact Typography & Color Theory Badges -->
+                <div class="lg:col-span-5 flex flex-col items-start">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.08] border border-white/[0.14] backdrop-blur-xl mb-4 shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                        <span class="text-[10.5px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-purple-200">COLOR THEORY &amp; UI VAULT</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.08] font-sans">
+                        Crafted UI <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-cyan-300">Components</span>
                     </h1>
-                    <p class="mt-3 text-[13px] sm:text-[14.5px] text-white/75 max-w-[480px] leading-relaxed font-normal tracking-wide" style="font-family: 'Outfit', sans-serif;">
-                        An editorial library of micro-interactions, layout components, and modern UI patterns — crafted with precision and restraint.
+
+                    <p class="mt-3 text-[13px] sm:text-[14.5px] text-white/75 max-w-[440px] leading-relaxed font-sans font-normal">
+                        Production-ready micro-interactions, neo-glass cards, animated buttons &amp; fluid controls.
                     </p>
+
+                    <!-- Color Theory Token Harmony Bar -->
+                    <div class="mt-5 p-3 rounded-2xl bg-[#0b0e1a]/80 backdrop-blur-md border border-white/[0.12] w-full max-w-[420px]">
+                        <div class="flex items-center justify-between text-[10.5px] font-mono mb-2 text-white/60">
+                            <span class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                                Harmonious Spectrum
+                            </span>
+                            <span class="text-white/40">WCAG AAA Valid</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="flex flex-col items-center p-1.5 rounded-lg bg-white/[0.05] border border-white/[0.08]">
+                                <span class="w-full h-2.5 rounded-sm bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]"></span>
+                                <span class="text-[9px] font-mono text-purple-200 font-bold mt-1">#8B5CF6</span>
+                            </div>
+                            <div class="flex flex-col items-center p-1.5 rounded-lg bg-white/[0.05] border border-white/[0.08]">
+                                <span class="w-full h-2.5 rounded-sm bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.5)]"></span>
+                                <span class="text-[9px] font-mono text-cyan-200 font-bold mt-1">#22D3EE</span>
+                            </div>
+                            <div class="flex flex-col items-center p-1.5 rounded-lg bg-white/[0.05] border border-white/[0.08]">
+                                <span class="w-full h-2.5 rounded-sm bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]"></span>
+                                <span class="text-[9px] font-mono text-rose-200 font-bold mt-1">#F43F5E</span>
+                            </div>
+                            <div class="flex flex-col items-center p-1.5 rounded-lg bg-white/[0.05] border border-white/[0.08]">
+                                <span class="w-full h-2.5 rounded-sm bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></span>
+                                <span class="text-[9px] font-mono text-emerald-200 font-bold mt-1">#10B981</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Button & Stats -->
+                    <div class="mt-6 flex items-center gap-4 flex-wrap">
+                        <a href="#explore-collection" class="hero-cta-link inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-[11.5px] font-mono font-bold uppercase tracking-[0.16em] transition-all shadow-lg shadow-purple-600/30 hover:scale-[1.02] active:scale-95 cursor-pointer" style="text-decoration:none;">
+                            <span>EXPLORE COLLECTION</span>
+                            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                        </a>
+                        <span class="text-[11px] font-mono text-white/50">36+ Micro Modules</span>
+                    </div>
                 </div>
 
-                <!-- Right: CTA Link -->
-                <div class="flex-shrink-0 mb-2 sm:mb-3">
-                    <a href="#explore-collection" class="hero-cta-link inline-flex items-center gap-2.5 text-[11px] sm:text-[12px] font-mono font-medium uppercase tracking-[0.2em] text-white/90 hover:text-white transition-colors cursor-pointer select-none">
-                        <span class="cta-text border-b border-white/60 pb-1 transition-colors">EXPLORE THE COLLECTION</span>
-                        <svg class="w-4 h-4 sm:w-[18px] sm:h-[18px] text-white/90 flex-shrink-0 translate-y-[1px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="7" x2="17" y2="17"></line><polyline points="7 17 17 17 17 7"></polyline></svg>
-                    </a>
+                <!-- Right Column: Visual UI Component Showcase Grid -->
+                <div class="lg:col-span-7 relative w-full">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 relative">
+                        
+                        <!-- UI Graphic 1: Holographic Metric & Equalizer Card -->
+                        <div class="widget-float-1 holographic-glass backdrop-blur-2xl border border-white/[0.18] rounded-3xl p-5 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.2)] flex flex-col justify-between relative overflow-hidden">
+                            <div class="flex items-center justify-between border-b border-white/[0.1] pb-3 mb-3">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-purple-600 to-cyan-400 p-0.5 shadow-md">
+                                        <div class="w-full h-full bg-[#0d111d] rounded-[10px] flex items-center justify-center text-cyan-300">
+                                            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs font-mono font-bold text-white block">Fluid Physics</span>
+                                        <span class="text-[9.5px] font-sans text-white/50 block">Hardware Sync</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.3)] flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    120 FPS
+                                </span>
+                            </div>
+
+                            <!-- Big Visual Indicator with Mini Waveform -->
+                            <div class="my-2 flex items-end justify-between gap-3">
+                                <div>
+                                    <span class="text-[30px] font-mono font-extrabold text-white tracking-tight leading-none">99.9<span class="text-base text-cyan-300 font-bold">%</span></span>
+                                    <p class="text-[11px] text-purple-200/70 font-sans mt-1">Zero Layout Shift</p>
+                                </div>
+
+                                <!-- Dynamic Animated Equalizer Bars -->
+                                <div class="flex items-end gap-1.5 h-10 pb-1">
+                                    <span class="w-1.5 rounded-full bg-purple-400 eq-bar-1 shadow-[0_0_8px_rgba(168,85,247,0.7)]"></span>
+                                    <span class="w-1.5 rounded-full bg-cyan-400 eq-bar-2 shadow-[0_0_8px_rgba(34,211,238,0.7)]"></span>
+                                    <span class="w-1.5 rounded-full bg-rose-400 eq-bar-3 shadow-[0_0_8px_rgba(244,63,94,0.7)]"></span>
+                                    <span class="w-1.5 rounded-full bg-emerald-400 eq-bar-1 shadow-[0_0_8px_rgba(52,211,153,0.7)]"></span>
+                                    <span class="w-1.5 rounded-full bg-purple-300 eq-bar-2"></span>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Segmented Pill Switch -->
+                            <div class="mt-3 pt-3 border-t border-white/[0.1] flex items-center justify-between text-[10.5px] font-mono text-white/70">
+                                <span>Motion Engine</span>
+                                <span class="px-2 py-0.5 rounded-md bg-white/10 text-white font-bold border border-white/15">Spring.smooth()</span>
+                            </div>
+                        </div>
+
+                        <!-- UI Graphic 2: Component Inspector & Live Button Sandbox -->
+                        <div class="widget-float-2 bg-[#0a0d18]/90 backdrop-blur-2xl border border-white/[0.16] rounded-3xl p-5 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.15)] flex flex-col justify-between">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500/90 shadow-[0_0_6px_rgba(244,63,94,0.6)]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500/90 shadow-[0_0_6px_rgba(245,158,11,0.6)]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/90 shadow-[0_0_6px_rgba(16,185,129,0.6)]"></span>
+                                    <span class="text-[10.5px] font-mono text-white/50 ml-1.5">GlassButton.tsx</span>
+                                </div>
+                                <span class="text-[9.5px] font-mono bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-md border border-purple-500/30">React + CSS</span>
+                            </div>
+
+                            <!-- Syntax Highlighted Snippet Box -->
+                            <div class="bg-[#05070f] rounded-2xl p-3 font-mono text-[10.5px] leading-relaxed border border-white/[0.08] text-white/90 select-none">
+                                <p><span class="text-purple-400">&lt;MagneticButton</span></p>
+                                <p class="pl-3"><span class="text-cyan-300">variant</span>=<span class="text-amber-300">"shimmer-glow"</span></p>
+                                <p class="pl-3"><span class="text-cyan-300">chroma</span>=<span class="text-rose-400">"holographic"</span>&gt;</p>
+                                <p class="pl-3 text-white font-bold">✨ Interactive Preview</p>
+                                <p><span class="text-purple-400">&lt;/MagneticButton&gt;</span></p>
+                            </div>
+
+                            <!-- Live Shimmer Action Button -->
+                            <div class="mt-3">
+                                <button type="button" class="w-full py-2 px-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-500 text-white font-mono text-[11px] font-bold tracking-wider uppercase shadow-[0_0_20px_rgba(168,85,247,0.5)] flex items-center justify-center gap-2 transition-transform hover:scale-[1.02] active:scale-95 cursor-default">
+                                    <span>✨ COPY COMPONENT</span>
+                                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- UI Graphic 3: Dynamic Island & Segmented Control Hub -->
+                        <div class="sm:col-span-2 widget-float-3 bg-[#0a0d18]/85 backdrop-blur-2xl border border-white/[0.14] rounded-2xl p-3.5 shadow-xl flex flex-wrap items-center justify-between gap-3">
+                            
+                            <!-- Dynamic Island Pill -->
+                            <div class="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#05070e] border border-white/[0.12] shadow-inner">
+                                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                                <span class="text-[11px] font-mono font-bold text-white tracking-wide">Live Token Hub</span>
+                                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-cyan-300">Synced</span>
+                            </div>
+
+                            <!-- Interactive Component Switcher Pills -->
+                            <div class="flex items-center gap-1 bg-[#05070e] p-1 rounded-xl border border-white/[0.08]">
+                                <span class="px-3 py-1 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[10.5px] font-mono font-bold shadow-md">Buttons</span>
+                                <span class="px-3 py-1 rounded-lg text-white/50 text-[10.5px] font-mono font-medium hover:text-white transition-colors">Cards</span>
+                                <span class="px-3 py-1 rounded-lg text-white/50 text-[10.5px] font-mono font-medium hover:text-white transition-colors">Sliders</span>
+                                <span class="px-3 py-1 rounded-lg text-white/50 text-[10.5px] font-mono font-medium hover:text-white transition-colors">Modals</span>
+                            </div>
+
+                            <!-- Avatar Stack / Team -->
+                            <div class="flex items-center gap-2">
+                                <div class="flex -space-x-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-purple-500 border border-black flex items-center justify-center text-[9px] font-bold">A</span>
+                                    <span class="w-5 h-5 rounded-full bg-cyan-500 border border-black flex items-center justify-center text-[9px] font-bold">L</span>
+                                    <span class="w-5 h-5 rounded-full bg-rose-500 border border-black flex items-center justify-center text-[9px] font-bold">G</span>
+                                </div>
+                                <span class="text-[10px] font-mono text-white/60 font-semibold">+36 Modules</span>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>

@@ -400,11 +400,34 @@
       letter-spacing: -.04em;
   }
 
-  /* 9. Responsive */
+  /* 9. Responsive Hero & Drawer Sequence */
   @media (max-width: 768px) {
-      #all-projects-intro   { height: 200vh !important; height: 200svh !important; }
-      #obscura-hero-section { height: 100vh !important; height: 100svh !important; min-height: 0 !important; min-height: 100svh !important; position: -webkit-sticky !important; position: sticky !important; top: 0 !important; transform: translateZ(0); }
-      #obscura-main-sheet   { position: relative !important; z-index: 30 !important; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.05) !important; transform: translateZ(0); }
+      #all-projects-intro {
+          position: relative !important;
+          height: 200vh !important;
+          height: 200svh !important;
+          overflow: visible !important;
+      }
+      #obscura-hero-section {
+          position: -webkit-sticky !important;
+          position: sticky !important;
+          top: 0 !important;
+          height: 100vh !important;
+          height: 100svh !important;
+          min-height: 100svh !important;
+          z-index: 10 !important;
+          overflow: hidden !important;
+          transform: translate3d(0, 0, 0);
+      }
+      #obscura-main-sheet {
+          position: relative !important;
+          z-index: 30 !important;
+          margin-top: -100vh !important;
+          margin-top: -100svh !important;
+          border-radius: 2rem 2rem 0 0 !important;
+          box-shadow: 0 -20px 80px rgba(0, 0, 0, 0.7) !important;
+          transform: translate3d(0, 0, 0);
+      }
   }
   /* 10. Lightweight GPU-friendly Scroll-reveal entrance animation engine */
   .reveal-on-scroll {
@@ -458,7 +481,7 @@
      ═══════════════════════════════════════════════════════════════════════ */
   @media (max-width: 768px) {
       html, body {
-          overflow-x: hidden !important;
+          overflow-x: clip !important;
           max-width: 100vw !important;
           width: 100% !important;
           margin: 0 !important;
@@ -469,7 +492,14 @@
       #portfolio-dashboard-content,
       #dashboard-content-canvas,
       #categorized-sections-container,
-      #section-all-projects,
+      #section-all-projects {
+          overflow: visible !important;
+          max-width: 100vw !important;
+          width: 100% !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          box-sizing: border-box !important;
+      }
       #obscura-main-sheet {
           overflow-x: hidden !important;
           max-width: 100vw !important;
