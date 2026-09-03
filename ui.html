@@ -4,8 +4,6 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>UI Components & Patterns | Algora</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -68,6 +66,23 @@
             backdrop-filter: blur(28px) saturate(190%);
             -webkit-backdrop-filter: blur(28px) saturate(190%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .navbar-logo img,
+        .navbar-logo svg {
+            display: block !important;
+            height: 28px !important;
+            max-height: 32px !important;
+            width: auto !important;
+            aspect-ratio: 877.16 / 113.08 !important;
+            object-fit: contain !important;
+            flex-shrink: 0 !important;
+        }
+        @media (max-width: 640px) {
+            .navbar-logo img,
+            .navbar-logo svg {
+                height: 22px !important;
+                max-height: 24px !important;
+            }
         }
 
         /* Hero Container: Pure Dark Black with Deep Blue & Sky Blue Aurora */
@@ -251,16 +266,16 @@
 <body class="bg-white text-slate-900 font-body antialiased selection:bg-slate-900 selection:text-white min-h-screen">
 
     <!-- Fixed Glassmorphic Navigation Bar -->
-    <nav class="obscura-showcase-nav fixed top-0 left-0 w-full flex items-center justify-between pl-8 sm:px-8 lg:px-12 pr-4 py-3.5 sm:py-5 select-none z-[9999] transition-all">
+    <nav class="obscura-showcase-nav fixed top-0 left-0 w-full flex items-center justify-between px-6 sm:px-10 lg:px-14 py-3.5 sm:py-5 select-none z-[9999] transition-all flex-nowrap">
         <!-- Logo -->
-        <a href="index.html" class="navbar-logo ml-4 sm:ml-0 select-none transition-transform hover:scale-105 flex-shrink-0" style="text-decoration: none;">
-            <img src="assets/algora-logo.svg" alt="ALGORA" class="h-2.5 sm:h-[11px] lg:h-[13px] w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1) !important;">
+        <a href="index.html" class="navbar-logo ml-4 sm:ml-6 lg:ml-8 select-none transition-transform hover:scale-105 flex-shrink-0 flex items-center" style="text-decoration: none;">
+            <img src="assets/algora-logo.svg" alt="ALGORA" class="h-7 sm:h-8 md:h-8.5 w-auto object-contain brightness-0 invert opacity-95 hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1) !important; aspect-ratio: 877.16 / 113.08; image-rendering: -webkit-optimize-contrast;">
         </a>
         
         <!-- PC Middle Cluster: CATEGORY, CONSULTANT, Search Bar, Bell Icon -->
-        <div class="hidden sm:flex flex-1 items-center justify-center gap-4 sm:gap-6 lg:gap-8 px-4">
+        <div class="hidden sm:flex flex-1 items-center justify-center gap-4 sm:gap-6 lg:gap-8 px-4 flex-nowrap">
             <!-- Navigation Links -->
-            <div class="flex items-center gap-5 sm:gap-7 text-white/90 tracking-[0.18em] uppercase text-[11px] sm:text-[12px] font-sans font-semibold">
+            <div class="flex items-center gap-5 sm:gap-7 text-white/90 tracking-[0.18em] uppercase text-[11px] sm:text-[12px] font-sans font-semibold flex-shrink-0 flex-nowrap">
                 <!-- CATEGORY with Dropdown -->
                 <div class="relative" id="header-cat-wrapper">
                     <button id="header-category-btn" type="button" class="cursor-pointer hover:text-white transition-colors flex items-center gap-1.5 uppercase tracking-[0.18em] text-[11px] sm:text-[12px] font-semibold text-white/90 bg-transparent border-none outline-none">
@@ -269,27 +284,82 @@
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
-                    <!-- Dropdown Panel -->
-                    <div id="header-cat-dropdown" class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 bg-[#0b0f19]/95 backdrop-blur-3xl border border-white/[0.09] rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.12)] p-2 opacity-0 scale-95 pointer-events-none transition-all duration-200 z-[99999] flex flex-col gap-0.5">
-                        <a href="projects.html" class="header-cat-item group/cat flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/[0.08] text-white/80 hover:text-white transition-all cursor-pointer" style="text-decoration:none;">
-                            <span class="w-2.5 h-2.5 rounded-full bg-[#818cf8] shadow-[0_0_8px_rgba(129,140,248,0.85)] flex-shrink-0 group-hover/cat:scale-125 transition-transform"></span>
-                            <span class="font-mono text-[11px] font-bold tracking-wider uppercase text-white/85 group-hover/cat:text-white">WEB SITES</span>
+                    <!-- Dropdown Panel (Brand-Grade Luxury Glass Popover with Clean Layout) -->
+                    <div id="header-cat-dropdown" class="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-72 sm:w-80 bg-white dark:bg-[#0c101c] border border-slate-200/90 dark:border-white/12 rounded-[24px] shadow-[0_25px_70px_rgba(0,0,0,0.18),0_0_0_1px_rgba(0,0,0,0.04)] p-2.5 opacity-0 scale-95 pointer-events-none transition-all duration-200 z-[99999] flex flex-col gap-1.5" style="font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important; letter-spacing: normal !important; text-transform: none !important;">
+                        <a href="projects.html" class="header-cat-item group/cat flex items-center p-2.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/[0.08] border border-transparent hover:border-slate-200/60 dark:hover:border-white/10 transition-all duration-200 cursor-pointer" style="text-decoration:none; letter-spacing: normal !important;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-2xl bg-indigo-50 dark:bg-indigo-500/15 border border-indigo-100/80 dark:border-indigo-400/25 flex items-center justify-center flex-shrink-0 group-hover/cat:scale-105 transition-transform shadow-xs">
+                                    <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-[13.5px] font-bold text-slate-900 dark:text-white group-hover/cat:text-indigo-600 dark:group-hover/cat:text-indigo-300 transition-colors leading-tight font-sans" style="letter-spacing: -0.01em !important; text-transform: none !important;">Web Sites</h4>
+                                    <p class="text-[11.5px] text-slate-500 dark:text-white/55 font-normal leading-tight mt-0.5 font-sans" style="letter-spacing: normal !important; text-transform: none !important;">Full Stack SaaS &amp; Web Apps</p>
+                                </div>
+                            </div>
                         </a>
-                        <a href="landing-pages.html" class="header-cat-item group/cat flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/[0.08] text-white/80 hover:text-white transition-all cursor-pointer" style="text-decoration:none;">
-                            <span class="w-2.5 h-2.5 rounded-full bg-[#34d399] shadow-[0_0_8px_rgba(52,211,153,0.85)] flex-shrink-0 group-hover/cat:scale-125 transition-transform"></span>
-                            <span class="font-mono text-[11px] font-bold tracking-wider uppercase text-white/85 group-hover/cat:text-white">LANDING PAGES</span>
+                        <a href="landing-pages.html" class="header-cat-item group/cat flex items-center p-2.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/[0.08] border border-transparent hover:border-slate-200/60 dark:hover:border-white/10 transition-all duration-200 cursor-pointer" style="text-decoration:none; letter-spacing: normal !important;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-2xl bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-100/80 dark:border-emerald-400/25 flex items-center justify-center flex-shrink-0 group-hover/cat:scale-105 transition-transform shadow-xs">
+                                    <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-[13.5px] font-bold text-slate-900 dark:text-white group-hover/cat:text-emerald-600 dark:group-hover/cat:text-emerald-300 transition-colors leading-tight font-sans" style="letter-spacing: -0.01em !important; text-transform: none !important;">Landing Pages</h4>
+                                    <p class="text-[11.5px] text-slate-500 dark:text-white/55 font-normal leading-tight mt-0.5 font-sans" style="letter-spacing: normal !important; text-transform: none !important;">High-converting modern web faces</p>
+                                </div>
+                            </div>
                         </a>
-                        <a href="ui.html" class="header-cat-item group/cat flex items-center gap-3 px-3 py-2 rounded-xl bg-white/[0.12] text-white transition-all cursor-pointer" style="text-decoration:none;">
-                            <span class="w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_rgba(56,189,248,0.85)] flex-shrink-0 group-hover/cat:scale-125 transition-transform"></span>
-                            <span class="font-mono text-[11px] font-bold tracking-wider uppercase text-white font-extrabold">UI</span>
+                        <a href="ui.html" class="header-cat-item group/cat flex items-center p-2.5 rounded-2xl bg-sky-50/70 dark:bg-sky-500/20 border border-sky-200/70 dark:border-sky-400/30 transition-all cursor-pointer" style="text-decoration:none; letter-spacing: normal !important;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-2xl bg-sky-500 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+                                    <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="7" height="7"></rect>
+                                        <rect x="14" y="3" width="7" height="7"></rect>
+                                        <rect x="14" y="14" width="7" height="7"></rect>
+                                        <rect x="3" y="14" width="7" height="7"></rect>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-[13.5px] font-bold text-sky-950 dark:text-white leading-tight font-sans" style="letter-spacing: -0.01em !important; text-transform: none !important;">UI Components</h4>
+                                    <p class="text-[11.5px] text-sky-700 dark:text-sky-300 font-normal leading-tight mt-0.5 font-sans" style="letter-spacing: normal !important; text-transform: none !important;">Design systems &amp; UI kits</p>
+                                </div>
+                            </div>
                         </a>
-                        <a href="projects.html#section-work" class="header-cat-item group/cat flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/[0.08] text-white/80 hover:text-white transition-all cursor-pointer" style="text-decoration:none;">
-                            <span class="w-2.5 h-2.5 rounded-full bg-[#fbbf24] shadow-[0_0_8px_rgba(251,191,36,0.85)] flex-shrink-0 group-hover/cat:scale-125 transition-transform"></span>
-                            <span class="font-mono text-[11px] font-bold tracking-wider uppercase text-white/85 group-hover/cat:text-white">PRESETS &amp; LUTS</span>
+                        <a href="projects.html#section-work" class="header-cat-item group/cat flex items-center p-2.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/[0.08] border border-transparent hover:border-slate-200/60 dark:hover:border-white/10 transition-all duration-200 cursor-pointer" style="text-decoration:none; letter-spacing: normal !important;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-2xl bg-amber-50 dark:bg-amber-500/15 border border-amber-100/80 dark:border-amber-400/25 flex items-center justify-center flex-shrink-0 group-hover/cat:scale-105 transition-transform shadow-xs">
+                                    <svg class="w-4 h-4 text-amber-600 dark:text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-[13.5px] font-bold text-slate-900 dark:text-white group-hover/cat:text-amber-600 dark:group-hover/cat:text-amber-300 transition-colors leading-tight font-sans" style="letter-spacing: -0.01em !important; text-transform: none !important;">Presets &amp; LUTs</h4>
+                                    <p class="text-[11.5px] text-slate-500 dark:text-white/55 font-normal leading-tight mt-0.5 font-sans" style="letter-spacing: normal !important; text-transform: none !important;">Cinematic color grading assets</p>
+                                </div>
+                            </div>
                         </a>
-                        <a href="projects.html#section-personal" class="header-cat-item group/cat flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/[0.08] text-white/80 hover:text-white transition-all cursor-pointer" style="text-decoration:none;">
-                            <span class="w-2.5 h-2.5 rounded-full bg-[#fb7185] shadow-[0_0_8px_rgba(251,113,133,0.85)] flex-shrink-0 group-hover/cat:scale-125 transition-transform"></span>
-                            <span class="font-mono text-[11px] font-bold tracking-wider uppercase text-white/85 group-hover/cat:text-white">ARTICLE / BLOG</span>
+                        <a href="projects.html#section-personal" class="header-cat-item group/cat flex items-center p-2.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/[0.08] border border-transparent hover:border-slate-200/60 dark:hover:border-white/10 transition-all duration-200 cursor-pointer" style="text-decoration:none; letter-spacing: normal !important;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-2xl bg-rose-50 dark:bg-rose-500/15 border border-rose-100/80 dark:border-rose-400/25 flex items-center justify-center flex-shrink-0 group-hover/cat:scale-105 transition-transform shadow-xs">
+                                    <svg class="w-4 h-4 text-rose-600 dark:text-rose-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-[13.5px] font-bold text-slate-900 dark:text-white group-hover/cat:text-rose-600 dark:group-hover/cat:text-rose-300 transition-colors leading-tight font-sans" style="letter-spacing: -0.01em !important; text-transform: none !important;">Articles &amp; Blog</h4>
+                                    <p class="text-[11.5px] text-slate-500 dark:text-white/55 font-normal leading-tight mt-0.5 font-sans" style="letter-spacing: normal !important; text-transform: none !important;">Architecture &amp; tech insights</p>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -930,31 +1000,10 @@
 
                 const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
 
-                // 1. Initialize Lenis Smooth Scroll Engine
-                if (typeof Lenis !== 'undefined') {
-                    window.lenisInstance = new Lenis({
-                        duration: isTouchDevice ? 0.9 : 1.15,
-                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                        orientation: 'vertical',
-                        gestureOrientation: 'vertical',
-                        smoothWheel: true,
-                        wheelMultiplier: 1.0,
-                        touchMultiplier: 1.2,
-                        lerp: isTouchDevice ? 0.12 : 0.09,
-                        infinite: false
-                    });
-
-                    window.lenisInstance.on('scroll', ScrollTrigger.update);
-
-                    gsap.ticker.add((time) => {
-                        window.lenisInstance.raf(time * 1000);
-                    });
-                    gsap.ticker.lagSmoothing(0);
-                } else {
-                    window.addEventListener('scroll', () => {
-                        ScrollTrigger.update();
-                    }, { passive: true });
-                }
+                // 1. Native Browser High-Performance Scroll Setup
+                window.addEventListener('scroll', () => {
+                    ScrollTrigger.update();
+                }, { passive: true });
 
                 // 2. Silky-Smooth GPU Scrub for Hero
                 const heroSection = document.getElementById('obscura-hero-section');

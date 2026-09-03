@@ -122,8 +122,8 @@
                 notifications.push({
                     id: orderNotifId,
                     type: 'order',
-                    title: `Order #${leadId} Confirmed`,
-                    subtitle: `${service} • ${clientName}`,
+                    title: clientName,
+                    subtitle: `${service} • Confirmed`,
                     clientName,
                     service,
                     budget,
@@ -148,11 +148,11 @@
                 notifications.push({
                     id: emailNotifId,
                     type: 'email_inbound',
-                    title: `Inquiry Email: ${service}`,
-                    subtitle: `From: ${clientName} (${clientEmail})`,
+                    title: clientName,
+                    subtitle: `${service} • Inquiry Received`,
                     sender: clientName,
                     senderEmail: clientEmail,
-                    subject: `New Project Inquiry: ${service} [Ref #${leadId}]`,
+                    subject: `Project Inquiry: ${service}`,
                     preview: message,
                     fullMessage: `From: ${clientName} <${clientEmail}>\nTo: Gourav <contact@algora.studio>\nDate: ${fullDate}\n\nProject Scope: ${service}\nBudget Range: ${budget}\nTarget Timeline: ${timeline}\n\nMessage:\n${message}`,
                     time: timeAgo,
@@ -167,11 +167,11 @@
                     notifications.push({
                         id: replyNotifId,
                         type: 'email_reply',
-                        title: 'Reply from Gourav (Algora Lead)',
-                        subtitle: `RE: ${service} [Ref #${leadId}]`,
+                        title: 'Gourav Maji',
+                        subtitle: `RE: ${service} • Studio Response`,
                         sender: 'Gourav • Lead Architect',
                         senderEmail: 'gourav@algora.studio',
-                        subject: `RE: ${service} Proposal & Architecture [Ref #${leadId}]`,
+                        subject: `RE: ${service} Proposal & Architecture`,
                         preview: adminNote,
                         fullMessage: `From: Gourav (Lead Architect) <gourav@algora.studio>\nTo: ${clientName} <${clientEmail}>\nDate: ${fullDate}\n\n${adminNote}\n\nBest regards,\nGourav\nLead Architect & Founder, Algora Studio`,
                         time: timeAgo,
@@ -219,61 +219,73 @@
         const root = document.createElement('div');
         root.id = 'algora-notification-center-root';
         root.innerHTML = `
-        <!-- Notification Dropdown / Drawer Popover -->
-        <div id="algora-notification-drawer" class="fixed top-16 sm:top-20 right-3 sm:right-6 lg:right-10 z-[999999] w-[94vw] sm:w-[450px] max-h-[88vh] bg-[#0c101c]/95 backdrop-blur-2xl border border-white/18 rounded-[26px] shadow-[0_25px_80px_-10px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.08)] flex flex-col overflow-hidden transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform opacity-0 pointer-events-none translate-y-[-12px] scale-[0.97]" style="font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; contain: layout paint;">
+        <style>
+            #notif-feed-list {
+                scrollbar-width: thin !important;
+                scrollbar-color: rgba(148, 163, 184, 0.45) transparent !important;
+            }
+            #notif-feed-list::-webkit-scrollbar {
+                width: 5px !important;
+                display: block !important;
+            }
+            #notif-feed-list::-webkit-scrollbar-track {
+                background: transparent !important;
+                border-radius: 9999px !important;
+                margin: 6px 0 !important;
+            }
+            #notif-feed-list::-webkit-scrollbar-thumb {
+                background: rgba(148, 163, 184, 0.35) !important;
+                border-radius: 9999px !important;
+                transition: background 0.2s ease !important;
+            }
+            #notif-feed-list::-webkit-scrollbar-thumb:hover {
+                background: rgba(99, 102, 241, 0.7) !important;
+            }
+        </style>
+        <!-- Notification Dropdown / Drawer Popover (OnePlus OxygenOS Ideas Clean White Design) -->
+        <div id="algora-notification-drawer" class="fixed top-16 sm:top-20 right-3 sm:right-6 lg:right-10 z-[999999] w-[94vw] sm:w-[430px] max-h-[88vh] bg-white border border-slate-200/90 rounded-[32px] shadow-[0_30px_90px_-15px_rgba(0,0,0,0.18),0_0_0_1px_rgba(0,0,0,0.04)] flex flex-col overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform opacity-0 pointer-events-none translate-y-[-12px] scale-[0.97]" style="font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; overscroll-behavior: contain;">
             
             <!-- Drawer Header -->
-            <div class="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-white/[0.03]">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-500 flex items-center justify-center text-white shadow-sm">
-                        <span class="material-symbols-outlined text-[18px]">notifications_active</span>
+            <div class="p-5 pb-4 border-b border-slate-100 flex items-center justify-between bg-white">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-500/10 border border-indigo-500/15 flex items-center justify-center text-indigo-600 shadow-xs">
+                        <span class="material-symbols-outlined text-[20px]">notifications</span>
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
-                            <h3 class="text-sm sm:text-[15px] font-bold text-white tracking-tight">Database Activity</h3>
-                            <span id="notif-unread-badge" class="px-2 py-0.5 rounded-full bg-indigo-500/25 border border-indigo-400/40 text-[10px] font-extrabold text-indigo-300 uppercase tracking-wider">0 NEW</span>
+                            <h3 class="text-[16px] font-bold text-slate-900 tracking-tight font-['Outfit']">Studio Updates</h3>
+                            <span id="notif-unread-badge" class="px-2 py-0.5 rounded-full bg-indigo-50 border border-indigo-200/70 text-[10px] font-bold text-indigo-600 uppercase tracking-wider">0 NEW</span>
                         </div>
-                        <p class="text-[11px] text-white/50 font-medium flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                            Live Store Sync
+                        <p class="text-[11.5px] text-slate-500 font-medium mt-0.5">
+                            Recent bookings & inquiries
                         </p>
                     </div>
                 </div>
-                <div class="flex items-center gap-1.5">
-                    <button id="notif-refresh-btn" title="Refresh from Database" class="p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer text-xs flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[17px]">refresh</span>
+                <div class="flex items-center gap-1">
+                    <button id="notif-refresh-btn" title="Refresh Feed" class="w-8 h-8 rounded-full text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition-all cursor-pointer flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[18px]">refresh</span>
                     </button>
-                    <button id="notif-mark-all-read" title="Mark all as read" class="p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer text-xs flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[17px]">done_all</span>
+                    <button id="notif-mark-all-read" title="Mark all as read" class="w-8 h-8 rounded-full text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition-all cursor-pointer flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[18px]">done_all</span>
                     </button>
-                    <button id="notif-close-btn" class="p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">
+                    <button id="notif-close-btn" title="Close" class="w-8 h-8 rounded-full text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition-all cursor-pointer flex items-center justify-center">
                         <span class="material-symbols-outlined text-[19px]">close</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Filter Tabs -->
-            <div class="px-4 py-2.5 border-b border-white/10 flex items-center gap-2 bg-white/[0.015]">
-                <button class="notif-tab-btn active px-3 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all bg-indigo-600 text-white cursor-pointer" data-filter="all">All (<span id="count-all">0</span>)</button>
-                <button class="notif-tab-btn px-3 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all text-white/70 hover:text-white hover:bg-white/10 cursor-pointer" data-filter="order">📦 Real Orders (<span id="count-order">0</span>)</button>
-                <button class="notif-tab-btn px-3 py-1 rounded-full text-[11px] font-bold tracking-wide transition-all text-white/70 hover:text-white hover:bg-white/10 cursor-pointer" data-filter="email">✉️ Emails &amp; Replies (<span id="count-email">0</span>)</button>
+            <!-- Filter Tabs (Clean Segmented Control) -->
+            <div class="p-3 px-5 border-b border-slate-100 bg-white">
+                <div class="grid grid-cols-3 p-1 rounded-full bg-slate-100/90 border border-slate-200/60 gap-1 text-center font-medium text-xs">
+                    <button class="notif-tab-btn active py-1.5 rounded-full text-[12px] font-bold transition-all bg-white text-slate-900 shadow-xs cursor-pointer" data-filter="all">All (<span id="count-all">0</span>)</button>
+                    <button class="notif-tab-btn py-1.5 rounded-full text-[12px] font-medium transition-all text-slate-500 hover:text-slate-900 cursor-pointer" data-filter="order">Bookings (<span id="count-order">0</span>)</button>
+                    <button class="notif-tab-btn py-1.5 rounded-full text-[12px] font-medium transition-all text-slate-500 hover:text-slate-900 cursor-pointer" data-filter="email">Inquiries (<span id="count-email">0</span>)</button>
+                </div>
             </div>
 
             <!-- Notification Feed List -->
-            <div id="notif-feed-list" class="p-3 sm:p-4 space-y-2.5 overflow-y-auto max-h-[58vh] custom-scrollbar">
+            <div id="notif-feed-list" class="p-4 pr-3 space-y-3 overflow-y-auto max-h-[64vh] bg-[#f8fafc]/70" style="overscroll-behavior: contain; -webkit-overflow-scrolling: touch;">
                 <!-- Dynamically populated -->
-            </div>
-
-            <!-- Drawer Footer -->
-            <div class="p-3 px-4 border-t border-white/10 bg-white/[0.02] flex items-center justify-between text-[11px] text-white/50 font-medium">
-                <span class="flex items-center gap-1 text-[10.5px]">
-                    <span class="material-symbols-outlined text-[14px] text-emerald-400">cloud_done</span>
-                    Database Connected
-                </span>
-                <a href="start-project.html" class="text-indigo-400 hover:text-indigo-300 font-bold transition-colors flex items-center gap-0.5">
-                    + Submit New Order
-                    <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
-                </a>
             </div>
         </div>
 
@@ -449,9 +461,9 @@
 
         if (forceRefresh || cachedNotifications.length === 0) {
             feedList.innerHTML = `
-                <div class="py-12 flex flex-col items-center justify-center text-white/60 gap-3">
-                    <div class="w-7 h-7 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin"></div>
-                    <span class="text-xs font-semibold tracking-wide">Syncing with Real Database...</span>
+                <div class="py-12 flex flex-col items-center justify-center text-slate-400 gap-3">
+                    <div class="w-7 h-7 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+                    <span class="text-xs font-semibold tracking-wide text-slate-600">Syncing with Real Database...</span>
                 </div>
             `;
         }
@@ -489,13 +501,13 @@
 
         if (filtered.length === 0) {
             feedList.innerHTML = `
-                <div class="py-12 px-4 text-center text-white/50 flex flex-col items-center">
-                    <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-3 text-white/40">
+                <div class="py-12 px-4 text-center text-slate-400 flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-2xl bg-slate-100 border border-slate-200/80 flex items-center justify-center mb-3 text-slate-400">
                         <span class="material-symbols-outlined text-[26px]">inventory_2</span>
                     </div>
-                    <h4 class="text-xs sm:text-sm font-bold text-white mb-1">No Database Records Yet</h4>
-                    <p class="text-[11px] text-white/60 max-w-[260px] leading-relaxed mb-4">When you place an order or receive an email update, your real records &amp; Thank You cards will appear here.</p>
-                    <a href="start-project.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-sm active:scale-95">
+                    <h4 class="text-sm font-bold text-slate-900 mb-1">No Database Records Yet</h4>
+                    <p class="text-[11.5px] text-slate-500 max-w-[260px] leading-relaxed mb-4">When you place an order or receive an email update, your real records &amp; Thank You cards will appear here.</p>
+                    <a href="start-project.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-all shadow-sm active:scale-95">
                         <span>+ Submit Project Order</span>
                         <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
                     </a>
@@ -505,71 +517,44 @@
         }
 
         feedList.innerHTML = filtered.map(item => {
-            const isRead = item.read;
             const isOrder = item.type === 'order';
             const isReply = item.type === 'email_reply';
 
-            let iconHtml = '';
-            let badgeHtml = '';
-            let actionBtnHtml = '';
+            let clickAction = isOrder ? `window.viewThankYouModal('${item.id}')` : `window.viewEmailModal('${item.id}')`;
+            let categoryLabel = isOrder ? 'ORDER CONFIRMED' : isReply ? 'STUDIO REPLY' : 'INQUIRY EMAIL';
+            let titleText = item.clientName || (isReply ? 'Gourav Maji' : 'Client');
 
-            if (isOrder) {
-                iconHtml = `
-                    <div class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 flex-shrink-0 shadow-sm">
-                        <span class="material-symbols-outlined text-[19px]">receipt_long</span>
-                    </div>
-                `;
-                badgeHtml = `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[9px] font-extrabold uppercase tracking-wider">REAL ORDER #${item.leadId}</span>`;
-                actionBtnHtml = `
-                    <button onclick="window.viewThankYouModal('${item.id}')" class="mt-2.5 w-full py-1.5 px-3 rounded-xl bg-gradient-to-r from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/40 text-emerald-300 text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
-                        <span>✨ View Thank You Card</span>
-                        <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
-                    </button>
-                `;
-            } else if (isReply) {
-                iconHtml = `
-                    <div class="w-9 h-9 rounded-xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-300 flex-shrink-0 shadow-sm">
-                        <span class="material-symbols-outlined text-[19px]">mark_email_read</span>
-                    </div>
-                `;
-                badgeHtml = `<span class="px-2 py-0.5 rounded-full bg-purple-500/20 border border-purple-400/30 text-purple-300 text-[9px] font-extrabold uppercase tracking-wider">REPLY FROM GOURAV</span>`;
-                actionBtnHtml = `
-                    <button onclick="window.viewEmailModal('${item.id}')" class="mt-2.5 w-full py-1.5 px-3 rounded-xl bg-gradient-to-r from-indigo-500/25 to-purple-500/25 hover:from-indigo-500/40 hover:to-purple-500/40 border border-indigo-400/40 text-indigo-200 text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
-                        <span>✉️ Read Email Thread & Reply</span>
-                        <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
-                    </button>
-                `;
-            } else {
-                iconHtml = `
-                    <div class="w-9 h-9 rounded-xl bg-sky-500/20 border border-sky-400/40 flex items-center justify-center text-sky-400 flex-shrink-0 shadow-sm">
-                        <span class="material-symbols-outlined text-[19px]">forward_to_inbox</span>
-                    </div>
-                `;
-                badgeHtml = `<span class="px-2 py-0.5 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 text-[9px] font-extrabold uppercase tracking-wider">DISPATCHED MAIL</span>`;
-                actionBtnHtml = `
-                    <button onclick="window.viewEmailModal('${item.id}')" class="mt-2.5 w-full py-1.5 px-3 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-400/30 text-sky-200 text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
-                        <span>View Email Details</span>
-                        <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
-                    </button>
-                `;
+            // Format clean date like 'Aug 25, 2026'
+            let displayDate = item.time;
+            if (item.fullDate) {
+                const parts = item.fullDate.split(',');
+                if (parts.length >= 2) {
+                    displayDate = parts[0] + ', ' + parts[1].trim().split(' ')[0];
+                }
             }
 
             return `
-                <div class="p-3.5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.07] border ${isRead ? 'border-white/10' : 'border-indigo-500/40 bg-indigo-950/20'} transition-all group relative">
-                    ${!isRead ? `<span class="absolute top-3.5 right-3.5 w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>` : ''}
-                    <div class="flex items-start gap-3">
-                        ${iconHtml}
-                        <div class="flex-1 min-w-0 pr-4">
-                            <div class="flex items-center gap-2 mb-1">
-                                ${badgeHtml}
-                                <span class="text-[10px] text-white/45 font-mono">${item.time}</span>
-                            </div>
-                            <h4 class="text-xs sm:text-[13px] font-bold text-white leading-snug">${item.title}</h4>
-                            <p class="text-[11px] text-white/70 mt-0.5 line-clamp-2 leading-relaxed">${item.subtitle || item.preview || ''}</p>
-                            ${isOrder && item.budget ? `<div class="mt-1.5 flex items-center gap-3 text-[10px] text-white/60 font-mono"><span>💰 ${item.budget}</span><span>⏱️ ${item.timeline}</span></div>` : ''}
-                            ${actionBtnHtml}
-                        </div>
+                <div onclick="${clickAction}" class="p-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/80 transition-all group relative shadow-xs hover:shadow-sm cursor-pointer space-y-1.5">
+                    
+                    <!-- Top Line: Clean Tag (NO DOTS) + Date (NO DOTS) -->
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10.5px] font-mono font-bold uppercase tracking-wider text-slate-500 group-hover:text-indigo-600 transition-colors">${categoryLabel}</span>
+                        <span class="text-[11px] text-slate-400 font-medium font-sans">${displayDate}</span>
                     </div>
+
+                    <!-- Title (Client Name Only — NO #) -->
+                    <div class="space-y-0.5">
+                        <h4 class="text-[13.5px] font-bold text-slate-900 leading-snug tracking-tight group-hover:text-indigo-600 transition-colors">${titleText}</h4>
+                        <p class="text-[12px] text-slate-500 line-clamp-1 leading-relaxed font-sans">${item.subtitle || item.preview || ''}</p>
+                    </div>
+
+                    ${isOrder && item.budget ? `
+                    <div class="pt-1 flex items-center gap-2 text-[10.5px] font-mono text-slate-400">
+                        <span>💰 ${item.budget}</span>
+                        <span>•</span>
+                        <span>⏱️ ${item.timeline}</span>
+                    </div>` : ''}
+
                 </div>
             `;
         }).join('');
@@ -696,6 +681,18 @@
             });
         }
 
+        // Prevent background webpage from scrolling and enable normal 1:1 natural scrolling in drawer
+        if (drawer) {
+            const feedContainer = document.getElementById('notif-feed-list');
+            drawer.addEventListener('wheel', (e) => {
+                e.stopPropagation();
+                if (feedContainer) {
+                    feedContainer.scrollTop += e.deltaY;
+                }
+                e.preventDefault();
+            }, { passive: false });
+        }
+
         // Outside Click to close drawer
         document.addEventListener('click', (e) => {
             if (drawer && drawer.classList.contains('opacity-100')) {
@@ -706,15 +703,15 @@
             }
         });
 
-        // Tab Filter Buttons
+        // Tab Filter Buttons (OnePlus Pill Segmented Control Handler)
         document.querySelectorAll('.notif-tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.notif-tab-btn').forEach(b => {
-                    b.classList.remove('active', 'bg-indigo-600', 'text-white');
-                    b.classList.add('text-white/70');
+                    b.classList.remove('active', 'bg-white', 'text-slate-900', 'font-bold', 'shadow-xs');
+                    b.classList.add('text-slate-500', 'font-medium');
                 });
-                btn.classList.add('active', 'bg-indigo-600', 'text-white');
-                btn.classList.remove('text-white/70');
+                btn.classList.add('active', 'bg-white', 'text-slate-900', 'font-bold', 'shadow-xs');
+                btn.classList.remove('text-slate-500', 'font-medium');
                 currentFilter = btn.getAttribute('data-filter');
                 renderFeed(currentFilter);
             });

@@ -262,3 +262,13 @@
   78%         { stroke-dasharray: 40 400; stroke-width: 30; stroke-dashoffset: -395; }
   86%, to    { stroke-dasharray: 0 440;  stroke-width: 20; stroke-dashoffset: -440; }
 }
+
+/* ── Seamless Cinematic Exit Transition ────────────────── */
+body.is-transitioning main,
+body.is-transitioning #background {
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    opacity: 0.15 !important;
+    transform: scale(0.98) !important;
+    pointer-events: none !important;
+}
+
