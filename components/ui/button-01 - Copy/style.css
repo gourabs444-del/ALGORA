@@ -1,0 +1,152 @@
+/* =========================
+   PREMIUM SEARCH BAR (COPY)
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.search-bar {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 8px 30px rgba(0, 0, 0, 0.06);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.search-bar:focus-within {
+    border-color: #cfd3d8;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 12px 35px rgba(0, 0, 0, 0.08), 0 0 0 4px rgba(0, 0, 0, 0.025);
+}
+
+.search-input-area {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 17px;
+    padding-right: 8px;
+}
+
+.search-icon {
+    flex: 0 0 auto;
+    color: #73777d;
+    margin-right: 12px;
+    transition: color 0.2s ease;
+}
+
+.search-bar:focus-within .search-icon {
+    color: #33373b;
+}
+
+.search-input-area input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #181a1d;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 450;
+    letter-spacing: -0.01em;
+}
+
+.search-input-area input::placeholder {
+    color: #969ba1;
+    opacity: 1;
+}
+
+.search-input-area input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.clear-button {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #9a9fa5;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.search-input-area:focus-within .clear-button {
+    opacity: 1;
+}
+
+.clear-button:hover {
+    background: #f2f3f4;
+    color: #33373b;
+}
+
+.search-button {
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    flex: 0 0 auto;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 999px;
+    background: #17181a;
+    color: #ffffff;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 5px rgba(0, 0, 0, 0.14);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-button svg {
+    transition: transform 0.25s ease;
+}
+
+.search-button:hover {
+    background: #242629;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 10px rgba(0, 0, 0, 0.16);
+    transform: translateY(-1px);
+}
+
+.search-button:hover svg {
+    transform: translateX(3px);
+}
+
+.search-button:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 520px) {
+    .search-container { padding: 0 14px; }
+    .search-bar { height: 58px; padding: 5px; }
+    .search-input-area { padding-left: 14px; padding-right: 4px; }
+    .search-icon { width: 19px; height: 19px; margin-right: 9px; }
+    .search-input-area input { font-size: 14px; }
+    .search-button { height: 46px; padding: 0 16px; font-size: 13px; gap: 7px; }
+    .search-button svg { width: 16px; height: 16px; }
+    .clear-button { width: 28px; height: 28px; }
+}

@@ -1,0 +1,164 @@
+{
+  "components": [
+    {
+      "id": "Loading",
+      "folder": "Loading",
+      "title": "Pulse Ring Loader",
+      "category": "Loader",
+      "subtitle": "Glowing Circular Progress",
+      "keywords": "loader loaders loading spinner pulse ring progress wait animation"
+    },
+    {
+      "id": "Loading 2",
+      "folder": "Loading 2",
+      "title": "Cosmic Orbit Loader",
+      "category": "Loader",
+      "subtitle": "Dual Core Orbital Rotation",
+      "keywords": "loader loaders loading spinner orbit orbital cosmic rotation space wait"
+    },
+    {
+      "id": "Loading 3",
+      "folder": "Loading 3",
+      "title": "Download Ring Progress",
+      "category": "Loader",
+      "subtitle": "SVG Circular Arrow Progress",
+      "keywords": "loader loaders loading download ring circle progress arrow svg"
+    },
+    {
+      "id": "Loading 4",
+      "folder": "Loading 4",
+      "title": "Skeleton Shimmer Loader",
+      "category": "Loader",
+      "subtitle": "Content Placeholder Shimmer",
+      "keywords": "loader loaders loading skeleton shimmer placeholder wireframe ui"
+    },
+    {
+      "id": "Loading 5",
+      "folder": "Loading 5",
+      "title": "Wave Bar Loader",
+      "category": "Loader",
+      "subtitle": "Staggered Equalizer Waves",
+      "keywords": "loader loaders loading wave bars equalizer vertical pulse sound"
+    },
+    {
+      "id": "Loading 6",
+      "folder": "Loading 6",
+      "title": "Equalizer Beat Loader",
+      "category": "Loader",
+      "subtitle": "Rhythmic Multi-Bar Animation",
+      "keywords": "loader loaders loading beat equalizer music rhythmic bars frequency"
+    },
+    {
+      "id": "Loading 7",
+      "folder": "Loading 7",
+      "title": "Quadrant Matrix Loader",
+      "category": "Loader",
+      "subtitle": "Geometric Block Rotation",
+      "keywords": "loader loaders loading matrix quadrant squares blocks geometric puzzle"
+    },
+    {
+      "id": "loader-01",
+      "folder": "loader-01",
+      "title": "Minimal Orbit Spinner",
+      "category": "Loader",
+      "subtitle": "Interactive Micro-Pattern",
+      "keywords": "loader loaders loading spinner minimal circle clean modern"
+    },
+    {
+      "id": "badge-01",
+      "folder": "badge-01",
+      "title": "badge-01",
+      "category": "Badge",
+      "subtitle": "Design System Primitive",
+      "keywords": "badge tag pill label status counter"
+    },
+    {
+      "id": "button-01",
+      "folder": "button-01",
+      "title": "button-01",
+      "category": "Button",
+      "subtitle": "Interactive Micro-Pattern",
+      "keywords": "button buttons btn cta click action link"
+    },
+    {
+      "id": "button-01 - Copy",
+      "folder": "button-01 - Copy",
+      "title": "button-01 (Variant)",
+      "category": "Button",
+      "subtitle": "UI Component",
+      "keywords": "button buttons btn cta click action variant"
+    },
+    {
+      "id": "card-01",
+      "folder": "card-01",
+      "title": "card-01",
+      "category": "Card",
+      "subtitle": "Design System Primitive",
+      "keywords": "card cards container tile box panel profile"
+    },
+    {
+      "id": "dropdown-01",
+      "folder": "dropdown-01",
+      "title": "dropdown-01",
+      "category": "Dropdown",
+      "subtitle": "Editorial Interface Pattern",
+      "keywords": "dropdown menu select list popover options"
+    },
+    {
+      "id": "form-01",
+      "folder": "form-01",
+      "title": "form-01",
+      "category": "Form",
+      "subtitle": "Motion Interaction Slot",
+      "keywords": "form forms contact input field submit register login"
+    },
+    {
+      "id": "input-01",
+      "folder": "input-01",
+      "title": "input-01",
+      "category": "Input",
+      "subtitle": "Motion Interaction Slot",
+      "keywords": "input inputs textbox textfield field search form"
+    },
+    {
+      "id": "modal-01",
+      "folder": "modal-01",
+      "title": "modal-01",
+      "category": "Modal",
+      "subtitle": "Design System Primitive",
+      "keywords": "modal modals popup popover dialog alert prompt lightbox"
+    },
+    {
+      "id": "navigation-01",
+      "folder": "navigation-01",
+      "title": "navigation-01",
+      "category": "Navigation",
+      "subtitle": "Editorial Interface Pattern",
+      "keywords": "navigation nav navbar header menu bar links breadcrumbs"
+    },
+    {
+      "id": "slider-01",
+      "folder": "slider-01",
+      "title": "slider-01",
+      "category": "Slider",
+      "subtitle": "Editorial Interface Pattern",
+      "keywords": "slider range carousel track thumb progress"
+    },
+    {
+      "id": "toggle-01",
+      "folder": "toggle-01",
+      "title": "toggle-01",
+      "category": "Toggle",
+      "subtitle": "Interactive Micro-Pattern",
+      "keywords": "toggle switch checkbox on off state boolean"
+    },
+    {
+      "id": "tooltip-01",
+      "folder": "tooltip-01",
+      "title": "tooltip-01",
+      "category": "Tooltip",
+      "subtitle": "Motion Interaction Slot",
+      "keywords": "tooltip hint popover info badge hover tip"
+    }
+  ]
+}

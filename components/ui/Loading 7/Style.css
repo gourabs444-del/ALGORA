@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+}
+
+.loader {
+    width: 64px;
+    height: 64px;
+    position: relative;
+
+    animation: loaderRotate 2.8s linear infinite;
+}
+
+.piece {
+    position: absolute;
+    width: 27px;
+    height: 27px;
+
+    border-radius: 7px 15px 7px 15px;
+
+    transform-origin: center;
+
+    animation: pieceMove 1.4s ease-in-out infinite;
+}
+
+/* Orange */
+.p1 {
+    top: 2px;
+    left: 18px;
+
+    background: #f97316;
+
+    box-shadow:
+        0 0 8px rgba(249, 115, 22, .45);
+
+    animation-delay: 0s;
+}
+
+/* Sky Blue */
+.p2 {
+    top: 18px;
+    right: 2px;
+
+    background: #38bdf8;
+
+    box-shadow:
+        0 0 8px rgba(56, 189, 248, .45);
+
+    animation-delay: .15s;
+}
+
+/* Green */
+.p3 {
+    bottom: 2px;
+    left: 18px;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 8px rgba(34, 197, 94, .45);
+
+    animation-delay: .3s;
+}
+
+/* Purple */
+.p4 {
+    top: 18px;
+    left: 2px;
+
+    background: #a855f7;
+
+    box-shadow:
+        0 0 8px rgba(168, 85, 247, .45);
+
+    animation-delay: .45s;
+}
+
+
+/* Individual floating motion */
+
+@keyframes pieceMove {
+
+    0%,
+    100% {
+        transform: scale(.72) rotate(0deg);
+        opacity: .55;
+    }
+
+    50% {
+        transform: scale(1) rotate(90deg);
+        opacity: 1;
+    }
+}
+
+
+/* Overall rotation */
+
+@keyframes loaderRotate {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

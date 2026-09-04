@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #080808;
+    font-family: Arial, sans-serif;
+}
+
+/* Loader */
+.beat-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 52px;
+
+    transform: translateZ(0);
+}
+
+/* Bars */
+.beat-loader span {
+    width: 5px;
+    height: 42px;
+    border-radius: 999px;
+
+    background: linear-gradient(
+        180deg,
+        #7c3aed,
+        #c4b5fd,
+        #60a5fa,
+        #ffffff
+    );
+
+    background-size: 100% 300%;
+
+    transform: scaleY(0.3) translateZ(0);
+    transform-origin: center;
+
+    will-change: transform, background-position;
+
+    animation:
+        beat 1.35s cubic-bezier(0.45, 0, 0.55, 1) infinite,
+        colorShift 3s ease-in-out infinite;
+
+    box-shadow:
+        0 0 7px rgba(124, 58, 237, 0.3),
+        0 0 14px rgba(96, 165, 250, 0.12);
+}
+
+/* Wave */
+.beat-loader span:nth-child(1) {
+    animation-delay: 0s, 0s;
+}
+
+.beat-loader span:nth-child(2) {
+    animation-delay: 0.08s, 0s;
+}
+
+.beat-loader span:nth-child(3) {
+    animation-delay: 0.16s, 0s;
+}
+
+.beat-loader span:nth-child(4) {
+    animation-delay: 0.24s, 0s;
+}
+
+.beat-loader span:nth-child(5) {
+    animation-delay: 0.16s, 0s;
+}
+
+.beat-loader span:nth-child(6) {
+    animation-delay: 0.08s, 0s;
+}
+
+.beat-loader span:nth-child(7) {
+    animation-delay: 0s, 0s;
+}
+
+/* Beat Animation */
+@keyframes beat {
+    0% {
+        transform: scaleY(0.3) translateZ(0);
+    }
+
+    25% {
+        transform: scaleY(0.65) translateZ(0);
+    }
+
+    50% {
+        transform: scaleY(1) translateZ(0);
+    }
+
+    75% {
+        transform: scaleY(0.65) translateZ(0);
+    }
+
+    100% {
+        transform: scaleY(0.3) translateZ(0);
+    }
+}
+
+/* Purple → Lavender → Blue → White */
+@keyframes colorShift {
+    0% {
+        background-position: 50% 0%;
+    }
+
+    50% {
+        background-position: 50% 100%;
+    }
+
+    100% {
+        background-position: 50% 0%;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .beat-loader span {
+        animation: none;
+        transform: scaleY(0.6);
+    }
+}

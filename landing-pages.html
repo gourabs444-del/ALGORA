@@ -754,6 +754,69 @@
             return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
 
+        function getLevenshteinDistance(a, b) {
+            if (a.length === 0) return b.length;
+            if (b.length === 0) return a.length;
+            if (Math.abs(a.length - b.length) > 3) return 99;
+
+            const matrix = [];
+            for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+            for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+            for (let i = 1; i <= b.length; i++) {
+                for (let j = 1; j <= a.length; j++) {
+                    if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            return matrix[b.length][a.length];
+        }
+
+        function fuzzyMatchQuery(query, targetText) {
+            if (!query) return true;
+            query = query.trim().toLowerCase();
+            targetText = (targetText || '').toLowerCase();
+
+            if (targetText.includes(query)) return true;
+
+            const queryTokens = query.split(/\s+/).filter(Boolean);
+            const targetWords = targetText.split(/[\s\-_\/,\.]+/).filter(Boolean);
+
+            const synonymMap = {
+                'landin': 'landing',
+                'landg': 'landing',
+                'page': 'landing',
+                'ecom': 'ecommerce',
+                'ecomerce': 'ecommerce',
+                'saas': 'saas',
+                'ai': 'ai',
+                'finc': 'fintech',
+                'fintek': 'fintech',
+                'portfol': 'portfolio',
+                'portflio': 'portfolio'
+            };
+
+            const normalizedTokens = queryTokens.map(t => synonymMap[t] || t);
+
+            return normalizedTokens.every(token => {
+                if (targetText.includes(token)) return true;
+
+                return targetWords.some(word => {
+                    if (word.startsWith(token) || token.startsWith(word)) return true;
+                    if (word.includes(token)) return true;
+                    const maxDist = token.length <= 3 ? 1 : (token.length <= 6 ? 2 : 3);
+                    return getLevenshteinDistance(token, word) <= maxDist;
+                });
+            });
+        }
+
         function performSearch(shouldScroll = false) {
             const query = (searchInput ? searchInput.value.trim().toLowerCase() : '');
             let matchCount = 0;
@@ -770,7 +833,7 @@
                 const keywords = (item.getAttribute('data-keywords') || '').toLowerCase();
                 const fullText = (item.textContent + ' ' + keywords).toLowerCase();
 
-                if (!query || fullText.includes(query)) {
+                if (!query || fuzzyMatchQuery(query, fullText)) {
                     item.style.display = '';
                     if (query) item.classList.add('search-matched-item');
                     else item.classList.remove('search-matched-item');
