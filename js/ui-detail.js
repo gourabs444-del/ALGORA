@@ -1,13 +1,16 @@
 /**
  * UI Component Detail Page Script
+ * Includes Live Text Customizer & Code Sync
  */
 
 const urlParams = new URLSearchParams(window.location.search);
 const folderParam = urlParams.get('folder') || 'button-01';
 
 let currentActiveTab = 'html';
+let initialHTMLCode = '';
 let rawHTMLCode = '';
 let rawCSSCode = '';
+let textNodesMetadata = [];
 
 // Strip live-server injected scripts
 function stripLiveServerScript(html) {
@@ -34,15 +37,28 @@ async function initDetailView() {
             fetch(`components/ui/${encodeURIComponent(folderParam)}/style.css?v=` + Date.now()).catch(() => null)
         ]);
 
-        if (htmlRes && htmlRes.ok) rawHTMLCode = await htmlRes.text();
+        if (htmlRes && htmlRes.ok) initialHTMLCode = await htmlRes.text();
         if (cssRes && cssRes.ok) rawCSSCode = await cssRes.text();
     } catch (e) {
         console.warn('Error loading component files', e);
     }
 
-    rawHTMLCode = stripLiveServerScript(rawHTMLCode);
+    initialHTMLCode = stripLiveServerScript(initialHTMLCode);
+    rawHTMLCode = initialHTMLCode;
     rawCSSCode = rawCSSCode.trim();
 
+    // Render Preview and Build Text Customizer
+    renderComponentPreview();
+    buildTextCustomizerPanel();
+
+    // Initial Code Display
+    switchTab('html');
+
+    // Load Similar Components
+    loadSimilarComponents();
+}
+
+function renderComponentPreview() {
     const previewContainer = document.getElementById('live-preview-box');
     if (!previewContainer) return;
 
@@ -55,9 +71,8 @@ async function initDetailView() {
             </div>
         `;
     } else {
-        // Render sandboxed iframe preview safely
         const iframe = document.createElement('iframe');
-        iframe.className = "w-full h-[400px] border-none rounded-xl bg-slate-50/50";
+        iframe.className = "w-full h-[460px] border-none rounded-xl bg-slate-50/50";
         iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
         previewContainer.innerHTML = '';
         previewContainer.appendChild(iframe);
@@ -90,12 +105,159 @@ async function initDetailView() {
 </html>`;
         iframe.srcdoc = srcdoc;
     }
+}
 
-    // Initial Tab Display
-    switchTab('html');
+/**
+ * Text Extractor & Customizer Engine
+ * Extracts text nodes from HTML and builds clean input fields
+ */
+function extractTextItems(html) {
+    if (!html) return [];
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const items = [];
 
-    // Load Similar Components
-    loadSimilarComponents();
+    function walk(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            const val = node.nodeValue.trim();
+            if (val.length > 0 && !/^[\s\n\r]*$/.test(val)) {
+                const parentTag = node.parentElement ? node.parentElement.tagName.toLowerCase() : 'text';
+                items.push({
+                    type: 'text',
+                    parentTag: parentTag,
+                    originalText: val
+                });
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const tag = node.tagName.toLowerCase();
+            if (tag !== 'script' && tag !== 'style' && tag !== 'svg') {
+                if (node.hasAttribute('placeholder')) {
+                    items.push({
+                        type: 'placeholder',
+                        parentTag: tag,
+                        originalText: node.getAttribute('placeholder')
+                    });
+                }
+                for (let child of node.childNodes) {
+                    walk(child);
+                }
+            }
+        }
+    }
+
+    walk(doc.body);
+    return items;
+}
+
+function updateHTMLWithEdits(originalHTML, newValuesMap) {
+    if (!originalHTML) return '';
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(originalHTML, 'text/html');
+    const nodeItems = [];
+
+    function walk(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            const val = node.nodeValue.trim();
+            if (val.length > 0 && !/^[\s\n\r]*$/.test(val)) {
+                nodeItems.push({ type: 'text', node: node });
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const tag = node.tagName.toLowerCase();
+            if (tag !== 'script' && tag !== 'style' && tag !== 'svg') {
+                if (node.hasAttribute('placeholder')) {
+                    nodeItems.push({ type: 'placeholder', element: node });
+                }
+                for (let child of node.childNodes) {
+                    walk(child);
+                }
+            }
+        }
+    }
+
+    walk(doc.body);
+
+    nodeItems.forEach((item, index) => {
+        if (newValuesMap[index] !== undefined) {
+            const newVal = newValuesMap[index];
+            if (item.type === 'text') {
+                item.node.nodeValue = newVal;
+            } else if (item.type === 'placeholder') {
+                item.element.setAttribute('placeholder', newVal);
+            }
+        }
+    });
+
+    return doc.body.innerHTML;
+}
+
+function buildTextCustomizerPanel() {
+    const customizerCol = document.getElementById('text-customizer-column');
+    const previewCol = document.getElementById('preview-column');
+    const codeCol = document.getElementById('code-column');
+    const container = document.getElementById('text-customizer-fields');
+
+    textNodesMetadata = extractTextItems(initialHTMLCode);
+
+    if (textNodesMetadata.length === 0) {
+        if (customizerCol) customizerCol.classList.add('hidden');
+        if (previewCol) previewCol.className = 'lg:col-span-6';
+        if (codeCol) codeCol.className = 'lg:col-span-6';
+        return;
+    }
+
+    if (customizerCol) customizerCol.classList.remove('hidden');
+    if (previewCol) previewCol.className = 'lg:col-span-4';
+    if (codeCol) codeCol.className = 'lg:col-span-5';
+
+    let fieldsHtml = '';
+    textNodesMetadata.forEach((item, idx) => {
+        const tagLabel = item.type === 'placeholder' ? `placeholder` : `<${item.parentTag}>`;
+        fieldsHtml += `
+            <div class="group/field relative flex flex-col gap-1.5 bg-slate-50/70 hover:bg-slate-50/90 border border-slate-200/80 hover:border-slate-300/90 focus-within:border-sky-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-sky-500/15 p-2.5 rounded-xl transition-all duration-150">
+                <div class="flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-1.5 min-w-0">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-focus-within/field:bg-sky-500 transition-colors shrink-0"></span>
+                        <label class="text-[11px] font-sans font-semibold text-slate-700 truncate tracking-tight">Text Node ${idx + 1}</label>
+                    </div>
+                    <span class="text-[9.5px] font-mono font-medium text-slate-500 bg-white group-focus-within/field:text-sky-700 group-focus-within/field:bg-sky-50 border border-slate-200/80 group-focus-within/field:border-sky-200 px-1.5 py-0.5 rounded-md transition-colors">${tagLabel}</span>
+                </div>
+                <input 
+                    type="text" 
+                    data-text-idx="${idx}"
+                    value="${item.originalText.replace(/"/g, '&quot;')}"
+                    oninput="handleTextInputChange(event)"
+                    class="w-full text-[12px] font-sans font-medium text-slate-900 bg-white border border-slate-200/90 rounded-lg px-2.5 py-1.5 outline-none focus:border-sky-500 transition-colors shadow-2xs placeholder:text-slate-400" 
+                    placeholder="Enter custom text..."
+                />
+            </div>
+        `;
+    });
+
+    if (container) container.innerHTML = fieldsHtml;
+}
+
+function handleTextInputChange() {
+    const inputs = document.querySelectorAll('[data-text-idx]');
+    const editsMap = {};
+
+    inputs.forEach(input => {
+        const idx = parseInt(input.getAttribute('data-text-idx'), 10);
+        editsMap[idx] = input.value;
+    });
+
+    // Update global rawHTMLCode
+    rawHTMLCode = updateHTMLWithEdits(initialHTMLCode, editsMap);
+
+    // Refresh live preview iframe
+    renderComponentPreview();
+
+    // Refresh code viewer if HTML tab is active
+    if (currentActiveTab === 'html') {
+        const codeOutput = document.getElementById('code-output');
+        if (codeOutput) {
+            codeOutput.innerHTML = highlightHTML(rawHTMLCode || '<!-- No HTML found -->');
+        }
+    }
 }
 
 function switchTab(tab) {
@@ -163,9 +325,20 @@ function copyActiveCode() {
     });
 }
 
-// Make functions global for onclick attributes
+function resetTextEdits() {
+    rawHTMLCode = initialHTMLCode;
+    renderComponentPreview();
+    buildTextCustomizerPanel();
+    if (currentActiveTab === 'html') {
+        switchTab('html');
+    }
+}
+
+// Make functions global for inline onclick/oninput handlers
 window.switchTab = switchTab;
 window.copyActiveCode = copyActiveCode;
+window.handleTextInputChange = handleTextInputChange;
+window.resetTextEdits = resetTextEdits;
 
 async function loadSimilarComponents() {
     try {

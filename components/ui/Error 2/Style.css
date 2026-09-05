@@ -1,0 +1,921 @@
+/* =========================================================
+   RESET / FULLSCREEN
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #f3f4f6;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.error-page {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fafbfc 0%,
+            #f5f6f8 48%,
+            #f0f1f4 100%
+        );
+
+    color: #292840;
+}
+
+
+/* =========================================================
+   ILLUSTRATION
+========================================================= */
+
+.error-illustration {
+    position: relative;
+
+    width: min(900px, 100%);
+    height: 57vh;
+
+    min-height: 390px;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   BACK WALL
+========================================================= */
+
+.back-wall {
+    position: absolute;
+
+    inset: 0 0 20% 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f9fafb 65%,
+            #f3f5f7 100%
+        );
+}
+
+
+/* =========================================================
+   FLOOR
+========================================================= */
+
+.floor {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 36%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #eef1f4,
+            #f7f8fa
+        );
+
+    box-shadow:
+        inset 0 12px 25px rgba(80, 90, 100, .035);
+}
+
+
+/* =========================================================
+   PLANT
+========================================================= */
+
+.plant {
+    position: absolute;
+
+    left: -18px;
+    top: -42px;
+
+    width: 145px;
+    height: 330px;
+
+    z-index: 5;
+}
+
+.pot {
+    position: absolute;
+
+    left: 6px;
+    top: 181px;
+
+    width: 120px;
+    height: 150px;
+
+    background:
+        linear-gradient(
+            105deg,
+            #e1e5e8 0%,
+            #ffffff 30%,
+            #fafbfc 62%,
+            #dfe3e6 100%
+        );
+
+    clip-path: polygon(
+        3% 0,
+        100% 0,
+        82% 91%,
+        58% 100%,
+        8% 92%
+    );
+
+    filter:
+        drop-shadow(
+            10px 10px 13px rgba(70,80,90,.09)
+        );
+}
+
+.pot-rim {
+    position: absolute;
+
+    left: -1px;
+    top: 175px;
+
+    width: 126px;
+    height: 21px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #dfe3e6
+        );
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   LEAVES
+========================================================= */
+
+.leaf {
+    position: absolute;
+
+    transform-origin: bottom left;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a6d9a3,
+            #4da56a
+        );
+
+    box-shadow:
+        inset -4px -7px 10px rgba(30,100,50,.08);
+}
+
+.leaf-one {
+    width: 91px;
+    height: 190px;
+
+    left: 27px;
+    top: -17px;
+
+    border-radius:
+        92% 8% 88% 12%;
+
+    transform: rotate(-8deg);
+}
+
+.leaf-two {
+    width: 68px;
+    height: 130px;
+
+    left: 68px;
+    top: 82px;
+
+    border-radius:
+        100% 0 100% 0;
+
+    transform: rotate(20deg);
+
+    background:
+        linear-gradient(
+            145deg,
+            #b2dda7,
+            #61ae70
+        );
+}
+
+.leaf-three {
+    width: 67px;
+    height: 116px;
+
+    left: 2px;
+    top: 87px;
+
+    border-radius:
+        100% 0 100% 0;
+
+    transform: rotate(-28deg);
+
+    background:
+        linear-gradient(
+            145deg,
+            #84c986,
+            #469762
+        );
+}
+
+
+/* =========================================================
+   DRAWERS
+========================================================= */
+
+.drawers {
+    position: absolute;
+
+    right: -12px;
+    top: 53%;
+
+    width: 175px;
+
+    z-index: 4;
+}
+
+.drawer {
+    position: relative;
+
+    width: 175px;
+    height: 79px;
+
+    margin-bottom: -1px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef1f3,
+            #dce1e5
+        );
+
+    border: 1px solid rgba(190,198,204,.7);
+
+    box-shadow:
+        0 7px 13px rgba(70,80,90,.055);
+}
+
+.drawer::before {
+    content: "";
+
+    position: absolute;
+
+    left: 18px;
+    top: 21px;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 40% 35%,
+            #ffffff,
+            #e9edef
+        );
+}
+
+.drawer::after {
+    content: "";
+
+    position: absolute;
+
+    left: 63px;
+    top: 30px;
+
+    width: 85px;
+    height: 12px;
+
+    background: #fafbfc;
+}
+
+.drawer:nth-child(2) {
+    transform: translateX(-77px);
+}
+
+
+/* =========================================================
+   CUP SHADOW
+========================================================= */
+
+.cup-shadow {
+    position: absolute;
+
+    left: 50%;
+    top: 83%;
+
+    width: 285px;
+    height: 30px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(85,105,125,.11);
+
+    filter: blur(12px);
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   SPILLED WHITE SURFACE
+========================================================= */
+
+.spill-surface {
+    position: absolute;
+
+    left: 50%;
+    top: 76%;
+
+    width: 275px;
+    height: 76px;
+
+    transform: translateX(-50%);
+
+    z-index: 3;
+
+    background: rgba(255,255,255,.93);
+
+    clip-path: polygon(
+        0 48%,
+        13% 31%,
+        35% 23%,
+        58% 29%,
+        78% 43%,
+        100% 28%,
+        93% 74%,
+        67% 100%,
+        27% 91%,
+        7% 73%
+    );
+
+    filter:
+        drop-shadow(
+            8px 8px 7px rgba(70,80,90,.05)
+        );
+}
+
+
+/* =========================================================
+   CUP
+========================================================= */
+
+.cup {
+    position: absolute;
+
+    left: 50%;
+    top: 72%;
+
+    width: 275px;
+    height: 125px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-5deg);
+
+    z-index: 10;
+}
+
+
+/* Cup main body */
+
+.cup-body {
+    position: absolute;
+
+    left: 50%;
+    top: 21px;
+
+    width: 248px;
+    height: 82px;
+
+    transform: translateX(-50%);
+
+    border-radius:
+        13px 64px 53px 13px;
+
+    background:
+        linear-gradient(
+            105deg,
+            #ffffff 0%,
+            #fafbfc 29%,
+            #edf0f2 64%,
+            #ffffff 100%
+        );
+
+    box-shadow:
+        13px 11px 15px rgba(80,95,110,.09);
+}
+
+
+/* Cup opening */
+
+.cup-opening {
+    position: absolute;
+
+    left: 13px;
+    top: 1px;
+
+    width: 110px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at 53% 42%,
+            #ffffff 0%,
+            #f1f4f6 52%,
+            #dce2e6 100%
+        );
+
+    box-shadow:
+        inset -8px -6px 12px rgba(90,105,115,.08);
+
+    z-index: 5;
+}
+
+.cup-opening::after {
+    content: "";
+
+    position: absolute;
+
+    left: 16px;
+    top: 10px;
+
+    width: 77px;
+    height: 56px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            #e7ebee,
+            #f9fafb 72%
+        );
+}
+
+
+/* =========================================================
+   GREEN CUP LABEL
+========================================================= */
+
+.cup-label {
+    position: absolute;
+
+    right: 49px;
+    top: 11px;
+
+    width: 63px;
+    height: 73px;
+
+    z-index: 6;
+
+    background:
+        linear-gradient(
+            180deg,
+            #bddd86,
+            #a5d16d
+        );
+
+    clip-path: polygon(
+        7% 0,
+        100% 8%,
+        94% 92%,
+        0 100%
+    );
+}
+
+.cup-label::after {
+    content: "";
+
+    position: absolute;
+
+    left: 20px;
+    top: 28px;
+
+    width: 23px;
+    height: 12px;
+
+    border: 3px solid rgba(255,255,255,.92);
+
+    border-left-color: transparent;
+
+    border-radius: 50%;
+
+    transform: rotate(30deg);
+}
+
+
+/* =========================================================
+   COFFEE SPILL
+========================================================= */
+
+.coffee {
+    position: absolute;
+
+    left: 39px;
+    top: 64px;
+
+    width: 120px;
+    height: 68px;
+
+    z-index: 4;
+
+    background:
+        linear-gradient(
+            145deg,
+            #b27e69,
+            #805549
+        );
+
+    clip-path: polygon(
+        0 70%,
+        16% 57%,
+        32% 45%,
+        51% 25%,
+        67% 0,
+        78% 7%,
+        74% 35%,
+        97% 53%,
+        91% 80%,
+        63% 94%,
+        34% 100%,
+        10% 93%
+    );
+
+    filter:
+        drop-shadow(
+            2px 3px 2px rgba(60,40,35,.08)
+        );
+}
+
+
+/* =========================================================
+   SMALL OBJECT
+========================================================= */
+
+.small-object {
+    position: absolute;
+
+    left: 70%;
+    top: 82%;
+
+    width: 115px;
+    height: 29px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #e5e9ec
+        );
+
+    box-shadow:
+        0 8px 10px rgba(80,90,100,.07);
+
+    z-index: 7;
+}
+
+.small-object::after {
+    content: "";
+
+    position: absolute;
+
+    left: 17px;
+    right: 17px;
+    top: 7px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #f7f8f9;
+}
+
+
+/* =========================================================
+   ERROR CONTENT
+========================================================= */
+
+.error-content {
+    position: absolute;
+
+    left: 50%;
+    top: 68%;
+
+    width: 100%;
+
+    z-index: 30;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.error-title {
+    margin: 0;
+
+    font-size:
+        clamp(34px, 4.5vw, 46px);
+
+    line-height: 1.1;
+
+    font-weight: 600;
+
+    letter-spacing: -.045em;
+
+    color: #292840;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.error-message {
+    margin-top: 22px;
+
+    font-size:
+        clamp(17px, 2vw, 21px);
+
+    line-height: 1.7;
+
+    font-weight: 400;
+
+    color: #62616d;
+}
+
+
+/* =========================================================
+   RETRY BUTTON
+========================================================= */
+
+.retry {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 240px;
+    height: 64px;
+
+    margin-top: 35px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 999px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #343250;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    letter-spacing: .015em;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 14px 32px rgba(106,125,170,.14),
+        0 3px 9px rgba(0,0,0,.025);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.retry:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 18px 38px rgba(106,125,170,.19);
+}
+
+.retry:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 9px 20px rgba(106,125,170,.13);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .error-illustration {
+        width: 100%;
+        height: 53vh;
+
+        min-height: 330px;
+    }
+
+    .plant {
+        left: -45px;
+
+        transform: scale(.72);
+
+        transform-origin: top left;
+    }
+
+    .drawers {
+        right: -35px;
+
+        transform: scale(.72);
+
+        transform-origin: top right;
+    }
+
+    .cup {
+        transform:
+            translate(-50%, -50%)
+            rotate(-5deg)
+            scale(.72);
+    }
+
+    .cup-shadow {
+        transform:
+            translateX(-50%)
+            scale(.72);
+    }
+
+    .spill-surface {
+        transform:
+            translateX(-50%)
+            scale(.72);
+    }
+
+    .small-object {
+        transform: scale(.72);
+        transform-origin: center;
+    }
+
+    .error-content {
+        top: 68%;
+    }
+
+    .error-title {
+        font-size: 34px;
+    }
+
+    .error-message {
+        margin-top: 17px;
+
+        font-size: 16px;
+
+        line-height: 1.65;
+    }
+
+    .retry {
+        width: 210px;
+        height: 58px;
+
+        margin-top: 27px;
+
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================================
+   SHORT SCREEN
+========================================================= */
+
+@media (max-height: 700px) {
+
+    .error-illustration {
+        height: 49vh;
+
+        min-height: 300px;
+    }
+
+    .error-content {
+        top: 66%;
+    }
+
+    .error-message {
+        margin-top: 12px;
+    }
+
+    .retry {
+        height: 54px;
+
+        margin-top: 20px;
+    }
+}
+
+
+/* =========================================================
+   VERY SHORT SCREEN
+========================================================= */
+
+@media (max-height: 560px) {
+
+    .error-illustration {
+        height: 45vh;
+        min-height: 245px;
+    }
+
+    .cup {
+        transform:
+            translate(-50%, -50%)
+            rotate(-5deg)
+            scale(.56);
+    }
+
+    .cup-shadow,
+    .spill-surface {
+        transform:
+            translateX(-50%)
+            scale(.56);
+    }
+
+    .error-content {
+        top: 65%;
+    }
+
+    .error-title {
+        font-size: 28px;
+    }
+
+    .error-message {
+        margin-top: 8px;
+
+        font-size: 14px;
+    }
+
+    .retry {
+        width: 180px;
+        height: 46px;
+
+        margin-top: 13px;
+
+        font-size: 14px;
+    }
+}

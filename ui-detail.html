@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -20,7 +20,7 @@
                         "surface": "#ffffff"
                     },
                     fontFamily: {
-                        "headline": ["Hanken Grotesk", "sans-serif"],
+                        "headline": ["Outfit", "Hanken Grotesk", "sans-serif"],
                         "body": ["Plus Jakarta Sans", "sans-serif"],
                         "mono": ["JetBrains Mono", "monospace"]
                     }
@@ -47,7 +47,7 @@
         .code-block {
             background: #0f172a;
             color: #e2e8f0;
-            border-radius: 1rem;
+            border-radius: 1.25rem;
             overflow: hidden;
             font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
@@ -81,7 +81,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 420px;
+            min-height: 460px;
             background: #ffffff;
             border-radius: 1.25rem;
             border: 1px solid #e2e8f0;
@@ -96,13 +96,28 @@
             color: #ffffff;
             font-weight: 600;
         }
+
+        /* Text Customizer Scrollbar */
+        #text-customizer-fields::-webkit-scrollbar {
+            width: 5px;
+        }
+        #text-customizer-fields::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        #text-customizer-fields::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        #text-customizer-fields::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 </head>
 <body class="bg-[#fafbff] text-slate-900 font-body antialiased selection:bg-slate-900 selection:text-white min-h-screen">
 
     <!-- Top Navigation Bar -->
     <header class="glass-nav sticky top-0 z-50 w-full border-b border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)]">
-        <div class="flex items-center justify-between px-4 sm:px-8 lg:px-10 h-16 sm:h-20 w-full gap-4 max-w-7xl mx-auto">
+        <div class="flex items-center justify-between px-4 sm:px-8 lg:px-10 h-16 sm:h-20 w-full gap-4 max-w-[1800px] mx-auto">
             <div class="flex items-center gap-3">
                 <!-- Back to UI Gallery -->
                 <a href="ui.html" class="w-9 h-9 rounded-full bg-white border border-slate-200 hover:bg-slate-50 text-slate-800 flex items-center justify-center transition-all shadow-sm focus:outline-none shrink-0" title="Back to UI Gallery">
@@ -121,14 +136,14 @@
         </div>
     </header>
 
-    <!-- Main Content: Preview + Code -->
-    <main class="px-4 sm:px-8 lg:px-10 py-8 w-full max-w-7xl mx-auto">
+    <!-- Main Content: Expanded Layout with Live Preview, Text Customizer & Source Code -->
+    <main class="px-4 sm:px-8 lg:px-10 py-8 w-full max-w-[1800px] mx-auto">
         
-        <!-- Two Column Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <!-- Three Column Grid Layout to Utilize Screen Width -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
 
-            <!-- Left: Live Preview -->
-            <div>
+            <!-- 1. Live Component Preview -->
+            <div class="lg:col-span-4" id="preview-column">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
@@ -141,8 +156,45 @@
                 </div>
             </div>
 
-            <!-- Right: Source Code -->
-            <div>
+            <!-- 2. Live Text & Label Customizer Panel -->
+            <div class="lg:col-span-3" id="text-customizer-column">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-lg bg-sky-50 border border-sky-200/80 flex items-center justify-center text-sky-600 shadow-2xs">
+                            <span class="material-symbols-outlined text-[15px]">edit_note</span>
+                        </div>
+                        <h2 class="font-headline font-bold text-xs uppercase tracking-wider text-slate-700">Text Customizer</h2>
+                    </div>
+                    <button type="button" onclick="resetTextEdits()" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200/90 active:scale-95 text-[11px] font-sans font-semibold text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1 cursor-pointer border border-slate-200/60 shadow-2xs">
+                        <span class="material-symbols-outlined text-[13px]">refresh</span>
+                        <span>Reset</span>
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-[0_10px_30px_-10px_rgba(15,23,42,0.06)] min-h-[460px] max-h-[460px] flex flex-col justify-between" id="text-customizer-box">
+                    <div class="flex flex-col h-[calc(100%-36px)]">
+                        <div class="pb-3 mb-3 border-b border-slate-100 flex items-center justify-between">
+                            <span class="text-[12.5px] font-headline font-bold text-slate-800 tracking-tight">Edit Component Text</span>
+                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-sky-50 text-sky-600 text-[10px] font-bold border border-sky-200/60">
+                                <span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></span>
+                                Live Sync
+                            </span>
+                        </div>
+                        <div class="space-y-2.5 overflow-y-auto max-h-[340px] pr-1 flex-1" id="text-customizer-fields">
+                            <!-- Dynamic Text Inputs populated by js/ui-detail.js -->
+                        </div>
+                    </div>
+                    <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[10.5px] font-sans text-slate-400">
+                        <span class="flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[13px] text-sky-500">sync</span>
+                            <span>Auto updates preview &amp; code</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Source Code Viewer & Copy -->
+            <div class="lg:col-span-5" id="code-column">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-purple-500 text-lg">code</span>
@@ -165,7 +217,7 @@
                         <span class="text-[10px] text-slate-500 font-mono" id="active-filename">index.html</span>
                     </div>
 
-                    <pre id="code-output" class="max-h-[460px] overflow-y-auto min-h-[360px]"></pre>
+                    <pre id="code-output" class="max-h-[400px] overflow-y-auto min-h-[400px]"></pre>
                 </div>
             </div>
         </div>
@@ -192,7 +244,7 @@
 
     <!-- Footer -->
     <footer class="bg-white py-8 w-full mt-16 border-t border-slate-200/80">
-        <div class="px-4 sm:px-8 lg:px-10 w-full max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+        <div class="px-4 sm:px-8 lg:px-10 w-full max-w-[1800px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
             <div class="flex items-center gap-2.5">
                 <img src="assets/algora-logo.svg" alt="ALGORA" class="h-5 w-auto object-contain">
                 <span class="text-xs text-slate-400 font-mono">UI Component Detail</span>

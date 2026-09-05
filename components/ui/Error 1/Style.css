@@ -1,0 +1,1316 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.error-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    background: #eeeeed;
+
+    font-family:
+        Inter,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    color: #202124;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.error-container {
+    position: relative;
+
+    width: min(1280px, 100%);
+    min-height: 820px;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #fafafa;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.025),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.error-navbar {
+    width: calc(100% - 150px);
+
+    height: 72px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.error-logo {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #202124;
+
+    text-decoration: none;
+}
+
+.logo-symbol {
+    position: relative;
+
+    width: 17px;
+    height: 17px;
+
+    display: block;
+
+    border: 2px solid #202124;
+
+    border-radius: 50%;
+}
+
+.logo-symbol::after {
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    top: -2px;
+    right: -2px;
+
+    border-radius: 50%;
+
+    background: #fafafa;
+}
+
+.logo-symbol span {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    left: 4px;
+    top: 4px;
+
+    border-radius: 50%;
+
+    background: #202124;
+}
+
+.logo-name {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.04em;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.error-nav {
+    position: absolute;
+
+    left: 50%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 27px;
+
+    transform: translateX(-50%);
+}
+
+.error-nav a {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: rgba(32, 33, 36, 0.52);
+
+    text-decoration: none;
+
+    font-size: 8px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.01em;
+
+    transition:
+        color 0.2s ease;
+}
+
+.error-nav a:hover {
+    color: #202124;
+}
+
+.nav-chevron {
+    font-size: 9px;
+
+    color: rgba(32, 33, 36, 0.35);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   CONTACT BUTTON
+========================================================= */
+
+.error-contact {
+    height: 31px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 0 12px 0 4px;
+
+    border-radius: 18px;
+
+    background: #222326;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 8px;
+
+    font-weight: 500;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.13);
+}
+
+.contact-icon {
+    width: 22px;
+    height: 22px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #f7f7f7;
+
+    color: #252629;
+
+    font-size: 12px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   NAVBAR DIVIDER
+========================================================= */
+
+.navbar-divider {
+    width: calc(100% - 150px);
+
+    height: 1px;
+
+    margin: 0 auto;
+
+    border-top: 1px dotted rgba(30, 30, 30, 0.08);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.error-main {
+    position: relative;
+
+    min-height: 735px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 50px;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.error-intro {
+    margin-bottom: 12px;
+
+    font-size: 12px;
+
+    font-weight: 400;
+
+    color: rgba(32, 33, 36, 0.57);
+
+    letter-spacing: -0.01em;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.error-heading {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+}
+
+.error-heading h1 {
+    position: relative;
+    z-index: 3;
+
+    margin: 0;
+
+    font-size: clamp(38px, 4vw, 57px);
+
+    font-weight: 500;
+
+    line-height: 1;
+
+    letter-spacing: -0.065em;
+
+    color: #242528;
+}
+
+
+/* =========================================================
+   CLOUD
+========================================================= */
+
+.decor-cloud {
+    position: absolute;
+
+    z-index: 4;
+
+    top: -8px;
+    left: -25px;
+
+    width: 36px;
+    height: 22px;
+
+    filter:
+        drop-shadow(0 3px 5px rgba(0, 0, 0, 0.08));
+}
+
+.cloud-part {
+    position: absolute;
+
+    display: block;
+
+    border-radius: 50%;
+}
+
+.cloud-blue {
+    width: 23px;
+    height: 12px;
+
+    left: 3px;
+    bottom: 1px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #78dfff,
+            #a98cff
+        );
+
+    border-radius: 12px 12px 8px 8px;
+}
+
+.cloud-purple {
+    width: 16px;
+    height: 16px;
+
+    left: 11px;
+    top: 1px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff96e9,
+            #9b7cff
+        );
+}
+
+.cloud-pink {
+    width: 12px;
+    height: 12px;
+
+    left: 1px;
+    top: 6px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff9fe7,
+            #b19cff
+        );
+}
+
+
+/* =========================================================
+   HEART
+========================================================= */
+
+.decor-heart {
+    position: absolute;
+
+    z-index: 4;
+
+    right: -27px;
+    top: 25px;
+
+    font-size: 26px;
+
+    line-height: 1;
+
+    color: #9b7cff;
+
+    transform: rotate(-10deg);
+
+    filter:
+        drop-shadow(
+            0 4px 6px rgba(155, 124, 255, 0.15)
+        );
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.error-description {
+    position: relative;
+
+    z-index: 5;
+
+    margin-top: 14px;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    line-height: 1.65;
+
+    color: rgba(32, 33, 36, 0.56);
+}
+
+.description-icon {
+    display: inline-flex;
+
+    width: 14px;
+    height: 14px;
+
+    margin: 0 2px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e9e9e9;
+
+    color: #444;
+
+    font-size: 8px;
+
+    vertical-align: -2px;
+}
+
+.description-link {
+    color: #202124;
+
+    text-decoration: underline;
+
+    text-underline-offset: 2px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   ILLUSTRATION
+========================================================= */
+
+.error-illustration {
+    position: relative;
+
+    width: 760px;
+    height: 255px;
+
+    max-width: 100%;
+
+    margin-top: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ORBIT RINGS
+========================================================= */
+
+.orbit-ring {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    border: 1px solid rgba(90, 90, 90, 0.075);
+
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.orbit-ring-one {
+    width: 730px;
+    height: 730px;
+}
+
+.orbit-ring-two {
+    width: 575px;
+    height: 575px;
+
+    border-color: rgba(90, 90, 90, 0.095);
+}
+
+.orbit-ring-three {
+    width: 415px;
+    height: 415px;
+
+    border-color: rgba(90, 90, 90, 0.09);
+}
+
+
+/* =========================================================
+   ORBIT MARKERS
+========================================================= */
+
+.orbit-marker {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    border: 1px solid rgba(90, 90, 90, 0.14);
+
+    box-shadow:
+        0 0 0 2px rgba(255,255,255,.5);
+}
+
+.marker-one {
+    top: 34px;
+    left: 109px;
+}
+
+.marker-two {
+    top: 72px;
+    right: 81px;
+}
+
+.marker-three {
+    top: 147px;
+    left: 31px;
+}
+
+.marker-four {
+    right: 31px;
+    bottom: 57px;
+}
+
+.marker-five {
+    left: 180px;
+    bottom: 17px;
+}
+
+.marker-six {
+    right: 198px;
+    bottom: 15px;
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+.illustration-star {
+    position: absolute;
+
+    color: rgba(105, 105, 105, 0.38);
+
+    font-size: 15px;
+
+    font-weight: 300;
+}
+
+.star-one {
+    top: 65px;
+    left: 205px;
+}
+
+.star-two {
+    right: 220px;
+    top: 72px;
+
+    font-size: 12px;
+}
+
+.star-three {
+    left: 282px;
+    bottom: 38px;
+
+    font-size: 11px;
+}
+
+.star-four {
+    right: 282px;
+    bottom: 55px;
+
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   UFO
+========================================================= */
+
+.ufo {
+    position: relative;
+
+    width: 205px;
+    height: 105px;
+
+    z-index: 10;
+
+    margin-top: 5px;
+
+    filter:
+        drop-shadow(
+            0 15px 16px rgba(91, 124, 188, 0.12)
+        );
+}
+
+
+/* =========================================================
+   UFO GLOW
+========================================================= */
+
+.ufo-glow {
+    position: absolute;
+
+    left: 50%;
+    bottom: -8px;
+
+    width: 175px;
+    height: 48px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(111, 184, 255, 0.28),
+            rgba(158, 126, 255, 0.10) 42%,
+            transparent 72%
+        );
+
+    filter: blur(14px);
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   UFO DOME
+========================================================= */
+
+.ufo-dome {
+    position: absolute;
+
+    left: 50%;
+    top: 13px;
+
+    width: 88px;
+    height: 54px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50% 50% 35% 35%;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,255,255,.8),
+            rgba(174,178,184,.8) 18%,
+            rgba(62,65,70,.95) 65%,
+            #292b2e 100%
+        );
+
+    border: 1px solid rgba(30,30,30,.35);
+
+    box-shadow:
+        inset 0 7px 8px rgba(255,255,255,.23),
+        inset 0 -7px 10px rgba(0,0,0,.32),
+        0 7px 8px rgba(0,0,0,.14);
+
+    z-index: 4;
+}
+
+
+/* =========================================================
+   DOME WINDOWS
+========================================================= */
+
+.dome-window {
+    position: absolute;
+
+    top: 16px;
+
+    width: 16px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #cfd2d5,
+            #74777b 45%,
+            #282a2d 100%
+        );
+
+    box-shadow:
+        inset 2px 2px 3px rgba(255,255,255,.22),
+        inset -2px -3px 3px rgba(0,0,0,.35);
+}
+
+.window-one {
+    left: 17px;
+}
+
+.window-two {
+    left: 36px;
+    top: 11px;
+}
+
+.window-three {
+    right: 17px;
+}
+
+
+/* =========================================================
+   UFO LIGHTNING
+========================================================= */
+
+.ufo-lightning {
+    position: absolute;
+
+    top: -8px;
+    right: 54px;
+
+    width: 19px;
+    height: 28px;
+
+    z-index: 8;
+
+    transform: skewX(-12deg);
+}
+
+.ufo-lightning span {
+    position: absolute;
+
+    width: 17px;
+    height: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9ceb 0%,
+            #a983ff 45%,
+            #75ddff 100%
+        );
+
+    clip-path: polygon(
+        55% 0,
+        100% 0,
+        68% 38%,
+        91% 38%,
+        32% 100%,
+        45% 53%,
+        10% 53%
+    );
+
+    filter:
+        drop-shadow(
+            0 2px 5px rgba(155, 124, 255, .3)
+        );
+}
+
+
+/* =========================================================
+   UFO BODY
+========================================================= */
+
+.ufo-body {
+    position: absolute;
+
+    left: 50%;
+    bottom: 12px;
+
+    width: 190px;
+    height: 55px;
+
+    transform: translateX(-50%);
+
+    z-index: 5;
+}
+
+
+/* Top metallic surface */
+
+.ufo-top {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 190px;
+    height: 44px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at 48% 25%,
+            #f4f4f3 0%,
+            #c8c9ca 18%,
+            #777a7d 47%,
+            #3e4043 72%,
+            #242629 100%
+        );
+
+    border: 1px solid rgba(20,20,20,.38);
+
+    box-shadow:
+        inset 0 5px 5px rgba(255,255,255,.45),
+        inset 0 -8px 10px rgba(0,0,0,.38),
+        0 5px 7px rgba(0,0,0,.18);
+}
+
+
+/* Middle rim */
+
+.ufo-middle {
+    position: absolute;
+
+    left: 50%;
+    bottom: 4px;
+
+    width: 205px;
+    height: 31px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #9fa2a5,
+            #66696d 45%,
+            #36383b 75%,
+            #242629
+        );
+
+    border: 1px solid rgba(20,20,20,.45);
+
+    box-shadow:
+        inset 0 4px 5px rgba(255,255,255,.25),
+        inset 0 -5px 7px rgba(0,0,0,.4);
+}
+
+
+/* Bottom rim */
+
+.ufo-bottom {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 145px;
+    height: 13px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #626569,
+            #27292c
+        );
+
+    box-shadow:
+        inset 0 2px 3px rgba(255,255,255,.16);
+}
+
+
+/* =========================================================
+   UFO LIGHTS
+========================================================= */
+
+.ufo-light {
+    position: absolute;
+
+    bottom: 8px;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #d5d7d9 35%,
+            #7f8387 75%
+        );
+
+    border: 1px solid rgba(255,255,255,.3);
+
+    box-shadow:
+        0 1px 3px rgba(0,0,0,.3);
+}
+
+.light-one {
+    left: 28px;
+}
+
+.light-two {
+    left: 66px;
+}
+
+.light-three {
+    right: 66px;
+}
+
+.light-four {
+    right: 28px;
+}
+
+
+/* =========================================================
+   UFO BEAM
+========================================================= */
+
+.ufo-beam {
+    position: absolute;
+
+    left: 50%;
+    bottom: -4px;
+
+    width: 112px;
+    height: 22px;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(149, 214, 255, .17),
+            rgba(170, 141, 255, .08),
+            transparent
+        );
+
+    clip-path: polygon(
+        22% 0,
+        78% 0,
+        100% 100%,
+        0 100%
+    );
+
+    filter: blur(2px);
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   NAVIGATION CARDS
+========================================================= */
+
+.error-links {
+    position: relative;
+
+    z-index: 20;
+
+    width: 230px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+
+    margin-top: -3px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.error-link-card {
+    position: relative;
+
+    width: 100%;
+    min-height: 56px;
+
+    padding: 9px 11px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    border: 1px solid rgba(30,30,30,.10);
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f9f9f9
+        );
+
+    box-shadow:
+        0 3px 8px rgba(0,0,0,.035),
+        0 1px 2px rgba(0,0,0,.03);
+
+    color: #252629;
+
+    text-decoration: none;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.error-link-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(30,30,30,.16);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.07);
+}
+
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.link-icon {
+    width: 27px;
+    height: 27px;
+
+    flex: 0 0 27px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #f0f0f0;
+
+    color: #303236;
+}
+
+.link-icon svg {
+    width: 13px;
+    height: 13px;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.link-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.link-content strong {
+    font-size: 9px;
+
+    line-height: 1;
+
+    font-weight: 600;
+
+    color: #292a2d;
+}
+
+.link-content span {
+    font-size: 7px;
+
+    line-height: 1.2;
+
+    color: rgba(41,42,45,.42);
+}
+
+
+/* =========================================================
+   CARD ARROW
+========================================================= */
+
+.link-arrow {
+    margin-left: auto;
+
+    font-size: 17px;
+
+    font-weight: 300;
+
+    color: rgba(30,30,30,.45);
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .error-page {
+        padding: 20px;
+    }
+
+    .error-container {
+        min-height: 760px;
+    }
+
+    .error-navbar,
+    .navbar-divider {
+        width: calc(100% - 50px);
+    }
+
+    .error-nav {
+        gap: 15px;
+    }
+
+    .error-illustration {
+        width: 100%;
+    }
+
+    .orbit-ring-one {
+        width: 600px;
+        height: 600px;
+    }
+
+    .orbit-ring-two {
+        width: 480px;
+        height: 480px;
+    }
+
+    .orbit-ring-three {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+
+@media (max-width: 620px) {
+
+    .error-page {
+        padding: 10px;
+    }
+
+    .error-container {
+        min-height: 720px;
+
+        border-radius: 12px;
+    }
+
+    .error-navbar {
+        width: calc(100% - 30px);
+    }
+
+    .error-nav {
+        display: none;
+    }
+
+    .error-contact {
+        transform: scale(.9);
+    }
+
+    .error-main {
+        padding-top: 42px;
+    }
+
+    .error-heading h1 {
+        font-size: 36px;
+    }
+
+    .decor-cloud {
+        left: -18px;
+        transform: scale(.8);
+    }
+
+    .decor-heart {
+        right: -20px;
+
+        font-size: 21px;
+    }
+
+    .error-description {
+        width: calc(100% - 35px);
+
+        font-size: 10px;
+    }
+
+    .desktop-break {
+        display: none;
+    }
+
+    .error-illustration {
+        height: 235px;
+    }
+
+    .error-links {
+        width: 220px;
+    }
+
+    .orbit-ring-one {
+        width: 560px;
+        height: 560px;
+    }
+
+    .orbit-ring-two {
+        width: 430px;
+        height: 430px;
+    }
+
+    .orbit-ring-three {
+        width: 315px;
+        height: 315px;
+    }
+
+    .ufo {
+        transform: scale(.9);
+    }
+
+    .marker-one,
+    .marker-two,
+    .marker-three,
+    .marker-four,
+    .marker-five,
+    .marker-six {
+        opacity: .6;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .error-container {
+        min-height: 700px;
+    }
+
+    .error-main {
+        padding-top: 35px;
+    }
+
+    .error-heading h1 {
+        font-size: 31px;
+    }
+
+    .error-description {
+        margin-top: 12px;
+    }
+
+    .error-illustration {
+        height: 215px;
+    }
+
+    .ufo {
+        transform: scale(.76);
+    }
+
+    .error-links {
+        width: 205px;
+    }
+
+    .error-link-card {
+        min-height: 53px;
+    }
+
+    .error-footer {
+        bottom: 20px;
+    }
+}
