@@ -104,8 +104,19 @@ function renderComponentPreview() {
 
         iframe.onload = () => {
             try {
-                const doc = iframe.contentDocument || iframe.contentWindow.document;
+                const win = iframe.contentWindow;
+                const doc = iframe.contentDocument || win.document;
                 if (!doc) return;
+
+                // Initialize pill position on Home / Arena
+                setTimeout(() => {
+                    if (win && typeof win.initGuildPill === 'function') {
+                        win.initGuildPill();
+                    } else if (win && typeof win.movePillTo === 'function') {
+                        const active = doc.querySelector('.guild-nav-btn.active') || doc.querySelector('.guild-nav-btn');
+                        if (active) win.movePillTo(active);
+                    }
+                }, 50);
 
                 // Click delegation for interactive navigation and buttons
                 doc.addEventListener('click', (e) => {
@@ -117,6 +128,9 @@ function renderComponentPreview() {
                             b.classList.remove('active');
                         });
                         btn.classList.add('active');
+                        if (win && typeof win.movePillTo === 'function') {
+                            win.movePillTo(btn);
+                        }
                     }
                 });
             } catch (err) {
