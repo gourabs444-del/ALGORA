@@ -1,6 +1,8 @@
 <div class="dock-container">
-  <!-- FLOATING CAPSULE NAVIGATION DOCK -->
+  <!-- FLOATING CAPSULE NAVIGATION DOCK WITH SLIDING ANIMATED PILL -->
   <nav class="guild-dock" id="guildDock">
+    <!-- Fluid Animated Sliding Active Pill -->
+    <div class="dock-indicator" id="dockIndicator"></div>
     
     <!-- 1. ARENA -->
     <a href="#arena" class="dock-link" data-tab="arena">
@@ -11,7 +13,7 @@
       <span>Arena</span>
     </a>
 
-    <!-- 2. RANKS (ACTIVE WHITE CAPSULE) -->
+    <!-- 2. RANKS (ACTIVE PILL IN SCREENSHOT) -->
     <a href="#ranks" class="dock-link active" data-tab="ranks">
       <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
@@ -74,12 +76,31 @@
 </div>
 
 <script>
-  // Tab switching click interaction
+  function updateDockIndicator() {
+    const dock = document.getElementById('guildDock');
+    const indicator = document.getElementById('dockIndicator');
+    const activeLink = dock ? dock.querySelector('.dock-link.active') : null;
+    if (!dock || !indicator || !activeLink) return;
+
+    const dockRect = dock.getBoundingClientRect();
+    const linkRect = activeLink.getBoundingClientRect();
+
+    indicator.style.left = (linkRect.left - dockRect.left) + 'px';
+    indicator.style.width = linkRect.width + 'px';
+    indicator.style.opacity = '1';
+  }
+
+  // Bind clicks for fluid spring sliding animation
   document.querySelectorAll('.dock-link').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       document.querySelectorAll('.dock-link').forEach(l => l.classList.remove('active'));
       this.classList.add('active');
+      updateDockIndicator();
     });
   });
+
+  window.addEventListener('resize', updateDockIndicator);
+  window.addEventListener('load', () => setTimeout(updateDockIndicator, 60));
+  setTimeout(updateDockIndicator, 100);
 </script>
