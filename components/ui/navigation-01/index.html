@@ -1,41 +1,41 @@
-<div class="dock-container">
-  <!-- FLOATING CAPSULE NAVIGATION DOCK -->
-  <nav class="guild-dock" id="guildDock">
+<div class="guild-nav-wrapper">
+  <!-- GUILD RANKING GLOWING GLASS DOCK -->
+  <nav class="guild-dock-nav" id="guildDockNav">
     
     <!-- 1. ARENA -->
-    <a href="javascript:void(0)" class="dock-link" onclick="selectTab(this, event)" data-tab="arena">
-      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
         <polyline points="9 22 9 12 15 12 15 22"/>
       </svg>
-      <span>Arena</span>
-    </a>
+      <span class="guild-nav-label">Arena</span>
+    </button>
 
     <!-- 2. RANKS -->
-    <a href="javascript:void(0)" class="dock-link" onclick="selectTab(this, event)" data-tab="ranks">
-      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
         <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
         <path d="M4 22h16"/>
         <path d="M10 14.66V17c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-2.34c0-.75.39-1.44 1.03-1.83L8 12.2V9h8v3.2l.97.63c.64.39 1.03 1.08 1.03 1.83V17c0 .55-.45 1-1 1h-2c-.55 0-1-.45-1-1v-2.34"/>
       </svg>
-      <span>Ranks</span>
-    </a>
+      <span class="guild-nav-label">Ranks</span>
+    </button>
 
     <!-- 3. TREE -->
-    <a href="javascript:void(0)" class="dock-link" onclick="selectTab(this, event)" data-tab="tree">
-      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="6" y1="3" x2="6" y2="15"/>
         <circle cx="18" cy="6" r="3"/>
         <circle cx="6" cy="18" r="3"/>
         <path d="M18 9a9 9 0 0 1-9 9"/>
       </svg>
-      <span>Tree</span>
-    </a>
+      <span class="guild-nav-label">Tree</span>
+    </button>
 
     <!-- 4. MATCH -->
-    <a href="javascript:void(0)" class="dock-link" onclick="selectTab(this, event)" data-tab="match">
-      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/>
         <line x1="13" y1="19" x2="19" y2="13"/>
         <line x1="16" y1="16" x2="20" y2="20"/>
@@ -45,46 +45,39 @@
         <line x1="7" y1="17" x2="4" y2="20"/>
         <line x1="3" y1="19" x2="5" y2="21"/>
       </svg>
-      <span>Match</span>
-    </a>
+      <span class="guild-nav-label">Match</span>
+    </button>
 
     <!-- 5. PROFILE -->
-    <a href="javascript:void(0)" class="dock-link" onclick="selectTab(this, event)" data-tab="profile">
-      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
         <circle cx="9" cy="7" r="4"/>
         <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
-      <span>Profile</span>
-    </a>
+      <span class="guild-nav-label">Profile</span>
+    </button>
 
-    <!-- 6. ADMIN (ACTIVE SOLID WHITE BUTTON) -->
-    <a href="javascript:void(0)" class="dock-link active" onclick="selectTab(this, event)" data-tab="admin">
-      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 6. ADMIN (ACTIVE SOLID WHITE PILL) -->
+    <button type="button" class="guild-nav-btn active" onclick="switchGuildNav(this)">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect width="7" height="7" x="3" y="3" rx="1.5"/>
         <rect width="7" height="7" x="14" y="3" rx="1.5"/>
         <rect width="7" height="7" x="14" y="14" rx="1.5"/>
         <rect width="7" height="7" x="3" y="14" rx="1.5"/>
       </svg>
-      <span>Admin</span>
-    </a>
+      <span class="guild-nav-label">Admin</span>
+    </button>
 
   </nav>
 </div>
 
 <script>
-  function selectTab(el, e) {
-    if (e) e.preventDefault();
-    document.querySelectorAll('.dock-link').forEach(function(item) {
-      item.classList.remove('active');
+  function switchGuildNav(el) {
+    document.querySelectorAll('.guild-nav-btn').forEach(btn => {
+      btn.classList.remove('active');
     });
     el.classList.add('active');
   }
-
-  document.querySelectorAll('.dock-link').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      selectTab(this, e);
-    });
-  });
 </script>

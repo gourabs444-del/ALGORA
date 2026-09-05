@@ -17,7 +17,7 @@ function stripLiveServerScript(html) {
         .replace(/<!-- Code injected by live-server -->[\s\S]*?<\/script>/gi, '')
         .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, (match) => {
             // Preserve internal interactive scripts like tab clicker
-            if (match.includes('dock-link') || match.includes('addEventListener')) {
+            if (match.includes('switchGuildNav') || match.includes('dock-link') || match.includes('addEventListener') || match.includes('selectTab')) {
                 return match;
             }
             return '';
