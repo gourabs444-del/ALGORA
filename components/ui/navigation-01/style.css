@@ -17,7 +17,7 @@ body {
     radial-gradient(circle at 80% 90%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
-  padding: 16px;
+  padding: 12px;
   overflow: hidden;
 }
 
@@ -29,48 +29,28 @@ body {
 }
 
 /* =========================================
-   GUILD RANKING CENTER DOCK (EXACT PORT)
+   GUILD RANKING CENTER DOCK (CLEAN FIT)
 ========================================= */
 
 .guild-dock-nav {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   border-radius: 9999px;
   border: 1px solid #27272a;
-  background: rgba(9, 9, 11, 0.92);
-  padding: 5px;
+  background: rgba(9, 9, 11, 0.95);
+  padding: 4px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 12px 40px rgba(0, 0, 0, 0.85);
   transition: border-color 200ms ease;
+  max-width: 100%;
 }
 
 .guild-dock-nav:hover {
   border-color: #3f3f46;
-}
-
-/* =========================================
-   SMOOTH SLIDING WHITE PILL (FRAMER MOTION STYLE)
-========================================= */
-
-.guild-dock-pill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #ffffff;
-  border-radius: 9999px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-  pointer-events: none;
-  z-index: 1;
-  transition: 
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    height 0.3s ease;
-  will-change: transform, width, height;
 }
 
 /* Nav Button Tab */
@@ -79,26 +59,31 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  height: 40px;
-  padding: 0 16px;
+  gap: 6px;
+  height: 38px;
+  padding: 0 14px;
   border-radius: 9999px;
   border: none;
   background: transparent;
   color: #a1a1aa;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
   outline: none;
-  transition: color 200ms ease, transform 150ms ease;
-  z-index: 2;
+  transition: 
+    background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 200ms ease,
+    box-shadow 280ms ease,
+    transform 150ms ease;
+  flex-shrink: 0;
 }
 
 .guild-nav-btn:hover {
   color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .guild-nav-btn:active {
@@ -106,8 +91,8 @@ body {
 }
 
 .guild-nav-icon {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   color: inherit;
   flex-shrink: 0;
   stroke-width: 2.2;
@@ -116,16 +101,21 @@ body {
 
 .guild-nav-label {
   color: inherit;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  transition: color 200ms ease, font-weight 200ms ease;
+  transition: color 200ms ease;
 }
 
-/* ACTIVE STATE: SOLID BLACK TEXT & ICON OVER THE SLIDING WHITE PILL */
+/* =========================================
+   ACTIVE SOLID WHITE CAPSULE (SMOOTH TRANSITION)
+========================================= */
+
 .guild-nav-btn.active {
+  background: #ffffff !important;
   color: #000000 !important;
   font-weight: 800;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .guild-nav-btn.active .guild-nav-icon {
@@ -138,29 +128,22 @@ body {
   font-weight: 800;
 }
 
-/* Responsive Auto Fit */
-@media (max-width: 640px) {
-  .guild-dock-nav {
-    gap: 3px;
-    padding: 4px;
-  }
-  
-  .guild-nav-btn {
-    height: 36px;
-    padding: 0 12px;
-    font-size: 12px;
-    gap: 6px;
-  }
+.guild-nav-btn.active:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
 
-  .guild-nav-icon {
-    width: 14px;
-    height: 14px;
+/* Responsive Auto Fit on Small Screens */
+@media (max-width: 540px) {
+  .guild-dock-nav {
+    transform: scale(0.88);
+    transform-origin: center center;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 440px) {
   .guild-dock-nav {
-    transform: scale(0.82);
+    transform: scale(0.74);
     transform-origin: center center;
   }
 }

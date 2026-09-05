@@ -1,13 +1,10 @@
 <div class="guild-nav-wrapper">
-  <!-- GUILD RANKING GLOWING GLASS DOCK WITH SMOOTH SLIDING WHITE CAPSULE -->
+  <!-- GUILD RANKING GLOWING GLASS DOCK -->
   <nav class="guild-dock-nav" id="guildDockNav">
-    
-    <!-- SMOOTH SLIDING WHITE PILL (ALWAYS VISIBLE & GLIDES SMOOTHLY) -->
-    <div class="guild-dock-pill" id="guildDockPill"></div>
 
-    <!-- 1. ARENA (DEFAULT HOME ACTIVE) -->
+    <!-- 1. ARENA (DEFAULT HOME ACTIVE - SOLID WHITE) -->
     <button type="button" class="guild-nav-btn active" onclick="switchGuildNav(this)">
-      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
         <polyline points="9 22 9 12 15 12 15 22"/>
       </svg>
@@ -16,7 +13,7 @@
 
     <!-- 2. RANKS -->
     <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
-      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
         <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
         <path d="M4 22h16"/>
@@ -27,7 +24,7 @@
 
     <!-- 3. TREE -->
     <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
-      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="6" y1="3" x2="6" y2="15"/>
         <circle cx="18" cy="6" r="3"/>
         <circle cx="6" cy="18" r="3"/>
@@ -38,7 +35,7 @@
 
     <!-- 4. MATCH -->
     <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
-      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/>
         <line x1="13" y1="19" x2="19" y2="13"/>
         <line x1="16" y1="16" x2="20" y2="20"/>
@@ -53,7 +50,7 @@
 
     <!-- 5. PROFILE -->
     <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
-      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
         <circle cx="9" cy="7" r="4"/>
         <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
@@ -64,7 +61,7 @@
 
     <!-- 6. ADMIN -->
     <button type="button" class="guild-nav-btn" onclick="switchGuildNav(this)">
-      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <rect width="7" height="7" x="3" y="3" rx="1.5"/>
         <rect width="7" height="7" x="14" y="3" rx="1.5"/>
         <rect width="7" height="7" x="14" y="14" rx="1.5"/>
@@ -77,22 +74,6 @@
 </div>
 
 <script>
-  function movePillTo(btn) {
-    var pill = document.getElementById('guildDockPill');
-    var nav = document.getElementById('guildDockNav');
-    if (!pill || !btn || !nav) return;
-
-    var navRect = nav.getBoundingClientRect();
-    var btnRect = btn.getBoundingClientRect();
-
-    var x = btnRect.left - navRect.left;
-    var y = btnRect.top - navRect.top;
-
-    pill.style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0)';
-    pill.style.width = btnRect.width + 'px';
-    pill.style.height = btnRect.height + 'px';
-  }
-
   function switchGuildNav(el) {
     var buttons = document.querySelectorAll('.guild-nav-btn');
     buttons.forEach(function(btn) {
@@ -100,23 +81,16 @@
     });
     if (el) {
       el.classList.add('active');
-      movePillTo(el);
     }
   }
 
-  function initGuildPill() {
-    var activeBtn = document.querySelector('.guild-nav-btn.active') || document.querySelector('.guild-nav-btn');
-    if (activeBtn) {
-      switchGuildNav(activeBtn);
-    }
-  }
-
-  window.addEventListener('load', initGuildPill);
-  document.addEventListener('DOMContentLoaded', initGuildPill);
-  window.addEventListener('resize', function() {
-    var activeBtn = document.querySelector('.guild-nav-btn.active');
-    if (activeBtn) movePillTo(activeBtn);
+  document.addEventListener('DOMContentLoaded', function() {
+    var buttons = document.querySelectorAll('.guild-nav-btn');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        switchGuildNav(this);
+      });
+    });
   });
-  setTimeout(initGuildPill, 30);
-  setTimeout(initGuildPill, 150);
 </script>
