@@ -323,6 +323,19 @@ function selectActiveTab(index) {
     syncChanges();
 }
 
+function resetToDefaultNav() {
+    navTabs = [
+        { label: "Home", hasIcon: true },
+        { label: "Option 1", hasIcon: false },
+        { label: "Option 2", hasIcon: false },
+        { label: "Option 3", hasIcon: false },
+        { label: "Option 4", hasIcon: false },
+        { label: "Option 5", hasIcon: false }
+    ];
+    activeTabIndex = 0;
+    syncChanges();
+}
+
 function syncPreviewAndCode() {
     rawHTMLCode = generateNavigationHTML();
     renderComponentPreview();
@@ -347,6 +360,7 @@ window.deleteTabOption = deleteTabOption;
 window.handleTabRename = handleTabRename;
 window.handleTabBlur = handleTabBlur;
 window.selectActiveTab = selectActiveTab;
+window.resetToDefaultNav = resetToDefaultNav;
 
 function switchTab(tab) {
     currentActiveTab = tab;
