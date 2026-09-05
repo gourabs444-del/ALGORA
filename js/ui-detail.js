@@ -15,13 +15,7 @@ function stripLiveServerScript(html) {
     if (!html) return '';
     return html
         .replace(/<!-- Code injected by live-server -->[\s\S]*?<\/script>/gi, '')
-        .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, (match) => {
-            // Preserve internal interactive scripts like tab clicker
-            if (match.includes('switchGuildNav') || match.includes('dock-link') || match.includes('addEventListener') || match.includes('selectTab')) {
-                return match;
-            }
-            return '';
-        })
+        .replace(/<script\b[^>]*>(?:(?!<\/script>)[\s\S])*?ws:\/\/[\s\S]*?<\/script>/gi, '')
         .trim();
 }
 
@@ -107,6 +101,28 @@ function renderComponentPreview() {
 </body>
 </html>`;
         iframe.srcdoc = srcdoc;
+
+        iframe.onload = () => {
+            try {
+                const doc = iframe.contentDocument || iframe.contentWindow.document;
+                if (!doc) return;
+
+                // Click delegation for interactive navigation and buttons
+                doc.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.guild-nav-btn, .dock-link, button, a');
+                    if (btn && (btn.classList.contains('guild-nav-btn') || btn.classList.contains('dock-link'))) {
+                        e.preventDefault();
+                        const container = btn.closest('.guild-dock-nav, .guild-dock, nav') || doc;
+                        container.querySelectorAll('.guild-nav-btn, .dock-link').forEach(b => {
+                            b.classList.remove('active');
+                        });
+                        btn.classList.add('active');
+                    }
+                });
+            } catch (err) {
+                console.warn('Iframe interactive delegation attach error', err);
+            }
+        };
     }
 }
 

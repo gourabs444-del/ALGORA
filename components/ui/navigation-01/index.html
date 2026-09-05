@@ -75,9 +75,21 @@
 
 <script>
   function switchGuildNav(el) {
-    document.querySelectorAll('.guild-nav-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
-    el.classList.add('active');
+    var buttons = document.querySelectorAll('.guild-nav-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].classList.remove('active');
+    }
+    if (el) {
+      el.classList.add('active');
+    }
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var buttons = document.querySelectorAll('.guild-nav-btn');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        switchGuildNav(this);
+      });
+    });
+  });
 </script>
