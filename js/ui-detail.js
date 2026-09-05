@@ -235,42 +235,20 @@ function generateNavHTML(tabs, activeIdx) {
     }).join('\n');
 
     return `<div class="dock-container">
-  <!-- FLOATING CAPSULE NAVIGATION DOCK WITH SLIDING ANIMATED PILL -->
+  <!-- FLOATING CAPSULE NAVIGATION DOCK -->
   <nav class="guild-dock" id="guildDock">
-    <!-- Fluid Animated Sliding Active Pill -->
-    <div class="dock-indicator" id="dockIndicator"></div>
 ${linksHTML}
   </nav>
 </div>
 
 <script>
-  function updateDockIndicator() {
-    const dock = document.getElementById('guildDock');
-    const indicator = document.getElementById('dockIndicator');
-    const activeLink = dock ? dock.querySelector('.dock-link.active') : null;
-    if (!dock || !indicator || !activeLink) return;
-
-    const dockRect = dock.getBoundingClientRect();
-    const linkRect = activeLink.getBoundingClientRect();
-
-    indicator.style.left = (linkRect.left - dockRect.left) + 'px';
-    indicator.style.width = linkRect.width + 'px';
-    indicator.style.opacity = '1';
-  }
-
-  // Bind clicks for fluid spring sliding animation
   document.querySelectorAll('.dock-link').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       document.querySelectorAll('.dock-link').forEach(l => l.classList.remove('active'));
       this.classList.add('active');
-      updateDockIndicator();
     });
   });
-
-  window.addEventListener('resize', updateDockIndicator);
-  window.addEventListener('load', () => setTimeout(updateDockIndicator, 60));
-  setTimeout(updateDockIndicator, 100);
 </script>`;
 }
 
