@@ -139,11 +139,11 @@
     <!-- Main Content: Expanded Layout with Live Preview, Text Customizer & Source Code -->
     <main class="px-4 sm:px-8 lg:px-10 py-8 w-full max-w-[1800px] mx-auto">
         
-        <!-- Three Column Grid Layout to Utilize Screen Width -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <!-- Two Column Grid Layout for Preview and Source Code -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
             <!-- 1. Live Component Preview -->
-            <div class="lg:col-span-4" id="preview-column">
+            <div class="lg:col-span-6" id="preview-column">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
@@ -156,45 +156,8 @@
                 </div>
             </div>
 
-            <!-- 2. Live Text & Label Customizer Panel -->
-            <div class="lg:col-span-3" id="text-customizer-column">
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center gap-2">
-                        <div class="w-6 h-6 rounded-lg bg-sky-50 border border-sky-200/80 flex items-center justify-center text-sky-600 shadow-2xs">
-                            <span class="material-symbols-outlined text-[15px]">edit_note</span>
-                        </div>
-                        <h2 class="font-headline font-bold text-xs uppercase tracking-wider text-slate-700">Text Customizer</h2>
-                    </div>
-                    <button type="button" onclick="resetTextEdits()" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200/90 active:scale-95 text-[11px] font-sans font-semibold text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1 cursor-pointer border border-slate-200/60 shadow-2xs">
-                        <span class="material-symbols-outlined text-[13px]">refresh</span>
-                        <span>Reset</span>
-                    </button>
-                </div>
-
-                <div class="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-[0_10px_30px_-10px_rgba(15,23,42,0.06)] min-h-[460px] max-h-[560px] flex flex-col justify-between" id="text-customizer-box">
-                    <div class="flex flex-col h-[calc(100%-36px)]">
-                        <div class="pb-3 mb-3 border-b border-slate-100 flex items-center justify-between">
-                            <span class="text-[12.5px] font-headline font-bold text-slate-800 tracking-tight" id="customizer-panel-title">Component Customizer</span>
-                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-sky-50 text-sky-600 text-[10px] font-bold border border-sky-200/60">
-                                <span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></span>
-                                Live Sync
-                            </span>
-                        </div>
-                        <div class="space-y-2.5 overflow-y-auto max-h-[420px] pr-1 flex-1" id="text-customizer-fields">
-                            <!-- Dynamic Text Inputs populated by js/ui-detail.js -->
-                        </div>
-                    </div>
-                    <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[10.5px] font-sans text-slate-400">
-                        <span class="flex items-center gap-1">
-                            <span class="material-symbols-outlined text-[13px] text-sky-500">sync</span>
-                            <span>Auto updates preview &amp; code</span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Source Code Viewer & Copy -->
-            <div class="lg:col-span-5" id="code-column">
+            <!-- 2. Source Code Viewer & Copy -->
+            <div class="lg:col-span-6" id="code-column">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-purple-500 text-lg">code</span>
