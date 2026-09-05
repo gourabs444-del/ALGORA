@@ -250,8 +250,9 @@ function buildCustomizerPanel() {
                 </button>
                 <input 
                     type="text" 
-                    value="${tab.label}" 
+                    value="${tab.label.replace(/"/g, '&quot;')}" 
                     oninput="handleTabRename(${idx}, this.value)" 
+                    onblur="handleTabBlur(${idx}, this)"
                     class="flex-1 text-[11.5px] font-medium text-slate-900 bg-white border border-slate-200 rounded-lg px-2.5 py-1 outline-none focus:border-sky-500 transition-colors shadow-2xs" 
                     placeholder="Tab name..."
                 />
@@ -306,7 +307,17 @@ function deleteTabOption(index) {
 
 function handleTabRename(index, newLabel) {
     if (navTabs[index]) {
-        navTabs[index].label = newLabel || (index === 0 ? 'Home' : `Option ${index}`);
+        navTabs[index].label = newLabel;
+        // Update live preview & code WITHOUT destroying inputs while typing
+        syncPreviewAndCode();
+    }
+}
+
+function handleTabBlur(index, inputEl) {
+    if (navTabs[index] && !inputEl.value.trim()) {
+        const fallback = index === 0 ? 'Home' : `Option ${index}`;
+        inputEl.value = fallback;
+        navTabs[index].label = fallback;
         syncChanges();
     }
 }
@@ -316,10 +327,9 @@ function selectActiveTab(index) {
     syncChanges();
 }
 
-function syncChanges() {
+function syncPreviewAndCode() {
     rawHTMLCode = generateNavigationHTML();
     renderComponentPreview();
-    buildCustomizerPanel();
 
     if (currentActiveTab === 'html') {
         const codeOutput = document.getElementById('code-output');
@@ -329,11 +339,17 @@ function syncChanges() {
     }
 }
 
+function syncChanges() {
+    syncPreviewAndCode();
+    buildCustomizerPanel();
+}
+
 // Global functions for inline HTML calls
 window.addTabOption = addTabOption;
 window.removeLastTab = removeLastTab;
 window.deleteTabOption = deleteTabOption;
 window.handleTabRename = handleTabRename;
+window.handleTabBlur = handleTabBlur;
 window.selectActiveTab = selectActiveTab;
 
 function switchTab(tab) {
