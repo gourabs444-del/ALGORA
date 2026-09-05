@@ -1,6 +1,6 @@
 /**
  * UI Component Detail Page Script
- * Live Component Preview & Interactive Source Code Viewer
+ * Live Component Preview, Tab Customizer & Source Code Viewer
  */
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -10,6 +10,21 @@ let currentActiveTab = 'html';
 let rawHTMLCode = '';
 let rawCSSCode = '';
 
+// Navigation tabs state
+let navTabs = [
+    { label: "Home", hasIcon: true },
+    { label: "Option 1", hasIcon: false },
+    { label: "Option 2", hasIcon: false },
+    { label: "Option 3", hasIcon: false },
+    { label: "Option 4", hasIcon: false },
+    { label: "Option 5", hasIcon: false }
+];
+let activeTabIndex = 0; // Default Home is active
+
+function isNavigationComponent() {
+    return folderParam.toLowerCase().includes('nav') || folderParam.toLowerCase().includes('dock');
+}
+
 // Strip live-server injected scripts
 function stripLiveServerScript(html) {
     if (!html) return '';
@@ -17,6 +32,53 @@ function stripLiveServerScript(html) {
         .replace(/<!-- Code injected by live-server -->[\s\S]*?<\/script>/gi, '')
         .replace(/<script\b[^>]*>(?:(?!<\/script>)[\s\S])*?ws:\/\/[\s\S]*?<\/script>/gi, '')
         .trim();
+}
+
+function generateNavigationHTML() {
+    const buttonsHTML = navTabs.map((tab, idx) => {
+        const isActive = idx === activeTabIndex;
+        const iconHTML = tab.hasIcon ? `
+      <svg class="guild-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>` : '';
+
+        return `    <!-- ${idx + 1}. ${tab.label.toUpperCase()} -->
+    <button type="button" class="guild-nav-btn${isActive ? ' active' : ''}" onclick="switchGuildNav(this)">${iconHTML}
+      <span class="guild-nav-label">${tab.label}</span>
+    </button>`;
+    }).join('\n\n');
+
+    return `<div class="guild-nav-wrapper">
+  <!-- GUILD RANKING GLOWING GLASS DOCK -->
+  <nav class="guild-dock-nav" id="guildDockNav">
+
+${buttonsHTML}
+
+  </nav>
+</div>
+
+<script>
+  function switchGuildNav(el) {
+    var buttons = document.querySelectorAll('.guild-nav-btn');
+    buttons.forEach(function(btn) {
+      btn.classList.remove('active');
+    });
+    if (el) {
+      el.classList.add('active');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var buttons = document.querySelectorAll('.guild-nav-btn');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        switchGuildNav(this);
+      });
+    });
+  });
+</script>`;
 }
 
 async function initDetailView() {
@@ -43,6 +105,18 @@ async function initDetailView() {
 
     rawHTMLCode = stripLiveServerScript(rawHTMLCode);
     rawCSSCode = (rawCSSCode || '').trim();
+
+    if (isNavigationComponent()) {
+        rawHTMLCode = generateNavigationHTML();
+        buildCustomizerPanel();
+    } else {
+        const customizerCol = document.getElementById('customizer-column');
+        const previewCol = document.getElementById('preview-column');
+        const codeCol = document.getElementById('code-column');
+        if (customizerCol) customizerCol.classList.add('hidden');
+        if (previewCol) previewCol.className = 'lg:col-span-6';
+        if (codeCol) codeCol.className = 'lg:col-span-6';
+    }
 
     // Render Preview
     renderComponentPreview();
@@ -113,10 +187,15 @@ function renderComponentPreview() {
                     if (btn && (btn.classList.contains('guild-nav-btn') || btn.classList.contains('dock-link'))) {
                         e.preventDefault();
                         const container = btn.closest('.guild-dock-nav, .guild-dock, nav') || doc;
-                        container.querySelectorAll('.guild-nav-btn, .dock-link').forEach(b => {
-                            b.classList.remove('active');
-                        });
+                        const allBtns = Array.from(container.querySelectorAll('.guild-nav-btn, .dock-link'));
+                        allBtns.forEach(b => b.classList.remove('active'));
                         btn.classList.add('active');
+
+                        const clickedIdx = allBtns.indexOf(btn);
+                        if (clickedIdx !== -1) {
+                            activeTabIndex = clickedIdx;
+                            buildCustomizerPanel();
+                        }
                     }
                 });
             } catch (err) {
@@ -125,6 +204,137 @@ function renderComponentPreview() {
         };
     }
 }
+
+function buildCustomizerPanel() {
+    const container = document.getElementById('customizer-fields-container');
+    if (!container) return;
+
+    let html = `
+        <div class="space-y-3">
+            <!-- Plus (+) and Minus (-) Tab Counter -->
+            <div class="p-3 bg-slate-50 border border-slate-200/90 rounded-2xl flex items-center justify-between gap-2 shadow-2xs">
+                <div>
+                    <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-slate-500 block">Total Tabs</span>
+                    <span class="text-[13px] font-headline font-extrabold text-slate-900 leading-tight"><span class="text-sky-600 font-mono">${navTabs.length}</span> Options</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-white p-1 rounded-xl border border-slate-200 shadow-2xs">
+                    <button type="button" onclick="removeLastTab()" title="Remove Option (-)" class="w-8 h-8 rounded-lg bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 flex items-center justify-center font-bold transition-all active:scale-95 border border-slate-200/80 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">remove</span>
+                    </button>
+                    <span class="px-1.5 text-xs font-mono font-black text-slate-800">${navTabs.length}</span>
+                    <button type="button" onclick="addTabOption()" title="Add Option (+)" class="w-8 h-8 rounded-lg bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center font-bold transition-all active:scale-95 shadow-sm cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">add</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Options List with Rename Fields -->
+            <div class="pt-2 border-t border-slate-100">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[11px] font-bold text-slate-700">Rename Tabs (${navTabs.length})</span>
+                    <button type="button" onclick="addTabOption()" class="text-[11px] font-bold text-sky-600 hover:text-sky-700 flex items-center gap-0.5">
+                        <span class="material-symbols-outlined text-[13px]">add_circle</span>
+                        <span>+ Add Option</span>
+                    </button>
+                </div>
+
+                <div class="space-y-2 max-h-[250px] overflow-y-auto pr-1" id="nav-tabs-list">
+    `;
+
+    navTabs.forEach((tab, idx) => {
+        const isActive = idx === activeTabIndex;
+        html += `
+            <div class="flex items-center gap-1.5 p-1.5 rounded-xl border ${isActive ? 'border-sky-400 bg-sky-50/40' : 'border-slate-200 bg-slate-50/70'} transition-all">
+                <button type="button" onclick="selectActiveTab(${idx})" title="Click to test active animation" class="w-6 h-6 rounded-lg ${isActive ? 'bg-sky-500 text-white font-black' : 'bg-white text-slate-400 hover:text-slate-700 border border-slate-200 font-bold'} flex items-center justify-center shrink-0 text-[10px] transition-all shadow-2xs">
+                    ${idx + 1}
+                </button>
+                <input 
+                    type="text" 
+                    value="${tab.label}" 
+                    oninput="handleTabRename(${idx}, this.value)" 
+                    class="flex-1 text-[11.5px] font-medium text-slate-900 bg-white border border-slate-200 rounded-lg px-2.5 py-1 outline-none focus:border-sky-500 transition-colors shadow-2xs" 
+                    placeholder="Tab name..."
+                />
+                <button type="button" onclick="selectActiveTab(${idx})" class="px-2 py-1 text-[10px] font-bold rounded-lg ${isActive ? 'bg-slate-900 text-white' : 'text-slate-500 bg-white hover:bg-slate-100 border border-slate-200'} transition-all">
+                    ${isActive ? 'Active' : 'Test'}
+                </button>
+                ${navTabs.length > 2 && idx > 0 ? `
+                    <button type="button" onclick="deleteTabOption(${idx})" title="Delete Option" class="w-6 h-6 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 flex items-center justify-center shrink-0 transition-colors">
+                        <span class="material-symbols-outlined text-[14px]">delete</span>
+                    </button>
+                ` : ''}
+            </div>
+        `;
+    });
+
+    html += `
+                </div>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+}
+
+function addTabOption() {
+    const nextIdx = navTabs.length;
+    navTabs.push({
+        label: `Option ${nextIdx}`,
+        hasIcon: false
+    });
+    activeTabIndex = navTabs.length - 1; // switch to newly created tab
+    syncChanges();
+}
+
+function removeLastTab() {
+    if (navTabs.length <= 2) return;
+    navTabs.pop();
+    if (activeTabIndex >= navTabs.length) {
+        activeTabIndex = navTabs.length - 1;
+    }
+    syncChanges();
+}
+
+function deleteTabOption(index) {
+    if (navTabs.length <= 2) return;
+    navTabs.splice(index, 1);
+    if (activeTabIndex >= navTabs.length) {
+        activeTabIndex = navTabs.length - 1;
+    }
+    syncChanges();
+}
+
+function handleTabRename(index, newLabel) {
+    if (navTabs[index]) {
+        navTabs[index].label = newLabel || (index === 0 ? 'Home' : `Option ${index}`);
+        syncChanges();
+    }
+}
+
+function selectActiveTab(index) {
+    activeTabIndex = index;
+    syncChanges();
+}
+
+function syncChanges() {
+    rawHTMLCode = generateNavigationHTML();
+    renderComponentPreview();
+    buildCustomizerPanel();
+
+    if (currentActiveTab === 'html') {
+        const codeOutput = document.getElementById('code-output');
+        if (codeOutput) {
+            codeOutput.innerHTML = highlightHTML(rawHTMLCode || '<!-- No HTML found -->');
+        }
+    }
+}
+
+// Global functions for inline HTML calls
+window.addTabOption = addTabOption;
+window.removeLastTab = removeLastTab;
+window.deleteTabOption = deleteTabOption;
+window.handleTabRename = handleTabRename;
+window.selectActiveTab = selectActiveTab;
 
 function switchTab(tab) {
     currentActiveTab = tab;

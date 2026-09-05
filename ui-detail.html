@@ -139,11 +139,11 @@
     <!-- Main Content: Expanded Layout with Live Preview, Text Customizer & Source Code -->
     <main class="px-4 sm:px-8 lg:px-10 py-8 w-full max-w-[1800px] mx-auto">
         
-        <!-- Two Column Grid Layout for Preview and Source Code -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Three Column Grid Layout: Preview, Tab Customizer & Source Code -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
 
             <!-- 1. Live Component Preview -->
-            <div class="lg:col-span-6" id="preview-column">
+            <div class="lg:col-span-4" id="preview-column">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
@@ -156,8 +156,36 @@
                 </div>
             </div>
 
-            <!-- 2. Source Code Viewer & Copy -->
-            <div class="lg:col-span-6" id="code-column">
+            <!-- 2. Tab Edit / Customizer Panel -->
+            <div class="lg:col-span-3" id="customizer-column">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-lg bg-sky-50 border border-sky-200/80 flex items-center justify-center text-sky-600 shadow-2xs">
+                            <span class="material-symbols-outlined text-[15px]">tune</span>
+                        </div>
+                        <h2 class="font-headline font-bold text-xs uppercase tracking-wider text-slate-700">Tab Customizer</h2>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-sky-50 text-sky-600 text-[10px] font-bold border border-sky-200/60">
+                        <span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></span>
+                        Live Sync
+                    </span>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-[0_10px_30px_-10px_rgba(15,23,42,0.06)] min-h-[460px] max-h-[560px] flex flex-col justify-between" id="customizer-box">
+                    <div class="flex flex-col h-[calc(100%-36px)]" id="customizer-fields-container">
+                        <!-- Populated by js/ui-detail.js -->
+                    </div>
+                    <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[10.5px] font-sans text-slate-400">
+                        <span class="flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[13px] text-sky-500">sync</span>
+                            <span>Auto updates preview &amp; code</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Source Code Viewer & Copy -->
+            <div class="lg:col-span-5" id="code-column">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-purple-500 text-lg">code</span>

@@ -26,10 +26,22 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 12px;
+}
+
+/* Custom smooth scrollbar for long navbars */
+.guild-nav-wrapper::-webkit-scrollbar {
+  height: 4px;
+}
+.guild-nav-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
 }
 
 /* =========================================
-   GUILD RANKING CENTER DOCK (CLEAN FIT)
+   GUILD RANKING CENTER DOCK (DYNAMICALLY EXPANDS)
 ========================================= */
 
 .guild-dock-nav {
@@ -45,8 +57,10 @@ body {
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 12px 40px rgba(0, 0, 0, 0.85);
-  transition: border-color 200ms ease;
-  max-width: 100%;
+  transition: all 200ms ease;
+  width: max-content;
+  max-width: none;
+  flex-shrink: 0;
 }
 
 .guild-dock-nav:hover {
@@ -60,7 +74,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  height: 38px;
+  height: 36px;
   padding: 0 14px;
   border-radius: 9999px;
   border: none;
@@ -74,9 +88,9 @@ body {
   white-space: nowrap;
   outline: none;
   transition: 
-    background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 240ms cubic-bezier(0.16, 1, 0.3, 1),
     color 200ms ease,
-    box-shadow 280ms ease,
+    box-shadow 240ms ease,
     transform 150ms ease;
   flex-shrink: 0;
 }
@@ -134,16 +148,15 @@ body {
 }
 
 /* Responsive Auto Fit on Small Screens */
-@media (max-width: 540px) {
-  .guild-dock-nav {
-    transform: scale(0.88);
-    transform-origin: center center;
+@media (max-width: 580px) {
+  .guild-nav-btn {
+    padding: 0 10px;
+    height: 34px;
+    font-size: 11.5px;
+    gap: 5px;
   }
-}
-
-@media (max-width: 440px) {
   .guild-dock-nav {
-    transform: scale(0.74);
-    transform-origin: center center;
+    padding: 3px;
+    gap: 2px;
   }
 }
