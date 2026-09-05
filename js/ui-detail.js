@@ -213,7 +213,7 @@ const DEFAULT_NAV_TABS = [
 ];
 
 let currentNavTabs = [...DEFAULT_NAV_TABS];
-let activeTabIndex = 1; // Ranks is active default
+let activeTabIndex = 4; // Default Profile is active as shown in screenshot
 
 function isNavigationComponent() {
     return folderParam.toLowerCase().includes('nav') || initialHTMLCode.includes('guild-dock') || initialHTMLCode.includes('dock-link');
@@ -257,62 +257,71 @@ function buildNavigationCustomizerPanel() {
     if (!container) return;
 
     let html = `
-        <div class="space-y-3">
-            <!-- Preset Selector -->
-            <div>
-                <label class="text-[10px] font-sans font-bold uppercase tracking-wider text-slate-500 mb-1.5 block">Presets &amp; Sizes</label>
-                <div class="grid grid-cols-2 gap-1.5">
-                    <button type="button" onclick="applyNavPreset('arena')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-[11px] font-bold text-slate-700 flex items-center justify-between transition-all">
-                        <span>Guild Arena</span>
-                        <span class="text-[10px] text-purple-600 font-mono font-bold bg-purple-50 px-1.5 rounded">6 Tabs</span>
+        <div class="space-y-3.5">
+            <!-- Plus (+) and Minus (-) Option Counter Bar -->
+            <div class="p-3 bg-slate-50 border border-slate-200/90 rounded-2xl flex items-center justify-between gap-2 shadow-2xs">
+                <div>
+                    <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-slate-500 block">Tab Options</span>
+                    <span class="text-[13px] font-headline font-extrabold text-slate-900 leading-tight">Total: <span class="text-sky-600 font-mono">${currentNavTabs.length}</span> Options</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-white p-1 rounded-xl border border-slate-200 shadow-2xs">
+                    <button type="button" onclick="removeLastNavTab()" title="Remove Option (-)" class="w-8 h-8 rounded-lg bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 flex items-center justify-center font-bold transition-all active:scale-95 border border-slate-200/80 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">remove</span>
                     </button>
-                    <button type="button" onclick="applyNavPreset('numbered5')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-[11px] font-bold text-slate-700 flex items-center justify-between transition-all">
-                        <span>Numbered</span>
-                        <span class="text-[10px] text-sky-600 font-mono font-bold bg-sky-50 px-1.5 rounded">5 Opts</span>
-                    </button>
-                    <button type="button" onclick="applyNavPreset('compact3')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-[11px] font-bold text-slate-700 flex items-center justify-between transition-all">
-                        <span>Compact</span>
-                        <span class="text-[10px] text-emerald-600 font-mono font-bold bg-emerald-50 px-1.5 rounded">3 Opts</span>
-                    </button>
-                    <button type="button" onclick="applyNavPreset('expanded8')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-[11px] font-bold text-slate-700 flex items-center justify-between transition-all">
-                        <span>Expanded</span>
-                        <span class="text-[10px] text-amber-600 font-mono font-bold bg-amber-50 px-1.5 rounded">8 Opts</span>
+                    <span class="px-1.5 text-xs font-mono font-black text-slate-800">${currentNavTabs.length}</span>
+                    <button type="button" onclick="addNavTab()" title="Add Option (+)" class="w-8 h-8 rounded-lg bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center font-bold transition-all active:scale-95 shadow-sm cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">add</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Add / Remove Action Header -->
-            <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[11px] font-bold text-slate-700">Tabs / Options (${currentNavTabs.length})</span>
-                <button type="button" onclick="addNavTab()" class="px-2.5 py-1 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-[11px] font-bold flex items-center gap-1 shadow-sm transition-all active:scale-95">
-                    <span class="material-symbols-outlined text-[14px]">add</span>
-                    <span>Add Option</span>
-                </button>
+            <!-- Quick Preset Switcher -->
+            <div>
+                <label class="text-[10.5px] font-sans font-bold uppercase tracking-wider text-slate-500 mb-1.5 block">Quick Presets</label>
+                <div class="grid grid-cols-2 gap-1.5">
+                    <button type="button" onclick="applyNavPreset('arena')" class="px-2.5 py-1.5 rounded-xl border ${currentNavTabs.length === 6 && currentNavTabs[0].label === 'Arena' ? 'border-sky-500 bg-sky-50/60 text-sky-700 font-bold' : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-medium'} text-[11px] flex items-center justify-between transition-all">
+                        <span>Default Arena</span>
+                        <span class="text-[9.5px] text-purple-600 font-mono font-bold bg-purple-50 px-1.5 py-0.5 rounded">6 Tabs</span>
+                    </button>
+                    <button type="button" onclick="applyNavPreset('numbered5')" class="px-2.5 py-1.5 rounded-xl border ${currentNavTabs[0].label === 'Option 1' ? 'border-sky-500 bg-sky-50/60 text-sky-700 font-bold' : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-medium'} text-[11px] flex items-center justify-between transition-all">
+                        <span>Numbered</span>
+                        <span class="text-[9.5px] text-sky-600 font-mono font-bold bg-sky-50 px-1.5 py-0.5 rounded">5 Opts</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- Dynamic Tab List -->
-            <div class="space-y-2 max-h-[220px] overflow-y-auto pr-1" id="nav-tabs-list">
+            <!-- Dynamic Options List with Rename Inputs & Active Tester -->
+            <div class="pt-2 border-t border-slate-100">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[11px] font-bold text-slate-700">Rename Options (${currentNavTabs.length})</span>
+                    <button type="button" onclick="addNavTab()" class="text-[11px] font-bold text-sky-600 hover:text-sky-700 flex items-center gap-0.5">
+                        <span class="material-symbols-outlined text-[13px]">add_circle</span>
+                        <span>+ Add</span>
+                    </button>
+                </div>
+
+                <div class="space-y-2 max-h-[250px] overflow-y-auto pr-1" id="nav-tabs-list">
     `;
 
     currentNavTabs.forEach((tab, idx) => {
         const isActive = idx === activeTabIndex;
         html += `
             <div class="flex items-center gap-1.5 p-1.5 rounded-xl border ${isActive ? 'border-sky-400 bg-sky-50/40' : 'border-slate-200 bg-slate-50/70'} transition-all">
-                <button type="button" onclick="selectActiveTab(${idx})" title="Click to test active animation" class="w-6 h-6 rounded-lg ${isActive ? 'bg-sky-500 text-white' : 'bg-white text-slate-400 hover:text-slate-700 border border-slate-200'} flex items-center justify-center shrink-0 text-[10px] font-bold transition-all shadow-2xs">
+                <button type="button" onclick="selectActiveTab(${idx})" title="Click to test active animation" class="w-6 h-6 rounded-lg ${isActive ? 'bg-sky-500 text-white font-black' : 'bg-white text-slate-400 hover:text-slate-700 border border-slate-200 font-bold'} flex items-center justify-center shrink-0 text-[10px] transition-all shadow-2xs">
                     ${idx + 1}
                 </button>
                 <input 
                     type="text" 
                     value="${tab.label}" 
                     oninput="handleNavTabLabelChange(${idx}, this.value)" 
-                    class="flex-1 text-[11.5px] font-medium text-slate-900 bg-white border border-slate-200 rounded-lg px-2 py-1 outline-none focus:border-sky-500 transition-colors shadow-2xs" 
+                    class="flex-1 text-[11.5px] font-medium text-slate-900 bg-white border border-slate-200 rounded-lg px-2.5 py-1 outline-none focus:border-sky-500 transition-colors shadow-2xs" 
                     placeholder="Option name..."
                 />
-                <button type="button" onclick="selectActiveTab(${idx})" class="px-1.5 py-1 text-[10px] font-bold rounded ${isActive ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-200/70'} transition-all">
+                <button type="button" onclick="selectActiveTab(${idx})" class="px-2 py-1 text-[10px] font-bold rounded-lg ${isActive ? 'bg-slate-900 text-white' : 'text-slate-500 bg-white hover:bg-slate-100 border border-slate-200'} transition-all">
                     ${isActive ? 'Active' : 'Test'}
                 </button>
                 ${currentNavTabs.length > 2 ? `
-                    <button type="button" onclick="removeNavTab(${idx})" title="Remove Option" class="w-6 h-6 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 flex items-center justify-center shrink-0 transition-colors">
+                    <button type="button" onclick="removeNavTab(${idx})" title="Delete Option" class="w-6 h-6 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 flex items-center justify-center shrink-0 transition-colors">
                         <span class="material-symbols-outlined text-[14px]">delete</span>
                     </button>
                 ` : ''}
@@ -321,6 +330,7 @@ function buildNavigationCustomizerPanel() {
     });
 
     html += `
+                </div>
             </div>
         </div>
     `;
@@ -336,7 +346,16 @@ function addNavTab() {
         label: `Option ${nextIdx}`,
         icon: randomIcon
     });
-    activeTabIndex = currentNavTabs.length - 1; // switch to newly added tab
+    activeTabIndex = currentNavTabs.length - 1; // switch to newly added option
+    syncNavChanges();
+}
+
+function removeLastNavTab() {
+    if (currentNavTabs.length <= 2) return;
+    currentNavTabs.pop();
+    if (activeTabIndex >= currentNavTabs.length) {
+        activeTabIndex = currentNavTabs.length - 1;
+    }
     syncNavChanges();
 }
 
@@ -364,7 +383,7 @@ function selectActiveTab(index) {
 function applyNavPreset(preset) {
     if (preset === 'arena') {
         currentNavTabs = [...DEFAULT_NAV_TABS];
-        activeTabIndex = 1;
+        activeTabIndex = 4; // Profile active
     } else if (preset === 'numbered5') {
         currentNavTabs = [
             { label: "Option 1", icon: "home" },
@@ -374,25 +393,6 @@ function applyNavPreset(preset) {
             { label: "Option 5", icon: "profile" }
         ];
         activeTabIndex = 0;
-    } else if (preset === 'compact3') {
-        currentNavTabs = [
-            { label: "Option 1", icon: "home" },
-            { label: "Option 2", icon: "trophy" },
-            { label: "Option 3", icon: "profile" }
-        ];
-        activeTabIndex = 0;
-    } else if (preset === 'expanded8') {
-        currentNavTabs = [
-            { label: "Option 1", icon: "home" },
-            { label: "Option 2", icon: "trophy" },
-            { label: "Option 3", icon: "tree" },
-            { label: "Option 4", icon: "match" },
-            { label: "Option 5", icon: "profile" },
-            { label: "Option 6", icon: "admin" },
-            { label: "Option 7", icon: "star" },
-            { label: "Option 8", icon: "settings" }
-        ];
-        activeTabIndex = 1;
     }
     syncNavChanges();
 }
@@ -412,6 +412,7 @@ function syncNavChanges() {
 
 // Global functions for inline HTML calls
 window.addNavTab = addNavTab;
+window.removeLastNavTab = removeLastNavTab;
 window.removeNavTab = removeNavTab;
 window.handleNavTabLabelChange = handleNavTabLabelChange;
 window.selectActiveTab = selectActiveTab;
