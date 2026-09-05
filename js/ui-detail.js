@@ -242,26 +242,22 @@ function buildCustomizerPanel() {
     `;
 
     navTabs.forEach((tab, idx) => {
-        const isActive = idx === activeTabIndex;
         html += `
-            <div class="flex items-center gap-1.5 p-1.5 rounded-xl border ${isActive ? 'border-sky-400 bg-sky-50/40' : 'border-slate-200 bg-slate-50/70'} transition-all">
-                <button type="button" onclick="selectActiveTab(${idx})" title="Click to test active animation" class="w-6 h-6 rounded-lg ${isActive ? 'bg-sky-500 text-white font-black' : 'bg-white text-slate-400 hover:text-slate-700 border border-slate-200 font-bold'} flex items-center justify-center shrink-0 text-[10px] transition-all shadow-2xs">
+            <div class="flex items-center gap-2 p-1.5 rounded-xl border border-slate-200 bg-slate-50/70 transition-all">
+                <span class="w-6 h-6 rounded-lg bg-white text-slate-500 border border-slate-200 font-bold flex items-center justify-center shrink-0 text-[10px] shadow-2xs">
                     ${idx + 1}
-                </button>
+                </span>
                 <input 
                     type="text" 
                     value="${tab.label.replace(/"/g, '&quot;')}" 
                     oninput="handleTabRename(${idx}, this.value)" 
                     onblur="handleTabBlur(${idx}, this)"
-                    class="flex-1 text-[11.5px] font-medium text-slate-900 bg-white border border-slate-200 rounded-lg px-2.5 py-1 outline-none focus:border-sky-500 transition-colors shadow-2xs" 
+                    class="flex-1 text-[11.5px] font-medium text-slate-900 bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 outline-none focus:border-sky-500 transition-colors shadow-2xs" 
                     placeholder="Tab name..."
                 />
-                <button type="button" onclick="selectActiveTab(${idx})" class="px-2 py-1 text-[10px] font-bold rounded-lg ${isActive ? 'bg-slate-900 text-white' : 'text-slate-500 bg-white hover:bg-slate-100 border border-slate-200'} transition-all">
-                    ${isActive ? 'Active' : 'Test'}
-                </button>
                 ${navTabs.length > 2 && idx > 0 ? `
-                    <button type="button" onclick="deleteTabOption(${idx})" title="Delete Option" class="w-6 h-6 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 flex items-center justify-center shrink-0 transition-colors">
-                        <span class="material-symbols-outlined text-[14px]">delete</span>
+                    <button type="button" onclick="deleteTabOption(${idx})" title="Delete Option" class="w-7 h-7 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 flex items-center justify-center shrink-0 transition-colors cursor-pointer">
+                        <span class="material-symbols-outlined text-[15px]">delete</span>
                     </button>
                 ` : ''}
             </div>
